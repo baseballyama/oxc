@@ -7,6 +7,8 @@ use oxc_ast::{
 use oxc_ast_visit::{Visit, walk::walk_ts_enum_member_name};
 use oxc_syntax::scope::{ScopeFlags, ScopeId};
 
+use crate::host::{Host, HostVisitor};
+
 /// Macro to assert that `left >= right`
 macro_rules! assert_ge {
     ($left:expr, $right:expr, $($msg_args:tt)+) => {
@@ -94,6 +96,24 @@ impl Stats {
         counter.stats
     }
 
+    /// Gather [`Stats`] for `program` and what `host` evaluates inside it, as
+    /// [`SemanticBuilder::build_with_host`](crate::SemanticBuilder::build_with_host) visits them.
+    pub fn count_with_host<'a>(program: &Program<'a>, host: &'a dyn Host<'a>) -> Self {
+        Self::count_with_optional_host(program, Some(host))
+    }
+
+    pub(crate) fn count_with_optional_host<'a>(
+        program: &Program<'a>,
+        host: Option<&'a dyn Host<'a>>,
+    ) -> Self {
+        let mut counter = Counter::default();
+        counter.visit_program(program);
+        if let Some(host) = host {
+            host.visit(&mut HostVisitor::counter(&mut counter));
+        }
+        counter.stats
+    }
+
     /// Increase scope, symbol, and reference counts by provided `excess`.
     ///
     /// `excess` is provided as a fraction.
@@ -134,7 +154,7 @@ impl Stats {
 }
 
 #[derive(Default)]
-struct Counter {
+pub struct Counter {
     stats: Stats,
 }
 

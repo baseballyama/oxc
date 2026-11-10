@@ -33,6 +33,7 @@ mod builder;
 mod checker;
 mod class;
 mod diagnostics;
+mod host;
 mod is_global_reference;
 #[cfg(feature = "jsdoc")]
 mod jsdoc;
@@ -47,6 +48,7 @@ mod unresolved_stack;
 #[cfg(feature = "linter")]
 pub use ast_types_bitset::AstTypesBitset;
 pub use builder::{SemanticBuilder, SemanticBuilderReturn};
+pub use host::{Host, HostVisitor};
 pub use is_global_reference::IsGlobalReference;
 #[cfg(feature = "jsdoc")]
 pub use jsdoc::JSDocFinder;

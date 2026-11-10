@@ -33,6 +33,7 @@ use crate::{
     checker,
     class::ClassTableBuilder,
     diagnostics::redeclaration,
+    host::{Host, HostVisitor},
     label::UnusedLabels,
     node::{Ancestry, AstNodeStore, AstNodeStoreKind},
     scoping::{Bindings, Scoping},
@@ -308,7 +309,26 @@ impl<'a> SemanticBuilder<'a> {
     /// Finalize the builder.
     ///
     /// # Panics
-    pub fn build(mut self, program: &'a Program<'a>) -> SemanticBuilderReturn<'a> {
+    pub fn build(self, program: &'a Program<'a>) -> SemanticBuilderReturn<'a> {
+        self.build_with_optional_host(program, None)
+    }
+
+    /// Finalize the builder over `program` and what `host` evaluates inside it.
+    ///
+    /// # Panics
+    pub fn build_with_host(
+        self,
+        program: &'a Program<'a>,
+        host: &'a dyn Host<'a>,
+    ) -> SemanticBuilderReturn<'a> {
+        self.build_with_optional_host(program, Some(host))
+    }
+
+    fn build_with_optional_host(
+        mut self,
+        program: &'a Program<'a>,
+        host: Option<&'a dyn Host<'a>>,
+    ) -> SemanticBuilderReturn<'a> {
         self.source_text = program.source_text;
         self.source_type = program.source_type;
         #[cfg(feature = "jsdoc")]
@@ -331,7 +351,7 @@ impl<'a> SemanticBuilder<'a> {
         let (stats, check_stats) = if let Some(stats) = self.stats {
             (stats, None)
         } else {
-            let stats = Stats::count(program);
+            let stats = Stats::count_with_optional_host(program, host);
             let stats_with_excess = stats.increase_by(self.excess_capacity);
             (stats_with_excess, Some(stats))
         };
@@ -346,7 +366,7 @@ impl<'a> SemanticBuilder<'a> {
         self.class_table_builder.enabled |= self.check_syntax_error;
 
         // Visit AST to generate scopes tree etc
-        self.visit_program(program);
+        self.visit_program_with_host(program, host);
 
         // Check that estimated counts accurately (unless in release mode)
         #[cfg(debug_assertions)]
@@ -906,53 +926,8 @@ impl<'a> SemanticBuilder<'a> {
     }
 }
 
-impl<'a> Visit<'a> for SemanticBuilder<'a> {
-    // NB: Not called for `Program`
-    fn enter_scope(&mut self, flags: ScopeFlags, scope_id: &Cell<Option<ScopeId>>) {
-        let parent_scope_id = self.current_scope_id;
-        let flags = self.scoping.get_new_scope_flags(flags, parent_scope_id);
-        self.current_scope_id =
-            self.scoping.add_scope(Some(parent_scope_id), self.node_store.current_node_id, flags);
-        scope_id.set(Some(self.current_scope_id));
-    }
-
-    // NB: Not called for `Program`
-    fn leave_scope(&mut self) {
-        // `get_parent_id` always returns `Some` because this method is not called for `Program`.
-        // So we could `.unwrap()` here. But that seems to produce a small perf impact, probably because
-        // `leave_scope` then doesn't get inlined because of its larger size due to the panic code.
-        let parent_id = self.scoping.scope_parent_id(self.current_scope_id);
-
-        debug_assert!(parent_id.is_some());
-        if let Some(parent_id) = parent_id {
-            if self.scoping.scope_flags(self.current_scope_id).contains_direct_eval() {
-                self.scoping.scope_flags_mut(parent_id).insert(ScopeFlags::DirectEval);
-            }
-            self.current_scope_id = parent_id;
-        }
-    }
-
-    // NB: Not called for `Program`.
-    fn enter_node(&mut self, kind: AstKind<'a>) {
-        self.create_ast_node(kind);
-    }
-
-    /// Both this function and `checker::check` must be inlined. Each `visit_*` method calls
-    /// `leave_node` with a statically known `AstKind`, so inlining allows the compiler to
-    /// constant-fold `checker::check`'s match, eliminating all non-matching arms.
-    #[expect(
-        clippy::inline_always,
-        reason = "enables compile-time match elimination in checker::check"
-    )]
-    #[inline(always)]
-    fn leave_node(&mut self, kind: AstKind<'a>) {
-        if self.check_syntax_error {
-            checker::check(kind, self);
-        }
-        self.pop_ast_node();
-    }
-
-    fn visit_program(&mut self, program: &Program<'a>) {
+impl<'a> SemanticBuilder<'a> {
+    fn visit_program_with_host(&mut self, program: &Program<'a>, host: Option<&'a dyn Host<'a>>) {
         let kind = AstKind::Program(self.alloc(program));
         /* cfg */
         #[cfg(feature = "cfg")]
@@ -1017,6 +992,10 @@ impl<'a> Visit<'a> for SemanticBuilder<'a> {
 
         self.visit_statements(&program.body);
 
+        if let Some(host) = host {
+            host.visit(&mut HostVisitor::builder(self));
+        }
+
         /* cfg */
         control_flow!(self, |cfg| cfg.release_error_harness(error_harness));
         /* cfg */
@@ -1029,6 +1008,57 @@ impl<'a> Visit<'a> for SemanticBuilder<'a> {
         self.leave_ambient_context(is_ambient);
 
         debug_assert_eq!(self.ambient_depth, 0);
+    }
+}
+
+impl<'a> Visit<'a> for SemanticBuilder<'a> {
+    // NB: Not called for `Program`
+    fn enter_scope(&mut self, flags: ScopeFlags, scope_id: &Cell<Option<ScopeId>>) {
+        let parent_scope_id = self.current_scope_id;
+        let flags = self.scoping.get_new_scope_flags(flags, parent_scope_id);
+        self.current_scope_id =
+            self.scoping.add_scope(Some(parent_scope_id), self.node_store.current_node_id, flags);
+        scope_id.set(Some(self.current_scope_id));
+    }
+
+    // NB: Not called for `Program`
+    fn leave_scope(&mut self) {
+        // `get_parent_id` always returns `Some` because this method is not called for `Program`.
+        // So we could `.unwrap()` here. But that seems to produce a small perf impact, probably because
+        // `leave_scope` then doesn't get inlined because of its larger size due to the panic code.
+        let parent_id = self.scoping.scope_parent_id(self.current_scope_id);
+
+        debug_assert!(parent_id.is_some());
+        if let Some(parent_id) = parent_id {
+            if self.scoping.scope_flags(self.current_scope_id).contains_direct_eval() {
+                self.scoping.scope_flags_mut(parent_id).insert(ScopeFlags::DirectEval);
+            }
+            self.current_scope_id = parent_id;
+        }
+    }
+
+    // NB: Not called for `Program`.
+    fn enter_node(&mut self, kind: AstKind<'a>) {
+        self.create_ast_node(kind);
+    }
+
+    /// Both this function and `checker::check` must be inlined. Each `visit_*` method calls
+    /// `leave_node` with a statically known `AstKind`, so inlining allows the compiler to
+    /// constant-fold `checker::check`'s match, eliminating all non-matching arms.
+    #[expect(
+        clippy::inline_always,
+        reason = "enables compile-time match elimination in checker::check"
+    )]
+    #[inline(always)]
+    fn leave_node(&mut self, kind: AstKind<'a>) {
+        if self.check_syntax_error {
+            checker::check(kind, self);
+        }
+        self.pop_ast_node();
+    }
+
+    fn visit_program(&mut self, program: &Program<'a>) {
+        self.visit_program_with_host(program, None);
     }
 
     fn visit_break_statement(&mut self, stmt: &BreakStatement<'a>) {

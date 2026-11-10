@@ -31,7 +31,7 @@ use crate::{SemanticBuilder, stats::Counter};
 /// before and after the declaration.
 pub trait Host<'a> {
     /// Visits the host's nodes, in the order of the source text.
-    fn visit(&'a self, visitor: &mut HostVisitor<'_, 'a>);
+    fn visit(&self, visitor: &mut HostVisitor<'_, 'a>);
 }
 
 /// Visits the nodes of a [`Host`].

@@ -1,10 +1,10 @@
 use std::cell::Cell;
 
 use oxc_allocator::Allocator;
-use oxc_ast::builder::AstBuilder;
 use oxc_ast::ast::{
     BindingIdentifier, BindingPattern, Expression, FormalParameters, IdentifierReference, Program,
 };
+use oxc_ast::builder::AstBuilder;
 use oxc_parser::Parser;
 use oxc_span::SourceType;
 use oxc_syntax::{
@@ -17,18 +17,18 @@ use crate::{SemanticBuilder, Stats};
 
 /// A component: a `<script>`, and `{#each items as item}{item + total}{/each}` after it.
 struct Each<'a> {
-    items: Expression<'a>,
-    item: FormalParameters<'a>,
-    body: Expression<'a>,
+    items: &'a Expression<'a>,
+    item: &'a FormalParameters<'a>,
+    body: &'a Expression<'a>,
     scope_id: Cell<Option<ScopeId>>,
 }
 
 impl<'a> Host<'a> for Each<'a> {
-    fn visit(&'a self, visitor: &mut HostVisitor<'_, 'a>) {
-        visitor.visit_expression(&self.items);
+    fn visit(&self, visitor: &mut HostVisitor<'_, 'a>) {
+        visitor.visit_expression(self.items);
         visitor.enter_scope(ScopeFlags::empty(), &self.scope_id);
         visitor.visit_formal_parameter(&self.item.items[0]);
-        visitor.visit_expression(&self.body);
+        visitor.visit_expression(self.body);
         visitor.leave_scope();
     }
 }
@@ -64,13 +64,13 @@ fn identifiers<'b, 'a>(expression: &'b Expression<'a>) -> Vec<&'b IdentifierRefe
 fn host_references_resolve_to_the_program_and_to_host_scopes() {
     let allocator = Allocator::default();
     let program = program(&allocator, "let items = [], total = 0;");
-    let each: &Each = allocator.alloc(Each {
-        items: expression(&allocator, "items"),
-        item: parameters(&allocator, "(item) => 0"),
-        body: expression(&allocator, "item + total + missing"),
+    let each = Each {
+        items: allocator.alloc(expression(&allocator, "items")),
+        item: allocator.alloc(parameters(&allocator, "(item) => 0")),
+        body: allocator.alloc(expression(&allocator, "item + total + missing")),
         scope_id: Cell::new(None),
-    });
-    let semantic = SemanticBuilder::new().build_with_host(program, each).semantic;
+    };
+    let semantic = SemanticBuilder::new().build_with_host(program, &each).semantic;
     let scoping = semantic.scoping();
 
     let items = scoping.get_binding(scoping.root_scope_id(), "items".into()).unwrap();
@@ -83,12 +83,12 @@ fn host_references_resolve_to_the_program_and_to_host_scopes() {
     let item = item_binding.symbol_id();
     assert_eq!(scoping.symbol_scope_id(item), each_scope);
 
-    let Expression::Identifier(items_reference) = &each.items else { unreachable!() };
+    let Expression::Identifier(items_reference) = each.items else { unreachable!() };
     let resolved = |identifier: &IdentifierReference| {
         scoping.get_reference(identifier.reference_id()).symbol_id()
     };
     assert_eq!(resolved(items_reference), Some(items));
-    let body = identifiers(&each.body);
+    let body = identifiers(each.body);
     assert_eq!(resolved(body[0]), Some(item));
     assert_eq!(resolved(body[1]), Some(total));
     assert_eq!(resolved(body[2]), None);
@@ -99,15 +99,15 @@ fn host_references_resolve_to_the_program_and_to_host_scopes() {
 struct Component<'a> {
     instance: &'a Program<'a>,
     instance_scope_id: Cell<Option<ScopeId>>,
-    use_before: Expression<'a>,
+    use_before: &'a Expression<'a>,
     snippet: &'a BindingIdentifier<'a>,
 }
 
 impl<'a> Host<'a> for Component<'a> {
-    fn visit(&'a self, visitor: &mut HostVisitor<'_, 'a>) {
+    fn visit(&self, visitor: &mut HostVisitor<'_, 'a>) {
         visitor.enter_scope(ScopeFlags::Function, &self.instance_scope_id);
         visitor.visit_statements(&self.instance.body);
-        visitor.visit_expression(&self.use_before);
+        visitor.visit_expression(self.use_before);
         visitor.declare(self.snippet, SymbolFlags::BlockScopedVariable);
         visitor.leave_scope();
     }
@@ -121,13 +121,13 @@ fn a_second_program_and_a_hoisted_name_in_a_host_scope() {
     let Expression::Identifier(snippet) = expression(&allocator, "row") else { unreachable!() };
     let ast = AstBuilder::new(&allocator);
     let snippet = allocator.alloc(BindingIdentifier::new(snippet.span, snippet.name, &ast));
-    let component: &Component = allocator.alloc(Component {
+    let component = Component {
         instance,
         instance_scope_id: Cell::new(None),
-        use_before: expression(&allocator, "row"),
+        use_before: allocator.alloc(expression(&allocator, "row")),
         snippet,
-    });
-    let host: &dyn Host = component;
+    };
+    let host: &dyn Host = &component;
     let stats = Stats::count_with_host(module, host);
     let semantic = SemanticBuilder::new().build_with_host(module, host).semantic;
     let scoping = semantic.scoping();
@@ -140,7 +140,7 @@ fn a_second_program_and_a_hoisted_name_in_a_host_scope() {
     assert_eq!(scoping.get_resolved_reference_ids(shared).len(), 1);
     assert_eq!(scoping.symbol_scope_id(local), instance_scope);
 
-    let Expression::Identifier(row) = &component.use_before else { unreachable!() };
+    let Expression::Identifier(row) = component.use_before else { unreachable!() };
     let reference = scoping.get_reference(row.reference_id());
     assert_eq!(reference.symbol_id(), Some(snippet.symbol_id()));
 }

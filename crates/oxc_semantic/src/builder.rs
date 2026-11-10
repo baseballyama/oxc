@@ -319,7 +319,7 @@ impl<'a> SemanticBuilder<'a> {
     pub fn build_with_host(
         self,
         program: &'a Program<'a>,
-        host: &'a dyn Host<'a>,
+        host: &dyn Host<'a>,
     ) -> SemanticBuilderReturn<'a> {
         self.build_with_optional_host(program, Some(host))
     }
@@ -327,7 +327,7 @@ impl<'a> SemanticBuilder<'a> {
     fn build_with_optional_host(
         mut self,
         program: &'a Program<'a>,
-        host: Option<&'a dyn Host<'a>>,
+        host: Option<&dyn Host<'a>>,
     ) -> SemanticBuilderReturn<'a> {
         self.source_text = program.source_text;
         self.source_type = program.source_type;
@@ -927,7 +927,7 @@ impl<'a> SemanticBuilder<'a> {
 }
 
 impl<'a> SemanticBuilder<'a> {
-    fn visit_program_with_host(&mut self, program: &Program<'a>, host: Option<&'a dyn Host<'a>>) {
+    fn visit_program_with_host(&mut self, program: &Program<'a>, host: Option<&dyn Host<'a>>) {
         let kind = AstKind::Program(self.alloc(program));
         /* cfg */
         #[cfg(feature = "cfg")]

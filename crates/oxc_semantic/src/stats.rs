@@ -98,13 +98,13 @@ impl Stats {
 
     /// Gather [`Stats`] for `program` and what `host` evaluates inside it, as
     /// [`SemanticBuilder::build_with_host`](crate::SemanticBuilder::build_with_host) visits them.
-    pub fn count_with_host<'a>(program: &Program<'a>, host: &'a dyn Host<'a>) -> Self {
+    pub fn count_with_host<'a>(program: &Program<'a>, host: &dyn Host<'a>) -> Self {
         Self::count_with_optional_host(program, Some(host))
     }
 
     pub(crate) fn count_with_optional_host<'a>(
         program: &Program<'a>,
-        host: Option<&'a dyn Host<'a>>,
+        host: Option<&dyn Host<'a>>,
     ) -> Self {
         let mut counter = Counter::default();
         counter.visit_program(program);

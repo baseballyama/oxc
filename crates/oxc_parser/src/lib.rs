@@ -246,6 +246,62 @@ pub struct ExpressionReturn<'a> {
     pub tokens: ArenaVec<'a, Token>,
 }
 
+/// Return value of [`Parser::parse_statement_at`]: the statement, where it ends, and the
+/// comments and tokens read on the way.
+#[non_exhaustive]
+pub struct StatementReturn<'a> {
+    /// The parsed statement.
+    pub statement: Statement<'a>,
+
+    /// The byte offset where the statement ends.
+    pub end: u32,
+
+    /// Comments in source order, up to the token after the statement.
+    pub comments: ArenaVec<'a, Comment>,
+
+    /// The statement's tokens in source order.
+    ///
+    /// Tokens are only collected when tokens are enabled in [`ParserConfig`].
+    /// The token after the statement is not included.
+    pub tokens: ArenaVec<'a, Token>,
+}
+
+/// What [`ParserImpl::parse_part`] reads.
+#[derive(Clone, Copy)]
+enum Entry {
+    /// An expression; with `whole`, it must reach the end of the source text.
+    Expression {
+        whole: bool,
+    },
+    Statement,
+}
+
+/// The node [`ParserImpl::parse_part`] read.
+enum Part<'a> {
+    Expression(Expression<'a>),
+    Statement(Statement<'a>),
+}
+
+/// Return value of [`ParserImpl::parse_part`].
+struct PartReturn<'a> {
+    part: Part<'a>,
+    end: u32,
+    comments: ArenaVec<'a, Comment>,
+    tokens: ArenaVec<'a, Token>,
+}
+
+impl<'a> PartReturn<'a> {
+    fn into_expression(self) -> ExpressionReturn<'a> {
+        let Part::Expression(expression) = self.part else { unreachable!("read an expression") };
+        ExpressionReturn { expression, end: self.end, comments: self.comments, tokens: self.tokens }
+    }
+
+    fn into_statement(self) -> StatementReturn<'a> {
+        let Part::Statement(statement) = self.part else { unreachable!("read a statement") };
+        StatementReturn { statement, end: self.end, comments: self.comments, tokens: self.tokens }
+    }
+}
+
 // `ParserReturn` is the output of `ParserImpl::parse`.
 // It's created inside a closure, with the closure's `'brand` lifetime.
 // `BrandScope::extend_lifetime` changes that lifetime to the lifetime of the allocator
@@ -518,7 +574,8 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     // Dispatches via `Any`, same as `parse` does.
     pub fn parse_expression(self) -> Result<Expression<'a>, Diagnostics> {
         let start = self.start;
-        self.parse_expression_from(start, true).map(|ret| ret.expression)
+        self.parse_part_from(start, Entry::Expression { whole: true })
+            .map(|ret| ret.into_expression().expression)
     }
 
     /// Parse a single [`Expression`] that starts at byte offset `start` of the source text,
@@ -550,15 +607,42 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     /// # Panics
     /// If `start` is past the end of the source text or not on a character boundary.
     pub fn parse_expression_at(self, start: u32) -> Result<ExpressionReturn<'a>, Diagnostics> {
-        self.parse_expression_from(start, false)
+        self.parse_part_from(start, Entry::Expression { whole: false })
+            .map(PartReturn::into_expression)
+    }
+
+    /// Parse a single [`Statement`] that starts at byte offset `start` of the source text,
+    /// and stop where it ends, as acorn's `parseStatement` does from a position.
+    ///
+    /// Returns the statement, the byte offset where it ends, and its comments and tokens.
+    /// A `}` after the statement ends it as a `;` would, so a template can embed a
+    /// declaration such as `{let a = 1}`.
+    ///
+    /// # Example
+    ///
+    /// ```rust
+    /// use oxc_allocator::Allocator;
+    /// use oxc_parser::Parser;
+    /// use oxc_span::{GetSpan, SourceType};
+    ///
+    /// let src = "<p>{let a = 1, b = 2}</p>";
+    /// let allocator = Allocator::new();
+    /// let ret =
+    ///     Parser::new(&allocator, src, SourceType::default()).parse_statement_at(4).unwrap();
+    /// assert_eq!((ret.statement.span().start, ret.end), (4, 20));
+    /// ```
+    ///
+    /// # Errors
+    /// If the statement has syntax errors.
+    ///
+    /// # Panics
+    /// If `start` is past the end of the source text or not on a character boundary.
+    pub fn parse_statement_at(self, start: u32) -> Result<StatementReturn<'a>, Diagnostics> {
+        self.parse_part_from(start, Entry::Statement).map(PartReturn::into_statement)
     }
 
     // Dispatches via `Any`, same as `parse` does.
-    fn parse_expression_from(
-        self,
-        start: u32,
-        whole: bool,
-    ) -> Result<ExpressionReturn<'a>, Diagnostics> {
+    fn parse_part_from(self, start: u32, entry: Entry) -> Result<PartReturn<'a>, Diagnostics> {
         let Self { allocator, source_text, source_type, options, config, start: _ } = self;
 
         let config_any: &dyn Any = &config;
@@ -570,19 +654,19 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 source_type: SourceType,
                 options: ParseOptions,
                 start: u32,
-                whole: bool,
-            ) -> Result<ExpressionReturn<'a>, Diagnostics> {
-                ParserImpl::parse_expression(
+                entry: Entry,
+            ) -> Result<PartReturn<'a>, Diagnostics> {
+                ParserImpl::parse_part(
                     allocator,
                     source_text,
                     source_type,
                     options,
                     NoTokensParserConfig,
                     start,
-                    whole,
+                    entry,
                 )
             }
-            parse(allocator, source_text, source_type, options, start, whole)
+            parse(allocator, source_text, source_type, options, start, entry)
         } else if config_any.is::<TokensParserConfig>() {
             #[inline(never)]
             fn parse<'a>(
@@ -591,19 +675,19 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 source_type: SourceType,
                 options: ParseOptions,
                 start: u32,
-                whole: bool,
-            ) -> Result<ExpressionReturn<'a>, Diagnostics> {
-                ParserImpl::parse_expression(
+                entry: Entry,
+            ) -> Result<PartReturn<'a>, Diagnostics> {
+                ParserImpl::parse_part(
                     allocator,
                     source_text,
                     source_type,
                     options,
                     TokensParserConfig,
                     start,
-                    whole,
+                    entry,
                 )
             }
-            parse(allocator, source_text, source_type, options, start, whole)
+            parse(allocator, source_text, source_type, options, start, entry)
         } else if let Some(&config) = config_any.downcast_ref::<RuntimeParserConfig>() {
             #[inline(never)]
             fn parse<'a>(
@@ -613,28 +697,28 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 options: ParseOptions,
                 config: RuntimeParserConfig,
                 start: u32,
-                whole: bool,
-            ) -> Result<ExpressionReturn<'a>, Diagnostics> {
-                ParserImpl::parse_expression(
+                entry: Entry,
+            ) -> Result<PartReturn<'a>, Diagnostics> {
+                ParserImpl::parse_part(
                     allocator,
                     source_text,
                     source_type,
                     options,
                     config,
                     start,
-                    whole,
+                    entry,
                 )
             }
-            parse(allocator, source_text, source_type, options, config, start, whole)
+            parse(allocator, source_text, source_type, options, config, start, entry)
         } else {
-            ParserImpl::parse_expression(
+            ParserImpl::parse_part(
                 allocator,
                 source_text,
                 source_type,
                 options,
                 config,
                 start,
-                whole,
+                entry,
             )
         }
     }
@@ -849,54 +933,54 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         }
     }
 
-    fn parse_expression(
+    fn parse_part(
         allocator: &'a Allocator,
         source_text: &'a str,
         source_type: SourceType,
         options: ParseOptions,
         config: C,
         start: u32,
-        whole: bool,
-    ) -> Result<ExpressionReturn<'a>, Diagnostics> {
-        /// Wrapper around `Result<ExpressionReturn<'a>, Diagnostics>`.
-        /// `Result<T, E>` is only [`Unbranded`] if `T` and `E` are. `Expression` and `Diagnostics`
-        /// are from other crates, so this crate can't implement `Unbranded` for them.
-        struct ExpressionParserReturn<'a>(Result<ExpressionReturn<'a>, Diagnostics>);
+        entry: Entry,
+    ) -> Result<PartReturn<'a>, Diagnostics> {
+        /// Wrapper around `Result<PartReturn<'a>, Diagnostics>`.
+        /// `Result<T, E>` is only [`Unbranded`] if `T` and `E` are. `Diagnostics` is from another
+        /// crate, so this crate can't implement `Unbranded` for it.
+        struct PartParserReturn<'a>(Result<PartReturn<'a>, Diagnostics>);
 
-        // SAFETY: `ExpressionParserReturn` meets `Unbranded`'s contract.
-        // `Expression` and `Diagnostics` don't name `BrandOrigin` or `Brand`,
-        // or any type which does, and they don't contain a `dyn Trait + 'a`.
-        // `Expression`'s lifetime is the lifetime of the arena. Nothing uses it as a brand.
-        unsafe impl Unbranded for ExpressionParserReturn<'_> {
-            type WithLifetime<'a> = ExpressionParserReturn<'a>;
+        // SAFETY: `PartParserReturn` meets `Unbranded`'s contract.
+        // `Expression`, `Statement`, `Comment`, `Token` and `Diagnostics` don't name `BrandOrigin`
+        // or `Brand`, or any type which does, and they don't contain a `dyn Trait + 'a`.
+        // Their lifetime is the lifetime of the arena. Nothing uses it as a brand.
+        unsafe impl Unbranded for PartParserReturn<'_> {
+            type WithLifetime<'a> = PartParserReturn<'a>;
         }
 
         // See comments in `parse`
         BrandOrigin::scope_within(|brand_origin, brand_scope: BrandScope<'_, 'a>| {
             let parser =
                 ParserImpl::new(allocator, source_text, source_type, options, config, brand_origin);
-            let ret = parser.parse_expression_impl(start, whole);
+            let ret = parser.parse_part_impl(start, entry);
 
             // Change lifetime of the output from `'brand` back to `'a`
-            brand_scope.extend_lifetime::<ExpressionParserReturn>(ExpressionParserReturn(ret)).0
+            brand_scope.extend_lifetime::<PartParserReturn>(PartParserReturn(ret)).0
         })
     }
 
-    /// Parse an expression from byte offset `start`. With `whole`, it must reach the end of the
-    /// source text.
-    fn parse_expression_impl(
-        mut self,
-        start: u32,
-        whole: bool,
-    ) -> Result<ExpressionReturn<'a>, Diagnostics> {
+    /// Parse what `entry` names from byte offset `start`.
+    fn parse_part_impl(mut self, start: u32, entry: Entry) -> Result<PartReturn<'a>, Diagnostics> {
         if start != 0 {
             self.lexer.set_offset(start);
         }
         // Initialize by moving onto the first token
         self.token = self.lexer.first_token_without_hashbang();
-        let expr = self.parse_expr();
+        let part = match entry {
+            Entry::Expression { .. } => Part::Expression(self.parse_expr()),
+            Entry::Statement => {
+                Part::Statement(self.parse_statement_list_item(StatementContext::StatementList))
+            }
+        };
         let end = self.prev_token_end;
-        if whole && !self.at(Kind::Eof) {
+        if matches!(entry, Entry::Expression { whole: true }) && !self.at(Kind::Eof) {
             self.set_unexpected();
         }
         if let Some(FatalError { error, .. }) = self.fatal_error.take() {
@@ -904,7 +988,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
             return Err(error.into_diagnostic().into());
         }
         self.check_unfinished_errors();
-        // The token after the expression has been read, but is not one of its tokens.
+        // The token after the part has been read, but is not one of its tokens.
         let mut tokens = self.lexer.take_tokens();
         let len = tokens.partition_point(|token| token.start() < end);
         tokens.truncate(len);
@@ -919,7 +1003,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
             return Err(errors);
         }
         let comments = self.lexer.trivia_builder.comments.take_vec(&self.ast);
-        Ok(ExpressionReturn { expression: expr, end, comments, tokens })
+        Ok(PartReturn { part, end, comments, tokens })
     }
 
     #[expect(clippy::cast_possible_truncation)]
@@ -1239,6 +1323,34 @@ mod test {
         let ret =
             Parser::new(&allocator, source, SourceType::default()).parse_expression_at(1).unwrap();
         assert!(ret.tokens.is_empty());
+    }
+
+    #[test]
+    fn parse_statement_at_stops_where_the_statement_ends() {
+        let cases = [
+            ("{let a = 1, b = 2}", 1, SourceType::default(), "let a = 1, b = 2"),
+            ("{const x = y;}", 1, SourceType::default(), "const x = y;"),
+            ("{let a = /}/.source}", 1, SourceType::default(), "let a = /}/.source"),
+            ("{let a: T = b}", 1, SourceType::ts(), "let a: T = b"),
+        ];
+        for (source, start, source_type, text) in cases {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, source_type)
+                .parse_statement_at(start)
+                .unwrap_or_else(|errors| panic!("{source}: {errors:?}"));
+            let span = ret.statement.span();
+            assert_eq!(&source[span.start as usize..span.end as usize], text, "{source}");
+            assert_eq!(ret.end, span.end, "{source}");
+            assert!(matches!(ret.statement, Statement::VariableDeclaration(_)), "{source}");
+        }
+    }
+
+    #[test]
+    fn parse_statement_at_reports_errors_in_the_statement() {
+        let allocator = Allocator::default();
+        let result =
+            Parser::new(&allocator, "{let a = }", SourceType::default()).parse_statement_at(1);
+        assert!(result.is_err());
     }
 
     #[test]

@@ -12,7 +12,7 @@ use oxc_ast::{
     AstKind,
     ast::{
         BindingIdentifier, Expression, FormalParameter, FormalParameters, Statement,
-        VariableDeclaration,
+        TSTypeParameterDeclaration, VariableDeclaration,
     },
 };
 use oxc_ast_visit::Visit;
@@ -130,6 +130,18 @@ impl<'v, 'a> HostVisitor<'v, 'a> {
         match &mut self.inner {
             Inner::Builder(builder) => builder.visit_variable_declaration(declaration),
             Inner::Counter(counter) => counter.visit_variable_declaration(declaration),
+        }
+    }
+
+    /// Declares type parameters in the current scope, such as those of
+    /// `<script lang="ts" generics="T extends Item">`.
+    pub fn visit_ts_type_parameter_declaration(
+        &mut self,
+        declaration: &'a TSTypeParameterDeclaration<'a>,
+    ) {
+        match &mut self.inner {
+            Inner::Builder(builder) => builder.visit_ts_type_parameter_declaration(declaration),
+            Inner::Counter(counter) => counter.visit_ts_type_parameter_declaration(declaration),
         }
     }
 }

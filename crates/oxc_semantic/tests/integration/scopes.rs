@@ -266,3 +266,28 @@ fn test_eval() {
         assert!(!semantic.scoping().root_scope_flags().contains_direct_eval());
     }
 }
+
+#[test]
+fn scoping_is_built_in_the_allocator_given() {
+    use oxc_allocator::Allocator;
+    use oxc_parser::Parser;
+    use oxc_semantic::SemanticBuilder;
+    use oxc_span::SourceType;
+
+    let source = "let a = 1; function f(b) { return a + b; }";
+    let ast_allocator = Allocator::default();
+    let program = Parser::new(&ast_allocator, source, SourceType::mjs()).parse().program;
+
+    let given = Allocator::with_capacity(1 << 20);
+    let scoping = SemanticBuilder::new()
+        .with_scoping_allocator(given)
+        .build(&program)
+        .semantic
+        .into_scoping();
+    assert_eq!(scoping.symbol_names().collect::<Vec<_>>(), ["a", "f", "b"]);
+    let mut allocator = scoping.into_allocator();
+    assert!(allocator.capacity() >= 1 << 20);
+    assert!(allocator.used_bytes() > 0);
+    allocator.reset();
+    assert_eq!(allocator.used_bytes(), 0);
+}

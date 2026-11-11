@@ -118,13 +118,25 @@ impl fmt::Debug for Scoping {
 
 impl Default for Scoping {
     fn default() -> Self {
+        Self::with_allocator(Allocator::default())
+    }
+}
+
+impl Scoping {
+    /// Create an empty [`Scoping`] which keeps its symbol names, resolved references and bindings
+    /// in `allocator`.
+    ///
+    /// Passing an allocator which has been [`reset`](Allocator::reset) reuses its memory, so a
+    /// caller analyzing many programs can avoid allocating a new arena for each of them.
+    /// Get the allocator back with [`Scoping::into_allocator`].
+    pub fn with_allocator(allocator: Allocator) -> Self {
         Self {
             symbol_table: SymbolTable::new(),
             references: IndexVec::new(),
             no_side_effects: FxHashSet::default(),
             enum_data: EnumData::default(),
             scope_table: ScopeTable::new(),
-            cell: ScopingCell::new(Allocator::default(), |allocator| ScopingInner {
+            cell: ScopingCell::new(allocator, |allocator| ScopingInner {
                 symbol_names: ArenaVec::new_in(&allocator),
                 resolved_references: ArenaVec::new_in(&allocator),
                 symbol_redeclarations: FxHashMap::default(),
@@ -132,6 +144,15 @@ impl Default for Scoping {
                 root_unresolved_references: UnresolvedReferences::new_in(allocator),
             }),
         }
+    }
+
+    /// Consume this [`Scoping`] and return the [`Allocator`] it kept its data in.
+    ///
+    /// [`reset`](Allocator::reset) the allocator and pass it to [`Scoping::with_allocator`] or
+    /// [`SemanticBuilder::with_scoping_allocator`](crate::SemanticBuilder::with_scoping_allocator)
+    /// to reuse its memory for another program.
+    pub fn into_allocator(self) -> Allocator {
+        self.cell.into_allocator()
     }
 }
 
@@ -209,6 +230,12 @@ mod scoping_cell {
             dependent_builder: impl for<'_q> FnOnce(&'_q Allocator) -> ScopingInner<'_q>,
         ) -> Self {
             Self(ScopingCellInner::new(allocator, dependent_builder))
+        }
+
+        /// Consume the [`ScopingCell`], dropping [`ScopingInner`], and return the [`Allocator`].
+        #[inline(always)]
+        pub fn into_allocator(self) -> Allocator {
+            self.0.into_owner()
         }
 
         /// Borrow [`ScopingInner`].

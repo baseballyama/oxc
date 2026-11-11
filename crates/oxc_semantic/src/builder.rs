@@ -7,7 +7,7 @@ use std::{
 
 use rustc_hash::FxHashMap;
 
-use oxc_allocator::{Address, ArenaVec};
+use oxc_allocator::{Address, Allocator, ArenaVec};
 use oxc_ast::{AstKind, ast::*};
 use oxc_ast_visit::Visit;
 #[cfg(feature = "cfg")]
@@ -103,6 +103,8 @@ pub struct SemanticBuilder<'a> {
     /// store or ancestry stack). See [`AstNodeStore`].
     pub(crate) node_store: AstNodeStore<'a>,
     pub(crate) scoping: Scoping,
+    /// Allocator for [`Scoping`], from [`SemanticBuilder::with_scoping_allocator`].
+    scoping_allocator: Option<Allocator>,
 
     pub(crate) unresolved_references: UnresolvedReferences<'a>,
 
@@ -165,6 +167,7 @@ impl<'a> SemanticBuilder<'a> {
             hoisting_variables: FxHashMap::default(),
             catch_body_scope_id: None,
             scoping,
+            scoping_allocator: None,
             unresolved_references: UnresolvedReferences::new(),
             unused_labels: UnusedLabels::default(),
             #[cfg(feature = "jsdoc")]
@@ -293,6 +296,16 @@ impl<'a> SemanticBuilder<'a> {
         self
     }
 
+    /// Build [`Scoping`] in `allocator` instead of in a new arena.
+    ///
+    /// Pass an allocator which has been [`reset`](oxc_allocator::Allocator::reset), such as one
+    /// returned by [`Scoping::into_allocator`] after a previous analysis, to reuse its memory.
+    #[must_use]
+    pub fn with_scoping_allocator(mut self, allocator: Allocator) -> Self {
+        self.scoping_allocator = Some(allocator);
+        self
+    }
+
     /// Request `SemanticBuilder` to allocate excess capacity for scopes, symbols, and references.
     ///
     /// `excess_capacity` is provided as a fraction.
@@ -362,12 +375,23 @@ impl<'a> SemanticBuilder<'a> {
         };
         self.node_store.reserve(stats.nodes as usize);
         // `self.scoping` is still empty at this point. Replace it with one which has capacity for
-        // everything we're about to add, including an arena of appropriate size.
-        self.scoping = Scoping::with_capacity(
-            stats.symbols as usize,
-            stats.references as usize,
-            stats.scopes as usize,
-        );
+        // everything we're about to add, including an arena of appropriate size, unless the caller
+        // passed the arena.
+        self.scoping = if let Some(allocator) = self.scoping_allocator.take() {
+            let mut scoping = Scoping::with_allocator(allocator);
+            scoping.reserve(
+                stats.symbols as usize,
+                stats.references as usize,
+                stats.scopes as usize,
+            );
+            scoping
+        } else {
+            Scoping::with_capacity(
+                stats.symbols as usize,
+                stats.references as usize,
+                stats.scopes as usize,
+            )
+        };
         self.unresolved_references.reserve_exact(stats.references as usize);
 
         self.class_table_builder.enabled |= self.check_syntax_error;

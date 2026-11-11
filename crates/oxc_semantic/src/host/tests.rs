@@ -144,3 +144,47 @@ fn a_second_program_and_a_hoisted_name_in_a_host_scope() {
     let reference = scoping.get_reference(row.reference_id());
     assert_eq!(reference.symbol_id(), Some(snippet.symbol_id()));
 }
+
+/// `<script lang="ts" generics="T extends Item = Default">`, whose names the script reads.
+struct Generics<'a> {
+    parameters: &'a oxc_ast::ast::TSTypeParameterDeclaration<'a>,
+}
+
+impl<'a> Host<'a> for Generics<'a> {
+    fn visit(&self, visitor: &mut HostVisitor<'_, 'a>) {
+        visitor.visit_ts_type_parameter_declaration(self.parameters);
+    }
+}
+
+#[test]
+fn host_type_parameters_are_declared_in_the_current_scope() {
+    let allocator = Allocator::default();
+    let ts = SourceType::ts();
+    let program = allocator.alloc(
+        Parser::new(&allocator, "import type { Item, Default } from 'x'; let a: T;", ts)
+            .parse()
+            .program,
+    );
+    let Expression::ArrowFunctionExpression(arrow) =
+        Parser::new(&allocator, "<T extends Item = Default>() => 0", ts)
+            .parse_expression()
+            .unwrap()
+    else {
+        unreachable!()
+    };
+    let generics = Generics { parameters: allocator.alloc(arrow.unbox().type_parameters.unwrap()) };
+    let host: &dyn Host = &generics;
+    let stats = Stats::count_with_host(program, host);
+    let semantic = SemanticBuilder::new().build_with_host(program, host).semantic;
+    let scoping = semantic.scoping();
+    assert_eq!(stats.symbols, 4);
+
+    let root = scoping.root_scope_id();
+    let t = scoping.get_binding(root, "T".into()).unwrap();
+    assert!(scoping.symbol_flags(t).is_type_parameter());
+    assert_eq!(scoping.get_resolved_reference_ids(t).len(), 1);
+    for name in ["Item", "Default"] {
+        let symbol = scoping.get_binding(root, name.into()).unwrap();
+        assert_eq!(scoping.get_resolved_reference_ids(symbol).len(), 1, "{name}");
+    }
+}

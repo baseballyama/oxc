@@ -628,7 +628,10 @@ unsafe fn print_less_than(codegen: &mut Codegen, state: &mut PrintStringState) {
     // SAFETY: Next byte is `<`, which is ASCII
     unsafe { state.consume_byte_unchecked() };
 
-    if slice.len() >= 8 && is_script_close_tag(&slice[0..8]) {
+    if codegen.options.escape_script_close_tag
+        && slice.len() >= 8
+        && is_script_close_tag(&slice[0..8])
+    {
         // Flush up to and including `<`. Skip `/`. Write `\/` instead. Then skip over `script`.
         // Next chunk starts with `script`.
         // SAFETY: We already consumed `<`. Next byte is `/`, which is ASCII.

@@ -32,6 +32,15 @@ pub struct CodegenOptions {
     /// Default is `false`.
     pub ascii_only: bool,
 
+    /// Escape `</script` as `<\/script` in string literals, template literals and comments, so
+    /// that the output can be inlined in an HTML `<script>` element.
+    ///
+    /// Turning it off keeps the text of a template literal (also a tagged one, whose raw text is
+    /// observable) as written.
+    ///
+    /// Default is `true`.
+    pub escape_script_close_tag: bool,
+
     /// Print comments?
     ///
     /// At present, only some leading comments are preserved.
@@ -68,6 +77,7 @@ impl Default for CodegenOptions {
             single_quote: false,
             minify: false,
             ascii_only: false,
+            escape_script_close_tag: true,
             comments: CommentOptions::default(),
             source_map_path: None,
             indent_char: IndentChar::default(),
@@ -84,6 +94,7 @@ impl CodegenOptions {
             single_quote: false,
             minify: true,
             ascii_only: false,
+            escape_script_close_tag: true,
             comments: CommentOptions::disabled(),
             source_map_path: None,
             indent_char: IndentChar::default(),

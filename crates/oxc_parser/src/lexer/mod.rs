@@ -136,22 +136,9 @@ impl<'a, C: Config> Lexer<'a, C> {
     ) -> Self {
         let source = Source::new(source_text, unique);
 
-        // If collecting tokens, allocate enough space so that the `Vec<Token>` will not have to grow during parsing.
-        // `source_text.len() + 1` is almost always a large overestimate of number of tokens, but it's impossible to
-        // have more than N + 1 tokens in a file which is N bytes long, so it'll never be an underestimate.
-        //
-        // + 1 is to account for the final `Eof` token. Without adding 1, the capacity could be too small for
-        // minified files which have no space between any tokens. It would also be too small for empty files.
-        //
-        // Our largest benchmark file `binder.ts` is 190 KB, and `Token` is 16 bytes, so the `Vec<Token>`
-        // would be ~3 MB even in the case of this unusually large file. That's not a huge amount of memory.
-        //
-        // However, we should choose a better heuristic based on real-world observation, and bring this usage down.
-        let tokens = if config.tokens() {
-            ArenaVec::with_capacity_in(source_text.len() + 1, &allocator)
-        } else {
-            ArenaVec::new_in(&allocator)
-        };
+        // A part of a text lexes a few of its tokens, so only `reserve_tokens` sizes the `Vec` from
+        // the rest of the text.
+        let tokens = ArenaVec::new_in(&allocator);
 
         // The first token is at the start of file, so is allows on a new line
         let token = Token::new_on_new_line();
@@ -171,6 +158,20 @@ impl<'a, C: Config> Lexer<'a, C> {
         }
     }
 
+    /// Reserves room for every token the text from `start` to its end can have, before lexing
+    /// all of it.
+    ///
+    /// `source_text.len() + 1` is almost always a large overestimate of number of tokens, but it's
+    /// impossible to have more than N + 1 tokens in a file which is N bytes long, so it'll never be
+    /// an underestimate. + 1 is for the final `Eof` token, so minified and empty files fit too.
+    /// Our largest benchmark file `binder.ts` is 190 KB, and `Token` is 16 bytes, so the
+    /// `Vec<Token>` would be ~3 MB even in the case of this unusually large file.
+    pub(crate) fn reserve_tokens(&mut self, start: u32) {
+        if self.config.tokens() {
+            self.tokens.reserve(self.source.whole().len() - start as usize + 1);
+        }
+    }
+
     /// Backdoor to create a `Lexer` without holding a `UniquePromise`, for benchmarks.
     /// This function must NOT be exposed in public API as it breaks safety invariants.
     #[cfg(feature = "benchmarking")]
@@ -181,7 +182,9 @@ impl<'a, C: Config> Lexer<'a, C> {
         config: C,
     ) -> Self {
         let unique = UniquePromise::new_for_tests_and_benchmarks();
-        Self::new(allocator, source_text, source_type, config, unique)
+        let mut lexer = Self::new(allocator, source_text, source_type, config, unique);
+        lexer.reserve_tokens(0);
+        lexer
     }
 
     /// Get errors.
@@ -324,7 +327,7 @@ impl<'a, C: Config> Lexer<'a, C> {
         if self.config.tokens() {
             match mode {
                 FinishTokenMode::Push => {
-                    // We allocated sufficient capacity in the `Vec` for all tokens at the start.
+                    // `reserve_tokens` allocated room for all tokens of a whole text.
                     // `push_fast` is optimized for the "doesn't need to grow" case.
                     self.tokens.push_fast(token);
                 }

@@ -1029,6 +1029,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
 
     #[expect(clippy::cast_possible_truncation)]
     fn parse_program(&mut self, start: u32) -> Program<'a> {
+        self.lexer.reserve_tokens(start);
         // Initialize by moving onto the first token.
         // Checks for hashbang comment, which can only start the source text.
         self.token = if start == 0 {
@@ -1343,6 +1344,20 @@ mod test {
         let ret =
             Parser::new(&allocator, source, SourceType::default()).parse_expression_at(1).unwrap();
         assert!(ret.tokens.is_empty());
+    }
+
+    #[test]
+    fn parse_expression_at_reserves_tokens_for_the_part_not_the_whole_text() {
+        // A host parses each expression of a long document; reserving a token per byte of the
+        // whole document for each of them grows the arena with the square of the document.
+        let source = format!("{{a + b}}{}", " ".repeat(1 << 20));
+        let allocator = Allocator::default();
+        let ret = Parser::new(&allocator, &source, SourceType::default())
+            .with_config(TokensParserConfig)
+            .parse_expression_at(1)
+            .unwrap();
+        assert_eq!(ret.tokens.len(), 3);
+        assert!(allocator.used_bytes() < 1 << 16, "{} bytes", allocator.used_bytes());
     }
 
     #[test]

@@ -236,6 +236,10 @@ pub struct ExpressionReturn<'a> {
     /// Tokens are only collected when tokens are enabled in [`ParserConfig`].
     /// The token after the expression is not included.
     pub tokens: ArenaVec<'a, Token>,
+
+    /// Recoverable syntax errors, such as a TypeScript grammar rule the expression breaks.
+    /// The expression is whole; a host decides which of them it reports.
+    pub diagnostics: Diagnostics,
 }
 
 /// Return value of [`Parser::parse_statement_at`]: the statement, where it ends, and the
@@ -256,6 +260,10 @@ pub struct StatementReturn<'a> {
     /// Tokens are only collected when tokens are enabled in [`ParserConfig`].
     /// The token after the statement is not included.
     pub tokens: ArenaVec<'a, Token>,
+
+    /// Recoverable syntax errors, such as a TypeScript grammar rule the statement breaks.
+    /// The statement is whole; a host decides which of them it reports.
+    pub diagnostics: Diagnostics,
 }
 
 /// What [`ParserImpl::parse_part`] reads.
@@ -280,17 +288,30 @@ struct PartReturn<'a> {
     end: u32,
     comments: ArenaVec<'a, Comment>,
     tokens: ArenaVec<'a, Token>,
+    diagnostics: Diagnostics,
 }
 
 impl<'a> PartReturn<'a> {
     fn into_expression(self) -> ExpressionReturn<'a> {
         let Part::Expression(expression) = self.part else { unreachable!("read an expression") };
-        ExpressionReturn { expression, end: self.end, comments: self.comments, tokens: self.tokens }
+        ExpressionReturn {
+            expression,
+            end: self.end,
+            comments: self.comments,
+            tokens: self.tokens,
+            diagnostics: self.diagnostics,
+        }
     }
 
     fn into_statement(self) -> StatementReturn<'a> {
         let Part::Statement(statement) = self.part else { unreachable!("read a statement") };
-        StatementReturn { statement, end: self.end, comments: self.comments, tokens: self.tokens }
+        StatementReturn {
+            statement,
+            end: self.end,
+            comments: self.comments,
+            tokens: self.tokens,
+            diagnostics: self.diagnostics,
+        }
     }
 }
 
@@ -552,8 +573,11 @@ mod parser_parse {
         // Dispatches via `Any`, same as `parse` does.
         pub fn parse_expression(self) -> Result<Expression<'a>, Diagnostics> {
             let start = self.start;
-            self.parse_part_from(start, Entry::Expression { whole: true })
-                .map(|ret| ret.into_expression().expression)
+            let ret = self.parse_part_from(start, Entry::Expression { whole: true })?;
+            if !ret.diagnostics.is_empty() {
+                return Err(ret.diagnostics);
+            }
+            Ok(ret.into_expression().expression)
         }
 
         /// Parse a single [`Expression`] that starts at byte offset `start` of the source text,
@@ -580,7 +604,8 @@ mod parser_parse {
         /// ```
         ///
         /// # Errors
-        /// If the expression has syntax errors.
+        /// If the expression has a syntax error the parser cannot recover from. The errors it
+        /// recovers from are in the returned `diagnostics`, as [`Parser::parse`] returns them.
         ///
         /// # Panics
         /// If `start` is past the end of the source text or not on a character boundary.
@@ -611,7 +636,8 @@ mod parser_parse {
         /// ```
         ///
         /// # Errors
-        /// If the statement has syntax errors.
+        /// If the statement has a syntax error the parser cannot recover from. The errors it
+        /// recovers from are in the returned `diagnostics`, as [`Parser::parse`] returns them.
         ///
         /// # Panics
         /// If `start` is past the end of the source text or not on a character boundary.
@@ -1014,17 +1040,20 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         let mut tokens = self.lexer.take_tokens();
         let len = tokens.partition_point(|token| token.start() < end);
         tokens.truncate(len);
-        let errors = self
+        let diagnostics = self
             .lexer
             .errors
             .into_iter()
             .chain(self.errors)
             .map(ParserDiagnostic::into_diagnostic)
             .collect::<Diagnostics>();
-        if !errors.is_empty() {
-            return Err(errors);
-        }
-        Ok(PartReturn { part, end, comments: self.lexer.trivia_builder.comments, tokens })
+        Ok(PartReturn {
+            part,
+            end,
+            comments: self.lexer.trivia_builder.comments,
+            tokens,
+            diagnostics,
+        })
     }
 
     #[expect(clippy::cast_possible_truncation)]
@@ -1392,6 +1421,36 @@ mod test {
     fn parse_expression_at_reports_errors_in_the_expression() {
         let allocator = Allocator::default();
         let result = Parser::new(&allocator, "{a +}", SourceType::default()).parse_expression_at(1);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn parse_expression_at_returns_a_recoverable_error_with_the_expression() {
+        let allocator = Allocator::default();
+        let ret = Parser::new(&allocator, "{<string>() => a}", SourceType::ts())
+            .parse_expression_at(1)
+            .unwrap();
+        assert!(matches!(ret.expression, Expression::ArrowFunctionExpression(_)));
+        assert_eq!(ret.end, 16);
+        let codes = ret.diagnostics.iter().map(|d| d.code.to_string()).collect::<Vec<_>>();
+        assert_eq!(codes, ["TS(2368)"]);
+    }
+
+    #[test]
+    fn parse_statement_at_returns_a_recoverable_error_with_the_statement() {
+        let allocator = Allocator::default();
+        let ret = Parser::new(&allocator, "{let x!: number = 1}", SourceType::ts())
+            .parse_statement_at(1)
+            .unwrap();
+        assert!(matches!(ret.statement, Statement::VariableDeclaration(_)));
+        assert_eq!(ret.diagnostics.len(), 1);
+    }
+
+    #[test]
+    fn parse_expression_keeps_rejecting_a_recoverable_error() {
+        let allocator = Allocator::default();
+        let result =
+            Parser::new(&allocator, "<string>() => a", SourceType::ts()).parse_expression();
         assert!(result.is_err());
     }
 

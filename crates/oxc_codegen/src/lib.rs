@@ -255,6 +255,30 @@ impl<'a> Codegen<'a> {
         }
     }
 
+    /// Reserve `capacity` bytes for the generated code before printing.
+    ///
+    /// [`Codegen::build`] reserves the length of the source text; a caller that expects more
+    /// output can avoid growing the buffer. Call it after [`Codegen::with_options`].
+    #[must_use]
+    pub fn with_capacity(mut self, capacity: usize) -> Self {
+        self.code.reserve(capacity);
+        self
+    }
+
+    /// Print into the memory of `buffer`, which is cleared first.
+    ///
+    /// [`CodegenReturn::code`] is then that allocation, so a caller printing many programs can
+    /// pass it back in. Call it after [`Codegen::with_options`].
+    #[must_use]
+    pub fn with_buffer(mut self, buffer: String) -> Self {
+        self.code = CodeBuffer::with_buffer_and_indent(
+            buffer,
+            self.options.indent_char,
+            self.options.indent_width,
+        );
+        self
+    }
+
     /// Pass options to the code generator.
     #[must_use]
     pub fn with_options(mut self, options: CodegenOptions) -> Self {

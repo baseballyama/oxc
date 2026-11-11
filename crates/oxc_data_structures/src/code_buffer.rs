@@ -118,6 +118,20 @@ impl CodeBuffer {
         }
     }
 
+    /// Create an empty [`CodeBuffer`] which writes into the memory of `buffer`.
+    ///
+    /// `buffer` is cleared first, so a caller printing many programs can reuse one allocation.
+    #[inline]
+    pub fn with_buffer_and_indent(
+        buffer: String,
+        indent_char: IndentChar,
+        indent_width: usize,
+    ) -> Self {
+        let mut buf = buffer.into_bytes();
+        buf.clear();
+        Self { buf, indent_char, indent_width }
+    }
+
     /// Create a new [`CodeBuffer`] with the specified capacity and indentation.
     ///
     /// The buffer will be able to hold at least `capacity` bytes without reallocating.

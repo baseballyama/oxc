@@ -1469,3 +1469,13 @@ fn jsx_attribute_with_lone_surrogate_value() {
         }
     }
 }
+
+#[test]
+fn script_close_tag_unescaped() {
+    let keep = || CodegenOptions { escape_script_close_tag: false, ..CodegenOptions::default() };
+    test_options("x = '</script>';", "x = \"</script>\";\n", keep());
+    test_options("x = `\\</script\\>`;", "x = `\\</script\\>`;\n", keep());
+    test_options("x = String.raw`</script>`;", "x = String.raw`</script>`;\n", keep());
+    test_options("/* </script> */ x;", "/* </script> */ x;\n", keep());
+    test("x = `\\</script\\>`;", "x = `\\<\\/script\\>`;\n");
+}

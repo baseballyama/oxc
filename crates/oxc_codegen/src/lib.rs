@@ -548,6 +548,10 @@ impl<'a> Codegen<'a> {
     /// Push str into the buffer, escaping `</script` to `<\/script`.
     #[inline]
     pub fn print_str_escaping_script_close_tag(&mut self, s: &str) {
+        if !self.options.escape_script_close_tag {
+            self.code.print_str(s);
+            return;
+        }
         // `</script` will be very rare. So we try to make the search as quick as possible by:
         // 1. Searching for `<` first, and only checking if followed by `/script` once `<` is found.
         // 2. Searching longer strings for `<` in chunks of 16 bytes using SIMD, and only doing the

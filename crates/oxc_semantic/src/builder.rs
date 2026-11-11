@@ -8,7 +8,7 @@ use std::{
 use rustc_hash::FxHashMap;
 use smallvec::SmallVec;
 
-use oxc_allocator::{Address, ArenaVec};
+use oxc_allocator::{Address, Allocator, ArenaVec};
 use oxc_ast::{AstKind, ast::*};
 use oxc_ast_visit::Visit;
 #[cfg(feature = "cfg")]
@@ -285,6 +285,16 @@ impl<'a> SemanticBuilder<'a> {
     #[must_use]
     pub fn with_stats(mut self, stats: Stats) -> Self {
         self.stats = Some(stats);
+        self
+    }
+
+    /// Build [`Scoping`] in `allocator` instead of in a new arena.
+    ///
+    /// Pass an allocator which has been [`reset`](oxc_allocator::Allocator::reset), such as one
+    /// returned by [`Scoping::into_allocator`] after a previous analysis, to reuse its memory.
+    #[must_use]
+    pub fn with_scoping_allocator(mut self, allocator: Allocator) -> Self {
+        self.scoping = Scoping::with_allocator(allocator);
         self
     }
 

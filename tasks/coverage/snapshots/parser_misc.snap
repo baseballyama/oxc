@@ -44,7 +44,7 @@ Negative Passed: 273/273 (100.00%)
    ·                  ────────
    ╰────
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/arguments-eval-ambient.ts:2:13]
  1 │ export {};
  2 │ declare var arguments: unknown;
@@ -53,7 +53,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[misc/fail/arguments-eval-ambient.ts:3:15]
  2 │ declare var arguments: unknown;
  3 │ declare const eval: unknown;
@@ -61,7 +61,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/arguments-eval.ts:1:10]
  1 │ function arguments() {}
    ·          ─────────
@@ -69,7 +69,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[misc/fail/arguments-eval.ts:2:10]
  1 │ function arguments() {}
  2 │ function eval() {}
@@ -78,7 +78,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/arguments-eval.ts:4:16]
  3 │ 
  4 │ function foo({ arguments }) {}
@@ -87,7 +87,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/arguments-eval.ts:5:16]
  4 │ function foo({ arguments }) {}
  5 │ function foo2([arguments]) {}
@@ -96,7 +96,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[misc/fail/arguments-eval.ts:6:17]
  5 │ function foo2([arguments]) {}
  6 │ function foo3({ eval }) {}
@@ -105,7 +105,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[misc/fail/arguments-eval.ts:7:16]
  6 │ function foo3({ eval }) {}
  7 │ function foo4([eval]) {}
@@ -114,7 +114,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/arguments-eval.ts:8:25]
  7 │ function foo4([eval]) {}
  8 │ declare function foo5({ arguments }: { arguments: number }): void;
@@ -123,7 +123,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
     ╭─[misc/fail/arguments-eval.ts:9:24]
   8 │ declare function foo5({ arguments }: { arguments: number }): void;
   9 │ declare function foo6([eval]: [number]): void;
@@ -132,7 +132,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
     ╭─[misc/fail/arguments-eval.ts:10:24]
   9 │ declare function foo6([eval]: [number]): void;
  10 │ declare function foo7([arguments = 0]: [number?]): void;
@@ -141,7 +141,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
     ╭─[misc/fail/arguments-eval.ts:11:28]
  10 │ declare function foo7([arguments = 0]: [number?]): void;
  11 │ declare function foo8({ ...arguments }: object): void;
@@ -150,7 +150,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
     ╭─[misc/fail/arguments-eval.ts:12:27]
  11 │ declare function foo8({ ...arguments }: object): void;
  12 │ declare function foo9([...eval]: unknown[]): void;
@@ -159,7 +159,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
     ╭─[misc/fail/arguments-eval.ts:14:12]
  13 │ declare class C {
  14 │   method({ eval }: { eval: number }): void;
@@ -168,7 +168,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
     ╭─[misc/fail/arguments-eval.ts:15:16]
  14 │   method({ eval }: { eval: number }): void;
  15 │   constructor([arguments]: [number]);
@@ -231,7 +231,7 @@ Negative Passed: 273/273 (100.00%)
    ·                                         ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/asserted-unary-exponentiation-right-operand.ts:1:29]
  1 │ 2 ** -value satisfies number ** 2;
    ·                             ▲
@@ -1222,14 +1222,14 @@ Negative Passed: 273/273 (100.00%)
    ·                             ──────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/js-export-default-abstract-class.js:1:24]
  1 │ export default abstract class C {}
    ·                        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/js-export-default-interface.js:1:25]
  1 │ export default interface I {}
    ·                         ▲
@@ -1301,7 +1301,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Did you mean to write an array?
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[misc/fail/let-member-expression.js:4:1]
  3 │ 
  4 │ let.x;
@@ -1310,7 +1310,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[misc/fail/let-member-expression.js:6:1]
  5 │ 
  6 │ let.x = 1;
@@ -1319,7 +1319,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[misc/fail/let-member-expression.js:7:1]
  6 │ let.x = 1;
  7 │ let()[x] = 1;
@@ -1328,7 +1328,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
     ╭─[misc/fail/let-member-expression.js:9:1]
   8 │ 
   9 │ let?.x;
@@ -1337,7 +1337,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
     ╭─[misc/fail/let-member-expression.js:10:1]
   9 │ let?.x;
  10 │ let?.y.z;
@@ -1346,7 +1346,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
     ╭─[misc/fail/let-member-expression.js:11:1]
  10 │ let?.y.z;
  11 │ let?.[0];
@@ -1355,7 +1355,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
     ╭─[misc/fail/let-member-expression.js:12:1]
  11 │ let?.[0];
  12 │ let?.method();
@@ -1370,7 +1370,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/minus-yield-100.js:1:32]
  1 │ export function* foo() { -yield 100 }
    ·                                ▲
@@ -1804,7 +1804,7 @@ Negative Passed: 273/273 (100.00%)
    ·              ──────────
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[misc/fail/oxc-12546-1.ts:1:25]
  1 │ interface Props extends /MenuProps {
    ·                         ─────────────
@@ -1812,7 +1812,7 @@ Negative Passed: 273/273 (100.00%)
  3 │   menus: MenuRecordRaw[];
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[misc/fail/oxc-12546-2.ts:1:21]
  1 │ class Props extends /MenuProps {
    ·                     ─────────────
@@ -3361,7 +3361,7 @@ Negative Passed: 273/273 (100.00%)
  304 │   },
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:2:1]
  1 │ // `super.foo` not in a class or object method
  2 │ super.foo;
@@ -3369,7 +3369,7 @@ Negative Passed: 273/273 (100.00%)
  3 │ () => (arg = super.foo) => 123 + super.foo;
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:3:14]
  2 │ super.foo;
  3 │ () => (arg = super.foo) => 123 + super.foo;
@@ -3377,7 +3377,7 @@ Negative Passed: 273/273 (100.00%)
  4 │ if (true) { while (false) { { super.foo; } } }
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:3:34]
  2 │ super.foo;
  3 │ () => (arg = super.foo) => 123 + super.foo;
@@ -3385,7 +3385,7 @@ Negative Passed: 273/273 (100.00%)
  4 │ if (true) { while (false) { { super.foo; } } }
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:4:31]
  3 │ () => (arg = super.foo) => 123 + super.foo;
  4 │ if (true) { while (false) { { super.foo; } } }
@@ -3393,7 +3393,7 @@ Negative Passed: 273/273 (100.00%)
  5 │ () => () => {
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:6:3]
  5 │ () => () => {
  6 │   super.foo;
@@ -3401,7 +3401,7 @@ Negative Passed: 273/273 (100.00%)
  7 │   () => (arg = super.foo) => 123 + super.foo;
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:7:16]
  6 │   super.foo;
  7 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3409,7 +3409,7 @@ Negative Passed: 273/273 (100.00%)
  8 │   if (true) { while (false) { { super.foo; } } }
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:7:36]
  6 │   super.foo;
  7 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3417,7 +3417,7 @@ Negative Passed: 273/273 (100.00%)
  8 │   if (true) { while (false) { { super.foo; } } }
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13284-2.js:8:33]
  7 │   () => (arg = super.foo) => 123 + super.foo;
  8 │   if (true) { while (false) { { super.foo; } } }
@@ -3425,7 +3425,7 @@ Negative Passed: 273/273 (100.00%)
  9 │ };
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:12:18]
  11 │ // `super.foo` in a function
  12 │ function f(arg = super.foo) {
@@ -3433,7 +3433,7 @@ Negative Passed: 273/273 (100.00%)
  13 │   super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:13:3]
  12 │ function f(arg = super.foo) {
  13 │   super.foo;
@@ -3441,7 +3441,7 @@ Negative Passed: 273/273 (100.00%)
  14 │   () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:14:16]
  13 │   super.foo;
  14 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3449,7 +3449,7 @@ Negative Passed: 273/273 (100.00%)
  15 │   if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:14:36]
  13 │   super.foo;
  14 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3457,7 +3457,7 @@ Negative Passed: 273/273 (100.00%)
  15 │   if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:15:33]
  14 │   () => (arg = super.foo) => 123 + super.foo;
  15 │   if (true) { while (false) { { super.foo; } } }
@@ -3465,7 +3465,7 @@ Negative Passed: 273/273 (100.00%)
  16 │ }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:17:20]
  16 │ }
  17 │ f = function(arg = super.foo) {
@@ -3473,7 +3473,7 @@ Negative Passed: 273/273 (100.00%)
  18 │   super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:18:3]
  17 │ f = function(arg = super.foo) {
  18 │   super.foo;
@@ -3481,7 +3481,7 @@ Negative Passed: 273/273 (100.00%)
  19 │   () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:19:16]
  18 │   super.foo;
  19 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3489,7 +3489,7 @@ Negative Passed: 273/273 (100.00%)
  20 │   if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:19:36]
  18 │   super.foo;
  19 │   () => (arg = super.foo) => 123 + super.foo;
@@ -3497,7 +3497,7 @@ Negative Passed: 273/273 (100.00%)
  20 │   if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:20:33]
  19 │   () => (arg = super.foo) => 123 + super.foo;
  20 │   if (true) { while (false) { { super.foo; } } }
@@ -3505,7 +3505,7 @@ Negative Passed: 273/273 (100.00%)
  21 │ };
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:26:26]
  25 │   constructor() {
  26 │     function inner(arg = super.foo) {
@@ -3513,7 +3513,7 @@ Negative Passed: 273/273 (100.00%)
  27 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:27:7]
  26 │     function inner(arg = super.foo) {
  27 │       super.foo;
@@ -3521,7 +3521,7 @@ Negative Passed: 273/273 (100.00%)
  28 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:28:20]
  27 │       super.foo;
  28 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3529,7 +3529,7 @@ Negative Passed: 273/273 (100.00%)
  29 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:28:40]
  27 │       super.foo;
  28 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3537,7 +3537,7 @@ Negative Passed: 273/273 (100.00%)
  29 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:29:37]
  28 │       () => (arg = super.foo) => 123 + super.foo;
  29 │       if (true) { while (false) { { super.foo; } } }
@@ -3545,7 +3545,7 @@ Negative Passed: 273/273 (100.00%)
  30 │     }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:31:30]
  30 │     }
  31 │     f = () => function(arg = super.foo) {
@@ -3553,7 +3553,7 @@ Negative Passed: 273/273 (100.00%)
  32 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:32:7]
  31 │     f = () => function(arg = super.foo) {
  32 │       super.foo;
@@ -3561,7 +3561,7 @@ Negative Passed: 273/273 (100.00%)
  33 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:33:20]
  32 │       super.foo;
  33 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3569,7 +3569,7 @@ Negative Passed: 273/273 (100.00%)
  34 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:33:40]
  32 │       super.foo;
  33 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3577,7 +3577,7 @@ Negative Passed: 273/273 (100.00%)
  34 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:34:37]
  33 │       () => (arg = super.foo) => 123 + super.foo;
  34 │       if (true) { while (false) { { super.foo; } } }
@@ -3585,7 +3585,7 @@ Negative Passed: 273/273 (100.00%)
  35 │     };
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:42:26]
  41 │   method() {
  42 │     function inner(arg = super.foo) {
@@ -3593,7 +3593,7 @@ Negative Passed: 273/273 (100.00%)
  43 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:43:7]
  42 │     function inner(arg = super.foo) {
  43 │       super.foo;
@@ -3601,7 +3601,7 @@ Negative Passed: 273/273 (100.00%)
  44 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:44:20]
  43 │       super.foo;
  44 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3609,7 +3609,7 @@ Negative Passed: 273/273 (100.00%)
  45 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:44:40]
  43 │       super.foo;
  44 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3617,7 +3617,7 @@ Negative Passed: 273/273 (100.00%)
  45 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:45:37]
  44 │       () => (arg = super.foo) => 123 + super.foo;
  45 │       if (true) { while (false) { { super.foo; } } }
@@ -3625,7 +3625,7 @@ Negative Passed: 273/273 (100.00%)
  46 │     }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:47:30]
  46 │     }
  47 │     f = () => function(arg = super.foo) {
@@ -3633,7 +3633,7 @@ Negative Passed: 273/273 (100.00%)
  48 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:48:7]
  47 │     f = () => function(arg = super.foo) {
  48 │       super.foo;
@@ -3641,7 +3641,7 @@ Negative Passed: 273/273 (100.00%)
  49 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:49:20]
  48 │       super.foo;
  49 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3649,7 +3649,7 @@ Negative Passed: 273/273 (100.00%)
  50 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:49:40]
  48 │       super.foo;
  49 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3657,7 +3657,7 @@ Negative Passed: 273/273 (100.00%)
  50 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:50:37]
  49 │       () => (arg = super.foo) => 123 + super.foo;
  50 │       if (true) { while (false) { { super.foo; } } }
@@ -3665,7 +3665,7 @@ Negative Passed: 273/273 (100.00%)
  51 │     };
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:58:26]
  57 │   prop = () => {
  58 │     function inner(arg = super.foo) {
@@ -3673,7 +3673,7 @@ Negative Passed: 273/273 (100.00%)
  59 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:59:7]
  58 │     function inner(arg = super.foo) {
  59 │       super.foo;
@@ -3681,7 +3681,7 @@ Negative Passed: 273/273 (100.00%)
  60 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:60:20]
  59 │       super.foo;
  60 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3689,7 +3689,7 @@ Negative Passed: 273/273 (100.00%)
  61 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:60:40]
  59 │       super.foo;
  60 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3697,7 +3697,7 @@ Negative Passed: 273/273 (100.00%)
  61 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:61:37]
  60 │       () => (arg = super.foo) => 123 + super.foo;
  61 │       if (true) { while (false) { { super.foo; } } }
@@ -3705,7 +3705,7 @@ Negative Passed: 273/273 (100.00%)
  62 │     }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:63:30]
  62 │     }
  63 │     f = () => function(arg = super.foo) {
@@ -3713,7 +3713,7 @@ Negative Passed: 273/273 (100.00%)
  64 │       super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:64:7]
  63 │     f = () => function(arg = super.foo) {
  64 │       super.foo;
@@ -3721,7 +3721,7 @@ Negative Passed: 273/273 (100.00%)
  65 │       () => (arg = super.foo) => 123 + super.foo;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:65:20]
  64 │       super.foo;
  65 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3729,7 +3729,7 @@ Negative Passed: 273/273 (100.00%)
  66 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:65:40]
  64 │       super.foo;
  65 │       () => (arg = super.foo) => 123 + super.foo;
@@ -3737,7 +3737,7 @@ Negative Passed: 273/273 (100.00%)
  66 │       if (true) { while (false) { { super.foo; } } }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:66:37]
  65 │       () => (arg = super.foo) => 123 + super.foo;
  66 │       if (true) { while (false) { { super.foo; } } }
@@ -3745,7 +3745,7 @@ Negative Passed: 273/273 (100.00%)
  67 │     };
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:73:4]
  72 │ class D {
  73 │   [super.foo] = 1;
@@ -3753,7 +3753,7 @@ Negative Passed: 273/273 (100.00%)
  74 │   static [() => super.foo] = 2;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:74:17]
  73 │   [super.foo] = 1;
  74 │   static [() => super.foo] = 2;
@@ -3761,7 +3761,7 @@ Negative Passed: 273/273 (100.00%)
  75 │   accessor [123 + super.foo] = 3;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:75:19]
  74 │   static [() => super.foo] = 2;
  75 │   accessor [123 + super.foo] = 3;
@@ -3769,7 +3769,7 @@ Negative Passed: 273/273 (100.00%)
  76 │   static accessor [() => () => 123 + super.foo] = 4;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:76:38]
  75 │   accessor [123 + super.foo] = 3;
  76 │   static accessor [() => () => 123 + super.foo] = 4;
@@ -3777,7 +3777,7 @@ Negative Passed: 273/273 (100.00%)
  77 │   [super.foo]() {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:77:4]
  76 │   static accessor [() => () => 123 + super.foo] = 4;
  77 │   [super.foo]() {};
@@ -3785,7 +3785,7 @@ Negative Passed: 273/273 (100.00%)
  78 │   static [() => super.foo]() {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:78:17]
  77 │   [super.foo]() {};
  78 │   static [() => super.foo]() {};
@@ -3793,7 +3793,7 @@ Negative Passed: 273/273 (100.00%)
  79 │   get [super.foo]() {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:79:8]
  78 │   static [() => super.foo]() {};
  79 │   get [super.foo]() {};
@@ -3801,7 +3801,7 @@ Negative Passed: 273/273 (100.00%)
  80 │   static get [() => super.foo]() {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:80:21]
  79 │   get [super.foo]() {};
  80 │   static get [() => super.foo]() {};
@@ -3809,7 +3809,7 @@ Negative Passed: 273/273 (100.00%)
  81 │   set [super.foo](v) {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:81:8]
  80 │   static get [() => super.foo]() {};
  81 │   set [super.foo](v) {};
@@ -3817,7 +3817,7 @@ Negative Passed: 273/273 (100.00%)
  82 │   static set [() => () => 123 + super.foo](v) {};
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:82:33]
  81 │   set [super.foo](v) {};
  82 │   static set [() => () => 123 + super.foo](v) {};
@@ -3825,7 +3825,7 @@ Negative Passed: 273/273 (100.00%)
  83 │ }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:86:17]
  85 │ // `super.foo` in class extends
  86 │ class E extends super.foo {}
@@ -3833,7 +3833,7 @@ Negative Passed: 273/273 (100.00%)
  87 │ class F extends (() => (arg = super.foo) => 123 + super.foo) {}
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:87:31]
  86 │ class E extends super.foo {}
  87 │ class F extends (() => (arg = super.foo) => 123 + super.foo) {}
@@ -3841,7 +3841,7 @@ Negative Passed: 273/273 (100.00%)
  88 │ 
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:87:51]
  86 │ class E extends super.foo {}
  87 │ class F extends (() => (arg = super.foo) => 123 + super.foo) {}
@@ -3849,7 +3849,7 @@ Negative Passed: 273/273 (100.00%)
  88 │ 
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:90:2]
  89 │ // `super.foo` in class decorators
  90 │ @super.foo
@@ -3857,7 +3857,7 @@ Negative Passed: 273/273 (100.00%)
  91 │ class G extends Super {
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:92:4]
  91 │ class G extends Super {
  92 │   @super.foo prop = 1;
@@ -3865,7 +3865,7 @@ Negative Passed: 273/273 (100.00%)
  93 │   @super.foo static prop = 2;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:93:4]
  92 │   @super.foo prop = 1;
  93 │   @super.foo static prop = 2;
@@ -3873,7 +3873,7 @@ Negative Passed: 273/273 (100.00%)
  94 │   @super.foo accessor access = 3;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:94:4]
  93 │   @super.foo static prop = 2;
  94 │   @super.foo accessor access = 3;
@@ -3881,7 +3881,7 @@ Negative Passed: 273/273 (100.00%)
  95 │   @super.foo static accessor access = 4;
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:95:4]
  94 │   @super.foo accessor access = 3;
  95 │   @super.foo static accessor access = 4;
@@ -3889,7 +3889,7 @@ Negative Passed: 273/273 (100.00%)
  96 │   @super.foo method() {}
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284-2.js:96:4]
  95 │   @super.foo static accessor access = 4;
  96 │   @super.foo method() {}
@@ -3897,7 +3897,7 @@ Negative Passed: 273/273 (100.00%)
  97 │ }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:102:6]
  101 │   class Inner {
  102 │     [super.foo] = 1;
@@ -3905,7 +3905,7 @@ Negative Passed: 273/273 (100.00%)
  103 │     static [(arg = super.foo) => super.foo] = 2;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:103:20]
  102 │     [super.foo] = 1;
  103 │     static [(arg = super.foo) => super.foo] = 2;
@@ -3913,7 +3913,7 @@ Negative Passed: 273/273 (100.00%)
  104 │     accessor [123 + super.foo] = 3;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:103:34]
  102 │     [super.foo] = 1;
  103 │     static [(arg = super.foo) => super.foo] = 2;
@@ -3921,7 +3921,7 @@ Negative Passed: 273/273 (100.00%)
  104 │     accessor [123 + super.foo] = 3;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:104:21]
  103 │     static [(arg = super.foo) => super.foo] = 2;
  104 │     accessor [123 + super.foo] = 3;
@@ -3929,7 +3929,7 @@ Negative Passed: 273/273 (100.00%)
  105 │     static accessor [() => (arg = super.foo) => 123 + super.foo] = 4;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:105:35]
  104 │     accessor [123 + super.foo] = 3;
  105 │     static accessor [() => (arg = super.foo) => 123 + super.foo] = 4;
@@ -3937,7 +3937,7 @@ Negative Passed: 273/273 (100.00%)
  106 │     [super.foo]() {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:105:55]
  104 │     accessor [123 + super.foo] = 3;
  105 │     static accessor [() => (arg = super.foo) => 123 + super.foo] = 4;
@@ -3945,7 +3945,7 @@ Negative Passed: 273/273 (100.00%)
  106 │     [super.foo]() {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:106:6]
  105 │     static accessor [() => (arg = super.foo) => 123 + super.foo] = 4;
  106 │     [super.foo]() {};
@@ -3953,7 +3953,7 @@ Negative Passed: 273/273 (100.00%)
  107 │     static [() => super.foo]() {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:107:19]
  106 │     [super.foo]() {};
  107 │     static [() => super.foo]() {};
@@ -3961,7 +3961,7 @@ Negative Passed: 273/273 (100.00%)
  108 │     get [super.foo]() {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:108:10]
  107 │     static [() => super.foo]() {};
  108 │     get [super.foo]() {};
@@ -3969,7 +3969,7 @@ Negative Passed: 273/273 (100.00%)
  109 │     static get [() => super.foo]() {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:109:23]
  108 │     get [super.foo]() {};
  109 │     static get [() => super.foo]() {};
@@ -3977,7 +3977,7 @@ Negative Passed: 273/273 (100.00%)
  110 │     set [super.foo](v) {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:110:10]
  109 │     static get [() => super.foo]() {};
  110 │     set [super.foo](v) {};
@@ -3985,7 +3985,7 @@ Negative Passed: 273/273 (100.00%)
  111 │     static set [() => () => 123 + super.foo](v) {};
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:111:35]
  110 │     set [super.foo](v) {};
  111 │     static set [() => () => 123 + super.foo](v) {};
@@ -3993,7 +3993,7 @@ Negative Passed: 273/273 (100.00%)
  112 │   }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:117:19]
  116 │ function h() {
  117 │   class E extends super.foo {}
@@ -4001,7 +4001,7 @@ Negative Passed: 273/273 (100.00%)
  118 │   class F extends (() => (arg = super.foo) => 123 + super.foo) {}
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:118:33]
  117 │   class E extends super.foo {}
  118 │   class F extends (() => (arg = super.foo) => 123 + super.foo) {}
@@ -4009,7 +4009,7 @@ Negative Passed: 273/273 (100.00%)
  119 │ }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:118:53]
  117 │   class E extends super.foo {}
  118 │   class F extends (() => (arg = super.foo) => 123 + super.foo) {}
@@ -4017,7 +4017,7 @@ Negative Passed: 273/273 (100.00%)
  119 │ }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:123:4]
  122 │ function i() {
  123 │   @super.foo
@@ -4025,7 +4025,7 @@ Negative Passed: 273/273 (100.00%)
  124 │   class Inner {
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:125:6]
  124 │   class Inner {
  125 │     @super.foo prop = 1;
@@ -4033,7 +4033,7 @@ Negative Passed: 273/273 (100.00%)
  126 │     @super.foo static prop = 2;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:126:6]
  125 │     @super.foo prop = 1;
  126 │     @super.foo static prop = 2;
@@ -4041,7 +4041,7 @@ Negative Passed: 273/273 (100.00%)
  127 │     @super.foo accessor access = 3;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:127:6]
  126 │     @super.foo static prop = 2;
  127 │     @super.foo accessor access = 3;
@@ -4049,7 +4049,7 @@ Negative Passed: 273/273 (100.00%)
  128 │     @super.foo static accessor access = 4;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:128:6]
  127 │     @super.foo accessor access = 3;
  128 │     @super.foo static accessor access = 4;
@@ -4057,7 +4057,7 @@ Negative Passed: 273/273 (100.00%)
  129 │     @super.foo method() {}
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:129:6]
  128 │     @super.foo static accessor access = 4;
  129 │     @super.foo method() {}
@@ -4065,7 +4065,7 @@ Negative Passed: 273/273 (100.00%)
  130 │   }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:135:16]
  134 │ obj = {
  135 │   prop: (arg = super.foo) => {
@@ -4073,7 +4073,7 @@ Negative Passed: 273/273 (100.00%)
  136 │     super.foo;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:136:5]
  135 │   prop: (arg = super.foo) => {
  136 │     super.foo;
@@ -4081,7 +4081,7 @@ Negative Passed: 273/273 (100.00%)
  137 │     () => (arg = super.foo) => 123 + super.foo;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:137:18]
  136 │     super.foo;
  137 │     () => (arg = super.foo) => 123 + super.foo;
@@ -4089,7 +4089,7 @@ Negative Passed: 273/273 (100.00%)
  138 │     if (true) { while (false) { { super.foo; } } }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:137:38]
  136 │     super.foo;
  137 │     () => (arg = super.foo) => 123 + super.foo;
@@ -4097,7 +4097,7 @@ Negative Passed: 273/273 (100.00%)
  138 │     if (true) { while (false) { { super.foo; } } }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:138:35]
  137 │     () => (arg = super.foo) => 123 + super.foo;
  138 │     if (true) { while (false) { { super.foo; } } }
@@ -4105,7 +4105,7 @@ Negative Passed: 273/273 (100.00%)
  139 │   },
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:140:17]
  139 │   },
  140 │   ['x']: (arg = super.foo) => {
@@ -4113,7 +4113,7 @@ Negative Passed: 273/273 (100.00%)
  141 │     super.foo;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:141:5]
  140 │   ['x']: (arg = super.foo) => {
  141 │     super.foo;
@@ -4121,7 +4121,7 @@ Negative Passed: 273/273 (100.00%)
  142 │     () => (arg = super.foo) => 123 + super.foo;
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:142:18]
  141 │     super.foo;
  142 │     () => (arg = super.foo) => 123 + super.foo;
@@ -4129,7 +4129,7 @@ Negative Passed: 273/273 (100.00%)
  143 │     if (true) { while (false) { { super.foo; } } }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:142:38]
  141 │     super.foo;
  142 │     () => (arg = super.foo) => 123 + super.foo;
@@ -4137,7 +4137,7 @@ Negative Passed: 273/273 (100.00%)
  143 │     if (true) { while (false) { { super.foo; } } }
      ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
      ╭─[misc/fail/oxc-13284-2.js:143:35]
  142 │     () => (arg = super.foo) => 123 + super.foo;
  143 │     if (true) { while (false) { { super.foo; } } }
@@ -4185,7 +4185,7 @@ Negative Passed: 273/273 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13284.ts:35:37]
  34 │ class F {
  35 │   [keys: typeof import('x', { with: super.foo }).y]: string;
@@ -4193,7 +4193,7 @@ Negative Passed: 273/273 (100.00%)
  36 │ }
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13323.js:3:5]
  2 │   foo: function() {
  3 │     super.foo;
@@ -4201,7 +4201,7 @@ Negative Passed: 273/273 (100.00%)
  4 │   },
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[misc/fail/oxc-13323.js:8:7]
  7 │     return function() {
  8 │       super.bar;
@@ -4209,7 +4209,7 @@ Negative Passed: 273/273 (100.00%)
  9 │     };
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13323.js:12:18]
  11 │ 
  12 │   [ function() { super.qux; } ]() {},
@@ -4217,7 +4217,7 @@ Negative Passed: 273/273 (100.00%)
  13 │ 
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13323.js:14:22]
  13 │ 
  14 │   get [ function() { super.bing; } ]() {},
@@ -4225,7 +4225,7 @@ Negative Passed: 273/273 (100.00%)
  15 │ 
     ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
     ╭─[misc/fail/oxc-13323.js:16:22]
  15 │ 
  16 │   set [ function() { super.bong; } ](v) {},
@@ -4491,7 +4491,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Remove the `?`
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
     ╭─[misc/fail/oxc-22684.js:9:7]
   8 │ export default class C {
   9 │   x = await + 1;
@@ -4516,7 +4516,7 @@ Negative Passed: 273/273 (100.00%)
  7 │ }
    ╰────
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[misc/fail/oxc-232.js:1:5]
  1 │ x = (/* a */)
    ·     ─────────
@@ -4942,7 +4942,7 @@ Negative Passed: 273/273 (100.00%)
    · ─────────────────────────────────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/oxc-4111-1.js:1:43]
  1 │ funtransientction as longciiConÞr>ol(cde) {
    ·                                          ▲
@@ -5034,7 +5034,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Remove the `?`
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/oxc-5955-2.ts:3:8]
  2 │ interface B {
  3 │     e()?: number;
@@ -5186,7 +5186,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Expected an identifier, like `...rest`.
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[misc/fail/rest-parameter-default-await-yield.js:1:26]
  1 │ async function f(...[x = await 0]) {}
    ·                          ───┬───
@@ -5194,7 +5194,7 @@ Negative Passed: 273/273 (100.00%)
  2 │ function* g(...[x = yield 0]) {}
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[misc/fail/rest-parameter-default-await-yield.js:2:21]
  1 │ async function f(...[x = await 0]) {}
  2 │ function* g(...[x = yield 0]) {}
@@ -5218,7 +5218,7 @@ Negative Passed: 273/273 (100.00%)
  5 │     }
    ╰────
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[misc/fail/strict-arguments-for-of.js:2:6]
  1 │ "use strict";
  2 │ for (arguments of []) {}
@@ -5226,7 +5226,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[misc/fail/strict-eval-for-in.js:2:6]
  1 │ "use strict";
  2 │ for (eval in {}) {}
@@ -5357,42 +5357,42 @@ Negative Passed: 273/273 (100.00%)
    ·                     ──────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-type-member-call-missing-separator.ts:1:20]
  1 │ type T = { (): void next: string };
    ·                    ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-type-member-construct-missing-separator.ts:1:29]
  1 │ interface T { new (): object next: string }
    ·                             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-type-member-getter-missing-separator.ts:1:31]
  1 │ type T = { get value(): string next: string };
    ·                               ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-type-member-method-missing-separator.ts:1:29]
  1 │ interface T { method(): void next: string }
    ·                             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-type-member-setter-missing-separator.ts:1:36]
  1 │ type T = { set value(value: string) next: string };
    ·                                    ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-unerasable-as-chained.ts:4:33]
  3 │ // so the trailing `*` still makes the assertion impossible to erase. Syntax error.
  4 │ const x = 1 + 1 as any as number * 2;
@@ -5400,7 +5400,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-unerasable-as.ts:4:26]
  3 │ // trailing `*` binds tighter than the leading `+`. This is a syntax error.
  4 │ const x = 1 + 1 as number * 2;
@@ -5408,7 +5408,7 @@ Negative Passed: 273/273 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[misc/fail/ts-unerasable-satisfies.ts:4:33]
  3 │ // is a syntax error.
  4 │ const x = 1 + 1 satisfies number * 2;

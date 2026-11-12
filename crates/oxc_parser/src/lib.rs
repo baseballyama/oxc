@@ -1437,6 +1437,21 @@ mod test {
     }
 
     #[test]
+    fn javascript_errors_carry_tsc_codes() {
+        for (source, code) in [
+            ("let a = ();", "TS(1109)"),
+            ("let a = /b", "TS(1161)"),
+            ("let a = 1 let b = 2", "TS(1005)"),
+            ("class A { x? = 1 }", "TS(8009)"),
+        ] {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, SourceType::mjs()).parse();
+            let codes = ret.diagnostics.iter().map(|d| d.code.to_string()).collect::<Vec<_>>();
+            assert_eq!(codes.first().map(String::as_str), Some(code), "{source}");
+        }
+    }
+
+    #[test]
     fn parse_statement_at_returns_a_recoverable_error_with_the_statement() {
         let allocator = Allocator::default();
         let ret = Parser::new(&allocator, "{let x!: number = 1}", SourceType::ts())

@@ -59,8 +59,7 @@ pub fn class_static_block_await_using(span: Span) -> OxcDiagnostic {
 
 #[cold]
 pub fn reserved_keyword(x0: &str, span1: Span, context: ReservedKeywordContext) -> OxcDiagnostic {
-    let diagnostic =
-        OxcDiagnostic::error(format!("The keyword '{x0}' is reserved")).with_label(span1);
+    let diagnostic = ts_error("1212", format!("The keyword '{x0}' is reserved")).with_label(span1);
     match context {
         ReservedKeywordContext::StrictMode => {
             diagnostic.with_note("This identifier is reserved in strict mode code")
@@ -92,7 +91,7 @@ pub fn unexpected_identifier_assign(
     context: UnexpectedIdentifierAssignContext,
 ) -> OxcDiagnostic {
     let diagnostic =
-        OxcDiagnostic::error(format!("Cannot assign to '{x0}' in strict mode")).with_label(span1);
+        ts_error("1100", format!("Cannot assign to '{x0}' in strict mode")).with_label(span1);
     match context {
         UnexpectedIdentifierAssignContext::StrictMode => {
             diagnostic.with_note("This is strict mode code")
@@ -203,7 +202,7 @@ pub fn function_declaration_non_strict(span: Span) -> OxcDiagnostic {
 
 #[cold]
 pub fn with_statement(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("'with' statements are not allowed").with_label(span)
+    ts_error("1101", "'with' statements are not allowed").with_label(span)
 }
 
 #[cold]
@@ -294,7 +293,7 @@ pub fn unexpected_super_call(span: Span) -> OxcDiagnostic {
 
 #[cold]
 pub fn unexpected_super_reference(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("'super' can only be referenced in members of derived classes or object literal expressions.")
+    ts_error("2660", "'super' can only be referenced in members of derived classes or object literal expressions.")
         .with_label(span)
 }
 
@@ -311,7 +310,8 @@ pub fn delete_private_field(span: Span) -> OxcDiagnostic {
 
 #[cold]
 pub fn await_or_yield_in_parameter(x0: &str, span1: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(format!("{x0} expression not allowed in formal parameter"))
+    let code = if x0 == "await" { "2524" } else { "2523" };
+    ts_error(code, format!("{x0} expression not allowed in formal parameter"))
         .with_label(span1.label(format!("{x0} expression not allowed in formal parameter")))
 }
 

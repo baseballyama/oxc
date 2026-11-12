@@ -349,6 +349,27 @@ mod tests {
     }
 
     #[test]
+    fn strict_mode_errors_carry_tsc_codes() {
+        for (source, code) in [
+            ("let public = 1;", "TS(1212)"),
+            ("eval = 1;", "TS(1100)"),
+            ("function f() { with (a) {} }", "TS(1101)"),
+            ("const o = { f: function () { super.x; } };", "TS(2660)"),
+            ("async function f(a = await b) {}", "TS(2524)"),
+            ("function* f(a = yield) {}", "TS(2523)"),
+        ] {
+            let allocator = Allocator::default();
+            let parse = oxc_parser::Parser::new(&allocator, source, SourceType::mjs()).parse();
+            let program = allocator.alloc(parse.program);
+            let ret = SemanticBuilder::new().with_check_syntax_error(true).build(program);
+            let codes = (parse.diagnostics.iter().chain(&ret.diagnostics))
+                .map(|d| d.code.to_string())
+                .collect::<Vec<_>>();
+            assert_eq!(codes.first().map(String::as_str), Some(code), "{source}");
+        }
+    }
+
+    #[test]
     fn test_top_level_symbols() {
         let source = "function Fn() {}";
         let allocator = Allocator::default();

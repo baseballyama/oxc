@@ -1002,7 +1002,15 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         }
 
         let tokens = if has_fatal_error {
-            ArenaVec::new_in(&self.ast)
+            // The tokens read before the error, which locate it.
+            let mut tokens = self.lexer.take_tokens();
+            while tokens
+                .last()
+                .is_some_and(|token| matches!(token.kind(), Kind::Eof | Kind::Undetermined))
+            {
+                tokens.pop();
+            }
+            tokens
         } else {
             self.lexer.finalize_tokens()
         };
@@ -1499,6 +1507,18 @@ mod test {
         assert_eq!(errors.first().map(|d| d.code.to_string()), Some("TS(1212)".into()));
         let allocator = Allocator::default();
         assert!(Parser::new(&allocator, "public", SourceType::mjs()).parse_expression().is_ok());
+    }
+
+    #[test]
+    fn a_fatal_error_keeps_the_tokens_read_before_it() {
+        let allocator = Allocator::default();
+        let ret = Parser::new(&allocator, "let a = 1 let b = 2", SourceType::mjs())
+            .with_config(config::TokensParserConfig)
+            .parse();
+        assert!(ret.fatal_error);
+        let starts = ret.tokens.iter().map(Token::start).collect::<Vec<_>>();
+        assert_eq!(starts.first(), Some(&0));
+        assert!(starts.contains(&10), "the token after the missing semicolon: {starts:?}");
     }
 
     #[test]
@@ -2066,6 +2086,11 @@ mod test {
             .parse();
 
         assert!(ret.fatal_error);
-        assert!(ret.tokens.is_empty());
+        let tokens = ret
+            .tokens
+            .iter()
+            .map(|token| (token.kind(), token.start(), token.end()))
+            .collect::<Vec<_>>();
+        assert_eq!(tokens, [(Kind::TemplateHead, 0, 3), (Kind::RCurly, 3, 4)]);
     }
 }

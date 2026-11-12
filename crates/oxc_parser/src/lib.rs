@@ -945,6 +945,11 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
             program.source_text = self.source_text;
         }
 
+        if !has_fatal_error {
+            self.errors
+                .retain(|error| !matches!(error, ParserDiagnostic::strict_reserved_word { .. }));
+        }
+
         self.check_unfinished_errors();
 
         if let Some(overlong_error) = self.overlong_error() {
@@ -1032,9 +1037,17 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         if matches!(entry, Entry::Expression { whole: true }) && !self.at(Kind::Eof) {
             self.set_unexpected();
         }
-        if let Some(FatalError { error, .. }) = self.fatal_error.take() {
-            return Err(error.into_diagnostic().into());
+        if let Some(FatalError { error, errors_len }) = self.fatal_error.take() {
+            self.errors.truncate(errors_len);
+            return Err(self
+                .errors
+                .into_iter()
+                .filter(|error| matches!(error, ParserDiagnostic::strict_reserved_word { .. }))
+                .chain([error])
+                .map(ParserDiagnostic::into_diagnostic)
+                .collect());
         }
+        self.errors.retain(|error| !matches!(error, ParserDiagnostic::strict_reserved_word { .. }));
         self.check_unfinished_errors();
         // The token after the expression has been read, but is not one of its tokens.
         let mut tokens = self.lexer.take_tokens();
@@ -1449,6 +1462,37 @@ mod test {
             let codes = ret.diagnostics.iter().map(|d| d.code.to_string()).collect::<Vec<_>>();
             assert_eq!(codes.first().map(String::as_str), Some(code), "{source}");
         }
+    }
+
+    #[test]
+    fn a_strict_reserved_word_before_a_fatal_error_comes_first() {
+        let first = |source: &str, source_type: SourceType| {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, source_type).parse();
+            ret.diagnostics.first().map(|d| (d.code.to_string(), ret.diagnostics.len()))
+        };
+        assert_eq!(first("public;\nfoo(;", SourceType::mjs()), Some(("TS(1212)".into(), 2)));
+        assert_eq!(
+            first("interface $$Events {}", SourceType::mjs()).map(|f| f.0),
+            Some("TS(1212)".into())
+        );
+        // Semantic reports the word when the program parses, and a script is not strict.
+        assert_eq!(first("public;", SourceType::mjs()), None);
+        assert_eq!(first("public;\nfoo(;", SourceType::cjs()).map(|f| f.1), Some(1));
+        // An ambient declaration and a TypeScript interface read no reserved word.
+        assert_eq!(
+            first("declare let public: number;\nfoo(;", SourceType::ts()).map(|f| f.1),
+            Some(1)
+        );
+        assert_eq!(first("interface A {}\nfoo(;", SourceType::ts()).map(|f| f.1), Some(1));
+        let module_ts = SourceType::ts().with_module(true);
+        assert_eq!(first("let = ;", module_ts).map(|f| f.0), Some("TS(1212)".into()));
+        let allocator = Allocator::default();
+        let errors =
+            Parser::new(&allocator, "public(", SourceType::mjs()).parse_expression().unwrap_err();
+        assert_eq!(errors.first().map(|d| d.code.to_string()), Some("TS(1212)".into()));
+        let allocator = Allocator::default();
+        assert!(Parser::new(&allocator, "public", SourceType::mjs()).parse_expression().is_ok());
     }
 
     #[test]

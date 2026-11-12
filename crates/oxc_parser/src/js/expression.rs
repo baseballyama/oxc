@@ -220,6 +220,12 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                     looks_like_yield_expression,
                 ));
             }
+            kind if (kind.is_strict_mode_contextual_keyword() || kind == Kind::Yield)
+                && self.source_type.is_module()
+                && !ctx.has_ambient() =>
+            {
+                self.error(diagnostics::strict_reserved_word(span, kind.to_str()));
+            }
             _ => {}
         }
     }

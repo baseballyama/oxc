@@ -574,6 +574,13 @@ parser_diagnostics! {
         OxcDiagnostic::error("Identifier expected.").with_label(span)
     };
 
+    // Semantic reports the same word when the program parses; this copy survives a fatal error.
+    strict_reserved_word(span: Span, word: &'static str) => {
+        ts_error("1212", format!("The keyword '{word}' is reserved"))
+            .with_label(span)
+            .with_note("Modules are always strict mode code")
+    };
+
     identifier_reserved_word(span: Span, reserved: &'a str) => {
         OxcDiagnostic::error(format!(
             "Identifier expected. '{reserved}' is a reserved word that cannot be used here."

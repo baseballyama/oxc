@@ -113,7 +113,7 @@ source: crates/oxc_linter/src/tester.rs
    ·                                                                       ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[label_has_associated_control.tsx:1:71]
  1 │ <label><span><span><span>A label<input /></span></span></span></label>'
    ·                                                                       ▲

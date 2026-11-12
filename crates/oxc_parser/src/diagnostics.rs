@@ -253,7 +253,7 @@ parser_diagnostics! {
     };
 
     unterminated_reg_exp(span: Span) => {
-        OxcDiagnostic::error("Unterminated regular expression").with_label(span)
+        ts_error("1161", "Unterminated regular expression").with_label(span)
     };
 
     invalid_number(number: &'a str, span: Span) => {
@@ -265,7 +265,8 @@ parser_diagnostics! {
     };
 
     auto_semicolon_insertion(span: Span) => {
-        OxcDiagnostic::error(
+        ts_error(
+            "1005",
             "Expected a semicolon or an implicit semicolon after a statement, but found none",
         )
         .with_help("Try inserting a semicolon here")
@@ -618,7 +619,7 @@ parser_diagnostics! {
     };
 
     empty_parenthesized_expression(span: Span) => {
-        OxcDiagnostic::error("Empty parenthesized expression").with_label(span)
+        ts_error("1109", "Empty parenthesized expression").with_label(span)
     };
 
     illegal_newline(token: &'a str, token_span: Span, newline_span: Span) => {
@@ -1193,7 +1194,7 @@ parser_diagnostics! {
     };
 
     optional_class_member_in_ts(span: Span) => {
-        OxcDiagnostic::error("Optional class members can only be used in TypeScript files.")
+        ts_error("8009", "Optional class members can only be used in TypeScript files.")
             .with_label(span)
     };
 

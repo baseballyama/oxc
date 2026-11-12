@@ -1039,10 +1039,16 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         }
         if let Some(FatalError { error, errors_len }) = self.fatal_error.take() {
             self.errors.truncate(errors_len);
+            // As for a program, the lexer's errors come first.
             return Err(self
+                .lexer
                 .errors
                 .into_iter()
-                .filter(|error| matches!(error, ParserDiagnostic::strict_reserved_word { .. }))
+                .chain(
+                    self.errors.into_iter().filter(|error| {
+                        matches!(error, ParserDiagnostic::strict_reserved_word { .. })
+                    }),
+                )
                 .chain([error])
                 .map(ParserDiagnostic::into_diagnostic)
                 .collect());
@@ -1493,6 +1499,14 @@ mod test {
         assert_eq!(errors.first().map(|d| d.code.to_string()), Some("TS(1212)".into()));
         let allocator = Allocator::default();
         assert!(Parser::new(&allocator, "public", SourceType::mjs()).parse_expression().is_ok());
+    }
+
+    #[test]
+    fn a_part_reports_the_lexer_error_before_its_fatal_error() {
+        let allocator = Allocator::default();
+        let errors =
+            Parser::new(&allocator, "1>x</div>", SourceType::mjs()).parse_expression().unwrap_err();
+        assert_eq!(errors.first().map(|d| d.code.to_string()), Some("TS(1161)".into()));
     }
 
     #[test]

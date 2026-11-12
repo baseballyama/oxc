@@ -644,7 +644,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ ({ a: async() } = {});
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-call-expression-arrow-param/input.js:1:6]
  1 │ (a()) => 1;
    ·      ▲
@@ -833,7 +833,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-parenthesized-lhs-in-param-pattern/input.js:1:10]
  1 │ ((a) = 1) => {};
    ·          ▲
@@ -841,7 +841,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-pattern-in-rest-binding/input.js:1:11]
  1 │ ([...(a)]) => {}
    ·           ▲
@@ -1205,7 +1205,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: remove the leading zero
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/regression/octal-float-fail/input.js:1:3]
  1 │ 07.5
    ·   ▲
@@ -1530,7 +1530,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/108/input.js:1:17]
  1 │ var x = /[P QR]/\u0067
    ·                 ▲
@@ -1635,7 +1635,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ x\u002a
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/364/input.js:1:1]
  1 │ /
    · ─
@@ -1647,7 +1647,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/365/input.js:1:1]
  1 │ /test
    · ─────
@@ -1665,7 +1665,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/366/input.js:1:16]
  1 │ var x = /[a-z]/\ux
    ·                ▲
@@ -1745,7 +1745,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ 1 + { t:t,
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/380/input.js:1:9]
  1 │ var x = /
    ·         ──
@@ -1802,14 +1802,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/388/input.js:1:6]
  1 │ { set 1 }
    ·      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/389/input.js:1:6]
  1 │ { get 2 }
    ·      ▲
@@ -1916,7 +1916,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── `Identifier` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/405/input.js:1:2]
  1 │ a b;
    ·  ▲
@@ -1930,14 +1930,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── `(` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/407/input.js:1:2]
  1 │ a if;
    ·  ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/408/input.js:1:2]
  1 │ a class;
    ·  ▲
@@ -2139,7 +2139,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/441/input.js:1:1]
  1 │ /a\
    · ────
@@ -2323,223 +2323,223 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                     ─
    ╰────
 
-  × 'with' statements are not allowed
+  × TS(1101): 'with' statements are not allowed
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/467/input.js:1:30]
  1 │ (function () { 'use strict'; with (i); }())
    ·                              ────
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/468/input.js:1:37]
  1 │ function hello() {'use strict'; var eval = 10; }
    ·                                     ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/469/input.js:1:37]
  1 │ function hello() {'use strict'; var arguments = 10; }
    ·                                     ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/470/input.js:1:48]
  1 │ function hello() {'use strict'; try { } catch (eval) { } }
    ·                                                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/471/input.js:1:48]
  1 │ function hello() {'use strict'; try { } catch (arguments) { } }
    ·                                                ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/472/input.js:1:33]
  1 │ function hello() {'use strict'; eval = 10; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/473/input.js:1:33]
  1 │ function hello() {'use strict'; arguments = 10; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/474/input.js:1:35]
  1 │ function hello() {'use strict'; ++eval; }
    ·                                   ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/475/input.js:1:35]
  1 │ function hello() {'use strict'; --eval; }
    ·                                   ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/476/input.js:1:35]
  1 │ function hello() {'use strict'; ++arguments; }
    ·                                   ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/477/input.js:1:35]
  1 │ function hello() {'use strict'; --arguments; }
    ·                                   ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/478/input.js:1:33]
  1 │ function hello() {'use strict'; eval++; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/479/input.js:1:33]
  1 │ function hello() {'use strict'; eval--; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/480/input.js:1:33]
  1 │ function hello() {'use strict'; arguments++; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/481/input.js:1:33]
  1 │ function hello() {'use strict'; arguments--; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/482/input.js:1:42]
  1 │ function hello() {'use strict'; function eval() { } }
    ·                                          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/483/input.js:1:42]
  1 │ function hello() {'use strict'; function arguments() { } }
    ·                                          ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/484/input.js:1:10]
  1 │ function eval() {'use strict'; }
    ·          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/485/input.js:1:10]
  1 │ function arguments() {'use strict'; }
    ·          ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/486/input.js:1:43]
  1 │ function hello() {'use strict'; (function eval() { }()) }
    ·                                           ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/487/input.js:1:43]
  1 │ function hello() {'use strict'; (function arguments() { }()) }
    ·                                           ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/488/input.js:1:11]
  1 │ (function eval() {'use strict'; })()
    ·           ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/489/input.js:1:11]
  1 │ (function arguments() {'use strict'; })()
    ·           ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/490/input.js:1:48]
  1 │ function hello() {'use strict'; ({ s: function eval() { } }); }
    ·                                                ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/491/input.js:1:11]
  1 │ (function package() {'use strict'; })()
    ·           ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/492/input.js:1:49]
  1 │ function hello() {'use strict'; ({ i: 10, set s(eval) { } }); }
    ·                                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/493/input.js:1:42]
  1 │ function hello() {'use strict'; ({ set s(eval) { } }); }
    ·                                          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/494/input.js:1:50]
  1 │ function hello() {'use strict'; ({ s: function s(eval) { } }); }
    ·                                                  ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/495/input.js:1:16]
  1 │ function hello(eval) {'use strict';}
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/496/input.js:1:16]
  1 │ function hello(arguments) {'use strict';}
    ·                ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/497/input.js:1:49]
  1 │ function hello() { 'use strict'; function inner(eval) {} }
    ·                                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/498/input.js:1:49]
  1 │ function hello() { 'use strict'; function inner(arguments) {} }
    ·                                                 ─────────
@@ -2560,70 +2560,70 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × The keyword 'implements' is reserved
+  × TS(1212): The keyword 'implements' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/504/input.js:1:38]
  1 │ function hello() { "use strict"; var implements; }
    ·                                      ──────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'interface' is reserved
+  × TS(1212): The keyword 'interface' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/505/input.js:1:38]
  1 │ function hello() { "use strict"; var interface; }
    ·                                      ─────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/506/input.js:1:38]
  1 │ function hello() { "use strict"; var package; }
    ·                                      ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'private' is reserved
+  × TS(1212): The keyword 'private' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/507/input.js:1:38]
  1 │ function hello() { "use strict"; var private; }
    ·                                      ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'protected' is reserved
+  × TS(1212): The keyword 'protected' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/508/input.js:1:38]
  1 │ function hello() { "use strict"; var protected; }
    ·                                      ─────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/509/input.js:1:38]
  1 │ function hello() { "use strict"; var public; }
    ·                                      ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/510/input.js:1:38]
  1 │ function hello() { "use strict"; var static; }
    ·                                      ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/511/input.js:1:16]
  1 │ function hello(static) { "use strict"; }
    ·                ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/512/input.js:1:10]
  1 │ function static() { "use strict"; }
    ·          ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/513/input.js:1:24]
  1 │ "use strict"; function static() { }
    ·                        ──────
@@ -2638,14 +2638,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── `t` has already been declared here
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/515/input.js:1:12]
  1 │ function a(eval) { "use strict"; }
    ·            ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/516/input.js:1:12]
  1 │ function a(package) { "use strict"; }
    ·            ───────
@@ -2676,14 +2676,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                          ╰── `t` has already been declared here
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/520/input.js:1:13]
  1 │ (function a(eval) { "use strict"; })
    ·             ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/521/input.js:1:13]
  1 │ (function a(package) { "use strict"; })
    ·             ───────
@@ -2720,7 +2720,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/544/input.js:2:9]
  1 │ "use strict";
  2 │ const { public } = foo();
@@ -2728,7 +2728,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/545/input.js:1:9]
  1 │ const { public } = foo();
    ·         ──────
@@ -2799,63 +2799,63 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the trailing comma here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens/input.js:1:18]
  1 │ var foo = ((foo)) => {};
    ·                  ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-2/input.js:1:9]
  1 │ (a, (b)) => 42
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-array-pattern/input.js:1:8]
  1 │ ([(a)]) => {}
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-array-pattern-2/input.js:1:22]
  1 │ ([ [(a)] = [] ] = []) => {}
    ·                      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-array-pattern-3/input.js:1:19]
  1 │ ([(a) = [] ] = []) => {}
    ·                   ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-object-pattern/input.js:1:20]
  1 │ ({ a: (foo) } = {}) => {}
    ·                    ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/inner-parens-object-pattern-member/input.js:1:24]
  1 │ ({ a: (foo.qux) } = {}) => {}
    ·                        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-arrow-before-in/input.js:1:9]
  1 │ () => {} in x
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-expression-body-before-regexp-starting-with-equals/input.js:2:3]
  1 │ () => x
  2 │ /=/;
@@ -2869,46 +2869,46 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ───
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-no-asi-before-regexp-starting-with-equals/input.js:1:9]
  1 │ () => {} /=/;
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-await-argument/input.js:1:31]
  1 │ async function f() { await (x) => {} }
    ·                               ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-binary-argument/input.js:1:9]
  1 │ true || () => {}
    ·         ──
    ╰────
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-class-heritage/input.js:1:17]
  1 │ class C extends () => {} {}
    ·                 ──
    ╰────
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-nested-new-callee/input.js:1:9]
  1 │ new new () => {}
    ·         ──
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-new-callee/input.js:1:8]
  1 │ new (x) => {}
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parens-unary-argument/input.js:1:20]
  1 │ console.log(typeof () => {});
    ·                    ──
@@ -2921,7 +2921,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ /=/;
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-assignment-param/input.js:1:12]
  1 │ (((a) = 1)) => {};
    ·            ▲
@@ -2936,7 +2936,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ /=/;
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-member-param-with-default/input.js:1:12]
  1 │ ((a.b) = 1) => {};
    ·            ▲
@@ -2944,7 +2944,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-param-error-order/input.js:1:6]
  1 │ ((a)) => { with (x) {} };
    ·      ▲
@@ -2952,14 +2952,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-param-error-order-errorRecovery-false/input.js:1:19]
  1 │ ([(a)] = 1, (b.c)) => { with (x) {} };
    ·                   ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-param-with-parenthesized-lhs-in-initializer/input.js:1:16]
  1 │ ((a) = (b) = 1) => {};
    ·                ▲
@@ -2983,14 +2983,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-single-binding-await-argument/input.js:1:29]
  1 │ async function f() { await x => {} }
    ·                             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-single-binding-binary-argument/input.js:1:10]
  1 │ true || x => {}
    ·          ▲
@@ -3004,28 +3004,28 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                    ╰── `{` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-single-binding-new-callee/input.js:1:6]
  1 │ new x => {}
    ·      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-single-binding-unary-argument/input.js:1:9]
  1 │ typeof x => {}
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/no-binary-left/input.js:1:9]
  1 │ () => {} || true
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/no-callee/input.js:1:9]
  1 │ () => {}()
    ·         ▲
@@ -3038,14 +3038,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ───────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/no-ternary-test/input.js:1:9]
  1 │ () => {} ? 1 : 2;
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × 'with' statements are not allowed
+  × TS(1101): 'with' statements are not allowed
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/extends-strict/input.js:2:3]
  1 │ class C extends (function B() {
  2 │   with ({});
@@ -3053,14 +3053,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │   return B;
    ╰────
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-declaration-name-arguments/input.js:1:7]
  1 │ class arguments {}
    ·       ─────────
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-declaration-name-eval/input.js:1:7]
  1 │ class eval {}
    ·       ────
@@ -3088,7 +3088,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                       ╰── `;` expected
    ╰────
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-export-name-eval-arguments/input.js:1:14]
  1 │ export class arguments {}
    ·              ─────────
@@ -3096,7 +3096,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-export-name-eval-arguments/input.js:2:22]
  1 │ export class arguments {}
  2 │ export default class eval {}
@@ -3104,21 +3104,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-expression-name-arguments/input.js:1:8]
  1 │ (class arguments {});
    ·        ─────────
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-expression-name-eval/input.js:1:8]
  1 │ (class eval {});
    ·        ────
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-escaped/input.js:1:7]
  1 │ class ev\u0061l {}
    ·       ─────────
@@ -3126,7 +3126,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-escaped/input.js:2:8]
  1 │ class ev\u0061l {}
  2 │ (class argument\u0073 {});
@@ -3134,7 +3134,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-nested/input.js:1:24]
  1 │ class C extends (class eval {}) {
    ·                        ────
@@ -3142,7 +3142,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-nested/input.js:3:11]
  2 │   m() {
  3 │     class arguments {}
@@ -3151,7 +3151,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-sloppy-function/input.js:2:9]
  1 │ function f() {
  2 │   class eval {}
@@ -3160,7 +3160,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class/invalid-name-eval-arguments-sloppy-function/input.js:3:17]
  2 │   class eval {}
  3 │   var g = class arguments {};
@@ -3169,7 +3169,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class-methods/direct-super-in-object-method/input.js:4:14]
  3 │     get: function(){
  4 │       return super.foo;
@@ -3291,14 +3291,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Replace with `super()` or `super.prop` or `super[prop]`
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/destructuring/binding-arguments-module/input.js:1:9]
  1 │ const { arguments } = foo();
    ·         ─────────
    ╰────
   note: Modules are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/destructuring/binding-arguments-strict/input.js:2:9]
  1 │ "use strict";
  2 │ const { arguments } = foo();
@@ -3306,7 +3306,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/destructuring/binding-eval/input.js:1:17]
  1 │ 'use strict'; ({eval = defValue} = obj)
    ·                 ────
@@ -3625,7 +3625,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/invalid-escape/input.js:1:9]
  1 │ le\u0074 x = 5
    ·         ▲
@@ -3640,7 +3640,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this declaration in a block statement
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-as-identifier-strict-fail/input.js:2:1]
  1 │ "use strict";
  2 │ let + 1
@@ -3742,7 +3742,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-await-async/input.js:3:8]
  2 │   let
  3 │   await 0;
@@ -3758,7 +3758,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-await-module/input.js:2:6]
  1 │ let
  2 │ await 0;
@@ -3780,7 +3780,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ───────
    ╰────
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-keyword-module/input.js:1:1]
  1 │ let
    · ───
@@ -3788,7 +3788,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-keyword-strict/input.js:2:1]
  1 │ "use strict";
  2 │ let
@@ -3797,7 +3797,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-yield/input.js:3:8]
  2 │   let
  3 │   yield 0;
@@ -3815,7 +3815,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/let/let-with-linebreak-and-yield-generator/input.js:3:8]
  2 │   let
  3 │   yield 0;
@@ -4319,7 +4319,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ╰── It cannot be redeclared here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/export-default-from-string-without-plugin/input.js:1:20]
  1 │ export default from "bar";
    ·                    ▲
@@ -4333,7 +4333,15 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │     return `<div class="bar">Hola</div>`;
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1212): The keyword 'let' is reserved
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/export-default-variable-declaration2/input.js:1:16]
+ 1 │ export default let Foo = () => {
+   ·                ───
+ 2 │     return `<div class="bar">Hola</div>`;
+   ╰────
+  note: Modules are always strict mode code
+
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/export-default-variable-declaration2/input.js:1:19]
  1 │ export default let Foo = () => {
    ·                   ▲
@@ -4578,7 +4586,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ╰── `:` expected
    ╰────
 
-  × The keyword 'implements' is reserved
+  × TS(1212): The keyword 'implements' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/shorthand/reserved-word-strict/input.js:2:12]
  1 │ "use strict";
  2 │ var x = ({ implements, interface, package });
@@ -4586,7 +4594,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'interface' is reserved
+  × TS(1212): The keyword 'interface' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/shorthand/reserved-word-strict/input.js:2:24]
  1 │ "use strict";
  2 │ var x = ({ implements, interface, package });
@@ -4594,7 +4602,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/shorthand/reserved-word-strict/input.js:2:35]
  1 │ "use strict";
  2 │ var x = ({ implements, interface, package });
@@ -4635,7 +4643,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: In strict mode code, functions can only be declared at top level or inside a block
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/statements/label-invalid-let/input.js:1:9]
  1 │ foo: let bar;
    ·         ▲
@@ -4844,7 +4852,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/224/input.js:2:4]
  1 │ x 
  2 │  is y
@@ -4852,7 +4860,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/225/input.js:2:6]
  1 │ x 
  2 │  isnt y
@@ -4867,7 +4875,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `Identifier` expected
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/227/input.js:1:45]
  1 │ function hello() {'use strict'; ({ i: 10, s(eval) { } }); }
    ·                                             ────
@@ -4906,14 +4914,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ───────
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/233/input.js:1:21]
  1 │ "use strict"; ({ v: eval } = obj)
    ·                     ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/234/input.js:1:21]
  1 │ "use strict"; ({ v: arguments } = obj)
    ·                     ─────────
@@ -4948,42 +4956,42 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ───
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/242/input.js:1:16]
  1 │ "use strict"; (eval = 10) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/243/input.js:1:15]
  1 │ "use strict"; eval => 42
    ·               ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/244/input.js:1:15]
  1 │ "use strict"; arguments => 42
    ·               ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/245/input.js:1:16]
  1 │ "use strict"; (eval, a) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/246/input.js:1:16]
  1 │ "use strict"; (arguments, a) => 42
    ·                ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/247/input.js:1:16]
  1 │ "use strict"; (eval, a = 10) => 42
    ·                ────
@@ -5005,20 +5013,20 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/250/input.js:1:1]
  1 │ () <= 42
    · ──
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/251/input.js:1:5]
  1 │ (10) => 00
    ·     ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/252/input.js:1:9]
  1 │ (10, 20) => 00
    ·         ▲
@@ -5146,7 +5154,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/284/input.js:1:8]
  1 │ ([ 5 ]) => {}
    ·        ▲
@@ -5166,7 +5174,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ───
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/289/input.js:1:6]
  1 │ ({ t(eval) { "use strict"; } });
    ·      ────
@@ -5204,21 +5212,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ╰── Opened here
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/296/input.js:1:16]
  1 │ "use strict"; (eval) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/297/input.js:1:2]
  1 │ (eval) => { "use strict"; 42 }
    ·  ────
    ╰────
   note: This is strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/298/input.js:1:21]
  1 │ ({ get test() { } }) => 42
    ·                     ▲
@@ -5245,7 +5253,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/326/input.js:1:6]
  1 │ var _𖫵 = 11;
    ·      ▲
@@ -5258,7 +5266,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·     ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/328/input.js:1:11]
  1 │ if (1) let x = 10;
    ·           ▲
@@ -5279,14 +5287,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Classes can only be declared at top level or inside a block
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/332/input.js:1:19]
  1 │ 'use strict'; [...eval] = arr
    ·                   ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/334/input.js:1:5]
  1 │ [...eval] = arr
    ·     ────
@@ -5333,7 +5341,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Replace with `super()` or `super.prop` or `super[prop]`
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/344/input.js:1:1]
  1 │ super
    · ─────
@@ -5380,7 +5388,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ─────
    ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/359/input.js:1:7]
  1 │ const await = foo();
    ·       ─────
@@ -5393,14 +5401,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ─────
    ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/361/input.js:1:9]
  1 │ const { await } = foo();
    ·         ─────
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/363/input.js:1:16]
  1 │ function foo({ await }) {}
    ·                ─────
@@ -5413,7 +5421,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ─────
    ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/365/input.js:1:10]
  1 │ function await() {}
    ·          ─────
@@ -5426,7 +5434,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ─────
    ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/367/input.js:1:7]
  1 │ class await {}
    ·       ─────
@@ -5445,7 +5453,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/37/input.js:1:8]
  1 │ ([a.a]) => 42
    ·        ▲
@@ -5559,7 +5567,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── Opened here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/395/input.js:1:8]
  1 │ ([a.a]) => 42
    ·        ▲
@@ -5662,7 +5670,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ─────
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/function-name-strict/input.js:2:10]
  1 │ "use strict";
  2 │ function yield() {}
@@ -5670,7 +5678,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/function-name-strict-body/input.js:1:10]
  1 │ function yield() { "use strict"; }
    ·          ─────
@@ -5706,7 +5714,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-arrow-inside-generator-1/input.js:2:8]
  1 │ function* fn() {
  2 │   (x = yield) => {};
@@ -5715,7 +5723,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-arrow-inside-generator-2/input.js:2:16]
  1 │ function* fn() {
  2 │   (x = 3 + a.b(yield) ** 2) => {};
@@ -5724,7 +5732,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-arrow-inside-generator-3/input.js:2:8]
  1 │ function* fn() {
  2 │   (x = yield fn) => {};
@@ -5733,7 +5741,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-arrow-inside-generator-4/input.js:2:18]
  1 │ function* fn() {
  2 │   (a, b = 3, x = yield) => {};
@@ -5750,7 +5758,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-arrow-inside-generator-6/input.js:2:9]
  1 │ function* fn() {
  2 │   (x = (yield)) => {};
@@ -5759,21 +5767,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-generator/input.js:1:18]
  1 │ function* fn(x = yield) {}
    ·                  ──┬──
    ·                    ╰── yield expression not allowed in formal parameter
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-inside-generator-method/input.js:1:16]
  1 │ ({ *method(x = yield) {} })
    ·                ──┬──
    ·                  ╰── yield expression not allowed in formal parameter
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-default-strict/input.js:2:17]
  1 │ "use strict";
  2 │ function fn(x = yield) {}
@@ -5789,7 +5797,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-name-arrow-inside-generator-2/input.js:2:13]
  1 │ function* fn() {
  2 │   (yield fn) => {};
@@ -5826,7 +5834,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ─────
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-name-strict/input.js:2:13]
  1 │ "use strict";
  2 │ function fn(yield) {}
@@ -5834,42 +5842,42 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parameter-name-strict-body/input.js:1:13]
  1 │ function fn(yield) { "use strict"; }
    ·             ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parenthesized-lhs-before-yield-in-arrow-params/input.js:1:39]
  1 │ function* g() { ([(a)] = 1, b = yield) => {} }
    ·                                       ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parenthesized-lhs-before-yield-in-arrow-params-errorRecovery-false/input.js:1:39]
  1 │ function* g() { ([(a)] = 1, b = yield) => {} }
    ·                                       ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parenthesized-lhs-before-yield-in-same-arrow-param/input.js:1:32]
  1 │ function* g() { ([(a)] = yield) => {} }
    ·                                ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/parenthesized-lhs-before-yield-in-same-arrow-param-errorRecovery-false/input.js:1:32]
  1 │ function* g() { ([(a)] = yield) => {} }
    ·                                ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/yield-inside-nested-initializer-of-parameters/input.js:1:26]
  1 │ function* g() { (x = y = yield) => {}; }
    ·                          ──┬──
@@ -5877,7 +5885,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ function* h() { ([x = y = yield]) => {}; }
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/yield-inside-nested-initializer-of-parameters/input.js:2:27]
  1 │ function* g() { (x = y = yield) => {}; }
  2 │ function* h() { ([x = y = yield]) => {}; }
@@ -5885,14 +5893,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                             ╰── yield expression not allowed in formal parameter
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/yield-star-parameter-default-inside-generator/input.js:1:25]
  1 │ function* fn(x = yield* yield) {}
    ·                         ──┬──
    ·                           ╰── yield expression not allowed in formal parameter
    ╰────
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/yield-star-parameter-default-inside-generator/input.js:1:18]
  1 │ function* fn(x = yield* yield) {}
    ·                  ──────┬─────
@@ -6003,14 +6011,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/async-arrow-function-after-binary-operator/input.js:1:12]
  1 │ 3 + async() => 2
    ·            ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/async-arrow-function-after-unary-operator/input.js:1:16]
  1 │ delete async () => 3;
    ·                ▲
@@ -6089,14 +6097,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-parens-await-argument/input.js:1:36]
  1 │ async function f() { await async () => {} }
    ·                                    ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-parens-binary-argument/input.js:1:17]
  1 │ true || async () => {}
    ·                 ▲
@@ -6110,7 +6118,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                           ╰── `{` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-parens-new-callee/input.js:1:13]
  1 │ new async () => {}
    ·             ▲
@@ -6125,14 +6133,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── Opened here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-single-binding-await-argument/input.js:1:33]
  1 │ async function f() { await async x => {} }
    ·                                 ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-single-binding-binary-argument/input.js:1:14]
  1 │ true || async x => {}
    ·              ▲
@@ -6146,91 +6154,91 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                       ╰── `{` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-single-binding-new-callee/input.js:1:10]
  1 │ new async x => {}
    ·          ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/invalid-single-binding-unary-argument/input.js:1:13]
  1 │ typeof async x => {}
    ·             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-array-pattern-nested/input.js:1:28]
  1 │ async ([ [(a)] = [] ] = []) => {};
    ·                            ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-array-pattern-nested-2/input.js:1:24]
  1 │ async ([(a) = []] = []) => {}
    ·                        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-binding-identifier/input.js:1:24]
  1 │ var foo = async ((foo)) => {};
    ·                        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-binding-member-expression/input.js:1:26]
  1 │ async ([(a.b) = []] = []) => {}
    ·                          ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-binding-pattern/input.js:1:26]
  1 │ var foo = async ([(foo)]) => {};
    ·                          ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-lhs-before-await-binding/input.js:1:25]
  1 │ async ([(a)] = 1, await) => {};
    ·                         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-lhs-before-await-binding-errorRecovery-false/input.js:1:25]
  1 │ async ([(a)] = 1, await) => {};
    ·                         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-lhs-before-await-binding-in-same-param/input.js:1:22]
  1 │ async ([(a)] = await) => {};
    ·                      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-lhs-before-await-binding-in-same-param-errorRecovery-false/input.js:1:22]
  1 │ async ([(a)] = await) => {};
    ·                      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-rest-array/input.js:1:29]
  1 │ var foo = async ([...(foo)]) => {};
    ·                             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-arrow/parenthesized-rest-object/input.js:1:29]
  1 │ var foo = async ({...(foo)}) => {};
    ·                             ▲
@@ -6260,7 +6268,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── Opened here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/10/input.js:2:4]
  1 │ var x = async
  2 │ (x) => x + 1;
@@ -6304,7 +6312,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: No modifiers are allowed here.
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/6/input.js:1:15]
  1 │ async () => {}()
    ·               ▲
@@ -6333,7 +6341,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/async-function-and-non-bmp-character/input.js:1:6]
  1 │ async function𝐬 f() {}
    ·      ▲
@@ -6359,7 +6367,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ async (x = function await() {}, y = await) => {};
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-binding-after-function-expression-name-inside-async-arrow-params/input.js:2:43]
  1 │ async (x = function await() {}, await) => {};
  2 │ async (x = function await() {}, y = await) => {};
@@ -6388,14 +6396,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-function-expression-name-inside-async-arrow-params-module/input.js:1:21]
  1 │ async (x = function await() {}) => {};
    ·                     ─────
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-arguments-of-async-call-inside-parameters-of-async-arrow-function/input.js:2:24]
  1 │ async function fn() {
  2 │   async (x = async(y = await 2)) => {};
@@ -6411,7 +6419,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-nested-initializer-of-parameters/input.js:2:22]
  1 │ async function f() { (x = y = await 1) => {}; }
  2 │ async (x = y = await) => {};
@@ -6420,21 +6428,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-parameters/input.js:1:23]
  1 │ async function fn(x = await 2) {}
    ·                       ───┬───
    ·                          ╰── await expression not allowed in formal parameter
    ╰────
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-parameters-of-async-arrow-function/input.js:1:12]
  1 │ async (x = await 2) => {};
    ·            ───┬───
    ·               ╰── await expression not allowed in formal parameter
    ╰────
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-parameters-of-nested-arrow-function/input.js:2:8]
  1 │ async function fn() {
  2 │   (x = await 2) => {};
@@ -6443,7 +6451,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-parameters-of-nested-async-arrow-function/input.js:2:14]
  1 │ async function fn() {
  2 │   async (x = await 2) => {};
@@ -6461,7 +6469,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × await expression not allowed in formal parameter
+  × TS(2524): await expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/await-inside-parameters-of-nested-function/input.js:2:20]
  1 │ async function foo() {
  2 │   function bar(x = await 2) {}
@@ -6476,14 +6484,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/export-invalid/input.js:1:21]
  1 │ export default async functionX () {}
    ·                     ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/invalid-await-with-object-exp-in-function/input.js:2:8]
  1 │ function foo() {
  2 │   await { foo };
@@ -6569,7 +6577,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──────────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/invalid-escaped-function-after-async/input.js:1:6]
  1 │ async function\u{61} f() {}
    ·      ▲
@@ -6582,7 +6590,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/invalid-escaped-function-after-export-default-async/input.js:1:21]
  1 │ export default async function\u{61} () {}
    ·                     ▲
@@ -6637,21 +6645,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the line break before here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/invalid-parens-async-arrow/input.js:1:11]
  1 │ (async)(a) => {}
    ·           ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/invalid-parens-async-func/input.js:1:8]
  1 │ (async) function x (a) {}
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/multiple-await-in-async-arrow-params/input.js:1:41]
  1 │ async ({ x = [ await ], y = { await } }) => {}
    ·                                         ▲
@@ -6695,28 +6703,28 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the trailing comma here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/parenthesized-lhs-before-await-in-arrow-params/input.js:1:46]
  1 │ async function f() { ([(a)] = 1, b = await 1) => {} }
    ·                                              ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/parenthesized-lhs-before-await-in-arrow-params-errorRecovery-false/input.js:1:46]
  1 │ async function f() { ([(a)] = 1, b = await 1) => {} }
    ·                                              ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/parenthesized-lhs-before-await-in-same-arrow-param/input.js:1:39]
  1 │ async function f() { ([(a)] = await 1) => {} }
    ·                                       ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/parenthesized-lhs-before-await-in-same-arrow-param-errorRecovery-false/input.js:1:39]
  1 │ async function f() { ([(a)] = await 1) => {} }
    ·                                       ▲
@@ -9606,14 +9614,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-properties/await-in-computed-property-in-params-of-async-arrow/input.js:1:34]
  1 │ async( x = class { [await] = x }) => {}
    ·                                  ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-properties/invalid-class-name-arguments-in-initializer/input.js:2:13]
  1 │ class C {
  2 │   x = class arguments {};
@@ -9678,7 +9686,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │     }
    ╰────
 
-  × 'super' can only be referenced in members of derived classes or object literal expressions.
+  × TS(2660): 'super' can only be referenced in members of derived classes or object literal expressions.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-properties/super-inside-function/input.js:3:5]
  2 │   foo = function fn() {
  3 │     super.x();
@@ -9686,7 +9694,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │   }
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-properties/yield-in-class-property-in-generator/input.js:4:9]
  3 │     // here yield is an identifier reference
  4 │     p = yield + 42;
@@ -9754,7 +9762,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-static-block/invalid-class-name-arguments/input.js:3:11]
  2 │   static {
  3 │     class arguments {}
@@ -9974,14 +9982,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/top-level-await-module/invalid-parens-arrow-argument/input.js:1:10]
  1 │ await (x) => {}
    ·          ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/top-level-await-module/invalid-single-binding-arrow-argument/input.js:1:8]
  1 │ await x => {}
    ·        ▲
@@ -10045,7 +10053,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ import("./foo.json", { with: { type: "json"} }, "unsupported");
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2025/import-attributes/invalid-export-without-from/input.js:2:15]
  1 │ const foo = 1;
  2 │ export { foo } with { type: "json" };
@@ -10195,7 +10203,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  8 │   }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-escaped-identifier-after-await-using/input.js:2:20]
  1 │ async function f() {
  2 │   await using\u{61} x = y;
@@ -10211,7 +10219,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the `export` here and add `export { basic }` as a separate statement to export the declaration
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-export-default-await-using/input.js:1:27]
  1 │ export default await using basic = reader();
    ·                           ▲
@@ -10517,7 +10525,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  12 │ }
     ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-using-binding-await-module/input.js:2:15]
  1 │ async function f () {
  2 │   await using await = h();
@@ -10526,7 +10534,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-using-binding-await-module/input.js:5:15]
  4 │ async function g () {
  5 │   await using \u0061wait = h();
@@ -10535,7 +10543,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-using-binding-await-module/input.js:8:24]
  7 │ async function h () {
  8 │   await using x = h(), await = h();
@@ -10544,7 +10552,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
     ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-using-binding-await-module/input.js:11:20]
  10 │ async function i () {
  11 │   for (await using await of []);
@@ -10593,7 +10601,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-using-decl-as-expr/input.js:2:16]
  1 │ async function f() {
  2 │   0,await using basic = getReader();
@@ -10663,7 +10671,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  7 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-export-default-using/input.js:1:21]
  1 │ export default using basic = reader();
    ·                     ▲
@@ -10879,7 +10887,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  12 │ }
     ╰────
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-using-binding-await-module/input.js:2:9]
  1 │ {
  2 │   using await = h();
@@ -10888,7 +10896,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-using-binding-await-module/input.js:5:9]
  4 │ {
  5 │   using \u0061wait = h();
@@ -10897,7 +10905,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-using-binding-await-module/input.js:8:18]
  7 │ {
  8 │   using x = h(), await = h();
@@ -10906,7 +10914,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × The keyword 'await' is reserved
+  × TS(1212): The keyword 'await' is reserved
     ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-using-binding-await-module/input.js:11:14]
  10 │ {
  11 │   for (using await of []);
@@ -11079,14 +11087,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the line break before here
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/invalid-param-strict-mode/input.js:1:1]
  1 │ eval => {"use strict"};
    · ────
    ╰────
   note: This is strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/non-arrow-param-followed-by-arrow/input.js:1:6]
  1 │ ((a)) => 0
    ·      ▲
@@ -11099,21 +11107,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ───
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/object-binding-pattern-invalid-member-expr/input.js:1:11]
  1 │ ({a:b[0]})=>0
    ·           ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/object-binding-pattern-invalid-method-in-pattern/input.js:1:14]
  1 │ ({get a(){}}) => 0;
    ·              ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/object-binding-pattern-invalid-nested-param/input.js:1:51]
  1 │ ([[[[[[[[[[[[[[[[[[[[{a:b[0]}]]]]]]]]]]]]]]]]]]]])=>0;
    ·                                                   ▲
@@ -11141,7 +11149,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ╰── `=>` expected
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-class/invalid-eval-in-class-method-params/input.js:1:12]
  1 │ class A {a(eval){}}
    ·            ────
@@ -11191,7 +11199,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ╰── `from` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-export-declaration/invalid-export-default/input.js:1:20]
  1 │ export default from "foo"
    ·                    ▲
@@ -11211,7 +11219,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean `export { default as default } from 'some-module'`?
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-export-declaration/invalid-export-default-token/input.js:1:17]
  1 │ export {default} +
    ·                 ▲
@@ -11287,7 +11295,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-binding-element/input.js:2:18]
  1 │ (function*() {
  2 │     function(x = yield 3) {}
@@ -11314,7 +11322,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-binding-property/input.js:2:22]
  1 │ (function*() {
  2 │     function({x: y = yield 3}) {}
@@ -11347,7 +11355,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-computed-property-name/input.js:2:16]
  1 │ (function*() {
  2 │     function({[yield 3]: y}) {}
@@ -11365,7 +11373,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Function name is required in function declaration or named export
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-invalid-binding-element/input.js:2:19]
  1 │ (function*() {
  2 │     function*(x = yield 3) {}
@@ -11383,7 +11391,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Function name is required in function declaration or named export
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-invalid-binding-property/input.js:2:23]
  1 │ (function*() {
  2 │     function*({x: y = yield 3}) {}
@@ -11401,7 +11409,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Function name is required in function declaration or named export
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-generator/generator-parameter-invalid-computed-property-name/input.js:2:17]
  1 │ (function*() {
  2 │     function*({[yield 3]: y}) {}
@@ -11452,7 +11460,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-identifier/invalid_lone_surrogate/input.js:1:7]
  1 │ \uD800!
    ·       ▲
@@ -11773,7 +11781,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-generator-arrow-default/input.js:1:22]
  1 │ function* g() { (x = yield 42) => {} }
    ·                      ────┬───
@@ -11804,7 +11812,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                           ─────
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-generator-export-default/input.js:1:26]
  1 │ export default function *yield() {}
    ·                          ─────
@@ -11859,14 +11867,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                         ─────
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-generator-strict-function-expression/input.js:1:47]
  1 │ "use strict"; function *g(){ var y = function yield(){}; }
    ·                                               ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-generator-strict-function-parameter/input.js:1:48]
  1 │ "use strict"; function *g() { var z = function(yield) {} }
    ·                                                ─────
@@ -11879,91 +11887,91 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                     ─────
    ╰────
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-array-pattern/input.js:1:17]
  1 │ "use strict"; ([yield] = x)
    ·                 ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-arrow-parameter-default/input.js:1:20]
  1 │ "use strict"; (x = yield) => {}
    ·                    ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-arrow-parameter-name/input.js:1:16]
  1 │ "use strict"; (yield) => 42
    ·                ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-binding-element/input.js:1:24]
  1 │ "use strict"; var { x: yield } = foo;
    ·                        ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-catch-parameter/input.js:1:29]
  1 │ "use strict"; try {} catch (yield) {}
    ·                             ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-formal-parameter/input.js:1:26]
  1 │ "use strict"; function f(yield) {}
    ·                          ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-function-declaration/input.js:1:10]
  1 │ function yield(){ "use strict"; }
    ·          ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-function-expression/input.js:1:11]
  1 │ (function yield(){ "use strict"; })
    ·           ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-identifier/input.js:1:30]
  1 │ "use strict"; function f() { yield }
    ·                              ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-lexical-declaration/input.js:1:19]
  1 │ "use strict"; let yield = 42;
    ·                   ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-rest-parameter/input.js:1:29]
  1 │ "use strict"; function f(...yield) {}
    ·                             ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/invalid-yield-strict-variable-declaration/input.js:1:19]
  1 │ "use strict"; var yield;
    ·                   ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × yield expression not allowed in formal parameter
+  × TS(2523): yield expression not allowed in formal parameter
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-yield/yield-generator-arrow-default/input.js:1:22]
  1 │ function *g() { (x = yield) => {} }
    ·                      ──┬──
@@ -12269,7 +12277,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0038/input.js:1:1]
  1 │ /
    · ──
@@ -12281,7 +12289,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0039/input.js:1:1]
  1 │ /test
    · ──────
@@ -12293,7 +12301,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──────
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0040/input.js:1:1]
  1 │ /test
    · ──────
@@ -12312,7 +12320,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0041/input.js:1:16]
  1 │ var x = /[a-z]/\ux
    ·                ▲
@@ -12325,7 +12333,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                   ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0042/input.js:1:18]
  1 │ var x = /[a-z\n]/\ux
    ·                  ▲
@@ -12338,7 +12346,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0043/input.js:1:16]
  1 │ var x = /[a-z]/\\ux
    ·                ▲
@@ -12351,7 +12359,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                  ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0044/input.js:1:17]
  1 │ var x = /[P QR]/\\u0067
    ·                 ▲
@@ -12473,7 +12481,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ 1 + { t:t,
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0062/input.js:1:9]
  1 │ var x = /
    ·         ──
@@ -12535,14 +12543,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0071/input.js:1:6]
  1 │ { set 1 }
    ·      ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0072/input.js:1:6]
  1 │ { get 2 }
    ·      ▲
@@ -12625,35 +12633,35 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ ({get
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0087/input.js:1:16]
  1 │ "use strict"; (eval = 10) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0088/input.js:1:15]
  1 │ "use strict"; eval => 42
    ·               ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0089/input.js:1:15]
  1 │ "use strict"; arguments => 42
    ·               ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0090/input.js:1:16]
  1 │ "use strict"; (eval, a) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0091/input.js:1:16]
  1 │ "use strict"; (arguments, a) => 42
    ·                ─────────
@@ -12683,46 +12691,46 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0095/input.js:1:1]
  1 │ () <= 42
    · ──
    ╰────
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0096/input.js:1:1]
  1 │ () ? 42
    · ──
    ╰────
 
-  × Empty parenthesized expression
+  × TS(1109): Empty parenthesized expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0097/input.js:1:1]
  1 │ () + 42
    · ──
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0098/input.js:1:5]
  1 │ (10) => 00
    ·     ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0099/input.js:1:9]
  1 │ (10, 20) => 00
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0100/input.js:1:16]
  1 │ "use strict"; (eval) => 42
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0101/input.js:1:2]
  1 │ (eval) => { "use strict"; 42 }
    ·  ────
@@ -12744,7 +12752,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ╰── `:` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0112/input.js:1:2]
  1 │ a b;
    ·  ▲
@@ -12758,14 +12766,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── `(` expected
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0114/input.js:1:2]
  1 │ a if;
    ·  ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0115/input.js:1:2]
  1 │ a enum;
    ·  ▲
@@ -12936,7 +12944,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0141/input.js:1:13]
  1 │ if(true) let a = 1;
    ·             ▲
@@ -13038,7 +13046,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─
    ╰────
 
-  × Unterminated regular expression
+  × TS(1161): Unterminated regular expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0157/input.js:1:1]
  1 │ /a\
    · ────
@@ -13224,223 +13232,223 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                     ─
    ╰────
 
-  × 'with' statements are not allowed
+  × TS(1101): 'with' statements are not allowed
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0184/input.js:1:30]
  1 │ (function () { 'use strict'; with (i); }())
    ·                              ────
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0185/input.js:1:37]
  1 │ function hello() {'use strict'; var eval = 10; }
    ·                                     ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0186/input.js:1:37]
  1 │ function hello() {'use strict'; var arguments = 10; }
    ·                                     ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0187/input.js:1:48]
  1 │ function hello() {'use strict'; try { } catch (eval) { } }
    ·                                                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0188/input.js:1:48]
  1 │ function hello() {'use strict'; try { } catch (arguments) { } }
    ·                                                ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0189/input.js:1:33]
  1 │ function hello() {'use strict'; eval = 10; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0190/input.js:1:33]
  1 │ function hello() {'use strict'; arguments = 10; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0191/input.js:1:35]
  1 │ function hello() {'use strict'; ++eval; }
    ·                                   ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0192/input.js:1:35]
  1 │ function hello() {'use strict'; --eval; }
    ·                                   ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0193/input.js:1:35]
  1 │ function hello() {'use strict'; ++arguments; }
    ·                                   ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0194/input.js:1:35]
  1 │ function hello() {'use strict'; --arguments; }
    ·                                   ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0195/input.js:1:33]
  1 │ function hello() {'use strict'; eval++; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0196/input.js:1:33]
  1 │ function hello() {'use strict'; eval--; }
    ·                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0197/input.js:1:33]
  1 │ function hello() {'use strict'; arguments++; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0198/input.js:1:33]
  1 │ function hello() {'use strict'; arguments--; }
    ·                                 ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0199/input.js:1:42]
  1 │ function hello() {'use strict'; function eval() { } }
    ·                                          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0200/input.js:1:42]
  1 │ function hello() {'use strict'; function arguments() { } }
    ·                                          ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0201/input.js:1:10]
  1 │ function eval() {'use strict'; }
    ·          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0202/input.js:1:10]
  1 │ function arguments() {'use strict'; }
    ·          ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0203/input.js:1:43]
  1 │ function hello() {'use strict'; (function eval() { }()) }
    ·                                           ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0204/input.js:1:43]
  1 │ function hello() {'use strict'; (function arguments() { }()) }
    ·                                           ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0205/input.js:1:11]
  1 │ (function eval() {'use strict'; })()
    ·           ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0206/input.js:1:11]
  1 │ (function arguments() {'use strict'; })()
    ·           ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0207/input.js:1:48]
  1 │ function hello() {'use strict'; ({ s: function eval() { } }); }
    ·                                                ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0208/input.js:1:11]
  1 │ (function package() {'use strict'; })()
    ·           ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0209/input.js:1:49]
  1 │ function hello() {'use strict'; ({ i: 10, set s(eval) { } }); }
    ·                                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0210/input.js:1:42]
  1 │ function hello() {'use strict'; ({ set s(eval) { } }); }
    ·                                          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0211/input.js:1:50]
  1 │ function hello() {'use strict'; ({ s: function s(eval) { } }); }
    ·                                                  ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0212/input.js:1:16]
  1 │ function hello(eval) {'use strict';}
    ·                ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0213/input.js:1:16]
  1 │ function hello(arguments) {'use strict';}
    ·                ─────────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0214/input.js:1:49]
  1 │ function hello() { 'use strict'; function inner(eval) {} }
    ·                                                 ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0215/input.js:1:49]
  1 │ function hello() { 'use strict'; function inner(arguments) {} }
    ·                                                 ─────────
@@ -13510,98 +13518,98 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × The keyword 'implements' is reserved
+  × TS(1212): The keyword 'implements' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0224/input.js:1:38]
  1 │ function hello() { "use strict"; var implements; }
    ·                                      ──────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'interface' is reserved
+  × TS(1212): The keyword 'interface' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0225/input.js:1:38]
  1 │ function hello() { "use strict"; var interface; }
    ·                                      ─────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0226/input.js:1:38]
  1 │ function hello() { "use strict"; var package; }
    ·                                      ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'private' is reserved
+  × TS(1212): The keyword 'private' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0227/input.js:1:38]
  1 │ function hello() { "use strict"; var private; }
    ·                                      ───────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'protected' is reserved
+  × TS(1212): The keyword 'protected' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0228/input.js:1:38]
  1 │ function hello() { "use strict"; var protected; }
    ·                                      ─────────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0229/input.js:1:38]
  1 │ function hello() { "use strict"; var public; }
    ·                                      ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0230/input.js:1:38]
  1 │ function hello() { "use strict"; var static; }
    ·                                      ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'yield' is reserved
+  × TS(1212): The keyword 'yield' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0231/input.js:1:38]
  1 │ function hello() { "use strict"; var yield; }
    ·                                      ─────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'let' is reserved
+  × TS(1212): The keyword 'let' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0232/input.js:1:38]
  1 │ function hello() { "use strict"; var let; }
    ·                                      ───
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0233/input.js:1:16]
  1 │ function hello(static) { "use strict"; }
    ·                ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0234/input.js:1:10]
  1 │ function static() { "use strict"; }
    ·          ──────
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0235/input.js:1:10]
  1 │ function eval(a) { "use strict"; }
    ·          ────
    ╰────
   note: This is strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0236/input.js:1:10]
  1 │ function arguments(a) { "use strict"; }
    ·          ─────────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0239/input.js:1:24]
  1 │ "use strict"; function static() { }
    ·                        ──────
@@ -13616,14 +13624,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── `t` has already been declared here
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0241/input.js:1:12]
  1 │ function a(eval) { "use strict"; }
    ·            ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0242/input.js:1:12]
  1 │ function a(package) { "use strict"; }
    ·            ───────
@@ -13654,14 +13662,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                          ╰── `t` has already been declared here
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0246/input.js:1:13]
  1 │ (function a(eval) { "use strict"; })
    ·             ────
    ╰────
   note: This is strict mode code
 
-  × The keyword 'package' is reserved
+  × TS(1212): The keyword 'package' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0247/input.js:1:13]
  1 │ (function a(package) { "use strict"; })
    ·             ───────
@@ -13716,7 +13724,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·              ╰── Opened here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0257/input.js:1:16]
  1 │ 'use strict'; a package
    ·                ▲
@@ -13843,7 +13851,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ────
    ╰────
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0278/input.js:1:18]
  1 │ class A {static [static](){};}
    ·                  ──────
@@ -14091,7 +14099,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                    ─────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/arrow-function/async-arrow-function-after-binary-operator/input.ts:1:20]
  1 │ 4 + async<number>() => 2 
    ·                    ▲
@@ -14181,28 +14189,28 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ async(x?)
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/arrow-async-parameter-as/input.ts:1:15]
  1 │ async (a as T) => {};
    ·               ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/arrow-async-parameter-assertion/input.ts:1:14]
  1 │ async (<T> a) => {};
    ·              ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/arrow-parameter-as/input.ts:1:9]
  1 │ (a as T) => {};
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/arrow-parameter-assertion/input.ts:1:8]
  1 │ (<T> a) => {};
    ·        ▲
@@ -14251,7 +14259,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ─
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/invalid-parenthesized-type-cast-assignment-param/input.ts:1:15]
  1 │ ((a as T) = 1) => {};
    ·               ▲
@@ -14259,28 +14267,28 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/invalid-type-assertion-async-arrow/input.ts:1:13]
  1 │ <const>async x => 1;
    ·             ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/invalid-type-assertion-parens-arrow/input.ts:1:11]
  1 │ <const>(x) => 1;
    ·           ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/invalid-type-assertion-single-binding-arrow/input.ts:1:9]
  1 │ <const>x => 1;
    ·         ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/invalid-type-cast-param-error-order/input.ts:1:9]
  1 │ (a as T) => { with (x) {} };
    ·         ▲
@@ -14288,7 +14296,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/null-assertion-invalid-arrow-param/input.ts:1:5]
  1 │ (a!) => b;
    ·     ▲
@@ -14305,7 +14313,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ func<T>(a: T);
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/parenthesized-type-cast-in-param-create-parenthesized-expressions/input.ts:3:19]
  2 │ (x = [((a)!)] = 1) => {};
  3 │ ([((a) as T)] = 1) => {};
@@ -14582,7 +14590,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/declare-new-line-abstract/input.ts:1:8]
  1 │ declare abstract
    ·        ▲
@@ -14873,7 +14881,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │ }
    ╰────
 
-  × Cannot assign to 'eval' in strict mode
+  × TS(1100): Cannot assign to 'eval' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/invalid-name-eval-arguments/input.ts:1:7]
  1 │ class eval {}
    ·       ────
@@ -14881,7 +14889,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/invalid-name-eval-arguments/input.ts:2:8]
  1 │ class eval {}
  2 │ (class arguments {});
@@ -14890,7 +14898,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Cannot assign to 'arguments' in strict mode
+  × TS(1100): Cannot assign to 'arguments' in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/invalid-name-eval-arguments/input.ts:3:16]
  2 │ (class arguments {});
  3 │ abstract class arguments {}
@@ -14907,7 +14915,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Allowed modifiers are: private, protected, public, static, abstract, override, async
 
-  × The keyword 'private' is reserved
+  × TS(1212): The keyword 'private' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/modifier-name-parameters/input.ts:2:15]
  1 │ class Foo {
  2 │   constructor(private, public, static) {
@@ -14916,7 +14924,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/modifier-name-parameters/input.ts:2:24]
  1 │ class Foo {
  2 │   constructor(private, public, static) {
@@ -14925,7 +14933,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × The keyword 'static' is reserved
+  × TS(1212): The keyword 'static' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/modifier-name-parameters/input.ts:2:32]
  1 │ class Foo {
  2 │   constructor(private, public, static) {
@@ -15394,14 +15402,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                        ▲
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-await-using-declaration/input.ts:1:8]
  1 │ declare await using basic;
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-await-using-declaration-with-initializer/input.ts:1:8]
  1 │ declare await using basic = null;
    ·        ▲
@@ -15454,7 +15462,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ {
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-assignment/input.ts:5:10]
  4 │ {
  5 │   declare using z!: number = 1;
@@ -15463,7 +15471,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-pattern-assignment-await-using/input.ts:2:10]
  1 │ {
  2 │   declare await using {}! = {};
@@ -15472,21 +15480,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-pattern-assignment-const/input.ts:1:17]
  1 │ declare const {}! = {};
    ·                 ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-pattern-assignment-let/input.ts:1:15]
  1 │ declare let {}! = {};
    ·               ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-pattern-assignment-using/input.ts:2:10]
  1 │ {
  2 │   declare using {}! = {};
@@ -15495,7 +15503,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-pattern-assignment-var/input.ts:1:15]
  1 │ declare var {}! = {};
    ·               ▲
@@ -15525,7 +15533,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ {
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-definite-without-type/input.ts:5:10]
  4 │ {
  5 │   declare using z!;
@@ -15682,14 +15690,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  7 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-using-declaration/input.ts:1:8]
  1 │ declare using basic;
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/invalid-using-declaration-with-initializer/input.ts:1:8]
  1 │ declare using basic = null;
    ·        ▲
@@ -15946,7 +15954,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │   foo: string;
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/declare-new-line/input.ts:1:8]
  1 │ declare interface
    ·        ▲
@@ -16052,7 +16060,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │   set bar<T>(v);
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/invalid-abstract-interface/input.ts:1:9]
  1 │ abstract interface
    ·         ▲
@@ -16251,7 +16259,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this declaration in a block statement
 
-  × The keyword 'interface' is reserved
+  × TS(1212): The keyword 'interface' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/new-line/input.ts:1:1]
  1 │ interface
    · ─────────
@@ -16259,7 +16267,15 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1212): The keyword 'interface' is reserved
+   ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/new-line-error/input.ts:1:1]
+ 1 │ interface
+   · ─────────
+ 2 │ F {}
+   ╰────
+  note: Modules are always strict mode code
+
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/new-line-error/input.ts:2:2]
  1 │ interface
  2 │ F {}
@@ -16267,7 +16283,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/interface/property-initializer/input.ts:1:24]
  1 │ interface I { x: number = 1;}
    ·                        ▲
@@ -16426,14 +16442,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/invalid-declare-module-number/input.ts:1:8]
  1 │ declare module 0 {}
    ·        ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/invalid-declare-module-without-name/input.ts:1:8]
  1 │ declare module {}
    ·        ▲
@@ -16448,7 +16464,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │   let x: number;
    ╰────
 
-  × The keyword 'public' is reserved
+  × TS(1212): The keyword 'public' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/invalid-reserved-word/input.ts:1:11]
  1 │ namespace public {}
    ·           ──────
@@ -16456,7 +16472,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × The keyword 'private' is reserved
+  × TS(1212): The keyword 'private' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/invalid-reserved-word/input.ts:3:11]
  2 │ 
  3 │ namespace private {}
@@ -16465,7 +16481,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × The keyword 'protected' is reserved
+  × TS(1212): The keyword 'protected' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/invalid-reserved-word/input.ts:5:11]
  4 │ 
  5 │ namespace protected.foo {}
@@ -16473,7 +16489,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/module-declare-new-line/input.ts:6:8]
  5 │ 
  6 │ declare module
@@ -16482,7 +16498,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/module-new-line-error/input.ts:2:4]
  1 │ module
  2 │ Foo {}
@@ -16490,7 +16506,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/namespace-declare-new-line/input.ts:6:8]
  5 │ 
  6 │ declare namespace
@@ -16499,7 +16515,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/module-namespace/namespace-new-line-error/input.ts:2:4]
  1 │ namespace
  2 │ Foo {}
@@ -16531,7 +16547,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/regression/keyword-qualified-type-disallowed/input.ts:2:16]
  1 │ import X = Y.if;
  2 │ import A = this.A;
@@ -16914,7 +16930,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── Opened here
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/tsx/await-in-async-arrow-param-before-recoverable-jsx-error/input.ts:1:27]
  1 │ async (x = <a>{await}</b>) => {};
    ·                           ▲
@@ -16937,14 +16953,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ▲
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/tsx/parenthesized-lhs-in-arrow-param-after-generic-arrow/input.ts:1:30]
  1 │ (x = <T,>(y) => y, [(b)] = 1) => {};
    ·                              ▲
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/type-alias/declare-new-line/input.ts:1:8]
  1 │ declare type
    ·        ▲
@@ -17046,7 +17062,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
     · ────────
     ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/type-arguments/new-without-arguments-missing-semicolon/input.ts:1:9]
  1 │ new A<T> if (0);
    ·         ▲
@@ -17150,7 +17166,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ─────────
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/types/intrinsic-keyword-error/input.ts:1:21]
  1 │ type Foo = intrinsic["foo"];
    ·                     ▲
@@ -17470,7 +17486,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  7 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-like-not-eq/input.ts:1:6]
  1 │ var w!=null;
    ·      ▲
@@ -17494,7 +17510,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-await-using/input.ts:2:17]
  1 │ {
  2 │   await using {}! = {};
@@ -17510,7 +17526,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-const/input.ts:1:9]
  1 │ const {}! = {};
    ·         ▲
@@ -17524,7 +17540,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-let/input.ts:1:7]
  1 │ let {}! = {};
    ·       ▲
@@ -17548,7 +17564,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-using/input.ts:2:11]
  1 │ {
  2 │   using {}! = {};
@@ -17564,7 +17580,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-var/input.ts:1:7]
  1 │ var {}! = {};
    ·       ▲

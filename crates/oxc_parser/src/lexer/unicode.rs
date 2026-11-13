@@ -299,7 +299,12 @@ impl<'a, C: Config> Lexer<'a, C> {
     ) {
         match self.next_char() {
             None => {
-                self.error(diagnostics::unterminated_string(self.unterminated_range()));
+                let range = self.unterminated_range();
+                self.error(if in_template {
+                    diagnostics::unterminated_template(range)
+                } else {
+                    diagnostics::unterminated_string(range)
+                });
             }
             Some(c) => match c {
                 // \ LineTerminatorSequence

@@ -401,7 +401,7 @@ pub fn to_oxc_diagnostic(d: &Diagnostic, source: &str) -> OxcDiagnostic {
 
         // The parser does not distinguish unterminated template from string,
         // and reports newline-in-literal as "unterminated".
-        DiagCode::UnterminatedTemplate => diag(sev, "Unterminated string").with_label(span),
+        DiagCode::UnterminatedTemplate => diag(sev, "Unterminated template").with_label(span),
         DiagCode::LineTerminatorInString => diag(sev, "Unterminated string").with_label(span),
         DiagCode::LineTerminatorInRegexp => {
             diag(sev, "Unterminated regular expression").with_label(span)
@@ -491,7 +491,7 @@ mod tests {
     fn finer_codes_collapse_to_parser_text() {
         let src = "`abc";
         let g = to_oxc_diagnostic(&d(DiagCode::UnterminatedTemplate, 0, 4), src);
-        assert_eq!(g.message.as_ref(), "Unterminated string");
+        assert_eq!(g.message.as_ref(), "Unterminated template");
 
         let src = "1_000_";
         let g = to_oxc_diagnostic(&d(DiagCode::InvalidNumericSeparator, 0, 6), src);

@@ -224,15 +224,19 @@ parser_diagnostics! {
     };
 
     unterminated_multi_line_comment(span: Span) => {
-        OxcDiagnostic::error("Unterminated multiline comment").with_label(span)
+        ts_error("1010", "Unterminated multiline comment").with_label(span)
     };
 
     unterminated_string(span: Span) => {
-        OxcDiagnostic::error("Unterminated string").with_label(span)
+        ts_error("1002", "Unterminated string").with_label(span)
+    };
+
+    unterminated_template(span: Span) => {
+        ts_error("1160", "Unterminated template").with_label(span)
     };
 
     reg_exp_flag(flag: char, span: Span) => {
-        OxcDiagnostic::error(format!("Unexpected flag {flag} in regular expression literal"))
+        ts_error("1499", format!("Unexpected flag {flag} in regular expression literal"))
             .with_label(span)
             .with_help(format!("The allowed flags are `{REGEXP_FLAGS_LIST}`"))
     };
@@ -809,7 +813,7 @@ parser_diagnostics! {
     };
 
     cover_initialized_name(span: Span) => {
-        OxcDiagnostic::error("Invalid assignment in object literal")
+        ts_error("1312", "Invalid assignment in object literal")
     .with_help("Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.")
     .with_label(span)
     };
@@ -826,7 +830,7 @@ parser_diagnostics! {
     };
 
     new_target_outside_function(span: Span) => {
-        OxcDiagnostic::error("Unexpected new.target expression")
+        ts_error("17013", "Unexpected new.target expression")
             .with_help(
                 "new.target is only allowed in constructors, functions, and class field initializers",
             )

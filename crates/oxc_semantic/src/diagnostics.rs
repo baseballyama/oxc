@@ -155,23 +155,34 @@ pub fn private_field_undeclared(x0: &str, suggestion: Option<&str>, span1: Span)
     diagnostic
 }
 
+/// TS(1121): Octal literals are not allowed.
 #[cold]
 pub fn legacy_octal(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("'0'-prefixed octal literals and octal escape sequences are deprecated")
+    ts_error("1121", "'0'-prefixed octal literals and octal escape sequences are deprecated")
         .with_help("for octal literals use the '0o' prefix instead")
         .with_label(span)
 }
 
+/// TS(1489): Decimals with leading zeros are not allowed.
 #[cold]
 pub fn leading_zero_decimal(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Decimals with leading zeros are not allowed in strict mode")
+    ts_error("1489", "Decimals with leading zeros are not allowed in strict mode")
         .with_help("remove the leading zero")
         .with_label(span)
 }
 
+/// TS(1487): Octal escape sequences are not allowed.
+#[cold]
+pub fn legacy_octal_escape(span: Span) -> OxcDiagnostic {
+    ts_error("1487", "'0'-prefixed octal literals and octal escape sequences are deprecated")
+        .with_help("for octal escapes use the '\\x' or '\\u' escape instead")
+        .with_label(span)
+}
+
+/// TS(1488): Escape sequence '\8' is not allowed.
 #[cold]
 pub fn non_octal_decimal_escape_sequence(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Invalid escape sequence")
+    ts_error("1488", "Invalid escape sequence")
         .with_help("\\8 and \\9 are not allowed in strict mode")
         .with_label(span)
 }
@@ -296,9 +307,10 @@ pub fn type_predicate_only_in_return_type(span: Span) -> OxcDiagnostic {
     .with_label(span)
 }
 
+/// TS(2335): 'super' can only be referenced in a derived class.
 #[cold]
 pub fn super_without_derived_class(span: Span, span1: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("'super' can only be referenced in a derived class.")
+    ts_error("2335", "'super' can only be referenced in a derived class.")
         .with_help("either remove this super, or extend the class")
         .with_labels([span.into(), span1.label("class does not have `extends`")])
 }
@@ -315,14 +327,16 @@ pub fn unexpected_super_reference(span: Span) -> OxcDiagnostic {
         .with_label(span)
 }
 
+/// TS(1102): 'delete' cannot be called on an identifier in strict mode.
 #[cold]
 pub fn delete_of_unqualified(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Delete of an unqualified identifier in strict mode.").with_label(span)
+    ts_error("1102", "Delete of an unqualified identifier in strict mode.").with_label(span)
 }
 
+/// TS(18011): The operand of a 'delete' operator cannot be a private identifier.
 #[cold]
 pub fn delete_private_field(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("The operand of a 'delete' operator cannot be a private identifier.")
+    ts_error("18011", "The operand of a 'delete' operator cannot be a private identifier.")
         .with_label(span)
 }
 

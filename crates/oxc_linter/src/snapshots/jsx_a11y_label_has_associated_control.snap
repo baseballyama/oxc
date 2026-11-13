@@ -107,7 +107,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[label_has_associated_control.tsx:1:71]
  1 │ <label><span><span><span>A label<input /></span></span></span></label>'
    ·                                                                       ─

@@ -47,7 +47,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/annex-
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.3-function-in-if-body-lexical-redeclaration/input.js
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.3-function-in-if-body-lexical-redeclaration/input.js:1:17]
  1 │ if (0) function f() {} let f;
    ·                 ┬          ┬
@@ -56,7 +56,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/annex-
  2 │ { if (0) function g() {} let g; }
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.3-function-in-if-body-lexical-redeclaration/input.js:2:19]
  1 │ if (0) function f() {} let f;
  2 │ { if (0) function g() {} let g; }
@@ -96,7 +96,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/estree
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typescript/class/constructor-with-modifier-names/input.ts
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/constructor-with-modifier-names/input.ts:2:3]
  1 │ class Foo {
  2 │   constructor(set, readonly) {}
@@ -110,7 +110,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typescript/class/declare/input.ts
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/declare/input.ts:3:5]
  2 │     [x: string]: any;
  3 │     x;
@@ -124,7 +124,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typescript/class/escaped-in-after-initializer/input.ts
 
-  × Identifier `\u{69}n` has already been declared
+  × TS(2300): Identifier `\u{69}n` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/escaped-in-after-initializer/input.ts:3:3]
  2 │   x = 1
  3 │   \u{69}n
@@ -139,7 +139,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  8 │   \u{69}n = 1
    ╰────
 
-  × Identifier `\u{69}n` has already been declared
+  × TS(2300): Identifier `\u{69}n` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/escaped-in-after-initializer/input.ts:7:3]
  6 │   z = 1
  7 │   \u{69}n() {}
@@ -235,7 +235,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typescript/class/modifiers-override/input.ts
 
-  × Identifier `show` has already been declared
+  × TS(2300): Identifier `show` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/modifiers-override/input.ts:2:12]
  1 │ class MyClass extends BaseClass {
  2 │   override show() {}
@@ -247,7 +247,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │   override size = 5;
    ╰────
 
-  × Identifier `size` has already been declared
+  × TS(2300): Identifier `size` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/modifiers-override/input.ts:4:12]
  3 │   public override show() {}
  4 │   override size = 5;
@@ -279,7 +279,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
 
 Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typescript/class/properties/input.ts
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/properties/input.ts:2:5]
  1 │ class C {
  2 │     x;
@@ -291,7 +291,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │     x: number;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/properties/input.ts:3:5]
  2 │     x;
  3 │     x?;
@@ -303,7 +303,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │     x: number = 1;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/properties/input.ts:4:5]
  3 │     x?;
  4 │     x: number;
@@ -315,7 +315,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │     x!: number;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/properties/input.ts:5:5]
  4 │     x: number;
  5 │     x: number = 1;
@@ -415,7 +415,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  27 │ 
     ╰────
 
-  × Identifier `method` has already been declared
+  × TS(2300): Identifier `method` has already been declared
     ╭─[babel/packages/babel-parser/test/fixtures/typescript/types/const-type-parameters/input.ts:29:3]
  28 │ class _ {
  29 │   method<const T>() {}
@@ -427,7 +427,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  31 │   method<T, const U>() {}
     ╰────
 
-  × Identifier `method` has already been declared
+  × TS(2300): Identifier `method` has already been declared
     ╭─[babel/packages/babel-parser/test/fixtures/typescript/types/const-type-parameters/input.ts:30:3]
  29 │   method<const T>() {}
  30 │   method<const T extends U>() {}
@@ -470,7 +470,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ──────────────────
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-async-functions-redeclaration/input.js:1:19]
  1 │ l: async function f() {} let f;
    ·                   ┬          ┬
@@ -479,7 +479,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ { l: async function g() {} let g; }
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-async-functions-redeclaration/input.js:2:21]
  1 │ l: async function f() {} let f;
  2 │ { l: async function g() {} let g; }
@@ -495,7 +495,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-block/input.js:1:15]
  1 │ { l: function f() {} let f; }
    ·               ┬          ┬
@@ -504,7 +504,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ { l: function g() {} var g; }
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-block/input.js:2:15]
  1 │ { l: function f() {} let f; }
  2 │ { l: function g() {} var g; }
@@ -514,7 +514,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ { var h; l: function h() {} }
    ╰────
 
-  × Identifier `h` has already been declared
+  × TS(2300): Identifier `h` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-block/input.js:3:7]
  2 │ { l: function g() {} var g; }
  3 │ { var h; l: function h() {} }
@@ -524,7 +524,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ { let i; l1: l2: function i() {} }
    ╰────
 
-  × Identifier `i` has already been declared
+  × TS(2300): Identifier `i` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-block/input.js:4:7]
  3 │ { var h; l: function h() {} }
  4 │ { let i; l1: l2: function i() {} }
@@ -533,7 +533,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── `i` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-catch-param/input.js:1:15]
  1 │ try {} catch (f) { l: function f() {} }
    ·               ┬                ┬
@@ -541,7 +541,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ╰── `f` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-function-body/input.js:1:28]
  1 │ function g() { l: function f() {} let f; }
    ·                            ┬          ┬
@@ -549,7 +549,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                            ╰── `f` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-switch/input.js:1:34]
  1 │ switch (0) { case 1: l: function f() {} case 2: let f; }
    ·                                  ┬                  ┬
@@ -557,7 +557,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                  ╰── `f` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-top-level/input.js:1:13]
  1 │ l: function f() {} let f;
    ·             ┬          ┬
@@ -566,7 +566,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ let g; l: function g() {}
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-top-level/input.js:2:5]
  1 │ l: function f() {} let f;
  2 │ let g; l: function g() {}
@@ -576,7 +576,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ l: function h() {} class h {}
    ╰────
 
-  × Identifier `h` has already been declared
+  × TS(2300): Identifier `h` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-top-level/input.js:3:13]
  2 │ let g; l: function g() {}
  3 │ l: function h() {} class h {}
@@ -586,7 +586,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ l: function i() {} const i = 1;
    ╰────
 
-  × Identifier `i` has already been declared
+  × TS(2300): Identifier `i` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.1-sloppy-labeled-functions-redeclaration-top-level/input.js:4:13]
  3 │ l: function h() {} class h {}
  4 │ l: function i() {} const i = 1;
@@ -595,7 +595,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `i` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/3.4-var-redeclaration-catch-binding/input.js:2:17]
  1 │ try {} catch (e) { var e; }
  2 │ try {} catch ({ f }) { var f; }
@@ -736,7 +736,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
 
-  × Label `l` has already been declared
+  × TS(1114): Label `l` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-label-redeclaration-nested/input.js:1:4]
  1 │ l: l: l: ;
    ·    ┬  ┬
@@ -745,7 +745,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ a: b: a: b: ;
    ╰────
 
-  × Label `l` has already been declared
+  × TS(1114): Label `l` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-label-redeclaration-nested/input.js:1:1]
  1 │ l: l: l: ;
    · ┬  ┬
@@ -754,7 +754,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ a: b: a: b: ;
    ╰────
 
-  × Label `b` has already been declared
+  × TS(1114): Label `b` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-label-redeclaration-nested/input.js:2:4]
  1 │ l: l: l: ;
  2 │ a: b: a: b: ;
@@ -763,7 +763,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·    ╰── `b` has already been declared here
    ╰────
 
-  × Label `a` has already been declared
+  × TS(1114): Label `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-label-redeclaration-nested/input.js:2:1]
  1 │ l: l: l: ;
  2 │ a: b: a: b: ;
@@ -1232,14 +1232,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/opts/allowNewTargetOutsideFunction-false/input.js:1:11]
  1 │ const x = new.target;
    ·           ──────────
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/core/opts/allowNewTargetOutsideFunction-false-2/input.js:1:17]
  1 │ const y = () => new.target;
    ·                 ──────────
@@ -1304,7 +1304,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-2nd-lvl-lex/input.js:2:5]
  1 │ let bar;
  2 │ var foo = 1;
@@ -1315,7 +1315,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-2nd-lvl-lex-nested/input.js:3:7]
  2 │   let bar;
  3 │   var foo = 1;
@@ -1327,7 +1327,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-2nd-lvl-var/input.js:2:5]
  1 │ let bar;
  2 │ let foo = 1;
@@ -1338,7 +1338,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-2nd-lvl-var-nested/input.js:3:7]
  2 │   let bar;
  3 │   let foo = 1;
@@ -1350,7 +1350,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-arr-destr/input.js:2:11]
  1 │ try {
  2 │ } catch ([foo, foo]) {
@@ -1360,7 +1360,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-dbl-let/input.js:1:5]
  1 │ let foo; try {} catch (foo) {} let foo;
    ·     ─┬─                            ─┬─
@@ -1368,7 +1368,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── `foo` has already been declared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-func/input.js:2:10]
  1 │ try {
  2 │ } catch (foo) {
@@ -1380,7 +1380,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-let/input.js:2:10]
  1 │ try {
  2 │ } catch (foo) {
@@ -1392,7 +1392,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-obj-destr/input.js:2:15]
  1 │ try {
  2 │ } catch ({ a: foo, b: { c: [foo] } }) {
@@ -1402,7 +1402,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-var-arr-destr/input.js:2:11]
  1 │ try {
  2 │ } catch ([foo]) {
@@ -1414,7 +1414,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-catch-var-obj-destr/input.js:2:12]
  1 │ try {
  2 │ } catch ({ foo }) {
@@ -1426,7 +1426,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-class-class/input.js:1:7]
  1 │ class foo {};
    ·       ─┬─
@@ -1436,7 +1436,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-class-const/input.js:1:7]
  1 │ class foo {};
    ·       ─┬─
@@ -1446,7 +1446,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-class-func/input.js:1:7]
  1 │ class foo {};
    ·       ─┬─
@@ -1456,7 +1456,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-class-let/input.js:1:7]
  1 │ class foo {};
    ·       ─┬─
@@ -1466,7 +1466,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-class-var/input.js:1:7]
  1 │ class foo {};
    ·       ─┬─
@@ -1476,7 +1476,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-const-const/input.js:1:7]
  1 │ const foo=1, foo=2;
    ·       ─┬─    ─┬─
@@ -1484,7 +1484,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ╰── `foo` has already been declared here
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-func-gen/input.js:1:12]
  1 │ { function f() {} function* f() {} }
    ·            ┬                ┬
@@ -1492,7 +1492,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── `f` has already been declared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-func-module/input.js:1:10]
  1 │ function foo() {}
    ·          ─┬─
@@ -1502,7 +1502,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-func-module-sloppy/input.js:1:12]
  1 │ { function foo() {} function foo() {} }
    ·            ─┬─               ─┬─
@@ -1510,7 +1510,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `foo` has already been declared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-func-var-sloppy/input.js:2:12]
  1 │ {
  2 │   function foo() {}
@@ -1522,7 +1522,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-gen-func/input.js:1:13]
  1 │ { function* f() {} function f() {} }
    ·             ┬               ┬
@@ -1530,7 +1530,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `f` has already been declared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-let-let/input.js:1:5]
  1 │ let foo, foo;
    ·     ─┬─  ─┬─
@@ -1538,7 +1538,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── `foo` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/dupl-bind-nested-let-var/input.js:2:7]
  1 │ {
  2 │   let a;
@@ -1550,7 +1550,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `i` has already been declared
+  × TS(2300): Identifier `i` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/for-var/input.js:1:10]
  1 │ for (let i = 0;;) {
    ·          ┬
@@ -1710,7 +1710,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·    ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/360/input.js:1:1]
  1 │ "Hello
    · ───────
@@ -1850,7 +1850,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ ╰─▶ /
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/381/input.js:1:9]
  1 │ var x = "
    ·         ──
@@ -2036,7 +2036,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/409/input.js:1:1]
  1 │ break
    · ─────
@@ -2049,7 +2049,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ─
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/411/input.js:1:1]
  1 │ continue
    · ────────
@@ -2154,39 +2154,39 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ───
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/429/input.js:1:1]
  1 │ /*
    · ──
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/430/input.js:1:1]
  1 │ ╭─▶ /*
  2 │ │   
  3 │ ╰─▶ 
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/431/input.js:1:1]
  1 │ /**
    · ───
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/432/input.js:1:1]
  1 │ ╭─▶ /*
  2 │ │   
  3 │ ╰─▶ *
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/433/input.js:1:1]
  1 │ /*hello
    · ───────
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/434/input.js:1:1]
  1 │ /*hello  *
    · ──────────
@@ -2305,13 +2305,13 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/452/input.js:1:1]
  1 │ "\
    · ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/452/input.js:1:1]
  1 │ "\
    · ──
@@ -2323,7 +2323,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/453/input.js:1:1]
  1 │ "\u
    · ───
@@ -2335,21 +2335,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──────
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/455/input.js:1:1]
  1 │ break
    · ─────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/456/input.js:1:1]
  1 │ continue
    · ────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/457/input.js:1:23]
  1 │ switch (x) { default: continue; }
    ·                       ─────────
@@ -2375,33 +2375,33 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                         ─
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/461/input.js:1:40]
  1 │ x: while (true) { (function () { break x; }); }
    ·                                        ─
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/462/input.js:1:43]
  1 │ x: while (true) { (function () { continue x; }); }
    ·                                           ─
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/463/input.js:1:34]
  1 │ x: while (true) { (function () { break; }); }
    ·                                  ──────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/464/input.js:1:34]
  1 │ x: while (true) { (function () { continue; }); }
    ·                                  ─────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Label `x` has already been declared
+  × TS(1114): Label `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/465/input.js:1:1]
  1 │ x: while (true) { x: while (true) { } }
    · ┬                 ┬
@@ -2722,7 +2722,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/514/input.js:1:12]
  1 │ function a(t, t) { "use strict"; }
    ·            ┬  ┬
@@ -2744,7 +2744,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/517/input.js:1:41]
  1 │ function a() { "use strict"; function b(t, t) { }; }
    ·                                         ┬  ┬
@@ -2752,7 +2752,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                         ╰── `t` has already been declared here
    ╰────
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/518/input.js:1:13]
  1 │ (function a(t, t) { "use strict"; })
    ·             ┬  ┬
@@ -2760,7 +2760,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `t` has already been declared here
    ╰────
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/519/input.js:1:42]
  1 │ function a() { "use strict"; (function b(t, t) { }); }
    ·                                          ┬  ┬
@@ -3123,7 +3123,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │     third
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-shorthand-in-conditional-before-regexp-starting-with-equals/input.js:1:5]
  1 │ x, {b = 1} ? c : () => {}
    ·     ─────
@@ -3369,7 +3369,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/class-methods/disallow-duplicate-method-params/input.js:2:9]
  1 │ class Foo {
  2 │     bar(a, a) {}
@@ -3502,63 +3502,63 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─────
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/in-member-assignment-target/input.js:1:3]
  1 │ [{__proto__: a, __proto__: b}].x = 0;
    ·   ────┬────     ────┬────
-   ·       │             ╰── It can not be redeclared here
-   ·       ╰── `__proto__` has already been declared here
+   ·       │             ╰── It can not be redefined here
+   ·       ╰── `__proto__` has already been defined here
  2 │ [{__proto__: a, __proto__: b}[0]] = c;
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/in-member-assignment-target/input.js:2:3]
  1 │ [{__proto__: a, __proto__: b}].x = 0;
  2 │ [{__proto__: a, __proto__: b}[0]] = c;
    ·   ────┬────     ────┬────
-   ·       │             ╰── It can not be redeclared here
-   ·       ╰── `__proto__` has already been declared here
+   ·       │             ╰── It can not be redefined here
+   ·       ╰── `__proto__` has already been defined here
  3 │ [{__proto__: a, __proto__: b}].x ??= 0;
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/in-member-assignment-target/input.js:3:3]
  2 │ [{__proto__: a, __proto__: b}[0]] = c;
  3 │ [{__proto__: a, __proto__: b}].x ??= 0;
    ·   ────┬────     ────┬────
-   ·       │             ╰── It can not be redeclared here
-   ·       ╰── `__proto__` has already been declared here
+   ·       │             ╰── It can not be redefined here
+   ·       ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/in-new-expression/input.js:1:6]
  1 │ new {__proto__: Number, __proto__: Number}.__proto__;
    ·      ────┬────          ────┬────
-   ·          │                  ╰── It can not be redeclared here
-   ·          ╰── `__proto__` has already been declared here
+   ·          │                  ╰── It can not be redefined here
+   ·          ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/with-assignment-expression/input.js:2:3]
  1 │ ({
  2 │   __proto__: a,
    ·   ────┬────
-   ·       ╰── `__proto__` has already been declared here
+   ·       ╰── `__proto__` has already been defined here
  3 │   __proto__: a,
    ·   ────┬────
-   ·       ╰── It can not be redeclared here
+   ·       ╰── It can not be redefined here
  4 │   a: a = 1
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/duplicate-proto/without-assignment-expression/input.js:2:3]
  1 │ ({
  2 │   __proto__: a,
    ·   ────┬────
-   ·       ╰── `__proto__` has already been declared here
+   ·       ╰── `__proto__` has already been defined here
  3 │   __proto__: a,
    ·   ────┬────
-   ·       ╰── It can not be redeclared here
+   ·       ╰── It can not be redefined here
  4 │ })
    ╰────
 
@@ -3978,7 +3978,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/meta-properties/invalid-arrow-function/input.js:2:3]
  1 │ const A = () => {
  2 │   new.target;
@@ -3995,7 +3995,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/meta-properties/new-target-invalid/input.js:1:1]
  1 │ new.target
    · ──────────
@@ -4091,7 +4091,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                      ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring10/input.js:1:17]
  1 │ export function foo() {};
    ·                 ─┬─
@@ -4111,7 +4111,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                                     ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo4` has already been declared
+  × TS(2300): Identifier `foo4` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring11/input.js:1:17]
  1 │ export function foo4() {};
    ·                 ──┬─
@@ -4131,7 +4131,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                                    ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo4` has already been declared
+  × TS(2300): Identifier `foo4` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring12/input.js:1:17]
  1 │ export function foo4() {};
    ·                 ──┬─
@@ -4151,7 +4151,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                                             ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo4` has already been declared
+  × TS(2300): Identifier `foo4` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring13/input.js:1:17]
  1 │ export function foo4() {};
    ·                 ──┬─
@@ -4172,7 +4172,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring14/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -4194,7 +4194,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `foo2` has already been declared
+  × TS(2300): Identifier `foo2` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring15/input.js:1:21]
  1 │ export const { foo: foo2 } = bar;
    ·                     ──┬─
@@ -4216,7 +4216,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring16/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -4238,7 +4238,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring17/input.js:1:23]
  1 │ export const [foo, ...bar] = baz;
    ·                       ─┬─
@@ -4260,7 +4260,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring18/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -4282,7 +4282,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ 
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring19/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -4303,7 +4303,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring2/input.js:1:17]
  1 │ export function foo() {};
    ·                 ─┬─
@@ -4323,7 +4323,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                  ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring3/input.js:1:16]
  1 │ export const { foo } = bar;
    ·                ─┬─
@@ -4343,7 +4343,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring4/input.js:1:17]
  1 │ export function foo() {};
    ·                 ─┬─
@@ -4363,7 +4363,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                  ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring5/input.js:1:15]
  1 │ export const [foo] = bar;
    ·               ─┬─
@@ -4383,7 +4383,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring6/input.js:1:16]
  1 │ export const { foo } = bar;
    ·                ─┬─
@@ -4403,7 +4403,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring7/input.js:1:15]
  1 │ export const [foo] = bar;
    ·               ─┬─
@@ -4423,7 +4423,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring8/input.js:1:14]
  1 │ export class Foo {};
    ·              ─┬─
@@ -4443,7 +4443,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export-destructuring9/input.js:1:14]
  1 │ export class Foo {};
    ·              ─┬─
@@ -4565,7 +4565,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ })
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/disallow-duplicate-method-params/input.js:2:9]
  1 │ ({
  2 │     bar(a, a) {}
@@ -4586,7 +4586,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │     set *iterator(iter) { }
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer/input.js:2:3]
  1 │ const obj = {
  2 │   foo = 123,
@@ -4595,7 +4595,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-1/input.js:3:3]
  2 │   bar: x = 123,
  3 │   foo = 123
@@ -4604,7 +4604,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-call/input.js:1:4]
  1 │ f({x = 0})
    ·    ─────
@@ -4619,7 +4619,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ [{a=1}].x += 0;
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:3:3]
  2 │ ({a=1}.x = 0);
  3 │ [{a=1}](x) = 0;
@@ -4628,7 +4628,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:2:3]
  1 │ [{a=1}].x = 0;
  2 │ ({a=1}.x = 0);
@@ -4637,7 +4637,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:1:3]
  1 │ [{a=1}].x = 0;
    ·   ───
@@ -4645,7 +4645,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-for-init/input.js:1:8]
  1 │ for ([{a=1}].x of y);
    ·        ───
@@ -4653,7 +4653,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-for-init/input.js:2:7]
  1 │ for ([{a=1}].x of y);
  2 │ for ({a=1}.x in y);
@@ -4662,7 +4662,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-for-init/input.js:3:7]
  2 │ for ({a=1}.x in y);
  3 │ for ({a=1}.x = 1;;);
@@ -4670,7 +4670,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-in-pattern/input.js:1:3]
  1 │ [{a=1}.x] = 0;
    ·   ───
@@ -4678,7 +4678,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-in-pattern/input.js:3:10]
  2 │ ({b: {a=1}.x} = 0);
  3 │ [{a=1}, {b=2}.x] = 0;
@@ -4687,7 +4687,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-in-pattern/input.js:4:8]
  3 │ [{a=1}, {b=2}.x] = 0;
  4 │ (a = [{b=1}].x = 1) => 1;
@@ -4696,7 +4696,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-in-pattern/input.js:2:7]
  1 │ [{a=1}.x] = 0;
  2 │ ({b: {a=1}.x} = 0);
@@ -4705,7 +4705,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-in-pattern/input.js:5:3]
  4 │ (a = [{b=1}].x = 1) => 1;
  5 │ [{a=1}.x = 1] = 0;
@@ -4720,7 +4720,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ───────
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:6:9]
  5 │ [delete {a = 1}].x = 0;
  6 │ for (++{a = 1} in arr);
@@ -4728,7 +4728,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:1:6]
  1 │ 1 < {a = 1};
    ·      ─────
@@ -4736,7 +4736,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:2:9]
  1 │ 1 < {a = 1};
  2 │ typeof {a = 1};
@@ -4745,7 +4745,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:3:6]
  2 │ typeof {a = 1};
  3 │ 1 + {a = 1};
@@ -4754,7 +4754,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:5:10]
  4 │ class C extends {a = 1} {}
  5 │ [delete {a = 1}].x = 0;
@@ -4763,7 +4763,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:4:18]
  3 │ 1 + {a = 1};
  4 │ class C extends {a = 1} {}
@@ -4772,7 +4772,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-rhs/input.js:1:8]
  1 │ obj = {x = 0}
    ·        ─────
@@ -4884,7 +4884,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: either remove this super, or extend the class
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/125/input.js:1:11]
  1 │ class A { constructor() {} 'constructor'() {} }
    ·           ─────┬─────      ──────┬──────
@@ -4911,7 +4911,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── `:` expected
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/166/input.js:1:12]
  1 │ function x(a, { a }){}
    ·            ┬    ┬
@@ -5095,7 +5095,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/228/input.js:1:35]
  1 │ function a() { "use strict"; ({ b(t, t) { } }); }
    ·                                   ┬  ┬
@@ -5211,7 +5211,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/248/input.js:1:16]
  1 │ "use strict"; (a, a) => 42
    ·                ┬  ┬
@@ -5274,7 +5274,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ╰── `{` expected
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/264/input.js:1:1]
  1 │ `test
    · ─────
@@ -5345,7 +5345,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add a function body (`{}`).
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/280/input.js:1:26]
  1 │ "use strict"; function x(a, { a }){}
    ·                          ┬    ┬
@@ -5353,7 +5353,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                          ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/281/input.js:1:33]
  1 │ "use strict"; function x({ b: { a } }, [{ b: { a } }]){}
    ·                                 ┬              ┬
@@ -5580,12 +5580,12 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove parameters except the first one here
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/349/input.js:1:4]
  1 │ ({ '__proto__': 1, __proto__: 2 })
    ·    ─────┬─────     ────┬────
-   ·         │              ╰── It can not be redeclared here
-   ·         ╰── `__proto__` has already been declared here
+   ·         │              ╰── It can not be redefined here
+   ·         ╰── `__proto__` has already been defined here
    ╰────
 
   × Unexpected token
@@ -6187,7 +6187,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap the unary expression in parentheses to make the precedence explicit
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/array-pattern/input.js:2:3]
  1 │ function a([ option1, option2 ]) {
  2 │   "use strict";
@@ -6196,7 +6196,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/array-pattern-default/input.js:2:3]
  1 │ function a([ option1, option2 ] = []) {
  2 │   "use strict";
@@ -6205,7 +6205,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/arrow-function/input.js:2:3]
  1 │ var a = (options = {}) => {
  2 │   "use strict";
@@ -6214,7 +6214,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/async-arrow-function/input.js:2:3]
  1 │ var a = async (options = {}) => {
  2 │   "use strict";
@@ -6237,7 +6237,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/async-function/input.js:2:3]
  1 │ async function a(options = {}) {
  2 │   "use strict";
@@ -6246,7 +6246,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/default/input.js:2:3]
  1 │ function a(options = {}) {
  2 │   "use strict";
@@ -6255,7 +6255,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/generator-function/input.js:2:3]
  1 │ function* a(options = {}) {
  2 │   "use strict";
@@ -6264,7 +6264,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/generator-method/input.js:3:5]
  2 │   * a(options = {}) {
  3 │     "use strict";
@@ -6273,7 +6273,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/method/input.js:3:5]
  2 │   a(options = {}) {
  3 │     "use strict";
@@ -6282,7 +6282,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/object-pattern/input.js:2:3]
  1 │ function a({ option1, option2 }) {
  2 │   "use strict";
@@ -6291,7 +6291,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/object-pattern-default/input.js:2:3]
  1 │ function a({ option1, option2 } = {}) {
  2 │   "use strict";
@@ -6300,7 +6300,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/es2016/simple-parameter-list/rest/input.js:2:3]
  1 │ function a(...options) {
  2 │   "use strict";
@@ -6457,15 +6457,15 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Expected an identifier, like `...rest`.
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-call/parenthesized-argument-object-double-proto/input.js:1:9]
  1 │ async({ __proto__: x, __proto__: y })
    ·         ────┬────     ────┬────
-   ·             │             ╰── It can not be redeclared here
-   ·             ╰── `__proto__` has already been declared here
+   ·             │             ╰── It can not be redefined here
+   ·             ╰── `__proto__` has already been defined here
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-call/parenthesized-argument-object-with-assignment/input.js:1:9]
  1 │ async({ foo33 = 1 });
    ·         ─────────
@@ -6494,14 +6494,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/35/input.js:1:15]
  1 │ const foo = { async = true };
    ·               ────────────
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/36/input.js:1:16]
  1 │ const foo = ({ async = true });
    ·                ────────────
@@ -6882,14 +6882,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/multiple-await-in-async-arrow-params/input.js:1:10]
  1 │ async ({ x = [ await ], y = { await } }) => {}
    ·          ─────────────
    ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2017/async-functions/multiple-await-in-async-arrow-params/input.js:1:25]
  1 │ async ({ x = [ await ], y = { await } }) => {}
    ·                         ─────────────
@@ -7038,7 +7038,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                         ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2018/object-rest-spread/11/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -7058,7 +7058,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2018/object-rest-spread/12/input.js:1:24]
  1 │ export const { foo, ...bar } = baz;
    ·                        ─┬─
@@ -7078,7 +7078,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2018/object-rest-spread/13/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -7098,7 +7098,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                               ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2018/object-rest-spread/14/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -7118,7 +7118,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                ╰── It cannot be redeclared here
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2018/object-rest-spread/15/input.js:1:14]
  1 │ export const foo = 1;
    ·              ─┬─
@@ -8854,7 +8854,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │     return fail();
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-instance-field/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8866,7 +8866,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-instance-get/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8878,7 +8878,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-instance-method/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8890,7 +8890,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-instance-set/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8902,7 +8902,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-static-field/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8914,7 +8914,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-static-get/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8926,7 +8926,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-static-method/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8938,7 +8938,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-field-static-set/input.js:2:3]
  1 │ class A {
  2 │   #x = 0;
@@ -8950,7 +8950,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-instance-field/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -8962,7 +8962,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-instance-get/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -8974,7 +8974,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-instance-method/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -8986,7 +8986,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-static-field/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -8998,7 +8998,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-static-get/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -9010,7 +9010,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-static-method/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -9022,7 +9022,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-get-static-set/input.js:2:7]
  1 │ class A {
  2 │   get #x() {}
@@ -9034,7 +9034,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-instance-field/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9046,7 +9046,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-instance-get/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9058,7 +9058,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-instance-method/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9070,7 +9070,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-instance-set/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9082,7 +9082,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-static-field/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9094,7 +9094,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-static-get/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9106,7 +9106,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-static-method/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9118,7 +9118,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-method-static-set/input.js:2:3]
  1 │ class A {
  2 │   #x() {}
@@ -9130,7 +9130,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-instance-field/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9142,7 +9142,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-instance-method/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9154,7 +9154,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-instance-set/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9166,7 +9166,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-static-field/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9178,7 +9178,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-static-get/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9190,7 +9190,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-static-method/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9202,7 +9202,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/instance-set-static-set/input.js:2:7]
  1 │ class A {
  2 │   set #x(_) {}
@@ -9214,7 +9214,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-instance-field/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9226,7 +9226,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-instance-get/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9238,7 +9238,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-instance-method/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9250,7 +9250,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-instance-set/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9262,7 +9262,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-static-field/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9274,7 +9274,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-static-get/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9286,7 +9286,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-static-method/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9298,7 +9298,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-field-static-set/input.js:2:10]
  1 │ class A {
  2 │   static #x = 0;
@@ -9310,7 +9310,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-instance-field/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9322,7 +9322,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-instance-get/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9334,7 +9334,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-instance-method/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9346,7 +9346,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-instance-set/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9358,7 +9358,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-static-field/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9370,7 +9370,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-static-get/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9382,7 +9382,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-get-static-method/input.js:2:14]
  1 │ class A {
  2 │   static get #x() {}
@@ -9394,7 +9394,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-instance-field/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9406,7 +9406,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-instance-get/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9418,7 +9418,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-instance-method/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9430,7 +9430,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-instance-set/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9442,7 +9442,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-static-field/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9454,7 +9454,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-static-get/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9466,7 +9466,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-static-method/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9478,7 +9478,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-method-static-set/input.js:2:10]
  1 │ class A {
  2 │   static #x() {}
@@ -9490,7 +9490,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-instance-field/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9502,7 +9502,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-instance-get/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9514,7 +9514,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-instance-method/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9526,7 +9526,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-instance-set/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9538,7 +9538,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-static-field/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9550,7 +9550,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-static-method/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9562,7 +9562,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-names-duplicated/static-set-static-set/input.js:2:14]
  1 │ class A {
  2 │   static set #x(_) {}
@@ -9828,7 +9828,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-properties/new-target-invalid/input.js:1:9]
  1 │ var x = new.target;
    ·         ──────────
@@ -9958,7 +9958,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │     }
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-static-block/invalid-break/input.js:6:9]
  5 │       static {
  6 │         break;
@@ -9976,7 +9976,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-static-block/invalid-continue/input.js:5:7]
  4 │     static {
  5 │       continue;
@@ -10386,7 +10386,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-duplicate-using-bindings/input.js:3:17]
  2 │   {
  3 │     await using f = foo(), f = foo();
@@ -10396,7 +10396,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │   }
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/async-explicit-resource-management/invalid-duplicate-using-bindings/input.js:6:17]
  5 │   {
  6 │     await using g = foo();
@@ -10854,7 +10854,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ──
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-duplicate-using-bindings/input.js:2:9]
  1 │ {
  2 │   using f = foo(), f = foo();
@@ -10864,7 +10864,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/es2026/explicit-resource-management/invalid-duplicate-using-bindings/input.js:5:9]
  4 │ {
  5 │   using g = foo();
@@ -11197,7 +11197,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/declaration-function/dupe-param/input.js:1:12]
  1 │ function a(x, x) {'use strict';}
    ·            ┬  ┬
@@ -11205,7 +11205,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── `x` has already been declared here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-array-binding-pattern/invalid-dup-param/input.js:1:6]
  1 │ ([a,[b],...b])=>0;
    ·      ┬     ┬
@@ -11220,7 +11220,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Remove the trailing comma here
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-array-pattern/dupe-param-1/input.js:2:13]
  1 │ "use strict";
  2 │ function a([a,a]){ }
@@ -11229,7 +11229,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-array-pattern/dupe-param-2/input.js:2:13]
  1 │ "use strict";
  2 │ function a([a,...a]){ }
@@ -11238,7 +11238,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-array-pattern/dupe-param-3/input.js:2:14]
  1 │ "use strict";
  2 │ function a([{a},...a]){ }
@@ -11268,7 +11268,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ────
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/complex-rest-in-arrow-not-allowed/input.js:1:2]
  1 │ (a,...[a]) => 0;
    ·  ┬     ┬
@@ -11276,7 +11276,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-arrow-function/invalid-duplicated-params/input.js:1:2]
  1 │ (x, x) => y;
    ·  ┬  ┬
@@ -11363,7 +11363,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Classes are always strict mode code
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-destructuring-assignment/invalid-cover-grammar/input.js:1:22]
  1 │ [[[[[[[[[[[[[[[[[[[[{a=b}]]]]]]]]]]]]]]]]]]]]
    ·                      ───
@@ -11794,7 +11794,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                          ─────
    ╰────
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-meta-property/invalid-new-target/input.js:1:9]
  1 │ var x = new.target;
    ·         ──────────
@@ -11807,52 +11807,52 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                      ────────────────────
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-getter-literal-identifier/input.js:1:21]
  1 │ ({ get __proto(){}, "__proto__": null, __proto__: null, })
    ·                     ─────┬─────        ────┬────
-   ·                          │                 ╰── It can not be redeclared here
-   ·                          ╰── `__proto__` has already been declared here
+   ·                          │                 ╰── It can not be redefined here
+   ·                          ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-identifier-literal/input.js:1:4]
  1 │ ({ __proto__: null, "__proto__": null })
    ·    ────┬────        ─────┬─────
-   ·        │                 ╰── It can not be redeclared here
-   ·        ╰── `__proto__` has already been declared here
+   ·        │                 ╰── It can not be redefined here
+   ·        ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-identifiers/input.js:1:4]
  1 │ ({ __proto__: null, __proto__: null })
    ·    ────┬────        ────┬────
-   ·        │                ╰── It can not be redeclared here
-   ·        ╰── `__proto__` has already been declared here
+   ·        │                ╰── It can not be redefined here
+   ·        ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-literal-identifier/input.js:1:4]
  1 │ ({ "__proto__": null, __proto__: null })
    ·    ─────┬─────        ────┬────
-   ·         │                 ╰── It can not be redeclared here
-   ·         ╰── `__proto__` has already been declared here
+   ·         │                 ╰── It can not be redefined here
+   ·         ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-literals/input.js:1:4]
  1 │ ({ "__proto__": null, '__proto__': null })
    ·    ─────┬─────        ─────┬─────
-   ·         │                  ╰── It can not be redeclared here
-   ·         ╰── `__proto__` has already been declared here
+   ·         │                  ╰── It can not be redefined here
+   ·         ╰── `__proto__` has already been defined here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-object-initialiser/invalid-proto-setter-literal-identifier/input.js:1:24]
  1 │ ({ set __proto__(x){}, "__proto__": null, __proto__: null, })
    ·                        ─────┬─────        ────┬────
-   ·                             │                 ╰── It can not be redeclared here
-   ·                             ╰── `__proto__` has already been declared here
+   ·                             │                 ╰── It can not be redefined here
+   ·                             ╰── `__proto__` has already been defined here
    ╰────
 
   × Unexpected token
@@ -11956,7 +11956,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ───
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-template-literals/unclosed/input.js:1:1]
  1 │ `test
    · ──────
@@ -12447,7 +12447,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·    ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0031/input.js:1:1]
  1 │ "Hello
    · ───────
@@ -12701,7 +12701,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ ╰─▶ /
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0063/input.js:1:9]
  1 │ var x = "
    ·         ──
@@ -12875,7 +12875,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0092/input.js:1:2]
  1 │ (a, a) => 42
    ·  ┬  ┬
@@ -12883,7 +12883,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0093/input.js:1:16]
  1 │ "use strict"; (a, a) => 42
    ·                ┬  ┬
@@ -12987,7 +12987,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0116/input.js:1:1]
  1 │ break
    · ─────
@@ -13000,7 +13000,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ─
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0118/input.js:1:1]
  1 │ continue
    · ────────
@@ -13179,38 +13179,38 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ───
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0145/input.js:1:1]
  1 │ /*
    · ───
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0146/input.js:1:1]
  1 │ /*
    · ───
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0147/input.js:1:1]
  1 │ /**
    · ────
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0148/input.js:1:1]
  1 │ ╭─▶ /*
  2 │ │   
  3 │ ╰─▶ *
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0149/input.js:1:1]
  1 │ /*hello
    · ────────
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0150/input.js:1:1]
  1 │ /*hello  *
    · ───────────
@@ -13329,7 +13329,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ▲
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0168/input.js:1:1]
  1 │ "\
    · ───
@@ -13341,7 +13341,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0169/input.js:1:1]
  1 │ "\u
    · ────
@@ -13359,21 +13359,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──────
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0172/input.js:1:1]
  1 │ break
    · ─────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0173/input.js:1:1]
  1 │ continue
    · ────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0174/input.js:1:23]
  1 │ switch (x) { default: continue; }
    ·                       ─────────
@@ -13399,33 +13399,33 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                         ─
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0178/input.js:1:40]
  1 │ x: while (true) { (function () { break x; }); }
    ·                                        ─
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0179/input.js:1:43]
  1 │ x: while (true) { (function () { continue x; }); }
    ·                                           ─
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0180/input.js:1:34]
  1 │ x: while (true) { (function () { break; }); }
    ·                                  ──────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0181/input.js:1:34]
  1 │ x: while (true) { (function () { continue; }); }
    ·                                  ─────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Label `x` has already been declared
+  × TS(1114): Label `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0182/input.js:1:1]
  1 │ x: while (true) { x: while (true) { } }
    · ┬                 ┬
@@ -13823,7 +13823,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0240/input.js:1:12]
  1 │ function a(t, t) { "use strict"; }
    ·            ┬  ┬
@@ -13845,7 +13845,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0243/input.js:1:41]
  1 │ function a() { "use strict"; function b(t, t) { }; }
    ·                                         ┬  ┬
@@ -13853,7 +13853,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                         ╰── `t` has already been declared here
    ╰────
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0244/input.js:1:13]
  1 │ (function a(t, t) { "use strict"; })
    ·             ┬  ┬
@@ -13861,7 +13861,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── `t` has already been declared here
    ╰────
 
-  × Identifier `t` has already been declared
+  × TS(2300): Identifier `t` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0245/input.js:1:42]
  1 │ function a() { "use strict"; (function b(t, t) { }); }
    ·                                          ┬  ┬
@@ -13883,7 +13883,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Label `__proto__` has already been declared
+  × TS(1114): Label `__proto__` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0248/input.js:1:1]
  1 │ __proto__: __proto__: 42;
    · ────┬────  ────┬────
@@ -13891,7 +13891,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·     ╰── `__proto__` has already been declared here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(2300): Identifier `__proto__` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0249/input.js:1:26]
  1 │ "use strict"; function t(__proto__, __proto__) { }
    ·                          ────┬────  ────┬────
@@ -13899,12 +13899,12 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                              ╰── `__proto__` has already been declared here
    ╰────
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0250/input.js:1:7]
  1 │ x = { __proto__: 42, __proto__: 43 }
    ·       ────┬────      ────┬────
-   ·           │              ╰── It can not be redeclared here
-   ·           ╰── `__proto__` has already been declared here
+   ·           │              ╰── It can not be redefined here
+   ·           ╰── `__proto__` has already been defined here
    ╰────
 
   × Unexpected token
@@ -14030,7 +14030,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·              ───────────
    ╰────
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0274/input.js:1:10]
  1 │ class A {constructor(){} "constructor"(){}}
    ·          ─────┬─────     ──────┬──────
@@ -15581,7 +15581,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── Conditional starts here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-argument-clash/input.ts:2:6]
  1 │ // Followed by `:`: keep the arrow function and its error
  2 │ a ? (b, b): c => d : e;
@@ -15646,7 +15646,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                                                                                                             ╰── Opened here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-error-recovery/input.ts:13:21]
  12 │ a ? b ? async((x) = 1) : c => d : e;
  13 │ a ? (b): c => { let x; let x; } : e;
@@ -15663,7 +15663,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── Conditional starts here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-generic-argument-clash-error-recovery-false/input.ts:1:9]
  1 │ a ? <T>(x, x): U => d : e;
    ·         ┬  ┬
@@ -15696,7 +15696,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── Conditional starts here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-generic-jsx-argument-clash-error-recovery-false/input.tsx:1:10]
  1 │ a ? <T,>(x, x): U => d : e;
    ·          ┬  ┬
@@ -15726,7 +15726,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── Conditional starts here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-generic-kept-errors/input.ts:2:9]
  1 │ // Followed by `:`: keep the arrow function and its error
  2 │ a ? <T>(x, x): U => d : e;
@@ -15736,7 +15736,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ a ? <T>(x): U => { let y; let y; } : e;
    ╰────
 
-  × Identifier `y` has already been declared
+  × TS(2300): Identifier `y` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-generic-kept-errors/input.ts:3:24]
  2 │ a ? <T>(x, x): U => d : e;
  3 │ a ? <T>(x): U => { let y; let y; } : e;
@@ -15770,7 +15770,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ╰── Conditional starts here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-kept-errors/input.ts:2:6]
  1 │ // Followed by `:`: keep the arrow function and its error
  2 │ a ? (x) : c => { let x; } : e;
@@ -15780,7 +15780,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ a ? async(x) : c => { let x; } : e;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-kept-errors/input.ts:3:11]
  2 │ a ? (x) : c => { let x; } : e;
  3 │ a ? async(x) : c => { let x; } : e;
@@ -15790,7 +15790,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ a ? (x = 1) : c => { "use strict"; } : e;
    ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/conditional/arrow-return-type-kept-errors/input.ts:4:22]
  3 │ a ? async(x) : c => { let x; } : e;
  4 │ a ? (x = 1) : c => { "use strict"; } : e;
@@ -16323,7 +16323,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ──
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/function/labeled-bodiless-redeclaration/input.ts:1:13]
  1 │ l: function f(); let f;
    ·             ┬        ┬
@@ -16332,7 +16332,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ l: function g() {} let g;
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/function/labeled-bodiless-redeclaration/input.ts:2:13]
  1 │ l: function f(); let f;
  2 │ l: function g() {} let g;
@@ -17069,7 +17069,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-class-class/input.ts:1:7]
  1 │ class A {}
    ·       ┬
@@ -17079,7 +17079,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-class-enum/input.ts:1:7]
  1 │ class A {}
    ·       ┬
@@ -17089,7 +17089,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-class-type/input.ts:1:7]
  1 │ class A {}
    ·       ┬
@@ -17099,7 +17099,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-constenum-enum/input.ts:1:12]
  1 │ const enum X {}
    ·            ┬
@@ -17109,7 +17109,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-class/input.ts:1:6]
  1 │ enum X {}
    ·      ┬
@@ -17119,7 +17119,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-constenum/input.ts:1:6]
  1 │ enum X {}
    ·      ┬
@@ -17129,7 +17129,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-function/input.ts:1:6]
  1 │ enum Foo {}
    ·      ─┬─
@@ -17139,7 +17139,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-interface/input.ts:1:6]
  1 │ enum X {}
    ·      ┬
@@ -17149,7 +17149,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-let/input.ts:1:6]
  1 │ enum Foo {}
    ·      ─┬─
@@ -17159,7 +17159,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-type/input.ts:1:6]
  1 │ enum X {}
    ·      ┬
@@ -17169,7 +17169,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-enum-var/input.ts:1:6]
  1 │ enum Foo {}
    ·      ─┬─
@@ -17179,7 +17179,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-function-enum/input.ts:1:10]
  1 │ function Foo() {}
    ·          ─┬─
@@ -17189,7 +17189,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Context` has already been declared
+  × TS(2300): Identifier `Context` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-import-type-import/input.ts:1:15]
  1 │ import type { Context } from 'react';
    ·               ───┬───
@@ -17199,7 +17199,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-interface-enum/input.ts:1:11]
  1 │ interface X {}
    ·           ┬
@@ -17209,7 +17209,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-let-enum/input.ts:1:5]
  1 │ let Foo;
    ·     ─┬─
@@ -17219,7 +17219,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-type-class/input.ts:1:6]
  1 │ type A = number;
    ·      ┬
@@ -17229,7 +17229,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-type-enum/input.ts:1:6]
  1 │ type A = number;
    ·      ┬
@@ -17239,7 +17239,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-type-interface/input.ts:1:6]
  1 │ type A = number;
    ·      ┬
@@ -17249,7 +17249,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-type-type/input.ts:1:6]
  1 │ type A = number;
    ·      ┬
@@ -17259,7 +17259,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/scope/redeclaration-var-enum/input.ts:1:5]
  1 │ let Foo;
    ·     ─┬─

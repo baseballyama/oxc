@@ -1,7 +1,7 @@
 parser_misc Summary:
 AST Parsed     : 135/135 (100.00%)
 Positive Passed: 135/135 (100.00%)
-Negative Passed: 273/273 (100.00%)
+Negative Passed: 274/274 (100.00%)
 
   × TS(1029): 'declare' modifier must precede 'abstract' modifier.
    ╭─[misc/fail/abstract-declare-property-order.ts:2:14]
@@ -276,6 +276,24 @@ Negative Passed: 273/273 (100.00%)
    ·       ─────
  5 │     }
    ╰────
+
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
+   ╭─[misc/fail/await-operand-in-module-function.mjs:2:3]
+ 1 │ function f() {
+ 2 │   await (g());
+   ·   ─────
+ 3 │ }
+   ╰────
+  help: Either remove this `await` or add the `async` keyword to the enclosing function
+
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
+   ╭─[misc/fail/await-operand-in-module-function.mjs:5:7]
+ 4 │ class A {
+ 5 │   x = await [1];
+   ·       ─────
+ 6 │ }
+   ╰────
+  help: Either remove this `await` or add the `async` keyword to the enclosing function
 
   × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/await-using-context.js:2:3]

@@ -512,7 +512,7 @@ Negative Passed: 274/274 (100.00%)
  3 │ }
    ╰────
 
-  × 'export statement' declaration can only be used at the top level of a module
+  × TS(1474): 'export statement' declaration can only be used at the top level of a module
    ╭─[misc/fail/decorated-export-in-block.mjs:2:8]
  1 │ {
  2 │   @dec export class C {}

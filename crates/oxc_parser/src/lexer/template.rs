@@ -75,7 +75,7 @@ impl<'a, C: Config> Lexer<'a, C> {
                 }
             },
             handle_eof: {
-                self.error(diagnostics::unterminated_string(self.unterminated_range()));
+                self.error(diagnostics::unterminated_template(self.unterminated_range()));
                 return Kind::Undetermined;
             },
         };
@@ -106,7 +106,7 @@ impl<'a, C: Config> Lexer<'a, C> {
         if pos.is_end_of(&self.source) {
             return cold_branch(|| {
                 self.source.advance_to_end();
-                self.error(diagnostics::unterminated_string(self.unterminated_range()));
+                self.error(diagnostics::unterminated_template(self.unterminated_range()));
                 Kind::Undetermined
             });
         }
@@ -325,7 +325,7 @@ impl<'a, C: Config> Lexer<'a, C> {
                 }
             },
             handle_eof: {
-                self.error(diagnostics::unterminated_string(self.unterminated_range()));
+                self.error(diagnostics::unterminated_template(self.unterminated_range()));
                 return Kind::Undetermined;
             },
         };

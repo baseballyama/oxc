@@ -8,9 +8,10 @@ fn ts_error<M: Into<Cow<'static, str>>>(code: &'static str, message: M) -> OxcDi
     OxcDiagnostic::error(message).with_error_code("TS", code)
 }
 
+/// TS(2300): Duplicate identifier 'x'.
 #[cold]
 pub fn redeclaration(x0: &str, span1: Span, span2: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(format!("Identifier `{x0}` has already been declared")).with_labels([
+    ts_error("2300", format!("Identifier `{x0}` has already been declared")).with_labels([
         span1.label(format!("`{x0}` has already been declared here")),
         span2.label("It can not be redeclared here"),
     ])
@@ -28,6 +29,15 @@ pub fn static_and_instance_private_identifier(
         format!("Duplicate identifier `#{x0}`. Static and instance elements cannot share the same private name."),
     )
     .with_labels([span1.label(format!("`#{x0}` has already been declared here")), span2.label("It can not be redeclared here")])
+}
+
+/// TS(1117): An object literal cannot have multiple properties with the same name.
+#[cold]
+pub fn duplicate_proto(span1: Span, span2: Span) -> OxcDiagnostic {
+    ts_error("1117", "Redefinition of `__proto__` property").with_labels([
+        span1.label("`__proto__` has already been defined here"),
+        span2.label("It can not be redefined here"),
+    ])
 }
 
 #[cold]
@@ -166,9 +176,11 @@ pub fn non_octal_decimal_escape_sequence(span: Span) -> OxcDiagnostic {
         .with_label(span)
 }
 
+/// TS(1347): 'use strict' directive cannot be used with non-simple parameter list.
 #[cold]
 pub fn illegal_use_strict(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(
+    ts_error(
+        "1347",
         "Illegal 'use strict' directive in function with non-simple parameter list",
     )
     .with_label(span)
@@ -205,9 +217,10 @@ pub fn with_statement(span: Span) -> OxcDiagnostic {
     ts_error("1101", "'with' statements are not allowed").with_label(span)
 }
 
+/// TS(1107): Jump target cannot cross function boundary.
 #[cold]
 pub fn invalid_label_jump_target(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Jump target cannot cross function boundary.").with_label(span)
+    ts_error("1107", "Jump target cannot cross function boundary.").with_label(span)
 }
 
 #[cold]
@@ -219,32 +232,36 @@ pub fn invalid_label_target(suggestion: Option<&str>, span: Span) -> OxcDiagnost
     diagnostic
 }
 
+/// TS(1115): A 'continue' statement can only jump to a label of an enclosing iteration statement.
 #[cold]
 pub fn invalid_label_non_iteration(x0: &str, span1: Span, span2: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(format!("A `{x0}` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement."))
+    ts_error("1115", format!("A `{x0}` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement."))
         .with_labels([
             span1.label("This is an non-iteration statement"),
             span2.label("for this label")
         ])
 }
 
+/// TS(1105): A 'break' statement can only be used within an enclosing iteration or switch statement.
 #[cold]
 pub fn invalid_break(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Illegal break statement")
+    ts_error("1105", "Illegal break statement")
         .with_help("A `break` statement can only be used within an enclosing iteration or switch statement.")
         .with_label(span)
 }
 
+/// TS(1104): A 'continue' statement can only be used within an enclosing iteration statement.
 #[cold]
 pub fn invalid_continue(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Illegal continue statement: no surrounding iteration statement")
+    ts_error("1104", "Illegal continue statement: no surrounding iteration statement")
         .with_help("A `continue` statement can only be used within an enclosing `for`, `while` or `do while` ")
         .with_label(span)
 }
 
+/// TS(1114): Duplicate label 'a'.
 #[cold]
 pub fn label_redeclaration(x0: &str, span1: Span, span2: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(format!("Label `{x0}` has already been declared")).with_labels([
+    ts_error("1114", format!("Label `{x0}` has already been declared")).with_labels([
         span1.label(format!("`{x0}` has already been declared here")),
         span2.label("It can not be redeclared here"),
     ])
@@ -256,9 +273,10 @@ pub fn unexpected_initializer_in_for_loop_head(x0: &str, span1: Span) -> OxcDiag
         .with_label(span1)
 }
 
+/// TS(2392): Multiple constructor implementations are not allowed.
 #[cold]
 pub fn duplicate_constructor(span: Span, span1: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Multiple constructor implementations are not allowed.").with_labels([
+    ts_error("2392", "Multiple constructor implementations are not allowed.").with_labels([
         span.label("constructor has already been declared here"),
         span1.label("it cannot be redeclared here"),
     ])

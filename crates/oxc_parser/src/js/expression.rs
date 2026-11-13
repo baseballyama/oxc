@@ -1990,7 +1990,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         //
         // Inside a function: await is always invalid in non-async functions, even in ESM.
         // Report error immediately.
-        if self.is_unambiguous_await() {
+        // Module code reserves `await`, so it is never an identifier there.
+        if self.source_type.is_module() || self.is_unambiguous_await() {
             let start = self.cur_start();
 
             if self.ctx.has_top_level() {

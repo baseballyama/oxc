@@ -360,7 +360,8 @@ parser_diagnostics! {
     };
 
     await_expression(span: Span) => {
-        OxcDiagnostic::error(
+        ts_error(
+            "1308",
             "`await` is only allowed within async functions and at the top levels of modules",
         )
         .with_label(span)
@@ -368,7 +369,8 @@ parser_diagnostics! {
     };
 
     for_await_statement(span: Span) => {
-        OxcDiagnostic::error(
+        ts_error(
+            "1308",
             "`for await` loops are only allowed within async functions and at the top levels of modules",
         )
         .with_label(span)

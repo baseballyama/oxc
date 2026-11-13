@@ -742,7 +742,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ───
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-strict-delete-parenthesized-identifier/input.js:2:9]
  1 │ "use strict";
  2 │ delete (a);
@@ -750,7 +750,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ delete ((a));
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/core/categorized/invalid-strict-delete-parenthesized-identifier/input.js:3:10]
  2 │ delete (a);
  3 │ delete ((a));
@@ -767,7 +767,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: If this is intended to be the condition for the switch statement, add `case` before it.
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-delete-parenthesized-private-property/input.js:4:13]
  3 │   m() {
  4 │     delete (this.#x);
@@ -775,7 +775,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │     delete ((this.#x));
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-delete-parenthesized-private-property/input.js:5:14]
  4 │     delete (this.#x);
  5 │     delete ((this.#x));
@@ -783,7 +783,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │     delete (a?.#x);
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-delete-parenthesized-private-property/input.js:6:16]
  5 │     delete ((this.#x));
  6 │     delete (a?.#x);
@@ -848,7 +848,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-strict-delete-parenthesized-identifier/input.js:2:9]
  1 │ "use strict";
  2 │ delete (a);
@@ -856,7 +856,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ delete ((a));
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/core/create-parenthesized-expressions/invalid-strict-delete-parenthesized-identifier/input.js:3:10]
  2 │ delete (a);
  3 │ delete ((a));
@@ -877,179 +877,179 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ╰── `:` expected
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:1:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:1:2]
  1 │ "\01 foo \02 bar \03";
-   · ─────────────────────
+   ·  ──
  2 │ 
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:3:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:3:2]
  2 │ 
  3 │ "\4";
-   · ────
+   ·  ──
  4 │ "\5";
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:4:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:4:2]
  3 │ "\4";
  4 │ "\5";
-   · ────
+   ·  ──
  5 │ 
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:8:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:8:2]
  7 │ 
  8 │ "\4";
-   · ────
+   ·  ──
  9 │ "\5";
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:9:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:9:2]
   8 │ "\4";
   9 │ "\5";
-    · ────
+    ·  ──
  10 │ 
     ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:11:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive/input.js:11:2]
  10 │ 
  11 │ "\04 foo \05 bar \06";
-    · ─────────────────────
+    ·  ──
     ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:2:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:2:4]
  1 │ function a() {
  2 │   "\5";
-   ·   ────
+   ·    ──
  3 │   "use strict";
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:7:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:7:4]
  6 │ function b() {
  7 │   "\4";
-   ·   ────
+   ·    ──
  8 │   "\5";
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:8:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:8:4]
  7 │   "\4";
  8 │   "\5";
-   ·   ────
+   ·    ──
  9 │   "use strict";
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:14:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:14:4]
  13 │   "use strict";
  14 │   "\5";
-    ·   ────
+    ·    ──
  15 │ }
     ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:19:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:19:4]
  18 │   "use strict";
  19 │   "\4";
-    ·   ────
+    ·    ──
  20 │   "\5";
     ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:20:3]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/invalid-decimal-escape-strict-directive-function/input.js:20:4]
  19 │   "\4";
  20 │   "\5";
-    ·   ────
+    ·    ──
  21 │ }
     ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine/input.js:4:3]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine/input.js:4:4]
  3 │   "use strict";
  4 │   "\8";"\9";
-   ·   ────
+   ·    ──
  5 │ }
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine/input.js:4:8]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine/input.js:4:9]
  3 │   "use strict";
  4 │   "\8";"\9";
-   ·        ────
+   ·         ──
  5 │ }
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:2:3]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:2:4]
  1 │ () => {
  2 │   "\8";"\9";
-   ·   ────
+   ·    ──
  3 │   "use strict";
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:2:8]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:2:9]
  1 │ () => {
  2 │   "\8";"\9";
-   ·        ────
+   ·         ──
  3 │   "use strict";
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:4:3]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:4:4]
  3 │   "use strict";
  4 │   "\8";"\9";
-   ·   ────
+   ·    ──
  5 │ }
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:4:8]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/non-octal-eight-and-nine-before-use-strict/input.js:4:9]
  3 │   "use strict";
  4 │   "\8";"\9";
-   ·        ────
+   ·         ──
  5 │ }
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/numeric-escape-in-directive/input.js:1:53]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/numeric-escape-in-directive/input.js:1:69]
  1 │ function hello() { "use strict"; function inner() { "octal directive\1"; } }
-   ·                                                     ───────────────────
+   ·                                                                     ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/numeric-escape-in-property-name/input.js:1:37]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-string/numeric-escape-in-property-name/input.js:1:38]
  1 │ function hello() { 'use strict'; ({ "\1": 42 }); }
-   ·                                     ────
+   ·                                      ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
   × Bad escape sequence in untagged template literal
    ╭─[babel/packages/babel-parser/test/fixtures/core/escape-template/non-octal-eight/input.js:1:2]
@@ -1063,21 +1063,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/legacy-octal/legacy-octal-after-use-strict/input.js:1:15]
  1 │ "use strict"; 04; 05;
    ·               ──
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/legacy-octal/legacy-octal-after-use-strict/input.js:1:19]
  1 │ "use strict"; 04; 05;
    ·                   ──
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/legacy-octal/legacy-octal-after-use-strict-function/input.js:3:3]
  2 │   "use strict";
  3 │   05;
@@ -1086,7 +1086,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/legacy-octal/legacy-octal-after-use-strict-function/input.js:8:3]
  7 │   "use strict";
  8 │   04;
@@ -1095,7 +1095,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
     ╭─[babel/packages/babel-parser/test/fixtures/core/legacy-octal/legacy-octal-after-use-strict-function/input.js:9:3]
   8 │   04;
   9 │   05;
@@ -1198,7 +1198,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·     ─
    ╰────
 
-  × Decimals with leading zeros are not allowed in strict mode
+  × TS(1489): Decimals with leading zeros are not allowed in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/regression/non-octal-float-strict-mode/input.js:1:1]
  1 │ 09.5
    · ────
@@ -2317,7 +2317,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ╰── `x` has already been declared here
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/466/input.js:1:37]
  1 │ (function () { 'use strict'; delete i; }())
    ·                                     ─
@@ -2546,14 +2546,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/500/input.js:1:34]
  1 │ function hello() { 'use strict'; 021; }
    ·                                  ───
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/502/input.js:1:37]
  1 │ function hello() { 'use strict'; ({ 021: 42 }); }
    ·                                     ───
@@ -2690,7 +2690,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/522/input.js:1:66]
  1 │ "use strict";function foo(){"use strict";}function bar(){var v = 015}
    ·                                                                  ───
@@ -2735,7 +2735,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: Modules are always strict mode code
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/550/input.js:2:11]
  1 │ 'use strict';
  2 │ const a = 07;
@@ -2743,7 +2743,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × Decimals with leading zeros are not allowed in strict mode
+  × TS(1489): Decimals with leading zeros are not allowed in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/552/input.js:2:11]
  1 │ 'use strict';
  2 │ const a = 08;
@@ -4663,7 +4663,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·      ──────────
    ╰────
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/123/input.js:1:16]
  1 │ "use strict"; (class A {constructor() { super() }})
    ·                ─────────────────┬──────────────────
@@ -5006,7 +5006,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ╰── `a` has already been declared here
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/249/input.js:1:22]
  1 │ "use strict"; (a) => 00
    ·                      ──
@@ -9402,7 +9402,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/failure-delete-optional-private-property/input.js:4:18]
  3 │   constructor() {
  4 │     delete this?.#x;
@@ -9410,7 +9410,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │   }
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/failure-delete-parenthesized-private-property/input.js:4:13]
  3 │   m() {
  4 │     delete (this.#x);
@@ -9418,7 +9418,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │     delete ((this.#x));
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/failure-delete-parenthesized-private-property/input.js:5:14]
  4 │     delete (this.#x);
  5 │     delete ((this.#x));
@@ -9426,7 +9426,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │     delete (a?.#x);
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/failure-delete-parenthesized-private-property/input.js:6:16]
  5 │     delete ((this.#x));
  6 │     delete (a?.#x);
@@ -9434,7 +9434,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  7 │   }
    ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/failure-delete-private-property/input.js:4:12]
  3 │   constructor() {
  4 │     delete this.#x;
@@ -9788,7 +9788,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │   static {
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-static-block/invalid-legacy-octal/input.js:4:5]
  3 │   static {
  4 │     042;
@@ -12032,10 +12032,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─────
    ╰────
 
-  × Invalid escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/GH-1106-09/input.js:1:1]
+  × TS(1488): Invalid escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/GH-1106-09/input.js:1:2]
  1 │ "\9";
-   · ────
+   ·  ──
    ╰────
   help: \8 and \9 are not allowed in strict mode
 
@@ -12684,7 +12684,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                ╰── `a` has already been declared here
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0094/input.js:1:22]
  1 │ "use strict"; (a) => 00
    ·                      ──
@@ -13226,7 +13226,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ╰── `x` has already been declared here
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0183/input.js:1:37]
  1 │ (function () { 'use strict'; delete i; }())
    ·                                     ─
@@ -13455,68 +13455,68 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   note: This is strict mode code
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0216/input.js:1:1]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0216/input.js:1:2]
  1 │ "\1"; 'use strict';
-   · ────
+   ·  ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0217/input.js:1:34]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0217/input.js:1:35]
  1 │ function hello() { 'use strict'; "\1"; }
-   ·                                  ────
+   ·                                   ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0218/input.js:1:34]
  1 │ function hello() { 'use strict'; 021; }
    ·                                  ───
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0219/input.js:1:37]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0219/input.js:1:38]
  1 │ function hello() { 'use strict'; ({ "\1": 42 }); }
-   ·                                     ────
+   ·                                      ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0220/input.js:1:37]
  1 │ function hello() { 'use strict'; ({ 021: 42 }); }
    ·                                     ───
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0221/input.js:1:20]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0221/input.js:1:36]
  1 │ function hello() { "octal directive\1"; "use strict"; }
-   ·                    ───────────────────
+   ·                                    ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0222/input.js:1:20]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0222/input.js:1:36]
  1 │ function hello() { "octal directive\1"; "octal directive\2"; "use strict"; }
-   ·                    ───────────────────
+   ·                                    ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0222/input.js:1:41]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0222/input.js:1:57]
  1 │ function hello() { "octal directive\1"; "octal directive\2"; "use strict"; }
-   ·                                         ───────────────────
+   ·                                                         ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0223/input.js:1:53]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0223/input.js:1:69]
  1 │ function hello() { "use strict"; function inner() { "octal directive\1"; } }
-   ·                                                     ───────────────────
+   ·                                                                     ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
   × TS(1212): The keyword 'implements' is reserved
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0224/input.js:1:38]
@@ -14217,7 +14217,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Decimals with leading zeros are not allowed in strict mode
+  × TS(1489): Decimals with leading zeros are not allowed in strict mode
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/as-negative-legacy-octal/input.ts:1:7]
  1 │ x as -08;
    ·       ──
@@ -17225,7 +17225,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                                  ╰── `{` expected
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/types/literal-number-negative-legacy-octal/input.ts:1:9]
  1 │ let x: -01;
    ·         ──

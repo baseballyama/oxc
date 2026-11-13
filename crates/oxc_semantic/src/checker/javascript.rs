@@ -428,6 +428,11 @@ pub fn check_string_literal(lit: &StringLiteral, ctx: &SemanticBuilder<'_>) {
     }
     let raw = lit.span.source_text(ctx.source_text);
     let raw_len = raw.len();
+    // The escape's backslash and the byte after it, where the error is.
+    let escape = |index: usize| {
+        let start = lit.span.start + index as u32;
+        Span::new(start, start + 2)
+    };
     // Quotes contribute two bytes, and every escape contracts the cooked WTF-8 value.
     // Equal content lengths therefore prove that there are no escapes to check.
     if raw_len != lit.value.len() + 2 {
@@ -459,32 +464,37 @@ pub fn check_string_literal(lit: &StringLiteral, ctx: &SemanticBuilder<'_>) {
                     b'0' => {
                         let following_byte = raw_bytes.get(backslash_index + 2);
                         if following_byte.is_some_and(u8::is_ascii_digit) {
-                            return ctx.error(diagnostics::legacy_octal(lit.span));
+                            return ctx
+                                .error(diagnostics::legacy_octal_escape(escape(backslash_index)));
                         }
                     }
                     b'1'..=b'7' => {
-                        return ctx.error(diagnostics::legacy_octal(lit.span));
+                        return ctx
+                            .error(diagnostics::legacy_octal_escape(escape(backslash_index)));
                     }
                     b'8'..=b'9' => {
-                        return ctx.error(diagnostics::non_octal_decimal_escape_sequence(lit.span));
+                        return ctx.error(diagnostics::non_octal_decimal_escape_sequence(escape(
+                            backslash_index,
+                        )));
                     }
                     _ => {}
                 }
             }
         } else {
-            let mut bytes = raw.bytes().peekable();
-            while let Some(b) = bytes.next() {
+            let mut bytes = raw.bytes().enumerate().peekable();
+            while let Some((index, b)) = bytes.next() {
                 if b == b'\\' {
-                    match bytes.next() {
-                        Some(b'0') if bytes.peek().is_some_and(u8::is_ascii_digit) => {
-                            return ctx.error(diagnostics::legacy_octal(lit.span));
+                    match bytes.next().map(|(_, b)| b) {
+                        Some(b'0') if bytes.peek().is_some_and(|(_, b)| b.is_ascii_digit()) => {
+                            return ctx.error(diagnostics::legacy_octal_escape(escape(index)));
                         }
                         Some(b'1'..=b'7') => {
-                            return ctx.error(diagnostics::legacy_octal(lit.span));
+                            return ctx.error(diagnostics::legacy_octal_escape(escape(index)));
                         }
                         Some(b'8'..=b'9') => {
-                            return ctx
-                                .error(diagnostics::non_octal_decimal_escape_sequence(lit.span));
+                            return ctx.error(diagnostics::non_octal_decimal_escape_sequence(
+                                escape(index),
+                            ));
                         }
                         _ => {}
                     }

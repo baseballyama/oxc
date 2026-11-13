@@ -31,7 +31,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use a different variable name or remove the duplicate declaration.
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[no_redeclare..cts:1:5]
  1 │ var a; function a() {}
    ·     ┬           ┬
@@ -259,7 +259,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use a different variable name or remove the duplicate declaration.
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[no_redeclare..cts:1:7]
  1 │ class A {} class A {} namespace A {}
    ·       ┬          ┬
@@ -330,7 +330,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use a different variable name or remove the duplicate declaration.
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[no_redeclare..cts:1:11]
  1 │ interface A {} class A {} const A = 2;
    ·           ┬                     ┬
@@ -356,7 +356,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use a different variable name or remove the duplicate declaration.
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[no_redeclare..cts:1:6]
  1 │ enum A {} interface A {} namespace A {}
    ·      ┬              ┬
@@ -378,7 +378,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use a different variable name to avoid shadowing the built-in global.
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[no_redeclare..cts:1:7]
  1 │ class A {} interface A {} class A {} namespace A {}
    ·       ┬                         ┬

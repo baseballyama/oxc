@@ -93,7 +93,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Merge these imports into a single import statement
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[index.ts:1:9]
  1 │ import {a} from './foo'; import { a } from './foo'
    ·         ┬                         ┬
@@ -101,7 +101,7 @@ source: crates/oxc_linter/src/tester.rs
    ·         ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[index.ts:1:11]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·           ┬                         ┬
@@ -109,7 +109,7 @@ source: crates/oxc_linter/src/tester.rs
    ·           ╰── `b` has already been declared here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[index.ts:1:11]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·           ┬                                                      ┬
@@ -117,7 +117,7 @@ source: crates/oxc_linter/src/tester.rs
    ·           ╰── `b` has already been declared here
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[index.ts:1:40]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·                                        ┬                           ┬
@@ -125,7 +125,7 @@ source: crates/oxc_linter/src/tester.rs
    ·                                        ╰── `c` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[index.ts:1:9]
  1 │ import {a} from './foo'; import { a/*,b*/ } from './foo'
    ·         ┬                         ┬
@@ -133,7 +133,7 @@ source: crates/oxc_linter/src/tester.rs
    ·         ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[index.ts:1:9]
  1 │ import {a} from './foo'; import { a } from './foo'
    ·         ┬                         ┬
@@ -141,7 +141,7 @@ source: crates/oxc_linter/src/tester.rs
    ·         ╰── `a` has already been declared here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[index.ts:1:11]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·           ┬                         ┬
@@ -149,7 +149,7 @@ source: crates/oxc_linter/src/tester.rs
    ·           ╰── `b` has already been declared here
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[index.ts:1:11]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·           ┬                                                      ┬
@@ -157,7 +157,7 @@ source: crates/oxc_linter/src/tester.rs
    ·           ╰── `b` has already been declared here
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[index.ts:1:40]
  1 │ import {a,b} from './foo'; import { b, c } from './foo'; import {b,c,d} from './foo'
    ·                                        ┬                           ┬
@@ -165,7 +165,7 @@ source: crates/oxc_linter/src/tester.rs
    ·                                        ╰── `c` has already been declared here
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[index.ts:1:9]
  1 │ import {a} from './foo'; import { a/*,b*/ } from './foo'
    ·         ┬                         ┬
@@ -493,7 +493,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Merge these imports into a single import statement
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[index.ts:1:13]
  1 │ import type x from './foo'; import type x from './foo'
    ·             ┬                           ┬

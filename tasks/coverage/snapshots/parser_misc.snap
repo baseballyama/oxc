@@ -199,7 +199,7 @@ Negative Passed: 274/274 (100.00%)
    ·     ╰── Opened here
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[misc/fail/arrow-function-jumps.js:1:25]
  1 │ while (true) { (() => { break; }); }
    ·                         ──────
@@ -207,7 +207,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[misc/fail/arrow-function-jumps.js:3:38]
  2 │ 
  3 │ outer: while (true) { (() => { break outer; }); }
@@ -215,7 +215,7 @@ Negative Passed: 274/274 (100.00%)
  4 │ 
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[misc/fail/arrow-function-jumps.js:5:25]
  4 │ 
  5 │ while (true) { (() => { continue; }); }
@@ -224,7 +224,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[misc/fail/arrow-function-jumps.js:7:41]
  6 │ 
  7 │ outer: while (true) { (() => { continue outer; }); }
@@ -501,7 +501,7 @@ Negative Passed: 274/274 (100.00%)
    ·                ─────
    ╰────
 
-  × A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
+  × TS(1115): A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
    ╭─[misc/fail/continue-label-chain-non-iteration.js:1:1]
  1 │ a: b: {
    · ┬
@@ -542,7 +542,7 @@ Negative Passed: 274/274 (100.00%)
         If you're in the middle of a rebase, the top section is the code being rebased onto and the bottom section is the code coming from the current commit being rebased.
         If you have nested conflicts, resolve the outermost conflict first.
 
-  × Identifier `value` has already been declared
+  × TS(2300): Identifier `value` has already been declared
    ╭─[misc/fail/duplicate-parameter-after-nested-default.cjs:1:16]
  1 │ function outer(value = function (inner, inner) {}, value) {}
    ·                ──┬──                               ──┬──
@@ -550,7 +550,7 @@ Negative Passed: 274/274 (100.00%)
    ·                  ╰── `value` has already been declared here
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[misc/fail/duplicate-private-declarations.js:1:24]
  1 │ class DuplicateField { #x; x; #x; }
    ·                        ─┬     ─┬
@@ -559,7 +559,7 @@ Negative Passed: 274/274 (100.00%)
  2 │ 
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[misc/fail/duplicate-private-declarations.js:3:29]
  2 │ 
  3 │ class DuplicateGetter { get #x() {} set #x(value) {} get #x() {} }
@@ -569,7 +569,7 @@ Negative Passed: 274/274 (100.00%)
  4 │ 
    ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
    ╭─[misc/fail/duplicate-private-declarations.js:5:29]
  4 │ 
  5 │ class DuplicateSetter { set #x(value) {} get #x() {} set #x(value) {} }
@@ -813,13 +813,13 @@ Negative Passed: 274/274 (100.00%)
    ·           ──
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[misc/fail/export-from-unterminated-comment.js:1:16]
  1 │ export {} from /*
    ·                ───
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[misc/fail/export-from-unterminated-source.js:1:16]
  1 │ export {} from "
    ·                ──
@@ -1421,7 +1421,7 @@ Negative Passed: 274/274 (100.00%)
    ·    ──
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[misc/fail/oxc-10159.js:1:22]
  1 │ function a() { class b { }; function b() { } }
    ·                      ┬               ┬
@@ -4397,7 +4397,7 @@ Negative Passed: 274/274 (100.00%)
  1 │ 1<(V=82<<t-j0<(V=$<LBI<(V=ut<I<(V=$<LBI<(V=uIV=82<<t-j0<(V=$<LBI<(V=ut<I<(V=$<LBI<(V<II>
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[misc/fail/oxc-18231.mjs:1:10]
  1 │ function f() {}
    ·          ┬
@@ -4408,7 +4408,7 @@ Negative Passed: 274/274 (100.00%)
  3 │ 
    ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
    ╭─[misc/fail/oxc-18231.mjs:4:5]
  3 │ 
  4 │ var g;
@@ -5017,7 +5017,7 @@ Negative Passed: 274/274 (100.00%)
    ·           ─────────────
    ╰────
 
-  × Label `Test` has already been declared
+  × TS(1114): Label `Test` has already been declared
    ╭─[misc/fail/oxc-5036.js:1:1]
  1 │ Test: {
    · ──┬─

@@ -1989,7 +1989,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: In strict mode code, functions can only be declared at top level or inside a block
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-function.js:24:18]
  23 │ 
  24 │ { async function f() {} async function f() {} }
@@ -1998,7 +1998,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-generator.js:24:18]
  23 │ 
  24 │ { async function f() {} async function* f() {} }
@@ -2007,7 +2007,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-class.js:24:18]
  23 │ 
  24 │ { async function f() {} class f {} }
@@ -2016,7 +2016,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-const.js:24:18]
  23 │ 
  24 │ { async function f() {} const f = 0 }
@@ -2025,7 +2025,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-function.js:24:18]
  23 │ 
  24 │ { async function f() {} function f() {} }
@@ -2034,7 +2034,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-generator.js:24:18]
  23 │ 
  24 │ { async function f() {} function* f() {} }
@@ -2043,7 +2043,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-let.js:24:18]
  23 │ 
  24 │ { async function f() {} let f }
@@ -2052,7 +2052,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-function-name-redeclaration-attempt-with-var.js:24:18]
  23 │ 
  24 │ { async function f() {} var f }
@@ -2061,7 +2061,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-async-function.js:24:19]
  23 │ 
  24 │ { async function* f() {} async function f() {} }
@@ -2070,7 +2070,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-async-generator.js:24:19]
  23 │ 
  24 │ { async function* f() {} async function* f() {} }
@@ -2079,7 +2079,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-class.js:24:19]
  23 │ 
  24 │ { async function* f() {} class f {} }
@@ -2088,7 +2088,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-const.js:24:19]
  23 │ 
  24 │ { async function* f() {} const f = 0 }
@@ -2097,7 +2097,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-function.js:24:19]
  23 │ 
  24 │ { async function* f() {} function f() {} }
@@ -2106,7 +2106,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-generator.js:24:19]
  23 │ 
  24 │ { async function* f() {} function* f() {} }
@@ -2115,7 +2115,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-let.js:24:19]
  23 │ 
  24 │ { async function* f() {} let f }
@@ -2124,7 +2124,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-var.js:24:19]
  23 │ 
  24 │ { async function* f() {} var f }
@@ -2133,7 +2133,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-async-function.js:24:9]
  23 │ 
  24 │ { class f {} async function f() {} }
@@ -2142,7 +2142,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-async-generator.js:24:9]
  23 │ 
  24 │ { class f {} async function* f() {} }
@@ -2151,7 +2151,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-class.js:23:9]
  22 │ 
  23 │ { class f {} class f {} }
@@ -2160,7 +2160,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-const.js:23:9]
  22 │ 
  23 │ { class f {} const f = 0 }
@@ -2169,7 +2169,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-function.js:23:9]
  22 │ 
  23 │ { class f {} function f() {} }
@@ -2178,7 +2178,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-generator.js:24:9]
  23 │ 
  24 │ { class f {} function* f() {} }
@@ -2187,7 +2187,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-let.js:23:9]
  22 │ 
  23 │ { class f {} let f }
@@ -2196,7 +2196,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/class-name-redeclaration-attempt-with-var.js:23:9]
  22 │ 
  23 │ { class f {} var f }
@@ -2205,7 +2205,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-async-function.js:24:9]
  23 │ 
  24 │ { const f = 0; async function f() {} }
@@ -2214,7 +2214,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-async-generator.js:24:9]
  23 │ 
  24 │ { const f = 0; async function* f() {} }
@@ -2223,7 +2223,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-class.js:23:9]
  22 │ 
  23 │ { const f = 0; class f {} }
@@ -2232,7 +2232,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-const.js:23:9]
  22 │ 
  23 │ { const f = 0; const f = 0 }
@@ -2241,7 +2241,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-function.js:23:9]
  22 │ 
  23 │ { const f = 0; function f() {} }
@@ -2250,7 +2250,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-generator.js:24:9]
  23 │ 
  24 │ { const f = 0; function* f() {} }
@@ -2259,7 +2259,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-let.js:23:9]
  22 │ 
  23 │ { const f = 0; let f }
@@ -2268,7 +2268,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/const-name-redeclaration-attempt-with-var.js:23:9]
  22 │ 
  23 │ { const f = 0; var f }
@@ -2277,7 +2277,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-async-function.js:25:20]
  24 │ function x() {
  25 │   { async function f() {}; var f; }
@@ -2287,7 +2287,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-async-generator.js:25:21]
  24 │ function x() {
  25 │   { async function* f() {}; var f; }
@@ -2297,7 +2297,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-class.js:24:11]
  23 │ function x() {
  24 │   { class f {}; var f; }
@@ -2307,7 +2307,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-const.js:24:11]
  23 │ function x() {
  24 │   { const f = 0; var f; }
@@ -2317,7 +2317,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-function.js:24:14]
  23 │ function x() {
  24 │   { function f() {}; var f; }
@@ -2327,7 +2327,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-generator.js:25:15]
  24 │ function x() {
  25 │   { function* f() {}; var f; }
@@ -2337,7 +2337,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/fn-scope-var-name-redeclaration-attempt-with-let.js:24:9]
  23 │ function x() {
  24 │   { let f; var f; }
@@ -2347,7 +2347,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-declaration-attempt-to-redeclare-with-var-declaration-nested-in-function.js:25:18]
  24 │         // A lexically declared function declaration.
  25 │         function f() {}
@@ -2362,7 +2362,7 @@ Negative Passed: 4669/4669 (100.00%)
  30 │         }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-async-function.js:24:12]
  23 │ 
  24 │ { function f() {} async function f() {} }
@@ -2371,7 +2371,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-async-generator.js:24:12]
  23 │ 
  24 │ { function f() {} async function* f() {} }
@@ -2380,7 +2380,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-class.js:23:12]
  22 │ 
  23 │ { function f() {} class f {} }
@@ -2389,7 +2389,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-const.js:23:12]
  22 │ 
  23 │ { function f() {} const f = 0 }
@@ -2398,7 +2398,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-function.js:23:12]
  22 │ 
  23 │ { function f() {} function f() {} }
@@ -2407,7 +2407,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-generator.js:24:12]
  23 │ 
  24 │ { function f() {} function* f() {} }
@@ -2416,7 +2416,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-let.js:23:12]
  22 │ 
  23 │ { function f() {} let f }
@@ -2425,7 +2425,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/function-name-redeclaration-attempt-with-var.js:23:12]
  22 │ 
  23 │ { function f() {} var f }
@@ -2434,7 +2434,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-async-function.js:24:13]
  23 │ 
  24 │ { function* f() {} async function f() {} }
@@ -2443,7 +2443,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-async-generator.js:24:13]
  23 │ 
  24 │ { function* f() {} async function* f() {} }
@@ -2452,7 +2452,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-class.js:24:13]
  23 │ 
  24 │ { function* f() {} class f {} }
@@ -2461,7 +2461,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-const.js:24:13]
  23 │ 
  24 │ { function* f() {} const f = 0 }
@@ -2470,7 +2470,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-function.js:24:13]
  23 │ 
  24 │ { function* f() {} function f() {} }
@@ -2479,7 +2479,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-generator.js:24:13]
  23 │ 
  24 │ { function* f() {} function* f() {} }
@@ -2488,7 +2488,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-let.js:24:13]
  23 │ 
  24 │ { function* f() {} let f }
@@ -2497,7 +2497,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/generator-name-redeclaration-attempt-with-var.js:24:13]
  23 │ 
  24 │ { function* f() {} var f }
@@ -2506,7 +2506,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-async-function.js:40:9]
  39 │ 
  40 │ { { var f; } async function f() {}; }
@@ -2515,7 +2515,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-async-generator.js:40:9]
  39 │ 
  40 │ { { var f; } async function* f() {}; }
@@ -2524,7 +2524,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-class.js:39:9]
  38 │ 
  39 │ { { var f; } class f {}; }
@@ -2533,7 +2533,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-const.js:39:9]
  38 │ 
  39 │ { { var f; } const f = 0; }
@@ -2542,7 +2542,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-function.js:39:9]
  38 │ 
  39 │ { { var f; } function f() {} }
@@ -2551,7 +2551,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-generator.js:40:9]
  39 │ 
  40 │ { { var f; } function* f() {}; }
@@ -2560,7 +2560,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-name-redeclaration-attempt-with-let.js:39:9]
  38 │ 
  39 │ { { var f; } let f; }
@@ -2569,7 +2569,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-async-function.js:40:18]
  39 │ 
  40 │ { async function f() {}; { var f; } }
@@ -2578,7 +2578,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-async-generator.js:40:19]
  39 │ 
  40 │ { async function* f() {}; { var f; } }
@@ -2587,7 +2587,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-class.js:39:9]
  38 │ 
  39 │ { class f {}; { var f; } }
@@ -2596,7 +2596,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-const.js:39:9]
  38 │ 
  39 │ { const f = 0; { var f; } }
@@ -2605,7 +2605,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-function.js:39:12]
  38 │ 
  39 │ { function f() {} { var f; } }
@@ -2614,7 +2614,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-generator.js:40:13]
  39 │ 
  40 │ { function* f() {}; { var f; } }
@@ -2623,7 +2623,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/inner-block-var-redeclaration-attempt-after-let.js:39:7]
  38 │ 
  39 │ { let f; { var f; } }
@@ -2632,7 +2632,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-async-function.js:24:7]
  23 │ 
  24 │ { let f; async function f() {} }
@@ -2641,7 +2641,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-async-generator.js:24:7]
  23 │ 
  24 │ { let f; async function* f() {} }
@@ -2650,7 +2650,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-class.js:23:7]
  22 │ 
  23 │ { let f; class f {} }
@@ -2659,7 +2659,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-const.js:23:7]
  22 │ 
  23 │ { let f; const f = 0 }
@@ -2668,7 +2668,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-function.js:23:7]
  22 │ 
  23 │ { let f; function f() {} }
@@ -2677,7 +2677,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-generator.js:24:7]
  23 │ 
  24 │ { let f; function* f() {} }
@@ -2686,7 +2686,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-let.js:23:7]
  22 │ 
  23 │ { let f; let f }
@@ -2695,7 +2695,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/let-name-redeclaration-attempt-with-var.js:23:7]
  22 │ 
  23 │ { let f; var f }
@@ -2704,7 +2704,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-async-function.js:24:7]
  23 │ 
  24 │ { var f; async function f() {} }
@@ -2713,7 +2713,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-async-generator.js:24:7]
  23 │ 
  24 │ { var f; async function* f() {} }
@@ -2722,7 +2722,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-class.js:23:7]
  22 │ 
  23 │ { var f; class f {} }
@@ -2731,7 +2731,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-const.js:23:7]
  22 │ 
  23 │ { var f; const f = 0 }
@@ -2740,7 +2740,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-function.js:23:7]
  22 │ 
  23 │ { var f; function f() {} }
@@ -2749,7 +2749,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-generator.js:24:7]
  23 │ 
  24 │ { var f; function* f() {} }
@@ -2758,7 +2758,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-name-redeclaration-attempt-with-let.js:23:7]
  22 │ 
  23 │ { var f; let f }
@@ -2767,7 +2767,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-async-function.js:24:18]
  23 │ 
  24 │ { async function f() {}; var f; }
@@ -2776,7 +2776,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-async-generator.js:24:19]
  23 │ 
  24 │ { async function* f() {}; var f; }
@@ -2785,7 +2785,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-class.js:23:9]
  22 │ 
  23 │ { class f {}; var f; }
@@ -2794,7 +2794,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-const.js:23:9]
  22 │ 
  23 │ { const f = 0; var f; }
@@ -2803,7 +2803,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-function.js:23:12]
  22 │ 
  23 │ { function f() {}; var f; }
@@ -2812,7 +2812,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-generator.js:24:13]
  23 │ 
  24 │ { function* f() {}; var f; }
@@ -2821,7 +2821,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/block-scope/syntax/redeclaration/var-redeclaration-attempt-after-let.js:23:7]
  22 │ 
  23 │ { let f; var f; }
@@ -2830,7 +2830,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `f` has already been declared here
     ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
     ╭─[test262/test/language/comments/S7.4_A2_T2.js:16:1]
  15 │ 
  16 │ /*CHECK#1/
@@ -3188,7 +3188,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ─────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/arrow-function/array-destructuring-param-strict-body.js:131:3]
  130 │ 0, ([element]) => {
  131 │   "use strict";
@@ -3197,7 +3197,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/dflt-params-duplicates.js:59:5]
  58 │ 
  59 │ 0, (x = 0, x) => {
@@ -3674,7 +3674,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/arrow-function/object-destructuring-param-strict-body.js:131:3]
  130 │ 0, ({property}) => {
  131 │   "use strict";
@@ -3700,7 +3700,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/params-duplicate.js:34:5]
  33 │ 
  34 │ 0, (a, a) => { };
@@ -3709,7 +3709,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── `a` has already been declared here
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/arrow-function/rest-param-strict-body.js:131:3]
  130 │ 0, (a,...rest) => {
  131 │   "use strict";
@@ -3804,7 +3804,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-array-1.js:26:11]
  25 │ $DONOTEVALUATE();
  26 │ var af = (x, [x]) => 1;
@@ -3813,7 +3813,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-array-2.js:26:12]
  25 │ $DONOTEVALUATE();
  26 │ var af = ([x, x]) => 1;
@@ -3822,7 +3822,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-array-3.js:28:12]
  27 │ $DONOTEVALUATE();
  28 │ var af = ([x], ...x) => 1;
@@ -3831,7 +3831,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-1.js:26:11]
  25 │ $DONOTEVALUATE();
  26 │ var af = (x, {x}) => 1;
@@ -3840,7 +3840,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-2.js:28:11]
  27 │ $DONOTEVALUATE();
  28 │ var af = (x, {y: x}) => 1;
@@ -3849,7 +3849,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-3.js:28:12]
  27 │ $DONOTEVALUATE();
  28 │ var af = ({x}, {y: x}) => 1;
@@ -3858,7 +3858,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-4.js:30:12]
  29 │ $DONOTEVALUATE();
  30 │ var af = ({x}, ...x) => 1;
@@ -3867,7 +3867,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-5.js:30:15]
  29 │ $DONOTEVALUATE();
  30 │ var af = ({y: x}, ...x) => 1;
@@ -3876,7 +3876,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-binding-object-6.js:28:15]
  27 │ $DONOTEVALUATE();
  28 │ var af = ({y: x, x}) => 1;
@@ -3885,7 +3885,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates-rest.js:24:11]
  23 │ $DONOTEVALUATE();
  24 │ var af = (x, ...x) => 1;
@@ -3894,7 +3894,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-cover-no-duplicates.js:24:11]
  23 │ $DONOTEVALUATE();
  24 │ var af = (x, x) => 1;
@@ -3943,7 +3943,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the line break before here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/use-strict-with-non-simple-param.js:21:3]
  20 │ var f = (a = 0) => {
  21 │   "use strict";
@@ -6944,7 +6944,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·  ─────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-arrow-function/array-destructuring-param-strict-body.js:123:3]
  122 │ (async ([element]) => {
  123 │   "use strict";
@@ -7047,7 +7047,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ─────
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/async-arrow-function/dflt-params-duplicates.js:51:9]
  50 │ 
  51 │ (async (x = 0, x) => {
@@ -7065,7 +7065,7 @@ Negative Passed: 4669/4669 (100.00%)
  56 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-NSPL-with-USD.js:17:19]
  16 │ 
  17 │ async (x = 1) => {"use strict"}
@@ -7111,7 +7111,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                 ─────
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-duplicate-parameters.js:36:7]
  35 │ 
  36 │ async(a, a) => { }
@@ -7128,7 +7128,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
     ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-formals-body-duplicate.js:16:7]
  15 │ 
  16 │ async(bar) => { let bar; }
@@ -7166,7 +7166,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-arrow-function/object-destructuring-param-strict-body.js:123:3]
  122 │ (async ({property}) => {
  123 │   "use strict";
@@ -7175,7 +7175,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-arrow-function/rest-param-strict-body.js:123:3]
  122 │ (async (a,...rest) => {
  123 │   "use strict";
@@ -7257,7 +7257,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/async-function/early-errors-expression-NSPL-with-USD.js:17:26]
  16 │ 
  17 │ (async function (x = 1) {"use strict"})
@@ -7305,7 +7305,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
     ╭─[test262/test/language/expressions/async-function/early-errors-expression-formals-body-duplicate.js:16:22]
  15 │ 
  16 │ (async function foo (bar) { let bar; });
@@ -7342,7 +7342,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ──────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/named-array-destructuring-param-strict-body.js:109:3]
  108 │ (async function f([element]) {
  109 │   "use strict";
@@ -7415,7 +7415,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/async-function/named-dflt-params-duplicates.js:37:19]
  36 │ 
  37 │ (async function f(x = 0, x) {
@@ -7433,7 +7433,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/named-object-destructuring-param-strict-body.js:109:3]
  108 │ (async function f({property}) {
  109 │   "use strict";
@@ -7442,7 +7442,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/named-rest-param-strict-body.js:109:3]
  108 │ (async function f(a,...rest) {
  109 │   "use strict";
@@ -7460,7 +7460,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/nameless-array-destructuring-param-strict-body.js:109:3]
  108 │ (async function([element]) {
  109 │   "use strict";
@@ -7469,7 +7469,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/async-function/nameless-dflt-params-duplicates.js:37:17]
  36 │ 
  37 │ (async function(x = 0, x) {
@@ -7487,7 +7487,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/nameless-object-destructuring-param-strict-body.js:109:3]
  108 │ (async function({property}) {
  109 │   "use strict";
@@ -7496,7 +7496,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-function/nameless-rest-param-strict-body.js:109:3]
  108 │ (async function(a,...rest) {
  109 │   "use strict";
@@ -7514,7 +7514,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/array-destructuring-param-strict-body.js:112:3]
  111 │ 0, async function*([element]) {
  112 │   "use strict";
@@ -7587,7 +7587,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/async-generator/dflt-params-duplicates.js:40:20]
  39 │ 
  40 │ 0, async function*(x = 0, x) {
@@ -7797,7 +7797,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-NSPL-with-USD.js:19:26]
  18 │ 
  19 │ (async function*(x = 1) {"use strict"});
@@ -7858,7 +7858,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-formals-body-duplicate-const.js:22:18]
  21 │ 
  22 │ (async function*(a) { const a = 0; });
@@ -7867,7 +7867,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── `a` has already been declared here
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-formals-body-duplicate-let.js:19:18]
  18 │ 
  19 │ (async function*(a) { let a; });
@@ -7982,7 +7982,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ──────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/named-array-destructuring-param-strict-body.js:112:3]
  111 │ 0, async function* g([element]) {
  112 │   "use strict";
@@ -8055,7 +8055,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/async-generator/named-dflt-params-duplicates.js:40:22]
  39 │ 
  40 │ 0, async function* g(x = 0, x) {
@@ -8073,7 +8073,7 @@ Negative Passed: 4669/4669 (100.00%)
  45 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/named-object-destructuring-param-strict-body.js:112:3]
  111 │ 0, async function* g({property}) {
  112 │   "use strict";
@@ -8082,7 +8082,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/named-rest-param-strict-body.js:112:3]
  111 │ 0, async function* g(a,...rest) {
  112 │   "use strict";
@@ -8212,7 +8212,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/object-destructuring-param-strict-body.js:112:3]
  111 │ 0, async function*({property}) {
  112 │   "use strict";
@@ -8221,7 +8221,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/async-generator/rest-param-strict-body.js:112:3]
  111 │ 0, async function*(a,...rest) {
  112 │   "use strict";
@@ -8382,7 +8382,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ─
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method/array-destructuring-param-strict-body.js:136:5]
  135 │   async *method([element]) {
  136 │     "use strict";
@@ -8455,7 +8455,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/async-gen-method/dflt-params-duplicates.js:64:17]
  63 │ 0, class {
  64 │   async *method(x = 0, x) {
@@ -8473,7 +8473,7 @@ Negative Passed: 4669/4669 (100.00%)
  69 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method/object-destructuring-param-strict-body.js:136:5]
  135 │   async *method({property}) {
  136 │     "use strict";
@@ -8482,7 +8482,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method/rest-param-strict-body.js:136:5]
  135 │   async *method(a,...rest) {
  136 │     "use strict";
@@ -8612,7 +8612,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method-static/array-destructuring-param-strict-body.js:136:5]
  135 │   static async *method([element]) {
  136 │     "use strict";
@@ -8685,7 +8685,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/async-gen-method-static/dflt-params-duplicates.js:64:24]
  63 │ 0, class {
  64 │   static async *method(x = 0, x) {
@@ -8703,7 +8703,7 @@ Negative Passed: 4669/4669 (100.00%)
  69 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method-static/object-destructuring-param-strict-body.js:136:5]
  135 │   static async *method({property}) {
  136 │     "use strict";
@@ -8712,7 +8712,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-gen-method-static/rest-param-strict-body.js:136:5]
  135 │   static async *method(a,...rest) {
  136 │     "use strict";
@@ -8842,7 +8842,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method/array-destructuring-param-strict-body.js:134:5]
  133 │   static async method([element]) {
  134 │     "use strict";
@@ -8915,7 +8915,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/async-method/dflt-params-duplicates.js:62:23]
  61 │ var C = class {
  62 │   static async method(x = 0, x) {
@@ -8933,7 +8933,7 @@ Negative Passed: 4669/4669 (100.00%)
  67 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method/object-destructuring-param-strict-body.js:134:5]
  133 │   static async method({property}) {
  134 │     "use strict";
@@ -8942,7 +8942,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method/rest-param-strict-body.js:134:5]
  133 │   static async method(a,...rest) {
  134 │     "use strict";
@@ -8960,7 +8960,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method-static/array-destructuring-param-strict-body.js:134:5]
  133 │   static async method([element]) {
  134 │     "use strict";
@@ -9033,7 +9033,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/async-method-static/dflt-params-duplicates.js:62:23]
  61 │ var C = class {
  62 │   static async method(x = 0, x) {
@@ -9051,7 +9051,7 @@ Negative Passed: 4669/4669 (100.00%)
  67 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method-static/object-destructuring-param-strict-body.js:134:5]
  133 │   static async method({property}) {
  134 │     "use strict";
@@ -9060,7 +9060,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/async-method-static/rest-param-strict-body.js:134:5]
  133 │   static async method(a,...rest) {
  134 │     "use strict";
@@ -10947,7 +10947,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
     ╭─[test262/test/language/expressions/class/elements/fields-duplicate-privatenames.js:23:3]
  22 │ var C = class {
  23 │   #x;
@@ -13037,7 +13037,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-class-body-ctor-duplicate.js:24:3]
  23 │ var C = class {
  24 │   constructor() {}
@@ -13185,7 +13185,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │     }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-async-gen.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13197,7 +13197,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-async.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13209,7 +13209,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-gen.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13221,7 +13221,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-get-field.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13233,7 +13233,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-get-get.js:25:7]
  24 │ var C = class {
  25 │   get #m() {}
@@ -13245,7 +13245,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-field.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13257,7 +13257,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-get.js:25:7]
  24 │ var C = class {
  25 │   get #m() {}
@@ -13269,7 +13269,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-meth.js:25:3]
  24 │ var C = class {
  25 │   #m() {}
@@ -13281,7 +13281,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-set.js:25:7]
  24 │ var C = class {
  25 │   set #m(_) {}
@@ -13293,7 +13293,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-staticfield.js:25:10]
  24 │ var C = class {
  25 │   static #m;
@@ -13305,7 +13305,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-staticmeth.js:25:10]
  24 │ var C = class {
  25 │   static #m() {}
@@ -13317,7 +13317,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-set-field.js:25:3]
  24 │ var C = class {
  25 │   #m;
@@ -13329,7 +13329,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-set-set.js:25:7]
  24 │ var C = class {
  25 │   set #m(_) {}
@@ -14160,7 +14160,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method/array-destructuring-param-strict-body.js:157:5]
  156 │   *method([element]) {
  157 │     "use strict";
@@ -14169,7 +14169,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/gen-method/dflt-params-duplicates.js:85:11]
  84 │ 0, class {
  85 │   *method(x = 0, x) {
@@ -14187,7 +14187,7 @@ Negative Passed: 4669/4669 (100.00%)
  90 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method/object-destructuring-param-strict-body.js:157:5]
  156 │   *method({property}) {
  157 │     "use strict";
@@ -14196,7 +14196,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method/rest-param-strict-body.js:157:5]
  156 │   *method(a,...rest) {
  157 │     "use strict";
@@ -14335,7 +14335,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ };
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method-static/array-destructuring-param-strict-body.js:157:5]
  156 │   static *method([element]) {
  157 │     "use strict";
@@ -14344,7 +14344,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/gen-method-static/dflt-params-duplicates.js:85:18]
  84 │ 0, class {
  85 │   static *method(x = 0, x) {
@@ -14362,7 +14362,7 @@ Negative Passed: 4669/4669 (100.00%)
  90 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method-static/object-destructuring-param-strict-body.js:157:5]
  156 │   static *method({property}) {
  157 │     "use strict";
@@ -14371,7 +14371,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/gen-method-static/rest-param-strict-body.js:157:5]
  156 │   static *method(a,...rest) {
  157 │     "use strict";
@@ -14509,7 +14509,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove these parameters here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method/array-destructuring-param-strict-body.js:153:5]
  152 │   method([element]) {
  153 │     "use strict";
@@ -14518,7 +14518,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/method/dflt-params-duplicates.js:81:10]
  80 │ 0, class {
  81 │   method(x = 0, x) {
@@ -14536,7 +14536,7 @@ Negative Passed: 4669/4669 (100.00%)
  86 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method/object-destructuring-param-strict-body.js:153:5]
  152 │   method({property}) {
  153 │     "use strict";
@@ -14545,7 +14545,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method/rest-param-strict-body.js:153:5]
  152 │   method(a,...rest) {
  153 │     "use strict";
@@ -14572,7 +14572,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method-static/array-destructuring-param-strict-body.js:153:5]
  152 │   static method([element]) {
  153 │     "use strict";
@@ -14581,7 +14581,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/class/method-static/dflt-params-duplicates.js:81:17]
  80 │ 0, class {
  81 │   static method(x = 0, x) {
@@ -14599,7 +14599,7 @@ Negative Passed: 4669/4669 (100.00%)
  86 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method-static/object-destructuring-param-strict-body.js:153:5]
  152 │   static method({property}) {
  153 │     "use strict";
@@ -14608,7 +14608,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/class/method-static/rest-param-strict-body.js:153:5]
  152 │   static method(a,...rest) {
  153 │     "use strict";
@@ -18127,7 +18127,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap the unary expression in parentheses to make the precedence explicit
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/function/array-destructuring-param-strict-body.js:132:3]
  131 │ 0, function([element]) {
  132 │   "use strict";
@@ -18136,7 +18136,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/function/dflt-params-duplicates.js:60:13]
  59 │ 
  60 │ 0, function(x = 0, x) {
@@ -18340,7 +18340,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/function/object-destructuring-param-strict-body.js:132:3]
  131 │ 0, function({property}) {
  132 │   "use strict";
@@ -18358,7 +18358,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-1.js:23:12]
  22 │ 
  23 │ (function (param, param) { });
@@ -18367,7 +18367,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param1` has already been declared
+  × TS(2300): Identifier `param1` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-2.js:24:12]
  23 │ 
  24 │ (function (param1, param2, param1) { });
@@ -18376,7 +18376,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ╰── `param1` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-3.js:23:12]
  22 │ 
  23 │ (function (param, param, param) { });
@@ -18385,7 +18385,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-3.js:23:12]
  22 │ 
  23 │ (function (param, param, param) { });
@@ -18394,7 +18394,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-body-1.js:22:12]
  21 │ 
  22 │ (function (param, param) { 'use strict'; });
@@ -18403,7 +18403,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param1` has already been declared
+  × TS(2300): Identifier `param1` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-body-2.js:23:12]
  22 │ 
  23 │ (function (param1, param2, param1) { 'use strict'; });
@@ -18412,7 +18412,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ╰── `param1` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-body-3.js:21:12]
  20 │ 
  21 │ (function (param, param, param) { 'use strict'; });
@@ -18421,7 +18421,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/function/param-duplicated-strict-body-3.js:21:12]
  20 │ 
  21 │ (function (param, param, param) { 'use strict'; });
@@ -18438,7 +18438,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/function/rest-param-strict-body.js:132:3]
  131 │ 0, function(a,...rest) {
  132 │   "use strict";
@@ -18456,7 +18456,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/function/use-strict-with-non-simple-param.js:21:3]
  20 │ var f = function(a = 0) {
  21 │   "use strict";
@@ -18465,7 +18465,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/generators/array-destructuring-param-strict-body.js:133:3]
  132 │ 0, function*([element]) {
  133 │   "use strict";
@@ -18474,7 +18474,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/generators/dflt-params-duplicates.js:61:14]
  60 │ 
  61 │ 0, function*(x = 0, x) {
@@ -18700,7 +18700,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/generators/object-destructuring-param-strict-body.js:133:3]
  132 │ 0, function*({property}) {
  133 │   "use strict";
@@ -18717,7 +18717,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── yield expression not allowed in formal parameter
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/generators/rest-param-strict-body.js:133:3]
  132 │ 0, function*(a,...rest) {
  133 │   "use strict";
@@ -18735,7 +18735,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/generators/use-strict-with-non-simple-param.js:22:3]
  21 │ var f = function*(a = 0) {
  22 │   "use strict";
@@ -19199,20 +19199,20 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `__proto__` has already been declared
+  × TS(1117): Redefinition of `__proto__` property
     ╭─[test262/test/language/expressions/object/__proto__-duplicate.js:21:3]
  20 │ ({
  21 │   __proto__: null,
     ·   ────┬────
-    ·       ╰── `__proto__` has already been declared here
+    ·       ╰── `__proto__` has already been defined here
  22 │   other: null,
  23 │   '__proto__': null
     ·   ─────┬─────
-    ·        ╰── It can not be redeclared here
+    ·        ╰── It can not be redefined here
  24 │ });
     ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
     ╭─[test262/test/language/expressions/object/cover-initialized-name.js:33:4]
  32 │ 
  33 │ ({ a = 1 });
@@ -19768,7 +19768,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-gen-meth-array-destructuring-param-strict-body.js:117:5]
  116 │   async *method([element]) {
  117 │     "use strict";
@@ -19777,7 +19777,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-meth-dflt-params-duplicates.js:45:17]
  44 │ 0, {
  45 │   async *method(x = 0, x) {
@@ -19807,7 +19807,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ });
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-gen-meth-object-destructuring-param-strict-body.js:117:5]
  116 │   async *method({property}) {
  117 │     "use strict";
@@ -19816,7 +19816,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-gen-meth-rest-param-strict-body.js:117:5]
  116 │   async *method(a,...rest) {
  117 │     "use strict";
@@ -19946,7 +19946,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-meth-array-destructuring-param-strict-body.js:110:5]
  109 │   async *method([element]) {
  110 │     "use strict";
@@ -19955,7 +19955,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/async-meth-dflt-params-duplicates.js:38:17]
  37 │ ({
  38 │   async *method(x = 0, x) {
@@ -19985,7 +19985,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ });
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-meth-object-destructuring-param-strict-body.js:110:5]
  109 │   async *method({property}) {
  110 │     "use strict";
@@ -19994,7 +19994,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/async-meth-rest-param-strict-body.js:110:5]
  109 │   async *method(a,...rest) {
  110 │     "use strict";
@@ -20012,7 +20012,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-async-method-duplicate-parameters.js:28:13]
  27 │ ({
  28 │   async foo(a, a) { }
@@ -20022,7 +20022,7 @@ Negative Passed: 4669/4669 (100.00%)
  29 │ })
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-method-NSPL-with-USD.js:17:15]
  16 │ ({
  17 │   foo(x = 1) {"use strict"}
@@ -20077,7 +20077,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ })
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-method-duplicate-parameters.js:27:7]
  26 │ ({
  27 │   foo(a, a) { }
@@ -20218,7 +20218,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/gen-meth-array-destructuring-param-strict-body.js:139:5]
  138 │   *method([element]) {
  139 │     "use strict";
@@ -20227,7 +20227,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/gen-meth-dflt-params-duplicates.js:67:11]
  66 │ 0, {
  67 │   *method(x = 0, x) {
@@ -20245,7 +20245,7 @@ Negative Passed: 4669/4669 (100.00%)
  72 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/gen-meth-object-destructuring-param-strict-body.js:139:5]
  138 │   *method({property}) {
  139 │     "use strict";
@@ -20254,7 +20254,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/gen-meth-rest-param-strict-body.js:139:5]
  138 │   *method(a,...rest) {
  139 │     "use strict";
@@ -20401,7 +20401,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │   });
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/generator-param-redecl-const.js:21:10]
  20 │ var obj = {
  21 │     *foo(a) {
@@ -20413,7 +20413,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │     }
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/generator-param-redecl-let.js:21:10]
  20 │ var obj = {
  21 │     *foo(a) {
@@ -20441,7 +20441,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │     }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/object/method-definition/generator-use-strict-with-non-simple-param.js:23:5]
  22 │   *m(a = 0) {
  23 │     "use strict";
@@ -20450,7 +20450,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/meth-array-destructuring-param-strict-body.js:135:5]
  134 │   method([element]) {
  135 │     "use strict";
@@ -20459,7 +20459,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/meth-dflt-params-duplicates.js:63:10]
  62 │ 0, {
  63 │   method(x = 0, x) {
@@ -20477,7 +20477,7 @@ Negative Passed: 4669/4669 (100.00%)
  68 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/meth-object-destructuring-param-strict-body.js:135:5]
  134 │   method({property}) {
  135 │     "use strict";
@@ -20486,7 +20486,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/expressions/object/method-definition/meth-rest-param-strict-body.js:135:5]
  134 │   method(a,...rest) {
  135 │     "use strict";
@@ -20504,7 +20504,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/expressions/object/method-definition/name-param-redecl.js:19:10]
  18 │ var obj = {
  19 │   method(param) {
@@ -20676,7 +20676,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/object/method-definition/setter-use-strict-with-non-simple-param.js:22:5]
  21 │   set m(a = 0) {
  22 │     "use strict";
@@ -20685,7 +20685,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/expressions/object/method-definition/use-strict-with-non-simple-param.js:22:5]
  21 │   m(a = 0) {
  22 │     "use strict";
@@ -21563,7 +21563,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ──
     ╰────
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[test262/test/language/global-code/new.target-arrow.js:37:3]
  36 │ () => {
  37 │   new.target;
@@ -21572,7 +21572,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[test262/test/language/global-code/new.target.js:21:1]
  20 │ 
  21 │ new.target;
@@ -22461,7 +22461,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ─
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/import/dup-bound-names.js:16:10]
  15 │ 
  16 │ import { x, y as x } from 'z';
@@ -22759,7 +22759,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ╰── `(` expected
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/line-terminators/S7.3_A2.1_T2.js:17:1]
  16 │ //CHECK#1
  17 │ "
@@ -22768,7 +22768,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ ing
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/line-terminators/S7.3_A2.2_T2.js:17:1]
  16 │ //CHECK#1
  17 │ "
@@ -22899,14 +22899,14 @@ Negative Passed: 4669/4669 (100.00%)
     · ────
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/line-terminators/invalid-string-cr.js:17:1]
  16 │ 
  17 │ ''
     · ──
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/line-terminators/invalid-string-lf.js:17:1]
  16 │ 
  17 │ '
@@ -23666,7 +23666,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
     ╭─[test262/test/language/literals/regexp/S7.8.5_A1.2_T1.js:24:1]
  23 │ 
  24 │ /*/
@@ -24306,7 +24306,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Valid modifiers are: i, m, s
 
-  × Unexpected flag G in regular expression literal
+  × TS(1499): Unexpected flag G in regular expression literal
     ╭─[test262/test/language/literals/regexp/early-err-bad-flag.js:19:4]
  18 │ 
  19 │ /./G;
@@ -25288,7 +25288,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Use `\uXXXX` or `\u{XXXXX}` format for unicode escapes
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A1.1_T1.js:19:3]
  18 │ //CHECK#1
  19 │ """
@@ -25303,7 +25303,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A1.1_T2.js:19:1]
  18 │ //CHECK#1
  19 │ "
@@ -25311,7 +25311,7 @@ Negative Passed: 4669/4669 (100.00%)
  20 │ "
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A1.2_T1.js:19:3]
  18 │ //CHECK#1
  19 │ '''
@@ -25326,7 +25326,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A1.2_T2.js:19:1]
  18 │ //CHECK#1
  19 │ '
@@ -25334,28 +25334,28 @@ Negative Passed: 4669/4669 (100.00%)
  20 │ '
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A3.1_T1.js:17:1]
  16 │ //CHECK#1
  17 │ "\"
     · ────
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A3.1_T2.js:17:1]
  16 │ //CHECK#1
  17 │ '\'
     · ────
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A3.2_T1.js:17:1]
  16 │ //CHECK#1
  17 │ "\\\"
     · ──────
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/literals/string/S7.8.4_A3.2_T2.js:17:1]
  16 │ //CHECK#1
  17 │ '\\\'
@@ -25611,7 +25611,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ╰── It cannot be redeclared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/module-code/early-dup-export-decl.js:17:17]
  16 │ 
  17 │ export function f() {}
@@ -25670,7 +25670,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ───────
     ╰────
 
-  × Label `label` has already been declared
+  × TS(1114): Label `label` has already been declared
     ╭─[test262/test/language/module-code/early-dup-lables.js:16:1]
  15 │ 
  16 │ label: {
@@ -25682,7 +25682,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-dup-lex.js:17:5]
  16 │ 
  17 │ let x;
@@ -25693,7 +25693,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-dup-top-function-async-generator.js:19:10]
  18 │ 
  19 │ function x() {}
@@ -25704,7 +25704,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                 ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-dup-top-function-async.js:19:10]
  18 │ 
  19 │ function x() {}
@@ -25715,7 +25715,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-dup-top-function-generator.js:19:10]
  18 │ 
  19 │ function x() {}
@@ -25726,7 +25726,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-dup-top-function.js:19:10]
  18 │ 
  19 │ function x() {}
@@ -25791,7 +25791,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/module-code/early-lex-and-var.js:17:5]
  16 │ 
  17 │ let x;
@@ -25802,7 +25802,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── It can not be redeclared here
     ╰────
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[test262/test/language/module-code/early-new-target.js:16:1]
  15 │ 
  16 │ new.target;
@@ -25849,7 +25849,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
     ╭─[test262/test/language/module-code/export-default-asyncfunction-declaration-binding-exists.js:22:7]
  21 │ 
  22 │ class A {};
@@ -25860,7 +25860,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `AG` has already been declared
+  × TS(2300): Identifier `AG` has already been declared
     ╭─[test262/test/language/module-code/export-default-asyncgenerator-declaration-binding-exists.js:22:7]
  21 │ 
  22 │ class AG {}
@@ -25871,7 +25871,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                  ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `F` has already been declared
+  × TS(2300): Identifier `F` has already been declared
     ╭─[test262/test/language/module-code/export-default-function-declaration-binding-exists.js:22:7]
  21 │ 
  22 │ class F {}
@@ -25883,7 +25883,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │ 
     ╰────
 
-  × Identifier `G` has already been declared
+  × TS(2300): Identifier `G` has already been declared
     ╭─[test262/test/language/module-code/export-default-generator-declaration-binding-exists.js:22:7]
  21 │ 
  22 │ class G {}
@@ -26654,7 +26654,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                ───
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/module-code/parse-err-hoist-lex-fun.js:24:5]
  23 │ 
  24 │ var f;
@@ -26665,7 +26665,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·          ╰── It can not be redeclared here
     ╰────
 
-  × Identifier `g` has already been declared
+  × TS(2300): Identifier `g` has already been declared
     ╭─[test262/test/language/module-code/parse-err-hoist-lex-gen.js:26:5]
  25 │ 
  26 │ var g;
@@ -27204,7 +27204,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-function/array-destructuring-param-strict-body.js:109:3]
  108 │ async function f([element]) {
  109 │   "use strict";
@@ -27277,7 +27277,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/async-function/dflt-params-duplicates.js:37:18]
  36 │ 
  37 │ async function f(x = 0, x) {
@@ -27295,7 +27295,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/statements/async-function/early-errors-declaration-NSPL-with-USD.js:17:27]
  16 │ 
  17 │ async function foo(x = 1){"use strict"}
@@ -27357,7 +27357,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ─────
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/statements/async-function/early-errors-declaration-duplicate-parameters.js:18:20]
  17 │ 
  18 │ async function foo(a, a) { }
@@ -27374,7 +27374,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
     ╭─[test262/test/language/statements/async-function/early-errors-declaration-formals-body-duplicate.js:16:21]
  15 │ 
  16 │ async function foo (bar) { let bar; }
@@ -27421,7 +27421,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-function/object-destructuring-param-strict-body.js:109:3]
  108 │ async function f({property}) {
  109 │   "use strict";
@@ -27430,7 +27430,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-function/rest-param-strict-body.js:109:3]
  108 │ async function f(a,...rest) {
  109 │   "use strict";
@@ -27448,7 +27448,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-generator/array-destructuring-param-strict-body.js:112:3]
  111 │ async function* f([element]) {
  112 │   "use strict";
@@ -27521,7 +27521,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/async-generator/dflt-params-duplicates.js:40:19]
  39 │ 
  40 │ async function* f(x = 0, x) {
@@ -27642,7 +27642,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-generator/object-destructuring-param-strict-body.js:112:3]
  111 │ async function* f({property}) {
  112 │   "use strict";
@@ -27651,7 +27651,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-generator/rest-param-strict-body.js:112:3]
  111 │ async function* f(a,...rest) {
  112 │   "use strict";
@@ -27781,7 +27781,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/await-using/redeclaration-error-from-within-strict-mode-function-await-using.js:16:49]
  15 │ $DONOTEVALUATE();
  16 │ (async function() { 'use strict'; { await using f = null; var f; } })
@@ -28197,7 +28197,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·        ──
     ╰────
 
-  × A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
+  × TS(1115): A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
     ╭─[test262/test/language/statements/block/labeled-continue.js:21:1]
  20 │ 
  21 │ label: {
@@ -28210,7 +28210,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │   }
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[test262/test/language/statements/break/S12.8_A1_T1.js:19:1]
  18 │ var x=1;
  19 │ break;
@@ -28227,7 +28227,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ var y=2;
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[test262/test/language/statements/break/S12.8_A1_T3.js:22:5]
  21 │     var x=1;
  22 │     break;
@@ -28244,7 +28244,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │     var y=2;
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/break/S12.8_A5_T1.js:24:15]
  23 │             return;
  24 │         break LABEL_ANOTHER_LOOP;
@@ -28252,7 +28252,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │         LABEL_IN_2 : y++;
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/break/S12.8_A5_T2.js:26:15]
  25 │             return;
  26 │         break IN_DO_FUNC;
@@ -28260,7 +28260,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │         LABEL_IN_2 : y++;
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/break/S12.8_A5_T3.js:26:15]
  25 │             return;
  26 │         break LABEL_IN;
@@ -28268,7 +28268,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │         LABEL_IN_2 : y++;
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/break/S12.8_A6.js:24:23]
  23 │     x++;
  24 │     (function(){break LABEL1;})();
@@ -28284,7 +28284,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │     LABEL2 : do {
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[test262/test/language/statements/break/S12.8_A8_T2.js:20:2]
  19 │ } catch(e){
  20 │     break;
@@ -28293,7 +28293,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[test262/test/language/statements/break/static-init-without-label.js:25:7]
  24 │     static {
  25 │       break;
@@ -28311,7 +28311,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method/array-destructuring-param-strict-body.js:135:5]
  134 │   async *method([element]) {
  135 │     "use strict";
@@ -28384,7 +28384,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/async-gen-method/dflt-params-duplicates.js:63:17]
  62 │ class C {
  63 │   async *method(x = 0, x) {
@@ -28402,7 +28402,7 @@ Negative Passed: 4669/4669 (100.00%)
  68 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method/object-destructuring-param-strict-body.js:135:5]
  134 │   async *method({property}) {
  135 │     "use strict";
@@ -28411,7 +28411,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method/rest-param-strict-body.js:135:5]
  134 │   async *method(a,...rest) {
  135 │     "use strict";
@@ -28541,7 +28541,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method-static/array-destructuring-param-strict-body.js:136:5]
  135 │   static async *method([element]) {
  136 │     "use strict";
@@ -28614,7 +28614,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/async-gen-method-static/dflt-params-duplicates.js:64:24]
  63 │ class C {
  64 │   static async *method(x = 0, x) {
@@ -28632,7 +28632,7 @@ Negative Passed: 4669/4669 (100.00%)
  69 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method-static/object-destructuring-param-strict-body.js:136:5]
  135 │   static async *method({property}) {
  136 │     "use strict";
@@ -28641,7 +28641,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-gen-method-static/rest-param-strict-body.js:136:5]
  135 │   static async *method(a,...rest) {
  136 │     "use strict";
@@ -28780,7 +28780,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ };
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method/array-destructuring-param-strict-body.js:134:5]
  133 │   async method([element]) {
  134 │     "use strict";
@@ -28853,7 +28853,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/async-method/dflt-params-duplicates.js:62:16]
  61 │ class C {
  62 │   async method(x = 0, x) {
@@ -28871,7 +28871,7 @@ Negative Passed: 4669/4669 (100.00%)
  67 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method/object-destructuring-param-strict-body.js:134:5]
  133 │   async method({property}) {
  134 │     "use strict";
@@ -28880,7 +28880,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method/rest-param-strict-body.js:134:5]
  133 │   async method(a,...rest) {
  134 │     "use strict";
@@ -28898,7 +28898,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method-static/array-destructuring-param-strict-body.js:133:5]
  132 │   static async method([element]) {
  133 │     "use strict";
@@ -28971,7 +28971,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/async-method-static/dflt-params-duplicates.js:61:23]
  60 │ class C {
  61 │   static async method(x = 0, x) {
@@ -28989,7 +28989,7 @@ Negative Passed: 4669/4669 (100.00%)
  66 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method-static/object-destructuring-param-strict-body.js:133:5]
  132 │   static async method({property}) {
  133 │     "use strict";
@@ -28998,7 +28998,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/async-method-static/rest-param-strict-body.js:133:5]
  132 │   static async method(a,...rest) {
  133 │     "use strict";
@@ -29094,7 +29094,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/statements/class/definition/early-errors-class-async-method-duplicate-parameters.js:29:13]
  28 │ class Foo {
  29 │   async foo(a, a) { }
@@ -29104,7 +29104,7 @@ Negative Passed: 4669/4669 (100.00%)
  30 │ }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/statements/class/definition/early-errors-class-method-NSPL-with-USD.js:17:21]
  16 │ class Foo {
  17 │   async bar(x = 1) {"use strict"}
@@ -29146,7 +29146,7 @@ Negative Passed: 4669/4669 (100.00%)
  17 │ }
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
     ╭─[test262/test/language/statements/class/definition/early-errors-class-method-duplicate-parameters.js:28:7]
  27 │ class Foo {
  28 │   foo(a, a) { }
@@ -31042,7 +31042,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Identifier `#x` has already been declared
+  × TS(2300): Identifier `#x` has already been declared
     ╭─[test262/test/language/statements/class/elements/fields-duplicate-privatenames.js:23:3]
  22 │ class C {
  23 │   #x;
@@ -33193,7 +33193,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-class-body-ctor-duplicate.js:24:3]
  23 │ class C {
  24 │   constructor() {}
@@ -33341,7 +33341,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │     }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-async-gen.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33353,7 +33353,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-async.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33365,7 +33365,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-gen.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33377,7 +33377,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-get-field.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33389,7 +33389,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-get-get.js:25:7]
  24 │ class C {
  25 │   get #m() {}
@@ -33401,7 +33401,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-field.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33413,7 +33413,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-get.js:25:7]
  24 │ class C {
  25 │   get #m() {}
@@ -33425,7 +33425,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-meth.js:25:3]
  24 │ class C {
  25 │   #m() {}
@@ -33437,7 +33437,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-set.js:25:7]
  24 │ class C {
  25 │   set #m(_) {}
@@ -33449,7 +33449,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-staticfield.js:25:10]
  24 │ class C {
  25 │   static #m;
@@ -33461,7 +33461,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-meth-staticmeth.js:25:10]
  24 │ class C {
  25 │   static #m() {}
@@ -33473,7 +33473,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-set-field.js:25:3]
  24 │ class C {
  25 │   #m;
@@ -33485,7 +33485,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ }
     ╰────
 
-  × Identifier `#m` has already been declared
+  × TS(2300): Identifier `#m` has already been declared
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatemeth-duplicate-set-set.js:25:7]
  24 │ class C {
  25 │   set #m(_) {}
@@ -34316,7 +34316,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method/array-destructuring-param-strict-body.js:155:5]
  154 │   *method([element]) {
  155 │     "use strict";
@@ -34325,7 +34325,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/gen-method/dflt-params-duplicates.js:83:11]
  82 │ class C {
  83 │   *method(x = 0, x) {
@@ -34343,7 +34343,7 @@ Negative Passed: 4669/4669 (100.00%)
  88 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method/object-destructuring-param-strict-body.js:155:5]
  154 │   *method({property}) {
  155 │     "use strict";
@@ -34352,7 +34352,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method/rest-param-strict-body.js:155:5]
  154 │   *method(a,...rest) {
  155 │     "use strict";
@@ -34491,7 +34491,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method-static/array-destructuring-param-strict-body.js:155:5]
  154 │   static *method([element]) {
  155 │     "use strict";
@@ -34500,7 +34500,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/gen-method-static/dflt-params-duplicates.js:83:18]
  82 │ class C {
  83 │   static *method(x = 0, x) {
@@ -34518,7 +34518,7 @@ Negative Passed: 4669/4669 (100.00%)
  88 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method-static/object-destructuring-param-strict-body.js:155:5]
  154 │   static *method({property}) {
  155 │     "use strict";
@@ -34527,7 +34527,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/gen-method-static/rest-param-strict-body.js:155:5]
  154 │   static *method(a,...rest) {
  155 │     "use strict";
@@ -34665,7 +34665,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove these parameters here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method/array-destructuring-param-strict-body.js:152:5]
  151 │   method([element]) {
  152 │     "use strict";
@@ -34674,7 +34674,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/method/dflt-params-duplicates.js:80:10]
  79 │ class C {
  80 │   method(x = 0, x) {
@@ -34692,7 +34692,7 @@ Negative Passed: 4669/4669 (100.00%)
  85 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method/object-destructuring-param-strict-body.js:152:5]
  151 │   method({property}) {
  152 │     "use strict";
@@ -34701,7 +34701,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method/rest-param-strict-body.js:152:5]
  151 │   method(a,...rest) {
  152 │     "use strict";
@@ -34728,7 +34728,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method-static/array-destructuring-param-strict-body.js:152:5]
  151 │   static method([element]) {
  152 │     "use strict";
@@ -34737,7 +34737,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/method-static/dflt-params-duplicates.js:80:17]
  79 │ class C {
  80 │   static method(x = 0, x) {
@@ -34755,7 +34755,7 @@ Negative Passed: 4669/4669 (100.00%)
  85 │     
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method-static/object-destructuring-param-strict-body.js:152:5]
  151 │   static method({property}) {
  152 │     "use strict";
@@ -34764,7 +34764,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/class/method-static/rest-param-strict-body.js:152:5]
  151 │   static method(a,...rest) {
  152 │     "use strict";
@@ -34782,7 +34782,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Identifier `#f` has already been declared
+  × TS(2300): Identifier `#f` has already been declared
     ╭─[test262/test/language/statements/class/private-non-static-getter-static-setter-early-error.js:17:7]
  16 │ class C {
  17 │   get #f() {}
@@ -34794,7 +34794,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Identifier `#f` has already been declared
+  × TS(2300): Identifier `#f` has already been declared
     ╭─[test262/test/language/statements/class/private-non-static-setter-static-getter-early-error.js:17:7]
  16 │ class C {
  17 │   set #f(v) {}
@@ -34806,7 +34806,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Identifier `#f` has already been declared
+  × TS(2300): Identifier `#f` has already been declared
     ╭─[test262/test/language/statements/class/private-static-getter-non-static-setter-early-error.js:17:14]
  16 │ class C {
  17 │   static get #f() {}
@@ -34818,7 +34818,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Identifier `#f` has already been declared
+  × TS(2300): Identifier `#f` has already been declared
     ╭─[test262/test/language/statements/class/private-static-setter-non-static-getter-early-error.js:17:14]
  16 │ class C {
  17 │   static set #f(v) {}
@@ -34864,7 +34864,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │     }
     ╰────
 
-  × Label `x` has already been declared
+  × TS(1114): Label `x` has already been declared
     ╭─[test262/test/language/statements/class/static-init-invalid-label-dup.js:22:5]
  21 │   static {
  22 │     x: x: 0;
@@ -34874,7 +34874,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/static-init-invalid-lex-dup.js:22:9]
  21 │   static {
  22 │     let x;
@@ -34886,7 +34886,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │   }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/class/static-init-invalid-lex-var.js:23:9]
  22 │   static {
  23 │     let x;
@@ -34914,7 +34914,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/class/static-init-invalid-undefined-break-target.js:23:13]
  22 │     x: while (false) {
  23 │       break y;
@@ -34922,7 +34922,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/class/static-init-invalid-undefined-continue-target.js:23:16]
  22 │     x: while (false) {
  23 │       continue y;
@@ -34956,7 +34956,7 @@ Negative Passed: 4669/4669 (100.00%)
  16 │ 
     ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
     ╭─[test262/test/language/statements/class/syntax/early-errors/class-definition-evaluation-block-duplicate-binding.js:17:9]
  16 │ {
  17 │   class A {}
@@ -34968,7 +34968,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
     ╭─[test262/test/language/statements/class/syntax/early-errors/class-definition-evaluation-scriptbody-duplicate-binding.js:16:7]
  15 │ $DONOTEVALUATE();
  16 │ class A {}
@@ -35036,7 +35036,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ 
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/const/redeclaration-error-from-within-strict-mode-function-const.js:14:37]
  13 │ $DONOTEVALUATE();
  14 │ (function() { 'use strict'; { const f = 1; var f; } })
@@ -35257,7 +35257,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[test262/test/language/statements/continue/S12.7_A1_T1.js:21:1]
  20 │ var x=1;
  21 │ continue;
@@ -35282,7 +35282,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │     var y=2;
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[test262/test/language/statements/continue/S12.7_A1_T4.js:22:5]
  21 │     var x=1;
  22 │     continue;
@@ -35315,7 +35315,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │    LABEL_IN_2 : y++;
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/continue/S12.7_A6.js:22:26]
  21 │     x++;
  22 │     (function(){continue LABEL1;})();
@@ -35331,7 +35331,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │     LABEL2 : do {
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[test262/test/language/statements/continue/S12.7_A8_T2.js:18:2]
  17 │ } catch(e){
  18 │     continue;
@@ -35340,7 +35340,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[test262/test/language/statements/continue/static-init-with-label.js:26:16]
  25 │     static {
  26 │       continue label;
@@ -35348,7 +35348,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │     }
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[test262/test/language/statements/continue/static-init-without-label.js:26:7]
  25 │     static {
  26 │       continue;
@@ -35706,7 +35706,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
     ╭─[test262/test/language/statements/for/S12.6.3_A8_T3.js:22:6]
  21 │ //CHECK#1
  22 │ for({index=0; index+=1;} index++<=10; index*2;) {   arr.add(""+index);};
@@ -35936,7 +35936,7 @@ Negative Passed: 4669/4669 (100.00%)
  47 │   
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for/head-const-bound-names-in-stmt.js:21:12]
  20 │ 
  21 │ for (const x = 0; false; ) {
@@ -35948,7 +35948,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for/head-let-bound-names-in-stmt.js:21:10]
  20 │ 
  21 │ for (let x; false; ) {
@@ -37096,7 +37096,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │ ]) ;
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-in/head-const-bound-names-dup.js:18:13]
  17 │ 
  18 │ for (const [x, x] in {}) {}
@@ -37105,7 +37105,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-in/head-const-bound-names-in-stmt.js:18:12]
  17 │ 
  18 │ for (const x in {}) {
@@ -37124,7 +37124,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ───
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-in/head-let-bound-names-dup.js:18:11]
  17 │ 
  18 │ for (let [x, x] in {}) {}
@@ -37133,7 +37133,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-in/head-let-bound-names-in-stmt.js:18:10]
  17 │ 
  18 │ for (let x in {}) {
@@ -37829,7 +37829,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·            ───────
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-await-using-bound-names-in-stmt.js:18:18]
  17 │ 
  18 │ for (await using x of []) {
@@ -37857,7 +37857,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-const-bound-names-dup.js:18:13]
  17 │ 
  18 │ for (const [x, x] of []) {}
@@ -37866,7 +37866,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-const-bound-names-in-stmt.js:18:12]
  17 │ 
  18 │ for (const x of []) {
@@ -37910,7 +37910,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── Opened here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-let-bound-names-dup.js:18:11]
  17 │ 
  18 │ for (let [x, x] of []) {}
@@ -37919,7 +37919,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-let-bound-names-in-stmt.js:18:10]
  17 │ 
  18 │ for (let x of []) {
@@ -37989,7 +37989,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ────
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/for-of/head-using-bound-names-in-stmt.js:18:12]
  17 │ 
  18 │ for (using x of []) {
@@ -38103,7 +38103,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/13.1-5gs.js:18:22]
  17 │ 
  18 │ function _13_1_5_fun(param, param) { }
@@ -38112,7 +38112,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/13.1-8gs.js:18:29]
  17 │ 
  18 │ var _13_1_8_fun = function (param, param) { };
@@ -38142,7 +38142,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ─
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/function/array-destructuring-param-strict-body.js:133:3]
  132 │ function f([element]) {
  133 │   "use strict";
@@ -38151,7 +38151,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/function/dflt-params-duplicates.js:61:12]
  60 │ 
  61 │ function f(x = 0, x) {
@@ -38435,7 +38435,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/function/object-destructuring-param-strict-body.js:133:3]
  132 │ function f({property}) {
  133 │   "use strict";
@@ -38469,7 +38469,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-1.js:23:22]
  22 │ 
  23 │ function _13_1_5_fun(param, param) { }
@@ -38478,7 +38478,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param1` has already been declared
+  × TS(2300): Identifier `param1` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-2.js:24:22]
  23 │ 
  24 │ function _13_1_6_fun(param1, param2, param1) { }
@@ -38487,7 +38487,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `param1` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-3.js:23:22]
  22 │ 
  23 │ function _13_1_7_fun(param, param, param) { }
@@ -38496,7 +38496,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-3.js:23:22]
  22 │ 
  23 │ function _13_1_7_fun(param, param, param) { }
@@ -38505,7 +38505,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-body-1.js:22:23]
  21 │ 
  22 │ function _13_1_24_fun(param, param) { 'use strict'; }
@@ -38514,7 +38514,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param1` has already been declared
+  × TS(2300): Identifier `param1` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-body-2.js:23:23]
  22 │ 
  23 │ function _13_1_26_fun(param1, param2, param1) { 'use strict'; }
@@ -38523,7 +38523,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `param1` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-body-3.js:22:23]
  21 │ 
  22 │ function _13_1_28_fun(param, param, param) { 'use strict'; }
@@ -38532,7 +38532,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `param` has already been declared here
     ╰────
 
-  × Identifier `param` has already been declared
+  × TS(2300): Identifier `param` has already been declared
     ╭─[test262/test/language/statements/function/param-duplicated-strict-body-3.js:22:23]
  21 │ 
  22 │ function _13_1_28_fun(param, param, param) { 'use strict'; }
@@ -38557,7 +38557,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/function/rest-param-strict-body.js:133:3]
  132 │ function f(a,...rest) {
  133 │   "use strict";
@@ -38583,7 +38583,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/statements/function/use-strict-with-non-simple-param.js:21:3]
  20 │ function f(a = 0) {
  21 │   "use strict";
@@ -38592,7 +38592,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/generators/array-destructuring-param-strict-body.js:133:3]
  132 │ function* f([element]) {
  133 │   "use strict";
@@ -38601,7 +38601,7 @@ Negative Passed: 4669/4669 (100.00%)
      ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/generators/dflt-params-duplicates.js:61:13]
  60 │ 
  61 │ function* f(x = 0, x) {
@@ -38715,7 +38715,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/generators/object-destructuring-param-strict-body.js:133:3]
  132 │ function* f({property}) {
  133 │   "use strict";
@@ -38732,7 +38732,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── yield expression not allowed in formal parameter
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/generators/rest-param-strict-body.js:133:3]
  132 │ function* f(a,...rest) {
  133 │   "use strict";
@@ -38750,7 +38750,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[test262/test/language/statements/generators/use-strict-with-non-simple-param.js:22:3]
  21 │ function* f(a = 0) {
  22 │   "use strict";
@@ -39402,7 +39402,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
+  × TS(1115): A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
     ╭─[test262/test/language/statements/labeled/continue.js:25:3]
  24 │ do {
  25 │   test262: {
@@ -39593,7 +39593,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ 
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/let/redeclaration-error-from-within-strict-mode-function.js:14:35]
  13 │ $DONOTEVALUATE();
  14 │ (function() { 'use strict'; { let f; var f; } })
@@ -39930,7 +39930,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: If this is intended to be the condition for the switch statement, add `case` before it.
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-function.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: async function f() {} }
@@ -39939,7 +39939,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-async-generator.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: async function* f() {} }
@@ -39948,7 +39948,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-class.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: class f {} }
@@ -39957,7 +39957,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-const.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: const f = 0 }
@@ -39966,7 +39966,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-function.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: function f() {} }
@@ -39975,7 +39975,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-generator.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: function* f() {} }
@@ -39984,7 +39984,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-let.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: let f }
@@ -39993,7 +39993,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-function-name-redeclaration-attempt-with-var.js:24:37]
  23 │ 
  24 │ switch (0) { case 1: async function f() {} default: var f }
@@ -40002,7 +40002,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                     ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-async-function.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: async function f() {} }
@@ -40011,7 +40011,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-async-generator.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: async function* f() {} }
@@ -40020,7 +40020,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-class.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: class f {} }
@@ -40029,7 +40029,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-const.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: const f = 0 }
@@ -40038,7 +40038,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-function.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: function f() {} }
@@ -40047,7 +40047,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-generator.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: function* f() {} }
@@ -40056,7 +40056,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-let.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: let f }
@@ -40065,7 +40065,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/async-generator-name-redeclaration-attempt-with-var.js:24:38]
  23 │ 
  24 │ switch (0) { case 1: async function* f() {} default: var f }
@@ -40074,7 +40074,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                      ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-async-function.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: class f {} default: async function f() {} }
@@ -40083,7 +40083,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-async-generator.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: class f {} default: async function* f() {} }
@@ -40092,7 +40092,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-class.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: class f {} default: class f {} }
@@ -40101,7 +40101,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-const.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: class f {} default: const f = 0 }
@@ -40110,7 +40110,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-function.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: class f {} default: function f() {} }
@@ -40119,7 +40119,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-generator.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: class f {} default: function* f() {} }
@@ -40128,7 +40128,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-let.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: class f {} default: let f }
@@ -40137,7 +40137,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/class-name-redeclaration-attempt-with-var.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: class f {} default: var f }
@@ -40146,7 +40146,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-async-function.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: const f = 0; default: async function f() {} }
@@ -40155,7 +40155,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-async-generator.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: const f = 0; default: async function* f() {} }
@@ -40164,7 +40164,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-class.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: const f = 0; default: class f {} }
@@ -40173,7 +40173,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-const.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: const f = 0; default: const f = 0 }
@@ -40182,7 +40182,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-function.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: const f = 0; default: function f() {} }
@@ -40191,7 +40191,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-generator.js:24:28]
  23 │ 
  24 │ switch (0) { case 1: const f = 0; default: function* f() {} }
@@ -40200,7 +40200,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-let.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: const f = 0; default: let f }
@@ -40209,7 +40209,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/const-name-redeclaration-attempt-with-var.js:23:28]
  22 │ 
  23 │ switch (0) { case 1: const f = 0; default: var f }
@@ -40218,7 +40218,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-async-function.js:24:31]
  23 │ 
  24 │ switch (0) { case 1: function f() {} default: async function f() {} }
@@ -40227,7 +40227,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-async-generator.js:24:31]
  23 │ 
  24 │ switch (0) { case 1: function f() {} default: async function* f() {} }
@@ -40236,7 +40236,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-class.js:23:31]
  22 │ 
  23 │ switch (0) { case 1: function f() {} default: class f {} }
@@ -40245,7 +40245,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-const.js:23:31]
  22 │ 
  23 │ switch (0) { case 1: function f() {} default: const f = 0 }
@@ -40254,7 +40254,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-function.js:23:31]
  22 │ 
  23 │ switch (0) { case 1: function f() {} default: function f() {} }
@@ -40263,7 +40263,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-generator.js:24:31]
  23 │ 
  24 │ switch (0) { case 1: function f() {} default: function* f() {} }
@@ -40272,7 +40272,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-let.js:23:31]
  22 │ 
  23 │ switch (0) { case 1: function f() {} default: let f }
@@ -40281,7 +40281,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/function-name-redeclaration-attempt-with-var.js:23:31]
  22 │ 
  23 │ switch (0) { case 1: function f() {} default: var f }
@@ -40290,7 +40290,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-async-function.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: async function f() {} }
@@ -40299,7 +40299,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-async-generator.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: async function* f() {} }
@@ -40308,7 +40308,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-class.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: class f {} }
@@ -40317,7 +40317,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-const.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: const f = 0 }
@@ -40326,7 +40326,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-function.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: function f() {} }
@@ -40335,7 +40335,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-generator.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: function* f() {} }
@@ -40344,7 +40344,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-let.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: let f }
@@ -40353,7 +40353,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/generator-name-redeclaration-attempt-with-var.js:24:32]
  23 │ 
  24 │ switch (0) { case 1: function* f() {} default: var f }
@@ -40362,7 +40362,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                                ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-async-function.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: let f; default: async function f() {} }
@@ -40371,7 +40371,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-async-generator.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: let f; default: async function* f() {} }
@@ -40380,7 +40380,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-class.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: let f; default: class f {} }
@@ -40389,7 +40389,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-const.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: let f; default: const f = 0 }
@@ -40398,7 +40398,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-function.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: let f; default: function f() {} }
@@ -40407,7 +40407,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-generator.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: let f; default: function* f() {} }
@@ -40416,7 +40416,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-let.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: let f; default: let f }
@@ -40425,7 +40425,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/let-name-redeclaration-attempt-with-var.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: let f; default: var f }
@@ -40434,7 +40434,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-async-function.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: var f; default: async function f() {} }
@@ -40443,7 +40443,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-async-generator.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: var f; default: async function* f() {} }
@@ -40452,7 +40452,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-class.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: var f; default: class f {} }
@@ -40461,7 +40461,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-const.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: var f; default: const f = 0 }
@@ -40470,7 +40470,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-function.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: var f; default: function f() {} }
@@ -40479,7 +40479,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-generator.js:24:26]
  23 │ 
  24 │ switch (0) { case 1: var f; default: function* f() {} }
@@ -40488,7 +40488,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/switch/syntax/redeclaration/var-name-redeclaration-attempt-with-let.js:23:26]
  22 │ 
  23 │ switch (0) { case 1: var f; default: let f }
@@ -40674,7 +40674,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │   
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/try/early-catch-duplicates.js:17:17]
  16 │ 
  17 │ try { } catch ([x, x]) {}
@@ -40683,7 +40683,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                 ╰── `x` has already been declared here
     ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
     ╭─[test262/test/language/statements/try/early-catch-function.js:23:14]
  22 │     try {
  23 │     } catch (e) {
@@ -40695,7 +40695,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │     }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[test262/test/language/statements/try/early-catch-lex.js:18:16]
  17 │ 
  18 │ try { } catch (x) { let x; }
@@ -40720,7 +40720,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[test262/test/language/statements/using/redeclaration-error-from-within-strict-mode-function-using.js:16:37]
  15 │ $DONOTEVALUATE();
  16 │ (function() { 'use strict'; { using f = null; var f; } })
@@ -41864,7 +41864,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A13_T1.js:16:13]
  15 │ 
  16 │ var str = ''';
@@ -41879,7 +41879,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A13_T2.js:16:11]
  15 │ 
  16 │ var str = ';
@@ -41894,14 +41894,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A14_T1.js:16:11]
  15 │ 
  16 │ var str = ";
     ·           ───
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A14_T2.js:16:13]
  15 │ 
  16 │ var str = """;

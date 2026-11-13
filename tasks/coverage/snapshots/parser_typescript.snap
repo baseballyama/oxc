@@ -2984,7 +2984,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │     switch (x) {
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/ambientWithStatements.ts:3:5]
  2 │ declare namespace M {
  3 │     break;
@@ -2993,7 +2993,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/ambientWithStatements.ts:4:5]
  3 │     break;
  4 │     continue;
@@ -3059,7 +3059,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `myFn` has already been declared
+  × TS(2300): Identifier `myFn` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/anyDeclare.ts:3:9]
  2 │ namespace myMod {
  3 │     var myFn;
@@ -3323,7 +3323,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·  ────
    ╰────
 
-  × Identifier `c1` has already been declared
+  × TS(2300): Identifier `c1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesClass.ts:2:7]
  1 │ //// class then var
  2 │ class c1 { public foo() { } }
@@ -3335,7 +3335,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Identifier `c4` has already been declared
+  × TS(2300): Identifier `c4` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesClass.ts:6:7]
  5 │ //// class then enum
  6 │ class c4 { public foo() { } }
@@ -3346,7 +3346,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·       ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `c33` has already been declared
+  × TS(2300): Identifier `c33` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesClass2.ts:16:7]
  15 │ // class then enum 
  16 │ class c33 {
@@ -3362,7 +3362,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  22 │ 
     ╰────
 
-  × Identifier `c2` has already been declared
+  × TS(2300): Identifier `c2` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesClass2a.ts:2:7]
  1 │ //// class then function
  2 │ class c2 { public foo() { } } // error
@@ -3374,7 +3374,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `c3` has already been declared
+  × TS(2300): Identifier `c3` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesClass4.ts:2:7]
  1 │ //// class then class
  2 │ class c3 { public foo() { } } // error
@@ -3385,7 +3385,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·        ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `e1111` has already been declared
+  × TS(2300): Identifier `e1111` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum.ts:2:6]
  1 │ // enum then var
  2 │ enum e1111 { One } // error
@@ -3397,7 +3397,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Identifier `e2` has already been declared
+  × TS(2300): Identifier `e2` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum.ts:6:6]
  5 │ // enum then function
  6 │ enum e2 { One } // error
@@ -3409,7 +3409,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ 
    ╰────
 
-  × Identifier `e3` has already been declared
+  × TS(2300): Identifier `e3` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum.ts:9:6]
   8 │ 
   9 │ enum e3 { One } // error
@@ -3421,7 +3421,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ 
     ╰────
 
-  × Identifier `e4` has already been declared
+  × TS(2300): Identifier `e4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum.ts:13:6]
  12 │ // enum then class
  13 │ enum e4 { One } // error
@@ -3433,7 +3433,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │ 
     ╰────
 
-  × Identifier `e1` has already been declared
+  × TS(2300): Identifier `e1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum2.ts:2:6]
  1 │ // enum then interface
  2 │ enum e1 { One } // error
@@ -3446,7 +3446,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │     foo(): void;
    ╰────
 
-  × Identifier `e2` has already been declared
+  × TS(2300): Identifier `e2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesEnum2.ts:11:6]
  10 │ // enum then class
  11 │ enum e2 { One }; // error
@@ -3458,7 +3458,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │     foo() {
     ╰────
 
-  × Identifier `y4` has already been declared
+  × TS(2300): Identifier `y4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesFunction.ts:20:10]
  19 │ // function then enum
  20 │ function y4() { } // error
@@ -3470,7 +3470,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  22 │ 
     ╰────
 
-  × Identifier `i3` has already been declared
+  × TS(2300): Identifier `i3` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesInterface.ts:23:11]
  22 │ // interface then enum
  23 │ interface i3 { // error
@@ -3484,7 +3484,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ 
     ╰────
 
-  × Identifier `m1a` has already been declared
+  × TS(2300): Identifier `m1a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesModules.ts:5:11]
  4 │ 
  5 │ namespace m1a { var y = 2; } // error
@@ -3496,7 +3496,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ 
    ╰────
 
-  × Identifier `m1b` has already been declared
+  × TS(2300): Identifier `m1b` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesModules.ts:8:11]
   7 │ 
   8 │ namespace m1b { export var y = 2; } // error
@@ -3508,7 +3508,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ 
     ╰────
 
-  × Identifier `m1d` has already been declared
+  × TS(2300): Identifier `m1d` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesModules.ts:16:11]
  15 │ 
  16 │ namespace m1d { // error
@@ -3522,7 +3522,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │ 
     ╰────
 
-  × Identifier `x2` has already been declared
+  × TS(2300): Identifier `x2` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:6:5]
  5 │ // var then function
  6 │ var x2 = 1; // error
@@ -3534,7 +3534,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ 
    ╰────
 
-  × Identifier `x4` has already been declared
+  × TS(2300): Identifier `x4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:13:5]
  12 │ // var then class
  13 │ var x4 = 1; // error
@@ -3546,7 +3546,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │ 
     ╰────
 
-  × Identifier `x4a` has already been declared
+  × TS(2300): Identifier `x4a` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:16:5]
  15 │ 
  16 │ var x4a = 1; // error
@@ -3558,7 +3558,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  18 │ 
     ╰────
 
-  × Identifier `x5` has already been declared
+  × TS(2300): Identifier `x5` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:20:5]
  19 │ // var then enum
  20 │ var x5 = 1;
@@ -3570,7 +3570,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  22 │ 
     ╰────
 
-  × Identifier `x6a` has already been declared
+  × TS(2300): Identifier `x6a` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:27:5]
  26 │ 
  27 │ var x6a = 1; // error
@@ -3582,7 +3582,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  29 │ 
     ╰────
 
-  × Identifier `x6b` has already been declared
+  × TS(2300): Identifier `x6b` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/augmentedTypesVar.ts:30:5]
  29 │ 
  30 │ var x6b = 1; // error
@@ -3899,14 +3899,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ·    ─
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/breakNotInIterationOrSwitchStatement1.ts:1:1]
  1 │ break;
    · ──────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/breakNotInIterationOrSwitchStatement2.ts:3:5]
  2 │   function f() {
  3 │     break;
@@ -3915,7 +3915,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/breakTarget5.ts:5:13]
  4 │     while (true) {
  5 │       break target;
@@ -4007,7 +4007,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `Markup` has already been declared
+  × TS(2300): Identifier `Markup` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/classCannotExtendVar.ts:1:5]
  1 │ var Markup;
    ·     ───┬──
@@ -4162,7 +4162,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/classWithDuplicateIdentifier.ts:2:5]
  1 │ class C {
  2 │     a(): number { return 0; } // error: duplicate identifier
@@ -4174,7 +4174,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/classWithDuplicateIdentifier.ts:6:5]
  5 │ class K {
  6 │     b: number; // error: duplicate identifier
@@ -4186,7 +4186,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/classWithDuplicateIdentifier.ts:10:5]
   9 │ class D {
  10 │     c: number;
@@ -5373,7 +5373,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
   help: This conflict marker appears to be incomplete (missing `=======` or `>>>>>>>`).
         Check if the conflict markers were accidentally modified or partially deleted.
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/conflictingTypeAnnotatedVar.ts:1:5]
  1 │ var foo: string;
    ·     ─┬─
@@ -5384,7 +5384,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ function foo(): number { }
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/conflictingTypeAnnotatedVar.ts:1:5]
  1 │ var foo: string;
    ·     ─┬─
@@ -5395,7 +5395,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·           ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarationShadowedByVarDeclaration.ts:4:11]
  3 │ {
  4 │     const x = 0;
@@ -5408,7 +5408,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ }
    ╰────
 
-  × Identifier `y` has already been declared
+  × TS(2300): Identifier `y` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarationShadowedByVarDeclaration.ts:12:11]
  11 │ {
  12 │     const y = 0;
@@ -5421,7 +5421,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Identifier `z` has already been declared
+  × TS(2300): Identifier `z` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarationShadowedByVarDeclaration.ts:20:9]
  19 │ {
  20 │   const z = 0;
@@ -5694,7 +5694,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │     const c5 = 0;
     ╰────
 
-  × Identifier `E` has already been declared
+  × TS(2300): Identifier `E` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constEnumErrors.ts:1:12]
  1 │ const enum E {
    ·            ┬
@@ -5763,7 +5763,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Allowed modifiers are: private, protected, public, readonly, override
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constructorOverloads1.ts:4:5]
  3 │     constructor(n: number);
  4 │     constructor(x: any) {
@@ -5785,7 +5785,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ 
    ╰────
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constructorOverloads8.ts:2:5]
  1 │ class C {
  2 │     constructor(x) { }
@@ -5824,14 +5824,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Try inserting a semicolon here
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueNotInIterationStatement1.ts:1:1]
  1 │ continue;
    · ─────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueNotInIterationStatement2.ts:3:5]
  2 │   function f() {
  3 │     continue;
@@ -5840,7 +5840,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueNotInIterationStatement3.ts:3:5]
  2 │   default:
  3 │     continue;
@@ -5849,7 +5849,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueNotInIterationStatement4.ts:4:14]
  3 │   var x = () => {
  4 │     continue TWO;
@@ -5857,7 +5857,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   }
    ╰────
 
-  × A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
+  × TS(1115): A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueTarget1.ts:1:1]
  1 │ target:
    · ───┬──
@@ -5867,7 +5867,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·               ╰── for this label
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/continueTarget5.ts:5:16]
  4 │     while (true) {
  5 │       continue target;
@@ -6272,7 +6272,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ }
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/declarationEmitDestructuring2.ts:3:13]
  2 │ function g([a, b, c, d] = [1, 2, 3, 4]) { }
  3 │ function h([a, [b], [[c]], {x = 10, y: [a, b, c], z: {a1, b1}}]){ }
@@ -6282,7 +6282,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ function h1([a, [b], [[c]], {x = 10, y = [1, 2, 3], z: {a1, b1}}]){ }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/declarationEmitDestructuring2.ts:3:17]
  2 │ function g([a, b, c, d] = [1, 2, 3, 4]) { }
  3 │ function h([a, [b], [[c]], {x = 10, y: [a, b, c], z: {a1, b1}}]){ }
@@ -6292,7 +6292,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ function h1([a, [b], [[c]], {x = 10, y = [1, 2, 3], z: {a1, b1}}]){ }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/declarationEmitDestructuring2.ts:3:23]
  2 │ function g([a, b, c, d] = [1, 2, 3, 4]) { }
  3 │ function h([a, [b], [[c]], {x = 10, y: [a, b, c], z: {a1, b1}}]){ }
@@ -6734,7 +6734,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:2:12]
  1 │ class a {
  2 │     public a;
@@ -6746,7 +6746,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │     public b() {
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:4:12]
  3 │     public a;
  4 │     public b() {
@@ -6759,7 +6759,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:8:12]
   7 │     }
   8 │     public x;
@@ -6771,7 +6771,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │         return 10;
     ╰────
 
-  × Identifier `z` has already been declared
+  × TS(2300): Identifier `z` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:21:12]
  20 │ 
  21 │     public z() {
@@ -6784,7 +6784,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │         return "Hello";
     ╰────
 
-  × Identifier `x2` has already been declared
+  × TS(2300): Identifier `x2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:32:9]
  31 │     }
  32 │     set x2(_x: number) {
@@ -6797,7 +6797,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  35 │ 
     ╰────
 
-  × Identifier `z2` has already been declared
+  × TS(2300): Identifier `z2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateClassElements.ts:39:9]
  38 │     }
  39 │     set z2(_y: string) {
@@ -6810,7 +6810,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  42 │     }
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:1:13]
  1 │ function f0(a, [a, [b]], {b}) { }
    ·             ┬   ┬
@@ -6819,7 +6819,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ function f1([a, a]) { }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:1:21]
  1 │ function f0(a, [a, [b]], {b}) { }
    ·                     ┬     ┬
@@ -6828,7 +6828,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ function f1([a, a]) { }
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:2:14]
  1 │ function f0(a, [a, [b]], {b}) { }
  2 │ function f1([a, a]) { }
@@ -6838,7 +6838,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ function f2({b}, {b}) { }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:3:14]
  2 │ function f1([a, a]) { }
  3 │ function f2({b}, {b}) { }
@@ -6848,7 +6848,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ function f3([c,[c],[[c]]]) { }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:4:14]
  3 │ function f2({b}, {b}) { }
  4 │ function f3([c,[c],[[c]]]) { }
@@ -6858,7 +6858,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ function f4({d, d:{d}}) { }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:4:14]
  3 │ function f2({b}, {b}) { }
  4 │ function f3([c,[c],[[c]]]) { }
@@ -6868,7 +6868,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ function f4({d, d:{d}}) { }
    ╰────
 
-  × Identifier `d` has already been declared
+  × TS(2300): Identifier `d` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:5:14]
  4 │ function f3([c,[c],[[c]]]) { }
  5 │ function f4({d, d:{d}}) { }
@@ -6878,7 +6878,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:6:14]
  5 │ function f4({d, d:{d}}) { }
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
@@ -6888,7 +6888,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:6:14]
  5 │ function f4({d, d:{d}}) { }
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
@@ -6898,7 +6898,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:6:14]
  5 │ function f4({d, d:{d}}) { }
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
@@ -6908,7 +6908,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:6:14]
  5 │ function f4({d, d:{d}}) { }
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
@@ -6918,7 +6918,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:6:14]
  5 │ function f4({d, d:{d}}) { }
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
@@ -6928,7 +6928,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration1.ts:7:14]
  6 │ function f5({e, e: {e}}, {e}, [d,e, [[e]]], ...e) { }
  7 │ function f6([f, ...f]) { }
@@ -6938,7 +6938,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f7(a, func = (a) => { return 1 }) { }  // not error
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:2:13]
  1 │ "use strict"
  2 │ function f0(a, [a, [b]], {b}) { }
@@ -6948,7 +6948,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ function f1([a, a]) { }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:2:21]
  1 │ "use strict"
  2 │ function f0(a, [a, [b]], {b}) { }
@@ -6958,7 +6958,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ function f1([a, a]) { }
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:3:14]
  2 │ function f0(a, [a, [b]], {b}) { }
  3 │ function f1([a, a]) { }
@@ -6968,7 +6968,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ function f2({b}, {b}) { }
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:4:14]
  3 │ function f1([a, a]) { }
  4 │ function f2({b}, {b}) { }
@@ -6978,7 +6978,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ function f3([c, [c], [[c]]]) { }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:5:14]
  4 │ function f2({b}, {b}) { }
  5 │ function f3([c, [c], [[c]]]) { }
@@ -6988,7 +6988,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ function f4({d, d: {d}}) { }
    ╰────
 
-  × Identifier `c` has already been declared
+  × TS(2300): Identifier `c` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:5:14]
  4 │ function f2({b}, {b}) { }
  5 │ function f3([c, [c], [[c]]]) { }
@@ -6998,7 +6998,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ function f4({d, d: {d}}) { }
    ╰────
 
-  × Identifier `d` has already been declared
+  × TS(2300): Identifier `d` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:6:14]
  5 │ function f3([c, [c], [[c]]]) { }
  6 │ function f4({d, d: {d}}) { }
@@ -7008,7 +7008,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:7:14]
  6 │ function f4({d, d: {d}}) { }
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
@@ -7018,7 +7018,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:7:14]
  6 │ function f4({d, d: {d}}) { }
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
@@ -7028,7 +7028,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:7:14]
  6 │ function f4({d, d: {d}}) { }
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
@@ -7038,7 +7038,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:7:14]
  6 │ function f4({d, d: {d}}) { }
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
@@ -7048,7 +7048,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:7:14]
  6 │ function f4({d, d: {d}}) { }
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
@@ -7058,7 +7058,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ function f6([f, ...f]) { }
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierBindingElementInParameterDeclaration2.ts:8:14]
  7 │ function f5({e, e: {e}}, {e}, [d, e, [[e]]], ...e) { }
  8 │ function f6([f, ...f]) { }
@@ -7068,7 +7068,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ function f7(a, func = (a) => { return 1 }){ }  // not error
    ╰────
 
-  × Identifier `"a"` has already been declared
+  × TS(2300): Identifier `"a"` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierComputedName.ts:2:6]
  1 │ class C {
  2 │     ["a"]: string;
@@ -7080,7 +7080,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `0b11` has already been declared
+  × TS(2300): Identifier `0b11` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierDifferentSpelling.ts:2:3]
  1 │ class A {
  2 │   0b11 = '';
@@ -7092,7 +7092,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierEnum.ts:2:6]
  1 │ // Test the error message when attempting to merge an enum with a class, an interface, or a function.
  2 │ enum A {
@@ -7106,7 +7106,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │     foo: number;
    ╰────
 
-  × Identifier `B` has already been declared
+  × TS(2300): Identifier `B` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierEnum.ts:9:11]
   8 │ 
   9 │ interface B {
@@ -7120,7 +7120,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │     bar
     ╰────
 
-  × Identifier `C` has already been declared
+  × TS(2300): Identifier `C` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierEnum.ts:16:12]
  15 │ 
  16 │ const enum C {
@@ -7134,7 +7134,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │     return 0;
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierInCatchBlock.ts:12:9]
  11 │ try { } catch (e) {
  12 │     var x;
@@ -7146,7 +7146,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  14 │     function e() { } // error
     ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateIdentifierInCatchBlock.ts:11:16]
  10 │ 
  11 │ try { } catch (e) {
@@ -7160,7 +7160,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     var p: string;
     ╰────
 
-  × Label `target` has already been declared
+  × TS(1114): Label `target` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateLabel1.ts:1:1]
  1 │ target:
    · ───┬──
@@ -7171,7 +7171,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ while (true) {
    ╰────
 
-  × Label `target` has already been declared
+  × TS(1114): Label `target` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicateLabel2.ts:1:1]
  1 │ target:
    · ───┬──
@@ -7183,7 +7183,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │   while (true) {
    ╰────
 
-  × Identifier `y` has already been declared
+  × TS(2300): Identifier `y` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/duplicatePropertyAndAccessor.ts:4:3]
  3 │ class C {
  4 │   y: number = 2;
@@ -7277,7 +7277,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `X` has already been declared
+  × TS(2300): Identifier `X` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/enumGenericTypeClash.ts:1:7]
  1 │ class X<A,B,C> { }
    ·       ┬
@@ -7361,7 +7361,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ let b = <unknown 123;
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/errorElaboration.ts:10:18]
   9 │ }
  10 │ declare function foo(x: () => Container<Ref<number>>): void;
@@ -7578,7 +7578,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ export var x: number = nameSpaceBinding.a;
    ╰────
 
-  × Identifier `defaultBinding3` has already been declared
+  × TS(2300): Identifier `defaultBinding3` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportDefaultBindingMergeErrors.ts:7:8]
  6 │ var defaultBinding2 = "hello world"; 
  7 │ import defaultBinding3 from "./es6ImportDefaultBindingMergeErrors_0"; // Should be error
@@ -7596,7 +7596,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ export var x = defaultBinding;
    ╰────
 
-  × Identifier `nameSpaceBinding1` has already been declared
+  × TS(2300): Identifier `nameSpaceBinding1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportNameSpaceImportMergeErrors.ts:4:13]
  3 │ 
  4 │ import * as nameSpaceBinding1 from "./es6ImportNameSpaceImportMergeErrors_0"; // should be error
@@ -7661,7 +7661,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: Modules are always strict mode code
 
-  × Identifier `default` has already been declared
+  × TS(2300): Identifier `default` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportNamedImportIdentifiersParsing.ts:2:10]
  1 │ import { yield } from "somemodule"; // Allowed
  2 │ import { default } from "somemodule"; // Error - as this is keyword that is not allowed as identifier
@@ -7673,7 +7673,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ import { default as yield } from "somemodule"; // no error 
    ╰────
 
-  × Identifier `yield` has already been declared
+  × TS(2300): Identifier `yield` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportNamedImportIdentifiersParsing.ts:1:10]
  1 │ import { yield } from "somemodule"; // Allowed
    ·          ──┬──
@@ -7695,7 +7695,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: Modules are always strict mode code
 
-  × Identifier `default` has already been declared
+  × TS(2300): Identifier `default` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportNamedImportIdentifiersParsing.ts:2:10]
  1 │ import { yield } from "somemodule"; // Allowed
  2 │ import { default } from "somemodule"; // Error - as this is keyword that is not allowed as identifier
@@ -7708,7 +7708,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                        ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `z` has already been declared
+  × TS(2300): Identifier `z` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/es6ImportNamedImportMergeErrors.ts:9:10]
   8 │ var x44 = 10; 
   9 │ import { z } from "./es6ImportNamedImportMergeErrors_0"; // should be error
@@ -8298,7 +8298,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ }
    ╰────
 
-  × Identifier `someProp` has already been declared
+  × TS(2300): Identifier `someProp` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/exportEqualsClassRedeclarationError.ts:6:16]
  5 │ 
  6 │     static set someProp(value: number) {}
@@ -8318,7 +8318,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │     export = 0;
    ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/exportInterfaceClassAndValue.ts:1:14]
  1 │ export const foo = 1
    ·              ─┬─
@@ -8329,7 +8329,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ export interface foo {}
    ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/exportSameNameFuncVar.ts:1:12]
  1 │ export var a = 10;
    ·            ┬
@@ -8556,7 +8556,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │         (a) => (b) => (c) => 121,
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/fieldAndGetterWithSameName.ts:2:5]
  1 │ export class C {
  2 │     x: number;
@@ -8619,7 +8619,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: This iterator's type will be inferred from the iterable. You can safely remove the type annotation.
 
-  × Identifier `aaaaa` has already been declared
+  × TS(2300): Identifier `aaaaa` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/functionAndPropertyNameConflict.ts:2:12]
  1 │ class C65 {
  2 │     public aaaaa() { }
@@ -8631,7 +8631,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │         return 1;
    ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/functionCall15.ts:1:25]
  1 │ function foo(a?:string, b?:number, ...b:number[]){}
    ·                         ┬             ┬
@@ -8672,7 +8672,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `total` has already been declared
+  × TS(2300): Identifier `total` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/functionWithSameNameAsField.ts:2:12]
  1 │ class TestProgressBar {
  2 │     public total: number;
@@ -8779,7 +8779,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ }
    ╰────
 
-  × Identifier `Foo` has already been declared
+  × TS(2300): Identifier `Foo` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/gettersAndSettersErrors.ts:3:16]
  2 │     public get Foo() { return "foo";} // ok
  3 │     public set Foo(foo:string) {} // ok
@@ -8866,7 +8866,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Merge the two 'implements' clauses into one by a ','
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/importAndVariableDeclarationConflict3.ts:5:8]
  4 │ 
  5 │ import x = m.m;
@@ -9323,7 +9323,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/invalidContinueInDownlevelAsync.ts:3:9]
  2 │     if (true) {
  3 │         continue;
@@ -9406,7 +9406,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationBindDuplicateIdentifier.ts:1:5]
  1 │ var a = 10;
    ·     ┬
@@ -9417,7 +9417,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `C` has already been declared
+  × TS(2300): Identifier `C` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationBindErrors.ts:1:5]
  1 │ let C = "sss";
    ·     ┬
@@ -9770,7 +9770,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ var tooManySeparators2 = <a:ele:ment></a:ele:ment>;
     ╰────
 
-  × Identifier `e0` has already been declared
+  × TS(2300): Identifier `e0` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:1:5]
  1 │ let e0
    ·     ─┬
@@ -9781,7 +9781,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ function e0() { }
    ╰────
 
-  × Identifier `e0` has already been declared
+  × TS(2300): Identifier `e0` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:1:5]
  1 │ let e0
    ·     ─┬
@@ -9793,7 +9793,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Identifier `x1` has already been declared
+  × TS(2300): Identifier `x1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:6:9]
  5 │ function f0() {
  6 │     let x1;
@@ -9805,7 +9805,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │     function x1() { }
    ╰────
 
-  × Identifier `x1` has already been declared
+  × TS(2300): Identifier `x1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:6:9]
  5 │ function f0() {
  6 │     let x1;
@@ -9818,7 +9818,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:12:9]
  11 │ function f1() {
  12 │     let x;
@@ -9831,7 +9831,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Identifier `x2` has already been declared
+  × TS(2300): Identifier `x2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:22:9]
  21 │ namespace M0 {
  22 │     let x2;
@@ -9843,7 +9843,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │     function x2() { }
     ╰────
 
-  × Identifier `x2` has already been declared
+  × TS(2300): Identifier `x2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:22:9]
  21 │ namespace M0 {
  22 │     let x2;
@@ -9856,7 +9856,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  25 │ }
     ╰────
 
-  × Identifier `x2` has already been declared
+  × TS(2300): Identifier `x2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:28:9]
  27 │ namespace M1 {
  28 │     let x2;
@@ -9869,7 +9869,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  31 │     }
     ╰────
 
-  × Identifier `x11` has already been declared
+  × TS(2300): Identifier `x11` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:37:5]
  36 │ 
  37 │ let x11;
@@ -9881,7 +9881,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  39 │ }
     ╰────
 
-  × Identifier `x11` has already been declared
+  × TS(2300): Identifier `x11` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:42:9]
  41 │ function f2() {
  42 │     let x11;
@@ -9893,7 +9893,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  44 │     }
     ╰────
 
-  × Identifier `x11` has already been declared
+  × TS(2300): Identifier `x11` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letAndVarRedeclaration.ts:48:9]
  47 │ namespace M2 {
  48 │     let x11;
@@ -9905,7 +9905,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  50 │     }
     ╰────
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAsIdentifier.ts:2:5]
  1 │ var let = 10;
  2 │ var a = 10;
@@ -9936,7 +9936,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `a` has already been declared
+  × TS(2300): Identifier `a` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letAsIdentifierInStrictMode.ts:3:5]
  2 │ var let = 10;
  3 │ var a = 10;
@@ -9958,7 +9958,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `var1` has already been declared
+  × TS(2300): Identifier `var1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:2:5]
  1 │ // Errors: redeclaration
  2 │ let var1 = 0;
@@ -9970,7 +9970,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Identifier `var2` has already been declared
+  × TS(2300): Identifier `var2` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:5:5]
  4 │ 
  5 │ let var2 = 0;
@@ -9982,7 +9982,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ 
    ╰────
 
-  × Identifier `var3` has already been declared
+  × TS(2300): Identifier `var3` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:8:7]
   7 │ 
   8 │ const var3 = 0;
@@ -9994,7 +9994,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ 
     ╰────
 
-  × Identifier `var4` has already been declared
+  × TS(2300): Identifier `var4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:11:7]
  10 │ 
  11 │ const var4 = 0;
@@ -10006,7 +10006,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │ 
     ╰────
 
-  × Identifier `var5` has already been declared
+  × TS(2300): Identifier `var5` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:14:5]
  13 │ 
  14 │ var var5 = 0;
@@ -10018,7 +10018,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │ 
     ╰────
 
-  × Identifier `var6` has already been declared
+  × TS(2300): Identifier `var6` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:17:5]
  16 │ 
  17 │ let var6 = 0;
@@ -10030,7 +10030,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  19 │ 
     ╰────
 
-  × Identifier `var7` has already been declared
+  × TS(2300): Identifier `var7` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:21:9]
  20 │ {
  21 │     let var7 = 0;
@@ -10042,7 +10042,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │     {
     ╰────
 
-  × Identifier `var8` has already been declared
+  × TS(2300): Identifier `var8` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:24:13]
  23 │     {
  24 │         let var8 = 0;
@@ -10054,7 +10054,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  26 │     }
     ╰────
 
-  × Identifier `var9` has already been declared
+  × TS(2300): Identifier `var9` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:31:13]
  30 │     default:
  31 │         let var9 = 0;
@@ -10066,7 +10066,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  33 │ }
     ╰────
 
-  × Identifier `var10` has already been declared
+  × TS(2300): Identifier `var10` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:36:11]
  35 │ try {
  36 │     const var10 = 0;
@@ -10078,7 +10078,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }
     ╰────
 
-  × Identifier `var11` has already been declared
+  × TS(2300): Identifier `var11` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:40:9]
  39 │ catch (e) {
  40 │     let var11 = 0;
@@ -10090,7 +10090,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  42 │ }
     ╰────
 
-  × Identifier `var12` has already been declared
+  × TS(2300): Identifier `var12` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/letDeclarations-scopes-duplicates.ts:45:9]
  44 │ function F1() {
  45 │     let var12;
@@ -10376,7 +10376,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │         }
    ╰────
 
-  × Identifier `baz` has already been declared
+  × TS(2300): Identifier `baz` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/mismatchedClassConstructorVariable.ts:1:5]
  1 │ var baz: foo;
    ·     ─┬─
@@ -10603,7 +10603,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │         interface Array<T> { x }
    ╰────
 
-  × Identifier `Kettle` has already been declared
+  × TS(2300): Identifier `Kettle` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/moduleDuplicateIdentifiers.ts:20:14]
  19 │ 
  20 │ export class Kettle {
@@ -10746,7 +10746,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `M` has already been declared
+  × TS(2300): Identifier `M` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/moduleSharesNameWithImportDeclarationInsideIt3.ts:10:12]
   9 │ namespace A.M {
  10 │     import M = Z.M;
@@ -10758,7 +10758,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ 
     ╰────
 
-  × Identifier `M` has already been declared
+  × TS(2300): Identifier `M` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/moduleSharesNameWithImportDeclarationInsideIt5.ts:10:12]
   9 │ namespace A.M {
  10 │     import M = Z.I;
@@ -10770,7 +10770,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ 
     ╰────
 
-  × Identifier `console` has already been declared
+  × TS(2300): Identifier `console` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/module_augmentExistingAmbientVariable.ts:1:13]
  1 │ declare var console: any;
    ·             ───┬───
@@ -10782,7 +10782,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │     export var x = 2;
    ╰────
 
-  × Identifier `console` has already been declared
+  × TS(2300): Identifier `console` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/module_augmentExistingVariable.ts:1:5]
  1 │ var console: any;
    ·     ───┬───
@@ -10862,7 +10862,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Remove the extra base class or use interfaces for multiple inheritance
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/nameCollisions.ts:2:9]
  1 │ namespace T {
  2 │     var x = 2;
@@ -10875,7 +10875,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │         export class Bar {
    ╰────
 
-  × Identifier `z` has already been declared
+  × TS(2300): Identifier `z` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/nameCollisions.ts:10:15]
   9 │ 
  10 │     namespace z {
@@ -10889,7 +10889,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  14 │ 
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/nameCollisions.ts:24:9]
  23 │ 
  24 │     var f;
@@ -11066,7 +11066,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Identifier `m1` has already been declared
+  × TS(2300): Identifier `m1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/nonMergedDeclarationsAndOverloads.ts:2:5]
  1 │ class A {
  2 │     m1: string;
@@ -11082,7 +11082,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     }
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/nonMergedOverloads.ts:1:5]
  1 │ var f = 10;
    ·     ┬
@@ -11094,7 +11094,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ export function f() {
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/nonMergedOverloads.ts:1:5]
  1 │ var f = 10;
    ·     ┬
@@ -11116,7 +11116,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `0` has already been declared
+  × TS(2300): Identifier `0` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/numericClassMembers1.ts:2:3]
  1 │ class C234 {
  2 │   0 = 1; 
@@ -11128,7 +11128,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `0.0` has already been declared
+  × TS(2300): Identifier `0.0` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/numericClassMembers1.ts:7:3]
  6 │ class C235 { 
  7 │   0.0 = 1;
@@ -11558,7 +11558,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │ 
     ╰────
 
-  × Identifier `C1M5` has already been declared
+  × TS(2300): Identifier `C1M5` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/optionalParamArgsTest.ts:31:12]
  30 │ 
  31 │     public C1M5(C1M5A1:number,C1M5A2:number=0,C1M5A3?:number) { return C1M5A1 + C1M5A2; }
@@ -11638,7 +11638,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  53 │     [2](): void;
     ╰────
 
-  × Identifier `fnOverload` has already been declared
+  × TS(2300): Identifier `fnOverload` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/overloadsWithinClasses.ts:3:12]
  2 │  
  3 │     static fnOverload( ) {}
@@ -12232,7 +12232,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Instead, add type parameters to the class itself
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/parserConstructorDeclaration12.ts:2:3]
  1 │ class C {
  2 │   constructor<>() { }
@@ -12741,7 +12741,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: No modifiers are allowed here.
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/reassignStaticProp.ts:3:12]
  2 │  
  3 │     static bar = 1;
@@ -12762,7 +12762,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/redeclareParameterInCatchBlock.ts:3:9]
  2 │ 
  3 │ } catch(e) {
@@ -12774,7 +12774,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ }
    ╰────
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/redeclareParameterInCatchBlock.ts:9:9]
   8 │ 
   9 │ } catch(e) {
@@ -12786,7 +12786,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ }
     ╰────
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/redeclareParameterInCatchBlock.ts:15:14]
  14 │ 
  15 │ } catch ([a, b]) {
@@ -12798,7 +12798,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  17 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/redeclareParameterInCatchBlock.ts:21:15]
  20 │ 
  21 │ } catch ({ a: x, b: x }) {
@@ -13346,7 +13346,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Use a smaller number in the quantifier
 
-  × Unexpected flag a in regular expression literal
+  × TS(1499): Unexpected flag a in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:11]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13355,7 +13355,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: The allowed flags are `gimsuydv`
 
-  × Unexpected flag l in regular expression literal
+  × TS(1499): Unexpected flag l in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:12]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13373,7 +13373,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Remove the duplicated flag here
 
-  × Unexpected flag t in regular expression literal
+  × TS(1499): Unexpected flag t in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:14]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13400,7 +13400,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Remove the duplicated flag here
 
-  × Unexpected flag o in regular expression literal
+  × TS(1499): Unexpected flag o in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:18]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13409,7 +13409,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: The allowed flags are `gimsuydv`
 
-  × Unexpected flag c in regular expression literal
+  × TS(1499): Unexpected flag c in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:19]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13418,7 +13418,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: The allowed flags are `gimsuydv`
 
-  × Unexpected flag o in regular expression literal
+  × TS(1499): Unexpected flag o in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:20]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13436,7 +13436,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Remove the duplicated flag here
 
-  × Unexpected flag e in regular expression literal
+  × TS(1499): Unexpected flag e in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regularExpressionScanning.ts:3:22]
  2 │     // Flags
  3 │     /foo/visualstudiocode,
@@ -13551,7 +13551,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │    export interface i2 { }
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowedFunctionScopedVariablesByBlockScopedOnes.ts:4:14]
  3 │ function test1() {
  4 │     for (let v; ; ) { var v; }
@@ -13561,7 +13561,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ }
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowedFunctionScopedVariablesByBlockScopedOnes.ts:7:14]
  6 │ function test2() {
  7 │     for (let v in []) { var v; }
@@ -13571,7 +13571,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ }
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowedFunctionScopedVariablesByBlockScopedOnes.ts:10:14]
   9 │ function test3() {
  10 │     for (let v of []) { var v; }
@@ -13581,7 +13581,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowedFunctionScopedVariablesByBlockScopedOnes.ts:14:13]
  13 │     {
  14 │         let x;
@@ -13594,7 +13594,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  17 │         }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowedFunctionScopedVariablesByBlockScopedOnes.ts:23:17]
  22 │         {
  23 │             var x;
@@ -13616,7 +13616,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   note: Modules are always strict mode code
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValue.ts:2:9]
  1 │ {
  2 │     let x;
@@ -13629,7 +13629,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │     }
    ╰────
 
-  × Identifier `x1` has already been declared
+  × TS(2300): Identifier `x1` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValue.ts:9:9]
   8 │ {
   9 │     let x1;
@@ -13642,7 +13642,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │     }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValueOrBindingElement.ts:2:9]
  1 │ if (true) {
  2 │     let x;
@@ -13655,7 +13655,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │         var { x = 0 } = { x: 0 }; // Error
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValueOrBindingElement.ts:2:9]
  1 │ if (true) {
  2 │     let x;
@@ -13669,7 +13669,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │         var { x: x = 0 } = { x: 0 }; // Error
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValueOrBindingElement.ts:2:9]
  1 │ if (true) {
  2 │     let x;
@@ -13685,7 +13685,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │         var { x } = { x: 0 }; // Error
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValueOrBindingElement.ts:2:9]
  1 │ if (true) {
  2 │     let x;
@@ -13701,7 +13701,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │         var { x: x } = { x: 0 }; // Error
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/shadowingViaLocalValueOrBindingElement.ts:2:9]
  1 │ if (true) {
  2 │     let x;
@@ -13724,7 +13724,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·  ─
    ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
      ╭─[typescript/tsc/testdata/tests/cases/compiler/shorthandPropertyAssignmentsInDestructuring.ts:111:12]
  110 │ (function() {
  111 │     let a = { s = 5 };
@@ -13733,7 +13733,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
      ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
      ╭─[typescript/tsc/testdata/tests/cases/compiler/shorthandPropertyAssignmentsInDestructuring_ES6.ts:111:12]
  110 │ (function() {
  111 │     let a = { s = 5 };
@@ -13761,7 +13761,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    · ╰── Opened here
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/sourceMapValidationEnums.ts:2:5]
  1 │ enum e {
  2 │     x,
@@ -13790,7 +13790,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·         ╰── Opened here
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/compiler/standaloneBreak.ts:1:1]
  1 │ break;
    · ──────
@@ -13949,7 +13949,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `package` has already been declared
+  × TS(2300): Identifier `package` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/strictModeReservedWord.ts:8:9]
   7 │     let let = "blah";
   8 │     var package = "hello"
@@ -14123,7 +14123,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Identifier `b` has already been declared
+  × TS(2300): Identifier `b` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/compiler/strictModeReservedWord.ts:17:9]
  16 │ 
  17 │     var b: public.bar;
@@ -14539,7 +14539,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: Modules are always strict mode code
 
-  × Identifier `e` has already been declared
+  × TS(2300): Identifier `e` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/compiler/strictOptionalProperties1.ts:190:15]
  189 │ }
  190 │ declare const e: string | boolean | undefined
@@ -14574,7 +14574,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ }
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/compiler/stringLiteralsErrors.ts:2:11]
  1 │ // Srtings missing line terminator
  2 │ var es1 = "line 1
@@ -15034,7 +15034,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │             default:    // Error; third 'default' clause.
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/compiler/taggedTemplatesWithIncompleteNoSubstitutionTemplate1.ts:5:3]
  4 │ // Incomplete call, not enough parameters.
  5 │ f `123qdawdrqw
@@ -15049,7 +15049,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/compiler/taggedTemplatesWithIncompleteNoSubstitutionTemplate2.ts:5:3]
  4 │ // Incomplete call, not enough parameters, at EOF.
  5 │ f `
@@ -15102,7 +15102,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ f `123qdawdrqw${ 1 }${
    ╰────
 
-  × Identifier `Point` has already been declared
+  × TS(2300): Identifier `Point` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/targetTypeCastTest.ts:1:13]
  1 │ declare var Point: { new(x:number, y:number): {x: number; y: number; }; }
    ·             ──┬──
@@ -15669,13 +15669,13 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·         ─
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/compiler/unterminatedStringLiteralWithBackslash1.ts:1:1]
  1 │ "\
    · ──
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/compiler/unterminatedStringLiteralWithBackslash1.ts:1:1]
  1 │ "\
    · ──
@@ -15715,7 +15715,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `myFn` has already been declared
+  × TS(2300): Identifier `myFn` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/compiler/varAndFunctionShareName.ts:1:5]
  1 │ var myFn;
    ·     ──┬─
@@ -16657,7 +16657,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ import abstract class D {}
    ╰────
 
-  × Identifier `CC1` has already been declared
+  × TS(2300): Identifier `CC1` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAbstractKeyword/classAbstractMergedDeclaration.ts:13:16]
  12 │ 
  13 │ abstract class CC1 {}
@@ -16669,7 +16669,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │ 
     ╰────
 
-  × Identifier `CC2` has already been declared
+  × TS(2300): Identifier `CC2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAbstractKeyword/classAbstractMergedDeclaration.ts:16:7]
  15 │ 
  16 │ class CC2 {}
@@ -16681,7 +16681,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  18 │ 
     ╰────
 
-  × Identifier `DCC1` has already been declared
+  × TS(2300): Identifier `DCC1` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAbstractKeyword/classAbstractMergedDeclaration.ts:25:24]
  24 │ 
  25 │ declare abstract class DCC1 {}
@@ -16693,7 +16693,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ 
     ╰────
 
-  × Identifier `DCC2` has already been declared
+  × TS(2300): Identifier `DCC2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAbstractKeyword/classAbstractMergedDeclaration.ts:28:15]
  27 │ 
  28 │ declare class DCC2 {}
@@ -16839,7 +16839,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    · ────────
    ╰────
 
-  × Identifier `C` has already been declared
+  × TS(2300): Identifier `C` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAndVariableWithSameName.ts:1:7]
  1 │ class C { foo: string; } // error
    ·       ┬
@@ -16850,7 +16850,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ 
    ╰────
 
-  × Identifier `D` has already been declared
+  × TS(2300): Identifier `D` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/classAndVariableWithSameName.ts:5:11]
   4 │ namespace M {
   5 │     class D { // error
@@ -16956,7 +16956,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·         ╰── `{` expected
    ╰────
 
-  × Identifier `C1` has already been declared
+  × TS(2300): Identifier `C1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/declaredClassMergedwithSelf.ts:1:15]
  1 │ declare class C1 {}
    ·               ─┬
@@ -16968,7 +16968,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Identifier `C2` has already been declared
+  × TS(2300): Identifier `C2` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classDeclarations/declaredClassMergedwithSelf.ts:5:15]
  4 │ 
  5 │ declare class C2 {}
@@ -17212,7 +17212,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │ 
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock8.ts:6:27]
  5 │                 if (v === 1) {
  6 │                     break label;
@@ -17220,7 +17220,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │                 }
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock8.ts:9:30]
   8 │                 if (v === 2) {
   9 │                     continue label;
@@ -17228,7 +17228,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │                 }
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock8.ts:12:21]
  11 │                 if (v === 3) {
  12 │                     break
@@ -17237,7 +17237,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock8.ts:15:21]
  14 │                 if (v === 4) {
  15 │                     continue
@@ -17246,7 +17246,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/constructorDeclarations/classWithTwoConstructorDefinitions.ts:2:5]
  1 │ class C {
  2 │     constructor() { } // error
@@ -17258,7 +17258,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Multiple constructor implementations are not allowed.
+  × TS(2392): Multiple constructor implementations are not allowed.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/constructorDeclarations/classWithTwoConstructorDefinitions.ts:7:5]
  6 │ class D<T> {
  7 │     constructor(x: T) { } // error
@@ -17805,7 +17805,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:5:9]
  4 │     class A_Field_Field {
  5 │         #foo = "foo";
@@ -17817,7 +17817,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     }
    ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:11:9]
  10 │     class A_Field_Method {
  11 │         #foo = "foo";
@@ -17829,7 +17829,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:17:9]
  16 │     class A_Field_Getter {
  17 │         #foo = "foo";
@@ -17841,7 +17841,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  19 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:23:9]
  22 │     class A_Field_Setter {
  23 │         #foo = "foo";
@@ -17901,7 +17901,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  49 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:55:9]
  54 │     class A_Method_Field {
  55 │         #foo() { }
@@ -17913,7 +17913,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  57 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:61:9]
  60 │     class A_Method_Method {
  61 │         #foo() { }
@@ -17925,7 +17925,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  63 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:67:9]
  66 │     class A_Method_Getter {
  67 │         #foo() { }
@@ -17937,7 +17937,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  69 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:73:9]
  72 │     class A_Method_Setter {
  73 │         #foo() { }
@@ -17997,7 +17997,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  99 │     }
     ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:106:13]
  105 │     class A_Getter_Field {
  106 │         get #foo() { return ""}
@@ -18009,7 +18009,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  108 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:112:13]
  111 │     class A_Getter_Method {
  112 │         get #foo() { return ""}
@@ -18021,7 +18021,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  114 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:118:13]
  117 │     class A_Getter_Getter {
  118 │         get #foo() { return ""}
@@ -18081,7 +18081,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  150 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:156:13]
  155 │     class A_Setter_Field {
  156 │         set #foo(value: string) { }
@@ -18093,7 +18093,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  158 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:162:13]
  161 │     class A_Setter_Method {
  162 │         set #foo(value: string) { }
@@ -18105,7 +18105,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  164 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:174:13]
  173 │     class A_Setter_Setter {
  174 │         set #foo(value: string) { }
@@ -18213,7 +18213,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  226 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:230:16]
  229 │     class A_StaticField_StaticField {
  230 │         static #foo = "foo";
@@ -18225,7 +18225,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  232 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:236:16]
  235 │     class A_StaticField_StaticMethod {
  236 │         static #foo = "foo";
@@ -18237,7 +18237,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  238 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:242:16]
  241 │     class A_StaticField_StaticGetter {
  242 │         static #foo = "foo";
@@ -18249,7 +18249,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  244 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:248:16]
  247 │     class A_StaticField_StaticSetter {
  248 │         static #foo = "foo";
@@ -18309,7 +18309,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  276 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:280:16]
  279 │     class A_StaticMethod_StaticField {
  280 │         static #foo() { }
@@ -18321,7 +18321,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  282 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:286:16]
  285 │     class A_StaticMethod_StaticMethod {
  286 │         static #foo() { }
@@ -18333,7 +18333,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  288 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:292:16]
  291 │     class A_StaticMethod_StaticGetter {
  292 │         static #foo() { }
@@ -18345,7 +18345,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  294 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:298:16]
  297 │     class A_StaticMethod_StaticSetter {
  298 │         static #foo() { }
@@ -18405,7 +18405,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  327 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:331:20]
  330 │     class A_StaticGetter_StaticField {
  331 │         static get #foo() { return ""}
@@ -18417,7 +18417,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  333 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:337:20]
  336 │     class A_StaticGetter_StaticMethod {
  337 │         static get #foo() { return ""}
@@ -18429,7 +18429,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  339 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:343:20]
  342 │     class A_StaticGetter_StaticGetter {
  343 │         static get #foo() { return ""}
@@ -18489,7 +18489,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  377 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:381:20]
  380 │     class A_StaticSetter_StaticField {
  381 │         static set #foo(value: string) { }
@@ -18501,7 +18501,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  383 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:387:20]
  386 │     class A_StaticSetter_StaticMethod {
  387 │         static set #foo(value: string) { }
@@ -18513,7 +18513,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  389 │     }
      ╰────
 
-  × Identifier `#foo` has already been declared
+  × TS(2300): Identifier `#foo` has already been declared
      ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameDuplicateField.ts:399:20]
  398 │     class A_StaticSetter_StaticSetter {
  399 │         static set #foo(value: string) { }
@@ -19360,7 +19360,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `accessor` has already been declared
+  × TS(2300): Identifier `accessor` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/autoAccessor11.ts:5:12]
   4 │ 
   5 │     static accessor
@@ -19677,7 +19677,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  19 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/propertyAndAccessorWithSameName.ts:2:5]
  1 │ class C {
  2 │     x: number;
@@ -19689,7 +19689,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │         return 1;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/propertyAndAccessorWithSameName.ts:9:5]
   8 │ class D {
   9 │     x: number;
@@ -19701,7 +19701,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/propertyAndAccessorWithSameName.ts:14:13]
  13 │ class E {
  14 │     private x: number;
@@ -19713,7 +19713,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │         return 1;
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/propertyAndFunctionWithSameName.ts:2:5]
  1 │ class C {
  2 │     x: number;
@@ -19725,7 +19725,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │         return 1;
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/propertyAndFunctionWithSameName.ts:9:5]
   8 │ class D {
   9 │     x: number;
@@ -19881,7 +19881,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  343 │     }
      ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/twoAccessorsWithSameName.ts:2:9]
  1 │ class C {
  2 │     get x() { return 1; }
@@ -19893,7 +19893,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/twoAccessorsWithSameName.ts:7:9]
  6 │ class D {
  7 │     set x(v) {  }
@@ -19905,7 +19905,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/twoAccessorsWithSameName2.ts:2:16]
  1 │ class C {
  2 │     static get x() { return 1; }
@@ -19917,7 +19917,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/propertyMemberDeclarations/twoAccessorsWithSameName2.ts:7:16]
  6 │ class D {
  7 │     static set x(v) {  }
@@ -20149,7 +20149,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                                                                                               ─
    ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/controlFlow/dependentDestructuredVariablesReferenceInDeclaration1.ts:20:14]
  19 │ {
  20 │   const { c, f, f }: string | number = { c: 0, f: 0 };
@@ -20159,7 +20159,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  21 │   f;
     ╰────
 
-  × Identifier `f` has already been declared
+  × TS(2300): Identifier `f` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/controlFlow/dependentDestructuredVariablesReferenceInDeclaration1.ts:58:14]
  57 │ {
  58 │   const { c, f, f }: { c: 0; f: number } | { c: 1; f: string } = { c: 0, f: 0 };
@@ -21135,7 +21135,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │     set [[0, 1]](v) { }
    ╰────
 
-  × Identifier `""` has already been declared
+  × TS(2300): Identifier `""` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/computedProperties/computedPropertyNames40_ES5.ts:8:6]
   7 │     // Computed properties
   8 │     [""]() { return new Foo }
@@ -21147,7 +21147,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ }
     ╰────
 
-  × Identifier `""` has already been declared
+  × TS(2300): Identifier `""` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/computedProperties/computedPropertyNames40_ES6.ts:8:6]
   7 │     // Computed properties
   8 │     [""]() { return new Foo }
@@ -21221,7 +21221,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ var {i}: string | number = { i: 2 };
    ╰────
 
-  × Identifier `number` has already been declared
+  × TS(2300): Identifier `number` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringParameterDeclaration1ES6.ts:96:18]
  95 │ 
  96 │ function e6({x: [number, number, number]}) { }  // error, duplicate identifier;
@@ -21231,7 +21231,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  97 │ 
     ╰────
 
-  × Identifier `number` has already been declared
+  × TS(2300): Identifier `number` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringParameterDeclaration1ES6.ts:96:18]
  95 │ 
  96 │ function e6({x: [number, number, number]}) { }  // error, duplicate identifier;
@@ -21341,7 +21341,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │         var foo: any = x1 || x2 || x3 || y || z;
    ╰────
 
-  × Identifier `foo1` has already been declared
+  × TS(2300): Identifier `foo1` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:21:7]
  20 │ 
  21 │ let { foo1, foo1 } = { foo1: 10 };
@@ -21351,7 +21351,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  22 │ let { foo2, bar2: foo2 } = { foo2: 20, bar2: 220 };
     ╰────
 
-  × Identifier `foo2` has already been declared
+  × TS(2300): Identifier `foo2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:22:7]
  21 │ let { foo1, foo1 } = { foo1: 10 };
  22 │ let { foo2, bar2: foo2 } = { foo2: 20, bar2: 220 };
@@ -21361,7 +21361,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ let { bar3: foo3, foo3 } = { foo3: 30, bar3: 330 };
     ╰────
 
-  × Identifier `foo3` has already been declared
+  × TS(2300): Identifier `foo3` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:23:13]
  22 │ let { foo2, bar2: foo2 } = { foo2: 20, bar2: 220 };
  23 │ let { bar3: foo3, foo3 } = { foo3: 30, bar3: 330 };
@@ -21371,7 +21371,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │ const { foo4, foo4 } = { foo4: 40 };
     ╰────
 
-  × Identifier `foo4` has already been declared
+  × TS(2300): Identifier `foo4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:24:9]
  23 │ let { bar3: foo3, foo3 } = { foo3: 30, bar3: 330 };
  24 │ const { foo4, foo4 } = { foo4: 40 };
@@ -21381,7 +21381,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  25 │ const { foo5, bar5: foo5 } = { foo5: 50, bar5: 550 };
     ╰────
 
-  × Identifier `foo5` has already been declared
+  × TS(2300): Identifier `foo5` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:25:9]
  24 │ const { foo4, foo4 } = { foo4: 40 };
  25 │ const { foo5, bar5: foo5 } = { foo5: 50, bar5: 550 };
@@ -21391,7 +21391,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  26 │ const { bar6: foo6, foo6 } = { foo6: 60, bar6: 660 };
     ╰────
 
-  × Identifier `foo6` has already been declared
+  × TS(2300): Identifier `foo6` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:26:15]
  25 │ const { foo5, bar5: foo5 } = { foo5: 50, bar5: 550 };
  26 │ const { bar6: foo6, foo6 } = { foo6: 60, bar6: 660 };
@@ -21401,7 +21401,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ 
     ╰────
 
-  × Identifier `blah1` has already been declared
+  × TS(2300): Identifier `blah1` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:28:6]
  27 │ 
  28 │ let [blah1, blah1] = [111, 222];
@@ -21411,7 +21411,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  29 │ const [blah2, blah2] = [333, 444];
     ╰────
 
-  × Identifier `blah2` has already been declared
+  × TS(2300): Identifier `blah2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/destructuringSameNames.ts:29:8]
  28 │ let [blah1, blah1] = [111, 222];
  29 │ const [blah2, blah2] = [333, 444];
@@ -21683,7 +21683,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·          ───
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/for-ofStatements/for-of52.ts:1:11]
  1 │ for (let [v, v] of [[]]) {}
    ·           ┬  ┬
@@ -21691,7 +21691,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·           ╰── `v` has already been declared here
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/for-ofStatements/for-of53.ts:1:10]
  1 │ for (let v of []) {
    ·          ┬
@@ -21702,7 +21702,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `v` has already been declared
+  × TS(2300): Identifier `v` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/for-ofStatements/for-of54.ts:1:10]
  1 │ for (let v of []) {
    ·          ┬
@@ -21849,7 +21849,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ }
    ╰────
 
-  × Identifier `C` has already been declared
+  × TS(2300): Identifier `C` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/modules/multipleDefaultExports03.ts:1:22]
  1 │ export default class C {
    ·                      ┬
@@ -21862,7 +21862,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ }
    ╰────
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:1:11]
  1 │ const a = new.target;
    ·           ──────────
@@ -21870,7 +21870,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:2:17]
  1 │ const a = new.target;
  2 │ const b = () => new.target;
@@ -21879,7 +21879,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:5:6]
  4 │ class C {
  5 │     [new.target]() { }
@@ -21888,7 +21888,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:11:13]
  10 │ 
  11 │     static [new.target]() { }
@@ -21897,7 +21897,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:19:6]
  18 │ const O = {
  19 │     [new.target]: undefined,
@@ -21906,7 +21906,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es5.ts:23:8]
  22 │     set m(_) { _ = new.target; },
  23 │     n: new.target,
@@ -21915,7 +21915,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:1:11]
  1 │ const a = new.target;
    ·           ──────────
@@ -21923,7 +21923,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:2:17]
  1 │ const a = new.target;
  2 │ const b = () => new.target;
@@ -21932,7 +21932,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:5:6]
  4 │ class C {
  5 │     [new.target]() { }
@@ -21941,7 +21941,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:11:13]
  10 │ 
  11 │     static [new.target]() { }
@@ -21950,7 +21950,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:19:6]
  18 │ const O = {
  19 │     [new.target]: undefined,
@@ -21959,7 +21959,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: new.target is only allowed in constructors, functions, and class field initializers
 
-  × Unexpected new.target expression
+  × TS(17013): Unexpected new.target expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/newTarget/invalidNewTarget.es6.ts:23:8]
  22 │     set m(_) { _ = new.target; },
  23 │     n: new.target,
@@ -22081,61 +22081,61 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated1.ts:1:1]
  1 │ `
    · ─
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated1_ES6.ts:1:1]
  1 │ `
    · ─
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated2.ts:1:1]
  1 │ `\`
    · ───
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated2_ES6.ts:1:1]
  1 │ `\`
    · ───
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated3.ts:1:1]
  1 │ `\\
    · ───
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated3_ES6.ts:1:1]
  1 │ `\\
    · ───
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated4.ts:1:1]
  1 │ `\\\`
    · ─────
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated4_ES6.ts:1:1]
  1 │ `\\\`
    · ─────
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated5.ts:1:1]
  1 │ `\\\\\`
    · ───────
    ╰────
 
-  × Unterminated string
+  × TS(1160): Unterminated template
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/templates/templateStringUnterminated5_ES6.ts:1:1]
  1 │ `\\\\\`
    · ───────
@@ -22254,13 +22254,13 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·          ─────────────────
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/unicodeExtendedEscapes/unicodeExtendedEscapesInStrings24.ts:1:9]
  1 │ var x = "\u{00000000000067
    ·         ──────────────────
    ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/unicodeExtendedEscapes/unicodeExtendedEscapesInStrings25.ts:1:9]
  1 │ var x = "\u{00000000000067}
    ·         ───────────────────
@@ -24580,7 +24580,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  51 │ }
     ╰────
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/objectLiterals/objectLiteralErrors.ts:49:5]
  48 │     x = 1,
  49 │     y = 2,
@@ -24589,7 +24589,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Invalid assignment in object literal
+  × TS(1312): Invalid assignment in object literal
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/objectLiterals/objectLiteralErrors.ts:48:5]
  47 │ var h1 = {
  48 │     x = 1,
@@ -25512,7 +25512,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ declare export as namespace oo2;
    ╰────
 
-  × Identifier `fn2` has already been declared
+  × TS(2300): Identifier `fn2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionNameConflicts.ts:8:9]
   7 │ 
   8 │     var fn2;
@@ -25524,7 +25524,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ }
     ╰────
 
-  × Identifier `fn4` has already been declared
+  × TS(2300): Identifier `fn4` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionNameConflicts.ts:16:9]
  15 │ function func() {
  16 │     var fn4;
@@ -25560,7 +25560,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ function fn5() { }
     ╰────
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
    ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:2:5]
  1 │ function a(a = 10) {
  2 │     "use strict";
@@ -25569,7 +25569,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:16:5]
  15 │ function rest(...args: any[]) {
  16 │     'use strict';
@@ -25578,7 +25578,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:20:5]
  19 │ function rest1(a = 1, ...args) {
  20 │     'use strict';
@@ -25587,7 +25587,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:24:5]
  23 │ function paramDefault(param = 1) {
  24 │     'use strict';
@@ -25596,7 +25596,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:28:5]
  27 │ function objectBindingPattern({foo}: any) {
  28 │     'use strict';
@@ -25605,7 +25605,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:32:5]
  31 │ function arrayBindingPattern([foo]: any[]) {
  32 │     'use strict';
@@ -25614,7 +25614,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:36:5]
  35 │ function manyParameter(a = 10, b = 20) {
  36 │     "use strict";
@@ -25623,7 +25623,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Illegal 'use strict' directive in function with non-simple parameter list
+  × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
     ╭─[typescript/tsc/testdata/tests/cases/conformance/functions/functionWithUseStrictAndSimpleParameterList_es2016.ts:41:5]
  40 │     "foo";
  41 │     "use strict";
@@ -26142,7 +26142,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Allowed modifiers are: declare, async
 
-  × Identifier `Point` has already been declared
+  × TS(2300): Identifier `Point` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/internalModules/moduleDeclarations/invalidInstantiatedModule.ts:2:18]
  1 │ namespace M {
  2 │     export class Point { x: number; y: number }
@@ -26202,7 +26202,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │     // @ts-ignore
    ╰────
 
-  × Identifier `err` has already been declared
+  × TS(2300): Identifier `err` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/jsdoc/jsdocCatchClauseWithTypeAnnotation.ts:33:9]
  32 │     try { }
  33 │     catch (err) {
@@ -26230,7 +26230,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                           ─
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
     ╭─[typescript/tsc/testdata/tests/cases/conformance/jsdoc/typedefOnStatements.ts:26:1]
  25 │ /** @typedef {{ j: string }} J */
  26 │ break;
@@ -26239,7 +26239,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
     ╭─[typescript/tsc/testdata/tests/cases/conformance/jsdoc/typedefOnStatements.ts:31:1]
  30 │ /** @typedef {{ l: string }} L */
  31 │ continue;
@@ -28685,7 +28685,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Identifier `public` has already been declared
+  × TS(2300): Identifier `public` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/MemberFunctionDeclarations/parserMemberFunctionDeclarationAmbiguities1.ts:2:3]
  1 │ class C {
  2 │   public() {}
@@ -28699,7 +28699,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │   public static() {}
    ╰────
 
-  × Identifier `static` has already been declared
+  × TS(2300): Identifier `static` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/MemberFunctionDeclarations/parserMemberFunctionDeclarationAmbiguities1.ts:3:3]
  2 │   public() {}
  3 │   static() {}
@@ -28713,7 +28713,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ 
    ╰────
 
-  × Identifier `public` has already been declared
+  × TS(2300): Identifier `public` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/MemberFunctionDeclarations/parserMemberFunctionDeclarationAmbiguities1.ts:8:17]
   7 │ 
   8 │   public static public() {}
@@ -28727,7 +28727,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │   static static() {}
     ╰────
 
-  × Identifier `static` has already been declared
+  × TS(2300): Identifier `static` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/MemberFunctionDeclarations/parserMemberFunctionDeclarationAmbiguities1.ts:9:17]
   8 │   public static public() {}
   9 │   public static static() {}
@@ -29163,7 +29163,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected flag a in regular expression literal
+  × TS(1499): Unexpected flag a in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/RegularExpressions/parserRegularExpressionDivideAmbiguity3.ts:1:16]
  1 │ if (1) /regexp/a.foo();
    ·                ─
@@ -29381,14 +29381,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·          ─
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/BreakStatements/parser_breakNotInIterationOrSwitchStatement1.ts:1:1]
  1 │ break;
    · ──────
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/BreakStatements/parser_breakNotInIterationOrSwitchStatement2.ts:3:5]
  2 │   function f() {
  3 │     break;
@@ -29397,7 +29397,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/BreakStatements/parser_breakTarget5.ts:5:13]
  4 │     while (true) {
  5 │       break target;
@@ -29413,14 +29413,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueNotInIterationStatement1.ts:1:1]
  1 │ continue;
    · ─────────
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueNotInIterationStatement2.ts:3:5]
  2 │   function f() {
  3 │     continue;
@@ -29429,7 +29429,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueNotInIterationStatement3.ts:3:5]
  2 │   default:
  3 │     continue;
@@ -29438,7 +29438,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueNotInIterationStatement4.ts:4:14]
  3 │   var x = () => {
  4 │     continue TWO;
@@ -29446,7 +29446,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   }
    ╰────
 
-  × A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
+  × TS(1115): A `continue` statement can only jump to a label of an enclosing `for`, `while` or `do while` statement.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueTarget1.ts:1:1]
  1 │ target:
    · ───┬──
@@ -29456,7 +29456,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·               ╰── for this label
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/ContinueStatements/parser_continueTarget5.ts:5:16]
  4 │     while (true) {
  5 │       continue target;
@@ -29472,7 +29472,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Label `target` has already been declared
+  × TS(1114): Label `target` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/LabeledStatements/parser_duplicateLabel1.ts:1:1]
  1 │ target:
    · ───┬──
@@ -29483,7 +29483,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ while (true) {
    ╰────
 
-  × Label `target` has already been declared
+  × TS(1114): Label `target` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/LabeledStatements/parser_duplicateLabel2.ts:1:1]
  1 │ target:
    · ───┬──
@@ -29521,7 +29521,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    · ──────
    ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/parserBreakStatement1.d.ts:1:1]
  1 │ break;
    · ──────
@@ -29534,7 +29534,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    · ─────────
    ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/Statements/parserContinueStatement1.d.ts:1:1]
  1 │ continue;
    · ─────────
@@ -30014,7 +30014,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/parserKeywordsAsIdentifierName2.ts:2:10]
  1 │ // 'public' should be marked unusable, should complain on trailing /*
  2 │ a.public /*
@@ -30483,7 +30483,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  28 │             return toFixed()
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSBinderErrors.ts:34:19]
  33 │             label: var x = 1
  34 │             break label
@@ -30535,7 +30535,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Did you mean '#a'?
 
-  × Identifier `orbitol` has already been declared
+  × TS(2300): Identifier `orbitol` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSRedeclare.ts:1:7]
  1 │ const orbitol = 1
    ·       ───┬───
@@ -30546,7 +30546,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ orbitol.toExponential()
    ╰────
 
-  × Identifier `orbitol` has already been declared
+  × TS(2300): Identifier `orbitol` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSRedeclare2.ts:1:7]
  1 │ const orbitol = 1
    ·       ───┬───
@@ -30616,7 +30616,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  1 │ 1e+
    ╰────
 
-  × Unterminated multiline comment
+  × TS(1010): Unterminated multiline comment
     ╭─[typescript/tsc/testdata/tests/cases/conformance/scanner/ecmascript5/scannerS7.4_A2_T2.ts:12:1]
  11 │ 
  12 │ /*CHECK#1/
@@ -30638,7 +30638,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ·  ─────
     ╰────
 
-  × Unterminated string
+  × TS(1002): Unterminated string
     ╭─[typescript/tsc/testdata/tests/cases/conformance/scanner/ecmascript5/scannerStringLiterals.ts:10:1]
   9 │ "
  10 │ "Should error because of newline.
@@ -31102,7 +31102,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidDoWhileBreakStatements.ts:4:1]
  3 │ // naked break not allowed
  4 │ break;
@@ -31119,7 +31119,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidDoWhileBreakStatements.ts:14:15]
  13 │     var x = () => {
  14 │         break TWO;
@@ -31127,7 +31127,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidDoWhileBreakStatements.ts:21:15]
  20 │     var fn = function () {
  21 │         break THREE;
@@ -31151,7 +31151,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }while (true)
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForBreakStatements.ts:4:1]
  3 │ // naked break not allowed
  4 │ break;
@@ -31168,7 +31168,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForBreakStatements.ts:14:15]
  13 │     var x = () => {
  14 │         break TWO;
@@ -31176,7 +31176,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForBreakStatements.ts:21:15]
  20 │     var fn = function () {
  21 │         break THREE;
@@ -31200,7 +31200,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  37 │ }
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForInBreakStatements.ts:4:1]
  3 │ // naked break not allowed
  4 │ break;
@@ -31217,7 +31217,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForInBreakStatements.ts:14:15]
  13 │     var fn = () => {
  14 │         break TWO;
@@ -31225,7 +31225,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidForInBreakStatements.ts:21:15]
  20 │     var fn = function () {
  21 │         break THREE;
@@ -31249,7 +31249,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }
     ╰────
 
-  × Illegal break statement
+  × TS(1105): Illegal break statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidWhileBreakStatements.ts:4:1]
  3 │ // naked break not allowed
  4 │ break;
@@ -31266,7 +31266,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidWhileBreakStatements.ts:14:15]
  13 │     var x = () => {
  14 │         break TWO;
@@ -31274,7 +31274,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/breakStatements/invalidWhileBreakStatements.ts:21:15]
  20 │     var fn = function () {
  21 │         break THREE;
@@ -31298,7 +31298,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidDoWhileContinueStatements.ts:4:1]
  3 │ // naked continue not allowed
  4 │ continue;
@@ -31315,7 +31315,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidDoWhileContinueStatements.ts:14:18]
  13 │     var x = () => {
  14 │         continue TWO;
@@ -31323,7 +31323,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidDoWhileContinueStatements.ts:21:18]
  20 │     var fn = function () {
  21 │         continue THREE;
@@ -31347,7 +31347,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }while (true)
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForContinueStatements.ts:4:1]
  3 │ // naked continue not allowed
  4 │ continue;
@@ -31364,7 +31364,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForContinueStatements.ts:14:18]
  13 │     var x = () => {
  14 │         continue TWO;
@@ -31372,7 +31372,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForContinueStatements.ts:21:18]
  20 │     var fn = function () {
  21 │         continue THREE;
@@ -31396,7 +31396,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  37 │ }
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForInContinueStatements.ts:4:1]
  3 │ // naked continue not allowed
  4 │ continue;
@@ -31413,7 +31413,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForInContinueStatements.ts:14:18]
  13 │     var fn = () => {
  14 │         continue TWO;
@@ -31421,7 +31421,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidForInContinueStatements.ts:21:18]
  20 │     var fn = function () {
  21 │         continue THREE;
@@ -31445,7 +31445,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ }
     ╰────
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidSwitchContinueStatement.ts:5:9]
  4 │     case 5:
  5 │         continue;
@@ -31454,7 +31454,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Illegal continue statement: no surrounding iteration statement
+  × TS(1104): Illegal continue statement: no surrounding iteration statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidWhileContinueStatements.ts:4:1]
  3 │ // naked continue not allowed
  4 │ continue;
@@ -31471,7 +31471,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidWhileContinueStatements.ts:14:18]
  13 │     var x = () => {
  14 │         continue TWO;
@@ -31479,7 +31479,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │     }
     ╰────
 
-  × Jump target cannot cross function boundary.
+  × TS(1107): Jump target cannot cross function boundary.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/continueStatements/invalidWhileContinueStatements.ts:21:18]
  20 │     var fn = function () {
  21 │         continue THREE;
@@ -31749,7 +31749,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ 
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/tryStatements/catchClauseWithTypeAnnotation.ts:29:20]
  28 │     // minor bug: shows that the `catch` argument is skipped when checking scope
  29 │     try { } catch (x) { let x: string; }
@@ -31856,7 +31856,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  166 │ 
      ╰────
 
-  × Identifier `T` has already been declared
+  × TS(2300): Identifier `T` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/localTypes/localTypes4.ts:18:16]
  17 │     // Type parameters and top-level local types are in same declaration space
  18 │     function f<T>() {
@@ -31877,7 +31877,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ }
     ╰────
 
-  × Identifier `foo` has already been declared
+  × TS(2300): Identifier `foo` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/duplicatePropertyNames.ts:19:5]
  18 │ class C {
  19 │     foo: string;
@@ -31889,7 +31889,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  21 │ 
     ╰────
 
-  × Identifier `bar` has already been declared
+  × TS(2300): Identifier `bar` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/duplicatePropertyNames.ts:22:5]
  21 │ 
  22 │     bar(x) { }
@@ -31901,7 +31901,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │ 
     ╰────
 
-  × Identifier `baz` has already been declared
+  × TS(2300): Identifier `baz` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/duplicatePropertyNames.ts:25:5]
  24 │ 
  25 │     baz = () => { }
@@ -31913,7 +31913,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ }
     ╰────
 
-  × Identifier `1` has already been declared
+  × TS(2300): Identifier `1` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/objectTypeWithDuplicateNumericProperty.ts:5:5]
  4 │ class C {
  5 │     1;
@@ -31925,7 +31925,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     1.;
    ╰────
 
-  × Identifier `1.0` has already been declared
+  × TS(2300): Identifier `1.0` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/objectTypeWithDuplicateNumericProperty.ts:6:5]
  5 │     1;
  6 │     1.0;
@@ -31937,7 +31937,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │     1.00;
    ╰────
 
-  × Identifier `1.` has already been declared
+  × TS(2300): Identifier `1.` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/members/objectTypeWithDuplicateNumericProperty.ts:7:5]
  6 │     1.0;
  7 │     1.;
@@ -32424,7 +32424,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: No modifiers are allowed here.
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:6:11]
  5 │ var f2 = function (x, x) { }
  6 │ var f3 = (x, x) => { }
@@ -32434,7 +32434,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ var f4 = <T>(x: T, x: T) => { }
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:7:14]
  6 │ var f3 = (x, x) => { }
  7 │ var f4 = <T>(x: T, x: T) => { }
@@ -32444,7 +32444,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │ 
    ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:12:11]
  11 │ var f6 = function (x: string, x: number) { }
  12 │ var f7 = (x: string, x: number) => { }
@@ -32454,7 +32454,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │ var f8 = <T>(x: T, y: T) => { }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:16:9]
  15 │ class C {
  16 │     foo(x, x) { }
@@ -32464,7 +32464,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  17 │     foo2(x: number, x: string) { }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:17:10]
  16 │     foo(x, x) { }
  17 │     foo2(x: number, x: string) { }
@@ -32474,7 +32474,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  18 │     foo3<T>(x: T, x: T) { }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:18:13]
  17 │     foo2(x: number, x: string) { }
  18 │     foo3<T>(x: T, x: T) { }
@@ -32484,7 +32484,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  19 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:22:6]
  21 │ interface I {
  22 │     (x, x);
@@ -32494,7 +32494,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │     (x: string, x: number);
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:23:6]
  22 │     (x, x);
  23 │     (x: string, x: number);
@@ -32504,7 +32504,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │     foo(x, x);
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:24:9]
  23 │     (x: string, x: number);
  24 │     foo(x, x);
@@ -32514,7 +32514,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  25 │     foo(x: number, x: string);
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:25:9]
  24 │     foo(x, x);
  25 │     foo(x: number, x: string);
@@ -32524,7 +32524,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  26 │     foo3<T>(x: T, x: T);
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:26:13]
  25 │     foo(x: number, x: string);
  26 │     foo3<T>(x: T, x: T);
@@ -32534,7 +32534,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ }
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:30:9]
  29 │ var a: {
  30 │     foo(x, x);
@@ -32544,7 +32544,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  31 │     foo2(x: number, x: string);
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:31:10]
  30 │     foo(x, x);
  31 │     foo2(x: number, x: string);
@@ -32554,7 +32554,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  32 │ };
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:35:9]
  34 │ var b = {
  35 │     foo(x, x) { },
@@ -32564,7 +32564,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  36 │     a: function foo(x: number, x: string) { },
     ╰────
 
-  × Identifier `x` has already been declared
+  × TS(2300): Identifier `x` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/callSignatures/callSignaturesWithDuplicateParameters.ts:37:12]
  36 │     a: function foo(x: number, x: string) { },
  37 │     b: <T>(x: T, x: T) => { }
@@ -32797,7 +32797,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  21 │ }
     ╰────
 
-  × Identifier `"1"` has already been declared
+  × TS(2300): Identifier `"1"` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/objectTypeLiteral/propertySignatures/numericStringNamedPropertyEquivalence.ts:4:5]
  3 │ class C {
  4 │     "1": number;
@@ -33083,7 +33083,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Identifier `A` has already been declared
+  × TS(2300): Identifier `A` has already been declared
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/typeAliases/typeAliasesDoNotMerge.ts:1:13]
  1 │ export type A = {}
    ·             ┬
@@ -33093,7 +33093,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·      ╰── It can not be redeclared here
    ╰────
 
-  × Identifier `T2` has already been declared
+  × TS(2300): Identifier `T2` has already been declared
     ╭─[typescript/tsc/testdata/tests/cases/conformance/types/typeAliases/typeAliasesForObjectTypes.ts:10:6]
   9 │ // An interface can have multiple merged declarations, but a type alias for an object type literal cannot.
  10 │ type T2 = { x: string }

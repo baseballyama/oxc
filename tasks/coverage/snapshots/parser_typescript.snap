@@ -3980,7 +3980,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[typescript/tsc/testdata/tests/cases/compiler/checkSuperCallBeforeThisAccessing9.ts:12:1]
  11 │     /** @extends {Based} */
  12 │ ╭─▶ class Derived2 {
@@ -6625,7 +6625,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/deleteOperatorInStrictMode.ts:3:8]
  2 │ var a;
  3 │ delete a;
@@ -9462,7 +9462,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationBindStrictModeErrors.ts:8:8]
  7 │ var let = 10; // error
  8 │ delete a; // error
@@ -14646,7 +14646,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Replace with `super()` or `super.prop` or `super[prop]`
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/superCallFromClassThatHasNoBaseType1.ts:7:1]
  6 │     
  7 │ ╭─▶ class B {
@@ -17330,7 +17330,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │     b() {
    ╰────
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/constructorDeclarations/superCalls/superCallInConstructorWithNoBaseType.ts:1:1]
  1 │ ╭─▶ class C {
  2 │ │       constructor() {
@@ -17343,7 +17343,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/constructorDeclarations/superCalls/superCallInConstructorWithNoBaseType.ts:7:1]
   6 │     
   7 │ ╭─▶ class D<T> {
@@ -19144,7 +19144,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ }
     ╰────
 
-  × The operand of a 'delete' operator cannot be a private identifier.
+  × TS(18011): The operand of a 'delete' operator cannot be a private identifier.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesNoDelete.ts:4:16]
  3 │     constructor() {
  4 │         delete this.#v; // Error: The operand of a delete operator cannot be a private name.
@@ -21058,7 +21058,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: Classes are always strict mode code
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/classDeclaration/superCallFromClassThatHasNoBaseTypeButWithSameSymbolInterface.ts:3:1]
  2 │     
  3 │ ╭─▶ class Foo {
@@ -21119,7 +21119,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ }
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/computedProperties/computedPropertyNames3_ES5.ts:5:17]
  4 │     static [() => { }]() { }
  5 │     get [delete id]() { }
@@ -21127,7 +21127,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │     set [[0, 1]](v) { }
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/computedProperties/computedPropertyNames3_ES6.ts:5:17]
  4 │     static [() => { }]() { }
  5 │     get [delete id]() { }
@@ -24502,7 +24502,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  45 │         var p = () => this;
     ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/literals/strictModeOctalLiterals.ts:2:14]
  1 │ export enum E {
  2 │     A = 12 + 01
@@ -24511,7 +24511,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/literals/strictModeOctalLiterals.ts:4:16]
  3 │ }
  4 │ const orbitol: 01 = 01
@@ -24519,7 +24519,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: for octal literals use the '0o' prefix instead
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/literals/strictModeOctalLiterals.ts:4:21]
  3 │ }
  4 │ const orbitol: 01 = 01
@@ -24662,7 +24662,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Replace with `super()` or `super.prop` or `super[prop]`
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/superCalls/errorSuperCalls.ts:2:1]
   1 │     //super call in class constructor with no base type
   2 │ ╭─▶ class NoBase {
@@ -25019,7 +25019,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:26:31]
  25 │ // any type var
  26 │ var ResultIsBoolean1 = delete ANY1;
@@ -25027,7 +25027,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │ var ResultIsBoolean2 = delete ANY2;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:27:31]
  26 │ var ResultIsBoolean1 = delete ANY1;
  27 │ var ResultIsBoolean2 = delete ANY2;
@@ -25035,7 +25035,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  28 │ var ResultIsBoolean3 = delete A;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:28:31]
  27 │ var ResultIsBoolean2 = delete ANY2;
  28 │ var ResultIsBoolean3 = delete A;
@@ -25043,7 +25043,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  29 │ var ResultIsBoolean4 = delete M;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:29:31]
  28 │ var ResultIsBoolean3 = delete A;
  29 │ var ResultIsBoolean4 = delete M;
@@ -25051,7 +25051,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  30 │ var ResultIsBoolean5 = delete obj;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:30:31]
  29 │ var ResultIsBoolean4 = delete M;
  30 │ var ResultIsBoolean5 = delete obj;
@@ -25059,7 +25059,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  31 │ var ResultIsBoolean6 = delete obj1;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:31:31]
  30 │ var ResultIsBoolean5 = delete obj;
  31 │ var ResultIsBoolean6 = delete obj1;
@@ -25067,7 +25067,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  32 │ 
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:34:31]
  33 │ // any type literal
  34 │ var ResultIsBoolean7 = delete undefined;
@@ -25075,7 +25075,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  35 │ var ResultIsBoolean8 = delete null;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:51:39]
  50 │ // multiple delete  operators
  51 │ var ResultIsBoolean20 = delete delete ANY;
@@ -25083,7 +25083,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  52 │ var ResultIsBoolean21 = delete delete delete (ANY + ANY1);
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:55:8]
  54 │ // miss assignment operators
  55 │ delete ANY;
@@ -25091,7 +25091,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  56 │ delete ANY1;
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:56:8]
  55 │ delete ANY;
  56 │ delete ANY1;
@@ -25099,7 +25099,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  57 │ delete ANY2[0];
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/deleteOperator/deleteOperatorWithAnyOtherType.ts:58:8]
  57 │ delete ANY2[0];
  58 │ delete ANY, ANY1;
@@ -29813,7 +29813,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │   return;
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
+  × TS(1121): '0'-prefixed octal literals and octal escape sequences are deprecated
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/StrictMode/octalLiteralInStrictModeES3.ts:2:1]
  1 │ "use strict";
  2 │ 03;
@@ -29864,7 +29864,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/StrictMode/parserStrictMode15.ts:2:8]
  1 │ "use strict";
  2 │ delete a;
@@ -30433,7 +30433,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   note: Modules are always strict mode code
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSBinderErrors.ts:15:20]
  14 │         function container(f) {
  15 │             delete f
@@ -30441,7 +30441,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │         }
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSBinderErrors.ts:18:16]
  17 │         var g = 6
  18 │         delete g
@@ -30449,7 +30449,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  19 │         delete container
     ╰────
 
-  × Delete of an unqualified identifier in strict mode.
+  × TS(1102): Delete of an unqualified identifier in strict mode.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSBinderErrors.ts:19:16]
  18 │         delete g
  19 │         delete container

@@ -578,12 +578,12 @@ Negative Passed: 274/274 (100.00%)
    ·                              ╰── `#x` has already been declared here
    ╰────
 
-  × '0'-prefixed octal literals and octal escape sequences are deprecated
-   ╭─[misc/fail/escape-00.js:1:25]
+  × TS(1487): '0'-prefixed octal literals and octal escape sequences are deprecated
+   ╭─[misc/fail/escape-00.js:1:26]
  1 │ export const escape00 = "\00";
-   ·                         ─────
+   ·                          ──
    ╰────
-  help: for octal literals use the '0o' prefix instead
+  help: for octal escapes use the '\x' or '\u' escape instead
 
   × Keywords cannot contain escape characters
    ╭─[misc/fail/escaped-import-phase.js:1:8]
@@ -1987,7 +1987,7 @@ Negative Passed: 274/274 (100.00%)
  21 │ };
     ╰────
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284-1.js:24:1]
  23 │     // `super()` in class constructor of class without super class
  24 │ ╭─▶ class A {
@@ -2003,7 +2003,7 @@ Negative Passed: 274/274 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284-1.js:24:1]
  23 │     // `super()` in class constructor of class without super class
  24 │ ╭─▶ class A {
@@ -2019,7 +2019,7 @@ Negative Passed: 274/274 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284-1.js:24:1]
  23 │     // `super()` in class constructor of class without super class
  24 │ ╭─▶ class A {
@@ -2035,7 +2035,7 @@ Negative Passed: 274/274 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284-1.js:24:1]
  23 │     // `super()` in class constructor of class without super class
  24 │ ╭─▶ class A {
@@ -2051,7 +2051,7 @@ Negative Passed: 274/274 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284-1.js:24:1]
  23 │     // `super()` in class constructor of class without super class
  24 │ ╭─▶ class A {
@@ -4187,7 +4187,7 @@ Negative Passed: 274/274 (100.00%)
  17 │     }
     ╰────
 
-  × 'super' can only be referenced in a derived class.
+  × TS(2335): 'super' can only be referenced in a derived class.
     ╭─[misc/fail/oxc-13284.ts:21:1]
  20 │     
  21 │ ╭─▶ class Outer2 {

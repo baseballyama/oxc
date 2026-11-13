@@ -26856,7 +26856,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ─
     ╰────
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[test262/test/language/module-code/top-level-await/syntax/early-does-not-propagate-to-fn-declaration-body.js:38:17]
  37 │ 
  38 │ function fn() { await 0; }
@@ -26864,7 +26864,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[test262/test/language/module-code/top-level-await/syntax/early-does-not-propagate-to-fn-declaration-params.js:38:17]
  37 │ 
  38 │ function fn(x = await 1) {
@@ -26882,7 +26882,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   return x;
     ╰────
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[test262/test/language/module-code/top-level-await/syntax/early-does-not-propagate-to-fn-expr-body.js:29:3]
  28 │ 0, function () {
  29 │   await 1;
@@ -26891,7 +26891,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[test262/test/language/module-code/top-level-await/syntax/early-does-not-propagate-to-fn-expr-params.js:28:18]
  27 │ 
  28 │ 0, function (x = await 1) {
@@ -27858,7 +27858,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[test262/test/language/statements/await-using/syntax/await-using-not-allowed-at-top-level-of-script.js:23:1]
  22 │ $DONOTEVALUATE();
  23 │ await using x = null;

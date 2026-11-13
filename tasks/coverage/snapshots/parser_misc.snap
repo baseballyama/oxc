@@ -251,7 +251,7 @@ Negative Passed: 289/289 (100.00%)
    ·           ─────
    ╰────
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/auto-accessor-initializer-await.js:3:18]
  2 │   class C {
  3 │     accessor x = await 1;
@@ -294,7 +294,7 @@ Negative Passed: 289/289 (100.00%)
  5 │     }
    ╰────
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/await-using-context.js:2:3]
  1 │ function f() {
  2 │   await using x = null;
@@ -303,7 +303,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/await-using-context.js:3:8]
  2 │   await using x = null;
  3 │   for (await using y = null; ; ) {}
@@ -312,7 +312,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/await-using-context.js:4:8]
  3 │   for (await using y = null; ; ) {}
  4 │   for (await using z of []) {}
@@ -321,7 +321,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/await-using-context.js:8:3]
  7 │ function* g() {
  8 │   await using x = null;
@@ -330,7 +330,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[misc/fail/await-using-context.js:9:8]
   8 │   await using x = null;
   9 │   for (await using y = null; ; ) {}
@@ -339,7 +339,7 @@ Negative Passed: 289/289 (100.00%)
     ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
     ╭─[misc/fail/await-using-context.js:10:8]
   9 │   for (await using y = null; ; ) {}
  10 │   for (await using z of []) {}
@@ -498,7 +498,7 @@ Negative Passed: 289/289 (100.00%)
    · ──────
    ╰────
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/commonjs-top-level-await.cjs:2:1]
  1 │ // CommonJS does NOT allow top-level await (only ES modules do)
  2 │ await Promise.resolve();
@@ -4972,7 +4972,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:1:17]
  1 │ function fn(x = await 1) {}
    ·                 ─────
@@ -4980,7 +4980,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:2:24]
  1 │ function fn(x = await 1) {}
  2 │ var fe = function (x = await 1) {};
@@ -4989,7 +4989,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:3:17]
  2 │ var fe = function (x = await 1) {};
  3 │ function* g(x = await 1) {}
@@ -4998,7 +4998,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:4:10]
  3 │ function* g(x = await 1) {}
  4 │ ({ m(x = await 1) {} });
@@ -5007,7 +5007,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:5:17]
  4 │ ({ m(x = await 1) {} });
  5 │ class C { m(x = await 1) {} }
@@ -5016,7 +5016,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:6:15]
  5 │ class C { m(x = await 1) {} }
  6 │ class D { p = await 0 }
@@ -5025,7 +5025,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:7:22]
  6 │ class D { p = await 0 }
  7 │ class E { static p = await 0 }
@@ -5034,7 +5034,7 @@ Negative Passed: 289/289 (100.00%)
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × `await` is only allowed within async functions and at the top levels of modules
+  × TS(1308): `await` is only allowed within async functions and at the top levels of modules
    ╭─[misc/fail/oxc-29896.js:8:24]
  7 │ class E { static p = await 0 }
  8 │ class F { accessor p = await 0 }

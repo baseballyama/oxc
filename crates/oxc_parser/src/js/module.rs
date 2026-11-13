@@ -450,10 +450,14 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         if self.is_ts {
             return;
         }
-        let statement = if self.at(Kind::Import) { "import statement" } else { "export statement" };
+        let (statement, code) = if self.at(Kind::Import) {
+            ("import statement", "1473")
+        } else {
+            ("export statement", "1474")
+        };
         let span = self.cur_token().span();
         if stmt_ctx != StatementContext::Program {
-            self.error(diagnostics::top_level(statement, span));
+            self.error(diagnostics::top_level(statement, code, span));
         } else if self.source_type.is_script() || self.source_type.is_commonjs() {
             self.error(diagnostics::module_code(statement, span));
         } else if self.source_type.is_unambiguous()

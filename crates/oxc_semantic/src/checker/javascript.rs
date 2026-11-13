@@ -1234,7 +1234,7 @@ pub fn check_object_expression(obj_expr: &ObjectExpression, ctx: &SemanticBuilde
                 && prop_name == "__proto__"
             {
                 if let Some(prev_span) = prev_proto {
-                    ctx.error(diagnostics::redeclaration("__proto__", prev_span, span));
+                    ctx.error(diagnostics::duplicate_proto(prev_span, span));
                 }
                 prev_proto = Some(span);
             }

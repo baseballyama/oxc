@@ -875,10 +875,13 @@ parser_diagnostics! {
         OxcDiagnostic::error("A rest parameter cannot have an initializer.").with_label(span)
     };
 
-    top_level(statement: &'static str, span: Span) => {
-        OxcDiagnostic::error(format!(
-            "'{statement}' declaration can only be used at the top level of a module"
-        ))
+    // TS(1473): An import declaration can only be used at the top level of a module.
+    // TS(1474): An export declaration can only be used at the top level of a module.
+    top_level(statement: &'static str, code: &'static str, span: Span) => {
+        ts_error(
+            code,
+            format!("'{statement}' declaration can only be used at the top level of a module"),
+        )
         .with_label(span)
     };
 

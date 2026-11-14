@@ -1291,6 +1291,29 @@ The escaped identifier `\-\-CamelCase` decodes to the custom property name `--Ca
 Custom property names are case-sensitive, so lowercasing the declaration while preserving the reference makes `var(\-\-CamelCase)` unresolved.
 Escaped custom property names therefore preserve their source spelling, like names written with a literal `--` prefix.
 
+## cdo-cdc-dropped
+
+- Why: semantics
+- Pin: `tests/fixtures/format/css/cdo-cdc.css`
+
+```css
+/* input */
+<!--
+a { color: red; }
+-->
+
+/* ours */
+a {
+  color: red;
+}
+
+/* prettier: CssSyntaxError: Unknown word -->, the input is left as-is */
+```
+
+At the top level of a style sheet, `<!--` and `-->` mean nothing (css-syntax-3 §5.4.1 "consume a list of rules" drops them),
+and `oxc-css-parser` reads them the same way, so no node keeps them; the output reads as the same rules.
+postcss has no rule for them and throws.
+
 ## invalid-selector-prelude-verbatim
 
 - Why: uniform-rule (raw is verbatim; AGENTS.md "Printing raw vs typed")

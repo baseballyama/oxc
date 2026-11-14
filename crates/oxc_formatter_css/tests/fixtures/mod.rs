@@ -165,6 +165,24 @@ fn bom_is_preserved() {
 }
 
 #[test]
+fn a_style_element_is_a_style_sheet() {
+    use oxc_formatter_css::{CssEmbeddedIn, format_to_ir};
+    let allocator = Allocator::default();
+    let session =
+        oxc_formatter_core::FormatSession::new(&allocator, oxc_formatter_core::InputKind::Fragment);
+    let options = CssFormatOptions::default();
+    // A root declaration is a statement of a fragment, and an error of a whole style sheet.
+    for source in ["a:hover\n  color: red\n", "color: red;"] {
+        let sheet = format_to_ir(&session, source, options, Some(CssEmbeddedIn::StyleElement));
+        assert!(sheet.is_err(), "{source:?} should fail as a style element's body");
+        assert!(format_to_ir(&session, source, options, None).is_ok(), "{source:?} as a fragment");
+    }
+    let rule =
+        format_to_ir(&session, "a { color: red }", options, Some(CssEmbeddedIn::StyleElement));
+    assert!(rule.is_ok());
+}
+
+#[test]
 fn parse_error_is_err() {
     let allocator = Allocator::default();
     let css = CssFormatOptions::default();

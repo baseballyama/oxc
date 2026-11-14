@@ -2708,7 +2708,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ╰── A newline is not expected here
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/536/input.js:1:7]
  1 │ const a;
    ·       ─
@@ -5227,14 +5227,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/324/input.js:1:5]
  1 │ let [x]
    ·     ───
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/325/input.js:1:5]
  1 │ var [x]
    ·     ───
@@ -5604,7 +5604,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·    ─
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/invalid-const-no-initializer-linebreak-in/input.js:1:7]
  1 │ const x
    ·       ─
@@ -5619,7 +5619,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/invalid-const-no-initializer-linebreak-in-errorRecovery-false/input.js:1:7]
  1 │ const x
    ·       ─
@@ -5634,7 +5634,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/invalid-const-no-initializer-linebreak-of/input.js:1:7]
  1 │ const x
    ·       ─
@@ -5642,7 +5642,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/uncategorised/invalid-const-no-initializer-linebreak-of-module/input.js:1:7]
  1 │ const x
    ·       ─
@@ -11552,7 +11552,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ────
    ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-lexical-declaration/invalid_complex_binding_without_init/input.js:1:5]
  1 │ let []
    ·     ──
@@ -12908,21 +12908,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ▲
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0138/input.js:1:15]
  1 │ const x = 12, y;
    ·               ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0139/input.js:1:7]
  1 │ const x, y = 12;
    ·       ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0140/input.js:1:7]
  1 │ const x;
    ·       ─
@@ -13872,7 +13872,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─
    ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-variable/complex-pattern-requires-init/input.js:1:5]
  1 │ var []
    ·     ──
@@ -15358,21 +15358,21 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │   export const binary_expression = 1 + 2;
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/const/no-initializer/input.ts:1:7]
  1 │ const x: number;
    ·       ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/const/reserved-word/input.ts:1:7]
  1 │ const b: const;
    ·       ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/declare/destructure-new-line/input.ts:2:7]
  1 │ declare
  2 │ const { x, y }: { x: number, y: number };
@@ -17400,7 +17400,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ╰── Opened here
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/definite-with-type/input.ts:3:7]
  2 │ let x!: number;
  3 │ const y!: number;
@@ -17473,7 +17473,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── `,` expected
    ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-await-using/input.ts:2:15]
  1 │ {
  2 │   await using {}! = {};
@@ -17499,7 +17499,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-const/input.ts:1:7]
  1 │ const {}! = {};
    ·       ──
@@ -17513,7 +17513,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ╰── `,` expected
    ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-let/input.ts:1:5]
  1 │ let {}! = {};
    ·     ──
@@ -17527,7 +17527,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ╰── `,` expected
    ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-using/input.ts:2:9]
  1 │ {
  2 │   using {}! = {};
@@ -17553,7 +17553,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Try inserting a semicolon here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-pattern-assignment-var/input.ts:1:5]
  1 │ var {}! = {};
    ·     ──
@@ -17582,7 +17582,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ const y!;
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/variable-declarator/invalid-definite-without-type/input.ts:3:7]
  2 │ let x!;
  3 │ const y!;

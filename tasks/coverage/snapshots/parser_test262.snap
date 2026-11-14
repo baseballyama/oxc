@@ -35055,7 +35055,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/block-scope-syntax-const-declarations-mixed-with-without-initialiser.js:14:14]
  13 │ $DONOTEVALUATE();
  14 │ const x = 1, y;
@@ -35064,7 +35064,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/block-scope-syntax-const-declarations-mixed-without-with-initialiser.js:14:7]
  13 │ $DONOTEVALUATE();
  14 │ const x, y = 1;
@@ -35073,7 +35073,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/block-scope-syntax-const-declarations-without-initialiser.js:14:7]
  13 │ $DONOTEVALUATE();
  14 │ const x;
@@ -35138,7 +35138,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-case-expression-statement-list.js:15:34]
  14 │ $DONOTEVALUATE();
  15 │ switch (true) { case true: const x; }
@@ -35146,7 +35146,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-default-statement-list.js:15:32]
  14 │ $DONOTEVALUATE();
  15 │ switch (true) { default: const x; }
@@ -35154,7 +35154,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-do-statement-while-expression.js:15:10]
  14 │ $DONOTEVALUATE();
  15 │ do const x; while (false)
@@ -35170,7 +35170,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-for-statement.js:15:21]
  14 │ $DONOTEVALUATE();
  15 │ for (;false;) const x;
@@ -35186,7 +35186,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-if-expression-statement-else-statement.js:15:25]
  14 │ $DONOTEVALUATE();
  15 │ if (true) {} else const x;
@@ -35202,7 +35202,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-if-expression-statement.js:15:17]
  14 │ $DONOTEVALUATE();
  15 │ if (true) const x;
@@ -35218,7 +35218,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-label-statement.js:15:14]
  14 │ $DONOTEVALUATE();
  15 │ label: const x;
@@ -35234,7 +35234,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[test262/test/language/statements/const/syntax/without-initializer-while-expression-statement.js:15:21]
  14 │ $DONOTEVALUATE();
  15 │ while (false) const x;

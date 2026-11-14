@@ -189,7 +189,7 @@
 
 ## typescript
 
-647/699 (92.56%)
+649/699 (92.85%)
 
 ### Failed
 
@@ -250,10 +250,6 @@
 - externals/prettier/typescript/property-signature/consistent-with-flow/union.ts (💥, 80.00%)
   - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/18041.ts (💥, 91.43%)
-  - ❓unclassified
-- externals/prettier/typescript/type-parameters-arguments/18604.ts (💥, 60.00%)
-  - ❓unclassified
-- externals/prettier/typescript/type-parameters-arguments/19505.ts (💥, 81.48%)
   - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/constraints-and-default.ts (💥, 91.67%)
   - ❓unclassified

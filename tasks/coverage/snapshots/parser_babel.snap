@@ -1469,13 +1469,13 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Export 'encrypt' is not defined
+  × TS(2304): Export 'encrypt' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export/input.js:1:10]
  1 │ export { encrypt };
    ·          ───────
    ╰────
 
-  × Export 'encrypt' is not defined
+  × TS(2304): Export 'encrypt' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export-as/input.js:1:10]
  1 │ export { encrypt as decrypt };
    ·          ───────
@@ -1483,26 +1483,26 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean 'decrypt'?
 
-  × Export 'encrypt' is not defined
+  × TS(2304): Export 'encrypt' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export-as-default/input.js:1:10]
  1 │ export { encrypt as default };
    ·          ───────
    ╰────
 
-  × Export 'encrypt' is not defined
+  × TS(2304): Export 'encrypt' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export-block/input.js:4:10]
  3 │ }
  4 │ export { encrypt }
    ·          ───────
    ╰────
 
-  × Export 'Object' is not defined
+  × TS(2304): Export 'Object' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export-builtin/input.js:1:10]
  1 │ export { Object };
    ·          ──────
    ╰────
 
-  × Export 'Object' is not defined
+  × TS(2304): Export 'Object' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/core/scope/undecl-export-builtin-as/input.js:1:10]
  1 │ export { Object as Obj };
    ·          ──────
@@ -3876,7 +3876,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ───────
    ╰────
 
-  × Export 'foo' is not defined
+  × TS(2304): Export 'foo' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-export-default-and-export-as-default/input.js:2:10]
  1 │ export default function() {};
  2 │ export { foo as default };
@@ -3893,14 +3893,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                  ╰── It cannot be redeclared here
    ╰────
 
-  × Export 'foo' is not defined
+  × TS(2304): Export 'foo' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export/input.js:1:10]
  1 │ export { foo };
    ·          ───
  2 │ export { bar as foo };
    ╰────
 
-  × Export 'bar' is not defined
+  × TS(2304): Export 'bar' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/duplicate-named-export/input.js:2:10]
  1 │ export { foo };
  2 │ export { bar as foo };
@@ -4374,7 +4374,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·            ───────
    ╰────
 
-  × Export 'X' is not defined
+  × TS(2304): Export 'X' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/modules/invalid-escape-export-as/input.js:1:10]
  1 │ export { X \u0061s Y }
    ·          ─
@@ -9522,7 +9522,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │ }
    ╰────
 
-  × Private identifier '#p' is not allowed outside class bodies
+  × TS(18016): Private identifier '#p' is not allowed outside class bodies
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/invalid-ts-type-literal/input.js:2:3]
  1 │ interface I {
  2 │   #p: string
@@ -9546,7 +9546,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  6 │   }
    ╰────
 
-  × Private field '#priv' must be declared in an enclosing class
+  × TS(1111): Private field '#priv' must be declared in an enclosing class
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/undeclared-nested/input.js:4:20]
  3 │   meth() {
  4 │     var prop = foo.#priv;
@@ -9554,7 +9554,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │   }
    ╰────
 
-  × Private identifier '#priv' is not allowed outside class bodies
+  × TS(18016): Private identifier '#priv' is not allowed outside class bodies
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-private-properties/undeclared-top-level/input.js:1:16]
  1 │ var prop = foo.#priv;
    ·                ─────
@@ -9745,7 +9745,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Assign the 'arguments' variable to a temporary variable outside
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/class-static-block/invalid-await/input.js:5:7]
  4 │     static {
  5 │       await 42;
@@ -9949,7 +9949,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │   }
    ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
    ╭─[babel/packages/babel-parser/test/fixtures/es2022/private-in/private-in-without-field/input.js:3:5]
  2 │   test() {
  3 │     #x in {};
@@ -11233,7 +11233,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Did you mean `export { default as default } from 'some-module'`?
 
-  × Export 'default' is not defined
+  × TS(2304): Export 'default' is not defined
    ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-export-declaration/invalid-export-named-default/input.js:1:9]
  1 │ export {default}
    ·         ───────
@@ -14533,7 +14533,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ }
    ╰────
 
-  × Getters and setters must have an implementation.
+  × TS(1005): Getters and setters must have an implementation.
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/declare-accessor/input.ts:2:15]
  1 │ class Foo {
  2 │   declare get foo()
@@ -14541,7 +14541,7 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  3 │   declare set foo(v)
    ╰────
 
-  × Getters and setters must have an implementation.
+  × TS(1005): Getters and setters must have an implementation.
    ╭─[babel/packages/babel-parser/test/fixtures/typescript/class/declare-accessor/input.ts:3:15]
  2 │   declare get foo()
  3 │   declare set foo(v)

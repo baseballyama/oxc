@@ -11679,7 +11679,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-accessor-get.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11696,7 +11696,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-accessor-set.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11713,7 +11713,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-async-gen.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11730,7 +11730,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-async.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11747,7 +11747,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-gen.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11764,7 +11764,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11781,7 +11781,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-no-reference.js:41:19]
  40 │   g = this.f;
  41 │   x = delete (g().#m);
@@ -11806,7 +11806,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method-accessor-get.js:41:20]
  40 │   
  41 │   x = delete (this.#m
@@ -11823,7 +11823,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method-accessor-set.js:41:20]
  40 │   
  41 │   x = delete (this.#m
@@ -11864,7 +11864,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method.js:41:20]
  40 │   
  41 │   x = delete (this.#m
@@ -11881,7 +11881,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-no-reference.js:41:20]
  40 │   
  41 │   x = delete (this.#m);
@@ -11906,7 +11906,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-accessor-get.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -11923,7 +11923,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-accessor-set.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -11940,7 +11940,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-async-gen.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -11957,7 +11957,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-async.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -11974,7 +11974,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-gen.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -11991,7 +11991,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -12008,7 +12008,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-no-reference.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -12033,7 +12033,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method-accessor-get.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -12050,7 +12050,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method-accessor-set.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -12091,7 +12091,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -12108,7 +12108,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-no-reference.js:35:19]
  34 │   
  35 │   x = delete this.#m;
@@ -12133,7 +12133,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-accessor-get.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12150,7 +12150,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-accessor-set.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12167,7 +12167,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-async-gen.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12184,7 +12184,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-async.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12201,7 +12201,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-gen.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12218,7 +12218,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12235,7 +12235,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-no-reference.js:41:20]
  40 │   g = this.f;
  41 │   x = delete ((g().#m));
@@ -12260,7 +12260,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method-accessor-get.js:41:21]
  40 │   
  41 │   x = delete ((this.#m
@@ -12277,7 +12277,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method-accessor-set.js:41:21]
  40 │   
  41 │   x = delete ((this.#m
@@ -12318,7 +12318,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method.js:41:21]
  40 │   
  41 │   x = delete ((this.#m
@@ -12335,7 +12335,7 @@ Negative Passed: 4669/4669 (100.00%)
  42 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-no-reference.js:41:21]
  40 │   
  41 │   x = delete ((this.#m));
@@ -12360,7 +12360,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-accessor-get.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12377,7 +12377,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-accessor-set.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12394,7 +12394,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-async-gen.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12411,7 +12411,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-async.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12428,7 +12428,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-gen.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12445,7 +12445,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12462,7 +12462,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-no-reference.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -12487,7 +12487,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method-accessor-get.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -12504,7 +12504,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method-accessor-set.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -12545,7 +12545,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -12562,7 +12562,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-no-reference.js:43:18]
  42 │     
  43 │     delete (this.#m);
@@ -12587,7 +12587,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-accessor-get.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12604,7 +12604,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-accessor-set.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12621,7 +12621,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-async-gen.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12638,7 +12638,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-async.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12655,7 +12655,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-gen.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12672,7 +12672,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12689,7 +12689,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-no-reference.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -12714,7 +12714,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method-accessor-get.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -12731,7 +12731,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method-accessor-set.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -12772,7 +12772,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -12789,7 +12789,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-no-reference.js:37:17]
  36 │     
  37 │     delete this.#m;
@@ -12814,7 +12814,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-accessor-get.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12831,7 +12831,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-accessor-set.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12848,7 +12848,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-async-gen.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12865,7 +12865,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-async.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12882,7 +12882,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-gen.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12899,7 +12899,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12916,7 +12916,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-no-reference.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -12941,7 +12941,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method-accessor-get.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -12958,7 +12958,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method-accessor-set.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -12999,7 +12999,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -13016,7 +13016,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-no-reference.js:43:19]
  42 │     
  43 │     delete ((this.#m));
@@ -13100,7 +13100,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:68]
  36 │ 
  37 │ var C = class extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -13108,7 +13108,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#bar' must be declared in an enclosing class
+  × TS(1111): Private field '#bar' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:93]
  36 │ 
  37 │ var C = class extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -13116,7 +13116,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#fuz' must be declared in an enclosing class
+  × TS(1111): Private field '#fuz' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:118]
  36 │ 
  37 │ var C = class extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -13124,7 +13124,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-function-expression.js:37:45]
  36 │ 
  37 │ var C = class extends function() { x = this.#foo; }
@@ -13141,7 +13141,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-recursive.js:37:54]
  36 │ 
  37 │ var C = class extends class extends class { x = this.#foo; } {}
@@ -13149,7 +13149,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage.js:37:40]
  36 │ 
  37 │ var C = class extends class { x = this.#foo; }
@@ -13377,7 +13377,7 @@ Negative Passed: 4669/4669 (100.00%)
  65 │ 
     ╰────
 
-  × Private field '#f' must be declared in an enclosing class
+  × TS(1111): Private field '#f' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-in-computed-property-missing.js:52:9]
  51 │ var C = class {
  52 │   [this.#f] = 'Test262'
@@ -13834,7 +13834,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-call-expression-bad-reference.js:52:20]
  51 │ var C = class {
  52 │   f = (() => {})().#x
@@ -13842,7 +13842,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-call-expression-this.js:52:22]
  51 │ var C = class {
  52 │   f = (() => this)().#x
@@ -13850,7 +13850,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-fn-call-expression-bad-reference.js:52:33]
  51 │ var C = class {
  52 │   f = function() { (() => {})().#x }
@@ -13858,7 +13858,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-fn-call-expression-this.js:52:35]
  51 │ var C = class {
  52 │   f = function() { (() => this)().#x }
@@ -13866,7 +13866,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-fn-member-expression-bad-reference.js:52:30]
  51 │ var C = class {
  52 │   f = function() { something.#x }
@@ -13874,7 +13874,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-fn-member-expression-this.js:52:25]
  51 │ var C = class {
  52 │   f = function() { this.#x }
@@ -13882,7 +13882,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-heritage-call-expression-bad-reference.js:56:20]
  55 │ var C = class extends Parent {
  56 │   f = (() => {})().#x
@@ -13890,7 +13890,7 @@ Negative Passed: 4669/4669 (100.00%)
  57 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-heritage-call-expression-this.js:56:22]
  55 │ var C = class extends Parent {
  56 │   f = (() => this)().#x
@@ -13898,7 +13898,7 @@ Negative Passed: 4669/4669 (100.00%)
  57 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-heritage-member-expression-bad-reference.js:56:17]
  55 │ var C = class extends Parent {
  56 │   f = something.#x
@@ -13906,7 +13906,7 @@ Negative Passed: 4669/4669 (100.00%)
  57 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-heritage-member-expression-this.js:56:12]
  55 │ var C = class extends Parent {
  56 │   f = this.#x
@@ -13914,7 +13914,7 @@ Negative Passed: 4669/4669 (100.00%)
  57 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-member-expression-bad-reference.js:52:17]
  51 │ var C = class {
  52 │   f = something.#x
@@ -13922,7 +13922,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/field-init-member-expression-this.js:52:12]
  51 │ var C = class {
  52 │   f = this.#x
@@ -13930,7 +13930,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-call-expression-bad-reference.js:52:22]
  51 │ var C = class {
  52 │   m() { (() => {})().#x }
@@ -13938,7 +13938,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-call-expression-this.js:52:24]
  51 │ var C = class {
  52 │   m() { (() => this)().#x }
@@ -13946,7 +13946,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-fn-call-expression-bad-reference.js:53:34]
  52 │   m() {
  53 │     function fn() { (() => {})().#x }
@@ -13954,7 +13954,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-fn-call-expression-this.js:53:36]
  52 │   m() {
  53 │     function fn() { (() => this)().#x }
@@ -13962,7 +13962,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-fn-member-expression-bad-reference.js:53:31]
  52 │   m() {
  53 │     function fn() { something.#x }
@@ -13970,7 +13970,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-fn-member-expression-this.js:53:26]
  52 │   m() {
  53 │     function fn() { this.#x }
@@ -13978,7 +13978,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-heritage-call-expression-bad-reference.js:57:18]
  56 │   m() {
  57 │     (() => {})().#x
@@ -13986,7 +13986,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-heritage-call-expression-this.js:57:20]
  56 │   m() {
  57 │     (() => this)().#x
@@ -13994,7 +13994,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-heritage-member-expression-bad-reference.js:57:15]
  56 │   m() {
  57 │     something.#x
@@ -14002,7 +14002,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-heritage-member-expression-this.js:57:10]
  56 │   m() {
  57 │     this.#x
@@ -14010,7 +14010,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-member-expression-bad-reference.js:52:19]
  51 │ var C = class {
  52 │   m() { something.#x }
@@ -14018,7 +14018,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-member-expression-this.js:52:14]
  51 │ var C = class {
  52 │   m() { this.#x }
@@ -14026,7 +14026,7 @@ Negative Passed: 4669/4669 (100.00%)
  53 │ };
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-outter-call-expression-bad-reference.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -14034,7 +14034,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-outter-call-expression-this.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -14042,7 +14042,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-outter-member-expression-bad-reference.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -14050,7 +14050,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/invalid-names/method-outter-member-expression-this.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -18262,28 +18262,28 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ };
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/function/early-errors/invalid-names-call-expression-bad-reference.js:41:36]
  40 │ 
  41 │ var fn = function() { (() => {})().#x };
     ·                                    ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/function/early-errors/invalid-names-call-expression-this.js:41:38]
  40 │ 
  41 │ var fn = function() { (() => this)().#x };
     ·                                      ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/function/early-errors/invalid-names-member-expression-bad-reference.js:41:33]
  40 │ 
  41 │ var fn = function() { something.#x };
     ·                                 ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/function/early-errors/invalid-names-member-expression-this.js:41:28]
  40 │ 
  41 │ var fn = function() { this.#x };
@@ -19040,7 +19040,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Private field '#b' must be declared in an enclosing class
+  × TS(1111): Private field '#b' must be declared in an enclosing class
     ╭─[test262/test/language/expressions/in/private-field-invalid-identifier-complex.js:30:5]
  29 │   constructor() {
  30 │     #b in {};
@@ -19049,7 +19049,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Did you mean '#a'?
 
-  × Private identifier '#name' is not allowed outside class bodies
+  × TS(18016): Private identifier '#name' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/in/private-field-invalid-identifier-simple.js:26:1]
  25 │ 
  26 │ #name in {};
@@ -20544,7 +20544,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-async-fn.js:24:9]
  23 │ var o = {
  24 │   async #m() {}
@@ -20568,7 +20568,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-async-gen.js:24:11]
  23 │ var o = {
  24 │   async * #m() {}
@@ -20592,7 +20592,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-gen.js:24:5]
  23 │ var o = {
  24 │   * #m() {}
@@ -20616,7 +20616,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-get-method.js:24:7]
  23 │ var o = {
  24 │   get #m() {}
@@ -20640,7 +20640,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-method.js:24:3]
  23 │ var o = {
  24 │   #m() {}
@@ -20664,7 +20664,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ };
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[test262/test/language/expressions/object/method-definition/private-name-early-error-set-method.js:24:7]
  23 │ var o = {
  24 │   set #m(x) {}
@@ -21531,28 +21531,28 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/global-code/invalid-private-names-call-expression-bad-reference.js:41:14]
  40 │ 
  41 │ (() => {})().#x
     ·              ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/global-code/invalid-private-names-call-expression-this.js:41:16]
  40 │ 
  41 │ (() => this)().#x
     ·                ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/global-code/invalid-private-names-member-expression-bad-reference.js:41:11]
  40 │ 
  41 │ something.#x
     ·           ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/global-code/invalid-private-names-member-expression-this.js:41:6]
  40 │ 
  41 │ this.#x
@@ -25733,7 +25733,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·          ╰── It can not be redeclared here
     ╰────
 
-  × Export 'Number' is not defined
+  × TS(2304): Export 'Number' is not defined
     ╭─[test262/test/language/module-code/early-export-global.js:19:10]
  18 │ 
  19 │ export { Number };
@@ -25748,7 +25748,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ export {"\uD83C"} from "./early-export-ill-formed-string.js";
     ╰────
 
-  × Export 'unresolvable' is not defined
+  × TS(2304): Export 'unresolvable' is not defined
     ╭─[test262/test/language/module-code/early-export-unresolvable.js:17:10]
  16 │ 
  17 │ export { unresolvable };
@@ -25974,28 +25974,28 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Each import attribute key must be unique
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/invalid-private-names-call-expression-bad-reference.js:40:14]
  39 │ 
  40 │ (() => {})().#x
     ·              ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/invalid-private-names-call-expression-this.js:40:16]
  39 │ 
  40 │ (() => this)().#x
     ·                ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/invalid-private-names-member-expression-bad-reference.js:40:11]
  39 │ 
  40 │ something.#x
     ·           ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/invalid-private-names-member-expression-this.js:40:6]
  39 │ 
  40 │ this.#x
@@ -26755,14 +26755,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Modules are always strict mode code
 
-  × Private identifier '#f' is not allowed outside class bodies
+  × TS(18016): Private identifier '#f' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/private-identifiers-not-empty.js:18:3]
  17 │ var x = {};
  18 │ x.#f = 'Test262';
     ·   ──
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-1.js:21:10]
  20 │   constructor() {
  21 │     this.#x;
@@ -26770,7 +26770,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-2.js:21:10]
  20 │   f() {
  21 │     this.#x;
@@ -26778,7 +26778,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-3.js:20:12]
  19 │ class C {
  20 │   y = this.#x;
@@ -26786,7 +26786,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-4.js:22:10]
  21 │   f() {
  22 │     this.#x;
@@ -26794,28 +26794,28 @@ Negative Passed: 4669/4669 (100.00%)
  23 │     class D extends C {
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-5.js:23:9]
  22 │ 
  23 │ new C().#x;
     ·         ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-6.js:21:9]
  20 │ 
  21 │ new C().#x;
     ·         ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-7.js:21:5]
  20 │ 
  21 │ obj.#x;
     ·     ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/module-code/privatename-not-valid-earlyerr-module-8.js:20:8]
  19 │ function f() {
  20 │   this.#x;
@@ -28165,28 +28165,28 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ //
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/block/early-errors/invalid-names-call-expression-bad-reference.js:41:16]
  40 │ 
  41 │ { (() => {})().#x }
     ·                ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/block/early-errors/invalid-names-call-expression-this.js:41:18]
  40 │ 
  41 │ { (() => this)().#x }
     ·                  ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/block/early-errors/invalid-names-member-expression-bad-reference.js:41:13]
  40 │ 
  41 │ { something.#x }
     ·             ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/block/early-errors/invalid-names-member-expression-this.js:41:8]
  40 │ 
  41 │ { this.#x }
@@ -31664,7 +31664,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-1.js:23:10]
  22 │   constructor() {
  23 │     this.#x;
@@ -31672,7 +31672,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-2.js:23:10]
  22 │   f() {
  23 │     this.#x;
@@ -31680,7 +31680,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-3.js:22:12]
  21 │ class C {
  22 │   y = this.#x;
@@ -31688,7 +31688,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-4.js:23:10]
  22 │   f() {
  23 │     this.#x;
@@ -31696,28 +31696,28 @@ Negative Passed: 4669/4669 (100.00%)
  24 │     class D extends C {
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-5.js:25:9]
  24 │ 
  25 │ new C().#x;
     ·         ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-6.js:23:9]
  22 │ 
  23 │ new C().#x;
     ·         ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-7.js:23:5]
  22 │ 
  23 │ obj.#x;
     ·     ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/class/elements/privatename-not-valid-earlyerr-script-8.js:22:8]
  21 │ function f() {
  22 │   this.#x;
@@ -31835,7 +31835,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-accessor-get.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31852,7 +31852,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-accessor-set.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31869,7 +31869,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-async-gen.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31886,7 +31886,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-async.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31903,7 +31903,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method-gen.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31920,7 +31920,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-method.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31937,7 +31937,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-call-expression-private-no-reference.js:38:19]
  37 │   g = this.f;
  38 │   x = delete (g().#m);
@@ -31962,7 +31962,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method-accessor-get.js:38:20]
  37 │   
  38 │   x = delete (this.#m
@@ -31979,7 +31979,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method-accessor-set.js:38:20]
  37 │   
  38 │   x = delete (this.#m
@@ -32020,7 +32020,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-method.js:38:20]
  37 │   
  38 │   x = delete (this.#m
@@ -32037,7 +32037,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │   
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-covered-err-delete-member-expression-private-no-reference.js:38:20]
  37 │   
  38 │   x = delete (this.#m);
@@ -32062,7 +32062,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-accessor-get.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32079,7 +32079,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-accessor-set.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32096,7 +32096,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-async-gen.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32113,7 +32113,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-async.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32130,7 +32130,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method-gen.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32147,7 +32147,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-method.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32164,7 +32164,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   f() {
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-call-expression-private-no-reference.js:35:18]
  34 │   g = this.f;
  35 │   x = delete g().#m;
@@ -32189,7 +32189,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method-accessor-get.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -32206,7 +32206,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method-accessor-set.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -32247,7 +32247,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-method.js:35:19]
  34 │   
  35 │   x = delete this.#m
@@ -32264,7 +32264,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │   
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-err-delete-member-expression-private-no-reference.js:35:19]
  34 │   
  35 │   x = delete this.#m;
@@ -32289,7 +32289,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-accessor-get.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32306,7 +32306,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-accessor-set.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32323,7 +32323,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-async-gen.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32340,7 +32340,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-async.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32357,7 +32357,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method-gen.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32374,7 +32374,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-method.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32391,7 +32391,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-call-expression-private-no-reference.js:38:20]
  37 │   g = this.f;
  38 │   x = delete ((g().#m));
@@ -32416,7 +32416,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method-accessor-get.js:38:21]
  37 │   
  38 │   x = delete ((this.#m
@@ -32433,7 +32433,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method-accessor-set.js:38:21]
  37 │   
  38 │   x = delete ((this.#m
@@ -32474,7 +32474,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-method.js:38:21]
  37 │   
  38 │   x = delete ((this.#m
@@ -32491,7 +32491,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/field-delete-twice-covered-err-delete-member-expression-private-no-reference.js:38:21]
  37 │   
  38 │   x = delete ((this.#m));
@@ -32516,7 +32516,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-accessor-get.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32533,7 +32533,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-accessor-set.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32550,7 +32550,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-async-gen.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32567,7 +32567,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-async.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32584,7 +32584,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method-gen.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32601,7 +32601,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-method.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32618,7 +32618,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-call-expression-private-no-reference.js:43:17]
  42 │     var g = this.f;
  43 │     delete (g().#m);
@@ -32643,7 +32643,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method-accessor-get.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -32660,7 +32660,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method-accessor-set.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -32701,7 +32701,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ );
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-method.js:43:18]
  42 │     
  43 │     delete (this.#m
@@ -32718,7 +32718,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-covered-err-delete-member-expression-private-no-reference.js:43:18]
  42 │     
  43 │     delete (this.#m);
@@ -32743,7 +32743,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-accessor-get.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32760,7 +32760,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-accessor-set.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32777,7 +32777,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-async-gen.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32794,7 +32794,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-async.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32811,7 +32811,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method-gen.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32828,7 +32828,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-method.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32845,7 +32845,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-call-expression-private-no-reference.js:37:16]
  36 │     var g = this.f;
  37 │     delete g().#m;
@@ -32870,7 +32870,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method-accessor-get.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -32887,7 +32887,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method-accessor-set.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -32928,7 +32928,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ ;
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-method.js:37:17]
  36 │     
  37 │     delete this.#m
@@ -32945,7 +32945,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-err-delete-member-expression-private-no-reference.js:37:17]
  36 │     
  37 │     delete this.#m;
@@ -32970,7 +32970,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-accessor-get.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -32987,7 +32987,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-accessor-set.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33004,7 +33004,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-async-gen.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33021,7 +33021,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-async.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33038,7 +33038,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method-gen.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33055,7 +33055,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-method.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33072,7 +33072,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-call-expression-private-no-reference.js:43:18]
  42 │     var g = this.f;
  43 │     delete ((g().#m));
@@ -33097,7 +33097,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method-accessor-get.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -33114,7 +33114,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method-accessor-set.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -33155,7 +33155,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │ ));
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-method.js:43:19]
  42 │     
  43 │     delete ((this.#m
@@ -33172,7 +33172,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#m' must be declared in an enclosing class
+  × TS(1111): Private field '#m' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/delete/method-delete-twice-covered-err-delete-member-expression-private-no-reference.js:43:19]
  42 │     
  43 │     delete ((this.#m));
@@ -33256,7 +33256,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:62]
  36 │ 
  37 │ class C extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -33264,7 +33264,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#bar' must be declared in an enclosing class
+  × TS(1111): Private field '#bar' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:87]
  36 │ 
  37 │ class C extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -33272,7 +33272,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#fuz' must be declared in an enclosing class
+  × TS(1111): Private field '#fuz' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-chained-usage.js:37:112]
  36 │ 
  37 │ class C extends class extends class extends class { x = this.#foo; } { #foo; x = this.#bar; } { #bar; x = this.#fuz; }
@@ -33280,7 +33280,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-function-expression.js:37:39]
  36 │ 
  37 │ class C extends function() { x = this.#foo; }
@@ -33297,7 +33297,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-recursive.js:37:48]
  36 │ 
  37 │ class C extends class extends class { x = this.#foo; } {}
@@ -33305,7 +33305,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage.js:37:34]
  36 │ 
  37 │ class C extends class { x = this.#foo; }
@@ -33533,7 +33533,7 @@ Negative Passed: 4669/4669 (100.00%)
  65 │ 
     ╰────
 
-  × Private field '#f' must be declared in an enclosing class
+  × TS(1111): Private field '#f' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-in-computed-property-missing.js:52:9]
  51 │ class C {
  52 │   [this.#f] = 'Test262'
@@ -33990,7 +33990,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-call-expression-bad-reference.js:42:20]
  41 │ class C {
  42 │   f = (() => {})().#x
@@ -33998,7 +33998,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-call-expression-this.js:42:22]
  41 │ class C {
  42 │   f = (() => this)().#x
@@ -34006,7 +34006,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-fn-call-expression-bad-reference.js:42:33]
  41 │ class C {
  42 │   f = function() { (() => {})().#x }
@@ -34014,7 +34014,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-fn-call-expression-this.js:42:35]
  41 │ class C {
  42 │   f = function() { (() => this)().#x }
@@ -34022,7 +34022,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-fn-member-expression-bad-reference.js:42:30]
  41 │ class C {
  42 │   f = function() { something.#x }
@@ -34030,7 +34030,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-fn-member-expression-this.js:42:25]
  41 │ class C {
  42 │   f = function() { this.#x }
@@ -34038,7 +34038,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-member-expression-bad-reference.js:42:17]
  41 │ class C {
  42 │   f = something.#x
@@ -34046,7 +34046,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/field-init-member-expression-this.js:42:12]
  41 │ class C {
  42 │   f = this.#x
@@ -34054,7 +34054,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/fields-init-heritage-call-expression-bad-reference.js:57:20]
  56 │ class C extends Parent {
  57 │   f = (() => {})().#x
@@ -34062,7 +34062,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/fields-init-heritage-call-expression-this.js:57:22]
  56 │ class C extends Parent {
  57 │   f = (() => this)().#x
@@ -34070,7 +34070,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/fields-init-heritage-member-expression-bad-reference.js:57:17]
  56 │ class C extends Parent {
  57 │   f = something.#x
@@ -34078,7 +34078,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/fields-init-heritage-member-expression-this.js:57:12]
  56 │ class C extends Parent {
  57 │   f = this.#x
@@ -34086,7 +34086,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-call-expression-bad-reference.js:42:22]
  41 │ class C {
  42 │   m() { (() => {})().#x }
@@ -34094,7 +34094,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-call-expression-this.js:42:24]
  41 │ class C {
  42 │   m() { (() => this)().#x }
@@ -34102,7 +34102,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-fn-call-expression-bad-reference.js:43:34]
  42 │   m() {
  43 │     function fn() { (() => {})().#x }
@@ -34110,7 +34110,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-fn-call-expression-this.js:43:36]
  42 │   m() {
  43 │     function fn() { (() => this)().#x }
@@ -34118,7 +34118,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-fn-member-expression-bad-reference.js:43:31]
  42 │   m() {
  43 │     function fn() { something.#x }
@@ -34126,7 +34126,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-fn-member-expression-this.js:43:26]
  42 │   m() {
  43 │     function fn() { this.#x }
@@ -34134,7 +34134,7 @@ Negative Passed: 4669/4669 (100.00%)
  44 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-heritage-call-expression-bad-reference.js:57:18]
  56 │   m() {
  57 │     (() => {})().#x
@@ -34142,7 +34142,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-heritage-call-expression-this.js:57:20]
  56 │   m() {
  57 │     (() => this)().#x
@@ -34150,7 +34150,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-heritage-member-expression-bad-reference.js:57:15]
  56 │   m() {
  57 │     something.#x
@@ -34158,7 +34158,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-heritage-member-expression-this.js:57:10]
  56 │   m() {
  57 │     this.#x
@@ -34166,7 +34166,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-member-expression-bad-reference.js:42:19]
  41 │ class C {
  42 │   m() { something.#x }
@@ -34174,7 +34174,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-member-expression-this.js:42:14]
  41 │ class C {
  42 │   m() { this.#x }
@@ -34182,7 +34182,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-outter-call-expression-bad-reference.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -34190,7 +34190,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-outter-call-expression-this.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -34198,7 +34198,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-outter-member-expression-bad-reference.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -34206,7 +34206,7 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/invalid-names/method-outter-member-expression-this.js:57:10]
  56 │ 
  57 │     this.#x;
@@ -34852,7 +34852,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Assign the 'arguments' variable to a temporary variable outside
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/class/static-init-invalid-await.js:31:7]
  30 │     static {
  31 │       await 0;
@@ -35050,7 +35050,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/const/static-init-await-binding-invalid.js:25:11]
  24 │   static {
  25 │     const await = 0;
@@ -38277,28 +38277,28 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/function/early-errors/invalid-names-call-expression-bad-reference.js:41:30]
  40 │ 
  41 │ function fn() { (() => {})().#x }
     ·                              ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/function/early-errors/invalid-names-call-expression-this.js:41:32]
  40 │ 
  41 │ function fn() { (() => this)().#x }
     ·                                ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/function/early-errors/invalid-names-member-expression-bad-reference.js:41:27]
  40 │ 
  41 │ function fn() { something.#x }
     ·                           ──
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
     ╭─[test262/test/language/statements/function/early-errors/invalid-names-member-expression-this.js:41:22]
  40 │ 
  41 │ function fn() { this.#x }
@@ -39607,7 +39607,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/let/static-init-await-binding-invalid.js:25:9]
  24 │   static {
  25 │     let await;
@@ -40733,7 +40733,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/using/static-init-await-binding-invalid.js:26:11]
  25 │   static {
  26 │     using await = null;
@@ -41331,7 +41331,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/variable/dstr/ary-ptrn-elem-id-static-init-await-invalid.js:25:10]
  24 │   static {
  25 │     var [await] = [];
@@ -41395,7 +41395,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/variable/dstr/obj-ptrn-elem-id-static-init-await-invalid.js:25:10]
  24 │   static {
  25 │     var {await} = {};
@@ -41507,7 +41507,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[test262/test/language/statements/variable/static-init-await-binding-invalid.js:25:9]
  24 │   static {
  25 │     var await;

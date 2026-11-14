@@ -2725,7 +2725,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Getters and setters must have an implementation.
+  × TS(1005): Getters and setters must have an implementation.
     ╭─[typescript/tsc/testdata/tests/cases/compiler/abstractPropertyNegative.ts:16:9]
  15 │     abstract notAllowed: string;
  16 │     get concreteWithNoBody(): string;
@@ -16982,7 +16982,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                ╰── It can not be redeclared here
    ╰────
 
-  × Private field '#y' must be declared in an enclosing class
+  × TS(1111): Private field '#y' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock16.ts:11:28]
  10 │     getX = (obj: C) => obj.#x;
  11 │     getY = (obj: D) => obj.#y;
@@ -16991,7 +16991,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean '#x'?
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock16.ts:21:28]
  20 │     // getY has privileged access to y
  21 │     getX = (obj: C) => obj.#x;
@@ -17096,7 +17096,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  33 │   }
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock22.ts:4:9]
  3 │   static {
  4 │     let await: any; // illegal, cannot declare a new binding for await
@@ -17104,7 +17104,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   }
    ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock22.ts:7:11]
  6 │   static {
  7 │     let { await } = {} as any; // illegal, cannot declare a new binding for await
@@ -17112,7 +17112,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │   }
    ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock22.ts:13:9]
  12 │   static {
  13 │     let await; // illegal, cannot declare a new binding for await
@@ -17120,7 +17120,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  14 │   }
     ╰────
 
-  × Cannot use 'for await' in class static initialization block
+  × TS(18038): Cannot use 'for await' in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock23.ts:5:5]
  4 │       static {
  5 │ ╭─▶     for await (const nn of nums) {
@@ -17129,7 +17129,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │       }
    ╰────
 
-  × Cannot use 'for await' in class static initialization block
+  × TS(18038): Cannot use 'for await' in class static initialization block
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock23.ts:14:7]
  13 │         static {
  14 │ ╭─▶       for await (const nn of nums) {
@@ -17196,7 +17196,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  37 │ 
     ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock7.ts:3:9]
  2 │     static {
  3 │         await 1;
@@ -17204,7 +17204,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │         yield 1;
    ╰────
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/classStaticBlock/classStaticBlock7.ts:12:13]
  11 │         static {
  12 │             await 1;
@@ -17452,7 +17452,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │         }
     ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAccessorsAccess.ts:14:10]
  13 │ }
  14 │ new A2().#prop; // Error
@@ -17460,7 +17460,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │ 
     ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAccessorsAccess.ts:17:14]
  16 │ function  foo (){
  17 │     new A2().#prop; // Error
@@ -17468,7 +17468,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  18 │ }
     ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAccessorsAccess.ts:22:18]
  21 │     m() {
  22 │         new A2().#prop;
@@ -17476,7 +17476,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │     }
     ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAccessorssDerivedClasses.ts:9:23]
   8 │     static method(x: Derived) {
   9 │         console.log(x.#prop);
@@ -17484,7 +17484,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │     }
     ╰────
 
-  × Private field '#bar' must be declared in an enclosing class
+  × TS(1111): Private field '#bar' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndAny.ts:9:15]
   8 │         thing.#baz;
   9 │         thing.#bar; // Error
@@ -17493,7 +17493,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean '#baz'?
 
-  × Private field '#bar' must be declared in an enclosing class
+  × TS(1111): Private field '#bar' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndAny.ts:16:15]
  15 │         thing.#baz;
  16 │         thing.#bar;
@@ -17502,7 +17502,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean '#baz'?
 
-  × Private field '#bar' must be declared in an enclosing class
+  × TS(1111): Private field '#bar' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndAny.ts:23:15]
  22 │         thing.#baz;
  23 │         thing.#bar;
@@ -17511,7 +17511,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean '#baz'?
 
-  × Private field '#f' must be declared in an enclosing class
+  × TS(1111): Private field '#f' must be declared in an enclosing class
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndIndexSignature.ts:6:14]
  5 │     constructor(message: string) {
  6 │         this.#f = 3           // Error (index signatures do not implicitly declare private names)
@@ -17591,7 +17591,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ·                            ─────
     ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:2:5]
  1 │ type A = {
  2 │     #foo: string;
@@ -17599,7 +17599,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │     #bar(): string;
    ╰────
 
-  × Private identifier '#bar' is not allowed outside class bodies
+  × TS(18016): Private identifier '#bar' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:3:5]
  2 │     #foo: string;
  3 │     #bar(): string;
@@ -17607,7 +17607,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:7:5]
  6 │ interface B {
  7 │     #foo: string;
@@ -17615,7 +17615,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │     #bar(): string;
    ╰────
 
-  × Private identifier '#bar' is not allowed outside class bodies
+  × TS(18016): Private identifier '#bar' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:8:5]
  7 │     #foo: string;
  8 │     #bar(): string;
@@ -17623,7 +17623,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ }
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:12:5]
  11 │ declare const x: {
  12 │     #foo: number;
@@ -17631,7 +17631,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │     bar: {
     ╰────
 
-  × Private identifier '#baz' is not allowed outside class bodies
+  × TS(18016): Private identifier '#baz' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:14:9]
  13 │     bar: {
  14 │         #baz: string;
@@ -17639,7 +17639,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  15 │         #taz(): string;
     ╰────
 
-  × Private identifier '#taz' is not allowed outside class bodies
+  × TS(18016): Private identifier '#taz' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:15:9]
  14 │         #baz: string;
  15 │         #taz(): string;
@@ -17647,7 +17647,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │     }
     ╰────
 
-  × Private identifier '#baz' is not allowed outside class bodies
+  × TS(18016): Private identifier '#baz' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:17:5]
  16 │     }
  17 │     #baz(): string;
@@ -17655,21 +17655,21 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  18 │ };
     ╰────
 
-  × Private identifier '#quux' is not allowed outside class bodies
+  × TS(18016): Private identifier '#quux' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameAndPropertySignature.ts:20:28]
  19 │ 
  20 │ declare const y: [{ qux: { #quux: 3 } }];
     ·                            ─────
     ╰────
 
-  × Private identifier '#nope' is not allowed outside class bodies
+  × TS(18016): Private identifier '#nope' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadAssignment.ts:1:9]
  1 │ exports.#nope = 1;           // Error (outside class body)
    ·         ─────
  2 │ function A() { }
    ╰────
 
-  × Private identifier '#no' is not allowed outside class bodies
+  × TS(18016): Private identifier '#no' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadAssignment.ts:3:13]
  2 │ function A() { }
  3 │ A.prototype.#no = 2;         // Error (outside class body)
@@ -17677,7 +17677,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadAssignment.ts:6:3]
  5 │ class B {}
  6 │ B.#foo = 3;                  // Error (outside class body)
@@ -17685,7 +17685,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ 
    ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadAssignment.ts:12:14]
  11 │         exports.#bar = 6;    // Error
  12 │         this.#foo = 3;       // Error (undeclared)
@@ -17741,7 +17741,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ }
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:3:3]
  2 │ A.prototype = {
  3 │   #x: 1,         // Error
@@ -17749,7 +17749,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │   #m() {},       // Error
    ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:4:3]
  3 │   #x: 1,         // Error
  4 │   #m() {},       // Error
@@ -17757,7 +17757,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   get #p() { return "" } // Error
    ╰────
 
-  × Private identifier '#p' is not allowed outside class bodies
+  × TS(18016): Private identifier '#p' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:5:7]
  4 │   #m() {},       // Error
  5 │   get #p() { return "" } // Error
@@ -17765,7 +17765,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ }
    ╰────
 
-  × Private identifier '#y' is not allowed outside class bodies
+  × TS(18016): Private identifier '#y' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:9:3]
   8 │ B.prototype = {
   9 │   #y: 2,         // Error
@@ -17773,7 +17773,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │   #m() {},       // Error
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:10:3]
   9 │   #y: 2,         // Error
  10 │   #m() {},       // Error
@@ -17781,7 +17781,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │   get #p() { return "" } // Error
     ╰────
 
-  × Private identifier '#p' is not allowed outside class bodies
+  × TS(18016): Private identifier '#p' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:11:7]
  10 │   #m() {},       // Error
  11 │   get #p() { return "" } // Error
@@ -17789,7 +17789,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ }
     ╰────
 
-  × Private field '#z' must be declared in an enclosing class
+  × TS(1111): Private field '#z' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameBadDeclaration.ts:15:10]
  14 │   constructor() {
  15 │     this.#z = 3;
@@ -18533,7 +18533,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameFieldDerivedClasses.ts:9:23]
   8 │     static method(x: Derived) {
   9 │         console.log(x.#prop);
@@ -18550,7 +18550,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ class C {
    ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameImplicitDeclaration.ts:4:14]
  3 │         /** @type {string} */
  4 │         this.#x;
@@ -18583,7 +18583,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ };
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameInObjectLiteral-1.ts:2:5]
  1 │ const obj = {
  2 │     #foo: 1
@@ -18599,7 +18599,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ 
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameInObjectLiteral-2.ts:2:5]
  1 │ const obj = {
  2 │     #foo() {
@@ -18615,7 +18615,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │         return ""
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameInObjectLiteral-3.ts:2:9]
  1 │ const obj = {
  2 │     get #foo() {
@@ -18623,14 +18623,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │         return ""
    ╰────
 
-  × Private identifier '#nope' is not allowed outside class bodies
+  × TS(18016): Private identifier '#nope' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadAssignment.ts:1:9]
  1 │ exports.#nope = 1;           // Error (outside class body)
    ·         ─────
  2 │ function A() { }
    ╰────
 
-  × Private identifier '#no' is not allowed outside class bodies
+  × TS(18016): Private identifier '#no' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadAssignment.ts:3:13]
  2 │ function A() { }
  3 │ A.prototype.#no = 2;         // Error (outside class body)
@@ -18638,7 +18638,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ 
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadAssignment.ts:6:3]
  5 │ class B {}
  6 │ B.#foo = 3;                  // Error (outside class body)
@@ -18646,7 +18646,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │ 
    ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadAssignment.ts:11:14]
  10 │     constructor () {
  11 │         this.#foo = 3;       // Error (undeclared)
@@ -18702,7 +18702,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ }
     ╰────
 
-  × Private identifier '#x' is not allowed outside class bodies
+  × TS(18016): Private identifier '#x' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:3:3]
  2 │ A.prototype = {
  3 │   #x: 1,         // Error
@@ -18710,7 +18710,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │   #m() {},       // Error
    ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:4:3]
  3 │   #x: 1,         // Error
  4 │   #m() {},       // Error
@@ -18718,7 +18718,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   get #p() { return "" } // Error
    ╰────
 
-  × Private identifier '#p' is not allowed outside class bodies
+  × TS(18016): Private identifier '#p' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:5:7]
  4 │   #m() {},       // Error
  5 │   get #p() { return "" } // Error
@@ -18726,7 +18726,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ }
    ╰────
 
-  × Private identifier '#y' is not allowed outside class bodies
+  × TS(18016): Private identifier '#y' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:9:3]
   8 │ B.prototype = {
   9 │   #y: 2,         // Error
@@ -18734,7 +18734,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │   #m() {},       // Error
     ╰────
 
-  × Private identifier '#m' is not allowed outside class bodies
+  × TS(18016): Private identifier '#m' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:10:3]
   9 │   #y: 2,         // Error
  10 │   #m() {},       // Error
@@ -18742,7 +18742,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │   get #p() { return "" } // Error
     ╰────
 
-  × Private identifier '#p' is not allowed outside class bodies
+  × TS(18016): Private identifier '#p' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:11:7]
  10 │   #m() {},       // Error
  11 │   get #p() { return "" } // Error
@@ -18750,7 +18750,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ }
     ╰────
 
-  × Private field '#z' must be declared in an enclosing class
+  × TS(1111): Private field '#z' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameJsBadDeclaration.ts:15:10]
  14 │   constructor() {
  15 │     this.#z = 3;
@@ -18758,7 +18758,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │   }
     ╰────
 
-  × Private identifier '#method' is not allowed outside class bodies
+  × TS(18016): Private identifier '#method' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodAccess.ts:12:10]
  11 │ }
  12 │ new A2().#method(); // Error
@@ -18766,7 +18766,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  13 │ 
     ╰────
 
-  × Private identifier '#method' is not allowed outside class bodies
+  × TS(18016): Private identifier '#method' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodAccess.ts:15:14]
  14 │ function  foo (){
  15 │     new A2().#method(); // Error
@@ -18774,7 +18774,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │ }
     ╰────
 
-  × Private field '#method' must be declared in an enclosing class
+  × TS(1111): Private field '#method' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodAccess.ts:20:18]
  19 │     m() {
  20 │         new A2().#method();
@@ -18782,7 +18782,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  21 │     }
     ╰────
 
-  × Private identifier '#method' is not allowed outside class bodies
+  × TS(18016): Private identifier '#method' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodClassExpression.ts:9:17]
   8 │ console.log(C.getInstance().getField());
   9 │ C.getInstance().#method; // Error
@@ -18790,14 +18790,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ C.getInstance().#field; // Error
     ╰────
 
-  × Private identifier '#field' is not allowed outside class bodies
+  × TS(18016): Private identifier '#field' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodClassExpression.ts:10:17]
   9 │ C.getInstance().#method; // Error
  10 │ C.getInstance().#field; // Error
     ·                 ──────
     ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameMethodsDerivedClasses.ts:9:23]
   8 │     static method(x: Derived) {
   9 │         console.log(x.#prop());
@@ -18805,7 +18805,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │     }
     ╰────
 
-  × Private field '#unknown' must be declared in an enclosing class
+  × TS(1111): Private field '#unknown' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameNestedMethodAccess.ts:19:19]
  18 │                 x.#bar;
  19 │                 x.#unknown; // Error
@@ -18813,7 +18813,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │             }
     ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameNotAccessibleOutsideDefiningClass.ts:5:9]
  4 │ 
  5 │ new A().#foo = 4;               // Error
@@ -18826,7 +18826,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·       ────
    ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticAccessorsAccess.ts:16:4]
  15 │ 
  16 │ A2.#prop; // Error
@@ -18834,7 +18834,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  17 │ 
     ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticAccessorsAccess.ts:19:8]
  18 │ function  foo (){
  19 │     A2.#prop; // Error
@@ -18842,7 +18842,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  20 │ }
     ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticAccessorsAccess.ts:24:12]
  23 │     m() {
  24 │         A2.#prop;
@@ -18850,7 +18850,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  25 │     }
     ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticAccessorssDerivedClasses.ts:9:23]
   8 │     static method(x: typeof Derived) {
   9 │         console.log(x.#prop);
@@ -18858,7 +18858,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │     }
     ╰────
 
-  × Private field '#derivedProp' must be declared in an enclosing class
+  × TS(1111): Private field '#derivedProp' must be declared in an enclosing class
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticFieldDerivedClasses.ts:4:17]
  3 │     static method(x: Derived) {
  4 │         Derived.#derivedProp // error
@@ -18866,7 +18866,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │         Base.#prop  = 10;
    ╰────
 
-  × Private field '#prop' must be declared in an enclosing class
+  × TS(1111): Private field '#prop' must be declared in an enclosing class
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticFieldDerivedClasses.ts:12:14]
  11 │         Derived.#derivedProp
  12 │         Base.#prop  = 10; // error
@@ -18882,7 +18882,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  12 │ }
     ╰────
 
-  × Private identifier '#method' is not allowed outside class bodies
+  × TS(18016): Private identifier '#method' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticMethodClassExpression.ts:9:14]
   8 │ console.log(C.getClass().getField());
   9 │ C.getClass().#method; // Error
@@ -18890,14 +18890,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │ C.getClass().#field; // Error
     ╰────
 
-  × Private identifier '#field' is not allowed outside class bodies
+  × TS(18016): Private identifier '#field' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameStaticMethodClassExpression.ts:10:14]
   9 │ C.getClass().#method; // Error
  10 │ C.getClass().#field; // Error
     ·              ──────
     ╰────
 
-  × Private field '#foo' must be declared in an enclosing class
+  × TS(1111): Private field '#foo' must be declared in an enclosing class
    ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameUncheckedJsOptionalChain.ts:4:15]
  3 │     constructor () {
  4 │         this?.#foo;
@@ -18905,7 +18905,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │         this?.#bar;
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesAndGenericClasses-2.ts:24:3]
  23 │ const x: number = a.baz                   // OK
  24 │ a.#foo;                                   // Error
@@ -18922,7 +18922,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  8 │         // will never use this syntax, already taken:
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesInGenericClasses.ts:22:3]
  21 │ declare let b: C<string>;
  22 │ a.#foo;                                   // Error
@@ -18930,7 +18930,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ a.#method;                                // Error
     ╰────
 
-  × Private identifier '#method' is not allowed outside class bodies
+  × TS(18016): Private identifier '#method' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesInGenericClasses.ts:23:3]
  22 │ a.#foo;                                   // Error
  23 │ a.#method;                                // Error
@@ -18938,7 +18938,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  24 │ a.#prop;                                  // Error
     ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesInGenericClasses.ts:24:3]
  23 │ a.#method;                                // Error
  24 │ a.#prop;                                  // Error
@@ -19120,7 +19120,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  33 │ }
     ╰────
 
-  × Getters and setters must have an implementation.
+  × TS(1005): Getters and setters must have an implementation.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesIncompatibleModifiers.ts:25:17]
  24 │     readonly set #quxProp(value: number) {  }    // Error
  25 │     declare get #whatProp()                      // Error
@@ -19128,7 +19128,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  26 │     declare set #whatProp(value: number)         // Error
     ╰────
 
-  × Getters and setters must have an implementation.
+  × TS(1005): Getters and setters must have an implementation.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesIncompatibleModifiers.ts:26:17]
  25 │     declare get #whatProp()                      // Error
  26 │     declare set #whatProp(value: number)         // Error
@@ -19136,7 +19136,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  27 │     async get #asyncProp() { return 1; }         // Error
     ╰────
 
-  × Private identifier '#prop' is not allowed outside class bodies
+  × TS(18016): Private identifier '#prop' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNamesInterfaceExtendingClass.ts:10:7]
   9 │ function func(x: I) {
  10 │     x.#prop = 123;
@@ -24445,7 +24445,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  6 │ 
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
    ╭─[typescript/tsc/testdata/tests/cases/conformance/esDecorators/esDecorators-privateFieldAccess.ts:3:13]
  2 │ 
  3 │ @dec(x => x.#foo) // error
@@ -24453,7 +24453,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ class A {
    ╰────
 
-  × Private identifier '#foo' is not allowed outside class bodies
+  × TS(18016): Private identifier '#foo' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/esDecorators/esDecorators-privateFieldAccess.ts:11:18]
  10 │ 
  11 │ @dec((x: B) => x.#foo) // error
@@ -24598,7 +24598,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
 
-  × Private identifier '#z' is not allowed outside class bodies
+  × TS(18016): Private identifier '#z' is not allowed outside class bodies
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/objectLiterals/objectLiteralErrors.ts:50:5]
  49 │     y = 2,
  50 │     #z: 3
@@ -30526,7 +30526,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Private field '#b' must be declared in an enclosing class
+  × TS(1111): Private field '#b' must be declared in an enclosing class
    ╭─[typescript/tsc/testdata/tests/cases/conformance/salsa/plainJSGrammarErrors4.ts:5:14]
  4 │         this.#a; // ok
  5 │         this.#b; // error
@@ -30732,7 +30732,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Cannot use 'await using' in class static initialization block
+  × TS(18054): Cannot use 'await using' in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/VariableStatements/usingDeclarations/awaitUsingDeclarations.14.ts:3:9]
  2 │     static {
  3 │         await using x = null;
@@ -30740,7 +30740,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │         {
    ╰────
 
-  × Cannot use 'await using' in class static initialization block
+  × TS(18054): Cannot use 'await using' in class static initialization block
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/VariableStatements/usingDeclarations/awaitUsingDeclarations.14.ts:5:13]
  4 │         {
  5 │             await using y = null;

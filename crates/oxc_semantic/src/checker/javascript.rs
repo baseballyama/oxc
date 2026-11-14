@@ -430,7 +430,8 @@ pub fn check_string_literal(lit: &StringLiteral, ctx: &SemanticBuilder<'_>) {
     let raw_len = raw.len();
     // The escape's backslash and the byte after it, where the error is.
     let escape = |index: usize| {
-        let start = lit.span.start + index as u32;
+        let index = u32::try_from(index).expect("an index into a span's text fits in its offsets");
+        let start = lit.span.start + index;
         Span::new(start, start + 2)
     };
     // Quotes contribute two bytes, and every escape contracts the cooked WTF-8 value.

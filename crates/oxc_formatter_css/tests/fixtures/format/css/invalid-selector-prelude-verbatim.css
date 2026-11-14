@@ -1,0 +1,7 @@
+/* A selector that does not parse prints as written. */
+p:not(p > ) {
+  color: red;
+}
+.a:nth-child(n+) {
+  color: red;
+}

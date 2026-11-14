@@ -1291,6 +1291,34 @@ The escaped identifier `\-\-CamelCase` decodes to the custom property name `--Ca
 Custom property names are case-sensitive, so lowercasing the declaration while preserving the reference makes `var(\-\-CamelCase)` unresolved.
 Escaped custom property names therefore preserve their source spelling, like names written with a literal `--` prefix.
 
+## invalid-selector-prelude-verbatim
+
+- Why: uniform-rule (raw is verbatim; AGENTS.md "Printing raw vs typed")
+- Pin: `tests/fixtures/format/css/invalid-selector-prelude-verbatim.css`
+
+```css
+/* input */
+p:not(p > ) {}
+.a:nth-child(n+) {}
+
+/* ours */
+p:not(p > ) {
+}
+.a:nth-child(n+) {
+}
+
+/* prettier */
+p:not(p >) {
+}
+.a:nth-child(n +) {
+}
+```
+
+A prelude the selector grammar does not read (a combinator with nothing after it, an An+B with a dangling sign)
+is an `UnknownQualifiedRule` whose `TokenSeq` prelude prints verbatim, like every other raw prelude.
+Prettier reparses it with postcss-selector-parser, which spaces every `+` as a combinator and trims inside the parens;
+re-spacing a selector we could not read is not a layout rule of ours.
+
 ## custom-property-raw-verbatim
 
 - Why: uniform-rule (raw is verbatim; AGENTS.md "Printing raw vs typed")

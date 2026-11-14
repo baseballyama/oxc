@@ -884,6 +884,38 @@ Its function declarations keep the same-line block comment outside (`function fo
 Before `<`, Prettier glues an own-line comment back onto the callee's line (`foo// c` + `<T>(a)`); we keep it own-line.
 Before an optional call's `?.`, Prettier moves an own-line comment into the arguments as well; we keep it own-line.
 
+## module-from-keyword-comment
+
+- Why: invariant
+- Pin: `tests/fixtures/js/comments/module-from-keyword-comment.js`
+
+```js
+// input
+import { a, b } /* c1 */ from "m";
+export { a } /* c2 */ from "m";
+export * /* c3 */ from "m";
+import { z } // c4
+  from "m";
+
+// ours
+import { a, b } /* c1 */ from "m";
+export { a } /* c2 */ from "m";
+export * /* c3 */ from "m";
+import { z } // c4
+from "m";
+
+// prettier
+import { a, b /* c1 */ } from "m";
+export { a /* c2 */ } from "m";
+export * from /* c3 */ "m";
+import {
+  z, // c4
+} from "m";
+```
+
+A comment before an import's or export's `from` keeps its side of the keyword, as before the keyword of a `}`-to-keyword gap (see AGENTS.md "Head-body and operator gaps (class 3)").
+Prettier attaches it to the last specifier, pulling it back inside the braces, or to the source, pushing it past `from`.
+
 ## instantiation-expression-parens
 
 - Why: semantics (Prettier's output no longer parses or changes structure; prettier/prettier#20177, prettier/prettier#20345)

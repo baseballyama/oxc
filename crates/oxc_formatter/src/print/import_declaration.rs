@@ -12,6 +12,7 @@ use crate::{
     print::semicolon::{FormatContentWithSemicolon, OptionalSemicolon},
     utils::{
         object::should_preserve_string_quote,
+        statement_body::write_comments_between_blocks,
         string::{FormatLiteralStringToken, StringLiteralParentKind},
     },
     write,
@@ -58,6 +59,16 @@ pub fn format_source_with_clause_and_semicolon<'a>(
     write!(f, FormatContentWithSemicolon::new(&content, content_end, span_end));
 }
 
+/// `from` and the space after it, with the pending comments before the keyword (from `start` on)
+/// kept on its left, as before any keyword of a head-body gap.
+pub fn write_from_keyword(start: u32, f: &mut JsFormatter<'_, '_>) {
+    let comments = f.context().comments().comments_before_character(start, b'f');
+    if write_comments_between_blocks(comments, f) {
+        write!(f, space());
+    }
+    write!(f, ["from", space()]);
+}
+
 /// Where an import/export's content ends: its with-clause, else its source.
 pub fn module_source_end(source: &StringLiteral, with_clause: Option<&WithClause>) -> u32 {
     with_clause.map_or(source.span.end, |with| with.span.end)
@@ -74,7 +85,9 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, ImportDeclaration<'a>> {
             }
 
             if let Some(specifiers) = self.specifiers() {
-                write!(f, [specifiers, space(), "from", space()]);
+                let start = specifiers.last().map_or(self.span.start, |last| last.span().end);
+                write!(f, specifiers);
+                write_from_keyword(start, f);
             }
         });
         let decl = format_with(|f| {

@@ -5,7 +5,6 @@ use oxc_span::GetSpan;
 use crate::{
     FormatTrailingCommas,
     ast_nodes::{AstNode, AstNodeKind},
-    format_args,
     formatter::{
         JsFormatter,
         prelude::*,
@@ -13,7 +12,7 @@ use crate::{
         trivia::{FormatLeadingComments, FormatTrailingComments},
     },
     print::{
-        import_declaration::format_source_with_clause_and_semicolon,
+        import_declaration::{format_source_with_clause_and_semicolon, write_from_keyword},
         semicolon::{
             FormatContentWithSemicolon, OptionalSemicolon,
             semicolon_terminated_expression_content_end,
@@ -149,11 +148,12 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, ExportDefaultDeclaration<'a>> {
 impl<'a> FormatWrite<'a> for AstNode<'_, 'a, ExportAllDeclaration<'a>> {
     fn write(&self, f: &mut JsFormatter<'_, 'a>) {
         let prefix = format_with(|f| {
-            write!(f, ["export", space(), self.export_kind(), "*", space()]);
+            write!(f, ["export", space(), self.export_kind(), "*"]);
             if let Some(name) = &self.exported() {
-                write!(f, ["as", space(), name, space()]);
+                write!(f, [space(), "as", space(), name]);
             }
-            write!(f, ["from", space()]);
+            let start = self.exported().map_or(self.span.start, |name| name.span().end);
+            write_from_keyword(start, f);
         });
         format_source_with_clause_and_semicolon(
             &prefix,
@@ -192,8 +192,9 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, ExportFromDeclaration<'a>> {
         write!(f, ["export", space()]);
         format_export_specifiers_block(self.span, self.export_kind(), &self.specifiers(), f);
 
+        let start = self.specifiers().last().map_or(self.span.start, |last| last.span().end);
         format_source_with_clause_and_semicolon(
-            &format_args!(space(), "from", space()),
+            &format_with(|f| write_from_keyword(start, f)),
             &self.source(),
             self.with_clause(),
             self.span.end,

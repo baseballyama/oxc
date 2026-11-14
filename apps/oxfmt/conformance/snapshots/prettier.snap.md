@@ -1,6 +1,6 @@
 ## javascript
 
-1223/1303 (93.86%)
+1222/1303 (93.78%)
 
 ### Failed
 
@@ -120,6 +120,8 @@
   - crates/oxc_formatter/DIVERGENCES.md#start-token-no-double-parens
 - externals/prettier/js/ignore/issue-11077.js (💥, 93.33%)
   - crates/oxc_formatter/DIVERGENCES.md#suppressed-terminator-per-semi
+- externals/prettier/js/import/empty-import/empty-import.js (💥, 69.14%)
+  - crates/oxc_formatter/DIVERGENCES.md#module-from-keyword-comment
 - externals/prettier/js/last-argument-expansion/edge_case.js (💥, 74.07%)
   - crates/oxc_formatter/DIVERGENCES.md#callee-arguments-gap-comment
 - externals/prettier/js/multiparser-css/styled-components.js (💥, 98.49%)
@@ -152,7 +154,7 @@
 
 ## typescript
 
-632/679 (93.08%)
+631/679 (92.93%)
 
 ### Failed
 
@@ -236,6 +238,8 @@
   - crates/oxc_formatter/DIVERGENCES.md#eol-comment-after-assign-colon
 - externals/prettier/typescript/export-default/function_as.ts (💥, 0.00%)
   - crates/oxc_formatter/DIVERGENCES.md#export-default-leftmost-parens
+- externals/prettier/typescript/import-export/empty-import.ts (💥, 69.14%)
+  - crates/oxc_formatter/DIVERGENCES.md#module-from-keyword-comment
 - externals/prettier/typescript/satisfies-operators/export-default-as.ts (💥💥, 0.00%)
   - crates/oxc_formatter/DIVERGENCES.md#export-default-leftmost-parens
 - externals/prettier/typescript/union/comments/18379.ts (💥, 92.31%)

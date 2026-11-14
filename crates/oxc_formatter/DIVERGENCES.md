@@ -888,6 +888,9 @@ Before an optional call's `?.`, Prettier moves an own-line comment into the argu
 
 - Why: invariant
 - Pin: `tests/fixtures/js/comments/module-from-keyword-comment.js`
+- Conformance:
+  - `externals/prettier/js/import/empty-import/empty-import.js`
+  - `externals/prettier/typescript/import-export/empty-import.ts`
 
 ```js
 // input

@@ -19,8 +19,8 @@ use oxc_formatter_core::{FormatOptions, PrinterOptions};
 use oxc_formatter_css::{CssEmbeddedIn, CssFormatOptions, CssVariant};
 use oxc_formatter_graphql::GraphqlFormatOptions;
 use oxc_formatter_htmlish::{
-    CssInHtmlStyleAttribute, HtmlishEmbeddedIn, HtmlishFormatOptions, HtmlishVariant,
-    JsInHtmlEventHandler, JsInVueTemplate,
+    CssInHtmlStyleAttribute, CssInHtmlStyleElement, HtmlishEmbeddedIn, HtmlishFormatOptions,
+    HtmlishVariant, JsInHtmlEventHandler, JsInVueTemplate,
 };
 use oxc_formatter_json::{JsonFormatOptions, JsonVariant};
 use oxc_formatter_markdown::{MarkdownFormatOptions, XxxInMarkdownCodeBlock};
@@ -310,7 +310,8 @@ pub fn build_dispatcher(
                     ),
                     NativeLanguage::Css(variant) => {
                         // css-in-js (typed `CssInJsTemplate` context) is always parsed as SCSS with `${}` placeholder markers.
-                        // Any other caller gets the strict standalone grammar with the fence/request language's variant.
+                        // A `<style>` element's body is a whole style sheet; any other caller parses a fragment
+                        // with the fence/request language's variant.
                         let (variant, embedded_in) = if request
                             .parent_context_as::<CssInJsTemplate>()
                             .is_some()
@@ -318,6 +319,8 @@ pub fn build_dispatcher(
                             (CssVariant::Scss, Some(CssEmbeddedIn::CssInJsTemplate))
                         } else if request.parent_context_as::<CssInHtmlStyleAttribute>().is_some() {
                             (variant, Some(CssEmbeddedIn::HtmlStyleAttribute))
+                        } else if request.parent_context_as::<CssInHtmlStyleElement>().is_some() {
+                            (variant, Some(CssEmbeddedIn::StyleElement))
                         } else {
                             (variant, None)
                         };

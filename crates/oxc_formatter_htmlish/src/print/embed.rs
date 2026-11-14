@@ -20,6 +20,12 @@ use crate::{context::HtmlishFormatContext, tree::Tree};
 /// The host translates it into CSS's `CssEmbeddedIn`.
 pub struct CssInHtmlStyleAttribute;
 
+/// Parent→child context for the CSS body of a `<style>` element, a whole style sheet,
+/// in every dialect.
+///
+/// The host translates it into CSS's `CssEmbeddedIn`.
+pub struct CssInHtmlStyleElement;
+
 /// Parent→child context for JS dispatched from an event handler attribute's value (js-in-html, `onclick="..."`),
 /// in every dialect (HTML, and the plain attributes of Vue and Angular).
 ///
@@ -188,7 +194,9 @@ pub fn write_embedded_content<'a>(
     } else {
         value
     };
-    let Some(ir) = dispatch_fragment_ir(f, language, value, None) else { return false };
+    let parent_context =
+        (t.tag(id) == "style").then_some(&CssInHtmlStyleElement as &dyn std::any::Any);
+    let Some(ir) = dispatch_fragment_ir(f, language, value, parent_context) else { return false };
     let ir = if t.tag(id) == "script" { escape_script_end(ir, value, f) } else { ir };
     f.write_elements(ir);
     true

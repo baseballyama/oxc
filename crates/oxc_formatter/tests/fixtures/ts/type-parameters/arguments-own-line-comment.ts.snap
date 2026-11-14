@@ -1,0 +1,75 @@
+---
+source: crates/oxc_formatter/tests/fixtures/mod.rs
+---
+==================== Input ====================
+// An own-line comment before a single type argument keeps its own line
+foo<
+  // c
+  Type
+>(value);
+foo<
+  /* c */
+  Type
+>(value);
+new Foo<
+  // c
+  { a: string }
+>();
+let x: Array<
+  // c
+  Type
+>;
+
+// A same-line block comment keeps the hug
+foo</* c */ Type>(value);
+
+==================== Output ====================
+------------------
+{ printWidth: 80 }
+------------------
+// An own-line comment before a single type argument keeps its own line
+foo<
+  // c
+  Type
+>(value);
+foo<
+  /* c */
+  Type
+>(value);
+new Foo<
+  // c
+  { a: string }
+>();
+let x: Array<
+  // c
+  Type
+>;
+
+// A same-line block comment keeps the hug
+foo</* c */ Type>(value);
+
+-------------------
+{ printWidth: 100 }
+-------------------
+// An own-line comment before a single type argument keeps its own line
+foo<
+  // c
+  Type
+>(value);
+foo<
+  /* c */
+  Type
+>(value);
+new Foo<
+  // c
+  { a: string }
+>();
+let x: Array<
+  // c
+  Type
+>;
+
+// A same-line block comment keeps the hug
+foo</* c */ Type>(value);
+
+===================== End =====================

@@ -182,12 +182,17 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSTypeParameterInstantiation<'a>> {
         let is_arrow_function_vars = is_arrow_function_variable_type_argument(self);
 
         // Check if the first (and only) argument can be hugged.
-        // `f<T // c` + `>()`: a comment before the `>` needs the broken layout to stay in place.
+        // `f<T // c` + `>()`: a comment before the `>` needs the broken layout to stay in place,
+        // and so does an own-line comment before the type, which keeps its own line.
         let first_arg_can_be_hugged = params.len() == 1
             && params.first().is_some_and(|first_type| {
                 (matches!(first_type.as_ref(), TSType::TSNullKeyword(_))
                     || should_hug_single_type(first_type.as_ref(), f))
                     && !f.comments().has_comment_in_range(first_type.span().end, self.span.end)
+                    && !f
+                        .comments()
+                        .all_comments_in_range(self.span.start, first_type.span().start)
+                        .any(Comment::preceded_by_newline)
             });
 
         let format_params = format_with(|f| {

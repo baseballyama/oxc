@@ -146,7 +146,7 @@
 
 ## typescript
 
-633/679 (93.23%)
+635/679 (93.52%)
 
 ### Failed
 
@@ -195,10 +195,6 @@
 - externals/prettier/typescript/satisfies-operators/comments-unstable.ts (💥💥, 61.54%)
   - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/18041.ts (💥, 91.43%)
-  - ❓unclassified
-- externals/prettier/typescript/type-parameters-arguments/18604.ts (💥, 60.00%)
-  - ❓unclassified
-- externals/prettier/typescript/type-parameters-arguments/19505.ts (💥, 81.48%)
   - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/constraints-and-default.ts (💥, 91.67%)
   - ❓unclassified

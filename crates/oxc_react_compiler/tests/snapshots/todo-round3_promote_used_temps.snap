@@ -111,7 +111,7 @@ exports.AutoEmbedOption = u, exports.INSERT_EMBED_COMMAND = l, exports.LexicalAu
 				if (e.$isLinkNode(t_4)) {
 					const e_4 = await Promise.resolve(f.parseUrl(t_4.__url));
 					null != e_4 && p.update(() => {
-						i.$getSelection() || t_4.selectEnd(), f.insertNode(p, e_4), t_4.isAttached() && t_4.remove();
+						i.$getSelection() || t_4.selectEnd(), (f.insertNode(p, e_4), t_4.isAttached() && t_4.remove());
 					});
 				}
 			}

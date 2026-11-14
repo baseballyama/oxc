@@ -1653,8 +1653,15 @@ pub(super) fn write_component_value<'a>(
         }
         ComponentValue::HexColor(hex) => {
             write!(f, "#");
-            let lower = hex.raw.cow_to_ascii_lowercase();
-            write!(f, text(arena_cow_str(&lower, f)));
+            // Only a color is case-insensitive: `#E7E7E7l` is a hash token whose case is its value.
+            let color = matches!(hex.raw.len(), 3 | 4 | 6 | 8)
+                && hex.raw.bytes().all(|b| b.is_ascii_hexdigit());
+            if color {
+                let lower = hex.raw.cow_to_ascii_lowercase();
+                write!(f, text(arena_cow_str(&lower, f)));
+            } else {
+                write!(f, text(hex.raw));
+            }
         }
         ComponentValue::InterpolableIdent(InterpolableIdent::Literal(ident)) => {
             if is_wide_keyword(ident.raw) {

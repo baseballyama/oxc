@@ -1,0 +1,8 @@
+/* A hash is lowercased only when it is a color: three, four, six or eight hex digits. */
+a {
+  color: #E7E7E7;
+  color: #ABCD;
+  color: #E7E7E7l;
+  color: #ABCDE;
+  grid-area: #Main;
+}

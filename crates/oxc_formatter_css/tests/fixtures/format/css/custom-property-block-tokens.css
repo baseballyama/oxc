@@ -1,0 +1,10 @@
+/* A `;` in a string, a comment, an escape or a bracket does not end a declaration of the block. */
+p {
+  --tokens: {
+    content: "};"; /* } ; */
+    escaped: \};
+    nested: [x; y];
+    spaced: "a  b"   c;
+  };
+  color: blue;
+}

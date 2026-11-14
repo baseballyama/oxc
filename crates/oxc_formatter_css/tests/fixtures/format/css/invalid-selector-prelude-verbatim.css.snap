@@ -1,0 +1,36 @@
+---
+source: crates/oxc_formatter_css/tests/fixtures/mod.rs
+---
+==================== Input ====================
+/* A selector that does not parse prints as written. */
+p:not(p > ) {
+  color: red;
+}
+.a:nth-child(n+) {
+  color: red;
+}
+
+==================== Output ====================
+------------------
+{ printWidth: 80 }
+------------------
+/* A selector that does not parse prints as written. */
+p:not(p > ) {
+  color: red;
+}
+.a:nth-child(n+) {
+  color: red;
+}
+
+-------------------
+{ printWidth: 100 }
+-------------------
+/* A selector that does not parse prints as written. */
+p:not(p > ) {
+  color: red;
+}
+.a:nth-child(n+) {
+  color: red;
+}
+
+===================== End =====================

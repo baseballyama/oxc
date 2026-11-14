@@ -16,7 +16,7 @@ impl<'a> PeepholeOptimizations {
     ) -> Expression<'a> {
         if let Expression::SequenceExpression(mut sequence_expr) = a {
             // `(a, b); c`
-            sequence_expr.expressions.push(b);
+            Self::extend_sequence(&mut sequence_expr.expressions, b);
             sequence_expr.span = span;
             return Expression::SequenceExpression(sequence_expr);
         }
@@ -28,6 +28,16 @@ impl<'a> PeepholeOptimizations {
             ArenaVec::from_array_in([a, b], ctx)
         };
         Expression::new_sequence_expression(span, exprs, ctx)
+    }
+
+    /// Appends `expr` to `expressions`, splicing in the items of a sequence so that the result
+    /// stays flat.
+    pub fn extend_sequence(expressions: &mut ArenaVec<'a, Expression<'a>>, expr: Expression<'a>) {
+        if let Expression::SequenceExpression(sequence_expr) = expr {
+            expressions.extend(sequence_expr.unbox().expressions);
+        } else {
+            expressions.push(expr);
+        }
     }
 
     /// Returns the final expression, descending through non-empty trailing sequences.

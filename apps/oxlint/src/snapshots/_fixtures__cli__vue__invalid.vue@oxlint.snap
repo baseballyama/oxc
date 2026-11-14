@@ -6,7 +6,7 @@ arguments: fixtures/cli/vue/invalid.vue
 working directory: 
 ----------
 
-  x Missing initializer in const declaration
+  x TS(1155): Missing initializer in const declaration
    ,-[fixtures/cli/vue/invalid.vue:3:7]
  2 | // This is a line of very very normal code comment, nothing special here.
  3 | const message

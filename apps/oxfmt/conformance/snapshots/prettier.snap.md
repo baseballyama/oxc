@@ -1,6 +1,6 @@
 ## javascript
 
-1186/1284 (92.37%)
+1187/1284 (92.45%)
 
 ### Failed
 
@@ -120,8 +120,6 @@
   - ❓unclassified
 - externals/prettier/js/switch/comments.js (💥, 94.74%)
   - ❓unclassified
-- externals/prettier/js/template-literals/expressions.js (💥, 97.64%)
-  - ❓unclassified
 - externals/prettier/js/test-declarations/jest-each.js (💥💥, 95.71%)
   - ❓unclassified
 - externals/prettier/js/trailing-comma/trailing_whitespace.js (💥💥💥, 96.55%)
@@ -191,7 +189,7 @@
 
 ## typescript
 
-645/699 (92.27%)
+647/699 (92.56%)
 
 ### Failed
 
@@ -200,8 +198,6 @@
 - externals/prettier/typescript/as/as.ts (💥, 97.74%)
   - ❓unclassified
 - externals/prettier/typescript/as/break-after-keyword/18148.ts (💥, 93.33%)
-  - ❓unclassified
-- externals/prettier/typescript/as/comments/17407.ts (💥, 47.06%)
   - ❓unclassified
 - externals/prettier/typescript/as/comments/18160.ts (💥, 73.24%)
   - ❓unclassified
@@ -253,8 +249,6 @@
   - ❓unclassified
 - externals/prettier/typescript/property-signature/consistent-with-flow/union.ts (💥, 80.00%)
   - ❓unclassified
-- externals/prettier/typescript/template-literals/member-expression.ts (💥, 65.12%)
-  - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/18041.ts (💥, 91.43%)
   - ❓unclassified
 - externals/prettier/typescript/type-parameters-arguments/18604.ts (💥, 60.00%)
@@ -301,7 +295,6 @@
 
 ### Not idempotent
 
-- externals/prettier/typescript/as/comments/17407.ts
 - externals/prettier/typescript/method-chain/object/issue-17239.ts
 - externals/prettier/typescript/prettier-ignore/issue-14238.ts
 - externals/prettier/typescript/prettier-ignore/mapped-types.ts

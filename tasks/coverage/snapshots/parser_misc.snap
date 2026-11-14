@@ -286,7 +286,7 @@ Negative Passed: 290/290 (100.00%)
    ╰────
   note: The identifier `await` is reserved in module code
 
-  × Cannot use await in class static initialization block
+  × TS(18037): Cannot use await in class static initialization block
    ╭─[misc/fail/await-expr-in-block-in-class-static-block.mjs:4:7]
  3 │     {
  4 │       await foo;
@@ -5307,7 +5307,7 @@ Negative Passed: 290/290 (100.00%)
  3 │ }
    ╰────
 
-  × Private field '#x' must be declared in an enclosing class
+  × TS(1111): Private field '#x' must be declared in an enclosing class
    ╭─[misc/fail/oxc-7582.js:4:9]
  3 │   method() {
  4 │     obj.#x;
@@ -5474,7 +5474,7 @@ Negative Passed: 290/290 (100.00%)
    ╰────
   help: Wrap this code in a block or use a module
 
-  × Cannot use 'for await' in class static initialization block
+  × TS(18038): Cannot use 'for await' in class static initialization block
    ╭─[misc/fail/semantic-for-await-in-block-in-static-block.mjs:4:7]
  3 │     {
  4 │       for await (const x of y) {}

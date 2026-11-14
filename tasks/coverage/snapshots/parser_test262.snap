@@ -1612,14 +1612,14 @@ Negative Passed: 4669/4669 (100.00%)
   note: This is strict mode code
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/asi/S7.9.2_A1_T1.js:17:4]
+    ╭─[test262/test/language/asi/S7.9.2_A1_T1.js:17:5]
  16 │ //CHECK#1
  17 │ { 1 2 } 3
-    ·    ▲
+    ·     ─
     ╰────
   help: Try inserting a semicolon here
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9.2_A1_T3.js:18:1]
  17 │ for( a ; b
  18 │ )
@@ -1627,21 +1627,21 @@ Negative Passed: 4669/4669 (100.00%)
     · ╰── `;` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9.2_A1_T6.js:21:1]
  20 │ if(a>b)
  21 │ else c=d
     · ────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A10_T2.js:17:4]
  16 │ //CHECK#1
  17 │ {} * 1
     ·    ─
     ╰────
 
-  × Expected `,` or `)` but found `;`
+  × TS(1005): Expected `,` or `)` but found `;`
     ╭─[test262/test/language/asi/S7.9_A10_T4.js:17:4]
  16 │ //CHECK#1
  17 │ ({};) * 1
@@ -1650,7 +1650,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ╰── Opened here
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A10_T6.js:18:2]
  17 │ {}
  18 │  * 1
@@ -1658,22 +1658,22 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/asi/S7.9_A10_T8.js:17:3]
+    ╭─[test262/test/language/asi/S7.9_A10_T8.js:17:4]
  16 │ //CHECK#1
  17 │ {1 2} 3
-    ·   ▲
+    ·    ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/asi/S7.9_A11_T4.js:18:17]
+    ╭─[test262/test/language/asi/S7.9_A11_T4.js:18:18]
  17 │ var x = 0;
  18 │ if (false) x = 1 else x = -1
-    ·                 ▲
+    ·                  ────
     ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A11_T8.js:17:1]
  16 │ if (false) {};
  17 │ else {}
@@ -1692,14 +1692,14 @@ Negative Passed: 4669/4669 (100.00%)
  20 │ } catch(e) {
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A5.1_T1.js:18:3]
  17 │ x
  18 │ ++;
     ·   ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A5.3_T1.js:19:3]
  18 │ x
  19 │ --;
@@ -1714,7 +1714,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ ╰─▶ y
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T1.js:21:1]
  20 │ for(;
  21 │ ) {
@@ -1723,7 +1723,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T10.js:22:2]
  21 │     false
  22 │ ;) {
@@ -1732,7 +1732,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T2.js:22:1]
  21 │     ;
  22 │ ) {
@@ -1741,7 +1741,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T3.js:21:2]
  20 │ for(
  21 │ ;) {
@@ -1750,7 +1750,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T4.js:22:2]
  21 │ 
  22 │ ;) {
@@ -1759,7 +1759,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T5.js:21:1]
  20 │ for(false;false
  21 │ ) {
@@ -1768,7 +1768,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T6.js:22:1]
  21 │ false
  22 │ ) {
@@ -1777,7 +1777,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T7.js:22:1]
  21 │     ;
  22 │ ) {
@@ -1786,7 +1786,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T8.js:22:1]
  21 │     ;false
  22 │ ) {
@@ -1795,7 +1795,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.2_T9.js:21:7]
  20 │ for(
  21 │ ;false) {
@@ -1804,7 +1804,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.3_T1.js:21:1]
  20 │ for(
  21 │ ) {
@@ -1813,7 +1813,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.3_T2.js:22:1]
  21 │ 
  22 │ ) {
@@ -1822,7 +1822,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.3_T3.js:23:1]
  22 │ 
  23 │ ) {
@@ -1831,7 +1831,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │   break;
     ╰────
 
-  × Expected `;` but found `)`
+  × TS(1005): Expected `;` but found `)`
     ╭─[test262/test/language/asi/S7.9_A6.3_T4.js:22:1]
  21 │     false
  22 │ ) {
@@ -1840,7 +1840,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │   break;
     ╰────
 
-  × Expected `;` but found `false`
+  × TS(1005): Expected `;` but found `false`
     ╭─[test262/test/language/asi/S7.9_A6.3_T5.js:21:5]
  20 │ for(false
  21 │     false
@@ -1849,7 +1849,7 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ ) {
     ╰────
 
-  × Expected `;` but found `false`
+  × TS(1005): Expected `;` but found `false`
     ╭─[test262/test/language/asi/S7.9_A6.3_T6.js:22:5]
  21 │     false
  22 │     false
@@ -1858,7 +1858,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ ) {
     ╰────
 
-  × Expected `;` but found `false`
+  × TS(1005): Expected `;` but found `false`
     ╭─[test262/test/language/asi/S7.9_A6.3_T7.js:22:5]
  21 │     false
  22 │     false
@@ -1867,7 +1867,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │     false
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/asi/S7.9_A6.4_T1.js:19:22]
  18 │ //CHECK#1
  19 │ for(false;false;false;) {
@@ -1877,7 +1877,7 @@ Negative Passed: 4669/4669 (100.00%)
  20 │   break;
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A6.4_T2.js:19:17]
  18 │ //CHECK#1
  19 │ for(false;false;;false) {
@@ -1885,17 +1885,17 @@ Negative Passed: 4669/4669 (100.00%)
  20 │   break;
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A9_T6.js:19:1]
  18 │ while (false)
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/asi/S7.9_A9_T7.js:20:1]
  19 │ while (false)
     ╰────
 
-  × Expected `while` but found `;`
+  × TS(1005): Expected `while` but found `;`
     ╭─[test262/test/language/asi/S7.9_A9_T8.js:17:6]
  16 │ //CHECK#1
  17 │ do {};
@@ -2837,7 +2837,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ───────────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/comments/S7.4_A3.js:22:1]
  21 │ /* x */
  22 │ = 1;
@@ -2873,6 +2873,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·   ──
     ╰────
 
+<<<<<<< HEAD
   × Invalid Unicode escape sequence
    ╭─[test262/test/language/comments/hashbang/escaped-bang-041.js:1:3]
  1 │ #\041
@@ -2900,6 +2901,39 @@ Negative Passed: 4669/4669 (100.00%)
    ·   ─
  2 │ 
    ╰────
+=======
+  × TS(1005): Expected `in` but found `throw`
+    ╭─[test262/test/language/comments/hashbang/escaped-bang-041.js:20:1]
+ 19 │ 
+ 20 │ throw "Test262: This statement should not be evaluated.";
+    · ──┬──
+    ·   ╰── `in` expected
+    ╰────
+
+  × TS(1005): Expected `in` but found `throw`
+    ╭─[test262/test/language/comments/hashbang/escaped-bang-u0021.js:20:1]
+ 19 │ 
+ 20 │ throw "Test262: This statement should not be evaluated.";
+    · ──┬──
+    ·   ╰── `in` expected
+    ╰────
+
+  × TS(1005): Expected `in` but found `throw`
+    ╭─[test262/test/language/comments/hashbang/escaped-bang-u21.js:20:1]
+ 19 │ 
+ 20 │ throw "Test262: This statement should not be evaluated.";
+    · ──┬──
+    ·   ╰── `in` expected
+    ╰────
+
+  × TS(1005): Expected `in` but found `throw`
+    ╭─[test262/test/language/comments/hashbang/escaped-bang-x21.js:20:1]
+ 19 │ 
+ 20 │ throw "Test262: This statement should not be evaluated.";
+    · ──┬──
+    ·   ╰── `in` expected
+    ╰────
+>>>>>>> eeb7308964 (test: update coverage snapshots for the expected token, expression, type and missing semicolon errors)
 
   × Invalid Unicode escape sequence
    ╭─[test262/test/language/comments/hashbang/escaped-hash-043.js:1:2]
@@ -2908,13 +2942,12 @@ Negative Passed: 4669/4669 (100.00%)
  2 │ 
    ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-043.js:1:5]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-043.js:1:1]
  1 │ \043!
-   ·     ▲
+   · ────
  2 │ 
    ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `#`
    ╭─[test262/test/language/comments/hashbang/escaped-hash-u0023.js:1:7]
@@ -2923,13 +2956,12 @@ Negative Passed: 4669/4669 (100.00%)
  2 │ 
    ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-u0023.js:1:7]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-u0023.js:1:1]
  1 │ \u0023!
-   ·       ▲
+   · ──────
  2 │ 
    ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `#`
    ╭─[test262/test/language/comments/hashbang/escaped-hash-u23.js:1:7]
@@ -2938,13 +2970,12 @@ Negative Passed: 4669/4669 (100.00%)
  2 │ 
    ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-u23.js:1:7]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-u23.js:1:1]
  1 │ \u{23}!
-   ·       ▲
+   · ──────
  2 │ 
    ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Unicode escape sequence
    ╭─[test262/test/language/comments/hashbang/escaped-hash-x23.js:1:2]
@@ -2953,13 +2984,12 @@ Negative Passed: 4669/4669 (100.00%)
  2 │ 
    ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-x23.js:1:5]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-x23.js:1:1]
  1 │ \x23!
-   ·     ▲
+   · ────
  2 │ 
    ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `#`
    ╭─[test262/test/language/comments/hashbang/escaped-hashbang.js:1:7]
@@ -2983,14 +3013,13 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ }
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[test262/test/language/comments/hashbang/multi-line-comment.js:3:6]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[test262/test/language/comments/hashbang/multi-line-comment.js:3:1]
  2 │ throw "Test262: This statement should not be evaluated.";
  3 │ these characters should not be considered within a comment
-   ·      ▲
+   · ─────
  4 │ */
    ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `!`
    ╭─[test262/test/language/comments/hashbang/preceding-directive-prologue-sc.js:2:2]
@@ -3054,15 +3083,14 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ }
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/comments/multi-line-html-close-extra.js:26:7]
+  × TS(1434): Unexpected keyword or identifier.
+    ╭─[test262/test/language/comments/multi-line-html-close-extra.js:26:4]
  25 │ /*
  26 │ */ the comment should not include these characters, regardless of AnnexB extensions -->
-    ·       ▲
+    ·    ───
     ╰────
-  help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/comments/single-line-html-close-without-lt.js:24:4]
  23 │ 
  24 │ ;-->
@@ -3236,28 +3264,28 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-ary.js:53:18]
+    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-ary.js:53:19]
  52 │ var f;
  53 │ f = ([...[x], y]) => {
-    ·                  ▲
+    ·                   ──
  54 │   
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-id.js:53:16]
+    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-id.js:53:17]
  52 │ var f;
  53 │ f = ([...x, y]) => {
-    ·                ▲
+    ·                 ──
  54 │   
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-obj.js:53:20]
+    ╭─[test262/test/language/expressions/arrow-function/dstr/ary-ptrn-rest-not-final-obj.js:53:21]
  52 │ var f;
  53 │ f = ([...{ x }, y]) => {
-    ·                    ▲
+    ·                     ──
  54 │   
     ╰────
   help: Try inserting a semicolon here
@@ -3310,7 +3338,7 @@ Negative Passed: 4669/4669 (100.00%)
  54 │   
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-break-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ bre\u0061k }) => {};
@@ -3318,7 +3346,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-case-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ c\u0061se }) => {};
@@ -3326,7 +3354,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-catch-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ c\u0061tch }) => {};
@@ -3334,7 +3362,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-class-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ cl\u0061ss }) => {};
@@ -3342,7 +3370,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-const-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ \u0063onst }) => {};
@@ -3350,7 +3378,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-continue-escaped.js:41:26]
  40 │ 
  41 │ var x = ({ \u0063ontinue }) => {};
@@ -3358,7 +3386,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-debugger-escaped.js:41:26]
  40 │ 
  41 │ var x = ({ \u0064ebugger }) => {};
@@ -3366,7 +3394,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-default-escaped-ext.js:41:25]
  40 │ 
  41 │ var x = ({ def\u{61}ult }) => {};
@@ -3374,7 +3402,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-default-escaped.js:41:25]
  40 │ 
  41 │ var x = ({ def\u0061ult }) => {};
@@ -3382,7 +3410,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-default.js:41:20]
  40 │ 
  41 │ var x = ({ default }) => {};
@@ -3390,7 +3418,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-delete-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ \u0064elete }) => {};
@@ -3398,7 +3426,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-do-escaped.js:41:20]
  40 │ 
  41 │ var x = ({ \u0064o }) => {};
@@ -3406,7 +3434,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-else-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ \u0065lse }) => {};
@@ -3414,7 +3442,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-enum-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ \u0065num }) => {};
@@ -3422,7 +3450,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-export-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ \u0065xport }) => {};
@@ -3430,7 +3458,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-extends-escaped-ext.js:41:25]
  40 │ 
  41 │ var x = ({ \u{65}xtends }) => {};
@@ -3438,7 +3466,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-extends-escaped.js:41:25]
  40 │ 
  41 │ var x = ({ \u0065xtends }) => {};
@@ -3446,7 +3474,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-extends.js:41:20]
  40 │ 
  41 │ var x = ({ extends }) => {};
@@ -3454,7 +3482,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-finally-escaped.js:41:25]
  40 │ 
  41 │ var x = ({ \u0066inally }) => {};
@@ -3462,7 +3490,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-for-escaped.js:41:21]
  40 │ 
  41 │ var x = ({ \u0066or }) => {};
@@ -3470,7 +3498,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-function-escaped.js:41:26]
  40 │ 
  41 │ var x = ({ \u0066unction }) => {};
@@ -3478,7 +3506,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-if-escaped.js:41:20]
  40 │ 
  41 │ var x = ({ i\u0066 }) => {};
@@ -3494,7 +3522,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-import-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ \u0069mport }) => {};
@@ -3502,7 +3530,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-in-escaped.js:41:20]
  40 │ 
  41 │ var x = ({ \u0069n }) => {};
@@ -3510,7 +3538,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-instanceof-escaped.js:41:28]
  40 │ 
  41 │ var x = ({ \u0069nstanceof }) => {};
@@ -3534,7 +3562,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-new-escaped.js:41:21]
  40 │ 
  41 │ var x = ({ n\u0065w }) => {};
@@ -3574,7 +3602,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-return-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ r\u0065turn }) => {};
@@ -3590,7 +3618,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-super-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ sup\u0065r }) => {};
@@ -3598,7 +3626,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-switch-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ sw\u0069tch }) => {};
@@ -3606,7 +3634,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-this-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ th\u0069s }) => {};
@@ -3614,7 +3642,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-throw-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ t\u0068row }) => {};
@@ -3622,7 +3650,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-try-escaped.js:41:21]
  40 │ 
  41 │ var x = ({ tr\u0079 }) => {};
@@ -3630,7 +3658,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-typeof-escaped.js:41:24]
  40 │ 
  41 │ var x = ({ typ\u0065of }) => {};
@@ -3638,7 +3666,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-var-escaped.js:41:21]
  40 │ 
  41 │ var x = ({ v\u0061r }) => {};
@@ -3646,7 +3674,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-void-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ voi\u0064 }) => {};
@@ -3654,7 +3682,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-while-escaped.js:41:23]
  40 │ 
  41 │ var x = ({ whil\u0065 }) => {};
@@ -3662,7 +3690,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/arrow-function/dstr/syntax-error-ident-ref-with-escaped.js:41:22]
  40 │ 
  41 │ var x = ({ w\u0069th }) => {};
@@ -3723,7 +3751,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the trailing comma here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/arrow-function/static-init-await-binding.js:17:12]
  16 │   static {
  17 │     (await => 0);
@@ -3731,7 +3759,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/arrow-function/static-init-await-reference.js:17:16]
  16 │   static {
  17 │     ((x = await) => 0);
@@ -3739,7 +3767,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-bindingidentifier-identifier-futurereservedword.js:25:10]
  24 │ $DONOTEVALUATE();
  25 │ var af = enum => 1;
@@ -3754,7 +3782,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-bindingidentifier-identifier.js:25:10]
  24 │ $DONOTEVALUATE();
  25 │ var af = switch => 1;
@@ -3785,7 +3813,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/arrow-function/syntax/early-errors/arrowparameters-bindingidentifier-rest.js:17:10]
  16 │ $DONOTEVALUATE();
  17 │ var af = ...x => x;
@@ -4094,7 +4122,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/obj-id-identifier-yield-expr.js:24:12]
  23 │ 
  24 │ 0, { yield } = {};
@@ -4215,7 +4243,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ ;
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-break-escaped.js:41:22]
  40 │ 
  41 │ var x = { bre\u0061k } = { break: 42 };
@@ -4223,7 +4251,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-case-escaped.js:41:21]
  40 │ 
  41 │ var x = { c\u0061se } = { case: 42 };
@@ -4231,7 +4259,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-catch-escaped.js:41:22]
  40 │ 
  41 │ var x = { c\u0061tch } = { catch: 42 };
@@ -4239,7 +4267,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-class-escaped.js:41:22]
  40 │ 
  41 │ var x = { cl\u0061ss } = { class: 42 };
@@ -4247,7 +4275,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-const-escaped.js:41:22]
  40 │ 
  41 │ var x = { \u0063onst } = { const: 42 };
@@ -4255,7 +4283,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-continue-escaped.js:41:25]
  40 │ 
  41 │ var x = { \u0063ontinue } = { continue: 42 };
@@ -4263,7 +4291,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-debugger-escaped.js:41:25]
  40 │ 
  41 │ var x = { \u0064ebugger } = { debugger: 42 };
@@ -4271,7 +4299,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-default-escaped-ext.js:41:24]
  40 │ 
  41 │ var x = { def\u{61}ult } = { default: 42 };
@@ -4279,7 +4307,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-default-escaped.js:41:24]
  40 │ 
  41 │ var x = { def\u0061ult } = { default: 42 };
@@ -4287,7 +4315,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-default.js:41:19]
  40 │ 
  41 │ var x = { default } = { default: 42 };
@@ -4295,7 +4323,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-delete-escaped.js:41:23]
  40 │ 
  41 │ var x = { \u0064elete } = { delete: 42 };
@@ -4303,7 +4331,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-do-escaped.js:41:19]
  40 │ 
  41 │ var x = { \u0064o } = { do: 42 };
@@ -4311,7 +4339,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-else-escaped.js:41:21]
  40 │ 
  41 │ var x = { \u0065lse } = { else: 42 };
@@ -4319,7 +4347,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-enum-escaped.js:41:21]
  40 │ 
  41 │ var x = { \u0065num } = { enum: 42 };
@@ -4327,7 +4355,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-export-escaped.js:41:23]
  40 │ 
  41 │ var x = { \u0065xport } = { export: 42 };
@@ -4335,7 +4363,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-extends-escaped-ext.js:41:24]
  40 │ 
  41 │ var x = { \u{65}xtends } = { extends: 42 };
@@ -4343,7 +4371,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-extends-escaped.js:41:24]
  40 │ 
  41 │ var x = { \u0065xtends } = { extends: 42 };
@@ -4351,7 +4379,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-extends.js:41:19]
  40 │ 
  41 │ var x = { extends } = { extends: 42 };
@@ -4359,7 +4387,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-finally-escaped.js:41:24]
  40 │ 
  41 │ var x = { \u0066inally } = { finally: 42 };
@@ -4367,7 +4395,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                        ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-for-escaped.js:41:20]
  40 │ 
  41 │ var x = { \u0066or } = { for: 42 };
@@ -4375,7 +4403,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-function-escaped.js:41:25]
  40 │ 
  41 │ var x = { \u0066unction } = { function: 42 };
@@ -4383,7 +4411,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                         ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-if-escaped.js:41:19]
  40 │ 
  41 │ var x = { i\u0066 } = { if: 42 };
@@ -4399,7 +4427,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-import-escaped.js:41:23]
  40 │ 
  41 │ var x = { \u0069mport } = { import: 42 };
@@ -4407,7 +4435,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-in-escaped.js:41:19]
  40 │ 
  41 │ var x = { \u0069n } = { in: 42 };
@@ -4415,7 +4443,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-instanceof-escaped.js:41:27]
  40 │ 
  41 │ var x = { \u0069nstanceof } = { instanceof: 42 };
@@ -4439,7 +4467,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-new-escaped.js:41:20]
  40 │ 
  41 │ var x = { n\u0065w } = { new: 42 };
@@ -4479,7 +4507,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-return-escaped.js:41:23]
  40 │ 
  41 │ var x = { r\u0065turn } = { return: 42 };
@@ -4495,7 +4523,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-super-escaped.js:41:22]
  40 │ 
  41 │ var x = { sup\u0065r } = { super: 42 };
@@ -4503,7 +4531,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-switch-escaped.js:41:23]
  40 │ 
  41 │ var x = { sw\u0069tch } = { switch: 42 };
@@ -4511,7 +4539,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-this-escaped.js:41:21]
  40 │ 
  41 │ var x = { th\u0069s } = { this: 42 };
@@ -4519,7 +4547,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-throw-escaped.js:41:22]
  40 │ 
  41 │ var x = { t\u0068row } = { throw: 42 };
@@ -4527,7 +4555,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-try-escaped.js:41:20]
  40 │ 
  41 │ var x = { tr\u0079 } = { try: 42 };
@@ -4535,7 +4563,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-typeof-escaped.js:41:23]
  40 │ 
  41 │ var x = { typ\u0065of } = { typeof: 42 };
@@ -4543,7 +4571,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                       ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-var-escaped.js:41:20]
  40 │ 
  41 │ var x = { v\u0061r } = { var: 42 };
@@ -4551,7 +4579,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-void-escaped.js:41:21]
  40 │ 
  41 │ var x = { voi\u0064 } = { void: 42 };
@@ -4559,7 +4587,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                     ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-while-escaped.js:41:22]
  40 │ 
  41 │ var x = { whil\u0065 } = { while: 42 };
@@ -4567,7 +4595,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/assignment/dstr/syntax-error-ident-ref-with-escaped.js:41:21]
  40 │ 
  41 │ var x = { w\u0069th } = { with: 42 };
@@ -4708,10 +4736,10 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-0.js:21:9]
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-0.js:21:10]
  20 │ 
  21 │ () => {} = 1;
-    ·         ▲
+    ·          ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -4758,10 +4786,10 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-0.js:21:15]
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-0.js:21:16]
  20 │ 
  21 │ async () => {} = 1;
-    ·               ▲
+    ·                ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -5336,7 +5364,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Function name is required in function declaration or named export
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-asyncfunctionexpression.js:17:22]
  16 │ 
  17 │ async function () {} = 1;
@@ -5351,14 +5379,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Function name is required in function declaration or named export
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-asyncgeneratorexpression.js:17:22]
  16 │ 
  17 │ async function () {} = 1;
     ·                      ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-classexpression.js:17:10]
  16 │ 
  17 │ class {} = 1;
@@ -5373,7 +5401,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Function name is required in function declaration or named export
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-functionexpression.js:17:15]
  16 │ 
  17 │ function() {} = 1;
@@ -5388,7 +5416,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Function name is required in function declaration or named export
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-generatorexpression.js:17:18]
  16 │ 
  17 │ function * () {} = 1;
@@ -5423,7 +5451,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-objectliteral.js:17:4]
  16 │ 
  17 │ {} = 1;
@@ -6973,7 +7001,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-arrow-function/await-as-identifier-reference-escaped.js:34:18]
  33 │ async () => {
  34 │   void \u0061wait;
@@ -6981,7 +7009,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-arrow-function/await-as-identifier-reference.js:34:13]
  33 │ async () => {
  34 │   void await;
@@ -6997,7 +7025,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-arrow-function/await-as-label-identifier-escaped.js:34:13]
  33 │ async () => {
  34 │   \u0061wait: ;
@@ -7005,7 +7033,7 @@ Negative Passed: 4669/4669 (100.00%)
  35 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-arrow-function/await-as-label-identifier.js:34:8]
  33 │ async () => {
  34 │   await: ;
@@ -7014,10 +7042,10 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/async-arrow-function/await-as-param-ident-nested-arrow-parameter-position.js:17:23]
+    ╭─[test262/test/language/expressions/async-arrow-function/await-as-param-ident-nested-arrow-parameter-position.js:17:24]
  16 │ 
  17 │ async(a = await => {}) => {};
-    ·                       ▲
+    ·                        ──
     ╰────
   help: Try inserting a semicolon here
 
@@ -7079,10 +7107,10 @@ Negative Passed: 4669/4669 (100.00%)
   note: This is strict mode code
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-await-in-formals-default.js:15:17]
+    ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-await-in-formals-default.js:15:18]
  14 │ $DONOTEVALUATE();
  15 │ async(x = await) => {  }
-    ·                 ▲
+    ·                  ──
     ╰────
   help: Try inserting a semicolon here
 
@@ -7148,10 +7176,10 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-formals-lineterminator.js:34:6]
+    ╭─[test262/test/language/expressions/async-arrow-function/early-errors-arrow-formals-lineterminator.js:34:7]
  33 │ async
  34 │ (foo) => { }
-    ·      ▲
+    ·       ──
     ╰────
   help: Try inserting a semicolon here
 
@@ -7213,7 +7241,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/await-as-identifier-reference-escaped.js:30:18]
  29 │ var asyncFn = async function () {
  30 │   void \u0061wait;
@@ -7221,7 +7249,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/await-as-identifier-reference.js:30:13]
  29 │ var asyncFn = async function () {
  30 │   void await;
@@ -7237,7 +7265,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/await-as-label-identifier-escaped.js:30:13]
  29 │ var asyncFn = async function () {
  30 │   \u0061wait: ;
@@ -7245,7 +7273,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/await-as-label-identifier.js:30:8]
  29 │ var asyncFn = async function () {
  30 │   await: ;
@@ -7371,7 +7399,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/named-await-as-identifier-reference-escaped.js:30:18]
  29 │ var asyncFn = async function asyncFn() {
  30 │   void \u0061wait;
@@ -7379,7 +7407,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/named-await-as-identifier-reference.js:30:13]
  29 │ var asyncFn = async function asyncFn() {
  30 │   void await;
@@ -7395,7 +7423,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/named-await-as-label-identifier-escaped.js:30:13]
  29 │ var asyncFn = async function asyncFn() {
  30 │   \u0061wait: ;
@@ -7403,7 +7431,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-function/named-await-as-label-identifier.js:30:8]
  29 │ var asyncFn = async function asyncFn() {
  30 │   await: ;
@@ -7543,7 +7571,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/await-as-identifier-reference-escaped.js:31:18]
  30 │ var gen = async function *() {
  31 │   void \u0061wait;
@@ -7551,7 +7579,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/await-as-identifier-reference.js:31:13]
  30 │ var gen = async function *() {
  31 │   void await;
@@ -7567,7 +7595,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/await-as-label-identifier-escaped.js:31:13]
  30 │ var gen = async function *() {
  31 │   \u0061wait: ;
@@ -7575,7 +7603,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/await-as-label-identifier.js:31:8]
  30 │ var gen = async function *() {
  31 │   await: ;
@@ -7924,7 +7952,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-label-name-await.js:24:8]
  23 │ (async function*() {
  24 │   await: 1;
@@ -7936,7 +7964,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-label-name-yield.js:26:8]
  25 │ (async function*() {
  26 │   yield: 1;
-    ·        ▲
+    ·        ─
  27 │ });
     ╰────
   help: Try inserting a semicolon here
@@ -7963,7 +7991,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-yield-star-after-newline.js:20:3]
  19 │   yield
  20 │   * 1;
@@ -8011,7 +8039,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/named-await-as-identifier-reference-escaped.js:31:18]
  30 │ var gen = async function *g() {
  31 │   void \u0061wait;
@@ -8019,7 +8047,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/named-await-as-identifier-reference.js:31:13]
  30 │ var gen = async function *g() {
  31 │   void await;
@@ -8035,7 +8063,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/named-await-as-label-identifier-escaped.js:31:13]
  30 │ var gen = async function *g() {
  31 │   \u0061wait: ;
@@ -8043,7 +8071,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ };
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/async-generator/named-await-as-label-identifier.js:31:8]
  30 │ var gen = async function *g() {
  31 │   await: ;
@@ -8176,7 +8204,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/async-generator/named-yield-as-label-identifier-escaped.js:31:13]
  30 │ var gen = async function *g() {
  31 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  32 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -8185,7 +8213,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/async-generator/named-yield-as-label-identifier.js:31:8]
  30 │ var gen = async function *g() {
  31 │   yield: ;
-    ·        ▲
+    ·        ─
  32 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -8315,7 +8343,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/async-generator/yield-as-label-identifier-escaped.js:31:13]
  30 │ var gen = async function *() {
  31 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  32 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -8324,7 +8352,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/async-generator/yield-as-label-identifier.js:31:8]
  30 │ var gen = async function *() {
  31 │   yield: ;
-    ·        ▲
+    ·        ─
  32 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -8363,7 +8391,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/await/no-operand.js:18:8]
  17 │ async function foo() {
  18 │   await;
@@ -8371,7 +8399,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/call/S11.2.4_A1.3_T1.js:21:9]
  20 │ 
  21 │ f_arg(1,,2);
@@ -8411,7 +8439,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method/await-as-identifier-reference-escaped.js:36:20]
  35 │ var C = class { async *gen() {
  36 │     void \u0061wait;
@@ -8419,7 +8447,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method/await-as-identifier-reference.js:36:15]
  35 │ var C = class { async *gen() {
  36 │     void await;
@@ -8435,7 +8463,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method/await-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { async *gen() {
  36 │     \u0061wait: ;
@@ -8443,7 +8471,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method/await-as-label-identifier.js:36:10]
  35 │ var C = class { async *gen() {
  36 │     await: ;
@@ -8576,7 +8604,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/async-gen-method/yield-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { async *gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -8585,7 +8613,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/async-gen-method/yield-as-label-identifier.js:36:10]
  35 │ var C = class { async *gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -8641,7 +8669,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method-static/await-as-identifier-reference-escaped.js:36:20]
  35 │ var C = class { static async *gen() {
  36 │     void \u0061wait;
@@ -8649,7 +8677,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method-static/await-as-identifier-reference.js:36:15]
  35 │ var C = class { static async *gen() {
  36 │     void await;
@@ -8665,7 +8693,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method-static/await-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { static async *gen() {
  36 │     \u0061wait: ;
@@ -8673,7 +8701,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-gen-method-static/await-as-label-identifier.js:36:10]
  35 │ var C = class { static async *gen() {
  36 │     await: ;
@@ -8806,7 +8834,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/async-gen-method-static/yield-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { static async *gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -8815,7 +8843,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/async-gen-method-static/yield-as-label-identifier.js:36:10]
  35 │ var C = class { static async *gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -8871,7 +8899,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method/await-as-identifier-reference-escaped.js:37:20]
  36 │   async method() {
  37 │     void \u0061wait;
@@ -8879,7 +8907,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method/await-as-identifier-reference.js:37:15]
  36 │   async method() {
  37 │     void await;
@@ -8895,7 +8923,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method/await-as-label-identifier-escaped.js:37:15]
  36 │   async method() {
  37 │     \u0061wait: ;
@@ -8903,7 +8931,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method/await-as-label-identifier.js:37:10]
  36 │   async method() {
  37 │     await: ;
@@ -8989,7 +9017,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method-static/await-as-identifier-reference-escaped.js:37:20]
  36 │   static async method() {
  37 │     void \u0061wait;
@@ -8997,7 +9025,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method-static/await-as-identifier-reference.js:37:15]
  36 │   static async method() {
  37 │     void await;
@@ -9013,7 +9041,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method-static/await-as-label-identifier-escaped.js:37:15]
  36 │   static async method() {
  37 │     \u0061wait: ;
@@ -9021,7 +9049,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/async-method-static/await-as-label-identifier.js:37:10]
  36 │   static async method() {
  37 │     await: ;
@@ -10345,7 +10373,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/await-as-identifier-reference-escaped.js:36:20]
  35 │ var C = class { async *#gen() {
  36 │     void \u0061wait;
@@ -10353,7 +10381,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/await-as-identifier-reference.js:36:15]
  35 │ var C = class { async *#gen() {
  36 │     void await;
@@ -10369,7 +10397,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/await-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { async *#gen() {
  36 │     \u0061wait: ;
@@ -10377,7 +10405,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/await-as-label-identifier.js:36:10]
  35 │ var C = class { async *#gen() {
  36 │     await: ;
@@ -10465,7 +10493,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/yield-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { async *#gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -10474,7 +10502,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method/yield-as-label-identifier.js:36:10]
  35 │ var C = class { async *#gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -10521,7 +10549,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/await-as-identifier-reference-escaped.js:36:20]
  35 │ var C = class { static async *#gen() {
  36 │     void \u0061wait;
@@ -10529,7 +10557,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/await-as-identifier-reference.js:36:15]
  35 │ var C = class { static async *#gen() {
  36 │     void await;
@@ -10545,7 +10573,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/await-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { static async *#gen() {
  36 │     \u0061wait: ;
@@ -10553,7 +10581,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }};
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/await-as-label-identifier.js:36:10]
  35 │ var C = class { static async *#gen() {
  36 │     await: ;
@@ -10641,7 +10669,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/yield-as-label-identifier-escaped.js:36:15]
  35 │ var C = class { static async *#gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -10650,7 +10678,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/async-gen-private-method-static/yield-as-label-identifier.js:36:10]
  35 │ var C = class { static async *#gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -10697,7 +10725,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method/await-as-identifier-reference-escaped.js:37:20]
  36 │   async #method() {
  37 │     void \u0061wait;
@@ -10705,7 +10733,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method/await-as-identifier-reference.js:37:15]
  36 │   async #method() {
  37 │     void await;
@@ -10721,7 +10749,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method/await-as-label-identifier-escaped.js:37:15]
  36 │   async #method() {
  37 │     \u0061wait: ;
@@ -10729,7 +10757,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method/await-as-label-identifier.js:37:10]
  36 │   async #method() {
  37 │     await: ;
@@ -10761,7 +10789,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method-static/await-as-identifier-reference-escaped.js:37:20]
  36 │   static async #method() {
  37 │     void \u0061wait;
@@ -10769,7 +10797,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method-static/await-as-identifier-reference.js:37:15]
  36 │   static async #method() {
  37 │     void await;
@@ -10785,7 +10813,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method-static/await-as-label-identifier-escaped.js:37:15]
  36 │   static async #method() {
  37 │     \u0061wait: ;
@@ -10793,7 +10821,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/class/elements/async-private-method-static/await-as-label-identifier.js:37:10]
  36 │   static async #method() {
  37 │     await: ;
@@ -10835,7 +10863,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-async-field-no-asi-before-method.js:18:14]
  17 │ var C = class {
  18 │   a\u0073ync value() {}
@@ -10844,7 +10872,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-async-static-field-no-asi-before-method.js:18:21]
  17 │ var C = class {
  18 │   static a\u0073ync value() {}
@@ -10853,7 +10881,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-get-field-no-asi-before-method.js:18:12]
  17 │ var C = class {
  18 │   g\u0065t value() {}
@@ -10862,7 +10890,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-get-static-field-no-asi-before-method.js:18:19]
  17 │ var C = class {
  18 │   static g\u0065t value() {}
@@ -10871,7 +10899,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-set-field-no-asi-before-method.js:18:12]
  17 │ var C = class {
  18 │   s\u0065t value(v) {}
@@ -10880,7 +10908,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-set-static-field-no-asi-before-method.js:18:19]
  17 │ var C = class {
  18 │   static s\u0065t value(v) {}
@@ -10889,7 +10917,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-static-field-no-asi-before-method.js:18:15]
  17 │ var C = class {
  18 │   st\u0061tic value() {}
@@ -10898,7 +10926,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/escaped-static-static-field-no-asi-before-method.js:18:22]
  17 │ var C = class {
  18 │   static st\u0061tic value() {}
@@ -10907,7 +10935,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `{`
+  × TS(1005): Expected `;` but found `{`
     ╭─[test262/test/language/expressions/class/elements/fields-asi-3.js:18:9]
  17 │   x = "string"
  18 │   [0]() {}
@@ -10916,7 +10944,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `{`
+  × TS(1005): Expected `;` but found `{`
     ╭─[test262/test/language/expressions/class/elements/fields-asi-4.js:18:10]
  17 │   x = 42
  18 │   *gen() {}
@@ -10925,7 +10953,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/fields-asi-same-line-1.js:17:27]
  16 │ var C = class {
  17 │   field /* no ASI here */ method(){}
@@ -10934,7 +10962,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/fields-asi-same-line-2.js:17:31]
  16 │ var C = class {
  17 │   field = 1 /* no ASI here */ method(){}
@@ -10955,7 +10983,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/class/elements/fields-literal-name-propname-constructor.js:29:14]
  28 │ var C = class {
  29 │   constructor;
@@ -11084,7 +11112,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/gen-private-method/yield-as-label-identifier-escaped.js:35:15]
  34 │ var C = class {*#gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -11093,7 +11121,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/gen-private-method/yield-as-label-identifier.js:35:10]
  34 │ var C = class {*#gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -11196,7 +11224,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/gen-private-method-static/yield-as-label-identifier-escaped.js:35:15]
  34 │ var C = class { static *#gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -11205,7 +11233,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/elements/gen-private-method-static/yield-as-label-identifier.js:35:10]
  34 │ var C = class { static *#gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -11279,7 +11307,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Expected `;` but found `==`
+  × TS(1005): Expected `;` but found `==`
     ╭─[test262/test/language/expressions/class/elements/nested-equality-init-err-contains-arguments.js:33:16]
  32 │ var C = class {
  33 │   x = () => {} == arguments;
@@ -11288,7 +11316,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │ }
     ╰────
 
-  × Expected `;` but found `==`
+  × TS(1005): Expected `;` but found `==`
     ╭─[test262/test/language/expressions/class/elements/nested-equality-init-err-contains-super.js:26:16]
  25 │ var C = class {
  26 │   x = () => {} == super();
@@ -11662,7 +11690,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │   
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/class-heritage-array-literal-async-arrow-heritage.js:24:32]
  23 │ 
  24 │ var C = class extends async () => {} {
@@ -13082,7 +13110,7 @@ Negative Passed: 4669/4669 (100.00%)
  71 │ };
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-fields-same-line-error.js:33:5]
  32 │ var C = class {
  33 │   x y
@@ -13091,7 +13119,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │ };
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-array-literal.js:37:27]
  36 │ 
  37 │ var C = class extends (o) => [o.#foo]
@@ -13132,7 +13160,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-obj-literal.js:37:27]
  36 │ 
  37 │ var C = class extends (o) => {x: o.#foo}
@@ -13529,7 +13557,7 @@ Negative Passed: 4669/4669 (100.00%)
  30 │ };
     ╰────
 
-  × Expected `;` but found `#identifier`
+  × TS(1005): Expected `;` but found `#identifier`
     ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatenames-same-line-error.js:36:6]
  35 │ var C = class {
  36 │   #x #y
@@ -14290,7 +14318,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/gen-method/yield-as-label-identifier-escaped.js:35:15]
  34 │ var C = class {*gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -14299,7 +14327,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/gen-method/yield-as-label-identifier.js:35:10]
  34 │ var C = class {*gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -14465,7 +14493,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/gen-method-static/yield-as-label-identifier-escaped.js:35:15]
  34 │ var C = class { static *gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -14474,7 +14502,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/class/gen-method-static/yield-as-label-identifier.js:35:10]
  34 │ var C = class { static *gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }};
     ╰────
   help: Try inserting a semicolon here
@@ -15219,7 +15247,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-arrow-assignment-expression-typeof-import-call-source-property.js:36:35]
  35 │ 
  36 │ let f = () => typeof import.source.UNKNOWN;
@@ -15228,7 +15256,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ 
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-arrow-assignment-expression-typeof-import-source.js:35:35]
  34 │ 
  35 │ let f = () => typeof import.source;
@@ -15355,7 +15383,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ };
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-arrow-typeof-import-call-source-property.js:37:23]
  36 │ let f = () => {
  37 │   typeof import.source.UNKNOWN;
@@ -15364,7 +15392,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ };
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-arrow-typeof-import-source.js:36:23]
  35 │ let f = () => {
  36 │   typeof import.source;
@@ -15499,7 +15527,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ });
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-arrow-function-await-typeof-import-call-source-property.js:37:29]
  36 │ (async () => {
  37 │   await typeof import.source.UNKNOWN
@@ -15508,7 +15536,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ });
     ╰────
 
-  × Expected `(` but found `}`
+  × TS(1005): Expected `(` but found `}`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-arrow-function-await-typeof-import-source.js:37:1]
  36 │   await typeof import.source
  37 │ });
@@ -15633,7 +15661,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-arrow-function-return-await-typeof-import-call-source-property.js:36:40]
  35 │ 
  36 │ (async () => await typeof import.source.UNKNOWN)
@@ -15642,7 +15670,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ 
     ╰────
 
-  × Expected `(` but found `)`
+  × TS(1005): Expected `(` but found `)`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-arrow-function-return-await-typeof-import-source.js:35:40]
  34 │ 
  35 │ (async () => await typeof import.source)
@@ -15785,7 +15813,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-await-typeof-import-call-source-property.js:37:29]
  36 │ async function f() {
  37 │   await typeof import.source.UNKNOWN;
@@ -15794,7 +15822,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-await-typeof-import-source.js:36:29]
  35 │ async function f() {
  36 │   await typeof import.source;
@@ -16039,7 +16067,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-return-await-typeof-import-call-source-property.js:37:36]
  36 │ async function f() {
  37 │   return await typeof import.source.UNKNOWN;
@@ -16048,7 +16076,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-return-await-typeof-import-source.js:36:36]
  35 │ async function f() {
  36 │   return await typeof import.source;
@@ -16065,7 +16093,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-typeof-import-call-source-property.js:37:23]
  36 │ async function f() {
  37 │   typeof import.source.UNKNOWN;
@@ -16074,7 +16102,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-function-typeof-import-source.js:36:23]
  35 │ async function f() {
  36 │   typeof import.source;
@@ -16209,7 +16237,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-gen-await-typeof-import-call-source-property.js:37:29]
  36 │ async function * f() {
  37 │   await typeof import.source.UNKNOWN
@@ -16218,7 +16246,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `}`
+  × TS(1005): Expected `(` but found `}`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-async-gen-await-typeof-import-source.js:37:1]
  36 │   await typeof import.source
  37 │ }
@@ -16437,7 +16465,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ };
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-block-labeled-typeof-import-call-source-property.js:37:23]
  36 │ label: {
  37 │   typeof import.source.UNKNOWN;
@@ -16446,7 +16474,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ };
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-block-labeled-typeof-import-source.js:36:23]
  35 │ label: {
  36 │   typeof import.source;
@@ -16497,7 +16525,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ };
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-block-typeof-import-call-source-property.js:37:23]
  36 │ {
  37 │   typeof import.source.UNKNOWN;
@@ -16506,7 +16534,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ };
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-block-typeof-import-source.js:36:23]
  35 │ {
  36 │   typeof import.source;
@@ -16641,7 +16669,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ } while (false);
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-do-while-typeof-import-call-source-property.js:37:23]
  36 │ do {
  37 │   typeof import.source.UNKNOWN;
@@ -16650,7 +16678,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ } while (false);
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-do-while-typeof-import-source.js:36:23]
  35 │ do {
  36 │   typeof import.source;
@@ -16783,7 +16811,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·        ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-else-braceless-typeof-import-call-source-property.js:38:28]
  37 │ 
  38 │ } else typeof import.source.UNKNOWN;
@@ -16792,7 +16820,7 @@ Negative Passed: 4669/4669 (100.00%)
  39 │ 
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-else-braceless-typeof-import-source.js:37:28]
  36 │ 
  37 │ } else typeof import.source;
@@ -16919,7 +16947,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-else-typeof-import-call-source-property.js:39:23]
  38 │ } else {
  39 │   typeof import.source.UNKNOWN;
@@ -16928,7 +16956,7 @@ Negative Passed: 4669/4669 (100.00%)
  40 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-else-typeof-import-source.js:38:23]
  37 │ } else {
  38 │   typeof import.source;
@@ -17181,7 +17209,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-function-return-typeof-import-call-source-property.js:37:30]
  36 │ function fn() {
  37 │   return typeof import.source.UNKNOWN;
@@ -17190,7 +17218,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-function-return-typeof-import-source.js:36:30]
  35 │ function fn() {
  36 │   return typeof import.source;
@@ -17207,7 +17235,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-function-typeof-import-call-source-property.js:37:23]
  36 │ function fn() {
  37 │   typeof import.source.UNKNOWN;
@@ -17216,7 +17244,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-function-typeof-import-source.js:36:23]
  35 │ function fn() {
  36 │   typeof import.source;
@@ -17349,7 +17377,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-if-braceless-typeof-import-call-source-property.js:36:31]
  35 │ 
  36 │ if (true) typeof import.source.UNKNOWN;
@@ -17358,7 +17386,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ 
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-if-braceless-typeof-import-source.js:35:31]
  34 │ 
  35 │ if (true) typeof import.source;
@@ -17485,7 +17513,7 @@ Negative Passed: 4669/4669 (100.00%)
  41 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-if-typeof-import-call-source-property.js:37:23]
  36 │ if (true) {
  37 │   typeof import.source.UNKNOWN;
@@ -17494,7 +17522,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-if-typeof-import-source.js:36:23]
  35 │ if (true) {
  36 │   typeof import.source;
@@ -17629,7 +17657,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │ };
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-while-typeof-import-call-source-property.js:39:23]
  38 │   x++;
  39 │   typeof import.source.UNKNOWN;
@@ -17638,7 +17666,7 @@ Negative Passed: 4669/4669 (100.00%)
  40 │ };
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-while-typeof-import-source.js:38:23]
  37 │   x++;
  38 │   typeof import.source;
@@ -17771,7 +17799,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-with-expression-typeof-import-call-source-property.js:35:27]
  34 │ 
  35 │ with (typeof import.source.UNKNOWN) {}
@@ -17780,7 +17808,7 @@ Negative Passed: 4669/4669 (100.00%)
  36 │ 
     ╰────
 
-  × Expected `(` but found `)`
+  × TS(1005): Expected `(` but found `)`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-with-expression-typeof-import-source.js:34:27]
  33 │ 
  34 │ with (typeof import.source) {}
@@ -17907,7 +17935,7 @@ Negative Passed: 4669/4669 (100.00%)
  40 │ }
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-with-typeof-import-call-source-property.js:36:23]
  35 │ with ({}) {
  36 │   typeof import.source.UNKNOWN;
@@ -17916,7 +17944,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/nested-with-typeof-import-source.js:35:23]
  34 │ with ({}) {
  35 │   typeof import.source;
@@ -18041,7 +18069,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ────────────────────────────────
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/top-level-typeof-import-call-source-property.js:26:21]
  25 │ 
  26 │ typeof import.source.UNKNOWN;
@@ -18050,7 +18078,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │ 
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/top-level-typeof-import-source.js:25:21]
  24 │ 
  25 │ typeof import.source;
@@ -18664,7 +18692,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/generators/named-yield-as-label-identifier-escaped.js:29:13]
  28 │ var gen = function *g() {
  29 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  30 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -18673,7 +18701,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/generators/named-yield-as-label-identifier.js:29:8]
  28 │ var gen = function *g() {
  29 │   yield: ;
-    ·        ▲
+    ·        ─
  30 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -18827,7 +18855,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/generators/yield-as-label-identifier-escaped.js:29:13]
  28 │ var gen = function *() {
  29 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  30 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -18836,12 +18864,12 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/generators/yield-as-label-identifier.js:29:8]
  28 │ var gen = function *() {
  29 │   yield: ;
-    ·        ▲
+    ·        ─
  30 │ };
     ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/generators/yield-as-logical-or-expression.js:19:9]
  18 │ var g = function*() {
  19 │   yield ? yield : yield;
@@ -18882,7 +18910,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/generators/yield-star-after-newline.js:19:3]
  18 │   yield
  19 │   * 1
@@ -18899,10 +18927,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/generators/yield-weak-binding.js:17:38]
+    ╭─[test262/test/language/expressions/generators/yield-weak-binding.js:17:39]
  16 │ 
  17 │ var g = function*() { yield 3 + yield 4; };
-    ·                                      ▲
+    ·                                       ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -19016,7 +19044,7 @@ Negative Passed: 4669/4669 (100.00%)
  27 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/in/private-field-in.js:25:10]
  24 │   constructor() {
  25 │     for (#field in value;;) break;
@@ -19024,7 +19052,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/in/private-field-invalid-assignment-reference.js:24:10]
  23 │   m() {
  24 │     for (#field in []) ;
@@ -19548,7 +19576,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/object/identifier-shorthand-invalid-computed-name.js:30:6]
  29 │ 
  30 │ ({[x]});
@@ -19556,7 +19584,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ╰── `:` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/object/identifier-shorthand-invalid-zero.js:23:4]
  22 │ 
  23 │ ({0});
@@ -19609,7 +19637,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/expressions/object/identifier-shorthand-static-init-await-invalid.js:24:14]
  23 │   static {
  24 │     ({ await });
@@ -19660,7 +19688,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-await-as-identifier-reference-escaped.js:31:20]
  30 │   async method() {
  31 │     void \u0061wait;
@@ -19668,7 +19696,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-await-as-identifier-reference.js:31:15]
  30 │   async method() {
  31 │     void await;
@@ -19684,7 +19712,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-await-as-label-identifier-escaped.js:31:15]
  30 │   async method() {
  31 │     \u0061wait: ;
@@ -19692,7 +19720,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-await-as-label-identifier.js:31:10]
  30 │   async method() {
  31 │     await: ;
@@ -19724,7 +19752,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-await-as-identifier-reference-escaped.js:30:20]
  29 │   async *method() {
  30 │     void \u0061wait;
@@ -19732,7 +19760,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-await-as-identifier-reference.js:30:15]
  29 │   async *method() {
  30 │     void await;
@@ -19748,7 +19776,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-await-as-label-identifier-escaped.js:30:15]
  29 │   async *method() {
  30 │     \u0061wait: ;
@@ -19756,7 +19784,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-await-as-label-identifier.js:30:10]
  29 │   async *method() {
  30 │     await: ;
@@ -19791,7 +19819,7 @@ Negative Passed: 4669/4669 (100.00%)
  50 │     
     ╰────
 
-  × Expected `,` or `}` but found `*`
+  × TS(1005): Expected `,` or `}` but found `*`
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-meth-escaped-async.js:26:15]
  24 │ 
  25 │ ({
@@ -19910,7 +19938,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-yield-as-label-identifier-escaped.js:30:15]
  29 │   async *method() {
  30 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  31 │   }
     ╰────
   help: Try inserting a semicolon here
@@ -19919,7 +19947,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/object/method-definition/async-gen-yield-as-label-identifier.js:30:10]
  29 │   async *method() {
  30 │     yield: ;
-    ·          ▲
+    ·          ─
  31 │   }
     ╰────
   help: Try inserting a semicolon here
@@ -19969,7 +19997,7 @@ Negative Passed: 4669/4669 (100.00%)
  43 │     
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/async-meth-escaped-async.js:26:16]
  24 │ 
  25 │ ({
@@ -20036,7 +20064,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-method-async-lineterminator.js:22:3]
  19 │ 
  20 │ ({
@@ -20049,7 +20077,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ })
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-method-await-in-formals-default.js:17:23]
  16 │ ({
  17 │   async foo (x = await) {  }
@@ -20101,7 +20129,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: No modifiers are allowed here.
 
-  × Expected `:` but found `Identifier`
+  × TS(1005): Expected `:` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/early-errors-object-method-formals-body-duplicate.js:18:18]
  17 │ ({
  18 │   async function foo(bar) { let bar; }
@@ -20118,7 +20146,7 @@ Negative Passed: 4669/4669 (100.00%)
  17 │ })
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-get-e.js:25:12]
  23 │ 
  24 │ ({
@@ -20130,7 +20158,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-get-g.js:25:12]
  23 │ 
  24 │ ({
@@ -20142,7 +20170,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-get-t.js:25:12]
  23 │ 
  24 │ ({
@@ -20154,7 +20182,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-get.js:25:22]
  23 │ 
  24 │ ({
@@ -20166,7 +20194,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-set-e.js:25:12]
  23 │ 
  24 │ ({
@@ -20178,7 +20206,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-set-s.js:25:12]
  23 │ 
  24 │ ({
@@ -20190,7 +20218,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-set-t.js:25:12]
  23 │ 
  24 │ ({
@@ -20202,7 +20230,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │ });
     ╰────
 
-  × Expected `,` or `}` but found `Identifier`
+  × TS(1005): Expected `,` or `}` but found `Identifier`
     ╭─[test262/test/language/expressions/object/method-definition/escaped-set.js:25:22]
  23 │ 
  24 │ ({
@@ -20348,7 +20376,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/object/method-definition/gen-yield-as-label-identifier-escaped.js:30:15]
  29 │   *method() {
  30 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  31 │   }
     ╰────
   help: Try inserting a semicolon here
@@ -20357,7 +20385,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/expressions/object/method-definition/gen-yield-as-label-identifier.js:30:10]
  29 │   *method() {
  30 │     yield: ;
-    ·          ▲
+    ·          ─
  31 │   }
     ╰────
   help: Try inserting a semicolon here
@@ -20690,7 +20718,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this function with an IIFE with a 'use strict' directive that returns this function
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/yield-as-logical-or-expression.js:19:11]
  18 │   *g() {
  19 │     yield ? yield : yield;
@@ -20715,7 +20743,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/object/method-definition/yield-star-after-newline.js:20:5]
  19 │     yield
  20 │     * 1
@@ -20733,10 +20761,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/expressions/object/method-definition/yield-weak-binding.js:18:25]
+    ╭─[test262/test/language/expressions/object/method-definition/yield-weak-binding.js:18:26]
  17 │ var obj = {
  18 │   *g() { yield 3 + yield 4; }
-    ·                         ▲
+    ·                          ─
  19 │ };
     ╰────
   help: Try inserting a semicolon here
@@ -20749,7 +20777,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: No modifiers are allowed here.
 
-  × Expected `(` but found `}`
+  × TS(1005): Expected `(` but found `}`
     ╭─[test262/test/language/expressions/object/prop-def-invalid-star-prefix.js:22:8]
  21 │ 
  22 │ ({* foo});
@@ -20917,7 +20945,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-decrement/line-terminator-carriage-return.js:18:3]
  17 │ x
  18 │ --;
@@ -20925,14 +20953,14 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ // The preceding line contains an unprintable CARRIAGE RETURN character (U+000D)
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-decrement/line-terminator-line-feed.js:18:3]
  17 │ x
  18 │ --;
     ·   ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-decrement/line-terminator-line-separator.js:17:7]
  16 │ 
  17 │ x --;
@@ -20940,7 +20968,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ // The preceding line contains an unprintable LINE SEPARATOR character (U+2028)
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-decrement/line-terminator-paragraph-separator.js:17:7]
  16 │ 
  17 │ x --;
@@ -21003,7 +21031,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-increment/line-terminator-carriage-return.js:18:3]
  17 │ x
  18 │ ++;
@@ -21011,14 +21039,14 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ // The preceding line contains an unprintable CARRIAGE RETURN character (U+000D)
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-increment/line-terminator-line-feed.js:18:3]
  17 │ x
  18 │ ++;
     ·   ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-increment/line-terminator-line-separator.js:17:7]
  16 │ 
  17 │ x ++;
@@ -21026,7 +21054,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ // The preceding line contains an unprintable LINE SEPARATOR character (U+2028)
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/postfix-increment/line-terminator-paragraph-separator.js:17:7]
  16 │ 
  17 │ x ++;
@@ -21301,7 +21329,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/yield/invalid-left-hand-side.js:28:9]
  27 │ function* g() {
  28 │   yield = 1;
@@ -21621,7 +21649,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/identifier-resolution/static-init-invalid-await.js:24:10]
  23 │   static {
  24 │     await;
@@ -21650,7 +21678,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/identifiers/unicode-escape-nls-err.js:49:13]
  48 │ 
  49 │ var \u{00_76} = 1;
@@ -22435,13 +22463,13 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ─
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `Unknown`
     ╭─[test262/test/language/identifiers/vertical-tilde-continue.js:17:6]
  16 │ 
  17 │ var aⸯ; // U+2E2F
-    ·      ▲
+    ·      ┬
+    ·      ╰── `,` expected
     ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `ⸯ`
     ╭─[test262/test/language/identifiers/vertical-tilde-start-escaped.js:17:11]
@@ -22508,7 +22536,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────
     ╰────
 
-  × Expected `from` but found `as`
+  × TS(1005): Expected `from` but found `as`
     ╭─[test262/test/language/import/import-defer/syntax/invalid-defer-as-with-no-asterisk.js:34:14]
  33 │ 
  34 │ import defer as ns from "./dep_FIXTURE.js";
@@ -22579,14 +22607,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-case.js:21:1]
  20 │ 
  21 │ case = 1;
     · ────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-catch.js:21:1]
  20 │ 
  21 │ catch = 1;
@@ -22600,42 +22628,42 @@ Negative Passed: 4669/4669 (100.00%)
     ·          ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-default.js:21:1]
  20 │ 
  21 │ default = 1;
     · ───────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-delete.js:21:8]
  20 │ 
  21 │ delete = 1;
     ·        ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-do.js:21:4]
  20 │ 
  21 │ do = 1;
     ·    ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-else.js:21:1]
  20 │ 
  21 │ else = 1;
     · ────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-finally.js:21:1]
  20 │ 
  21 │ finally = 1;
     · ───────
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-for.js:21:5]
  20 │ 
  21 │ for = 1;
@@ -22643,7 +22671,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-function.js:21:10]
  20 │ 
  21 │ function = 1;
@@ -22651,7 +22679,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·          ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-if.js:21:4]
  20 │ 
  21 │ if = 1;
@@ -22659,35 +22687,35 @@ Negative Passed: 4669/4669 (100.00%)
     ·    ╰── `(` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-in.js:21:1]
  20 │ 
  21 │ in = 1;
     · ──
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-instanceof.js:21:1]
  20 │ 
  21 │ instanceof = 1;
     · ──────────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-new.js:21:5]
  20 │ 
  21 │ new = 1;
     ·     ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-return.js:21:8]
  20 │ 
  21 │ return = 1;
     ·        ─
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-switch.js:21:8]
  20 │ 
  21 │ switch = 1;
@@ -22695,7 +22723,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·        ╰── `(` expected
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/keywords/ident-ref-this.js:24:7]
  23 │ // Also see: sec-semantics-static-semantics-isvalidsimpleassignmenttarget
  24 │ ({this});
@@ -22703,14 +22731,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `:` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-throw.js:21:7]
  20 │ 
  21 │ throw = 1;
     ·       ─
     ╰────
 
-  × Expected `{` but found `=`
+  × TS(1005): Expected `{` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-try.js:21:5]
  20 │ 
  21 │ try = 1;
@@ -22718,7 +22746,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── `{` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-typeof.js:21:8]
  20 │ 
  21 │ typeof = 1;
@@ -22732,14 +22760,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/keywords/ident-ref-void.js:21:6]
  20 │ 
  21 │ void = 1;
     ·      ─
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-while.js:21:7]
  20 │ 
  21 │ while = 1;
@@ -22747,7 +22775,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `=`
+  × TS(1005): Expected `(` but found `=`
     ╭─[test262/test/language/keywords/ident-ref-with.js:21:6]
  20 │ 
  21 │ with = 1;
@@ -22773,7 +22801,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ ing
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/line-terminators/S7.3_A3.2_T1.js:17:2]
  16 │ // single line comment
  17 │  ??? (invalid)
@@ -22810,28 +22838,27 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/line-terminators/invalid-comment-single-cr.js:18:6]
+    ╭─[test262/test/language/line-terminators/invalid-comment-single-cr.js:18:7]
  17 │ // this text is not included in the single-line comment that precedes it
-    ·         ▲
+    ·          ────
     ╰────
   help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/line-terminators/invalid-comment-single-lf.js:18:5]
+  × TS(1434): Unexpected keyword or identifier.
+    ╭─[test262/test/language/line-terminators/invalid-comment-single-lf.js:18:1]
  17 │ //single
  18 │ line comment
-    ·     ▲
+    · ────
     ╰────
-  help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/line-terminators/invalid-comment-single-ls.js:18:22]
  17 │ 
  18 │ // single line LS> ??? (invalid)
     ·                    ──
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/line-terminators/invalid-comment-single-ps.js:16:22]
  15 │ 
  16 │ // single line PS> ??? (invalid)
@@ -23197,7 +23224,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/bigint/numeric-separators/numeric-separator-literal-unicode-err.js:37:2]
  36 │ 
  37 │ 1\u005F0123456789n;
-    ·  ▲
+    ·  ─────────────────
     ╰────
   help: Try inserting a semicolon here
 
@@ -23300,7 +23327,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/numeric/binary-invalid-unicode.js:24:2]
  23 │ 
  24 │ 0\u00620;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -23481,14 +23508,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Remove the separator or place it between two digits
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/literals/numeric/numeric-separators/numeric-separator-literal-dot-nsl-ep-err.js:32:1]
  31 │ 
  32 │ ._e1
     · ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/literals/numeric/numeric-separators/numeric-separator-literal-dot-nsl-err.js:30:1]
  29 │ 
  30 │ ._
@@ -23629,7 +23656,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/numeric/numeric-separators/numeric-separator-literal-unicode-err.js:27:2]
  26 │ 
  27 │ 1\u005F0123456789
-    ·  ▲
+    ·  ────────────────
     ╰────
   help: Try inserting a semicolon here
 
@@ -23658,7 +23685,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/numeric/octal-invalid-unicode.js:24:2]
  23 │ 
  24 │ 0\u006f0;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -23683,14 +23710,14 @@ Negative Passed: 4669/4669 (100.00%)
     · ────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/literals/regexp/S7.8.5_A1.2_T3.js:28:1]
  27 │ ///
  28 │ .source;
     · ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/literals/regexp/S7.8.5_A1.2_T4.js:28:1]
  27 │ //
  28 │ .source;
@@ -23771,7 +23798,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/literals/regexp/S7.8.5_A2.2_T2.js:24:5]
  23 │ 
  24 │ /a//.source;
@@ -24336,7 +24363,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/regexp/early-err-flags-unicode-escape.js:19:4]
  18 │ 
  19 │ /./\u0067;
-    ·    ▲
+    ·    ──────
     ╰────
   help: Try inserting a semicolon here
 
@@ -25295,7 +25322,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/string/S7.8.4_A1.1_T1.js:19:3]
  18 │ //CHECK#1
  19 │ """
-    ·   ▲
+    ·   ──
     ╰────
   help: Try inserting a semicolon here
 
@@ -25318,7 +25345,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/literals/string/S7.8.4_A1.2_T1.js:19:3]
  18 │ //CHECK#1
  19 │ '''
-    ·   ▲
+    ·   ──
     ╰────
   help: Try inserting a semicolon here
 
@@ -25564,14 +25591,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·  ──
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/comment-multi-line-html-close.js:17:5]
  16 │ /*
  17 │ */-->
     ·     ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/comment-single-line-html-close.js:16:3]
  15 │ 
  16 │ -->
@@ -25627,7 +25654,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ───────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/early-dup-export-dflt.js:16:16]
  15 │ 
  16 │ export default var x = null;
@@ -26612,7 +26639,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·               ──────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/parse-err-export-dflt-const.js:15:16]
  14 │ 
  15 │ export default const x = null;
@@ -26623,7 +26650,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/module-code/parse-err-export-dflt-expr.js:26:20]
  25 │ 
  26 │ export default null, null;
-    ·                    ▲
+    ·                    ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -26636,14 +26663,14 @@ Negative Passed: 4669/4669 (100.00%)
   note: Modules are always strict mode code
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-export-dflt-let.js:15:19]
+    ╭─[test262/test/language/module-code/parse-err-export-dflt-let.js:15:20]
  14 │ 
  15 │ export default let x;
-    ·                   ▲
+    ·                    ─
     ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/parse-err-export-dflt-var.js:15:16]
  14 │ 
  15 │ export default var x;
@@ -26694,46 +26721,46 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-semi-dflt-expr.js:27:20]
+    ╭─[test262/test/language/module-code/parse-err-semi-dflt-expr.js:27:21]
  26 │ 
  27 │ export default null null;
-    ·                    ▲
+    ·                     ────
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-semi-export-star.js:27:48]
+    ╭─[test262/test/language/module-code/parse-err-semi-export-star.js:27:49]
  26 │ 
  27 │ export * from './parse-err-semi-export-star.js' null;
-    ·                                                ▲
+    ·                                                 ────
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-semi-name-space-export.js:28:67]
+    ╭─[test262/test/language/module-code/parse-err-semi-name-space-export.js:28:68]
  27 │ 
  28 │ export * as namespace from './parse-err-semi-name-space-export.js' null;
-    ·                                                                   ▲
+    ·                                                                    ────
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-semi-named-export-from.js:27:56]
+    ╭─[test262/test/language/module-code/parse-err-semi-named-export-from.js:27:57]
  26 │ 
  27 │ export {} from './parse-err-semi-export-clause-from.js' null;
-    ·                                                        ▲
+    ·                                                         ────
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/module-code/parse-err-semi-named-export.js:27:10]
+    ╭─[test262/test/language/module-code/parse-err-semi-named-export.js:27:11]
  26 │ 
  27 │ export {} null;
-    ·          ▲
+    ·           ────
     ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/parse-err-syntax-1.js:21:1]
  20 │ 
  21 │ ?
@@ -26845,7 +26872,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: The identifier `await` is reserved in module code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/module-code/top-level-await/no-operand.js:17:6]
  16 │ 
  17 │ await;
@@ -26937,7 +26964,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/punctuators/S7.7_A2_T10.js:18:2]
  17 │ 
  18 │ 1\u002F2;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -26994,7 +27021,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/punctuators/S7.7_A2_T6.js:18:2]
  17 │ 
  18 │ 1\u002C2;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -27009,7 +27036,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/punctuators/S7.7_A2_T7.js:18:2]
  17 │ 
  18 │ 1\u002B2;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -27024,7 +27051,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/punctuators/S7.7_A2_T8.js:18:2]
  17 │ 
  18 │ 1\u002D2;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -27039,7 +27066,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/punctuators/S7.7_A2_T9.js:18:2]
  17 │ 
  18 │ 1\u002A2;
-    ·  ▲
+    ·  ───────
     ╰────
   help: Try inserting a semicolon here
 
@@ -27072,7 +27099,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/reserved-words/ident-reference-false.js:24:8]
  23 │ // Also see: sec-semantics-static-semantics-isvalidsimpleassignmenttarget
  24 │ ({false});
@@ -27094,7 +27121,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────────
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/reserved-words/ident-reference-null.js:24:7]
  23 │ // Also see: sec-semantics-static-semantics-isvalidsimpleassignmenttarget
  24 │ ({null});
@@ -27116,7 +27143,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────────
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/reserved-words/ident-reference-true.js:24:7]
  23 │ // Also see: sec-semantics-static-semantics-isvalidsimpleassignmenttarget
  24 │ ({true});
@@ -27135,7 +27162,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-false-escaped.js:21:11]
  20 │ 
  21 │ f\u0061lse: ;
-    ·           ▲
+    ·           ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27143,7 +27170,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-false.js:21:6]
  20 │ 
  21 │ false: ;
-    ·      ▲
+    ·      ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27158,7 +27185,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-null-escaped.js:21:10]
  20 │ 
  21 │ nul\u006c: ;
-    ·          ▲
+    ·          ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27166,7 +27193,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-null.js:21:5]
  20 │ 
  21 │ null: ;
-    ·     ▲
+    ·     ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27181,7 +27208,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-true-escaped.js:21:10]
  20 │ 
  21 │ tru\u0065: ;
-    ·          ▲
+    ·          ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27189,7 +27216,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/reserved-words/label-ident-true.js:21:5]
  20 │ 
  21 │ true: ;
-    ·     ▲
+    ·     ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -27233,7 +27260,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-function/await-as-identifier-reference-escaped.js:30:18]
  29 │ async function asyncFn() {
  30 │   void \u0061wait;
@@ -27241,7 +27268,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-function/await-as-identifier-reference.js:30:13]
  29 │ async function asyncFn() {
  30 │   void await;
@@ -27257,7 +27284,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-function/await-as-label-identifier-escaped.js:30:13]
  29 │ async function asyncFn() {
  30 │   \u0061wait: ;
@@ -27265,7 +27292,7 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-function/await-as-label-identifier.js:30:8]
  29 │ async function asyncFn() {
  30 │   await: ;
@@ -27308,7 +27335,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-function/early-errors-declaration-await-in-formals-default.js:15:30]
  14 │ $DONOTEVALUATE();
  15 │ async function foo (x = await) {  }
@@ -27408,14 +27435,14 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/async-function/let-newline-await-in-async-function.js:24:10]
+  × TS(1005): Expected `,` but found `decimal`
+    ╭─[test262/test/language/statements/async-function/let-newline-await-in-async-function.js:24:11]
  23 │     let
  24 │     await 0;
-    ·          ▲
+    ·           ┬
+    ·           ╰── `,` expected
  25 │ }
     ╰────
-  help: Try inserting a semicolon here
 
   × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
      ╭─[test262/test/language/statements/async-function/object-destructuring-param-strict-body.js:109:3]
@@ -27477,7 +27504,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-generator/await-as-identifier-reference-escaped.js:31:18]
  30 │ async function *gen() {
  31 │   void \u0061wait;
@@ -27485,7 +27512,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-generator/await-as-identifier-reference.js:31:13]
  30 │ async function *gen() {
  31 │   void await;
@@ -27501,7 +27528,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-generator/await-as-label-identifier-escaped.js:31:13]
  30 │ async function *gen() {
  31 │   \u0061wait: ;
@@ -27509,7 +27536,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/async-generator/await-as-label-identifier.js:31:8]
  30 │ async function *gen() {
  31 │   await: ;
@@ -27745,7 +27772,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/async-generator/yield-as-label-identifier-escaped.js:31:13]
  30 │ async function *gen() {
  31 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  32 │ }
     ╰────
   help: Try inserting a semicolon here
@@ -27754,7 +27781,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/async-generator/yield-as-label-identifier.js:31:8]
  30 │ async function *gen() {
  31 │   yield: ;
-    ·        ▲
+    ·        ─
  32 │ }
     ╰────
   help: Try inserting a semicolon here
@@ -27803,7 +27830,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Function name is required in function declaration or named export
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/await-using/syntax/await-using-invalid-arraybindingpattern.js:17:16]
  16 │ async function() {
  17 │   await using [] = null;
@@ -28076,7 +28103,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either unwrap this try block or add catch / finally clause
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/block/12.1-1.js:15:7]
  14 │ 
  15 │ try{};catch(){}
@@ -28091,7 +28118,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either unwrap this try block or add catch / finally clause
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/block/12.1-2.js:17:7]
  16 │ 
  17 │ try{};catch{};finally{}
@@ -28106,14 +28133,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either unwrap this try block or add catch / finally clause
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/block/12.1-3.js:15:7]
  14 │ 
  15 │ try{};finally{}
     ·       ───────
     ╰────
 
-  × Expected `(` but found `{`
+  × TS(1005): Expected `(` but found `{`
     ╭─[test262/test/language/statements/block/12.1-4.js:15:3]
  14 │ 
  15 │ if{};else{}
@@ -28121,7 +28148,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·   ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `{`
+  × TS(1005): Expected `(` but found `{`
     ╭─[test262/test/language/statements/block/12.1-5.js:15:3]
  14 │ 
  15 │ if{};else if{}
@@ -28129,7 +28156,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·   ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `{`
+  × TS(1005): Expected `(` but found `{`
     ╭─[test262/test/language/statements/block/12.1-6.js:17:3]
  16 │ 
  17 │ if{};else if{};else{}
@@ -28137,7 +28164,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·   ╰── `(` expected
     ╰────
 
-  × Expected `while` but found `;`
+  × TS(1005): Expected `while` but found `;`
     ╭─[test262/test/language/statements/block/12.1-7.js:15:5]
  14 │ 
  15 │ do{};while()
@@ -28145,7 +28172,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── `while` expected
     ╰────
 
-  × Expected `,` or `}` but found `;`
+  × TS(1005): Expected `,` or `}` but found `;`
     ╭─[test262/test/language/statements/block/S12.1_A4_T1.js:20:10]
  19 │ //CHECK#1
  20 │ y={__func;}();
@@ -28155,7 +28182,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ //
     ╰────
 
-  × Expected `,` or `}` but found `;`
+  × TS(1005): Expected `,` or `}` but found `;`
     ╭─[test262/test/language/statements/block/S12.1_A4_T2.js:20:5]
  19 │ //CHECK#1
  20 │ y={x;};
@@ -28298,7 +28325,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: A `break` statement can only be used within an enclosing iteration or switch statement.
 
-  × Expected `;` but found `*`
+  × TS(1005): Expected `;` but found `*`
     ╭─[test262/test/language/statements/class/async-gen-meth-escaped-async.js:26:15]
  25 │ class C {
  26 │     \u0061sync* m(){}
@@ -28340,7 +28367,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method/await-as-identifier-reference-escaped.js:36:20]
  35 │ class C { async *gen() {
  36 │     void \u0061wait;
@@ -28348,7 +28375,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method/await-as-identifier-reference.js:36:15]
  35 │ class C { async *gen() {
  36 │     void await;
@@ -28364,7 +28391,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method/await-as-label-identifier-escaped.js:36:15]
  35 │ class C { async *gen() {
  36 │     \u0061wait: ;
@@ -28372,7 +28399,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method/await-as-label-identifier.js:36:10]
  35 │ class C { async *gen() {
  36 │     await: ;
@@ -28505,7 +28532,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/async-gen-method/yield-as-label-identifier-escaped.js:36:15]
  35 │ class C { async *gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -28514,7 +28541,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/async-gen-method/yield-as-label-identifier.js:36:10]
  35 │ class C { async *gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -28570,7 +28597,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method-static/await-as-identifier-reference-escaped.js:36:20]
  35 │ class C { static async *gen() {
  36 │     void \u0061wait;
@@ -28578,7 +28605,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method-static/await-as-identifier-reference.js:36:15]
  35 │ class C { static async *gen() {
  36 │     void await;
@@ -28594,7 +28621,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method-static/await-as-label-identifier-escaped.js:36:15]
  35 │ class C { static async *gen() {
  36 │     \u0061wait: ;
@@ -28602,7 +28629,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-gen-method-static/await-as-label-identifier.js:36:10]
  35 │ class C { static async *gen() {
  36 │     await: ;
@@ -28735,7 +28762,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/async-gen-method-static/yield-as-label-identifier-escaped.js:36:15]
  35 │ class C { static async *gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -28744,7 +28771,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/async-gen-method-static/yield-as-label-identifier.js:36:10]
  35 │ class C { static async *gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -28767,7 +28794,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/async-meth-escaped-async.js:26:16]
  25 │ class C {
  26 │     \u0061sync m(){}
@@ -28809,7 +28836,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method/await-as-identifier-reference-escaped.js:37:20]
  36 │   async method() {
  37 │     void \u0061wait;
@@ -28817,7 +28844,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method/await-as-identifier-reference.js:37:15]
  36 │   async method() {
  37 │     void await;
@@ -28833,7 +28860,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method/await-as-label-identifier-escaped.js:37:15]
  36 │   async method() {
  37 │     \u0061wait: ;
@@ -28841,7 +28868,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method/await-as-label-identifier.js:37:10]
  36 │   async method() {
  37 │     await: ;
@@ -28927,7 +28954,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method-static/await-as-identifier-reference-escaped.js:37:20]
  36 │   static async method() {
  37 │     void \u0061wait;
@@ -28935,7 +28962,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method-static/await-as-identifier-reference.js:37:15]
  36 │   static async method() {
  37 │     void await;
@@ -28951,7 +28978,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method-static/await-as-label-identifier-escaped.js:37:15]
  36 │   static async method() {
  37 │     \u0061wait: ;
@@ -28959,7 +28986,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/async-method-static/await-as-label-identifier.js:37:10]
  36 │   static async method() {
  37 │     await: ;
@@ -29118,7 +29145,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/definition/early-errors-class-method-await-in-formals-default.js:16:23]
  15 │ class Foo {
  16 │   async foo (x = await) {  }
@@ -29161,7 +29188,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/definition/early-errors-class-method-formals-body-duplicate.js:18:18]
  17 │ class Foo {
  18 │   async function foo(bar) { let bar; }
@@ -29196,7 +29223,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/definition/methods-gen-yield-as-logical-or-expression.js:19:11]
  18 │   *g() {
  19 │     yield ? yield : yield;
@@ -29221,7 +29248,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: Classes are always strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/definition/methods-gen-yield-star-after-newline.js:20:5]
  19 │     yield
  20 │     * 1
@@ -29239,10 +29266,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/class/definition/methods-gen-yield-weak-binding.js:18:25]
+    ╭─[test262/test/language/statements/class/definition/methods-gen-yield-weak-binding.js:18:26]
  17 │ class A {
  18 │   *g() { yield 3 + yield 4; }
-    ·                         ▲
+    ·                          ─
  19 │ }
     ╰────
   help: Try inserting a semicolon here
@@ -30440,7 +30467,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/await-as-identifier-reference-escaped.js:36:20]
  35 │ class C { async *#gen() {
  36 │     void \u0061wait;
@@ -30448,7 +30475,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/await-as-identifier-reference.js:36:15]
  35 │ class C { async *#gen() {
  36 │     void await;
@@ -30464,7 +30491,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/await-as-label-identifier-escaped.js:36:15]
  35 │ class C { async *#gen() {
  36 │     \u0061wait: ;
@@ -30472,7 +30499,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/await-as-label-identifier.js:36:10]
  35 │ class C { async *#gen() {
  36 │     await: ;
@@ -30560,7 +30587,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/yield-as-label-identifier-escaped.js:36:15]
  35 │ class C { async *#gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -30569,7 +30596,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method/yield-as-label-identifier.js:36:10]
  35 │ class C { async *#gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -30616,7 +30643,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/await-as-identifier-reference-escaped.js:36:20]
  35 │ class C { static async *#gen() {
  36 │     void \u0061wait;
@@ -30624,7 +30651,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/await-as-identifier-reference.js:36:15]
  35 │ class C { static async *#gen() {
  36 │     void await;
@@ -30640,7 +30667,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/await-as-label-identifier-escaped.js:36:15]
  35 │ class C { static async *#gen() {
  36 │     \u0061wait: ;
@@ -30648,7 +30675,7 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/await-as-label-identifier.js:36:10]
  35 │ class C { static async *#gen() {
  36 │     await: ;
@@ -30736,7 +30763,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/yield-as-label-identifier-escaped.js:36:15]
  35 │ class C { static async *#gen() {
  36 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -30745,7 +30772,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/async-gen-private-method-static/yield-as-label-identifier.js:36:10]
  35 │ class C { static async *#gen() {
  36 │     yield: ;
-    ·          ▲
+    ·          ─
  37 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -30792,7 +30819,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method/await-as-identifier-reference-escaped.js:37:20]
  36 │   async #method() {
  37 │     void \u0061wait;
@@ -30800,7 +30827,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method/await-as-identifier-reference.js:37:15]
  36 │   async #method() {
  37 │     void await;
@@ -30816,7 +30843,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method/await-as-label-identifier-escaped.js:37:15]
  36 │   async #method() {
  37 │     \u0061wait: ;
@@ -30824,7 +30851,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method/await-as-label-identifier.js:37:10]
  36 │   async #method() {
  37 │     await: ;
@@ -30856,7 +30883,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method-static/await-as-identifier-reference-escaped.js:37:20]
  36 │   static async #method() {
  37 │     void \u0061wait;
@@ -30864,7 +30891,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method-static/await-as-identifier-reference.js:37:15]
  36 │   static async #method() {
  37 │     void await;
@@ -30880,7 +30907,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method-static/await-as-label-identifier-escaped.js:37:15]
  36 │   static async #method() {
  37 │     \u0061wait: ;
@@ -30888,7 +30915,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │   }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/class/elements/async-private-method-static/await-as-label-identifier.js:37:10]
  36 │   static async #method() {
  37 │     await: ;
@@ -30930,7 +30957,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-async-field-no-asi-before-method.js:18:14]
  17 │ class C {
  18 │   a\u0073ync value() {}
@@ -30939,7 +30966,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-async-static-field-no-asi-before-method.js:18:21]
  17 │ class C {
  18 │   static a\u0073ync value() {}
@@ -30948,7 +30975,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-get-field-no-asi-before-method.js:18:12]
  17 │ class C {
  18 │   g\u0065t value() {}
@@ -30957,7 +30984,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-get-static-field-no-asi-before-method.js:18:19]
  17 │ class C {
  18 │   static g\u0065t value() {}
@@ -30966,7 +30993,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-set-field-no-asi-before-method.js:18:12]
  17 │ class C {
  18 │   s\u0065t value(v) {}
@@ -30975,7 +31002,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-set-static-field-no-asi-before-method.js:18:19]
  17 │ class C {
  18 │   static s\u0065t value(v) {}
@@ -30984,7 +31011,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-static-field-no-asi-before-method.js:18:15]
  17 │ class C {
  18 │   st\u0061tic value() {}
@@ -30993,7 +31020,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/escaped-static-static-field-no-asi-before-method.js:18:22]
  17 │ class C {
  18 │   static st\u0061tic value() {}
@@ -31002,7 +31029,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `{`
+  × TS(1005): Expected `;` but found `{`
     ╭─[test262/test/language/statements/class/elements/fields-asi-3.js:18:9]
  17 │   x = "string"
  18 │   [0]() {}
@@ -31011,7 +31038,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `{`
+  × TS(1005): Expected `;` but found `{`
     ╭─[test262/test/language/statements/class/elements/fields-asi-4.js:18:10]
  17 │   x = 42
  18 │   *gen() {}
@@ -31020,7 +31047,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/fields-asi-same-line-1.js:17:27]
  16 │ class C {
  17 │   field /* no ASI here */ method(){}
@@ -31029,7 +31056,7 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/fields-asi-same-line-2.js:17:31]
  16 │ class C {
  17 │   field = 1 /* no ASI here */ method(){}
@@ -31050,7 +31077,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ }
     ╰────
 
-  × Expected `(` but found `;`
+  × TS(1005): Expected `(` but found `;`
     ╭─[test262/test/language/statements/class/elements/fields-literal-name-propname-constructor.js:29:14]
  28 │ class C {
  29 │   constructor;
@@ -31179,7 +31206,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/gen-private-method/yield-as-label-identifier-escaped.js:35:15]
  34 │ class C { *#gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -31188,7 +31215,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/gen-private-method/yield-as-label-identifier.js:35:10]
  34 │ class C { *#gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -31291,7 +31318,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/gen-private-method-static/yield-as-label-identifier-escaped.js:35:15]
  34 │ class C {static *#gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -31300,7 +31327,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/elements/gen-private-method-static/yield-as-label-identifier.js:35:10]
  34 │ class C {static *#gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -31374,7 +31401,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │ }
     ╰────
 
-  × Expected `;` but found `==`
+  × TS(1005): Expected `;` but found `==`
     ╭─[test262/test/language/statements/class/elements/nested-equality-init-err-contains-arguments.js:33:16]
  32 │ class C {
  33 │   x = () => {} == arguments;
@@ -31383,7 +31410,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │ }
     ╰────
 
-  × Expected `;` but found `==`
+  × TS(1005): Expected `;` but found `==`
     ╭─[test262/test/language/statements/class/elements/nested-equality-init-err-contains-super.js:26:16]
  25 │ class C {
  26 │   x = () => {} == super();
@@ -31818,7 +31845,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │   
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/class-heritage-array-literal-async-arrow-heritage.js:24:26]
  23 │ 
  24 │ class C extends async () => {} {
@@ -33238,7 +33265,7 @@ Negative Passed: 4669/4669 (100.00%)
  71 │ }
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-fields-same-line-error.js:33:5]
  32 │ class C {
  33 │   x y
@@ -33247,7 +33274,7 @@ Negative Passed: 4669/4669 (100.00%)
  34 │ }
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-array-literal.js:37:21]
  36 │ 
  37 │ class C extends (o) => [o.#foo]
@@ -33288,7 +33315,7 @@ Negative Passed: 4669/4669 (100.00%)
  38 │ {
     ╰────
 
-  × Expected `{` but found `=>`
+  × TS(1005): Expected `{` but found `=>`
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-private-environment-on-class-heritage-obj-literal.js:37:21]
  36 │ 
  37 │ class C extends (o) => {x: o.#foo}
@@ -33685,7 +33712,7 @@ Negative Passed: 4669/4669 (100.00%)
  30 │ }
     ╰────
 
-  × Expected `;` but found `#identifier`
+  × TS(1005): Expected `;` but found `#identifier`
     ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatenames-same-line-error.js:36:6]
  35 │ class C {
  36 │   #x #y
@@ -34446,7 +34473,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/gen-method/yield-as-label-identifier-escaped.js:35:15]
  34 │ class C { *gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -34455,7 +34482,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/gen-method/yield-as-label-identifier.js:35:10]
  34 │ class C { *gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -34621,7 +34648,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/gen-method-static/yield-as-label-identifier-escaped.js:35:15]
  34 │ class C {static *gen() {
  35 │     yi\u0065ld: ;
-    ·               ▲
+    ·               ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -34630,7 +34657,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/class/gen-method-static/yield-as-label-identifier.js:35:10]
  34 │ class C {static *gen() {
  35 │     yield: ;
-    ·          ▲
+    ·          ─
  36 │ }}
     ╰────
   help: Try inserting a semicolon here
@@ -34975,7 +35002,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ╰── It can not be redeclared here
     ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
     ╭─[test262/test/language/statements/class/syntax/escaped-static.js:25:15]
  24 │ class C {
  25 │   st\u0061tic m() {}
@@ -35353,14 +35380,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: A `continue` statement can only be used within an enclosing `for`, `while` or `do while`
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/debugger/expression.js:15:2]
  14 │ 
  15 │ (debugger);
     ·  ────────
     ╰────
 
-  × Expected `while` but found `var`
+  × TS(1005): Expected `while` but found `var`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A12.js:18:13]
  17 │ //CHECK#1
  18 │ do var x=1; var y =2; while (0);
@@ -35369,7 +35396,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A15.js:20:10]
  19 │     ;
  20 │ }while({0});
@@ -35378,7 +35405,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ //
     ╰────
 
-  × Expected `(` but found `decimal`
+  × TS(1005): Expected `(` but found `decimal`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T1.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while 1;
@@ -35387,7 +35414,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `decimal`
+  × TS(1005): Expected `(` but found `decimal`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T2.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while 0;
@@ -35396,7 +35423,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `true`
+  × TS(1005): Expected `(` but found `true`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T3.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while true;
@@ -35405,7 +35432,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `false`
+  × TS(1005): Expected `(` but found `false`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T4.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while false;
@@ -35414,7 +35441,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `string`
+  × TS(1005): Expected `(` but found `string`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T5.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while '';
@@ -35423,7 +35450,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `string`
+  × TS(1005): Expected `(` but found `string`
     ╭─[test262/test/language/statements/do-while/S12.6.1_A6_T6.js:18:17]
  17 │ //CHECK#1
  18 │ do break; while 'hood';
@@ -35502,10 +35529,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/do-while/decl-let.js:15:7]
+    ╭─[test262/test/language/statements/do-while/decl-let.js:15:8]
  14 │ 
  15 │ do let x; while (false)
-    ·       ▲
+    ·        ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -35575,7 +35602,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │         __str+=""+index+index_n;
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A4.1.js:23:18]
  22 │ //CHECK#1
  23 │ for (var a in arr;1;){
@@ -35585,7 +35612,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │     break;
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A4_T1.js:23:14]
  22 │ //CHECK#1
  23 │ for (a in arr;1;){
@@ -35603,7 +35630,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │     break;
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A7.1_T1.js:22:35]
  21 │ //CHECK#1
  22 │ for(var index=0; index<10; index++; index--);
@@ -35613,7 +35640,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A7.1_T2.js:22:36]
  21 │ //CHECK#1
  22 │ for(var index=0; index<10; index+=4; index++; index--) ;
@@ -35623,7 +35650,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A7_T1.js:22:31]
  21 │ //CHECK#1
  22 │ for(index=0; index<10; index++; index--) ;
@@ -35633,7 +35660,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A7_T2.js:22:32]
  21 │ //CHECK#1
  22 │ for(index=0; index<10; index+=4; index++; index--) ;
@@ -35643,7 +35670,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `,` or `}` but found `++`
+  × TS(1005): Expected `,` or `}` but found `++`
     ╭─[test262/test/language/statements/for/S12.6.3_A8.1_T1.js:22:35]
  21 │ //CHECK#1
  22 │ for(var index=0; index<100; {index++; index*2;}) {  arr.add(""+index);};
@@ -35653,7 +35680,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `,` or `}` but found `++`
+  × TS(1005): Expected `,` or `}` but found `++`
     ╭─[test262/test/language/statements/for/S12.6.3_A8.1_T2.js:22:24]
  21 │ //CHECK#1
  22 │ for(var index=0; {index++;index<100;}; index*2;) {  arr.add(""+index);};
@@ -35663,7 +35690,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `:` but found `Identifier`
+  × TS(1005): Expected `:` but found `Identifier`
     ╭─[test262/test/language/statements/for/S12.6.3_A8.1_T3.js:22:10]
  21 │ //CHECK#3
  22 │ for({var index=0; index+=1;} index++<=10; index*2;) {   arr.add(""+index);};
@@ -35672,7 +35699,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `,` or `}` but found `++`
+  × TS(1005): Expected `,` or `}` but found `++`
     ╭─[test262/test/language/statements/for/S12.6.3_A8_T1.js:22:31]
  21 │ //CHECK#1
  22 │ for(index=0; index<100; {index++; index*2;}) {  arr.add(""+index);};
@@ -35682,7 +35709,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `,` or `}` but found `++`
+  × TS(1005): Expected `,` or `}` but found `++`
     ╭─[test262/test/language/statements/for/S12.6.3_A8_T2.js:22:20]
  21 │ //CHECK#1
  22 │ for(index=0; {index++;index<100;}; index*2;) {  arr.add(""+index);};
@@ -35692,7 +35719,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ //
     ╰────
 
-  × Expected `,` or `}` but found `;`
+  × TS(1005): Expected `,` or `}` but found `;`
     ╭─[test262/test/language/statements/for/S12.6.3_A8_T3.js:22:13]
  21 │ //CHECK#1
  22 │ for({index=0; index+=1;} index++<=10; index*2;) {   arr.add(""+index);};
@@ -35781,10 +35808,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/for/decl-let.js:15:21]
+    ╭─[test262/test/language/statements/for/decl-let.js:15:22]
  14 │ 
  15 │ for ( ; false; ) let x;
-    ·                     ▲
+    ·                      ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -36738,7 +36765,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Expected `,` or `}` but found `;`
+  × TS(1005): Expected `,` or `}` but found `;`
     ╭─[test262/test/language/statements/for-in/S12.6.4_A15.js:20:16]
  19 │ //CHECK#
  20 │ for(x in {__arr;}){
@@ -36818,10 +36845,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/for-in/decl-let.js:15:22]
+    ╭─[test262/test/language/statements/for-in/decl-let.js:15:23]
  14 │ 
  15 │ for (var x in {}) let y;
-    ·                      ▲
+    ·                       ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -36971,7 +36998,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/statements/for-in/dstr/obj-id-identifier-yield-expr.js:33:14]
  32 │ 
  33 │ for ({ yield } in [{}]) ;
@@ -37358,10 +37385,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/for-of/decl-let.js:15:22]
+    ╭─[test262/test/language/statements/for-of/decl-let.js:15:23]
  14 │ 
  15 │ for (var x of []) let y;
-    ·                      ▲
+    ·                       ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -37635,7 +37662,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ───────────
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/statements/for-of/dstr/obj-id-identifier-yield-expr.js:33:14]
  32 │ 
  33 │ for ({ yield } of [{}]) ;
@@ -37888,7 +37915,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ───────────
     ╰────
 
-  × Expected `)` but found `,`
+  × TS(1005): Expected `)` but found `,`
     ╭─[test262/test/language/statements/for-of/head-decl-no-expr.js:18:17]
  17 │ 
  18 │ for (let x of [], []) {}
@@ -37897,7 +37924,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ╰── Opened here
     ╰────
 
-  × Expected `)` but found `,`
+  × TS(1005): Expected `)` but found `,`
     ╭─[test262/test/language/statements/for-of/head-expr-no-expr.js:19:13]
  18 │ var x;
  19 │ for (x of [], []) {}
@@ -37970,7 +37997,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·         ─────
     ╰────
 
-  × Expected `;` but found `[`
+  × TS(1005): Expected `;` but found `[`
     ╭─[test262/test/language/statements/for-of/head-lhs-let.js:26:14]
  25 │ 
  26 │ for ( let of [] ) ;
@@ -38018,7 +38045,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ─────────
     ╰────
 
-  × Expected `)` but found `,`
+  × TS(1005): Expected `)` but found `,`
     ╭─[test262/test/language/statements/for-of/head-var-no-expr.js:18:17]
  17 │ 
  18 │ for (var x of [], []) {}
@@ -38346,7 +38373,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Expected `(` but found `,`
+  × TS(1005): Expected `(` but found `,`
     ╭─[test262/test/language/statements/function/invalid-2-names.js:17:11]
  16 │ 
  17 │ function x, y() {}
@@ -38354,7 +38381,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `,`
+  × TS(1005): Expected `(` but found `,`
     ╭─[test262/test/language/statements/function/invalid-3-names.js:17:11]
  16 │ 
  17 │ function x,y,z(){}
@@ -38369,7 +38396,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                   ───────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/function/invalid-function-body-2.js:18:19]
  17 │ 
  18 │ function __func(){&1}
@@ -38383,7 +38410,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                    ─
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/statements/function/invalid-name-dot.js:17:13]
  16 │ 
  17 │ function obj.tt() {}
@@ -38391,7 +38418,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ╰── `(` expected
     ╰────
 
-  × Expected `(` but found `.`
+  × TS(1005): Expected `(` but found `.`
     ╭─[test262/test/language/statements/function/invalid-name-two-dots.js:17:13]
  16 │ 
  17 │ function obj.tt.ss() {}
@@ -38835,7 +38862,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/generators/yield-as-label-identifier-escaped.js:29:13]
  28 │ function *gen() {
  29 │   yi\u0065ld: ;
-    ·             ▲
+    ·             ─
  30 │ }
     ╰────
   help: Try inserting a semicolon here
@@ -38844,12 +38871,12 @@ Negative Passed: 4669/4669 (100.00%)
     ╭─[test262/test/language/statements/generators/yield-as-label-identifier.js:29:8]
  28 │ function *gen() {
  29 │   yield: ;
-    ·        ▲
+    ·        ─
  30 │ }
     ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/generators/yield-as-logical-or-expression.js:19:9]
  18 │ function* g() {
  19 │   yield ? yield : yield
@@ -38890,7 +38917,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/generators/yield-star-after-newline.js:19:3]
  18 │   yield
  19 │   * 1
@@ -38907,14 +38934,14 @@ Negative Passed: 4669/4669 (100.00%)
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/generators/yield-weak-binding.js:17:32]
+    ╭─[test262/test/language/statements/generators/yield-weak-binding.js:17:33]
  16 │ 
  17 │ function* g() { yield 3 + yield 4; }
-    ·                                ▲
+    ·                                 ─
     ╰────
   help: Try inserting a semicolon here
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/statements/if/S12.5_A11.js:18:6]
  17 │ //CHECK#
  18 │ if({1})
@@ -38923,7 +38950,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │   {
     ╰────
 
-  × Expected `(` but found `true`
+  × TS(1005): Expected `(` but found `true`
     ╭─[test262/test/language/statements/if/S12.5_A6_T1.js:18:4]
  17 │ //CHECK#1
  18 │ if true;
@@ -38932,7 +38959,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `false`
+  × TS(1005): Expected `(` but found `false`
     ╭─[test262/test/language/statements/if/S12.5_A6_T2.js:18:4]
  17 │ //CHECK#2
  18 │ if false;
@@ -38941,7 +38968,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/if/S12.5_A8.js:18:4]
  17 │ //CHECK#1
  18 │ if();
@@ -39258,26 +39285,26 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/if/if-let-else-let.js:15:14]
+    ╭─[test262/test/language/statements/if/if-let-else-let.js:15:15]
  14 │ 
  15 │ if (true) let x; else let y;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/if/if-let-else-stmt.js:15:14]
+    ╭─[test262/test/language/statements/if/if-let-else-stmt.js:15:15]
  14 │ 
  15 │ if (true) let x; else ;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/if/if-let-no-else.js:15:14]
+    ╭─[test262/test/language/statements/if/if-let-no-else.js:15:15]
  14 │ 
  15 │ if (true) let x;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -39359,10 +39386,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/if/if-stmt-else-let.js:15:22]
+    ╭─[test262/test/language/statements/if/if-stmt-else-let.js:15:23]
  14 │ 
  15 │ if (false) ; else let x;
-    ·                      ▲
+    ·                       ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -39480,10 +39507,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/labeled/decl-let.js:15:11]
+    ╭─[test262/test/language/statements/labeled/decl-let.js:15:12]
  14 │ 
  15 │ label: let x;
-    ·           ▲
+    ·            ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -39496,7 +39523,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this declaration in a block statement
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/labeled/static-init-invalid-await.js:24:10]
  23 │   static {
  24 │     await: 0;
@@ -39511,14 +39538,14 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/labeled/value-await-module-escaped.js:21:11]
  20 │ 
  21 │ aw\u0061it: 1;
     ·           ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/labeled/value-await-module.js:20:6]
  19 │ 
  20 │ await: 1;
@@ -39649,14 +39676,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/let-newline-await-in-normal-function.js:24:10]
+  × TS(1005): Expected `,` but found `decimal`
+    ╭─[test262/test/language/statements/let/syntax/let-newline-await-in-normal-function.js:24:11]
  23 │     let
  24 │     await 0;
-    ·          ▲
+    ·           ┬
+    ·           ╰── `,` expected
  25 │ }
     ╰────
-  help: Try inserting a semicolon here
 
   × Cannot use `yield` as an identifier in a generator context
     ╭─[test262/test/language/statements/let/syntax/let-newline-yield-in-generator-function.js:25:5]
@@ -39667,117 +39694,117 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/let-newline-yield-in-generator-function.js:25:10]
+  × TS(1005): Expected `,` but found `decimal`
+    ╭─[test262/test/language/statements/let/syntax/let-newline-yield-in-generator-function.js:25:11]
  24 │     let
  25 │     yield 0;
-    ·          ▲
+    ·           ┬
+    ·           ╰── `,` expected
  26 │ }
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/let-newline-yield-in-normal-function.js:23:10]
+  × TS(1005): Expected `,` but found `decimal`
+    ╭─[test262/test/language/statements/let/syntax/let-newline-yield-in-normal-function.js:23:11]
  22 │     let
  23 │     yield 0;
-    ·          ▲
+    ·           ┬
+    ·           ╰── `,` expected
  24 │ }
     ╰────
-  help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-do-statement-while-expression.js:15:7]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-do-statement-while-expression.js:15:8]
  14 │ $DONOTEVALUATE();
  15 │ do let x = 1; while (false)
-    ·       ▲
+    ·        ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-for-statement.js:15:18]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-for-statement.js:15:19]
  14 │ $DONOTEVALUATE();
  15 │ for (;false;) let x = 1;
-    ·                  ▲
+    ·                   ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-if-expression-statement-else-statement.js:15:22]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-if-expression-statement-else-statement.js:15:23]
  14 │ $DONOTEVALUATE();
  15 │ if (true) {} else let x = 1;
-    ·                      ▲
+    ·                       ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-if-expression-statement.js:15:14]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-if-expression-statement.js:15:15]
  14 │ $DONOTEVALUATE();
  15 │ if (true) let x = 1;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-label-statement.js:15:11]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-label-statement.js:15:12]
  14 │ $DONOTEVALUATE();
  15 │ label: let x = 1;
-    ·           ▲
+    ·            ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-while-expression-statement.js:15:18]
+    ╭─[test262/test/language/statements/let/syntax/with-initialisers-in-statement-positions-while-expression-statement.js:15:19]
  14 │ $DONOTEVALUATE();
  15 │ while (false) let x = 1;
-    ·                  ▲
+    ·                   ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-do-statement-while-expression.js:15:7]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-do-statement-while-expression.js:15:8]
  14 │ $DONOTEVALUATE();
  15 │ do let x; while (false)
-    ·       ▲
+    ·        ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-for-statement.js:15:18]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-for-statement.js:15:19]
  14 │ $DONOTEVALUATE();
  15 │ for (;false;) let x;
-    ·                  ▲
+    ·                   ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-if-expression-statement-else-statement.js:15:22]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-if-expression-statement-else-statement.js:15:23]
  14 │ $DONOTEVALUATE();
  15 │ if (true) {} else let x;
-    ·                      ▲
+    ·                       ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-if-expression-statement.js:15:14]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-if-expression-statement.js:15:15]
  14 │ $DONOTEVALUATE();
  15 │ if (true) let x;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-label-statement.js:15:11]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-label-statement.js:15:12]
  14 │ $DONOTEVALUATE();
  15 │ label: let x;
-    ·           ▲
+    ·            ─
     ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-while-expression-statement.js:15:18]
+    ╭─[test262/test/language/statements/let/syntax/without-initialisers-in-statement-positions-while-expression-statement.js:15:19]
  14 │ $DONOTEVALUATE();
  15 │ while (false) let x;
-    ·                  ▲
+    ·                   ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -39883,7 +39910,7 @@ Negative Passed: 4669/4669 (100.00%)
  28 │       }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/switch/S12.11_A3_T1.js:19:10]
  18 │ 
  19 │   switch() {
@@ -39891,7 +39918,7 @@ Negative Passed: 4669/4669 (100.00%)
  20 │     case 0:
     ╰────
 
-  × Expected `(` but found `{`
+  × TS(1005): Expected `(` but found `{`
     ╭─[test262/test/language/statements/switch/S12.11_A3_T2.js:19:10]
  18 │ 
  19 │   switch {
@@ -39900,7 +39927,7 @@ Negative Passed: 4669/4669 (100.00%)
  20 │     case 0:
     ╰────
 
-  × Expected `{` but found `;`
+  × TS(1005): Expected `{` but found `;`
     ╭─[test262/test/language/statements/switch/S12.11_A3_T3.js:16:14]
  15 │ 
  16 │ switch(value);
@@ -39908,7 +39935,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `{` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/switch/S12.11_A3_T4.js:22:9]
  21 │   switch(value) {
  22 │     case:
@@ -40493,7 +40520,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                          ╰── `f` has already been declared here
     ╰────
 
-  × Expected `{` but found `EOF`
+  × TS(1005): Expected `{` but found `EOF`
     ╭─[test262/test/language/statements/try/S12.14_A16_T1.js:20:1]
  19 │ try
     ╰────
@@ -40506,7 +40533,7 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ finally{}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T11.js:24:3]
  23 │   }
  24 │   catch(e){}
@@ -40523,7 +40550,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either unwrap this try block or add catch / finally clause
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T12.js:26:1]
  25 │ catch(e1){}
  26 │ catch(e2){}
@@ -40538,7 +40565,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │ {
     ╰────
 
-  × Expected `{` but found `(`
+  × TS(1005): Expected `{` but found `(`
     ╭─[test262/test/language/statements/try/S12.14_A16_T14.js:19:4]
  18 │ // CHECK#1
  19 │ try(e1){
@@ -40547,7 +40574,7 @@ Negative Passed: 4669/4669 (100.00%)
  20 │ }
     ╰────
 
-  × Expected `{` but found `(`
+  × TS(1005): Expected `{` but found `(`
     ╭─[test262/test/language/statements/try/S12.14_A16_T15.js:23:8]
  22 │ }
  23 │ finally(e){}
@@ -40555,14 +40582,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·        ╰── `{` expected
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T2.js:19:1]
  18 │ // CHECK#1
  19 │ catch
     · ─────
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T3.js:19:1]
  18 │ // CHECK#1
  19 │ finally
@@ -40576,7 +40603,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ─
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T6.js:22:1]
  21 │ try{
  22 │ catch(){}
@@ -40598,7 +40625,7 @@ Negative Passed: 4669/4669 (100.00%)
  23 │ finally{}
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/try/S12.14_A16_T9.js:19:1]
  18 │ // CHECK#1
  19 │ catch(){}
@@ -40776,7 +40803,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ }
     ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
     ╭─[test262/test/language/statements/using/syntax/using-invalid-arraybindingpattern.js:18:10]
  17 │ {
  18 │   using [] = null;
@@ -41082,41 +41109,41 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/variable/S12.2_A8_T1.js:18:6]
+  × TS(1005): Expected `,` but found `+=`
+    ╭─[test262/test/language/statements/variable/S12.2_A8_T1.js:18:7]
  17 │ //CHECK#1
  18 │ var x += 1;
-    ·      ▲
+    ·       ─┬
+    ·        ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/variable/S12.2_A8_T2.js:18:6]
+  × TS(1005): Expected `,` but found `|`
+    ╭─[test262/test/language/statements/variable/S12.2_A8_T2.js:18:7]
  17 │ //CHECK#1
  18 │ var x | true;
-    ·      ▲
+    ·       ┬
+    ·       ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/variable/S12.2_A8_T3.js:18:6]
+  × TS(1005): Expected `,` but found `&&`
+    ╭─[test262/test/language/statements/variable/S12.2_A8_T3.js:18:7]
  17 │ //CHECK#1
  18 │ var x && 1;
-    ·      ▲
+    ·       ─┬
+    ·        ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `++`
     ╭─[test262/test/language/statements/variable/S12.2_A8_T4.js:18:6]
  17 │ //CHECK#1
  18 │ var x++;
-    ·      ▲
+    ·      ─┬
+    ·       ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
   × Unexpected token
     ╭─[test262/test/language/statements/variable/S12.2_A8_T5.js:18:5]
@@ -41126,29 +41153,29 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `*`
     ╭─[test262/test/language/statements/variable/S12.2_A8_T6.js:18:6]
  17 │ //CHECK#1
  18 │ var x*1;
-    ·      ▲
+    ·      ┬
+    ·      ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `>`
     ╭─[test262/test/language/statements/variable/S12.2_A8_T7.js:18:6]
  17 │ //CHECK#1
  18 │ var x>>1;
-    ·      ▲
+    ·      ┬
+    ·      ╰── `,` expected
  19 │ //
     ╰────
-  help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/variable/S12.2_A8_T8.js:20:6]
+    ╭─[test262/test/language/statements/variable/S12.2_A8_T8.js:20:7]
  19 │ //CHECK#1
  20 │ var x in __arr;
-    ·      ▲
+    ·       ──
  21 │ //
     ╰────
   help: Try inserting a semicolon here
@@ -41515,7 +41542,7 @@ Negative Passed: 4669/4669 (100.00%)
  26 │   }
     ╰────
 
-  × Expected `:` but found `}`
+  × TS(1005): Expected `:` but found `}`
     ╭─[test262/test/language/statements/while/S12.6.2_A15.js:18:9]
  17 │ //CHECK#
  18 │ while({1}){
@@ -41524,7 +41551,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │    break ;
     ╰────
 
-  × Expected `(` but found `decimal`
+  × TS(1005): Expected `(` but found `decimal`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T1.js:18:7]
  17 │ //CHECK#1
  18 │ while 1 break;
@@ -41533,7 +41560,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `decimal`
+  × TS(1005): Expected `(` but found `decimal`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T2.js:18:7]
  17 │ //CHECK#1
  18 │ while 0 break;
@@ -41542,7 +41569,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `true`
+  × TS(1005): Expected `(` but found `true`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T3.js:18:7]
  17 │ //CHECK#1
  18 │ while true break;
@@ -41551,7 +41578,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `false`
+  × TS(1005): Expected `(` but found `false`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T4.js:18:7]
  17 │ //CHECK#1
  18 │ while false break;
@@ -41560,7 +41587,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `string`
+  × TS(1005): Expected `(` but found `string`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T5.js:18:7]
  17 │ //CHECK#1
  18 │ while '' break;
@@ -41569,7 +41596,7 @@ Negative Passed: 4669/4669 (100.00%)
  19 │ //
     ╰────
 
-  × Expected `(` but found `string`
+  × TS(1005): Expected `(` but found `string`
     ╭─[test262/test/language/statements/while/S12.6.2_A6_T6.js:18:7]
  17 │ //CHECK#1
  18 │ while 'hood' break;
@@ -41648,10 +41675,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In strict mode code, functions can only be declared at top level or inside a block
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/while/decl-let.js:15:18]
+    ╭─[test262/test/language/statements/while/decl-let.js:15:19]
  14 │ 
  15 │ while (false) let x;
-    ·                  ▲
+    ·                   ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -41748,10 +41775,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-    ╭─[test262/test/language/statements/with/decl-let.js:15:14]
+    ╭─[test262/test/language/statements/with/decl-let.js:15:15]
  14 │ 
  15 │ with ({}) let x;
-    ·              ▲
+    ·               ─
     ╰────
   help: Try inserting a semicolon here
 
@@ -41867,13 +41894,13 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ───
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `Unknown`
     ╭─[test262/test/language/types/string/S8.4_A13_T1.js:16:13]
  15 │ 
  16 │ var str = ''';
-    ·             ▲
+    ·             ─┬─
+    ·              ╰── `,` expected
     ╰────
-  help: Try inserting a semicolon here
 
   × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A13_T2.js:16:11]
@@ -41882,13 +41909,13 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ───
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `string`
     ╭─[test262/test/language/types/string/S8.4_A13_T3.js:16:13]
  15 │ 
  16 │ var str = '''';
-    ·             ▲
+    ·             ─┬
+    ·              ╰── `,` expected
     ╰────
-  help: Try inserting a semicolon here
 
   × TS(1002): Unterminated string
     ╭─[test262/test/language/types/string/S8.4_A14_T1.js:16:11]
@@ -41904,21 +41931,21 @@ Negative Passed: 4669/4669 (100.00%)
     ·             ───
     ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `Unknown`
     ╭─[test262/test/language/types/string/S8.4_A14_T2.js:16:13]
  15 │ 
  16 │ var str = """;
-    ·             ▲
+    ·             ─┬─
+    ·              ╰── `,` expected
     ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `string`
     ╭─[test262/test/language/types/string/S8.4_A14_T3.js:16:13]
  15 │ 
  16 │ var str = """";
-    ·             ▲
+    ·             ─┬
+    ·              ╰── `,` expected
     ╰────
-  help: Try inserting a semicolon here
 
   × Invalid Character `	`
     ╭─[test262/test/language/white-space/S7.2_A5_T1.js:18:10]

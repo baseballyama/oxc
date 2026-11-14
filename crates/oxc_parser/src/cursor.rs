@@ -154,8 +154,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             // ~232-byte `OxcDiagnostic` buffer does not inflate `asi`'s stack frame on the
             // common (valid) path.
             cold_branch(|| {
-                let span = Span::empty(self.prev_token_end);
-                let error = diagnostics::auto_semicolon_insertion(span);
+                // tsc reports the token that cannot follow the statement.
+                let error = diagnostics::auto_semicolon_insertion(self.cur_token().span());
                 self.set_fatal_error(error);
             });
         }

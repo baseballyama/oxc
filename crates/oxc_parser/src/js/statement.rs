@@ -326,6 +326,12 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         start: u32,
         expression: Expression<'a>,
     ) -> Statement<'a> {
+        if let Expression::Identifier(identifier) = &expression
+            && !self.at(Kind::Semicolon)
+            && !self.can_insert_semicolon()
+        {
+            self.missing_semicolon_after_identifier(identifier.span, identifier.name.as_str());
+        }
         self.asi();
         Statement::new_expression_statement(self.end_span(start), expression, self)
     }

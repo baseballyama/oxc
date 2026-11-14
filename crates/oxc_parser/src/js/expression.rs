@@ -325,6 +325,12 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             Kind::At => self.parse_decorated_expression(),
             // Literal, RegularExpressionLiteral
             kind if kind.is_literal() => self.parse_literal_expression(),
+            // tsc reads any other token as a missing expression.
+            _ if !(kind.is_identifier_reference(false, false)
+                || self.cur_token().escaped() && matches!(kind, Kind::In | Kind::Instanceof)) =>
+            {
+                self.unexpected_as(diagnostics::expression_expected)
+            }
             _ => self.parse_identifier_expression(),
         }
     }
@@ -1274,6 +1280,15 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     }
 
     fn parse_call_argument(&mut self) -> Argument<'a> {
+        if self.at(Kind::Semicolon) {
+            // tsc ends an argument list at a semicolon, and expects the closing parenthesis.
+            let error = diagnostics::expect_token(
+                Kind::RParen.to_str(),
+                Kind::Semicolon.to_str(),
+                self.cur_token().span(),
+            );
+            return Argument::from(self.fatal_error::<Expression<'a>>(error));
+        }
         if self.at(Kind::Dot3) {
             Argument::SpreadElement(self.parse_spread_element())
         } else {

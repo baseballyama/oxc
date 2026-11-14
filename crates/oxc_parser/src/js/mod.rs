@@ -8,6 +8,7 @@ mod class;
 mod declaration;
 mod expression;
 mod function;
+mod missing_semicolon;
 mod module;
 mod object;
 mod operator;

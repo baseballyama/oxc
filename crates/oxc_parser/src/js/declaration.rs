@@ -75,6 +75,17 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         }
 
         if matches!(decl_parent, VariableDeclarationParent::Statement) {
+            // tsc reads a token that cannot end the list as a missing comma.
+            if !self.can_insert_semicolon()
+                && !matches!(self.cur_kind(), Kind::In | Kind::Of | Kind::Arrow)
+            {
+                let error = diagnostics::expect_token(
+                    Kind::Comma.to_str(),
+                    self.cur_kind().to_str(),
+                    self.cur_token().span(),
+                );
+                self.set_fatal_error(error);
+            }
             self.asi();
         }
         VariableDeclaration::boxed(self.end_span(start), kind, declarations, declare, self)

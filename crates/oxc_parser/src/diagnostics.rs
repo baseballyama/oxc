@@ -103,6 +103,32 @@ parser_diagnostics! {
         OxcDiagnostic::error("Unexpected token").with_label(span)
     };
 
+    // Expression expected. (1109)
+    expression_expected(span: Span) => {
+        ts_error("1109", "Unexpected token").with_label(span)
+    };
+
+    // Type expected. (1110)
+    type_expected(span: Span) => {
+        ts_error("1110", "Unexpected token").with_label(span)
+    };
+
+    // Unexpected keyword or identifier. (1434)
+    unexpected_keyword_or_identifier(span: Span) => {
+        ts_error("1434", "Unexpected keyword or identifier.").with_label(span)
+    };
+
+    // Unknown keyword or identifier. Did you mean '{0}'? (1435), where the suggestion is the
+    // keyword, or the keyword and the rest of the name after a space.
+    unknown_keyword_or_identifier(keyword: &'static str, rest: &'a str, span: Span) => {
+        let space = if rest.is_empty() { "" } else { " " };
+        ts_error(
+            "1435",
+            format!("Unknown keyword or identifier. Did you mean '{keyword}{space}{rest}'?"),
+        )
+        .with_label(span)
+    };
+
     // 'abstract' modifier can only appear on a class, method, or property declaration. (1242)
     illegal_abstract_modifier(span: Span) => {
         ts_error(
@@ -164,13 +190,14 @@ parser_diagnostics! {
             .with_help("JSX syntax is disabled and should be enabled via the parser options")
     };
 
+    // '{0}' expected. (1005)
     expect_token(expected: &'a str, found: &'a str, span: Span) => {
-        OxcDiagnostic::error(format!("Expected `{expected}` but found `{found}`"))
+        ts_error("1005", format!("Expected `{expected}` but found `{found}`"))
             .with_label(span.label(format!("`{expected}` expected")))
     };
 
     expect_closing(expected_closing: &'a str, actual: &'a str, span: Span, opening_span: Span) => {
-        OxcDiagnostic::error(format!("Expected `{expected_closing}` but found `{actual}`")).with_labels(
+        ts_error("1005", format!("Expected `{expected_closing}` but found `{actual}`")).with_labels(
             [
                 span.primary_label(format!("`{expected_closing}` expected")),
                 opening_span.label("Opened here"),
@@ -179,7 +206,7 @@ parser_diagnostics! {
     };
 
     expect_closing_or_separator(expected_closing: &'a str, expected_separator: &'a str, actual: &'a str, span: Span, opening_span: Span) => {
-        OxcDiagnostic::error(format!(
+        ts_error("1005", format!(
             "Expected `{expected_separator}` or `{expected_closing}` but found `{actual}`"
         ))
         .with_labels([
@@ -189,7 +216,7 @@ parser_diagnostics! {
     };
 
     expect_conditional_alternative(found: &'a str, span: Span, question_span: Span) => {
-        OxcDiagnostic::error(format!("Expected `:` but found `{found}`")).with_labels([
+        ts_error("1005", format!("Expected `:` but found `{found}`")).with_labels([
             span.primary_label("`:` expected"),
             question_span.label("Conditional starts here"),
         ])

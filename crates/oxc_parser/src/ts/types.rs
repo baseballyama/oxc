@@ -542,6 +542,10 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                 }
             }
             Kind::TemplateHead => self.parse_template_type(false),
+            // tsc reads any other token as a missing type.
+            _ if !self.cur_kind().is_identifier_name() => {
+                self.unexpected_as(diagnostics::type_expected)
+            }
             _ => self.parse_type_reference(),
         }
     }

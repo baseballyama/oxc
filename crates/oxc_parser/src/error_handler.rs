@@ -21,6 +21,13 @@ pub struct FatalError<'a> {
 impl<'a, C: Config> ParserImpl<'a, C> {
     #[cold]
     pub(crate) fn set_unexpected(&mut self) {
+        self.set_unexpected_as(diagnostics::unexpected_token);
+    }
+
+    /// [`Self::set_unexpected`], reporting a token the lexer read with `error`, which names what
+    /// tsc expected here.
+    #[cold]
+    pub(crate) fn set_unexpected_as(&mut self, error: fn(Span) -> ParserDiagnostic<'a>) {
         // The lexer should have reported a more meaningful diagnostic
         // when it is a undetermined kind.
         if matches!(self.cur_kind(), Kind::Eof | Kind::Undetermined)
@@ -37,7 +44,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             return;
         }
 
-        let error = diagnostics::unexpected_token(self.cur_token().span());
+        let error = error(self.cur_token().span());
         self.set_fatal_error(error);
     }
 
@@ -50,6 +57,17 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     #[cold]
     pub(crate) fn unexpected<T: Dummy<'a>>(&mut self) -> T {
         self.set_unexpected();
+        Dummy::dummy(self.allocator())
+    }
+
+    /// [`Self::unexpected`] with [`Self::set_unexpected_as`].
+    #[must_use]
+    #[cold]
+    pub(crate) fn unexpected_as<T: Dummy<'a>>(
+        &mut self,
+        error: fn(Span) -> ParserDiagnostic<'a>,
+    ) -> T {
+        self.set_unexpected_as(error);
         Dummy::dummy(self.allocator())
     }
 

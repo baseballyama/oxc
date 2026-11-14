@@ -67,6 +67,19 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
                 write!(f, [format_no_break]);
             }
         }
+        StaticMemberLayout::BreakBeforeOperator(operator) => {
+            // The comments after the line comment stay before the operator too
+            let comments = f.context().comments().comments_before(operator);
+            write!(
+                f,
+                [
+                    hard_line_break(),
+                    FormatLeadingComments::Comments(comments),
+                    operator_token(optional),
+                    property
+                ]
+            );
+        }
         StaticMemberLayout::BreakAfterObject => {
             write!(
                 f,
@@ -96,6 +109,10 @@ enum StaticMemberLayout {
 
     /// Breaks the static member expression after the object if the whole expression doesn't fit on a single line
     BreakAfterObject,
+
+    /// Breaks before the operator at this offset, after a line comment ending the object's line
+    /// (`a // c` + break + `.b`)
+    BreakBeforeOperator(u32),
 }
 
 fn operator_token(optional: bool) -> &'static str {
@@ -114,6 +131,10 @@ fn layout<'a>(
 ) -> StaticMemberLayout {
     if f.comments().has_leading_own_line_comment(property_start) {
         return StaticMemberLayout::BreakAfterObject;
+    }
+
+    if let Some(operator) = operator_after_line_comment(object.span().end, property_start, f) {
+        return StaticMemberLayout::BreakBeforeOperator(operator);
     }
 
     // `a.b.c!` and `a.b?.c`
@@ -177,4 +198,41 @@ fn layout<'a>(
         }
         _ => StaticMemberLayout::BreakAfterObject,
     }
+}
+
+/// The offset of the member's `.` / `?.` when a line comment ends the line right before it (only blanks and comments follow):
+/// its `line_suffix` would otherwise flush past the property, which is user content.
+/// A comment before a `)` is not one: the parens hold it.
+fn operator_after_line_comment(
+    object_end: u32,
+    property_start: u32,
+    f: &JsFormatter<'_, '_>,
+) -> Option<u32> {
+    let source = f.source_text();
+    let mut gap_start = object_end;
+    let mut after_line_comment = false;
+    // The operator is the gap's only `.` outside its comments (a `)` may come before it)
+    let gaps = f
+        .comments()
+        .all_comments_in_range(object_end, property_start)
+        .map(|comment| (comment.span.start, Some(comment)))
+        .chain([(property_start, None)]);
+    for (gap_end, comment) in gaps {
+        let gap = source.bytes_range(gap_start, gap_end);
+        let first = (gap_start..).zip(gap).find(|(_, byte)| !byte.is_ascii_whitespace());
+        if let Some((first, _)) = first {
+            let rest = source.bytes_range(first, gap_end);
+            if rest.starts_with(b".") || rest.starts_with(b"?.") {
+                return after_line_comment.then_some(first);
+            }
+            if rest.contains(&b'.') {
+                return None;
+            }
+            after_line_comment = false;
+        }
+        let comment = comment?;
+        after_line_comment |= comment.is_line();
+        gap_start = comment.span.end;
+    }
+    None
 }

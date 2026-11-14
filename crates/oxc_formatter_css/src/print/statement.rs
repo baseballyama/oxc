@@ -4,10 +4,11 @@ use oxc_css_parser::ast::{
     UnknownQualifiedRule,
 };
 
+use oxc_css_parser::token::{TokenData as Token, TokenWithSpanData as Lexed};
 use oxc_span::Span;
 
 use oxc_formatter_core::{
-    arena_cow_str,
+    SourceText, arena_cow_str,
     builders::{
         block_indent, dedent, hard_line_break, if_group_breaks, indent, space, text, token,
     },
@@ -466,14 +467,14 @@ pub(super) fn write_declaration<'a>(decl: &Declaration<'a>, f: &mut CssFormatter
             // except bare quoted numbers, which postcss saw unquoted.
             value::write_requoted_verbatim(value_text, f);
             let _ = f.context().comments().take_before(value_end);
-        } else if is_custom_property && value_text.starts_with('{') {
-            if value_text.trim_end().ends_with('}')
-                && value_text.bytes().filter(|&b| b == b'{').count() == 1
-            {
-                // `--prop: { decls };` custom-property rule blocks
-                // (postcss re-parses these as a rule): print the token stream as a block.
+        } else if is_custom_property
+            && value_text.starts_with('{')
+            // A Scss nesting block is typed: the value writer prints its statements.
+            && !matches!(decl.value.as_slice(), [ComponentValue::SassNestingDeclaration(..)])
+        {
+            if let Some(tokens) = custom_property_block(&decl.value) {
                 value::flush_value_comments(value_start, f);
-                write_custom_property_block(value_text, f);
+                write_custom_property_block(&tokens, f);
             } else {
                 // Unparsable rule-ish value (e.g. missing `;` swallowed the following declarations):
                 // keep the source verbatim.
@@ -573,134 +574,189 @@ pub(super) fn write_terminator_tail_comments(content_end: u32, f: &mut CssFormat
     value::flush_trailing_value_comments(bound, f);
 }
 
-/// Prints a `--prop: { a: b; c: d }` rule-block value by re-flowing the raw text:
+/// The tokens of a `--prop: { a: b; c: d }` rule-block value:
+/// one brace block (postcss re-parses it as a rule) and nothing after it.
+fn custom_property_block<'v>(values: &'v [ComponentValue<'_>]) -> Option<Vec<&'v Lexed>> {
+    let tokens = values
+        .iter()
+        .map(|value| match value {
+            ComponentValue::TokenWithSpan(token) => Some(token),
+            _ => None,
+        })
+        .collect::<Option<Vec<_>>>()?;
+    let (first, last) = (tokens.first()?, tokens.last()?);
+    let braces =
+        tokens.iter().filter(|t| matches!(t.token, Token::LBrace(..) | Token::HashLBrace(..)));
+    (matches!(first.token, Token::LBrace(..))
+        && matches!(last.token, Token::RBrace(..))
+        && tokens.len() > 1
+        && braces.count() == 1)
+        .then_some(tokens)
+}
+
+/// A declaration of a [`custom_property_block`]: its tokens, the comments on their own lines
+/// before it, and a comment after its `;` on the same line.
+struct BlockDeclaration<'s, 't> {
+    leading: Vec<&'s str>,
+    tokens: &'t [&'t Lexed],
+    trailing: Option<&'s str>,
+}
+
+/// Prints a [`custom_property_block`] by its tokens, so a `;` in a string, a comment, an escape
+/// or a nested bracket stays inside its declaration:
 /// one declaration per line, normalized `prop: value;` spacing.
-fn write_custom_property_block<'a>(value_text: &'a str, f: &mut CssFormatter<'_, 'a>) {
-    let inner = value_text.trim_end();
-    let inner = &inner[1..inner.len() - 1];
-    // Split on `;`, keeping a comment that follows a `;` on the SAME line
-    // attached to the previous declaration (`...; /* c */`).
-    let mut decls: Vec<(&str, Option<&str>)> = vec![];
-    for seg in inner.split(';') {
-        let (first_line, rest) = match seg.find('\n') {
-            Some(idx) => (&seg[..idx], &seg[idx..]),
-            None => (seg, ""),
-        };
-        let prefix = first_line.trim();
-        if !decls.is_empty()
-            && !prefix.is_empty()
-            && prefix.starts_with("/*")
-            && prefix.ends_with("*/")
-            && !rest.trim().is_empty()
-        {
-            decls.last_mut().unwrap().1 = Some(prefix);
-            let remainder = rest.trim();
-            if !remainder.is_empty() {
-                decls.push((remainder, None));
+fn write_custom_property_block<'a>(tokens: &[&Lexed], f: &mut CssFormatter<'_, 'a>) {
+    let source = f.context().source_text();
+    let span = |token: &Lexed| to_span(token.span);
+    let inner = &tokens[1..tokens.len() - 1];
+    let mut declarations: Vec<BlockDeclaration<'a, '_>> = vec![];
+    let mut cursor = span(tokens[0]).end;
+    let mut depth = 0_usize;
+    let mut segment_start = 0;
+    for (i, token) in inner.iter().enumerate() {
+        match token.token {
+            Token::LParen(..) | Token::LBracket(..) | Token::LBrace(..) | Token::HashLBrace(..) => {
+                depth += 1;
             }
-        } else {
-            let t = seg.trim();
-            if !t.is_empty() {
-                decls.push((t, None));
+            Token::RParen(..) | Token::RBracket(..) | Token::RBrace(..) => {
+                depth = depth.saturating_sub(1);
             }
+            Token::Semicolon(..) if depth == 0 => {
+                let segment = &inner[segment_start..i];
+                if let Some(first) = segment.first() {
+                    let leading = take_gap(source, &mut declarations, cursor, span(first).start);
+                    declarations.push(BlockDeclaration {
+                        leading,
+                        tokens: segment,
+                        trailing: None,
+                    });
+                }
+                cursor = span(token).end;
+                segment_start = i + 1;
+            }
+            _ => {}
         }
     }
-    if decls.is_empty() {
+    let rest = &inner[segment_start..];
+    if let Some(first) = rest.first() {
+        let leading = take_gap(source, &mut declarations, cursor, span(first).start);
+        declarations.push(BlockDeclaration { leading, tokens: rest, trailing: None });
+        cursor = span(rest[rest.len() - 1]).end;
+    }
+    let closing = take_gap(source, &mut declarations, cursor, span(tokens[tokens.len() - 1]).start);
+    if declarations.is_empty() && closing.is_empty() {
         write!(f, ["{", hard_line_break(), "}"]);
         return;
     }
     let body = format_with(move |f: &mut CssFormatter<'_, 'a>| {
-        write!(f, hard_line_break());
-        for (i, (decl, trailing)) in decls.iter().enumerate() {
-            if i > 0 {
+        for declaration in &declarations {
+            for comment in &declaration.leading {
                 write!(f, hard_line_break());
+                write_block_comment(comment, f);
             }
-            // Re-flow line by line (keeps interior comments in place)
-            for (j, line) in decl.lines().map(str::trim).filter(|l| !l.is_empty()).enumerate() {
-                if j > 0 {
-                    write!(f, hard_line_break());
-                }
-                // Normalize `prop : value` spacing on declaration lines:
-                // split at the first colon OUTSIDE comments, keep the prop side verbatim,
-                // re-space the value side tokens.
-                if let Some(colon) = find_colon_outside_comments(line) {
-                    let (p, v) = line.split_at(colon);
-                    let v = &v[1..];
-                    write!(f, [text(p.trim_end()), ":", space()]);
-                    let normalized = respace_value_tokens(v.trim());
-                    if normalized == v.trim() {
-                        write!(f, text(v.trim()));
-                    } else {
-                        write!(f, text(f.allocator().alloc_str(&normalized)));
+            write!(f, hard_line_break());
+            let colon = declaration.tokens.iter().position(|t| matches!(t.token, Token::Colon(..)));
+            match colon {
+                Some(colon) => {
+                    let (name, value) = declaration.tokens.split_at(colon);
+                    if let (Some(first), Some(last)) = (name.first(), name.last()) {
+                        write!(f, text(source.slice_range(span(first).start, span(last).end)));
                     }
-                } else {
-                    write!(f, text(line));
+                    write!(f, ":");
+                    if value.len() > 1 {
+                        write!(f, space());
+                        write_block_tokens(&value[1..], f);
+                    }
                 }
+                None => write_block_tokens(declaration.tokens, f),
             }
-            // A trailing comment-only segment gets no semicolon
-            if !(i + 1 == decls.len() && decl.starts_with("/*") && decl.ends_with("*/")) {
-                write!(f, ";");
+            write!(f, ";");
+            if let Some(comment) = declaration.trailing {
+                write!(f, space());
+                write_block_comment(comment, f);
             }
-            if let Some(comment) = trailing {
-                write!(f, [space(), text(comment)]);
-            }
+        }
+        for comment in &closing {
+            write!(f, hard_line_break());
+            write_block_comment(comment, f);
         }
     });
     write!(f, ["{", indent(&body), hard_line_break(), "}"]);
 }
 
-/// First `:` outside `/* ... */` comments, or None.
-fn find_colon_outside_comments(line: &str) -> Option<usize> {
-    let bytes = line.as_bytes();
-    let mut i = 0;
-    while i < bytes.len() {
-        if bytes[i] == b'/' && bytes.get(i + 1) == Some(&b'*') {
-            match line[i + 2..].find("*/") {
-                Some(close) => i = i + 2 + close + 2,
-                None => return None,
+/// The comments between `from` and `until`, before the next declaration of a
+/// [`custom_property_block`]: the first one goes to the previous declaration when it is on that
+/// declaration's line.
+fn take_gap<'v>(
+    source: SourceText<'v>,
+    declarations: &mut [BlockDeclaration<'v, '_>],
+    from: u32,
+    until: u32,
+) -> Vec<&'v str> {
+    let gap: &'v str = source.slice_range(from, until);
+    let mut leading = vec![];
+    for (at, comment) in gap_comments(gap) {
+        let same_line = !gap[..at].contains('\n');
+        match declarations.last_mut() {
+            Some(last) if same_line && last.trailing.is_none() && leading.is_empty() => {
+                last.trailing = Some(comment);
             }
-            continue;
+            _ => leading.push(comment),
         }
-        if bytes[i] == b':' {
-            return Some(i);
-        }
-        i += 1;
     }
-    None
+    leading
 }
 
-/// Single spaces between value tokens and comments (`/* c */ #fff /* c */`).
-fn respace_value_tokens(v: &str) -> String {
-    let mut out = String::with_capacity(v.len() + 8);
-    let bytes = v.as_bytes();
-    let mut i = 0;
-    let mut last_was_token = false;
-    while i < bytes.len() {
-        if bytes[i].is_ascii_whitespace() {
-            i += 1;
-            continue;
+/// Each `/* */` comment in `gap`, the text between two tokens, with its offset there.
+fn gap_comments(gap: &str) -> impl Iterator<Item = (usize, &str)> {
+    let mut from = 0;
+    std::iter::from_fn(move || {
+        let at = from + gap[from..].find("/*")?;
+        let end = gap[at + 2..].find("*/").map_or(gap.len(), |close| at + 2 + close + 2);
+        from = end;
+        Some((at, &gap[at..end]))
+    })
+}
+
+/// A comment of a [`custom_property_block`], each of its lines trimmed.
+fn write_block_comment<'a>(comment: &'a str, f: &mut CssFormatter<'_, 'a>) {
+    for (i, line) in comment.lines().map(str::trim).enumerate() {
+        if i > 0 {
+            write!(f, hard_line_break());
         }
-        let start = i;
-        if bytes[i] == b'/' && bytes.get(i + 1) == Some(&b'*') {
-            match v[i + 2..].find("*/") {
-                Some(close) => i = i + 2 + close + 2,
-                None => i = bytes.len(),
-            }
-        } else {
-            while i < bytes.len()
-                && !bytes[i].is_ascii_whitespace()
-                && !(bytes[i] == b'/' && bytes.get(i + 1) == Some(&b'*'))
-            {
-                i += 1;
-            }
-        }
-        if last_was_token {
-            out.push(' ');
-        }
-        out.push_str(&v[start..i]);
-        last_was_token = true;
+        write!(f, text(line));
     }
-    out
+}
+
+/// `tokens` as written, with a line break where the source breaks between two of them,
+/// a single space where it has other whitespace, and each comment between them kept.
+fn write_block_tokens<'a>(tokens: &[&Lexed], f: &mut CssFormatter<'_, 'a>) {
+    let source = f.context().source_text();
+    let mut previous: Option<u32> = None;
+    for token in tokens {
+        let token_span = to_span(token.span);
+        if let Some(end) = previous {
+            let gap: &'a str = source.slice_range(end, token_span.start);
+            if !gap.is_empty() {
+                let separate = |f: &mut CssFormatter<'_, 'a>, gap: &str| {
+                    if gap.contains('\n') {
+                        write!(f, hard_line_break());
+                    } else if !gap.is_empty() {
+                        write!(f, space());
+                    }
+                };
+                let mut from = 0;
+                for (at, comment) in gap_comments(gap) {
+                    separate(f, &gap[from..at]);
+                    write_block_comment(comment, f);
+                    from = at + comment.len();
+                }
+                separate(f, &gap[from..]);
+            }
+        }
+        write!(f, text(source.text_for(&token_span)));
+        previous = Some(token_span.end);
+    }
 }
 
 /// Mirrors Prettier's block printing: `{` + indented statements + `}`.

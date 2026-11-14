@@ -22,7 +22,7 @@ mod text;
 mod vue;
 
 pub use angular::JsInAngularTemplate;
-pub use embed::{CssInHtmlStyleAttribute, JsInHtmlEventHandler};
+pub use embed::{CssInHtmlStyleAttribute, CssInHtmlStyleElement, JsInHtmlEventHandler};
 pub use vue::JsInVueTemplate;
 
 use block::write_block;

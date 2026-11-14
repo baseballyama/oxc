@@ -353,8 +353,9 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSExternalModuleReference<'a>> {
     fn write(&self, f: &mut JsFormatter<'_, 'a>) {
         write!(f, ["require("]);
 
+        // A comment breaks the parens only when it has to, as in an `import("a")` type
         if f.comments().has_comment_in_span(self.span) {
-            write!(f, [block_indent(&self.expression())]);
+            write!(f, [group(&soft_block_indent(&self.expression()))]);
         } else {
             write!(f, [self.expression()]);
         }

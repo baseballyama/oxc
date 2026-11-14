@@ -189,7 +189,7 @@
 
 ## typescript
 
-649/699 (92.85%)
+650/699 (92.99%)
 
 ### Failed
 
@@ -212,8 +212,6 @@
 - externals/prettier/typescript/comments/before-body/before-body.ts (💥, 57.89%)
   - ❓unclassified
 - externals/prettier/typescript/comments/consistent-with-flow/19903.ts (💥, 69.23%)
-  - ❓unclassified
-- externals/prettier/typescript/comments/first-argument/first-argument.ts (💥, 81.16%)
   - ❓unclassified
 - externals/prettier/typescript/comments/method_types.ts (💥, 82.05%)
   - ❓unclassified

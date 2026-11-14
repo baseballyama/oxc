@@ -436,7 +436,7 @@ fn comma() {
 
     test_minify("1, 2, 3", "1,2,3;");
     test_minify("1, a = b, 3", "1,a=b,3;");
-    test_minify("1, (2, 3), 4", "1,2,3,4;");
+    test_minify("1, (2, 3), 4", "1,(2,3),4;");
 }
 
 #[test]
@@ -490,6 +490,15 @@ fn r#yield() {
     );
     test_minify("function *foo() { yield (a, b) }", "function*foo(){yield(a,b)}");
     test_minify("function *foo() { yield a, b }", "function*foo(){yield a,b}");
+}
+
+#[test]
+fn nested_sequence() {
+    test_minify("(a, b), c", "(a,b),c;");
+    test_minify("a, (b, c)", "a,(b,c);");
+    test_minify("a, b, c", "a,b,c;");
+    test_minify("a = 1, b = 2", "a=1,b=2;");
+    test_minify("a, () => b, c", "a,()=>b,c;");
 }
 
 #[test]

@@ -297,8 +297,9 @@ fn test_member() {
 #[test]
 fn test_comma() {
     test("1, 2, 3", "1, 2, 3;\n");
-    test("(1, 2), 3", "1, 2, 3;\n");
-    test("1, (2, 3)", "1, 2, 3;\n");
+    // A sequence inside a sequence keeps its parentheses, so the tree prints as it was read.
+    test("(1, 2), 3", "(1, 2), 3;\n");
+    test("1, (2, 3)", "1, (2, 3);\n");
     test("a ? (b, c) : (d, e)", "a ? (b, c) : (d, e);\n");
     test("let x = (a, b)", "let x = (a, b);\n");
     test("(x = a), b", "x = a, b;\n");

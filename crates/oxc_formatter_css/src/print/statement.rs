@@ -291,7 +291,11 @@ fn write_qualified_rule<'a>(rule: &QualifiedRule<'a>, f: &mut CssFormatter<'_, '
         return;
     }
     selector::write_selector_list(&rule.selector, selector::SelectorListStyle::Hard, f);
-    write!(f, space());
+    let selector_end = to_span(rule.selector.span()).end;
+    let selector_text = f.context().source_text().slice_range(sel_start, selector_end);
+    if !selector::ends_with_escape_terminator(selector_text) {
+        write!(f, space());
+    }
     let is_icss = selector::is_icss_selector(&rule.selector);
     let was = f.context().in_icss_rule().replace(is_icss);
     write_block(&rule.block, f);

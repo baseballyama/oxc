@@ -130,7 +130,8 @@ pub fn parse_for_format<'a>(
 /// Unlike [`format()`], this:
 /// - allocates from the session's shared arena and `GroupId` space
 /// - emits neither a BOM nor the trailing newline
-/// - parses a fragment ([`CssRoot::Fragment`]), so root declarations are statements
+/// - parses a fragment ([`CssRoot::Fragment`]), so root declarations are statements,
+///   except in a `<style>` element ([`CssEmbeddedIn::StyleElement`])
 /// - `embedded_in` is what the part is embedded in, for the parse mode and print rules that depend on it ([`CssEmbeddedIn`]);
 ///   JSDoc / Markdown code blocks pass `None`
 ///
@@ -147,10 +148,10 @@ pub fn format_to_ir<'a>(
 ) -> Result<EmbeddedIr<'a>, OxcDiagnostic> {
     // `FormatSession::dispatch` never hands a BOM-headed input to an embedded part,
     // so the BOM split inside `parse_for_format` is a no-op here.
-    let root = if embedded_in == Some(CssEmbeddedIn::CssInJsTemplate) {
-        CssRoot::CssInJsTemplate
-    } else {
-        CssRoot::Fragment
+    let root = match embedded_in {
+        Some(CssEmbeddedIn::CssInJsTemplate) => CssRoot::CssInJsTemplate,
+        Some(CssEmbeddedIn::StyleElement) => CssRoot::Stylesheet,
+        Some(CssEmbeddedIn::HtmlStyleAttribute) | None => CssRoot::Fragment,
     };
     let ParsedCss { stylesheet, comments, source, front_matter, .. } =
         parse_for_format(session.allocator(), source_text, options, root)?;
@@ -179,6 +180,9 @@ pub enum CssEmbeddedIn {
     /// An HTML `style` attribute's value: its declarations print on one line when they fit,
     /// the last `;` only when they do not.
     HtmlStyleAttribute,
+    /// The body of a `<style>` element, a whole style sheet: a root declaration is an error,
+    /// as in a file ([`CssRoot::Stylesheet`]).
+    StyleElement,
 }
 
 /// What a CSS source is parsed as.

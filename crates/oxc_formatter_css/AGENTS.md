@@ -38,6 +38,7 @@ The shared policy applies; CSS specifics:
 - `oxc-css-parser` is error-tolerant via `parser.recoverable_errors()`, but any parse error still bails out
 - `TopLevelDeclaration`: a root declaration in Css and Scss, so standalone `format()` rejects it (oxc-css-parser AGENTS.md "Acceptance")
   - `format_to_ir()` parses a fragment (`CssRoot::Fragment`, the parser's `block_contents`): the root follows the rules inside a block, so it is a statement
+    - except the body of a `<style>` element (`CssEmbeddedIn::StyleElement`), a whole style sheet: a root declaration is an error there, as in a file
     - `` css`display: flex;` `` is the dominant css-in-js shape, and MDN-style property snippets in Markdown code blocks
   - Less parses and formats it: less.js accepts it at parse time and fails only at eval
 

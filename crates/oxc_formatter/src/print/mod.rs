@@ -1769,8 +1769,33 @@ impl<'a> Format<'a, JsFormatContext<'a>> for FormatTSSignature<'a, '_> {
             return write!(f, [self.signature]);
         }
 
-        write!(f, [&self.signature]);
+        // The member's span ends with its source separator; a same-line comment after it stays
+        // behind the printed one, as the separator is a class-2 token
+        let span = self.signature.span();
+        let comments = f.context().comments();
+        let source_text = f.source_text();
+        let after_separator = (source_text.bytes_contain(span.end - 1, span.end, b';')
+            || source_text.bytes_contain(span.end - 1, span.end, b','))
+        .then(|| comments.end_of_line_comments_after(span.end))
+        .filter(|after| {
+            !after.is_empty()
+                && !after.iter().any(|comment| comments.is_suppression_comment(comment))
+        });
 
+        if after_separator.is_some() {
+            format_content_without_comments_after(&self.signature, span.end, f);
+        } else {
+            write!(f, [&self.signature]);
+        }
+        self.write_separator(f);
+        if let Some(comments) = after_separator {
+            write!(f, [FormatTrailingComments::Comments(comments)]);
+        }
+    }
+}
+
+impl<'a> FormatTSSignature<'a, '_> {
+    fn write_separator(&self, f: &mut JsFormatter<'_, 'a>) {
         match f.options().semicolons {
             Semicolons::Always => {
                 if self.next_signature.is_none() {

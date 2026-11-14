@@ -132,10 +132,5 @@ fn format_as_or_satisfies_expression<'a>(
 }
 
 fn is_callee_or_object_context(span: Span, parent: &AstNodes<'_, '_>) -> bool {
-    parent.is_member_object_span(span)
-        // Or CallExpression callee (Not NewExpression, to align with Prettier)
-        // https://github.com/prettier/prettier/blob/fdfa6701767f5140a85902ecc9fb6444f5b4e3f8/src/language-js/print/cast-expression.js#L28-L33
-        // NOTE: We may revert this if resolved: https://github.com/prettier/prettier/issues/18406
-        // || parent.is_call_like_callee_span(span)
-        || matches!(parent, AstNodes::CallExpression(call) if call.callee.span() == span)
+    parent.is_member_object_span(span) || parent.is_call_like_callee_span(span)
 }

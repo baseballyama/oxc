@@ -146,7 +146,7 @@
 
 ## typescript
 
-636/679 (93.67%)
+637/679 (93.81%)
 
 ### Failed
 
@@ -157,8 +157,6 @@
 - externals/prettier/typescript/as/break-after-keyword/18148.ts (💥, 93.33%)
   - ❓unclassified
 - externals/prettier/typescript/as/comments/18160.ts (💥, 54.21%)
-  - ❓unclassified
-- externals/prettier/typescript/cast/18406.ts (💥, 84.21%)
   - ❓unclassified
 - externals/prettier/typescript/class-comment/class-implements.ts (💥, 93.33%)
   - ❓unclassified

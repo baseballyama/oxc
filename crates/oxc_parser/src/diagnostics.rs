@@ -313,14 +313,16 @@ parser_diagnostics! {
             .with_help("Remove the line break before here")
     };
 
+    // A destructuring declaration must have an initializer. (1182)
     invalid_destructuring_declaration(span: Span) => {
-        OxcDiagnostic::error("Missing initializer in destructuring declaration")
+        ts_error("1182", "Missing initializer in destructuring declaration")
             .with_label(span)
             .with_help("Add an initializer (e.g. ` = undefined`) here")
     };
 
+    // 'const' declarations must be initialized. (1155)
     missing_initializer_in_const(span: Span) => {
-        OxcDiagnostic::error("Missing initializer in const declaration")
+        ts_error("1155", "Missing initializer in const declaration")
             .with_label(span)
             .with_help("Add an initializer (e.g. ` = undefined`) here")
     };

@@ -1,6 +1,6 @@
 ## javascript
 
-1185/1284 (92.29%)
+1186/1284 (92.37%)
 
 ### Failed
 
@@ -99,8 +99,6 @@
 - externals/prettier/js/identifier/await/snippet: #8 (💥, 0.00%)
   - ❓unclassified
 - externals/prettier/js/identifier/await/snippet: #9 (💥, 0.00%)
-  - ❓unclassified
-- externals/prettier/js/if-statement/condition-break/boolean-expression.js (💥, 97.01%)
   - ❓unclassified
 - externals/prettier/js/if-statement/expr_and_same_line_comments.js (💥, 81.93%)
   - ❓unclassified

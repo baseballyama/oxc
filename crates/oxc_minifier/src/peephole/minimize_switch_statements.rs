@@ -187,7 +187,7 @@ impl<'a> PeepholeOptimizations {
                 if let Some(test) = case.test.take()
                     && (index == 0 || test.may_have_side_effects(ctx))
                 {
-                    kept_tests.push(test);
+                    Self::extend_sequence(&mut kept_tests, test);
                 }
                 keep_var.visit_switch_case(&case);
                 ctx.drop_switch_case(&case);
@@ -221,7 +221,7 @@ impl<'a> PeepholeOptimizations {
                     && case.test.may_have_side_effects(ctx);
 
             if keep_test && let Some(test) = case.test.take() {
-                kept_tests.push(test);
+                Self::extend_sequence(&mut kept_tests, test);
             }
 
             if index == entry_index {

@@ -1,6 +1,6 @@
 ## javascript
 
-1224/1303 (93.94%)
+1225/1303 (94.01%)
 
 ### Failed
 
@@ -57,8 +57,6 @@
 - externals/prettier/js/function/iife.js (💥, 14.43%)
   - ❓unclassified
 - externals/prettier/js/function/issue-12967.js (💥, 0.00%)
-  - ❓unclassified
-- externals/prettier/js/if/condition-break/boolean-expression.js (💥, 97.01%)
   - ❓unclassified
 - externals/prettier/js/if/expr_and_same_line_comments.js (💥, 81.93%)
   - ❓unclassified

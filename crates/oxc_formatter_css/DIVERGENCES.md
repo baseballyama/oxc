@@ -376,7 +376,7 @@ The Prettier-compat raw paths keep the source as-is: a selector or at-rule prelu
 ## call-after-line-comment-indent
 
 - Why: uniform-rule (comment presence never changes layout; prettier/prettier#19427)
-- Pin: `tests/fixtures/format/scss/inline-comment-before-call.scss`
+- Pin: `tests/fixtures/format/scss/inline-comment-before-call.scss`, `tests/fixtures/format/css/comment-before-call-in-comma-list.css`
 
 ```scss
 /* input */
@@ -407,6 +407,7 @@ width: pow(
 
 Prettier double-indents a function call directly after a `//` comment in nested-args position, a forgotten leftover of the incomplete prettier/prettier#4878 fix (prettier/prettier#7844 covered only the SCSS-map / direct paren-group child case);
 ours sits at the normal +1 / `)` +0 like every comment-free call.
+In CSS, a `/* */` in the middle of a comma list does the same to the call after it (+2 on the body and the `)`), while a comment that starts the list does not.
 Same rule as `comment-preceded-map-indent`.
 
 ## nested-map-context-indent
@@ -1237,6 +1238,57 @@ The value writer is shared, so SCSS and Less print the same (Prettier normalizes
 The escaped identifier `\-\-CamelCase` decodes to the custom property name `--CamelCase`.
 Custom property names are case-sensitive, so lowercasing the declaration while preserving the reference makes `var(\-\-CamelCase)` unresolved.
 Escaped custom property names therefore preserve their source spelling, like names written with a literal `--` prefix.
+
+## cdo-cdc-dropped
+
+- Why: semantics
+- Pin: `tests/fixtures/format/css/cdo-cdc.css`
+
+```css
+/* input */
+<!--
+a { color: red; }
+-->
+
+/* ours */
+a {
+  color: red;
+}
+
+/* prettier: CssSyntaxError: Unknown word -->, the input is left as-is */
+```
+
+At the top level of a style sheet, `<!--` and `-->` mean nothing (css-syntax-3 §5.4.1 "consume a list of rules" drops them),
+and `oxc-css-parser` reads them the same way, so no node keeps them; the output reads as the same rules.
+postcss has no rule for them and throws.
+
+## invalid-selector-prelude-verbatim
+
+- Why: uniform-rule (raw is verbatim; AGENTS.md "Printing raw vs typed")
+- Pin: `tests/fixtures/format/css/invalid-selector-prelude-verbatim.css`
+
+```css
+/* input */
+p:not(p > ) {}
+.a:nth-child(n+) {}
+
+/* ours */
+p:not(p > ) {
+}
+.a:nth-child(n+) {
+}
+
+/* prettier */
+p:not(p >) {
+}
+.a:nth-child(n +) {
+}
+```
+
+A prelude the selector grammar does not read (a combinator with nothing after it, an An+B with a dangling sign)
+is an `UnknownQualifiedRule` whose `TokenSeq` prelude prints verbatim, like every other raw prelude.
+Prettier reparses it with postcss-selector-parser, which spaces every `+` as a combinator and trims inside the parens;
+re-spacing a selector we could not read is not a layout rule of ours.
 
 ## custom-property-raw-verbatim
 

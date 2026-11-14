@@ -5469,7 +5469,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ }
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:2:7]
  1 │ // error, missing intialicer
  2 │ const c1;
@@ -5478,7 +5478,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:3:7]
  2 │ const c1;
  3 │ const c2: number;
@@ -5487,7 +5487,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:4:7]
  3 │ const c2: number;
  4 │ const c3, c4, c5 :string, c6;  // error, missing initialicer
@@ -5496,7 +5496,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:4:11]
  3 │ const c2: number;
  4 │ const c3, c4, c5 :string, c6;  // error, missing initialicer
@@ -5505,7 +5505,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:4:15]
  3 │ const c2: number;
  4 │ const c3, c4, c5 :string, c6;  // error, missing initialicer
@@ -5514,7 +5514,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:4:27]
  3 │ const c2: number;
  4 │ const c3, c4, c5 :string, c6;  // error, missing initialicer
@@ -5523,7 +5523,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:12:11]
  11 │ // error, can not be unintalized
  12 │ for(const c9; c9 < 1;) { }
@@ -5532,7 +5532,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[typescript/tsc/testdata/tests/cases/compiler/constDeclarations-errors.ts:15:20]
  14 │ // error, can not be unintalized
  15 │ for(const c10 = 0, c11; c10 < 1;) { }
@@ -5879,7 +5879,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/controlFlowFunctionLikeCircular1.ts:2:7]
  1 │ unionOfDifferentReturnType1(true);
  2 │ const unionOfDifferentReturnType1: { (a: any): number; } | { (a: number): typeof Date; };
@@ -6716,14 +6716,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   note: This identifier is reserved in strict mode code
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/downlevelLetConst2.ts:1:7]
  1 │ const a
    ·       ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/downlevelLetConst4.ts:1:7]
  1 │ const a: number
    ·       ─
@@ -10999,7 +10999,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: If you want to use `export =`, remove other `export`s and put all of them to the right hand value of `export =`. If you want to use `export`s, remove `export =` statement.
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:1:5]
  1 │ var [a], {b}, c, d; // error
    ·     ───
@@ -11007,7 +11007,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:1:10]
  1 │ var [a], {b}, c, d; // error
    ·          ───
@@ -11015,7 +11015,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:3:5]
  2 │ 
  3 │ var [a1 = undefined], {b1 = null}, c1 = undefined, d1 = null; // error
@@ -11024,7 +11024,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:3:23]
  2 │ 
  3 │ var [a1 = undefined], {b1 = null}, c1 = undefined, d1 = null; // error
@@ -11033,7 +11033,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:5:5]
  4 │ 
  5 │ var [a2]: [any], {b2}: { b2: any }, c2: any, d2: any;
@@ -11042,7 +11042,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:5:18]
  4 │ 
  5 │ var [a2]: [any], {b2}: { b2: any }, c2: any, d2: any;
@@ -11051,7 +11051,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/compiler/noImplicitAnyDestructuringVarDeclaration.ts:7:5]
  6 │ 
  7 │ var {b3}: { b3 }, c3: { b3 }; // error in type instead
@@ -15689,7 +15689,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  91 │     z(x);
     ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
      ╭─[typescript/tsc/testdata/tests/cases/compiler/unusedLocalsInMethod4.ts:103:11]
  102 │ function f9() {  
  103 │     const x: number; // should have only one error
@@ -21186,7 +21186,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Add a parameter here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/declarationWithNoInitializer.ts:1:5]
  1 │ var [a, b];          // Error, no initializer
    ·     ──────
@@ -21194,7 +21194,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/declarationWithNoInitializer.ts:2:5]
  1 │ var [a, b];          // Error, no initializer
  2 │ var {c, d};          // Error, no initializer
@@ -21411,7 +21411,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ·          ╰── `blah2` has already been declared here
     ╰────
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:2:9]
  1 │ (function () {
  2 │     var {};
@@ -21420,7 +21420,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:3:9]
  2 │     var {};
  3 │     let {};
@@ -21429,7 +21429,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:4:11]
  3 │     let {};
  4 │     const {};
@@ -21438,7 +21438,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:6:9]
  5 │ 
  6 │     var [];
@@ -21447,7 +21447,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:7:9]
  6 │     var [];
  7 │     let [];
@@ -21456,7 +21456,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5.ts:8:11]
  7 │     let [];
  8 │     const [];
@@ -21465,7 +21465,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:2:9]
  1 │ (function () {
  2 │     var {};
@@ -21474,7 +21474,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:3:9]
  2 │     var {};
  3 │     let {};
@@ -21483,7 +21483,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:4:11]
  3 │     let {};
  4 │     const {};
@@ -21492,7 +21492,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:6:9]
  5 │ 
  6 │     var [];
@@ -21501,7 +21501,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:7:9]
  6 │     var [];
  7 │     let [];
@@ -21510,7 +21510,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES5iterable.ts:8:11]
  7 │     let [];
  8 │     const [];
@@ -21519,7 +21519,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:2:9]
  1 │ (function () {
  2 │     var {};
@@ -21528,7 +21528,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:3:9]
  2 │     var {};
  3 │     let {};
@@ -21537,7 +21537,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:4:11]
  3 │     let {};
  4 │     const {};
@@ -21546,7 +21546,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:6:9]
  5 │ 
  6 │     var [];
@@ -21555,7 +21555,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:7:9]
  6 │     var [];
  7 │     let [];
@@ -21564,7 +21564,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in destructuring declaration
+  × TS(1182): Missing initializer in destructuring declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/emptyVariableDeclarationBindingPatterns02_ES6.ts:8:11]
  7 │     let [];
  8 │     const [];
@@ -21653,7 +21653,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ 
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/for-ofStatements/for-of2.ts:1:7]
  1 │ const v;
    ·       ─
@@ -22309,14 +22309,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  1 │ const
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/variableDeclarations/VariableDeclaration2_es6.ts:1:7]
  1 │ const a
    ·       ─
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/variableDeclarations/VariableDeclaration4_es6.ts:1:7]
  1 │ const a: number
    ·       ─
@@ -25207,7 +25207,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ let;
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/externalModules/exportNonInitializedVariablesInIfThenStatementNoCrash1.ts:4:14]
  3 │ if (true)
  4 │ export const cssExports: CssExports;
@@ -26317,7 +26317,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·               ▲
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/jsx/jsxParsingErrorImmediateSpreadInAttributeValue.tsx:8:7]
  7 │ 
  8 │ const X: any
@@ -26326,7 +26326,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
     ╭─[typescript/tsc/testdata/tests/cases/conformance/jsx/jsxParsingErrorImmediateSpreadInAttributeValue.tsx:9:7]
   8 │ const X: any
   9 │ const a: any
@@ -31504,7 +31504,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·       ──
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/for-ofStatements/ES5For-of20.ts:4:15]
  3 │     for (let v of [v]) {
  4 │         const v;
@@ -31555,7 +31555,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  14 │           `height: var foo`,
     ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/labeledStatements/labeledStatementExportDeclarationNoCrash1.ts:3:14]
  2 │ 
  3 │ export const box: string
@@ -31564,7 +31564,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Add an initializer (e.g. ` = undefined`) here
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/statements/labeledStatements/labeledStatementExportDeclarationNoCrash1.ts:5:14]
  4 │ subTitle:
  5 │ export const title: string
@@ -32885,7 +32885,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ let o8 = { ...*o };
    ╰────
 
-  × Missing initializer in const declaration
+  × TS(1155): Missing initializer in const declaration
    ╭─[typescript/tsc/testdata/tests/cases/conformance/types/stringLiteral/stringLiteralTypesInVariableDeclarations01.ts:4:7]
  3 │ let c: "bar";
  4 │ const d: "baz";

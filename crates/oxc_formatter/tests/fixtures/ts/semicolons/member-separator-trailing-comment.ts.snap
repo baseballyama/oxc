@@ -1,0 +1,113 @@
+---
+source: crates/oxc_formatter/tests/fixtures/mod.rs
+---
+==================== Input ====================
+interface P {
+  a?: string; /* c */
+  b?: string; /*
+   * multi
+   **/
+  c?: string; /** MARK */
+}
+type T = { m0?: string; /** MARK */ };
+interface P {
+  a?: string /* c */;
+  b?: string /* c */ ; /* d */
+  e?: string /* only */
+  f?: string
+}
+type L = {
+  m0?: string; /** MARK */
+  m1?: number;
+};
+
+==================== Output ====================
+------------------------------
+{ printWidth: 80, semi: true }
+------------------------------
+interface P {
+  a?: string; /* c */
+  b?: string; /*
+   * multi
+   **/
+  c?: string; /** MARK */
+}
+type T = { m0?: string /** MARK */ };
+interface P {
+  a?: string /* c */;
+  b?: string /* c */; /* d */
+  e?: string /* only */;
+  f?: string;
+}
+type L = {
+  m0?: string; /** MARK */
+  m1?: number;
+};
+
+-------------------------------
+{ printWidth: 100, semi: true }
+-------------------------------
+interface P {
+  a?: string; /* c */
+  b?: string; /*
+   * multi
+   **/
+  c?: string; /** MARK */
+}
+type T = { m0?: string /** MARK */ };
+interface P {
+  a?: string /* c */;
+  b?: string /* c */; /* d */
+  e?: string /* only */;
+  f?: string;
+}
+type L = {
+  m0?: string; /** MARK */
+  m1?: number;
+};
+
+-------------------------------
+{ printWidth: 80, semi: false }
+-------------------------------
+interface P {
+  a?: string /* c */
+  b?: string /*
+   * multi
+   **/
+  c?: string /** MARK */
+}
+type T = { m0?: string /** MARK */ }
+interface P {
+  a?: string /* c */
+  b?: string /* c */ /* d */
+  e?: string /* only */
+  f?: string
+}
+type L = {
+  m0?: string /** MARK */
+  m1?: number
+}
+
+--------------------------------
+{ printWidth: 100, semi: false }
+--------------------------------
+interface P {
+  a?: string /* c */
+  b?: string /*
+   * multi
+   **/
+  c?: string /** MARK */
+}
+type T = { m0?: string /** MARK */ }
+interface P {
+  a?: string /* c */
+  b?: string /* c */ /* d */
+  e?: string /* only */
+  f?: string
+}
+type L = {
+  m0?: string /** MARK */
+  m1?: number
+}
+
+===================== End =====================

@@ -9,6 +9,7 @@ p {
     escaped: \};
     nested: [x; y];
     spaced: "a  b"   c;
+    color/* name */: /* before */#fff/* after */;
   };
   color: blue;
 }
@@ -24,6 +25,7 @@ p {
     escaped: \};
     nested: [x; y];
     spaced: "a  b" c;
+    color/* name */: /* before */ #fff /* after */;
   };
   color: blue;
 }
@@ -38,6 +40,7 @@ p {
     escaped: \};
     nested: [x; y];
     spaced: "a  b" c;
+    color/* name */: /* before */ #fff /* after */;
   };
   color: blue;
 }

@@ -603,6 +603,8 @@ fn custom_property_block<'v>(values: &'v [ComponentValue<'_>]) -> Option<Vec<&'v
 struct BlockDeclaration<'s, 't> {
     leading: Vec<&'s str>,
     tokens: &'t [&'t Lexed],
+    /// Where its text ends: at its `;`, or after its last token.
+    end: u32,
     trailing: Option<&'s str>,
 }
 
@@ -632,6 +634,7 @@ fn write_custom_property_block<'a>(tokens: &[&Lexed], f: &mut CssFormatter<'_, '
                     declarations.push(BlockDeclaration {
                         leading,
                         tokens: segment,
+                        end: span(token).start,
                         trailing: None,
                     });
                 }
@@ -644,8 +647,9 @@ fn write_custom_property_block<'a>(tokens: &[&Lexed], f: &mut CssFormatter<'_, '
     let rest = &inner[segment_start..];
     if let Some(first) = rest.first() {
         let leading = take_gap(source, &mut declarations, cursor, span(first).start);
-        declarations.push(BlockDeclaration { leading, tokens: rest, trailing: None });
-        cursor = span(rest[rest.len() - 1]).end;
+        let end = span(rest[rest.len() - 1]).end;
+        declarations.push(BlockDeclaration { leading, tokens: rest, end, trailing: None });
+        cursor = end;
     }
     let closing = take_gap(source, &mut declarations, cursor, span(tokens[tokens.len() - 1]).start);
     if declarations.is_empty() && closing.is_empty() {
@@ -663,16 +667,34 @@ fn write_custom_property_block<'a>(tokens: &[&Lexed], f: &mut CssFormatter<'_, '
             match colon {
                 Some(colon) => {
                     let (name, value) = declaration.tokens.split_at(colon);
-                    if let (Some(first), Some(last)) = (name.first(), name.last()) {
-                        write!(f, text(source.slice_range(span(first).start, span(last).end)));
+                    let colon_span = span(value[0]);
+                    // The name as written, with its comments: `color/* c */`.
+                    if let Some(first) = name.first() {
+                        let name = source.slice_range(span(first).start, colon_span.start);
+                        write!(f, text(name.trim_end()));
                     }
                     write!(f, ":");
-                    if value.len() > 1 {
+                    let value = &value[1..];
+                    let value_start = value.first().map_or(declaration.end, |t| span(t).start);
+                    for (_, comment) in
+                        gap_comments(source.slice_range(colon_span.end, value_start))
+                    {
                         write!(f, space());
-                        write_block_tokens(&value[1..], f);
+                        write_block_comment(comment, f);
+                    }
+                    if !value.is_empty() {
+                        write!(f, space());
+                        write_block_tokens(value, f);
                     }
                 }
                 None => write_block_tokens(declaration.tokens, f),
+            }
+            let last_end = span(declaration.tokens[declaration.tokens.len() - 1]).end;
+            if last_end < declaration.end {
+                for (_, comment) in gap_comments(source.slice_range(last_end, declaration.end)) {
+                    write!(f, space());
+                    write_block_comment(comment, f);
+                }
             }
             write!(f, ";");
             if let Some(comment) = declaration.trailing {

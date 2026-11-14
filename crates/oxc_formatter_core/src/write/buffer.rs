@@ -7,7 +7,7 @@ use oxc_allocator::{Allocator, ArenaVec};
 use crate::{
     FormatElement, FormatState, Formatter,
     format_element::{
-        Interned, LineMode, PrintMode,
+        BestFittingElement, Interned, LineMode, PrintMode,
         tag::{Condition, Tag},
     },
 };
@@ -109,6 +109,9 @@ pub struct SoftLines<'ast> {
     /// Drops every element: the mode was entered inside an enclosing mode's expanded conditional content,
     /// all of which the enclosing mode drops.
     discard: bool,
+
+    /// Keeps every variant of a best fitting element, each with its soft line breaks removed.
+    keep_variants: bool,
 }
 
 impl<'ast> SoftLines<'ast> {
@@ -116,11 +119,12 @@ impl<'ast> SoftLines<'ast> {
     ///
     /// The nested mode's output passes the enclosing one unchanged (it holds no soft lines, conditional content, or best fitting),
     /// so only whether the enclosing one drops everything carries over.
-    pub fn new(enclosing: Option<&SoftLines<'ast>>) -> Self {
+    pub fn new(enclosing: Option<&SoftLines<'ast>>, keep_variants: bool) -> Self {
         Self {
             interned_cache: FxHashMap::default(),
             conditional_content_stack: Vec::new(),
             discard: enclosing.is_some_and(|s| s.discard || s.is_in_expanded_conditional_content()),
+            keep_variants,
         }
     }
 
@@ -170,9 +174,18 @@ impl<'ast> SoftLines<'ast> {
                     interned,
                     &mut self.interned_cache,
                     &mut self.conditional_content_stack,
+                    self.keep_variants,
                     allocator,
                 );
                 out.push(FormatElement::Interned(cleaned));
+            }
+            FormatElement::BestFitting(best_fitting) if self.keep_variants => {
+                out.push(FormatElement::BestFitting(clean_variants(
+                    &best_fitting,
+                    &mut self.interned_cache,
+                    &mut self.conditional_content_stack,
+                    allocator,
+                )));
             }
             // Since this mode aims to simulate infinite print width, we don't need to retain the best fitting.
             // Just extract the flattest variant and then handle elements within it.
@@ -191,6 +204,7 @@ fn clean_interned<'ast>(
     interned: Interned<'ast>,
     interned_cache: &mut FxHashMap<Interned<'ast>, Interned<'ast>>,
     condition_content_stack: &mut Vec<Condition>,
+    keep_variants: bool,
     allocator: &'ast Allocator,
 ) -> Interned<'ast> {
     if let Some(cleaned) = interned_cache.get(&interned) {
@@ -210,6 +224,7 @@ fn clean_interned<'ast>(
                     inner.clone(),
                     interned_cache,
                     condition_content_stack,
+                    keep_variants,
                     allocator,
                 );
 
@@ -234,6 +249,7 @@ fn clean_interned<'ast>(
                         &mut cleaned,
                         interned_cache,
                         condition_content_stack,
+                        keep_variants,
                         allocator,
                     );
                 }
@@ -258,6 +274,7 @@ fn push_cleaned_element<'ast>(
     cleaned: &mut ArenaVec<'ast, FormatElement<'ast>>,
     interned_cache: &mut FxHashMap<Interned<'ast>, Interned<'ast>>,
     condition_content_stack: &mut Vec<Condition>,
+    keep_variants: bool,
     allocator: &'ast Allocator,
 ) {
     match element {
@@ -283,6 +300,15 @@ fn push_cleaned_element<'ast>(
                 interned.clone(),
                 interned_cache,
                 condition_content_stack,
+                keep_variants,
+                allocator,
+            )));
+        }
+        FormatElement::BestFitting(best_fitting) if keep_variants => {
+            cleaned.push(FormatElement::BestFitting(clean_variants(
+                best_fitting,
+                interned_cache,
+                condition_content_stack,
                 allocator,
             )));
         }
@@ -295,10 +321,38 @@ fn push_cleaned_element<'ast>(
                     cleaned,
                     interned_cache,
                     condition_content_stack,
+                    keep_variants,
                     allocator,
                 );
             }
         }
         element => cleaned.push(element.clone()),
     }
+}
+
+/// `best_fitting` with the soft line breaks removed from each of its variants.
+fn clean_variants<'ast>(
+    best_fitting: &BestFittingElement<'ast>,
+    interned_cache: &mut FxHashMap<Interned<'ast>, Interned<'ast>>,
+    condition_content_stack: &mut Vec<Condition>,
+    allocator: &'ast Allocator,
+) -> BestFittingElement<'ast> {
+    let variants = best_fitting.variants();
+    let mut cleaned_variants = ArenaVec::with_capacity_in(variants.len(), &allocator);
+    for variant in variants {
+        let mut cleaned = ArenaVec::with_capacity_in(variant.len(), &allocator);
+        for element in *variant {
+            push_cleaned_element(
+                element,
+                &mut cleaned,
+                interned_cache,
+                condition_content_stack,
+                true,
+                allocator,
+            );
+        }
+        cleaned_variants.push(cleaned.into_arena_slice());
+    }
+    // SAFETY: as many variants as `best_fitting`, which has at least two.
+    unsafe { BestFittingElement::from_vec_unchecked(cleaned_variants) }
 }

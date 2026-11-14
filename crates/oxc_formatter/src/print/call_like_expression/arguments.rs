@@ -11,7 +11,8 @@ use crate::{
         Comments, JoinBuilderJsExt as _, JsFormatContext, JsFormatter, JsFormatterExt as _,
         prelude::{
             FormatElements, best_fitting_variant, empty_line, expand_parent, format_once,
-            format_with, group, soft_block_indent, soft_line_break_or_space, space,
+            format_with, group, soft_block_indent, soft_line_break_or_space,
+            soft_space_or_block_indent, space,
         },
         trivia::format_dangling_comments,
     },
@@ -245,7 +246,8 @@ fn format_all_elements_broken_out<'a>(
         f,
         [group(&format_args!(
             "(",
-            soft_block_indent(&format_once(move |f| {
+            // Prettier's `line`s, which its `removeLines` turns into spaces.
+            soft_space_or_block_indent(&format_once(move |f| {
                 for (index, (element, lines_before)) in elements.into_iter().enumerate() {
                     if let Some(element) = element {
                         if index > 0 {
@@ -281,7 +283,8 @@ fn format_all_args_broken_out<'a>(
         f,
         [group(&format_args!(
             "(",
-            soft_block_indent(&format_with(move |f| {
+            // Prettier's `line`s, which its `removeLines` turns into spaces.
+            soft_space_or_block_indent(&format_with(move |f| {
                 for (index, argument) in node.iter().enumerate() {
                     if index > 0 {
                         match f.lines_before(argument.span()) {

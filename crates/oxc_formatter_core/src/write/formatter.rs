@@ -142,7 +142,22 @@ impl<'buf, 'ast, C> Formatter<'buf, 'ast, C> {
     /// * Replaces [`lines`](FormatElement::Line) with the mode [`SoftOrSpace`](crate::LineMode::SoftOrSpace) with a [`Space`](FormatElement::Space).
     /// * Keeps only the most flat variant of best fitting elements, and only the flat conditional content.
     pub fn remove_soft_lines(&mut self, content: impl FnOnce(&mut Formatter<'_, 'ast, C>)) {
-        let mut soft_lines = SoftLines::new(self.soft_lines.as_deref());
+        self.remove_lines_with(false, content);
+    }
+
+    /// Writes what `content` writes as Prettier's `removeLines` leaves a document: like
+    /// [`Formatter::remove_soft_lines`], but a best fitting element keeps every variant, each with its
+    /// soft line breaks removed, so the printer still picks the first that fits.
+    pub fn remove_lines(&mut self, content: impl FnOnce(&mut Formatter<'_, 'ast, C>)) {
+        self.remove_lines_with(true, content);
+    }
+
+    fn remove_lines_with(
+        &mut self,
+        keep_variants: bool,
+        content: impl FnOnce(&mut Formatter<'_, 'ast, C>),
+    ) {
+        let mut soft_lines = SoftLines::new(self.soft_lines.as_deref(), keep_variants);
         content(&mut Formatter {
             state: &mut *self.state,
             start: self.start,

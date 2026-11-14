@@ -6,7 +6,7 @@ arguments: --type-check-only
 working directory: fixtures/cli/tsgolint_type_check_only_svelte_syntax_error
 ----------
 
-  x Unexpected token
+  x TS(1109): Unexpected token
    ,-[test.svelte:2:21]
  1 | <script lang="ts">
  2 | const foo: number = ;

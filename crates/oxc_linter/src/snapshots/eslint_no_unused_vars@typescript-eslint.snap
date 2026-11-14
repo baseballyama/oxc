@@ -306,7 +306,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Consider removing this declaration.
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[no_unused_vars.ts:7:12]
  6 │             import TheFoo = Foo;
  7 │           },

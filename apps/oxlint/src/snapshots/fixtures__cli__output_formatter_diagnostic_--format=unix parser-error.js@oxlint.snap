@@ -5,7 +5,7 @@ source: apps/oxlint/src/tester.rs
 arguments: --format=unix parser-error.js
 working directory: fixtures/cli/output_formatter_diagnostic
 ----------
-parser-error.js:3:9: Expected `;` but found `:` [Error]
+parser-error.js:3:9: Expected `;` but found `:` [Error/TS(1005)]
 
 1 problem
 ----------

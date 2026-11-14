@@ -6,7 +6,7 @@ arguments: --type-check-only
 working directory: fixtures/cli/tsgolint_type_check_only_syntax_error
 ----------
 
-  x Unexpected token
+  x TS(1109): Unexpected token
    ,-[index.ts:1:21]
  1 | const foo: number = ;
    :                     ^

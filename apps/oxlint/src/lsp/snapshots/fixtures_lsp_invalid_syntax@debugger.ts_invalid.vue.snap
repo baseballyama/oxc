@@ -7,7 +7,7 @@ Linted file: fixtures/lsp/invalid_syntax/debugger.ts
 ########## Diagnostic Reports
 File URI: file://<variable>/fixtures/lsp/invalid_syntax/debugger.ts
 
-code: ""
+code: "TS(1109)"
 code_description.href: "None"
 message: String("Unexpected token")
 range: Range { start: Position { line: 0, character: 9 }, end: Position { line: 0, character: 10 } }

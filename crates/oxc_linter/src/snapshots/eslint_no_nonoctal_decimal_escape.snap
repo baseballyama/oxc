@@ -253,12 +253,12 @@ source: crates/oxc_linter/src/tester.rs
    ·               ─
    ╰────
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[no_nonoctal_decimal_escape.tsx:1:14]
  1 │ var foo = '8'\n  bar = '\\9'
-   ·              ▲
+   ·              ─┬
+   ·               ╰── `,` expected
    ╰────
-  help: Try inserting a semicolon here
 
   ⚠ eslint(no-nonoctal-decimal-escape): Don't use '\8' escape sequence.
    ╭─[no_nonoctal_decimal_escape.tsx:1:5]

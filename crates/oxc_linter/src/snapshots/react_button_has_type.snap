@@ -93,12 +93,11 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Change the `type` attribute to one of the allowed values: `button`, `submit`, or `reset`.
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[button_has_type.tsx:1:7]
+  × TS(1434): Unexpected keyword or identifier.
+   ╭─[button_has_type.tsx:1:1]
  1 │ button type/>
-   ·       ▲
+   · ──────
    ╰────
-  help: Try inserting a semicolon here
 
   ⚠ react(button-has-type): `button` elements must have a valid `type` attribute.
    ╭─[button_has_type.tsx:1:9]

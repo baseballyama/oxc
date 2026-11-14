@@ -1,7 +1,6 @@
 //! tsc's error for an expression statement that is a lone identifier followed by a token on the
 //! same line: usually a misspelled or unknown keyword.
 
-use cow_utils::CowUtils;
 use oxc_span::Span;
 
 use crate::{ParserConfig as Config, ParserImpl, diagnostics, lexer::Kind};
@@ -121,21 +120,36 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     }
 }
 
+/// The longest of [`KEYWORDS`], in UTF-16 units.
+const LONGEST_KEYWORD: usize = 10;
+
 /// tsc's `getSpellingSuggestion` over [`KEYWORDS`], whose names are all longer than the two
 /// characters it compares without case.
 #[expect(clippy::cast_precision_loss, clippy::cast_possible_truncation, clippy::cast_sign_loss)]
 fn spelling_suggestion(name: &str) -> Option<&'static str> {
-    let name: Vec<u16> = name.encode_utf16().collect();
-    let length = name.len() as f64;
-    let maximum_length_difference = 2.max((length * 0.34).floor() as usize);
-    let mut best_distance = (length * 0.4).floor() + 1.0;
+    // A name this long is further from every keyword than tsc's length limit.
+    let mut units = [0u16; 2 * LONGEST_KEYWORD];
+    let mut length = 0;
+    for unit in name.encode_utf16() {
+        if length == units.len() {
+            return None;
+        }
+        units[length] = unit;
+        length += 1;
+    }
+    let name = &units[..length];
+    let maximum_length_difference = 2.max((length as f64 * 0.34).floor() as usize);
+    let mut best_distance = (length as f64 * 0.4).floor() + 1.0;
     let mut best = None;
     for keyword in KEYWORDS {
-        let candidate: Vec<u16> = keyword.encode_utf16().collect();
-        if candidate.len().abs_diff(name.len()) > maximum_length_difference || candidate == name {
+        // Every keyword is ASCII, so its bytes are its UTF-16 units.
+        let candidate = keyword.as_bytes();
+        if candidate.len().abs_diff(length) > maximum_length_difference
+            || candidate.iter().map(|&byte| u16::from(byte)).eq(name.iter().copied())
+        {
             continue;
         }
-        if let Some(distance) = levenshtein_with_max(&name, &candidate, best_distance - 0.1) {
+        if let Some(distance) = levenshtein_with_max(name, candidate, best_distance - 0.1) {
             best_distance = distance;
             best = Some(keyword);
         }
@@ -143,16 +157,21 @@ fn spelling_suggestion(name: &str) -> Option<&'static str> {
     best
 }
 
-/// JavaScript's `toLowerCase` of one UTF-16 unit.
-fn lower(unit: u16) -> String {
-    String::from_utf16_lossy(&[unit]).cow_to_lowercase().into_owned()
+/// Whether JavaScript's `toLowerCase` gives one UTF-16 unit and one ASCII byte the same string.
+fn same_lowercase(unit: u16, byte: u8) -> bool {
+    // A lone surrogate lowercases to itself, which is no ASCII byte.
+    char::from_u32(u32::from(unit))
+        .is_some_and(|c| c.to_lowercase().eq(char::from(byte).to_lowercase()))
 }
 
 /// tsc's `levenshteinWithMax`: a substitution that only changes case costs 0.1, any other 2.
 #[expect(clippy::cast_precision_loss, clippy::cast_possible_truncation, clippy::cast_sign_loss)]
-fn levenshtein_with_max(s1: &[u16], s2: &[u16], max: f64) -> Option<f64> {
-    let mut previous: Vec<f64> = (0..=s2.len()).map(|i| i as f64).collect();
-    let mut current = vec![0.0; s2.len() + 1];
+fn levenshtein_with_max(s1: &[u16], s2: &[u8], max: f64) -> Option<f64> {
+    let mut previous = [0.0; LONGEST_KEYWORD + 1];
+    let mut current = [0.0; LONGEST_KEYWORD + 1];
+    for (j, value) in previous.iter_mut().enumerate().take(s2.len() + 1) {
+        *value = j as f64;
+    }
     let big = max + 0.01;
     for i in 1..=s1.len() {
         let c1 = s1[i - 1];
@@ -166,12 +185,10 @@ fn levenshtein_with_max(s1: &[u16], s2: &[u16], max: f64) -> Option<f64> {
             *value = big;
         }
         for j in min_j..=max_j {
-            let substitution = if lower(c1) == lower(s2[j - 1]) {
-                previous[j - 1] + 0.1
-            } else {
-                previous[j - 1] + 2.0
-            };
-            let distance = if c1 == s2[j - 1] {
+            let c2 = s2[j - 1];
+            let substitution =
+                if same_lowercase(c1, c2) { previous[j - 1] + 0.1 } else { previous[j - 1] + 2.0 };
+            let distance = if c1 == u16::from(c2) {
                 previous[j - 1]
             } else {
                 (previous[j] + 1.0).min(current[j - 1] + 1.0).min(substitution)
@@ -179,7 +196,7 @@ fn levenshtein_with_max(s1: &[u16], s2: &[u16], max: f64) -> Option<f64> {
             current[j] = distance;
             column_min = column_min.min(distance);
         }
-        for value in current.iter_mut().skip(max_j + 1) {
+        for value in current.iter_mut().take(s2.len() + 1).skip(max_j + 1) {
             *value = big;
         }
         if column_min > max {
@@ -189,4 +206,41 @@ fn levenshtein_with_max(s1: &[u16], s2: &[u16], max: f64) -> Option<f64> {
     }
     let result = previous[s2.len()];
     (result <= max).then_some(result)
+}
+
+#[cfg(test)]
+mod test {
+    use oxc_allocator::Allocator;
+    use oxc_span::SourceType;
+
+    use crate::Parser;
+
+    #[test]
+    fn suggestions_compare_case_as_javascript_does() {
+        // tsc 6.0.3's message for `<name> x;`. `İ` lowercases to two units and the Kelvin sign
+        // to `k`, which decides each suggestion at the length limit.
+        let cases = [
+            ("\u{212A}eyofs", Some("keyof")),
+            ("İnfers", None),
+            ("ınfers", None),
+            ("Infers", Some("infer")),
+            ("İnfer", Some("infer")),
+            ("İnfe", None),
+            ("Get", Some("get")),
+            ("GEt", Some("get")),
+            ("enuM", Some("enum")),
+            ("abcdefghijklmnopqrstu", None),
+        ];
+        for (name, suggestion) in cases {
+            let allocator = Allocator::default();
+            let source = format!("{name} x;");
+            let ret = Parser::new(&allocator, &source, SourceType::ts()).parse();
+            let message = ret.diagnostics.first().map(|error| error.message.to_string());
+            let expected = suggestion.map_or_else(
+                || "Unexpected keyword or identifier.".to_string(),
+                |keyword| format!("Unknown keyword or identifier. Did you mean '{keyword}'?"),
+            );
+            assert_eq!(message.as_deref(), Some(expected.as_str()), "{name}");
+        }
+    }
 }

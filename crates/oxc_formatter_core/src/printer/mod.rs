@@ -138,7 +138,7 @@ impl<'a> Printer<'a> {
         let args = stack.top();
         match element {
             FormatElement::Space => {
-                if self.state.line_width > 0 {
+                if self.state.line_has_content {
                     self.state.pending_space = true;
                 }
             }
@@ -151,7 +151,7 @@ impl<'a> Printer<'a> {
                 if args.mode().is_flat() {
                     match line_mode {
                         LineMode::Soft | LineMode::SoftOrSpace => {
-                            if line_mode == &LineMode::SoftOrSpace && self.state.line_width > 0 {
+                            if line_mode == &LineMode::SoftOrSpace && self.state.line_has_content {
                                 self.state.pending_space = true;
                             }
                             return Ok(());
@@ -178,7 +178,7 @@ impl<'a> Printer<'a> {
                     let count = count.get();
                     // A blank line is left behind from the start of a line always,
                     // mid-line only when a break remains after the line-ending one.
-                    let leaves_blank = count > 1 || self.state.line_width == 0;
+                    let leaves_blank = count > 1 || !self.state.line_has_content;
                     let indention = indent_stack.indention();
                     for _ in 0..count {
                         self.print_line_break(indention);
@@ -208,7 +208,7 @@ impl<'a> Printer<'a> {
                 // the pending space/indent mechanisms never materialize at a line end,
                 // and Text/Token content is the emitter's responsibility to keep trimmed.
                 let indention = indent_stack.indention();
-                if self.state.line_width > 0 {
+                if self.state.line_has_content {
                     self.print_line_break(indention);
                     self.state.has_empty_line = false;
                 }
@@ -756,6 +756,7 @@ impl<'a> Printer<'a> {
         }
         self.state.line_width +=
             indention.width(&self.state.prefix_nodes, self.options.indent_width());
+        self.state.line_has_content = true;
         if indention.prefix.is_some() {
             self.emit_prefix_chain(indention, false);
         }
@@ -803,7 +804,7 @@ impl<'a> Printer<'a> {
     /// (A literal line materializes the pending indention itself first, so nothing is left for this.)
     #[inline]
     fn print_line_break(&mut self, next: Indention) {
-        if self.state.line_width == 0 && self.state.pending_indent.prefix.is_some() {
+        if !self.state.line_has_content && self.state.pending_indent.prefix.is_some() {
             self.emit_prefix_chain(self.state.pending_indent, true);
         }
         self.print_char('\n');
@@ -823,11 +824,19 @@ impl<'a> Printer<'a> {
             }
             self.state.pending_space = false;
             self.state.line_width += 1;
+            self.state.line_has_content = true;
         }
     }
 
     fn print_text(&mut self, text: Text) {
         self.flush_pending_indention_and_space();
+        // The byte order mark a root entry re-emits at byte 0 (see `spec::split_bom`) is the
+        // file's envelope, which Prettier keeps outside its document, not a line's content.
+        let byte_order_mark =
+            self.state.buffer.is_empty() && matches!(text, Text::Text { text: "\u{feff}", .. });
+        if !byte_order_mark {
+            self.state.line_has_content = true;
+        }
 
         match text {
             Text::Token(text) => {
@@ -862,7 +871,9 @@ impl<'a> Printer<'a> {
             }
 
             self.state.line_width = 0;
+            self.state.line_has_content = false;
         } else {
+            self.state.line_has_content = true;
             let char_width = if char == '\t' {
                 // SAFETY: `'\t'` is an valid ASCII character
                 unsafe {
@@ -916,6 +927,9 @@ struct PrinterState<'a> {
     /// covering any depth would need Prettier's full command-stack shape.
     fill_separator_mode: Option<PrintMode>,
     line_width: usize,
+    /// Whether the current line holds printed content. Not `line_width > 0`: a zero-width
+    /// character, such as U+200B or a lone combining mark, is content too.
+    line_has_content: bool,
     has_empty_line: bool,
     line_suffixes: LineSuffixes<'a>,
     group_modes: GroupModes,
@@ -1148,6 +1162,7 @@ impl<'a, 'print> FitsMeasurer<'a, 'print> {
             pending_space: printer.state.pending_space,
             pending_line_space: false,
             line_width: printer.state.line_width,
+            line_has_content: printer.state.line_has_content,
             has_line_suffix: printer.state.line_suffixes.has_pending(),
             sorted_tailwind_classes: printer.state.sorted_tailwind_classes,
         };
@@ -1257,7 +1272,7 @@ impl<'a, 'print> FitsMeasurer<'a, 'print> {
 
         match element {
             FormatElement::Space => {
-                if self.state.line_width > 0 {
+                if self.state.line_has_content {
                     self.state.pending_space = true;
                 }
             }
@@ -1518,6 +1533,7 @@ impl<'a, 'print> FitsMeasurer<'a, 'print> {
     }
 
     fn fits_text(&mut self, text: Text) -> Fits {
+        self.state.line_has_content = true;
         let indent = std::mem::take(&mut self.state.pending_indent);
         self.state.line_width +=
             indent.width(&self.printer.state.prefix_nodes, self.options().indent_width());
@@ -1638,6 +1654,8 @@ struct FitsState<'print> {
     pending_line_space: bool,
     has_line_suffix: bool,
     line_width: usize,
+    /// See [PrinterState::line_has_content].
+    line_has_content: bool,
     sorted_tailwind_classes: &'print [String],
 }
 
@@ -1733,6 +1751,41 @@ mod tests {
         );
         // 2 breaks (line ending + 1 blank), then 2 more blanks.
         assert_eq!("a\n\n\n\nb", formatted.as_code());
+    }
+
+    #[test]
+    fn a_line_of_zero_width_text_is_not_empty() {
+        let allocator = Allocator::default();
+        // U+200B, a lone combining mark and U+FEFF take no columns, but a line holding one is not
+        // empty.
+        for zero_width in ["\u{200B}", "\u{301}", "\u{FEFF}"] {
+            let formatted = format_simple(
+                &allocator,
+                &format_args!(
+                    token("a"),
+                    hard_line_break(),
+                    text(zero_width),
+                    hard_line_break(),
+                    token("b")
+                ),
+            );
+            assert_eq!(format!("a\n{zero_width}\nb"), formatted.as_code());
+            let formatted = format_simple(
+                &allocator,
+                &format_args!(token("a"), hard_line_break(), text(zero_width), space(), token("b")),
+            );
+            assert_eq!(format!("a\n{zero_width} b"), formatted.as_code());
+        }
+    }
+
+    #[test]
+    fn the_byte_order_mark_at_byte_0_is_not_a_line() {
+        let allocator = Allocator::default();
+        let formatted = format_simple(
+            &allocator,
+            &format_args!(text("\u{feff}"), hard_line_break(), token("a")),
+        );
+        assert_eq!("\u{feff}a", formatted.as_code());
     }
 
     #[test]

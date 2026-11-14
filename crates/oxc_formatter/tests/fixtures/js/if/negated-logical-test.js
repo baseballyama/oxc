@@ -1,0 +1,22 @@
+// A `!(...)` or `!!(...)` around a logical expression that is the whole head hugs the head's parens.
+if (!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}
+
+while (!!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}
+
+do {} while (!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference"));
+
+if (a) {} else if (!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}
+
+// Not a logical expression, or not a `!`: the head soft-indents as before.
+if (!(node.type.name.length + node.type.value.length + node.type.other.length > limit)) {}
+
+if (typeof (node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}
+
+// A comment of the test's own cancels the hug; one inside its parens keeps it.
+if ( // comment
+!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}
+
+if (!(node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference") /* comment */) {}
+
+if (!( // comment
+node.type === "ImportExpression" || node.type === "TSImportType" || node.type === "TSExternalModuleReference")) {}

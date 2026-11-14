@@ -526,6 +526,14 @@ impl<'a> PeepholeOptimizations {
                 true
             }
         });
+        // An item the loop rewrote into a sequence is spliced in, so the sequence stays flat.
+        if e.expressions.iter().any(|item| matches!(item, Expression::SequenceExpression(_))) {
+            let items = e.expressions.take_in(ctx);
+            for item in items {
+                Self::extend_sequence(&mut e.expressions, item);
+            }
+            ctx.state.record_ast_change();
+        }
         if e.expressions.len() == 1 {
             let new_expr = e.expressions.pop().unwrap();
             ctx.replace_expression(expr, new_expr);

@@ -301,9 +301,61 @@ pub(super) fn write_interpolable_ident<'a>(
     if raw.contains('\n') || raw.contains('\r') {
         let joined = normalize_whitespace(raw);
         write!(f, text(f.allocator().alloc_str(&joined)));
+    } else if let Cow::Owned(canonical) = canonical_escape_terminators(raw) {
+        write!(f, text(f.allocator().alloc_str(&canonical)));
     } else {
         write!(f, text(raw));
     }
+}
+
+/// `raw` with the whitespace that ends each hex escape (css-syntax-3 §4.3.7) as one space,
+/// the same code points to a parser.
+fn canonical_escape_terminators(raw: &str) -> Cow<'_, str> {
+    let bytes = raw.as_bytes();
+    let mut out = String::new();
+    let (mut copied, mut i) = (0, 0);
+    while i < bytes.len() {
+        if bytes[i] != b'\\' {
+            i += 1;
+            continue;
+        }
+        let digits = bytes[i + 1..].iter().take(6).take_while(|b| b.is_ascii_hexdigit()).count();
+        if digits == 0 {
+            // `\X` escapes X itself, whitespace or not.
+            i += 2;
+            continue;
+        }
+        let at = i + 1 + digits;
+        let end = match bytes.get(at..) {
+            Some([b'\r', b'\n', ..]) => at + 2,
+            Some([b' ' | b'\t' | b'\n' | b'\r' | 0x0c, ..]) => at + 1,
+            _ => at,
+        };
+        if end != at && &raw[at..end] != " " {
+            out.push_str(&raw[copied..at]);
+            out.push(' ');
+            copied = end;
+        }
+        i = end;
+    }
+    if copied == 0 {
+        return Cow::Borrowed(raw);
+    }
+    out.push_str(&raw[copied..]);
+    Cow::Owned(out)
+}
+
+/// Whether `selector` ends with the whitespace that ends a hex escape, which prints as the one
+/// space before what follows.
+pub(super) fn ends_with_escape_terminator(selector: &str) -> bool {
+    let trimmed = selector.trim_end_matches([' ', '\t', '\n', '\r', '\u{c}']);
+    if trimmed.len() == selector.len() {
+        return false;
+    }
+    let digits = trimmed.bytes().rev().take_while(u8::is_ascii_hexdigit).count();
+    let head = &trimmed[..trimmed.len() - digits];
+    let backslashes = head.bytes().rev().take_while(|&b| b == b'\\').count();
+    (1..=6).contains(&digits) && backslashes % 2 == 1
 }
 
 /// Emit verbatim text (e.g. selector garbage-mode source) that may embed placeholders,

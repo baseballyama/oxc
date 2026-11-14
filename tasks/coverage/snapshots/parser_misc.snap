@@ -183,7 +183,7 @@ Negative Passed: 274/274 (100.00%)
    ·      ───────────────────────────
    ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
    ╭─[misc/fail/arrow-block-body-in-context.js:1:38]
  1 │ for (var f = () => {}, value = a in b;;);
    ·     ┬                                ┬
@@ -191,7 +191,7 @@ Negative Passed: 274/274 (100.00%)
    ·     ╰── Opened here
    ╰────
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
    ╭─[misc/fail/arrow-expression-body-in.js:1:26]
  1 │ for (var f = () => a in b;;);
    ·     ┬                    ┬
@@ -232,9 +232,9 @@ Negative Passed: 274/274 (100.00%)
    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/asserted-unary-exponentiation-right-operand.ts:1:29]
+   ╭─[misc/fail/asserted-unary-exponentiation-right-operand.ts:1:30]
  1 │ 2 ** -value satisfies number ** 2;
-   ·                             ▲
+   ·                              ──
  2 │ 2 ** value as number ** 2;
    ╰────
   help: Try inserting a semicolon here
@@ -349,7 +349,7 @@ Negative Passed: 274/274 (100.00%)
     ╰────
   help: Either remove this `await` or add the `async` keyword to the enclosing function
 
-  × Expected `;` but found `,`
+  × TS(1005): Expected `;` but found `,`
    ╭─[misc/fail/class-field-comma-expression.js:1:16]
  1 │ class C { x = a,b }
    ·                ┬
@@ -458,7 +458,7 @@ Negative Passed: 274/274 (100.00%)
  3 │   constructor() {}
    ╰────
 
-  × Expected `)` but found `:`
+  × TS(1005): Expected `)` but found `:`
    ╭─[misc/fail/contextual-binding-lookahead-function-reserved.ts:1:15]
  1 │ let fn: (break: number) => void;
    ·               ┬
@@ -495,7 +495,7 @@ Negative Passed: 274/274 (100.00%)
    ·                       ─────
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/contextual-binding-lookahead-index-reserved.ts:1:16]
  1 │ interface I { [break: string]: unknown }
    ·                ─────
@@ -871,7 +871,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: Did you mean to use a for...of statement?
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
    ╭─[misc/fail/for-await-using-in-initializer.js:2:30]
  1 │ async function f() {
  2 │   for (await using x = a in b;;);
@@ -881,21 +881,21 @@ Negative Passed: 274/274 (100.00%)
  3 │ }
    ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
    ╭─[misc/fail/for-escaped-let-declaration.cjs:1:15]
  1 │ for (l\u0065t x = 0;;);
    ·               ┬
    ·               ╰── `;` expected
    ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
    ╭─[misc/fail/for-in-escaped-let-declaration.cjs:1:15]
  1 │ for (l\u0065t x in {});
    ·               ┬
    ·               ╰── `;` expected
    ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
    ╭─[misc/fail/for-of-escaped-let-declaration.cjs:1:15]
  1 │ for (l\u0065t x of []);
    ·               ┬
@@ -909,7 +909,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: Did you mean to use a for...of statement?
 
-  × Expected `)` but found `;`
+  × TS(1005): Expected `)` but found `;`
    ╭─[misc/fail/for-using-in-initializer.js:1:22]
  1 │ for (using x = a in b;;);
    ·     ┬                ┬
@@ -964,7 +964,7 @@ Negative Passed: 274/274 (100.00%)
  2 │ import foo from "bar";
    ╰────
 
-  × Expected `,` or `]` but found `const`
+  × TS(1005): Expected `,` or `]` but found `const`
    ╭─[misc/fail/imbalanced-array-expr.js:2:1]
  1 │ const foo = [0, 1
    ·             ┬
@@ -974,7 +974,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `]` expected
    ╰────
 
-  × Expected `,` or `)` but found `const`
+  × TS(1005): Expected `,` or `)` but found `const`
    ╭─[misc/fail/imbalanced-call-expr.js:2:1]
  1 │ const foo = bar(1
    ·                ┬
@@ -984,7 +984,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `)` expected
    ╰────
 
-  × Expected `,` or `}` but found `const`
+  × TS(1005): Expected `,` or `}` but found `const`
    ╭─[misc/fail/imbalanced-enum-expr.ts:4:1]
  1 │ enum Foo {
    ·          ┬
@@ -996,7 +996,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `}` expected
    ╰────
 
-  × Expected `,` or `}` but found `const`
+  × TS(1005): Expected `,` or `}` but found `const`
    ╭─[misc/fail/imbalanced-export-expr.js:3:1]
  1 │ export { foo
    ·        ┬
@@ -1007,7 +1007,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `}` expected
    ╰────
 
-  × Expected `,` or `}` but found `;`
+  × TS(1005): Expected `,` or `}` but found `;`
    ╭─[misc/fail/imbalanced-import-decl-attr.js:1:44]
  1 │ import { } from "foo" with { "type": "json";
    ·                            ┬               ┬
@@ -1015,7 +1015,7 @@ Negative Passed: 274/274 (100.00%)
    ·                            ╰── Opened here
    ╰────
 
-  × Expected `,` or `}` but found `string`
+  × TS(1005): Expected `,` or `}` but found `string`
    ╭─[misc/fail/imbalanced-import-decl.js:1:15]
  1 │ import { from "foo";
    ·        ┬      ──┬──
@@ -1023,7 +1023,7 @@ Negative Passed: 274/274 (100.00%)
    ·        ╰── Opened here
    ╰────
 
-  × Expected `,` or `]` but found `:`
+  × TS(1005): Expected `,` or `]` but found `:`
    ╭─[misc/fail/imbalanced-index-signature-decl.ts:2:15]
  1 │ type Foo = {
  2 │   [key: string: number;
@@ -1033,7 +1033,7 @@ Negative Passed: 274/274 (100.00%)
  3 │ }
    ╰────
 
-  × Expected `,` or `)` but found `const`
+  × TS(1005): Expected `,` or `)` but found `const`
    ╭─[misc/fail/imbalanced-new-expr.js:2:1]
  1 │ const foo = new Foo(1
    ·                    ┬
@@ -1043,7 +1043,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `)` expected
    ╰────
 
-  × Expected `,` or `}` but found `const`
+  × TS(1005): Expected `,` or `}` but found `const`
    ╭─[misc/fail/imbalanced-object-expr.js:2:1]
  1 │ const foo = { a: 1
    ·             ┬
@@ -1053,7 +1053,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `}` expected
    ╰────
 
-  × Expected `,` or `)` but found `;`
+  × TS(1005): Expected `,` or `)` but found `;`
    ╭─[misc/fail/imbalanced-parenthesized-expr.js:1:30]
  1 │ const foo = (0, eval('1 + 2');
    ·             ┬                ┬
@@ -1061,7 +1061,7 @@ Negative Passed: 274/274 (100.00%)
    ·             ╰── Opened here
    ╰────
 
-  × Expected `,` or `]` but found `const`
+  × TS(1005): Expected `,` or `]` but found `const`
    ╭─[misc/fail/imbalanced-tuple-type.ts:3:1]
  1 │ type A = [number
    ·          ┬
@@ -1072,7 +1072,7 @@ Negative Passed: 274/274 (100.00%)
    ·   ╰── `,` or `]` expected
    ╰────
 
-  × Expected `from` but found `string`
+  × TS(1005): Expected `from` but found `string`
    ╭─[misc/fail/import-defer-without-from.js:1:14]
  1 │ import defer 'module';
    ·              ────┬───
@@ -1142,7 +1142,7 @@ Negative Passed: 274/274 (100.00%)
    ·            ────
    ╰────
 
-  × Expected `from` but found `string`
+  × TS(1005): Expected `from` but found `string`
    ╭─[misc/fail/import-from-str.js:1:13]
  1 │ import from 'module';
    ·             ────┬───
@@ -1155,14 +1155,14 @@ Negative Passed: 274/274 (100.00%)
    ·          ────────
    ╰────
 
-  × Expected `from` but found `Identifier`
+  × TS(1005): Expected `from` but found `Identifier`
    ╭─[misc/fail/import-source-non-from.js:1:19]
  1 │ import source foo bar from 'module';
    ·                   ─┬─
    ·                    ╰── `from` expected
    ╰────
 
-  × Expected `from` but found `string`
+  × TS(1005): Expected `from` but found `string`
    ╭─[misc/fail/import-source-without-from.js:1:15]
  1 │ import source 'module';
    ·               ────┬───
@@ -1220,14 +1220,14 @@ Negative Passed: 274/274 (100.00%)
    ·                        ──────────────────────
    ╰────
 
-  × Expected `from` but found `string`
+  × TS(1005): Expected `from` but found `string`
    ╭─[misc/fail/import-type-without-from.ts:1:13]
  1 │ import type 'module';
    ·             ────┬───
    ·                 ╰── `from` expected
    ╰────
 
-  × Expected `from` but found `string`
+  × TS(1005): Expected `from` but found `string`
    ╭─[misc/fail/import-without-from.js:1:16]
  1 │ import unknown 'module';
    ·                ────┬───
@@ -1241,16 +1241,16 @@ Negative Passed: 274/274 (100.00%)
    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/js-export-default-abstract-class.js:1:24]
+   ╭─[misc/fail/js-export-default-abstract-class.js:1:25]
  1 │ export default abstract class C {}
-   ·                        ▲
+   ·                         ─────
    ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/js-export-default-interface.js:1:25]
+   ╭─[misc/fail/js-export-default-interface.js:1:26]
  1 │ export default interface I {}
-   ·                         ▲
+   ·                          ─
    ╰────
   help: Try inserting a semicolon here
 
@@ -1389,20 +1389,20 @@ Negative Passed: 274/274 (100.00%)
   help: Wrap this in parentheses if you want to use a `yield` expression here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/minus-yield-100.js:1:32]
+   ╭─[misc/fail/minus-yield-100.js:1:33]
  1 │ export function* foo() { -yield 100 }
-   ·                                ▲
+   ·                                 ───
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected `:` but found `EOF`
+  × TS(1005): Expected `:` but found `EOF`
    ╭─[misc/fail/missing-conditional-alternative-type.ts:2:1]
  1 │ type A = 1 extends 2 ? 3
    ·                      ┬
    ·                      ╰── Conditional starts here
    ╰────
 
-  × Expected `:` but found `EOF`
+  × TS(1005): Expected `:` but found `EOF`
    ╭─[misc/fail/missing-conditional-alternative.js:2:1]
  1 │ const foo = 1 ? 2
    ·               ┬
@@ -1429,26 +1429,26 @@ Negative Passed: 274/274 (100.00%)
    ·                      ╰── `b` has already been declared here
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/oxc-10638.js:2:1]
  1 │ for(
  2 │ in
    · ──
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/oxc-10639.js:1:1]
  1 │ <<Ç
    · ──
    ╰────
 
-  × Unexpected token
+  × TS(1110): Unexpected token
    ╭─[misc/fail/oxc-10977.ts:1:9]
  1 │ class{h:<=Ö
    ·         ──
    ╰────
 
-  × Expected `from` but found `EOF`
+  × TS(1005): Expected `from` but found `EOF`
    ╭─[misc/fail/oxc-11453.js:2:1]
  1 │ export import
    ╰────
@@ -1467,7 +1467,7 @@ Negative Passed: 274/274 (100.00%)
    ·                      ─────
    ╰────
 
-  × Expected `from` but found `EOF`
+  × TS(1005): Expected `from` but found `EOF`
    ╭─[misc/fail/oxc-11484.ts:2:1]
  1 │ import { type as as }
    ╰────
@@ -1501,7 +1501,7 @@ Negative Passed: 274/274 (100.00%)
    ·       ─────
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/oxc-11487.mjs:1:13]
  1 │ async await => {}
    ·             ──
@@ -1529,7 +1529,7 @@ Negative Passed: 274/274 (100.00%)
    ·        ─────
    ╰────
 
-  × Expected `}` but found `function`
+  × TS(1005): Expected `}` but found `function`
    ╭─[misc/fail/oxc-11538.js:1:20]
  1 │ const y = `foo ${x function() {} function () {}}`;
    ·                    ────┬───
@@ -1549,7 +1549,7 @@ Negative Passed: 274/274 (100.00%)
  2 │ 
    ╰────
 
-  × Expected `{` but found `;`
+  × TS(1005): Expected `{` but found `;`
    ╭─[misc/fail/oxc-11592-3.ts:1:12]
  1 │ namespace a;
    ·            ┬
@@ -4323,7 +4323,7 @@ Negative Passed: 274/274 (100.00%)
  6 │ }
    ╰────
 
-  × Expected `{` but found `;`
+  × TS(1005): Expected `{` but found `;`
    ╭─[misc/fail/oxc-14944.ts:1:25]
  1 │ const x = function foo();
    ·                         ┬
@@ -4392,7 +4392,7 @@ Negative Passed: 274/274 (100.00%)
    ·                      ─────────────────
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/oxc-169.js:2:1]
  1 │ 1<(V=82<<t-j0<(V=$<LBI<(V=ut<I<(V=$<LBI<(V=uIV=82<<t-j0<(V=$<LBI<(V=ut<I<(V=$<LBI<(V<II>
    ╰────
@@ -4419,7 +4419,7 @@ Negative Passed: 274/274 (100.00%)
    ·          ╰── It can not be redeclared here
    ╰────
 
-  × Expected `(` but found `:`
+  × TS(1005): Expected `(` but found `:`
    ╭─[misc/fail/oxc-1942-1.ts:2:8]
  1 │ class Foo {
  2 │   get x: () => {
@@ -4428,7 +4428,7 @@ Negative Passed: 274/274 (100.00%)
  3 │       return 5;
    ╰────
 
-  × Expected `(` but found `:`
+  × TS(1005): Expected `(` but found `:`
    ╭─[misc/fail/oxc-1942-2.ts:2:8]
  1 │ class Foo {
  2 │   set x: (v: number) => {}
@@ -4451,7 +4451,7 @@ Negative Passed: 274/274 (100.00%)
    ·        ─────
    ╰────
 
-  × Unexpected token
+  × TS(1109): Unexpected token
    ╭─[misc/fail/oxc-22515.js:1:14]
  1 │ class extends,{
    ·              ─
@@ -4599,7 +4599,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: Wrap this with parenthesis
 
-  × Expected `]` but found `EOF`
+  × TS(1005): Expected `]` but found `EOF`
    ╭─[misc/fail/oxc-23670.ts:2:1]
  1 │ <[m?,
    ╰────
@@ -4643,7 +4643,7 @@ Negative Passed: 274/274 (100.00%)
  25 │ 
     ╰────
 
-  × Expected `{` but found `[`
+  × TS(1005): Expected `{` but found `[`
     ╭─[misc/fail/oxc-2394.ts:38:21]
  37 │ export type LocalInterface =
  38 │     & import("pkg", [ {"resolution-mode": "require"} ]).RequireInterface
@@ -4799,7 +4799,7 @@ Negative Passed: 274/274 (100.00%)
  3 │ }
    ╰────
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
    ╭─[misc/fail/oxc-27290-escaped.js:2:16]
  1 │ class A {
  2 │   pr\u0069vate x;
@@ -4883,7 +4883,7 @@ Negative Passed: 274/274 (100.00%)
  5 │ }
    ╰────
 
-  × Expected `:` but found `[`
+  × TS(1005): Expected `:` but found `[`
    ╭─[misc/fail/oxc-3320.tsx:1:8]
  1 │ m< $<{3[   $<{3[  $<{3[ m< m$<{3[ m< mm< $<{3[   $<{3[  $<{3[ m< m$<{3[ m< m$<{3[  $<{3[ m< m$<{3[
    ·        ┬
@@ -4961,9 +4961,9 @@ Negative Passed: 274/274 (100.00%)
    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/oxc-4111-1.js:1:43]
+   ╭─[misc/fail/oxc-4111-1.js:1:44]
  1 │ funtransientction as longciiConÞr>ol(cde) {
-   ·                                          ▲
+   ·                                           ─
    ╰────
   help: Try inserting a semicolon here
 
@@ -4974,7 +4974,7 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: Did you mean `readonly`?
 
-  × Expected `;` but found `Identifier`
+  × TS(1005): Expected `;` but found `Identifier`
    ╭─[misc/fail/oxc-4212-1.ts:1:22]
  1 │ class a { const enum b(); }
    ·                      ┬
@@ -5056,7 +5056,7 @@ Negative Passed: 274/274 (100.00%)
    ╭─[misc/fail/oxc-5955-2.ts:3:8]
  2 │ interface B {
  3 │     e()?: number;
-   ·        ▲
+   ·        ─
  4 │ }
    ╰────
   help: Try inserting a semicolon here
@@ -5262,91 +5262,91 @@ Negative Passed: 274/274 (100.00%)
    ╰────
   help: If this is intended to be the condition for the switch statement, add `case` before it.
 
-  × Expected `,` but found `Identifier`
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[misc/fail/this-parameter-missing-comma-class-untyped.ts:1:18]
  1 │ class C { f(this x: T) {} }
    ·                  ┬
    ·                  ╰── `,` expected
    ╰────
 
-  × Expected `,` but found `Identifier`
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[misc/fail/this-parameter-missing-comma-class.ts:1:21]
  1 │ class C { f(this: T x: T) {} }
    ·                     ┬
    ·                     ╰── `,` expected
    ╰────
 
-  × Expected `,` but found `Identifier`
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[misc/fail/this-parameter-missing-comma-function-type.ts:1:19]
  1 │ type F = (this: T x: T) => void;
    ·                   ┬
    ·                   ╰── `,` expected
    ╰────
 
-  × Expected `,` but found `Identifier`
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[misc/fail/this-parameter-missing-comma-function.ts:1:20]
  1 │ function f(this: T x: T) {}
    ·                    ┬
    ·                    ╰── `,` expected
    ╰────
 
-  × Expected `,` but found `Identifier`
+  × TS(1005): Expected `,` but found `Identifier`
    ╭─[misc/fail/this-parameter-missing-comma-interface.ts:1:25]
  1 │ interface I { f(this: T x: T): void }
    ·                         ┬
    ·                         ╰── `,` expected
    ╰────
 
-  × Expected `=>` but found `:`
+  × TS(1005): Expected `=>` but found `:`
    ╭─[misc/fail/ts-abstract-constructor-type-colon-separator.ts:1:26]
  1 │ type F = abstract new () : number;
    ·                          ┬
    ·                          ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `number`
+  × TS(1005): Expected `=>` but found `number`
    ╭─[misc/fail/ts-abstract-constructor-type-missing-separator.ts:1:27]
  1 │ type F = abstract new ()  number;
    ·                           ───┬──
    ·                              ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `+`
+  × TS(1005): Expected `=>` but found `+`
    ╭─[misc/fail/ts-abstract-constructor-type-plus-separator.ts:1:26]
  1 │ type F = abstract new () + number;
    ·                          ┬
    ·                          ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `:`
+  × TS(1005): Expected `=>` but found `:`
    ╭─[misc/fail/ts-constructor-type-colon-separator.ts:1:17]
  1 │ type F = new () : number;
    ·                 ┬
    ·                 ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `number`
+  × TS(1005): Expected `=>` but found `number`
    ╭─[misc/fail/ts-constructor-type-missing-separator.ts:1:18]
  1 │ type F = new ()  number;
    ·                  ───┬──
    ·                     ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `+`
+  × TS(1005): Expected `=>` but found `+`
    ╭─[misc/fail/ts-constructor-type-plus-separator.ts:1:17]
  1 │ type F = new () + number;
    ·                 ┬
    ·                 ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `:`
+  × TS(1005): Expected `=>` but found `:`
    ╭─[misc/fail/ts-function-type-colon-separator.ts:1:13]
  1 │ type F = () : number;
    ·             ┬
    ·             ╰── `=>` expected
    ╰────
 
-  × Expected `=>` but found `+`
+  × TS(1005): Expected `=>` but found `+`
    ╭─[misc/fail/ts-function-type-plus-separator.ts:1:13]
  1 │ type F = () + number;
    ·             ┬
@@ -5376,63 +5376,63 @@ Negative Passed: 274/274 (100.00%)
    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-type-member-call-missing-separator.ts:1:20]
+   ╭─[misc/fail/ts-type-member-call-missing-separator.ts:1:21]
  1 │ type T = { (): void next: string };
-   ·                    ▲
+   ·                     ────
    ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-type-member-construct-missing-separator.ts:1:29]
+   ╭─[misc/fail/ts-type-member-construct-missing-separator.ts:1:30]
  1 │ interface T { new (): object next: string }
-   ·                             ▲
+   ·                              ────
    ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-type-member-getter-missing-separator.ts:1:31]
+   ╭─[misc/fail/ts-type-member-getter-missing-separator.ts:1:32]
  1 │ type T = { get value(): string next: string };
-   ·                               ▲
+   ·                                ────
    ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-type-member-method-missing-separator.ts:1:29]
+   ╭─[misc/fail/ts-type-member-method-missing-separator.ts:1:30]
  1 │ interface T { method(): void next: string }
-   ·                             ▲
+   ·                              ────
    ╰────
   help: Try inserting a semicolon here
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-type-member-setter-missing-separator.ts:1:36]
+   ╭─[misc/fail/ts-type-member-setter-missing-separator.ts:1:37]
  1 │ type T = { set value(value: string) next: string };
-   ·                                    ▲
+   ·                                     ────
    ╰────
   help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-unerasable-as-chained.ts:4:33]
+  × TS(1005): Expected `,` but found `*`
+   ╭─[misc/fail/ts-unerasable-as-chained.ts:4:34]
  3 │ // so the trailing `*` still makes the assertion impossible to erase. Syntax error.
  4 │ const x = 1 + 1 as any as number * 2;
-   ·                                 ▲
+   ·                                  ┬
+   ·                                  ╰── `,` expected
    ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-unerasable-as.ts:4:26]
+  × TS(1005): Expected `,` but found `*`
+   ╭─[misc/fail/ts-unerasable-as.ts:4:27]
  3 │ // trailing `*` binds tighter than the leading `+`. This is a syntax error.
  4 │ const x = 1 + 1 as number * 2;
-   ·                          ▲
+   ·                           ┬
+   ·                           ╰── `,` expected
    ╰────
-  help: Try inserting a semicolon here
 
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
-   ╭─[misc/fail/ts-unerasable-satisfies.ts:4:33]
+  × TS(1005): Expected `,` but found `*`
+   ╭─[misc/fail/ts-unerasable-satisfies.ts:4:34]
  3 │ // is a syntax error.
  4 │ const x = 1 + 1 satisfies number * 2;
-   ·                                 ▲
+   ·                                  ┬
+   ·                                  ╰── `,` expected
    ╰────
-  help: Try inserting a semicolon here
 
   × TS(8011): Type arguments can only be used in TypeScript files.
    ╭─[misc/fail/type-arguments-in-js.js:1:18]

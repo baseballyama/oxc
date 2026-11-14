@@ -2332,7 +2332,7 @@ impl Gen for AssignmentTargetRest<'_> {
 impl GenExpr for SequenceExpression<'_> {
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
-            p.print_expressions(&self.expressions, Precedence::Lowest, ctx.and_forbid_call(false));
+            p.print_expressions(&self.expressions, Precedence::Comma, ctx.and_forbid_call(false));
         });
     }
 }

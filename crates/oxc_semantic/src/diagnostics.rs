@@ -40,30 +40,34 @@ pub fn duplicate_proto(span1: Span, span2: Span) -> OxcDiagnostic {
     ])
 }
 
+/// TS(2304): Cannot find name 'x'.
 #[cold]
 pub fn undefined_export(x0: &str, suggestion: Option<&str>, span1: Span) -> OxcDiagnostic {
     let mut diagnostic =
-        OxcDiagnostic::error(format!("Export '{x0}' is not defined")).with_label(span1);
+        ts_error("2304", format!("Export '{x0}' is not defined")).with_label(span1);
     if let Some(suggestion) = suggestion {
         diagnostic = diagnostic.with_help(format!("Did you mean '{suggestion}'?"));
     }
     diagnostic
 }
 
+/// TS(18037): 'await' expression cannot be used inside a class static block.
 #[cold]
 pub fn class_static_block_await(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Cannot use await in class static initialization block").with_label(span)
+    ts_error("18037", "Cannot use await in class static initialization block").with_label(span)
 }
 
+/// TS(18038): 'for await' loops cannot be used inside a class static block.
 #[cold]
 pub fn class_static_block_for_await(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Cannot use 'for await' in class static initialization block")
+    ts_error("18038", "Cannot use 'for await' in class static initialization block")
         .with_label(span)
 }
 
+/// TS(18054): 'await using' statements cannot be used inside a class static block.
 #[cold]
 pub fn class_static_block_await_using(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Cannot use 'await using' in class static initialization block")
+    ts_error("18054", "Cannot use 'await using' in class static initialization block")
         .with_label(span)
 }
 
@@ -137,18 +141,19 @@ pub fn unexpected_arguments(x0: &str, span1: Span) -> OxcDiagnostic {
         .with_help("Assign the 'arguments' variable to a temporary variable outside")
 }
 
+/// TS(18016): Private identifiers are not allowed outside class bodies.
 #[cold]
 pub fn private_not_in_class(x0: &str, span1: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error(format!("Private identifier '#{x0}' is not allowed outside class bodies"))
+    ts_error("18016", format!("Private identifier '#{x0}' is not allowed outside class bodies"))
         .with_label(span1)
 }
 
+/// TS(1111): Private field '#x' must be declared in an enclosing class.
 #[cold]
 pub fn private_field_undeclared(x0: &str, suggestion: Option<&str>, span1: Span) -> OxcDiagnostic {
-    let mut diagnostic = OxcDiagnostic::error(format!(
-        "Private field '#{x0}' must be declared in an enclosing class"
-    ))
-    .with_label(span1);
+    let mut diagnostic =
+        ts_error("1111", format!("Private field '#{x0}' must be declared in an enclosing class"))
+            .with_label(span1);
     if let Some(suggestion) = suggestion {
         diagnostic = diagnostic.with_help(format!("Did you mean '#{suggestion}'?"));
     }
@@ -442,11 +447,10 @@ pub fn parameter_property_only_in_constructor_impl(span: Span) -> OxcDiagnostic 
         .with_label(span)
 }
 
-/// Getter or setter without a body. There is no corresponding TS error code,
-/// since in TSC this is a parse error.
+/// TS(1005): '{' expected. tsc reads an accessor's body as required.
 #[cold]
 pub fn accessor_without_body(span: Span) -> OxcDiagnostic {
-    OxcDiagnostic::error("Getters and setters must have an implementation.").with_label(span)
+    ts_error("1005", "Getters and setters must have an implementation.").with_label(span)
 }
 
 /// The left-hand side of a 'for...of' statement cannot use a type annotation. (2483)

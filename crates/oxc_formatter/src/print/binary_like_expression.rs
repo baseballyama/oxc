@@ -194,7 +194,9 @@ impl<'a, 'b> BinaryLikeExpression<'a, 'b> {
             // For argument of `Boolean()` calls.
             AstNodes::CallExpression(call) if call.is_argument_span(self.span()) => {
                 // https://github.com/prettier/prettier/issues/18057#issuecomment-3472912112
-                call.arguments.len() == 1
+                // An optional call `Boolean?.(...)` may not be the global, so it indents as any call.
+                !call.optional
+                    && call.arguments.len() == 1
                     && matches!(&call.callee, Expression::Identifier(ident) if ident.name == "Boolean")
             }
             _ => false,

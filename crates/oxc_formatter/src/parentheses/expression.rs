@@ -914,7 +914,8 @@ fn type_cast_like_needs_parens(span: Span, parent: &AstNodes<'_, '_>) -> bool {
         | AstNodes::SpreadElement(_)
         | AstNodes::JSXSpreadAttribute(_) => true,
         // assignment left hand side
-        AstNodes::UpdateExpression(_) | AstNodes::AssignmentTargetWithDefault(_) => true,
+        AstNodes::UpdateExpression(_) => true,
+        AstNodes::AssignmentTargetWithDefault(target) => target.binding.span() == span,
         AstNodes::AssignmentExpression(assignment) => {
             assignment.left.span() == span
         }

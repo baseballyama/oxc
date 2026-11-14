@@ -1,0 +1,45 @@
+---
+source: crates/oxc_formatter_css/tests/fixtures/mod.rs
+---
+==================== Input ====================
+/* A `;` in a string, a comment, an escape or a bracket does not end a declaration of the block. */
+p {
+  --tokens: {
+    content: "};"; /* } ; */
+    escaped: \};
+    nested: [x; y];
+    spaced: "a  b"   c;
+  };
+  color: blue;
+}
+
+==================== Output ====================
+------------------
+{ printWidth: 80 }
+------------------
+/* A `;` in a string, a comment, an escape or a bracket does not end a declaration of the block. */
+p {
+  --tokens: {
+    content: "};"; /* } ; */
+    escaped: \};
+    nested: [x; y];
+    spaced: "a  b" c;
+  };
+  color: blue;
+}
+
+-------------------
+{ printWidth: 100 }
+-------------------
+/* A `;` in a string, a comment, an escape or a bracket does not end a declaration of the block. */
+p {
+  --tokens: {
+    content: "};"; /* } ; */
+    escaped: \};
+    nested: [x; y];
+    spaced: "a  b" c;
+  };
+  color: blue;
+}
+
+===================== End =====================

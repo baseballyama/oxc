@@ -245,6 +245,10 @@ pub struct ExpressionReturn<'a> {
     /// The token after the expression is not included.
     pub tokens: ArenaVec<'a, Token>,
 
+    /// The token after the expression, which the parser read to find its end, when tokens are
+    /// collected and the source text goes on.
+    pub next_token: Option<Token>,
+
     /// Recoverable syntax errors, such as a TypeScript grammar rule the expression breaks.
     /// The expression is whole; a host decides which of them it reports.
     pub diagnostics: Diagnostics,
@@ -269,9 +273,26 @@ pub struct StatementReturn<'a> {
     /// The token after the statement is not included.
     pub tokens: ArenaVec<'a, Token>,
 
+    /// The token after the statement, which the parser read to find its end, when tokens are
+    /// collected and the source text goes on.
+    pub next_token: Option<Token>,
+
     /// Recoverable syntax errors, such as a TypeScript grammar rule the statement breaks.
     /// The statement is whole; a host decides which of them it reports.
     pub diagnostics: Diagnostics,
+}
+
+/// The error of [`Parser::parse_expression_at`] or [`Parser::parse_statement_at`]: a syntax error
+/// the parser cannot recover from.
+#[derive(Debug)]
+#[non_exhaustive]
+pub struct PartError<'a> {
+    /// The errors, the one the parser stopped at last, as [`Parser::parse`] returns them.
+    pub diagnostics: Diagnostics,
+
+    /// The tokens read before the parser stopped, the one it stopped at included, when tokens
+    /// are enabled in [`ParserConfig`].
+    pub tokens: ArenaVec<'a, Token>,
 }
 
 /// What [`ParserImpl::parse_part`] reads.
@@ -296,6 +317,7 @@ struct PartReturn<'a> {
     end: u32,
     comments: ArenaVec<'a, Comment>,
     tokens: ArenaVec<'a, Token>,
+    next_token: Option<Token>,
     diagnostics: Diagnostics,
 }
 
@@ -307,6 +329,7 @@ impl<'a> PartReturn<'a> {
             end: self.end,
             comments: self.comments,
             tokens: self.tokens,
+            next_token: self.next_token,
             diagnostics: self.diagnostics,
         }
     }
@@ -318,6 +341,7 @@ impl<'a> PartReturn<'a> {
             end: self.end,
             comments: self.comments,
             tokens: self.tokens,
+            next_token: self.next_token,
             diagnostics: self.diagnostics,
         }
     }
@@ -595,7 +619,9 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     // Dispatches via `Any`, same as `parse` does.
     pub fn parse_expression(self) -> Result<Expression<'a>, Diagnostics> {
         let start = self.start;
-        let ret = self.parse_part_from(start, Entry::Expression { whole: true })?;
+        let ret = self
+            .parse_part_from(start, Entry::Expression { whole: true })
+            .map_err(|error| error.diagnostics)?;
         if !ret.diagnostics.is_empty() {
             return Err(ret.diagnostics);
         }
@@ -631,7 +657,7 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     ///
     /// # Panics
     /// If `start` is past the end of the source text or not on a character boundary.
-    pub fn parse_expression_at(self, start: u32) -> Result<ExpressionReturn<'a>, Diagnostics> {
+    pub fn parse_expression_at(self, start: u32) -> Result<ExpressionReturn<'a>, PartError<'a>> {
         self.parse_part_from(start, Entry::Expression { whole: false })
             .map(PartReturn::into_expression)
     }
@@ -663,12 +689,12 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     ///
     /// # Panics
     /// If `start` is past the end of the source text or not on a character boundary.
-    pub fn parse_statement_at(self, start: u32) -> Result<StatementReturn<'a>, Diagnostics> {
+    pub fn parse_statement_at(self, start: u32) -> Result<StatementReturn<'a>, PartError<'a>> {
         self.parse_part_from(start, Entry::Statement).map(PartReturn::into_statement)
     }
 
     // Dispatches via `Any`, same as `parse` does.
-    fn parse_part_from(self, start: u32, entry: Entry) -> Result<PartReturn<'a>, Diagnostics> {
+    fn parse_part_from(self, start: u32, entry: Entry) -> Result<PartReturn<'a>, PartError<'a>> {
         let Self { allocator, source_text, source_type, options, config, start: _ } = self;
 
         let config_any: &dyn Any = &config;
@@ -681,7 +707,7 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 options: ParseOptions,
                 start: u32,
                 entry: Entry,
-            ) -> Result<PartReturn<'a>, Diagnostics> {
+            ) -> Result<PartReturn<'a>, PartError<'a>> {
                 ParserImpl::parse_part(
                     allocator,
                     source_text,
@@ -702,7 +728,7 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 options: ParseOptions,
                 start: u32,
                 entry: Entry,
-            ) -> Result<PartReturn<'a>, Diagnostics> {
+            ) -> Result<PartReturn<'a>, PartError<'a>> {
                 ParserImpl::parse_part(
                     allocator,
                     source_text,
@@ -724,7 +750,7 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
                 config: RuntimeParserConfig,
                 start: u32,
                 entry: Entry,
-            ) -> Result<PartReturn<'a>, Diagnostics> {
+            ) -> Result<PartReturn<'a>, PartError<'a>> {
                 ParserImpl::parse_part(
                     allocator,
                     source_text,
@@ -980,11 +1006,11 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         config: C,
         start: u32,
         entry: Entry,
-    ) -> Result<PartReturn<'a>, Diagnostics> {
-        /// Wrapper around `Result<PartReturn<'a>, Diagnostics>`.
+    ) -> Result<PartReturn<'a>, PartError<'a>> {
+        /// Wrapper around `Result<PartReturn<'a>, PartError<'a>>`.
         /// `Result<T, E>` is only [`Unbranded`] if `T` and `E` are. `Diagnostics` is from another
         /// crate, so this crate can't implement `Unbranded` for it.
-        struct PartParserReturn<'a>(Result<PartReturn<'a>, Diagnostics>);
+        struct PartParserReturn<'a>(Result<PartReturn<'a>, PartError<'a>>);
 
         // SAFETY: `PartParserReturn` meets `Unbranded`'s contract.
         // `Expression`, `Statement`, `Comment`, `Token` and `Diagnostics` don't name `BrandOrigin`
@@ -1006,7 +1032,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
     }
 
     /// Parse what `entry` names from byte offset `start`.
-    fn parse_part_impl(mut self, start: u32, entry: Entry) -> Result<PartReturn<'a>, Diagnostics> {
+    fn parse_part_impl(mut self, start: u32, entry: Entry) -> Result<PartReturn<'a>, PartError<'a>> {
         if start != 0 {
             self.lexer.set_offset(start);
         }
@@ -1025,25 +1051,33 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         if let Some(FatalError { error, errors_len }) = self.fatal_error.take() {
             let error = self.overlong_error().unwrap_or(error);
             self.errors.truncate(errors_len);
+            // The tokens read before the error, which locate it.
+            let mut tokens = self.lexer.take_tokens();
+            while tokens
+                .last()
+                .is_some_and(|token| matches!(token.kind(), Kind::Eof | Kind::Undetermined))
+            {
+                tokens.pop();
+            }
             // As for a program, the lexer's errors come first.
-            return Err(self
+            let diagnostics = self
                 .lexer
                 .errors
                 .into_iter()
-                .chain(
-                    self.errors.into_iter().filter(|error| {
-                        matches!(error, ParserDiagnostic::strict_reserved_word { .. })
-                    }),
-                )
+                .chain(self.errors.into_iter().filter(|error| {
+                    matches!(error, ParserDiagnostic::strict_reserved_word { .. })
+                }))
                 .chain([error])
                 .map(ParserDiagnostic::into_diagnostic)
-                .collect());
+                .collect();
+            return Err(PartError { diagnostics, tokens });
         }
         self.errors.retain(|error| !matches!(error, ParserDiagnostic::strict_reserved_word { .. }));
         self.check_unfinished_errors();
         // The token after the part has been read, but is not one of its tokens.
         let mut tokens = self.lexer.take_tokens();
         let len = tokens.partition_point(|token| token.start() < end);
+        let next_token = tokens.get(len).copied().filter(|token| token.kind() != Kind::Eof);
         tokens.truncate(len);
         let diagnostics = self
             .lexer
@@ -1053,7 +1087,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
             .map(ParserDiagnostic::into_diagnostic)
             .collect::<Diagnostics>();
         let comments = self.lexer.trivia_builder.comments.take_vec(&self.ast);
-        Ok(PartReturn { part, end, comments, tokens, diagnostics })
+        Ok(PartReturn { part, end, comments, tokens, next_token, diagnostics })
     }
 
     #[expect(clippy::cast_possible_truncation)]
@@ -1388,6 +1422,36 @@ mod test {
             .unwrap();
         assert_eq!(ret.tokens.len(), 3);
         assert!(allocator.used_bytes() < 1 << 16, "{} bytes", allocator.used_bytes());
+    }
+
+    #[test]
+    fn a_part_returns_the_token_it_stopped_at_and_lexes_no_further() {
+        let allocator = Allocator::default();
+        // The statement ends before `}`, which the parser read to see that.
+        let source = "{const x} y z";
+        let ret = Parser::new(&allocator, source, SourceType::default())
+            .with_config(TokensParserConfig)
+            .parse_statement_at(1)
+            .unwrap();
+        let next = ret.next_token.expect("the token after the statement");
+        assert_eq!((next.kind(), next.start()), (Kind::RCurly, 8));
+        assert!(ret.tokens.iter().all(|token| token.end() <= 8));
+        // A fatal error keeps the tokens read up to the one it stopped at, and no later one.
+        let source = "{foo bar} y z";
+        let error = Parser::new(&allocator, source, SourceType::ts())
+            .with_config(TokensParserConfig)
+            .parse_statement_at(1)
+            .err()
+            .expect("`foo bar` is no statement");
+        let read: Vec<_> = error.tokens.iter().map(|token| (token.kind(), token.start())).collect();
+        assert_eq!(read.first(), Some(&(Kind::Ident, 1)));
+        assert_eq!(read.last(), Some(&(Kind::Ident, 5)));
+        assert!(read.iter().all(|&(_, start)| start < 8));
+        // Without tokens, there is no token after the statement either.
+        let ret = Parser::new(&allocator, "{const x}", SourceType::default())
+            .parse_statement_at(1)
+            .unwrap();
+        assert!(ret.next_token.is_none());
     }
 
     #[test]

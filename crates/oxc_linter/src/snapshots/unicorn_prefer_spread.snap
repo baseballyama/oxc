@@ -111,10 +111,10 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: The spread operator (`...`) is more concise and readable.
 
-  × Invalid Unicode escape sequence
-   ╭─[prefer_spread.tsx:1:14]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[prefer_spread.tsx:1:13]
  1 │ const foo = \\`bar\\`
-   ·              ─
+   ·             ──
  2 │             Array.from(arrayLike).forEach(doSomething)
    ╰────
 

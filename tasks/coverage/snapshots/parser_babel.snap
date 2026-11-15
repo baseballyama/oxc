@@ -911,10 +911,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ─────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-identifier/invalid-code-point/input.js:1:3]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-identifier/invalid-code-point/input.js:1:2]
  1 │ a\u{110000}b;
-   ·   ────────
+   ·  ─────────
    ╰────
 
   × TS(1109): Unexpected token
@@ -923,10 +923,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·           ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-identifier/invalid-code-point-private-name/input.js:1:13]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/escape-identifier/invalid-code-point-private-name/input.js:1:12]
  1 │ class C { #\u{110000}; }
-   ·             ────────
+   ·            ─────────
    ╰────
 
   × TS(1109): Unexpected token
@@ -1751,10 +1751,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/366/input.js:1:17]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/366/input.js:1:16]
  1 │ var x = /[a-z]/\ux
-   ·                 ─
+   ·                ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`
@@ -2266,10 +2266,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/446/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/446/input.js:1:1]
  1 │ \\
-   ·  ─
+   · ──
    ╰────
 
   × Invalid Character `\`
@@ -2277,10 +2277,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ \u005c
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/448/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/448/input.js:1:1]
  1 │ \x
-   ·  ─
+   · ──
    ╰────
 
   × Invalid Character ` `
@@ -3740,10 +3740,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ─────────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2015/identifiers/invalid-unterminated-code-point-escape/input.js:1:3]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/identifiers/invalid-unterminated-code-point-escape/input.js:1:2]
  1 │ a\u{
-   ·   ──
+   ·  ───
    ╰────
 
   × Identifier expected. 'if' is a reserved word that cannot be used here.
@@ -8765,10 +8765,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-3/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-3/input.js:1:1]
  1 │ \u{_0061};
-   ·  ──
+   · ───
    ╰────
 
   × TS(1109): Unexpected token
@@ -8777,10 +8777,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·         ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-4/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-4/input.js:1:1]
  1 │ \u{00__61};
-   ·  ────
+   · ─────
    ╰────
 
   × TS(1109): Unexpected token
@@ -8789,22 +8789,22 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-5/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-5/input.js:1:1]
  1 │ \u_0061;
-   ·  ─
+   · ──
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-6/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-6/input.js:1:1]
  1 │ \u00__61;
-   ·  ───
+   · ────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-7/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/es2021/numeric-separator/invalid-unicode-7/input.js:1:1]
  1 │ \u{0061_};
-   ·  ──────
+   · ───────
    ╰────
 
   × TS(1109): Unexpected token
@@ -11632,10 +11632,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-identifier/invalid_escaped_surrogate_pairs/input.js:1:6]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-identifier/invalid_escaped_surrogate_pairs/input.js:1:5]
  1 │ var \uD83B\uDE00
-   ·      ───────────
+   ·     ────────────
    ╰────
 
   × Cannot use export statement outside a module
@@ -11650,10 +11650,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·     ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-identifier/invalid_lone_surrogate/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/es2015-identifier/invalid_lone_surrogate/input.js:1:1]
  1 │ \uD800!
-   ·  ─────
+   · ──────
    ╰────
 
   × TS(1434): Unexpected keyword or identifier.
@@ -12442,10 +12442,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ World"
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0032/input.js:1:3]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0032/input.js:1:2]
  1 │ x\
-   ·   ─
+   ·  ──
    ╰────
 
   × Invalid Character `\`
@@ -12460,16 +12460,16 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·        ▲
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0036/input.js:1:3]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0036/input.js:1:2]
  1 │ a\u
-   ·   ─
+   ·  ──
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0037/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0037/input.js:1:1]
  1 │ \ua
-   ·  ──
+   · ───
    ╰────
 
   × TS(1161): Unterminated regular expression
@@ -12509,10 +12509,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ ╰─▶ /
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0041/input.js:1:17]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0041/input.js:1:16]
  1 │ var x = /[a-z]/\ux
-   ·                 ─
+   ·                ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`
@@ -12522,10 +12522,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                 ╰── `,` expected
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0042/input.js:1:19]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0042/input.js:1:18]
  1 │ var x = /[a-z\n]/\ux
-   ·                   ─
+   ·                  ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`
@@ -12535,10 +12535,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                   ╰── `,` expected
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0043/input.js:1:17]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0043/input.js:1:16]
  1 │ var x = /[a-z]/\\ux
-   ·                 ─
+   ·                ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`
@@ -12548,10 +12548,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                  ╰── `,` expected
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0044/input.js:1:18]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0044/input.js:1:17]
  1 │ var x = /[P QR]/\\u0067
-   ·                  ─
+   ·                 ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`
@@ -12579,10 +12579,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ───────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0048/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0048/input.js:1:1]
  1 │ \u{110000}
-   ·  ────────
+   · ─────────
    ╰────
 
   × TS(1109): Unexpected token
@@ -12591,10 +12591,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·          ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0049/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0049/input.js:1:1]
  1 │ \u{}
-   ·  ──
+   · ───
    ╰────
 
   × TS(1109): Unexpected token
@@ -12603,16 +12603,16 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·    ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0050/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0050/input.js:1:1]
  1 │ \u{FFFF
-   ·  ──────
+   · ───────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0051/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0051/input.js:1:1]
  1 │ \u{FFZ}
-   ·  ────
+   · ─────
    ╰────
 
   × TS(1109): Unexpected token
@@ -13276,10 +13276,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·   ─
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0162/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0162/input.js:1:1]
  1 │ \
-   ·  ─
+   · ──
    ╰────
 
   × Invalid Character `\`
@@ -13288,10 +13288,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·       ▲
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0164/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0164/input.js:1:1]
  1 │ \x
-   ·  ─
+   · ──
    ╰────
 
   × Invalid Character ` `
@@ -14053,28 +14053,28 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·             ────
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0002/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0002/input.js:1:1]
  1 │ \\u0061
-   ·  ─
+   · ──
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0003/input.js:1:3]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0003/input.js:1:2]
  1 │ a\\u0061
-   ·   ─
+   ·  ──
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0004/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0004/input.js:1:1]
  1 │ \\u0061a
-   ·  ─
+   · ──
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0005/input.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/statement-expression/migrated_0005/input.js:1:1]
  1 │ \\u0061a 
-   ·  ─
+   · ──
    ╰────
 
   × TS(1182): Missing initializer in destructuring declaration

@@ -247,10 +247,10 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use the actual character or a valid escape sequence instead.
 
-  × Invalid Unicode escape sequence
-   ╭─[no_nonoctal_decimal_escape.tsx:1:15]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[no_nonoctal_decimal_escape.tsx:1:14]
  1 │ var foo = '8'\n  bar = '\\9'
-   ·               ─
+   ·              ──
    ╰────
 
   × TS(1005): Expected `,` but found `Identifier`

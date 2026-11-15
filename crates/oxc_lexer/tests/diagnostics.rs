@@ -485,50 +485,50 @@ fn utf8_fuzz_against_std(cpu: DynCpu) {
 
 #[test_cpus]
 fn invalid_identifier_escape_bare(cpu: DynCpu) {
-    // bare `\`: span = the one char after it, backslash excluded
+    // bare `\`: span = the backslash and the one char after it
     let d = diags(r"x = \A", cpu);
     assert_eq!(d.len(), 1);
-    assert_eq!((d[0].off, d[0].len, d[0].code), (5, 1, DiagCode::InvalidIdentifierEscape));
-    // backslash at EOF: empty span at n
+    assert_eq!((d[0].off, d[0].len, d[0].code), (4, 2, DiagCode::InvalidIdentifierEscape));
+    // backslash at EOF: the backslash alone
     let d = diags(r"x = \", cpu);
-    assert_eq!((d[0].off, d[0].len, d[0].code), (5, 0, DiagCode::InvalidIdentifierEscape));
+    assert_eq!((d[0].off, d[0].len, d[0].code), (4, 1, DiagCode::InvalidIdentifierEscape));
     // control bytes keep their own code
     assert_eq!(codes("a\u{1}b", cpu), [DiagCode::UnexpectedCharacter]);
 }
 
 #[test_cpus]
 fn invalid_identifier_escape_payload(cpu: DynCpu) {
-    // spans start after the backslash, end where the parser scanner stopped
+    // spans start at the backslash, end where the parser scanner stopped
     let d = diags(r"var \uZZ = 1", cpu);
     assert_eq!(d.len(), 1);
-    assert_eq!((d[0].off, d[0].len, d[0].code), (5, 1, DiagCode::InvalidIdentifierEscape));
+    assert_eq!((d[0].off, d[0].len, d[0].code), (4, 2, DiagCode::InvalidIdentifierEscape));
     let d = diags(r"var \u004 = 1", cpu); // 3 leading valid hex
-    assert_eq!((d[0].off, d[0].len), (5, 4));
+    assert_eq!((d[0].off, d[0].len), (4, 5));
     let d = diags(r"var \u{} = 1", cpu); // no digits; closing brace NOT consumed
-    assert_eq!((d[0].off, d[0].len), (5, 2));
+    assert_eq!((d[0].off, d[0].len), (4, 3));
     let d = diags(r"var \u{110000} = 1", cpu); // stops right after the crossing digit
     assert_eq!(d.len(), 1);
-    assert_eq!((d[0].off, d[0].len), (5, 8));
+    assert_eq!((d[0].off, d[0].len), (4, 9));
     let d = diags(r"var \u{FFFFFFFFFF} = 1", cpu); // ditto, incremental check
-    assert_eq!((d[0].off, d[0].len), (5, 8));
+    assert_eq!((d[0].off, d[0].len), (4, 9));
     let d = diags(r"var \u{12 = 1", cpu); // missing closing brace
-    assert_eq!((d[0].off, d[0].len), (5, 4));
+    assert_eq!((d[0].off, d[0].len), (4, 5));
     // surrogates: lone (both forms) and pairs are invalid in identifiers
     let d = diags(r"var \uD800 = 1", cpu);
-    assert_eq!((d[0].off, d[0].len), (5, 5));
+    assert_eq!((d[0].off, d[0].len), (4, 6));
     let d = diags(r"var \u{D800} = 1", cpu);
-    assert_eq!((d[0].off, d[0].len), (5, 7));
+    assert_eq!((d[0].off, d[0].len), (4, 8));
     // a well-formed pair: one diagnostic spanning both escapes
     let src = ["var ", r"\uD800", r"\uDC00", " = 1"].concat();
     let d = diags(&src, cpu);
     assert_eq!(d.len(), 1);
-    assert_eq!((d[0].off, d[0].len), (5, 11));
+    assert_eq!((d[0].off, d[0].len), (4, 12));
     // high + invalid low: the parser rewinds - two independent diagnostics
     let src = ["var ", r"\uD800", r"\uD800", " = 1"].concat();
     let d = diags(&src, cpu);
     assert_eq!(d.len(), 2);
-    assert_eq!((d[0].off, d[0].len), (5, 5));
-    assert_eq!((d[1].off, d[1].len), (11, 5));
+    assert_eq!((d[0].off, d[0].len), (4, 6));
+    assert_eq!((d[1].off, d[1].len), (10, 6));
 }
 
 #[test_cpus]

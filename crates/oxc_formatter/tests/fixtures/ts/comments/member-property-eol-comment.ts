@@ -1,4 +1,4 @@
-// A line comment ending the object's line keeps its side of the member's operator
+// A line comment between a member's object and its property never flushes past the property
 class A {
   #b;
   m() {
@@ -18,8 +18,35 @@ class A {
       .g;
     x = `${a // c
       .b}`;
+    x = a. // c
+      b;
+    x = a?. // c
+      b;
+    x = this. // c
+      #b;
+    x = a /* c */ . // d
+      b;
   }
 }
+
+a. // c
+  b;
+foo(). // c
+  b;
+(a). // c
+  b;
+(a // c
+).b;
+a.b. // c
+  c;
+a.b // c
+  .c;
+(a as B) // c
+  .b;
+(a as B // c
+).b;
+(a + b). // c
+  d;
 
 x = a /* c */
   .b;

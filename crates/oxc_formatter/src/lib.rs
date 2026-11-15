@@ -79,7 +79,7 @@ pub fn format_with_session<'a>(
     source_type: SourceType,
     options: JsFormatOptions,
 ) -> Result<Formatted<'a, JsFormatContext<'a>>, OxcDiagnostic> {
-    let program = parse(session.allocator(), source_text, source_type)?;
+    let program = parse(session.allocator(), source_text, source_type, None)?;
     Ok(format_program_with_session(session, program, options))
 }
 
@@ -122,7 +122,7 @@ pub fn format_to_ir<'a>(
 
     let (prefix, suffix) = print::root_wrapper(root);
     let wrapped = allocator.alloc_concat_strs_array([prefix, source_text, suffix]);
-    let program = parse(allocator, wrapped, source_type)?;
+    let program = parse(allocator, wrapped, source_type, embedded_in.keeps_recovered)?;
     let ends_in_line_comment = print::check_root(
         program,
         prefix.len()..prefix.len() + source_text.len(),
@@ -222,7 +222,8 @@ pub fn parse_for_format<'a>(
 
 /// Parse `source_text` and promote the `Program` to the arena lifetime.
 ///
-/// NOTE: Reject ANY parse diagnostic, not only `fatal_error`: we format valid code only, by design.
+/// NOTE: Reject ANY parse diagnostic, not only `fatal_error`: we format valid code only, by design,
+/// unless the host passes `keeps_recovered` for these diagnostics ([`JsEmbeddedIn::keeps_recovered`]).
 /// A recovered AST may be an unfaithful "fix" of the source
 /// (e.g. invalid modifiers are reported but not all of them are representable),
 /// so formatting it can silently rewrite what the user wrote.
@@ -231,9 +232,14 @@ fn parse<'a>(
     allocator: &'a Allocator,
     source_text: &'a str,
     source_type: SourceType,
+    keeps_recovered: Option<fn(&OxcDiagnostic, &Program<'_>) -> bool>,
 ) -> Result<&'a Program<'a>, OxcDiagnostic> {
     let ret = parse_for_format(allocator, source_text, source_type);
-    if let Some(err) = ret.diagnostics.into_iter().next() {
+    let kept = !ret.fatal_error
+        && keeps_recovered.is_some_and(|keeps| {
+            (&ret.diagnostics).into_iter().all(|diagnostic| keeps(diagnostic, &ret.program))
+        });
+    if !kept && let Some(err) = ret.diagnostics.into_iter().next() {
         return Err(err);
     }
     Ok(allocator.alloc(ret.program))

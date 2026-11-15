@@ -154,4 +154,10 @@ pub struct JsEmbeddedIn {
     /// code holding syntax outside it, which the host reads otherwise or not at all, is left as written (`delete(x)` calls `delete`),
     /// and no trailing comma prints in a call's arguments or an arrow's params, which it rejects (`f(a,)`).
     pub template_expressions_only: bool,
+    /// The host has checked that the parser's recovered program holds all of the code:
+    /// a program that parsed with diagnostics that all pass this (none fatal) is formatted.
+    /// A recovered program can drop nodes or panic the printer, so the host names which,
+    /// asking the program where a diagnostic has no code.
+    pub keeps_recovered:
+        Option<fn(&oxc_diagnostics::OxcDiagnostic, &oxc_ast::ast::Program<'_>) -> bool>,
 }

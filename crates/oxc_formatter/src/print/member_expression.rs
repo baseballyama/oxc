@@ -10,7 +10,7 @@ use crate::{
     utils::{
         expression::as_call_expression_without_chain_wrappers,
         member_chain::chain_member::FormatComputedMemberExpressionWithoutObject,
-        typecast::is_cast_target,
+        typecast::{cast_target_end, is_cast_target},
     },
     write,
 };
@@ -48,6 +48,8 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
 {
     // Before the recording: printing the object consumes its cast comment
     let object_is_cast_target = is_cast_target(object.span(), f);
+    // A cast target prints its parens and the comments inside them
+    let object_end = cast_target_end(object.span(), f).unwrap_or(object.span().end);
     let is_member_chain = {
         let start = f.elements().len();
         write!(f, [object]);
@@ -57,7 +59,15 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
     // The member expression itself
     let member = property.parent();
 
-    match layout(&object, property_start, member, is_member_chain, object_is_cast_target, f) {
+    match layout(
+        &object,
+        object_end,
+        property_start,
+        member,
+        is_member_chain,
+        object_is_cast_target,
+        f,
+    ) {
         StaticMemberLayout::NoBreak => {
             let format_no_break = format_with(|f| write!(f, [operator_token(optional), property]));
 
@@ -67,13 +77,14 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
                 write!(f, [format_no_break]);
             }
         }
-        StaticMemberLayout::BreakBeforeOperator(operator) => {
-            // The comments after the line comment stay before the operator too
-            let comments = f.context().comments().comments_before(operator);
+        StaticMemberLayout::BreakBeforeOperator => {
+            // The comments after the line comment stay before the operator too, wherever they sat in the gap
+            let comments = f.context().comments().comments_before(property_start);
             write!(
                 f,
                 [
-                    hard_line_break(),
+                    // The pending line comment breaks here, and no group before it fits on its line
+                    line_suffix_boundary(),
                     FormatLeadingComments::Comments(comments),
                     operator_token(optional),
                     property
@@ -110,9 +121,9 @@ enum StaticMemberLayout {
     /// Breaks the static member expression after the object if the whole expression doesn't fit on a single line
     BreakAfterObject,
 
-    /// Breaks before the operator at this offset, after a line comment ending the object's line
+    /// Breaks before the operator, after a line comment ending a line between the object and the property
     /// (`a // c` + break + `.b`)
-    BreakBeforeOperator(u32),
+    BreakBeforeOperator,
 }
 
 fn operator_token(optional: bool) -> &'static str {
@@ -123,6 +134,7 @@ fn operator_token(optional: bool) -> &'static str {
 /// a cast-target object is neither a call nor an identifier to the rules below (see `is_cast_target`).
 fn layout<'a>(
     object: &Expression<'a>,
+    object_end: u32,
     property_start: u32,
     member: &AstNodes<'_, 'a>,
     is_member_chain: bool,
@@ -133,8 +145,8 @@ fn layout<'a>(
         return StaticMemberLayout::BreakAfterObject;
     }
 
-    if let Some(operator) = operator_after_line_comment(object.span().end, property_start, f) {
-        return StaticMemberLayout::BreakBeforeOperator(operator);
+    if has_line_comment_before_property(object_end, property_start, f) {
+        return StaticMemberLayout::BreakBeforeOperator;
     }
 
     // `a.b.c!` and `a.b?.c`
@@ -200,39 +212,13 @@ fn layout<'a>(
     }
 }
 
-/// The offset of the member's `.` / `?.` when a line comment ends the line right before it (only blanks and comments follow):
+/// Whether a line comment ends a line between the object (after any cast parens it prints) and the property
+/// (only the object's dropped parens and the operator sit there):
 /// its `line_suffix` would otherwise flush past the property, which is user content.
-/// A comment before a `)` is not one: the parens hold it.
-fn operator_after_line_comment(
+fn has_line_comment_before_property(
     object_end: u32,
     property_start: u32,
     f: &JsFormatter<'_, '_>,
-) -> Option<u32> {
-    let source = f.source_text();
-    let mut gap_start = object_end;
-    let mut after_line_comment = false;
-    // The operator is the gap's only `.` outside its comments (a `)` may come before it)
-    let gaps = f
-        .comments()
-        .all_comments_in_range(object_end, property_start)
-        .map(|comment| (comment.span.start, Some(comment)))
-        .chain([(property_start, None)]);
-    for (gap_end, comment) in gaps {
-        let gap = source.bytes_range(gap_start, gap_end);
-        let first = (gap_start..).zip(gap).find(|(_, byte)| !byte.is_ascii_whitespace());
-        if let Some((first, _)) = first {
-            let rest = source.bytes_range(first, gap_end);
-            if rest.starts_with(b".") || rest.starts_with(b"?.") {
-                return after_line_comment.then_some(first);
-            }
-            if rest.contains(&b'.') {
-                return None;
-            }
-            after_line_comment = false;
-        }
-        let comment = comment?;
-        after_line_comment |= comment.is_line();
-        gap_start = comment.span.end;
-    }
-    None
+) -> bool {
+    f.comments().all_comments_in_range(object_end, property_start).any(Comment::is_line)
 }

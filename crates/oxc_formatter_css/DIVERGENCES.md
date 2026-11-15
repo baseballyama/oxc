@@ -388,7 +388,7 @@ The Prettier-compat raw paths keep the source as-is: a selector or at-rule prelu
 ## call-after-line-comment-indent
 
 - Why: uniform-rule (comment presence never changes layout; prettier/prettier#19427)
-- Pin: `tests/fixtures/format/scss/inline-comment-before-call.scss`
+- Pin: `tests/fixtures/format/scss/inline-comment-before-call.scss`, `tests/fixtures/format/css/comment-before-call-in-comma-list.css`
 
 ```scss
 /* input */
@@ -419,6 +419,7 @@ width: pow(
 
 Prettier double-indents a function call directly after a `//` comment in nested-args position, a forgotten leftover of the incomplete prettier/prettier#4878 fix (prettier/prettier#7844 covered only the SCSS-map / direct paren-group child case);
 ours sits at the normal +1 / `)` +0 like every comment-free call.
+In CSS, a `/* */` in the middle of a comma list does the same to the call after it (+2 on the body and the `)`), while a comment that starts the list does not.
 Same rule as `comment-preceded-map-indent`.
 
 ## nested-map-context-indent

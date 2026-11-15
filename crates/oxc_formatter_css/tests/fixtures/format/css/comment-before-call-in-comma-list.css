@@ -1,0 +1,8 @@
+/* A call after a comment in the middle of a comma list keeps the indent of a comment-free call */
+.a {
+  background-image:
+    /* Major vertical lines */
+    repeating-linear-gradient(to right, var(--line-major) 0, var(--line-major) 2px, transparent 2px, transparent var(--size)),
+    /* Minor vertical lines */
+    repeating-linear-gradient(to right, var(--line) 0, var(--line) 0.5px, transparent 0.5px, transparent calc(var(--size) / 5));
+}

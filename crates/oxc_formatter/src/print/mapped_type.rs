@@ -1,15 +1,18 @@
-use oxc_ast::ast::{TSMappedType, TSMappedTypeModifierOperator};
+use oxc_ast::{
+    Comment,
+    ast::{TSMappedType, TSMappedTypeModifierOperator},
+};
 
 use crate::{
     ast_nodes::AstNode,
     format_args,
     formatter::{
         prelude::*,
-        trivia::{DanglingIndentMode, FormatDanglingComments},
+        trivia::{DanglingIndentMode, FormatDanglingComments, FormatTrailingComments},
     },
     print::{
         semicolon::OptionalSemicolon,
-        type_colon::{ColonBreak, mapped_value_colon_end},
+        type_colon::{ColonBreak, mapped_value_delimiters},
     },
     utils::suppressed::FormatSuppressedNode,
     write,
@@ -86,8 +89,9 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSMappedType<'a>> {
                 write!(f, [prefix, "readonly", space()]);
             }
 
-            // A comment past the value's `:` belongs to the value, not to the key's trailing pass
-            let key_comments_end = mapped_value_colon_end(self, f).map(|colon_end| colon_end - 1);
+            // The key's comment passes stop at its `]`: a comment past it keeps its side of the `]` and of the `:`
+            let delimiters = mapped_value_delimiters(self, f);
+            let key_comments_end = delimiters.map(|(close_bracket_end, _)| close_bracket_end - 1);
             let format_key_in_constraint = format_with(|f| {
                 let view_limit = key_comments_end
                     .map(|end| f.context_mut().comments_mut().limit_comments_up_to(end));
@@ -112,7 +116,14 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSMappedType<'a>> {
                     }
                 );
             }
-            if let Some(type_annotation) = &self.type_annotation() {
+            if let (Some(type_annotation), Some((_, colon_end))) =
+                (&self.type_annotation(), delimiters)
+            {
+                let before_colon = f.context().comments().comments_before(colon_end - 1);
+                write!(f, [FormatTrailingComments::Comments(before_colon)]);
+                if before_colon.iter().any(Comment::is_line) {
+                    write!(f, [hard_line_break()]);
+                }
                 ColonBreak::of_mapped_value(self, f).write(type_annotation, f);
             }
             write!(f, if_group_breaks(&OptionalSemicolon));

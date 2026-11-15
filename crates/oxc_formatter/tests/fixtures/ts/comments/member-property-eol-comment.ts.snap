@@ -22,6 +22,7 @@ class A {
       .g;
     x = `${a // c
       .b}`;
+    // DIVERGENCES.md#member-operator-comment-side
     x = a. // c
       b;
     x = a?. // c
@@ -33,6 +34,7 @@ class A {
   }
 }
 
+// DIVERGENCES.md#member-operator-comment-side
 a. // c
   b;
 foo(). // c
@@ -93,32 +95,33 @@ class A {
       a // c
       .b
     }`;
+    // DIVERGENCES.md#member-operator-comment-side
     x =
-      a // c
-      .b;
+      a. // c
+        b;
     x =
-      a // c
-      ?.b;
+      a?. // c
+        b;
     x =
-      this // c
-      .#b;
+      this. // c
+        #b;
     x =
-      a /* c */ // d
-      .b;
+      a /* c */. // d
+        b;
   }
 }
 
+// DIVERGENCES.md#member-operator-comment-side
+a. // c
+  b;
+foo(). // c
+  b;
+a. // c
+  b;
 a // c
 .b;
-foo() // c
-.b;
-a // c
-.b;
-a // c
-.b;
-a
-  .b // c
-.c;
+a.b. // c
+  c;
 a
   .b // c
 .c;
@@ -130,10 +133,8 @@ a
   a as B
 ) // c
 .b;
-(
-  a + b
-) // c
-.d;
+(a + b). // c
+  d;
 
 x = a /* c */.b;
 // DIVERGENCES.md#member-property-own-line-comment
@@ -175,32 +176,33 @@ class A {
       a // c
       .b
     }`;
+    // DIVERGENCES.md#member-operator-comment-side
     x =
-      a // c
-      .b;
+      a. // c
+        b;
     x =
-      a // c
-      ?.b;
+      a?. // c
+        b;
     x =
-      this // c
-      .#b;
+      this. // c
+        #b;
     x =
-      a /* c */ // d
-      .b;
+      a /* c */. // d
+        b;
   }
 }
 
+// DIVERGENCES.md#member-operator-comment-side
+a. // c
+  b;
+foo(). // c
+  b;
+a. // c
+  b;
 a // c
 .b;
-foo() // c
-.b;
-a // c
-.b;
-a // c
-.b;
-a
-  .b // c
-.c;
+a.b. // c
+  c;
 a
   .b // c
 .c;
@@ -212,10 +214,8 @@ a
   a as B
 ) // c
 .b;
-(
-  a + b
-) // c
-.d;
+(a + b). // c
+  d;
 
 x = a /* c */.b;
 // DIVERGENCES.md#member-property-own-line-comment

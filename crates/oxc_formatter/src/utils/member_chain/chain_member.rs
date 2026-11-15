@@ -8,7 +8,14 @@ use crate::{
         prelude::*,
         trivia::{FormatLeadingComments, format_trailing_comments},
     },
-    utils::{call_expression::callee_opener, statement_body::write_comments_before_opener},
+    utils::{
+        call_expression::callee_opener,
+        member_operator::{
+            operator_after_object, operator_start, with_comments_before,
+            write_operator_and_property,
+        },
+        statement_body::write_comments_before_opener,
+    },
     write,
 };
 use oxc_ast::ast::*;
@@ -85,14 +92,40 @@ impl<'a> ChainMember<'a, '_> {
     }
 }
 
+impl<'a> ChainMember<'a, '_> {
+    fn parent(&self) -> &AstNodes<'a, '_> {
+        match self {
+            Self::StaticMember(member) => member.parent(),
+            Self::PrivateField(member) => member.parent(),
+            Self::TSNonNullExpression(e) => e.parent(),
+            Self::CallExpression { expression, .. } => expression.parent(),
+            Self::ComputedMember(member) => member.parent(),
+            Self::Node(node) => node.parent(),
+        }
+    }
+}
+
 impl<'a> Format<'a, JsFormatContext<'a>> for ChainMember<'a, '_> {
     fn fmt(&self, f: &mut JsFormatter<'_, 'a>) {
+        // The member this one is the object of starts with its operator: no comment pass here claims past it
+        let next_operator = operator_after_object(self.span(), self.parent(), f);
+        with_comments_before(next_operator, f, |f| self.fmt_member(f));
+    }
+}
+
+impl<'a> ChainMember<'a, '_> {
+    fn fmt_member(&self, f: &mut JsFormatter<'_, 'a>) {
         match self {
             Self::StaticMember(member) => {
-                write_member_lookup(member.optional(), member.property(), f);
+                write_member_lookup(
+                    member.object.span().end,
+                    member.optional(),
+                    member.property(),
+                    f,
+                );
             }
             Self::PrivateField(member) => {
-                write_member_lookup(member.optional(), member.field(), f);
+                write_member_lookup(member.object.span().end, member.optional(), member.field(), f);
             }
             Self::TSNonNullExpression(e) => {
                 e.format_leading_comments(f);
@@ -137,23 +170,16 @@ impl<'a> Format<'a, JsFormatContext<'a>> for ChainMember<'a, '_> {
 
 /// Writes `.b` of `a.b` or `.#b` of `a.#b` with its comments.
 fn write_member_lookup<'b, 'a, P: GetSpan>(
+    object_end: u32,
     optional: bool,
     property: AstNode<'b, 'a, P>,
     f: &mut JsFormatter<'_, 'a>,
 ) where
     AstNode<'b, 'a, P>: Format<'a, JsFormatContext<'a>>,
 {
-    write!(
-        f,
-        [
-            FormatLeadingComments::Comments(
-                f.context().comments().comments_before(property.span().start)
-            ),
-            optional.then_some("?"),
-            ".",
-            property
-        ]
-    );
+    let operator = operator_start(object_end, optional, f);
+    write!(f, [FormatLeadingComments::Comments(f.context().comments().comments_before(operator))]);
+    write_operator_and_property(optional, &property, f);
 
     // The member expression itself
     let member = property.parent();

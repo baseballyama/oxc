@@ -3,6 +3,7 @@ source: crates/oxc_formatter/tests/fixtures/mod.rs
 ---
 ==================== Input ====================
 // https://github.com/oxc-project/oxc/issues/23668
+// DIVERGENCES.md#member-operator-comment-side
 m.//
 O.e()
 
@@ -11,12 +12,16 @@ O.e()
 { printWidth: 80 }
 ------------------
 // https://github.com/oxc-project/oxc/issues/23668
-m.O.e(); //
+// DIVERGENCES.md#member-operator-comment-side
+m. //
+  O.e();
 
 -------------------
 { printWidth: 100 }
 -------------------
 // https://github.com/oxc-project/oxc/issues/23668
-m.O.e(); //
+// DIVERGENCES.md#member-operator-comment-side
+m. //
+  O.e();
 
 ===================== End =====================

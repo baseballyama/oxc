@@ -243,6 +243,11 @@ parser_diagnostics! {
     };
 
     invalid_character(c: char, span: Span) => {
+        ts_error("1127", format!("Invalid Character `{c}`")).with_label(span)
+    };
+
+    // tsc reports these at the escape, or as a missing digit, so they keep no code.
+    invalid_character_elsewhere(c: char, span: Span) => {
         OxcDiagnostic::error(format!("Invalid Character `{c}`")).with_label(span)
     };
 

@@ -122,7 +122,7 @@ impl<'a, C: Config> Lexer<'a, C> {
             if check_identifier_start { is_identifier_start(ch) } else { is_identifier_part(ch) };
 
         if !is_valid {
-            self.error(diagnostics::invalid_character(ch, self.current_offset()));
+            self.error(diagnostics::invalid_character_elsewhere(ch, self.current_offset()));
             return;
         }
 

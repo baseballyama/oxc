@@ -252,6 +252,11 @@ pub struct ExpressionReturn<'a> {
     /// Recoverable syntax errors, such as a TypeScript grammar rule the expression breaks.
     /// The expression is whole; a host decides which of them it reports.
     pub diagnostics: Diagnostics,
+
+    /// The whitespace oxc reads that ECMAScript may not, such as U+0085, up to the token after
+    /// the part, as [`ParserReturn::irregular_whitespaces`] lists it for a program. It is the
+    /// lexer's own list, moved, so a part returns it without allocating.
+    pub irregular_whitespaces: Vec<Span>,
 }
 
 /// Return value of [`Parser::parse_statement_at`]: the statement, where it ends, and the
@@ -280,6 +285,11 @@ pub struct StatementReturn<'a> {
     /// Recoverable syntax errors, such as a TypeScript grammar rule the statement breaks.
     /// The statement is whole; a host decides which of them it reports.
     pub diagnostics: Diagnostics,
+
+    /// The whitespace oxc reads that ECMAScript may not, such as U+0085, up to the token after
+    /// the part, as [`ParserReturn::irregular_whitespaces`] lists it for a program. It is the
+    /// lexer's own list, moved, so a part returns it without allocating.
+    pub irregular_whitespaces: Vec<Span>,
 }
 
 /// The error of [`Parser::parse_expression_at`] or [`Parser::parse_statement_at`]: a syntax error
@@ -293,6 +303,11 @@ pub struct PartError<'a> {
     /// The tokens read before the parser stopped, the one it stopped at included, when tokens
     /// are enabled in [`ParserConfig`].
     pub tokens: ArenaVec<'a, Token>,
+
+    /// The whitespace oxc reads that ECMAScript may not, such as U+0085, up to the token after
+    /// the part, as [`ParserReturn::irregular_whitespaces`] lists it for a program. It is the
+    /// lexer's own list, moved, so a part returns it without allocating.
+    pub irregular_whitespaces: Vec<Span>,
 }
 
 /// What [`ParserImpl::parse_part`] reads.
@@ -319,6 +334,7 @@ struct PartReturn<'a> {
     tokens: ArenaVec<'a, Token>,
     next_token: Option<Token>,
     diagnostics: Diagnostics,
+    irregular_whitespaces: Vec<Span>,
 }
 
 impl<'a> PartReturn<'a> {
@@ -331,6 +347,7 @@ impl<'a> PartReturn<'a> {
             tokens: self.tokens,
             next_token: self.next_token,
             diagnostics: self.diagnostics,
+            irregular_whitespaces: self.irregular_whitespaces,
         }
     }
 
@@ -343,6 +360,7 @@ impl<'a> PartReturn<'a> {
             tokens: self.tokens,
             next_token: self.next_token,
             diagnostics: self.diagnostics,
+            irregular_whitespaces: self.irregular_whitespaces,
         }
     }
 }
@@ -1070,7 +1088,9 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
                 .chain([error])
                 .map(ParserDiagnostic::into_diagnostic)
                 .collect();
-            return Err(PartError { diagnostics, tokens });
+            let irregular_whitespaces =
+                std::mem::take(&mut self.lexer.trivia_builder.irregular_whitespaces);
+            return Err(PartError { diagnostics, tokens, irregular_whitespaces });
         }
         self.errors.retain(|error| !matches!(error, ParserDiagnostic::strict_reserved_word { .. }));
         self.check_unfinished_errors();
@@ -1086,8 +1106,18 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
             .chain(self.errors)
             .map(ParserDiagnostic::into_diagnostic)
             .collect::<Diagnostics>();
+        let irregular_whitespaces =
+            std::mem::take(&mut self.lexer.trivia_builder.irregular_whitespaces);
         let comments = self.lexer.trivia_builder.comments.take_vec(&self.ast);
-        Ok(PartReturn { part, end, comments, tokens, next_token, diagnostics })
+        Ok(PartReturn {
+            part,
+            end,
+            irregular_whitespaces,
+            comments,
+            tokens,
+            next_token,
+            diagnostics,
+        })
     }
 
     #[expect(clippy::cast_possible_truncation)]

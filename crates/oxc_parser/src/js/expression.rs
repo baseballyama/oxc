@@ -410,9 +410,22 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         }
     }
 
-    /// `expression` without the parentheses at `span`, which are kept for a pattern to reject.
+    /// `expression` without the parentheses at `span`, which are kept for a pattern to reject. Only
+    /// a token that can follow a pattern keeps them, as `x => ({})` is common and never one.
     fn drop_parentheses(&mut self, span: Span, expression: Expression<'a>) -> Expression<'a> {
-        if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expression {
+        if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expression
+            && (self.cur_kind().is_assignment_operator()
+                || matches!(
+                    self.cur_kind(),
+                    Kind::Comma
+                        | Kind::RBrack
+                        | Kind::RCurly
+                        | Kind::Of
+                        | Kind::In
+                        | Kind::Plus2
+                        | Kind::Minus2
+                ))
+        {
             self.state.parenthesized_patterns.insert(expression.span().start, span);
         }
         expression
@@ -1931,9 +1944,11 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         // AssignmentPattern[Yield, Await] :
         //    ObjectAssignmentPattern
         //    ArrayAssignmentPattern
-        // A destructuring pattern target is only valid with `=`, not a compound operator.
+        // A destructuring pattern target is only valid with `=`, not a compound operator. One in
+        // parentheses is no pattern, which the cover reports.
         if operator != AssignmentOperator::Assign
             && matches!(lhs, Expression::ObjectExpression(_) | Expression::ArrayExpression(_))
+            && !self.state.parenthesized_patterns.contains_key(&lhs.span().start)
         {
             self.error(diagnostics::assignment_is_not_simple(lhs.span()));
         }

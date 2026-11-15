@@ -311,7 +311,14 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             .and_await(ctx.has_await())
             .and_yield(ctx.has_yield())
             .and_new_target(ctx.has_new_target());
-        if (!self.is_ts || matches!(func_kind, FunctionKind::ObjectMethod)) && body.is_none() {
+        // JavaScript reads no return type, so a body is missing where a parameter's type is: at
+        // the token where `{` belongs.
+        if !self.is_ts && body.is_none() {
+            let found = self.cur_token().span();
+            let error = diagnostics::expect_token("{", self.cur_kind().to_str(), found);
+            return self.fatal_error(error);
+        }
+        if matches!(func_kind, FunctionKind::ObjectMethod) && body.is_none() {
             return self.fatal_error(diagnostics::expect_function_body(self.end_span(start)));
         }
         let function_type = match func_kind {

@@ -3,7 +3,7 @@
 
 use oxc_allocator::{ArenaBox, ArenaVec, Dummy, GetAllocator};
 use oxc_ast::ast::*;
-use oxc_span::GetSpan;
+use oxc_span::{GetSpan, Span};
 
 use super::cover::{Cover, CoverCheck, CoverElement};
 use crate::{ParserConfig as Config, ParserImpl, diagnostics};
@@ -12,8 +12,37 @@ pub trait CoverGrammar<'a, T, C: Config>: Sized {
     fn cover(value: T, p: &mut ParserImpl<'a, C>) -> Self;
 }
 
+/// What assigns a target, which names the error for an expression that cannot be one. The error
+/// labels the outermost parentheses around the target, which a tree without them passes as a span.
+#[derive(Clone, Copy)]
+pub enum AssignedBy {
+    Assignment,
+    Update,
+    ForIn,
+    ForOf,
+}
+
+impl AssignedBy {
+    pub(crate) const fn code(self) -> &'static str {
+        match self {
+            Self::Assignment => "2364",
+            Self::Update => "2357",
+            Self::ForIn => "2406",
+            Self::ForOf => "2487",
+        }
+    }
+}
+
 impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for AssignmentTarget<'a> {
     fn cover(expr: Expression<'a>, p: &mut ParserImpl<'a, C>) -> Self {
+        Self::cover((expr, AssignedBy::Assignment, None), p)
+    }
+}
+
+type Assigned<'a> = (Expression<'a>, AssignedBy, Option<Span>);
+
+impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for AssignmentTarget<'a> {
+    fn cover((expr, by, parentheses): Assigned<'a>, p: &mut ParserImpl<'a, C>) -> Self {
         match expr {
             Expression::ArrayExpression(array_expr) => {
                 let pat = ArrayAssignmentTarget::cover(array_expr.unbox(), p);
@@ -23,13 +52,20 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for AssignmentTarget<'a>
                 let pat = ObjectAssignmentTarget::cover(object_expr.unbox(), p);
                 AssignmentTarget::ObjectAssignmentTarget(p.alloc(pat))
             }
-            _ => AssignmentTarget::from(SimpleAssignmentTarget::cover(expr, p)),
+            _ => AssignmentTarget::from(SimpleAssignmentTarget::cover((expr, by, parentheses), p)),
         }
     }
 }
 
 impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarget<'a> {
     fn cover(expr: Expression<'a>, p: &mut ParserImpl<'a, C>) -> Self {
+        Self::cover((expr, AssignedBy::Assignment, None), p)
+    }
+}
+
+impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget<'a> {
+    fn cover((expr, by, parentheses): Assigned<'a>, p: &mut ParserImpl<'a, C>) -> Self {
+        let code = by.code();
         match expr {
             Expression::Identifier(ident) => {
                 SimpleAssignmentTarget::AssignmentTargetIdentifier(ident)
@@ -39,12 +75,12 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
                 SimpleAssignmentTarget::from(member_expr)
             }
             Expression::ParenthesizedExpression(expr) => {
-                let span = expr.span;
+                let span = parentheses.unwrap_or(expr.span);
                 match expr.unbox().expression {
                     Expression::ObjectExpression(_) | Expression::ArrayExpression(_) => {
-                        p.fatal_error(diagnostics::invalid_assignment(span))
+                        p.fatal_error(diagnostics::invalid_assignment(code, span))
                     }
-                    expr => SimpleAssignmentTarget::cover(expr, p),
+                    expr => SimpleAssignmentTarget::cover((expr, by, Some(span)), p),
                 }
             }
             Expression::TSAsExpression(expr) => match expr.expression.get_inner_expression() {
@@ -54,7 +90,10 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSAsExpression(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(expr.span())),
+                _ => p.fatal_error(diagnostics::invalid_assignment(
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                )),
             },
             Expression::TSSatisfiesExpression(expr) => {
                 match expr.expression.get_inner_expression() {
@@ -64,7 +103,10 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
                     | Expression::PrivateFieldExpression(_) => {
                         SimpleAssignmentTarget::TSSatisfiesExpression(expr)
                     }
-                    _ => p.fatal_error(diagnostics::invalid_assignment(expr.span())),
+                    _ => p.fatal_error(diagnostics::invalid_assignment(
+                        code,
+                        parentheses.unwrap_or(expr.span()),
+                    )),
                 }
             }
             Expression::TSNonNullExpression(expr) => match expr.expression.get_inner_expression() {
@@ -74,7 +116,10 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSNonNullExpression(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(expr.span())),
+                _ => p.fatal_error(diagnostics::invalid_assignment(
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                )),
             },
             Expression::TSTypeAssertion(expr) => match expr.expression.get_inner_expression() {
                 Expression::Identifier(_)
@@ -83,12 +128,18 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSTypeAssertion(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(expr.span())),
+                _ => p.fatal_error(diagnostics::invalid_assignment(
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                )),
             },
             Expression::TSInstantiationExpression(expr) => {
                 p.fatal_error(diagnostics::invalid_lhs_assignment(expr.span()))
             }
-            expr => p.fatal_error(diagnostics::invalid_assignment(expr.span())),
+            expr => p.fatal_error(diagnostics::invalid_assignment(
+                code,
+                parentheses.unwrap_or(expr.span()),
+            )),
         }
     }
 }
@@ -129,7 +180,10 @@ impl<'a, C: Config> CoverGrammar<'a, ArrayExpression<'a>, C> for ArrayAssignment
                                 | Expression::ComputedMemberExpression(_)
                                 | Expression::PrivateFieldExpression(_)
                         ) {
-                            p.error(diagnostics::invalid_rest_assignment_target(argument.span()));
+                            p.error(diagnostics::invalid_rest_assignment_target(
+                                "2364",
+                                argument.span(),
+                            ));
                         }
                         let target = AssignmentTarget::cover(argument, p);
                         rest = Some(AssignmentTargetRest::boxed(span, target, p));
@@ -209,7 +263,10 @@ impl<'a, C: Config> CoverGrammar<'a, ObjectExpression<'a>, C> for ObjectAssignme
                                 | Expression::ComputedMemberExpression(_)
                                 | Expression::PrivateFieldExpression(_)
                         ) {
-                            p.error(diagnostics::invalid_rest_assignment_target(argument.span()));
+                            p.error(diagnostics::invalid_rest_assignment_target(
+                                "2701",
+                                argument.span(),
+                            ));
                         }
                         if let Some(span) = p.state.trailing_commas.remove(&expr.span.start) {
                             p.error(diagnostics::rest_element_trailing_comma(span));

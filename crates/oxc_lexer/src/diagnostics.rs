@@ -420,9 +420,9 @@ pub fn to_oxc_diagnostic(d: &Diagnostic, source: &str) -> OxcDiagnostic {
         }
         // The parser's identifier-escape message, distinct from the
         // string-escape one above.
-        DiagCode::InvalidIdentifierEscape => {
-            diag(sev, "Invalid Unicode escape sequence").with_label(span)
-        }
+        DiagCode::InvalidIdentifierEscape => diag(sev, "Invalid Unicode escape sequence")
+            .with_error_code("TS", "1127")
+            .with_label(span),
 
         // The parser consumes valid &str, so its closest analog to bad UTF-8
         // is the binary-file error, which carries no label.

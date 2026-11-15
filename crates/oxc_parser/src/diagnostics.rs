@@ -233,8 +233,9 @@ parser_diagnostics! {
         OxcDiagnostic::error("Invalid escape sequence").with_label(span)
     };
 
+    // Invalid character. (1127), at the `\` of an escape in an identifier.
     unicode_escape_sequence(span: Span) => {
-        OxcDiagnostic::error("Invalid Unicode escape sequence").with_label(span)
+        ts_error("1127", "Invalid Unicode escape sequence").with_label(span)
     };
 
     invalid_numeric_separator(span: Span) => {

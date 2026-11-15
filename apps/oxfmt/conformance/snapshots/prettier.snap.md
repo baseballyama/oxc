@@ -146,12 +146,10 @@
 
 ## typescript
 
-637/679 (93.81%)
+634/679 (93.37%)
 
 ### Failed
 
-- externals/prettier/typescript/prettier-ignore/mapped-types.ts (💥, 92.19%)
-  - ❓unclassified
 - externals/prettier/typescript/as/as-const/as-const.ts (💥, 66.67%)
   - crates/oxc_formatter/DIVERGENCES.md#binary-cast-own-line-comment
 - externals/prettier/typescript/as/as.ts (💥, 97.74%)
@@ -182,6 +180,8 @@
   - crates/oxc_formatter/DIVERGENCES.md#export-default-leftmost-parens
 - externals/prettier/typescript/import-export/empty-import.ts (💥, 69.14%)
   - crates/oxc_formatter/DIVERGENCES.md#module-from-keyword-comment
+- externals/prettier/typescript/import-type/long-module-name/long-module-name4.ts (💥, 91.53%)
+  - crates/oxc_formatter/DIVERGENCES.md#type-annotation-comment-break
 - externals/prettier/typescript/interface/comments-generic.ts (💥💥, 91.80%)
   - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
 - externals/prettier/typescript/interface2/comments-declare.ts (💥, 60.00%)
@@ -194,8 +194,14 @@
   - crates/oxc_formatter/DIVERGENCES.md#eol-comment-after-assign-colon
 - externals/prettier/typescript/intersection/intersection-parens.ts (💥💥✨, 99.29%)
   - crates/oxc_formatter/DIVERGENCES.md#type-alias-trailing-comment-move
+- externals/prettier/typescript/keyword-types/keyword-types-with-parens-comments.ts (💥, 0.00%)
+  - crates/oxc_formatter/DIVERGENCES.md#type-annotation-comment-break
+- externals/prettier/typescript/prettier-ignore/mapped-types.ts (💥, 96.92%)
+  - crates/oxc_formatter/DIVERGENCES.md#type-annotation-comment-break
 - externals/prettier/typescript/property-signature/consistent-with-flow/comments.ts (💥, 80.00%)
   - crates/oxc_formatter/DIVERGENCES.md#eol-comment-after-assign-colon
+- externals/prettier/typescript/property-signature/consistent-with-flow/intersection.ts (💥, 42.86%)
+  - crates/oxc_formatter/DIVERGENCES.md#type-annotation-comment-break
 - externals/prettier/typescript/property-signature/consistent-with-flow/union.ts (💥, 80.00%)
   - crates/oxc_formatter/DIVERGENCES.md#eol-comment-after-assign-colon
 - externals/prettier/typescript/satisfies-operators/comments-unstable.ts (💥💥, 61.54%)

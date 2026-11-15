@@ -30,6 +30,7 @@ mod switch_statement;
 mod template;
 mod try_statement;
 mod tuple_type;
+mod type_colon;
 mod type_parameters;
 mod union_type;
 mod variable_declaration;
@@ -1436,19 +1437,12 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSEnumMember<'a>> {
 
 impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSTypeAnnotation<'a>> {
     fn write(&self, f: &mut JsFormatter<'_, 'a>) {
-        match self.parent() {
-            AstNodes::TSFunctionType(_) | AstNodes::TSConstructorType(_) => {
-                write!(f, ["=>", space(), self.type_annotation()]);
-            }
-            AstNodes::TSTypePredicate(_) => {
-                write!(f, [self.type_annotation()]);
-            }
-            _ => {
-                // Line comment after the `:` drops the type to column 0 (`let v: // c` + `Foo`, Prettier too);
-                // a break + indent as after `=` would keep it under the name.
-                // See AGENTS.md "Open debts".
-                write!(f, [":", space(), self.type_annotation()]);
-            }
+        if type_colon::has_colon(self) {
+            type_colon::ColonBreak::of_annotation(self, f).write(&self.type_annotation(), f);
+        } else if let AstNodes::TSTypePredicate(_) = self.parent() {
+            write!(f, [self.type_annotation()]);
+        } else {
+            write!(f, ["=>", space(), self.type_annotation()]);
         }
     }
 }

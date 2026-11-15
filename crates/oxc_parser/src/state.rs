@@ -58,6 +58,10 @@ pub struct ParserState<'a> {
     /// Keyed by the expression start and consumed when checked.
     pub trailing_commas: FxHashMap<u32, Span>,
 
+    /// The outermost parentheses the tree drops around an `ArrayExpression` or `ObjectExpression`,
+    /// which cannot be an assignment pattern. Keyed by the expression start.
+    pub parenthesized_patterns: FxHashMap<u32, Span>,
+
     /// Statements that may need reparsing when `sourceType` is `unambiguous`.
     ///
     /// In unambiguous mode, we initially parse top-level `await ...` as
@@ -85,6 +89,7 @@ impl<'a> ParserState<'a> {
             type_argument_lookahead: None,
             cover_initialized_name: FxHashMap::default(),
             trailing_commas: FxHashMap::default(),
+            parenthesized_patterns: FxHashMap::default(),
             potential_await_reparse: Vec::new(),
             encountered_await_identifier: false,
         }

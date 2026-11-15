@@ -802,10 +802,11 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             self.state.cover_parenthesized.push(expression.without_parentheses().span().start);
         }
 
+        let span = self.end_span(start);
         if self.options.preserve_parens {
-            Expression::new_parenthesized_expression(self.end_span(start), expression, self)
+            Expression::new_parenthesized_expression(span, expression, self)
         } else {
-            expression
+            self.drop_parentheses(span, expression)
         }
     }
 

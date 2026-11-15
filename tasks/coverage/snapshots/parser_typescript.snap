@@ -9491,14 +9491,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  16 │     b = 10;
     ╰────
 
-  × Expected function body
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationConstructorOverloadSyntax.ts:2:14]
+  × TS(1005): Expected `{` but found `;`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationConstructorOverloadSyntax.ts:2:16]
  1 │ class A {
  2 │   constructor();
-   ·              ──
+   ·                ┬
+   ·                ╰── `{` expected
  3 │ }
    ╰────
-  help: Add a function body (`{}`).
 
   × TS(1109): Unexpected token
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationEnumSyntax.ts:1:1]
@@ -9512,12 +9512,12 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·        ─
    ╰────
 
-  × Expected function body
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationFunctionOverloadSyntax.ts:1:1]
+  × TS(1005): Expected `{` but found `;`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationFunctionOverloadSyntax.ts:1:15]
  1 │ function foo();
-   · ──────────────
+   ·               ┬
+   ·               ╰── `{` expected
    ╰────
-  help: Add a function body (`{}`).
 
   × TS(8005): 'implements' clauses can only be used in TypeScript files.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationHeritageClauseSyntaxOfClass.ts:1:9]
@@ -9539,14 +9539,14 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Expected function body
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationMethodOverloadSyntax.ts:2:6]
+  × TS(1005): Expected `{` but found `;`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationMethodOverloadSyntax.ts:2:8]
  1 │ class A {
  2 │   foo();
-   ·      ──
+   ·        ┬
+   ·        ╰── `{` expected
  3 │ }
    ╰────
-  help: Add a function body (`{}`).
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationModuleSyntax.ts:1:11]
@@ -9601,12 +9601,12 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: No modifiers are allowed here.
 
-  × Expected function body
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationReturnTypeSyntaxOfFunction.ts:1:1]
+  × TS(1005): Expected `{` but found `:`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationReturnTypeSyntaxOfFunction.ts:1:13]
  1 │ function F(): number { }
-   · ────────────
+   ·             ┬
+   ·             ╰── `{` expected
    ╰────
-  help: Add a function body (`{}`).
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
    ╭─[typescript/tsc/testdata/tests/cases/compiler/jsFileCompilationTypeAliasSyntax.ts:1:6]

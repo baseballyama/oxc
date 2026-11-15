@@ -6,6 +6,7 @@ pub mod expression;
 pub mod format_node_without_trailing_comments;
 pub mod jsx;
 pub mod member_chain;
+pub mod member_operator;
 pub mod object;
 pub mod statement_body;
 pub mod string;

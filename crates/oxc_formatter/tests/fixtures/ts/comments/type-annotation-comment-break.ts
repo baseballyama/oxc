@@ -57,7 +57,7 @@ type M3 = {
     // prettier-ignore
     C  |  D;
 };
-// Before the `:`, the comment stays with the key (Prettier's placement)
+// Before the `:`, the comment stays between the `]` and the `:` (DIVERGENCES.md#member-operator-comment-side)
 type M4 = {
   [A in B] /* c */: C;
 };

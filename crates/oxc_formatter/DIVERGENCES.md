@@ -1250,6 +1250,52 @@ x =
 An own-line comment before a member's `.` stays before it, for `.b` and `.#b` alike.
 Prettier moves it before the object for `.b`, and after the `.` for `.#b`; both cross a token.
 
+## member-operator-comment-side
+
+- Why: invariant (a comment never crosses a token)
+- Pin: `tests/fixtures/ts/comments/member-operator-comment-side.ts`
+- Conformance:
+  - `externals/prettier/typescript/comments/mapped-types.ts`
+
+A comment after a member's `.` / `?.` prints after it, and one between a mapped type's `]` and `:` prints there:
+the object's (and the key's) comment passes stop at the token.
+A line or own-line comment after the operator breaks and indents the property, as after `=`;
+a same-line block comment leads the property, glued to the operator, as Prettier prints it.
+Prettier moves a line comment after the operator to the object's side, and a comment before the `:` into the brackets.
+
+```ts
+// input
+a. // c
+  b;
+a. /* c */ b;
+foo.bar. // c
+  baz();
+type G = {
+  [g in G] /* c */: string;
+};
+
+// ours
+a. // c
+  b;
+a./* c */ b;
+foo.bar
+  . // c
+    baz();
+type G = {
+  [g in G] /* c */: string;
+};
+
+// prettier
+a // c
+.b;
+a./* c */ b;
+foo.bar // c
+  .baz();
+type G = {
+  [g in G /* c */]: string;
+};
+```
+
 ## computed-member-object-paren-break
 
 - Why: uniform-rule (same construct, same output: `(a + b).c` and `(await a)[c]`)

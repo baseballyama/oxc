@@ -1352,14 +1352,14 @@ Negative Passed: 290/290 (100.00%)
    ╰────
   help: Did you want a JSX fragment `<>...</>`?
 
-  × Unexpected JSX expression
+  × TS(17004): Unexpected JSX expression
    ╭─[misc/fail/jsx-in-js.js:1:20]
  1 │ export const foo = <Foo />;
    ·                    ─
    ╰────
   help: JSX syntax is disabled and should be enabled via the parser options
 
-  × Unexpected JSX expression
+  × TS(17004): Unexpected JSX expression
    ╭─[misc/fail/jsx-like-in-js.js:1:20]
  1 │ export const foo = <Foo;
    ·                    ─
@@ -1924,28 +1924,28 @@ Negative Passed: 290/290 (100.00%)
  2 │ }
    ╰────
 
-  × Cannot assign to this expression
-   ╭─[misc/fail/oxc-12612-1.ts:1:2]
+  × TS(2364): Cannot assign to this expression
+   ╭─[misc/fail/oxc-12612-1.ts:1:1]
  1 │ (foo() as bar) = 123;
-   ·  ────────────
+   · ──────────────
    ╰────
 
-  × Cannot assign to this expression
-   ╭─[misc/fail/oxc-12612-2.ts:1:2]
+  × TS(2364): Cannot assign to this expression
+   ╭─[misc/fail/oxc-12612-2.ts:1:1]
  1 │ (<any>foo()) = 123;
-   ·  ──────────
+   · ────────────
    ╰────
 
-  × Cannot assign to this expression
-   ╭─[misc/fail/oxc-12612-3.ts:1:2]
+  × TS(2364): Cannot assign to this expression
+   ╭─[misc/fail/oxc-12612-3.ts:1:1]
  1 │ (foo() satisfies any) = 123;
-   ·  ───────────────────
+   · ─────────────────────
    ╰────
 
-  × Cannot assign to this expression
-   ╭─[misc/fail/oxc-12612-4.ts:1:2]
+  × TS(2364): Cannot assign to this expression
+   ╭─[misc/fail/oxc-12612-4.ts:1:1]
  1 │ (foo() as number as any) = 123;
-   ·  ──────────────────────
+   · ────────────────────────
    ╰────
 
   × Invalid Unicode escape sequence
@@ -5436,7 +5436,7 @@ Negative Passed: 290/290 (100.00%)
    ╰────
   help: Use a valid escape sequence or escape the backslash with `\\`
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2701): Invalid rest element target in destructuring assignment
    ╭─[misc/fail/rest-assignment-target.js:1:6]
  1 │ ({...[]} = {});
    ·      ──

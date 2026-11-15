@@ -5,7 +5,10 @@ use oxc_ast::ast::*;
 use oxc_span::{GetSpan, Span};
 use oxc_str::Str;
 
-use super::{VariableDeclarationParent, grammar::CoverGrammar};
+use super::{
+    VariableDeclarationParent,
+    grammar::{AssignedBy, CoverGrammar},
+};
 use crate::{
     Context, ParserConfig as Config, ParserImpl, StatementContext, diagnostics,
     lexer::Kind,
@@ -490,7 +493,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
 
         match self.cur_kind() {
             Kind::In => {
-                let target = AssignmentTarget::cover(init_expression, self);
+                let target =
+                    AssignmentTarget::cover((init_expression, AssignedBy::ForIn, None), self);
                 let for_stmt_left = ForStatementLeft::from(target);
                 self.parse_for_in_loop(for_start, parenthesis_opening_span, r#await, for_stmt_left)
             }
@@ -503,7 +507,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                     // `for (let of ...)`, `for (let.something of ...)` is not allowed
                     self.error(diagnostics::for_loop_let_reserved_word(self.end_span(expr_start)));
                 }
-                let target = AssignmentTarget::cover(init_expression, self);
+                let target =
+                    AssignmentTarget::cover((init_expression, AssignedBy::ForOf, None), self);
                 let for_stmt_left = ForStatementLeft::from(target);
                 self.parse_for_of_loop(for_start, parenthesis_opening_span, r#await, for_stmt_left)
             }

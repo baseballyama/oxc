@@ -680,7 +680,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         Some(if self.options.preserve_parens {
             Expression::ParenthesizedExpression(self.alloc(parenthesized))
         } else {
-            parenthesized.expression
+            self.drop_parentheses(parenthesized.span, parenthesized.expression)
         })
     }
 

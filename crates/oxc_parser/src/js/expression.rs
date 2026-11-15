@@ -402,11 +402,20 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             _ => {}
         }
 
+        let span = self.end_span(start);
         if self.options.preserve_parens {
-            Expression::new_parenthesized_expression(self.end_span(start), expression, self)
+            Expression::new_parenthesized_expression(span, expression, self)
         } else {
-            expression
+            self.drop_parentheses(span, expression)
         }
+    }
+
+    /// `expression` without the parentheses at `span`, which are kept for a pattern to reject.
+    fn drop_parentheses(&mut self, span: Span, expression: Expression<'a>) -> Expression<'a> {
+        if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expression {
+            self.state.parenthesized_patterns.insert(expression.span().start, span);
+        }
+        expression
     }
 
     /// Section 13.2.2 This Expression
@@ -1828,7 +1837,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         let primary = if self.options.preserve_parens {
             Expression::ParenthesizedExpression(parenthesized)
         } else {
-            parenthesized.unbox().expression
+            let parenthesized = parenthesized.unbox();
+            self.drop_parentheses(parenthesized.span, parenthesized.expression)
         };
         let lhs = self.parse_primary_expression_rest(start, primary, pure_comments);
         if kind_to_precedence(self.cur_kind()).is_none() {
@@ -1921,12 +1931,6 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         // AssignmentPattern[Yield, Await] :
         //    ObjectAssignmentPattern
         //    ArrayAssignmentPattern
-        if let Some(span) = left_parenthesized_span {
-            //  `({}) = x;`, `([]) = x;`
-            if matches!(lhs, Expression::ObjectExpression(_) | Expression::ArrayExpression(_)) {
-                self.error(diagnostics::invalid_assignment(AssignedBy::Assignment.code(), span));
-            }
-        }
         // A destructuring pattern target is only valid with `=`, not a compound operator.
         if operator != AssignmentOperator::Assign
             && matches!(lhs, Expression::ObjectExpression(_) | Expression::ArrayExpression(_))

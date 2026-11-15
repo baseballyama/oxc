@@ -68,7 +68,7 @@ pub(super) unsafe fn invalid_diags(
             let (s, e) = (sp.start, sp.end);
             let b0 = src[s as usize];
             if b0 == b'\\' {
-                lanes.push_diag(s + 1, char_after(s + 1), DiagCode::InvalidIdentifierEscape);
+                lanes.push_diag(s, 1 + char_after(s + 1), DiagCode::InvalidIdentifierEscape);
             } else if b0 == b'#' && char_after(s + 1) > 0 {
                 lanes.push_diag(s, 1 + char_after(s + 1), DiagCode::InvalidPrivateName);
             } else if b0 == b'#' {

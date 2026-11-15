@@ -84,7 +84,8 @@ impl<'a, C: Config> Lexer<'a, C> {
         str: &mut ArenaStringBuilder<'a>,
         check_identifier_start: bool,
     ) {
-        let start = self.offset();
+        // The `\` is consumed, and the error is the escape's, from it.
+        let start = self.offset() - 1;
         if self.peek_byte() == Some(b'u') {
             self.consume_char();
         } else {

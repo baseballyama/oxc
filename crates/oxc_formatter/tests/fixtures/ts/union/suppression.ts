@@ -20,7 +20,7 @@ type A4 =
   // prettier-ignore
   | Aaaa<X,Y>
   | Bbbb<X,Y>;
-// annotation, own-line: hoisted onto the `:` line, then column 0 (both AGENTS.md "Open debts")
+// annotation, own-line: stays own-line under the `:` (DIVERGENCES.md#type-annotation-comment-break)
 let a5:
   // prettier-ignore
   | Aaaa<X,Y>
@@ -32,7 +32,7 @@ type A6 =
 // single member alias
 type A9 = /* prettier-ignore */ Aaaa<X,Y>;
 // operator line's line comment: the whole union under the operator
-// (`let :` prints it from column 0 like any suppressed type there, Prettier too; AGENTS.md "Open debts")
+// (`let :` indents it like `type =`, DIVERGENCES.md#type-annotation-comment-break)
 let a10: // prettier-ignore
   | Aaaa<X,Y>
   | Bbbb<X,Y>;

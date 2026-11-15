@@ -7,7 +7,10 @@ use crate::{
         prelude::*,
         trivia::{DanglingIndentMode, FormatDanglingComments},
     },
-    print::semicolon::OptionalSemicolon,
+    print::{
+        semicolon::OptionalSemicolon,
+        type_colon::{ColonBreak, mapped_value_colon_end},
+    },
     utils::suppressed::FormatSuppressedNode,
     write,
 };
@@ -83,12 +86,19 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSMappedType<'a>> {
                 write!(f, [prefix, "readonly", space()]);
             }
 
+            // A comment past the value's `:` belongs to the value, not to the key's trailing pass
+            let key_comments_end = mapped_value_colon_end(self, f).map(|colon_end| colon_end - 1);
             let format_key_in_constraint = format_with(|f| {
+                let view_limit = key_comments_end
+                    .map(|end| f.context_mut().comments_mut().limit_comments_up_to(end));
                 write!(f, [key, space(), "in", space(), constraint]);
                 if let Some(name_type) = &name_type {
                     write!(f, [space(), "as", space(), name_type]);
                 }
                 key.format_trailing_comments(f);
+                if let Some(view_limit) = view_limit {
+                    f.context_mut().comments_mut().restore_view_limit(view_limit);
+                }
             });
 
             write!(f, ["[", group(&soft_block_indent(&format_key_in_constraint)), "]"]);
@@ -103,7 +113,7 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSMappedType<'a>> {
                 );
             }
             if let Some(type_annotation) = &self.type_annotation() {
-                write!(f, [":", space(), type_annotation]);
+                ColonBreak::of_mapped_value(self, f).write(type_annotation, f);
             }
             write!(f, if_group_breaks(&OptionalSemicolon));
         });

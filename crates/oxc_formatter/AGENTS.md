@@ -308,9 +308,6 @@ Behavior our own rules want otherwise, mostly where it follows Prettier. Not acc
   The fix is a `FormatContentWithSemicolon` adoption each
 - An own-line comment claimed mid-line inlines onto that line (`const // c` + break), violating "own-line comments stay own-line".
   See the NOTE in `FormatLeadingComments` (`formatter/trivia.rs`)
-- A type annotation's `:` has no operator-line rule of its own: after `let a: // c` the type prints from column 0 (Prettier too),
-  while `type A = // c` breaks + indents (`AssignmentLike`) and only a union indents itself there (`union_type.rs`).
-  The fix is the `=` rule at the `TSTypeAnnotation` site (break + indent after a line comment), which also aligns a suppressed union with `type =`
 - The callee-opener gap is not bounded at the `(` for the type arguments and `new`'s callee, nor for a chain's computed-member, call, or optional-call callee:
   they still claim comments across the `(` (`foo<T> // c` + break + `(a)` -> `foo<T>(a); // c`).
   Bounding them also moves a same-line comment right after the `(` own-line (`f<T>( // eslint-disable-line`), so it waits for the opener exception (FORMATTER_POLICY) to be revisited

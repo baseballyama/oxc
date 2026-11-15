@@ -25,7 +25,7 @@ use crate::{
         },
     },
     parentheses::NeedsParentheses,
-    print::FormatWrite,
+    print::{FormatWrite, type_colon::ColonBreak},
     utils::{suppressed::write_suppressed_expression, typecast::outer_leading_comments_len},
     write,
 };
@@ -186,6 +186,13 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSUnionType<'a>> {
                 }
                 AstNodes::TSSatisfiesExpression(cast) => {
                     f.comments().printed_line_comment_after(cast.expression.span().end).is_none()
+                }
+                // The `:` site breaks + indents itself after a comment
+                AstNodes::TSTypeAnnotation(annotation) => {
+                    ColonBreak::of_annotation(annotation, f) == ColonBreak::None
+                }
+                AstNodes::TSMappedType(mapped) => {
+                    ColonBreak::of_mapped_value(mapped, f) == ColonBreak::None
                 }
                 AstNodes::TSTypeAssertion(_)
                 | AstNodes::TSTupleType(_)

@@ -4,10 +4,8 @@
 // and flushes it past the member and its `;` for simple-typed ones
 // (`simple: Value; // c`).
 //
-// `Value` below is NOT indented an extra level: annotation content after a `:`
-// break gets no indent of its own — same family as variable/parameter/return
-// type annotations, which are Prettier-identical in that shape. The union
-// members ARE indented, by the union printer itself.
+// The type after the `:` break indents like the value after `=`,
+// see DIVERGENCES.md#type-annotation-comment-break.
 
 type Alias = // c
   "VALUE";

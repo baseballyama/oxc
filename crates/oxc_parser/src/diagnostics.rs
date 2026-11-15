@@ -184,8 +184,9 @@ parser_diagnostics! {
         diagnostic
     };
 
+    // Cannot use JSX unless the '--jsx' flag is provided. (17004)
     jsx_in_non_jsx(span: Span) => {
-        OxcDiagnostic::error("Unexpected JSX expression")
+        ts_error("17004", "Unexpected JSX expression")
             .with_label(span)
             .with_help("JSX syntax is disabled and should be enabled via the parser options")
     };
@@ -501,8 +502,17 @@ parser_diagnostics! {
             .with_help("Remove this `?`. The default value is an empty array")
     };
 
-    invalid_assignment(span: Span) => {
-        OxcDiagnostic::error("Cannot assign to this expression").with_label(span)
+    // The left-hand side of an assignment expression, the operand of an increment or decrement
+    // operator, or the left-hand side of a 'for...in' or 'for...of' statement must be a variable
+    // or a property access. (2364, 2357, 2406, 2487)
+    invalid_assignment(code: &'static str, span: Span) => {
+        ts_error(code, "Cannot assign to this expression").with_label(span)
+    };
+
+    // Type parameter declarations can only be used in TypeScript files. (8004)
+    type_parameters_in_javascript(span: Span) => {
+        ts_error("8004", "Type parameter declarations can only be used in TypeScript files")
+            .with_label(span)
     };
 
     assignment_is_not_simple(span: Span) => {
@@ -1354,8 +1364,10 @@ parser_diagnostics! {
             .with_help("Replace this operator with `=`.")
     };
 
-    invalid_rest_assignment_target(span: Span) => {
-        OxcDiagnostic::error("Invalid rest element target in destructuring assignment")
+    // The target of an object rest assignment must be a variable or a property access (2701); an
+    // array's rest is an assignment's left-hand side (2364).
+    invalid_rest_assignment_target(code: &'static str, span: Span) => {
+        ts_error(code, "Invalid rest element target in destructuring assignment")
             .with_help("Expected an identifier or member expression, like `...rest` or `...obj.prop`.")
             .with_label(span)
     };

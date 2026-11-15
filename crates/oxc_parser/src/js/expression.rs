@@ -14,7 +14,7 @@ use oxc_syntax::{
 };
 
 use super::{
-    grammar::CoverGrammar,
+    grammar::{AssignedBy, CoverGrammar},
     operator::{
         kind_to_precedence, map_assignment_operator, map_binary_operator, map_logical_operator,
         map_unary_operator, map_update_operator,
@@ -1346,7 +1346,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             let operator = map_update_operator(kind);
             self.bump_any();
             let argument = self.parse_unary_expression_or_higher(lhs_start);
-            let argument = SimpleAssignmentTarget::cover(argument, self);
+            let argument =
+                SimpleAssignmentTarget::cover((argument, AssignedBy::Update, None), self);
             return Expression::new_update_expression(
                 self.end_span(lhs_start),
                 operator,
@@ -1377,7 +1378,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         if post_kind.is_update_operator() && !self.cur_token().is_on_new_line() {
             let operator = map_update_operator(post_kind);
             self.bump_any();
-            let lhs = SimpleAssignmentTarget::cover(lhs, self);
+            let lhs = SimpleAssignmentTarget::cover((lhs, AssignedBy::Update, None), self);
             return Expression::new_update_expression(
                 self.end_span(start),
                 operator,
@@ -1438,7 +1439,21 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     /// type assertion either) is always an error. Report it against the `<` token with a help to
     /// enable JSX in the parser options.
     fn parse_jsx_in_non_jsx_error(&mut self) -> Expression<'a> {
-        self.fatal_error(diagnostics::jsx_in_non_jsx(self.cur_token().span()))
+        // `<T,>` and `<T extends U>` start an arrow function's type parameters, not an element.
+        let type_parameter = self.lookahead(|p| {
+            p.bump_any();
+            let name = p.cur_token().span();
+            if !p.cur_kind().is_binding_identifier() {
+                return None;
+            }
+            p.bump_any();
+            matches!(p.cur_kind(), Kind::Comma | Kind::Extends).then_some(name)
+        });
+        let error = match type_parameter {
+            Some(name) => diagnostics::type_parameters_in_javascript(name),
+            None => diagnostics::jsx_in_non_jsx(self.cur_token().span()),
+        };
+        self.fatal_error(error)
     }
 
     fn parse_unary_expression(&mut self) -> Expression<'a> {
@@ -1950,7 +1965,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         if let Some(span) = left_parenthesized_span {
             //  `({}) = x;`, `([]) = x;`
             if matches!(lhs, Expression::ObjectExpression(_) | Expression::ArrayExpression(_)) {
-                self.error(diagnostics::invalid_assignment(span));
+                self.error(diagnostics::invalid_assignment(AssignedBy::Assignment.code(), span));
             }
         }
         // A destructuring pattern target is only valid with `=`, not a compound operator.
@@ -1959,7 +1974,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         {
             self.error(diagnostics::assignment_is_not_simple(lhs.span()));
         }
-        let left = AssignmentTarget::cover(lhs, self);
+        let left =
+            AssignmentTarget::cover((lhs, AssignedBy::Assignment, left_parenthesized_span), self);
         self.bump_any();
         let right =
             self.parse_assignment_expression_or_higher_impl(allow_return_type_in_arrow_function);

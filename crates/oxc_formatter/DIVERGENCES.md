@@ -562,6 +562,9 @@ A union type claims the after-operator comments as its leading comments and plac
   - `externals/prettier/typescript/interface/comments-generic.ts`
   - `externals/prettier/typescript/interface2/comments-declare.ts`
   - `externals/prettier/typescript/interface2/comments.ts`
+  - `externals/prettier/js/if/expr_and_same_line_comments.js`
+  - `externals/prettier/js/if/issue-15168.js`
+  - `externals/prettier/js/if/non-block.js`
 
 The head-body comment policy family (see AGENTS.md "Head-body and operator gaps (class 3)"): comments between a head and its body keep their position, where Prettier's attachment relocates them across the delimiters (a body's braces, a head's parens), user content.
 

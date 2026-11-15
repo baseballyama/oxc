@@ -58,12 +58,6 @@
   - ❓unclassified
 - externals/prettier/js/function/issue-12967.js (💥, 0.00%)
   - ❓unclassified
-- externals/prettier/js/if/expr_and_same_line_comments.js (💥, 81.93%)
-  - ❓unclassified
-- externals/prettier/js/if/issue-15168.js (💥, 91.43%)
-  - ❓unclassified
-- externals/prettier/js/if/non-block.js (💥, 82.35%)
-  - ❓unclassified
 - externals/prettier/js/ignore/issue-10661.js (💥, 83.02%)
   - ❓unclassified
 - externals/prettier/js/ignore/semi/class-expression-decorator.js (💥💥, 25.00%)
@@ -110,6 +104,12 @@
   - crates/oxc_formatter/DIVERGENCES.md#export-default-leftmost-parens
 - externals/prettier/js/identifier/parentheses/let.js (💥💥, 92.73%)
   - crates/oxc_formatter/DIVERGENCES.md#start-token-no-double-parens
+- externals/prettier/js/if/expr_and_same_line_comments.js (💥, 81.93%)
+  - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
+- externals/prettier/js/if/issue-15168.js (💥, 91.43%)
+  - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
+- externals/prettier/js/if/non-block.js (💥, 82.35%)
+  - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
 - externals/prettier/js/ignore/issue-11077.js (💥, 93.33%)
   - crates/oxc_formatter/DIVERGENCES.md#suppressed-terminator-per-semi
 - externals/prettier/js/import/empty-import/empty-import.js (💥, 69.14%)

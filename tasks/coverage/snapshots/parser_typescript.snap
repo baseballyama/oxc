@@ -2470,7 +2470,7 @@ Fatal error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/pattern
 
 Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/regexInvalidUtf8WithUnicodeFlag.ts
 
-  × Invalid Character `⼯`
+  × TS(1127): Invalid Character `⼯`
    ╭─[typescript/tsc/testdata/tests/cases/compiler/regexInvalidUtf8WithUnicodeFlag.ts:1:1]
  1 │ ⼯䀠慴杲瑥›獥敮瑸⼊⾀ੵ
    · ──
@@ -10589,10 +10589,10 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                        ╰── Opened here
    ╰────
 
-  × Invalid Character `!`
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/manyCompilerErrorsInTheTwoFiles.ts:1:13]
+  × TS(1127): Invalid Character `!`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/manyCompilerErrorsInTheTwoFiles.ts:1:12]
  1 │ const a =!@#!@$
-   ·             ─
+   ·            ──
  2 │ const b = !@#!@#!@#!
    ╰────
 
@@ -12049,7 +12049,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ });
    ╰────
 
-  × Invalid Character `¬`
+  × TS(1127): Invalid Character `¬`
    ╭─[typescript/tsc/testdata/tests/cases/compiler/parseErrorInHeritageClause1.ts:1:19]
  1 │ class C extends A ¬ {
    ·                   ─
@@ -13990,11 +13990,11 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │     }
    ╰────
 
-  × Invalid Character `!`
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/shebangError.ts:2:2]
+  × TS(1127): Invalid Character `!`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/shebangError.ts:2:1]
  1 │ var foo = 'Shebang is only allowed on the first line';
  2 │ #!/usr/bin/env node
-   ·  ─
+   · ──
    ╰────
 
   × TS(1312): Invalid assignment in object literal
@@ -15883,7 +15883,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                 ───────────
    ╰────
 
-  × Invalid Character `₁`
+  × TS(1127): Invalid Character `₁`
    ╭─[typescript/tsc/testdata/tests/cases/compiler/unicodeIdentifierName2.ts:1:6]
  1 │ var a₁ = "hello"; alert(a₁)
    ·      ─
@@ -18811,11 +18811,11 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  10 │     }
     ╰────
 
-  × Invalid Character `
+  × TS(1127): Invalid Character `
   │ `
-   ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameHashCharName.ts:1:2]
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/classes/members/privateNames/privateNameHashCharName.ts:1:1]
  1 │ #
-   ·  ─
+   · ──
  2 │ 
  3 │ class C {
    ╰────
@@ -22084,7 +22084,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    · ╰── `(` expected
    ╰────
 
-  × Invalid Character `¬`
+  × TS(1127): Invalid Character `¬`
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/memberFunctionDeclarations/MemberFunctionDeclaration8_es6.ts:4:12]
  3 │     // Make sure we don't think of *bar as the start of a generator method.
  4 │     if (a) ¬ * bar;
@@ -27886,7 +27886,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ }
    ╰────
 
-  × Invalid Character `¬`
+  × TS(1127): Invalid Character `¬`
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/ErrorRecovery/Blocks/parserErrorRecovery_Block2.ts:2:5]
  1 │ function f() {
  2 │     ¬
@@ -27920,7 +27920,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │   }
    ╰────
 
-  × Invalid Character `¬`
+  × TS(1127): Invalid Character `¬`
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/ErrorRecovery/ClassElements/parserErrorRecovery_ClassElement3.ts:2:4]
  1 │ namespace M {
  2 │    ¬
@@ -28143,7 +28143,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  2 │ }
    ╰────
 
-  × Invalid Character `¬`
+  × TS(1127): Invalid Character `¬`
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/ErrorRecovery/ParameterLists/parserErrorRecovery_ParameterList4.ts:1:14]
  1 │ function f(a,¬) {
    ·              ─
@@ -30919,7 +30919,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  11 │ "Should error because of end of file.
     ╰────
 
-  × Invalid Character ` `
+  × TS(1127): Invalid Character ` `
    ╭─[typescript/tsc/testdata/tests/cases/conformance/scanner/ecmascript5/scannerUnexpectedNullCharacter1.ts:1:4]
  1 │ foo + bar;
    ·    ─

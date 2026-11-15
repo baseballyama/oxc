@@ -634,13 +634,13 @@ fn line_separator_in_regexp(cpu: DynCpu) {
 #[test_cpus]
 fn misplaced_hash(cpu: DynCpu) {
     // A `#` that opens neither a hashbang nor a private name: the parser
-    // consumes the char after `#` and reports on it.
+    // reports the char after `#`, from the `#`.
     let d = diags("\n#!/bin/sh", cpu);
-    let h = d.iter().find(|x| x.code == DiagCode::UnexpectedCharacter).unwrap();
-    assert_eq!((h.off, h.len), (2, 1)); // later garbage tokens may add diags
+    let h = d.iter().find(|x| x.code == DiagCode::InvalidPrivateName).unwrap();
+    assert_eq!((h.off, h.len), (1, 2)); // later garbage tokens may add diags
     let d = diags("x = #;", cpu);
     assert_eq!(d.len(), 1);
-    assert_eq!((d[0].off, d[0].len, d[0].code), (5, 1, DiagCode::UnexpectedCharacter));
+    assert_eq!((d[0].off, d[0].len, d[0].code), (4, 2, DiagCode::InvalidPrivateName));
     let d = diags("x = #", cpu); // `#` at EOF: empty span at n
     assert_eq!((d[0].off, d[0].len), (5, 0));
     assert_eq!(codes("#!/usr/bin/env node\nlet x = 1;", cpu), []);
@@ -797,7 +797,7 @@ fn id_continue_only_character_cannot_start_an_identifier(cpu: DynCpu) {
     assert_eq!(d.len(), 1, "{d:?}");
     assert_eq!((d[0].code, d[0].off, d[0].len), (DiagCode::UnexpectedCharacter, 4, 3));
     assert_eq!(codes("var \u{200d} = [];", cpu), [DiagCode::UnexpectedCharacter]);
-    assert_eq!(codes("class C { #\u{203f} = 1 }", cpu), [DiagCode::UnexpectedCharacter]);
+    assert_eq!(codes("class C { #\u{203f} = 1 }", cpu), [DiagCode::InvalidPrivateName]);
     for code in ["a\u{203f} = 10;", "a\u{200c}b = 1;", "var x = \"\u{203f}\";", "x = a.\u{e9};"] {
         assert!(codes(code, cpu).is_empty(), "{code:?}: {:?}", codes(code, cpu));
     }

@@ -375,7 +375,15 @@ pub fn to_oxc_diagnostic(d: &Diagnostic, source: &str) -> OxcDiagnostic {
             } else {
                 offending_char(source, d)
             };
-            diag(sev, format!("Invalid Character `{ch}`")).with_label(span)
+            let error = diag(sev, format!("Invalid Character `{ch}`")).with_label(span);
+            // tsc reports the escape, not the character oxc labels after it.
+            if d.len == 0 { error } else { error.with_error_code("TS", "1127") }
+        }
+        DiagCode::InvalidPrivateName => {
+            let ch = source.get(d.off as usize + 1..).and_then(|rest| rest.chars().next());
+            diag(sev, format!("Invalid Character `{}`", ch.unwrap_or('\u{FFFD}')))
+                .with_error_code("TS", "1127")
+                .with_label(span)
         }
         DiagCode::InvalidRegexpFlag => diag(
             sev,

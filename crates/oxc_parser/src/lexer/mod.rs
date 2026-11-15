@@ -663,7 +663,7 @@ impl<'a, C: Config> Lexer<'a, C> {
     fn unexpected_err(&mut self) {
         let offset = self.current_offset();
         match self.peek_char() {
-            Some(c) => self.error(diagnostics::invalid_character(c, offset)),
+            Some(c) => self.error(diagnostics::invalid_character_elsewhere(c, offset)),
             None => self.error(diagnostics::unexpected_end(offset)),
         }
     }

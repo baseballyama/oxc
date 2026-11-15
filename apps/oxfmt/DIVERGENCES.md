@@ -183,6 +183,7 @@ const b = { 1: 1 };
 
 A template expression of a JS file unquotes a numeric key under `quoteProps: "as-needed"`, as its `<script>` does;
 Prettier unquotes only an identifier key there, a numeric key only in the `<script>`.
+A Svelte template expression formatted through `oxc_formatter` follows the same rule (`class={cn({ 1: 1 })}`); prettier-plugin-svelte keeps `"1"`.
 
 ## js-in-vue-removed-attributes-as-written
 

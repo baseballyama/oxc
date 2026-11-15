@@ -9372,11 +9372,11 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·  ──
    ╰────
 
-  × Invalid Character `1`
-   ╭─[typescript/tsc/testdata/tests/cases/compiler/invalidUnicodeEscapeSequance4.ts:2:11]
+  × TS(1127): Invalid Character `1`
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/invalidUnicodeEscapeSequance4.ts:2:5]
  1 │ var a\u0031; // a1 is a valid identifier
  2 │ var \u0031a; // 1a is an invalid identifier
-   ·           ▲
+   ·     ▲
    ╰────
 
   × TS(1005): Expected `{` but found `class`

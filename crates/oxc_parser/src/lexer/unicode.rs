@@ -123,7 +123,8 @@ impl<'a, C: Config> Lexer<'a, C> {
             if check_identifier_start { is_identifier_start(ch) } else { is_identifier_part(ch) };
 
         if !is_valid {
-            self.error(diagnostics::invalid_character_elsewhere(ch, self.current_offset()));
+            // tsc reports the character at the escape's backslash.
+            self.error(diagnostics::invalid_character(ch, Span::empty(start)));
             return;
         }
 

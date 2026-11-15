@@ -475,6 +475,7 @@ fn js_root_of(request: &DispatchRequest<'_>) -> (JsRoot, JsEmbeddedIn) {
             inlines_code: false,
             // Its expression grammar, no trailing comma in calls and params included
             template_expressions_only: true,
+            keeps_recovered: None,
         };
         return (JsRoot::Expression(root), embedded_in);
     }

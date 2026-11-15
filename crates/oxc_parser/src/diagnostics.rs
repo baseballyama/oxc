@@ -853,6 +853,15 @@ parser_diagnostics! {
             ])
     };
 
+    jsx_element_no_closing_tag(span: Span, name: &'a str) => {
+        ts_error("17008", format!("JSX element '{name}' has no corresponding closing tag."))
+            .with_label(span)
+    };
+
+    jsx_fragment_no_closing_tag(span: Span) => {
+        ts_error("17014", "JSX fragment has no corresponding closing tag.").with_label(span)
+    };
+
     jsx_fragment_no_match(opening_span: Span, closing_span: Span) => {
         OxcDiagnostic::error("Expected corresponding closing tag for JSX fragment.").with_labels([
             closing_span.primary_label("Expected `</>`"),

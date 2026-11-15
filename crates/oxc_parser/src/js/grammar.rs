@@ -43,6 +43,12 @@ type Assigned<'a> = (Expression<'a>, AssignedBy, Option<Span>);
 
 impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for AssignmentTarget<'a> {
     fn cover((expr, by, parentheses): Assigned<'a>, p: &mut ParserImpl<'a, C>) -> Self {
+        // `({}) = x`, `[([])] = x`: a tree without parentheses kept where they were.
+        if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expr
+            && let Some(&span) = p.state.parenthesized_patterns.get(&expr.span().start)
+        {
+            return p.fatal_error(diagnostics::invalid_assignment(by.code(), span));
+        }
         match expr {
             Expression::ArrayExpression(array_expr) => {
                 let pat = ArrayAssignmentTarget::cover(array_expr.unbox(), p);
@@ -136,10 +142,11 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
             Expression::TSInstantiationExpression(expr) => {
                 p.fatal_error(diagnostics::invalid_lhs_assignment(expr.span()))
             }
-            expr => p.fatal_error(diagnostics::invalid_assignment(
-                code,
-                parentheses.unwrap_or(expr.span()),
-            )),
+            expr => {
+                let dropped = p.state.parenthesized_patterns.get(&expr.span().start).copied();
+                let span = parentheses.or(dropped).unwrap_or(expr.span());
+                p.fatal_error(diagnostics::invalid_assignment(code, span))
+            }
         }
     }
 }

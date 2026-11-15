@@ -179,14 +179,17 @@ fn resolve_unicode_leads(
         if ok {
             continue;
         }
-        let code = if ch == '\u{FFFD}' {
-            // oxc_parser treats a code-level replacement char as a binary file.
-            DiagCode::InvalidUtf8
-        } else {
-            DiagCode::UnexpectedCharacter
-        };
         #[expect(clippy::cast_possible_truncation, reason = "char lengths are 1..=4")]
         let len = ch.len_utf8() as u32;
+        let (off, len, code) = if ch == '\u{FFFD}' {
+            // oxc_parser treats a code-level replacement char as a binary file.
+            (off, len, DiagCode::InvalidUtf8)
+        } else if off == name_start && name_start > spans_all[ti].start {
+            // The parser reports a private name with no name from its `#`.
+            (off - 1, len + 1, DiagCode::InvalidPrivateName)
+        } else {
+            (off, len, DiagCode::UnexpectedCharacter)
+        };
         lanes.diags.push(Diagnostic { off, len, code, severity: DiagSeverity::Error });
     }
     leads.clear();

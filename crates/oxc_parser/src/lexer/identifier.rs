@@ -292,8 +292,8 @@ impl<'a, C: Config> Lexer<'a, C> {
             return Kind::PrivateIdentifier;
         }
 
-        // No identifier found
-        let start = self.offset();
+        // No identifier found. tsc reports the `#`, so the label starts there.
+        let start = self.offset() - 1;
         let c = self.consume_char();
         self.error(diagnostics::invalid_character(c, Span::new(start, self.offset())));
         self.advance_to_end();

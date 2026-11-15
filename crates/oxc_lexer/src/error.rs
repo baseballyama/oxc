@@ -37,6 +37,8 @@ pub enum DiagCode {
     UnterminatedJsxContainer = 23,
     JsxClosingTagMismatch = 24,
     JsxTextInvalidCharacter = 25,
+    /// A `#` that no name follows; the span covers the `#` and the character after it.
+    InvalidPrivateName = 26,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Default, Debug)]

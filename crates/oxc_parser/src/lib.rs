@@ -1683,6 +1683,23 @@ mod test {
     }
 
     #[test]
+    fn an_unclosed_jsx_tag_at_the_end_names_its_opening_tag() {
+        let allocator = Allocator::default();
+        let source_type = SourceType::jsx();
+        for (source, code, start) in [
+            ("let v = <number>1;", "17008", 9),
+            ("let v = <a><b></b>1;", "17008", 9),
+            ("let v = <>1;", "17014", 8),
+        ] {
+            let ret = Parser::new(&allocator, source, source_type).parse();
+            let error = ret.diagnostics.first().unwrap();
+            assert_eq!(error.code.number.as_deref(), Some(code), "{source}");
+            let label = error.labels.first().unwrap();
+            assert_eq!(label.offset(), start, "{source}");
+        }
+    }
+
+    #[test]
     fn asserted_exponentiation_preserve_parens() {
         for preserve_parens in [true, false] {
             for source in [

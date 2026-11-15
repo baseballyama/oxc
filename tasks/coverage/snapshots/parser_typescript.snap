@@ -7443,11 +7443,11 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
   help: Try inserting a semicolon here
 
-  × Unexpected token
-    ╭─[typescript/tsc/testdata/tests/cases/compiler/errorSpanForUnclosedJsxTag.tsx:11:18]
+  × TS(17008): JSX element 'Baz' has no corresponding closing tag.
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/errorSpanForUnclosedJsxTag.tsx:11:13]
  10 │ 
  11 │ let y = <   Baz >Hello
-    ·                  ─────
+    ·             ───
     ╰────
 
   × TS(1101): 'with' statements are not allowed
@@ -26304,11 +26304,11 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·                  ╰── Opened here
    ╰────
 
-  × Unexpected token
-   ╭─[typescript/tsc/testdata/tests/cases/conformance/jsx/jsxParsingError2.tsx:2:27]
+  × TS(17008): JSX element 'div' has no corresponding closing tag.
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/jsx/jsxParsingError2.tsx:2:11]
  1 │ // Issue error about missing span closing tag, not missing div closing tag
  2 │ let x1 = <div><span></div>;
-   ·                           ──
+   ·           ───
    ╰────
 
   × Unexpected token. Did you mean `{'}'}` or `&rbrace;`?

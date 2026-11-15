@@ -966,7 +966,9 @@ impl<'a> Format<'a, JsFormatContext<'a>> for AssignmentLike<'a, '_> {
                 if matches!(&layout, AssignmentLikeLayout::BreakLeftHandSide) {
                     write!(f, [left]);
                 } else {
-                    write!(f, [group(&left)]);
+                    // The comment breaks the left side's own lines (an object pattern's) on either side of the operator,
+                    // as when the left side prints it
+                    write!(f, [group(&left).should_expand(has_line_comment_on_operator_line)]);
                 }
 
                 if layout != AssignmentLikeLayout::SuppressedInitializer {

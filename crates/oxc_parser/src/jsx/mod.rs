@@ -54,7 +54,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         debug_assert!(self.at(Kind::RAngle));
         self.advance_for_jsx_child();
         let opening_fragment = JSXOpeningFragment::new(self.end_span(start), self);
-        let (children, closing) = self.parse_jsx_children_and_closing(in_jsx_child);
+        let (children, closing) =
+            self.parse_jsx_children_and_closing(in_jsx_child, opening_fragment.span, false);
         let closing_fragment = match closing {
             JSXClosing::Fragment(f) => f,
             JSXClosing::Element(e) => {
@@ -84,7 +85,11 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         let (children, closing_element) = if self_closing {
             (ArenaVec::new_in(self), None)
         } else {
-            let (children, closing) = self.parse_jsx_children_and_closing(in_jsx_child);
+            let (children, closing) = self.parse_jsx_children_and_closing(
+                in_jsx_child,
+                opening_element.name.span(),
+                true,
+            );
             let closing_element = match closing {
                 JSXClosing::Element(e) => {
                     if !Self::jsx_element_name_eq(&opening_element.name, &e.name) {
@@ -251,9 +256,16 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     fn parse_jsx_children_and_closing(
         &mut self,
         in_jsx_child: bool,
+        opening: Span,
+        is_element: bool,
     ) -> (ArenaVec<'a, JSXChild<'a>>, JSXClosing<'a>) {
         let mut children = ArenaVec::new_in(self);
-        let closing = self.parse_jsx_children_and_closing_into(&mut children, in_jsx_child);
+        let closing = self.parse_jsx_children_and_closing_into(
+            &mut children,
+            in_jsx_child,
+            opening,
+            is_element,
+        );
         (children, closing)
     }
 
@@ -263,6 +275,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
         &mut self,
         children: &mut ArenaVec<'a, JSXChild<'a>>,
         in_jsx_child: bool,
+        opening: Span,
+        is_element: bool,
     ) -> JSXClosing<'a> {
         loop {
             if self.fatal_error.is_some() {
@@ -320,6 +334,15 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                 Kind::JSXText => {
                     let child = JSXChild::Text(self.parse_jsx_text());
                     children.push(child);
+                }
+                // TypeScript names the unclosed opening tag, not the end of the file.
+                Kind::Eof if is_element => {
+                    let name = opening.source_text(self.source_text);
+                    return self
+                        .fatal_error(diagnostics::jsx_element_no_closing_tag(opening, name));
+                }
+                Kind::Eof => {
+                    return self.fatal_error(diagnostics::jsx_fragment_no_closing_tag(opening));
                 }
                 _ => {
                     // Unexpected token in JSX children

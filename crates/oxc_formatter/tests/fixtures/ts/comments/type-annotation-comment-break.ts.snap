@@ -61,6 +61,11 @@ type M3 = {
     // prettier-ignore
     C  |  D;
 };
+type M5 = {
+  [A in B]?:
+    /** c */
+    C;
+};
 // Before the `:`, the comment stays between the `]` and the `:` (DIVERGENCES.md#member-operator-comment-side)
 type M4 = {
   [A in B] /* c */: C;
@@ -139,6 +144,11 @@ type M3 = {
     // prettier-ignore
     C  |  D;
 };
+type M5 = {
+  [A in B]?:
+    /** c */
+    C;
+};
 // Before the `:`, the comment stays between the `]` and the `:` (DIVERGENCES.md#member-operator-comment-side)
 type M4 = {
   [A in B] /* c */: C;
@@ -216,6 +226,11 @@ type M3 = {
   [A in B]:
     // prettier-ignore
     C  |  D;
+};
+type M5 = {
+  [A in B]?:
+    /** c */
+    C;
 };
 // Before the `:`, the comment stays between the `]` and the `:` (DIVERGENCES.md#member-operator-comment-side)
 type M4 = {

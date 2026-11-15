@@ -149,4 +149,8 @@ pub struct JsEmbeddedIn {
     /// and a top-level sequence (`a, b`), which there reads as more than one value, is left as written
     /// (but in parens, the source's or the host's: [`ExpressionRoot::in_parens`]).
     pub inlines_code: bool,
+    /// The host has checked that the parser's recovered program holds all of the code:
+    /// a program that parsed with diagnostics that all pass this (none fatal) is formatted.
+    /// A recovered program can drop nodes or panic the printer, so the host names which.
+    pub keeps_recovered: Option<fn(&oxc_diagnostics::OxcDiagnostic) -> bool>,
 }

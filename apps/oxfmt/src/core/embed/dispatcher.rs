@@ -449,11 +449,11 @@ fn js_root_of(request: &DispatchRequest<'_>) -> (JsRoot, JsEmbeddedIn) {
         };
         // Every one but an interpolation is a `"`-quoted attribute value
         let in_html_attribute = part != JsInVueTemplate::Interpolation;
-        return (root, JsEmbeddedIn { in_html_attribute, inlines_code: true });
+        return (root, JsEmbeddedIn { in_html_attribute, inlines_code: true, keeps_recovered: None });
     }
     if request.parent_context_as::<JsInHtmlEventHandler>().is_some() {
         let root = in_attribute(ProgramSemicolons::LoneExpressionOmitted);
-        return (root, JsEmbeddedIn { in_html_attribute: true, inlines_code: false });
+        return (root, JsEmbeddedIn { in_html_attribute: true, inlines_code: false, keeps_recovered: None });
     }
     let semicolons = if request.parent_context_as::<XxxInMarkdownCodeBlock>().is_some() {
         ProgramSemicolons::LoneJsxOmitted

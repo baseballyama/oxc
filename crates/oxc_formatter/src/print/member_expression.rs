@@ -10,6 +10,7 @@ use crate::{
     utils::{
         expression::as_call_expression_without_chain_wrappers,
         member_chain::chain_member::FormatComputedMemberExpressionWithoutObject,
+        member_operator::{operator_start, with_comments_before, write_operator_and_property},
         typecast::{cast_target_end, is_cast_target},
     },
     write,
@@ -50,18 +51,20 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
     let object_is_cast_target = is_cast_target(object.span(), f);
     // A cast target prints its parens and the comments inside them
     let object_end = cast_target_end(object.span(), f).unwrap_or(object.span().end);
+    let operator = operator_start(object.span().end, optional, f);
     let is_member_chain = {
         let start = f.elements().len();
-        write!(f, [object]);
+        with_comments_before(Some(operator), f, |f| write!(f, [object]));
         f.elements()[start..].has_label(LabelId::of(JsLabels::MemberChain))
     };
-    let property_start = property.span().start;
     // The member expression itself
     let member = property.parent();
 
+    let property_start = property.span().start;
     match layout(
         &object,
         object_end,
+        operator,
         property_start,
         member,
         is_member_chain,
@@ -69,7 +72,8 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
         f,
     ) {
         StaticMemberLayout::NoBreak => {
-            let format_no_break = format_with(|f| write!(f, [operator_token(optional), property]));
+            let format_no_break =
+                format_with(|f| write_operator_and_property(optional, &property, f));
 
             if is_member_chain {
                 write!(f, [labelled(LabelId::of(JsLabels::MemberChain), &format_no_break)]);
@@ -78,18 +82,17 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
             }
         }
         StaticMemberLayout::BreakBeforeOperator => {
-            // The comments after the line comment stay before the operator too, wherever they sat in the gap
-            let comments = f.context().comments().comments_before(property_start);
+            // The comments after the line comment stay before the operator too
+            let comments = f.context().comments().comments_before(operator);
             write!(
                 f,
                 [
                     // The pending line comment breaks here, and no group before it fits on its line
                     line_suffix_boundary(),
-                    FormatLeadingComments::Comments(comments),
-                    operator_token(optional),
-                    property
+                    FormatLeadingComments::Comments(comments)
                 ]
             );
+            write_operator_and_property(optional, &property, f);
         }
         StaticMemberLayout::BreakAfterObject => {
             write!(
@@ -97,16 +100,15 @@ fn write_non_computed_member<'b, 'a, P: GetSpan>(
                 [group(&indent(&format_args!(
                     soft_line_break(),
                     &format_with(|f| {
-                        if f.comments().has_leading_own_line_comment(property_start) {
-                            let comments = f.context().comments().comments_before(property_start);
+                        if f.comments().has_leading_own_line_comment(operator) {
+                            let comments = f.context().comments().comments_before(operator);
                             write!(
                                 f,
                                 [FormatLeadingComments::Comments(comments), soft_line_break()]
                             );
                         }
                     }),
-                    operator_token(optional),
-                    property,
+                    format_with(|f| write_operator_and_property(optional, &property, f)),
                 )))]
             );
         }
@@ -126,27 +128,32 @@ enum StaticMemberLayout {
     BreakBeforeOperator,
 }
 
-fn operator_token(optional: bool) -> &'static str {
-    if optional { "?." } else { "." }
-}
-
 /// `object_is_cast_target`:
 /// a cast-target object is neither a call nor an identifier to the rules below (see `is_cast_target`).
 fn layout<'a>(
     object: &Expression<'a>,
     object_end: u32,
+    operator: u32,
     property_start: u32,
     member: &AstNodes<'_, 'a>,
     is_member_chain: bool,
     object_is_cast_target: bool,
     f: &JsFormatter<'_, 'a>,
 ) -> StaticMemberLayout {
-    if f.comments().has_leading_own_line_comment(property_start) {
+    if f.comments().has_leading_own_line_comment(operator) {
         return StaticMemberLayout::BreakAfterObject;
     }
 
-    if has_line_comment_before_property(object_end, property_start, f) {
+    if has_line_comment_before_operator(object_end, operator, f) {
         return StaticMemberLayout::BreakBeforeOperator;
+    }
+
+    // The break follows the comment after the operator, not the object
+    if f.comments()
+        .all_comments_in_range(operator, property_start)
+        .any(|comment| comment.is_line() || comment.preceded_by_newline())
+    {
+        return StaticMemberLayout::NoBreak;
     }
 
     // `a.b.c!` and `a.b?.c`
@@ -212,13 +219,13 @@ fn layout<'a>(
     }
 }
 
-/// Whether a line comment ends a line between the object (after any cast parens it prints) and the property
-/// (only the object's dropped parens and the operator sit there):
-/// its `line_suffix` would otherwise flush past the property, which is user content.
-fn has_line_comment_before_property(
+/// Whether a line comment ends a line between the object (after any cast parens it prints) and the operator
+/// (only the object's dropped parens sit there):
+/// its `line_suffix` would otherwise flush past the operator and the property, which are user content.
+fn has_line_comment_before_operator(
     object_end: u32,
-    property_start: u32,
+    operator: u32,
     f: &JsFormatter<'_, '_>,
 ) -> bool {
-    f.comments().all_comments_in_range(object_end, property_start).any(Comment::is_line)
+    f.comments().all_comments_in_range(object_end, operator).any(Comment::is_line)
 }

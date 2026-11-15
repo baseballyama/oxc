@@ -18,6 +18,7 @@ class A {
       .g;
     x = `${a // c
       .b}`;
+    // DIVERGENCES.md#member-operator-comment-side
     x = a. // c
       b;
     x = a?. // c
@@ -29,6 +30,7 @@ class A {
   }
 }
 
+// DIVERGENCES.md#member-operator-comment-side
 a. // c
   b;
 foo(). // c

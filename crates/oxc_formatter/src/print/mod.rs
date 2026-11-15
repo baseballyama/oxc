@@ -30,6 +30,7 @@ mod switch_statement;
 mod template;
 mod try_statement;
 mod tuple_type;
+mod type_colon;
 mod type_parameters;
 mod union_type;
 mod variable_declaration;
@@ -1427,27 +1428,22 @@ impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSEnumMember<'a>> {
 
 impl<'a> FormatWrite<'a> for AstNode<'_, 'a, TSTypeAnnotation<'a>> {
     fn write(&self, f: &mut JsFormatter<'_, 'a>) {
-        match self.parent() {
-            AstNodes::TSFunctionType(_) | AstNodes::TSConstructorType(_) => {
-                write!(f, ["=>", space(), self.type_annotation()]);
+        if type_colon::has_colon(self) {
+            let colon_break = type_colon::ColonBreak::of_annotation(self, f);
+            let type_annotation = self.type_annotation();
+            if colon_break == type_colon::ColonBreak::None
+                && f.comments().has_comment_in_range(self.span.start, type_annotation.span().start)
+            {
+                // A group of its own, or an enclosing break (a member list's) puts a block comment after `:`
+                // on its own line: `a: /** c */ B` stays on one line when it fits
+                write!(f, [":", space(), group(&type_annotation)]);
+            } else {
+                colon_break.write(&type_annotation, f);
             }
-            AstNodes::TSTypePredicate(_) => {
-                write!(f, [self.type_annotation()]);
-            }
-            _ => {
-                // Line comment after the `:` drops the type to column 0 (`let v: // c` + `Foo`, Prettier too);
-                // a break + indent as after `=` would keep it under the name.
-                // See AGENTS.md "Open debts".
-                let type_annotation = self.type_annotation();
-                if f.comments().has_comment_in_range(self.span.start, type_annotation.span().start)
-                {
-                    // A group of its own, or an enclosing break (a member list's) puts a block comment after `:`
-                    // on its own line: `a: /** c */ B` stays on one line when it fits
-                    write!(f, [":", space(), group(&type_annotation)]);
-                } else {
-                    write!(f, [":", space(), type_annotation]);
-                }
-            }
+        } else if let AstNodes::TSTypePredicate(_) = self.parent() {
+            write!(f, [self.type_annotation()]);
+        } else {
+            write!(f, ["=>", space(), self.type_annotation()]);
         }
     }
 }

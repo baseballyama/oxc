@@ -306,6 +306,60 @@ Prettier treats the same shape differently:
 
 Not yet covered: default parameters, destructuring defaults, enum members (different formatting paths still flush, Prettier-compatible).
 
+## type-annotation-comment-break
+
+- Why: invariant (own-line comments stay own-line, a suppression keeps its target, the output is a fixpoint)
+- Pin: `tests/fixtures/ts/comments/type-annotation-comment-break.ts`
+- Conformance:
+  - `externals/prettier/typescript/import-type/long-module-name/long-module-name4.ts`
+  - `externals/prettier/typescript/keyword-types/keyword-types-with-parens-comments.ts`
+  - `externals/prettier/typescript/prettier-ignore/mapped-types.ts`
+  - `externals/prettier/typescript/property-signature/consistent-with-flow/intersection.ts`
+
+A comment between a type's `:` and the type breaks and indents the type, the rule the type after `=` follows:
+a line comment stays on the `:` line, and an own-line comment stays own-line.
+This holds at every `:` that introduces a type (variables, properties, index signatures, parameters, return types) and at a mapped type's value.
+Prettier prints the type from the `:` line's column after a line comment, inlines an own-line comment onto the `:` line,
+and reformats a suppressed union under a mapped type's `:`.
+
+```ts
+// input
+let a: // c
+  T;
+let b: (
+  // c
+  any
+);
+type M = {
+  [A in B]:
+    // prettier-ignore
+    C  |  D
+};
+
+// ours
+let a: // c
+  T;
+let b:
+  // c
+  any;
+type M = {
+  [A in B]:
+    // prettier-ignore
+    C  |  D;
+};
+
+// prettier
+let a: // c
+T;
+let b: // c
+any;
+type M = {
+  [A in B]:
+    // prettier-ignore
+    C | D;
+};
+```
+
 ## eol-suppression-after-assign-colon
 
 - Why: invariant

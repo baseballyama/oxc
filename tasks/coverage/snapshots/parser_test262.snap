@@ -2916,10 +2916,10 @@ Negative Passed: 4669/4669 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `#`
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-u0023.js:1:7]
+  × TS(1127): Invalid Character `#`
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-u0023.js:1:1]
  1 │ \u0023!
-   ·       ▲
+   · ▲
  2 │ 
    ╰────
 
@@ -2931,10 +2931,10 @@ Negative Passed: 4669/4669 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `#`
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-u23.js:1:7]
+  × TS(1127): Invalid Character `#`
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-u23.js:1:1]
  1 │ \u{23}!
-   ·       ▲
+   · ▲
  2 │ 
    ╰────
 
@@ -2961,17 +2961,17 @@ Negative Passed: 4669/4669 (100.00%)
    ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `#`
-   ╭─[test262/test/language/comments/hashbang/escaped-hashbang.js:1:7]
+  × TS(1127): Invalid Character `#`
+   ╭─[test262/test/language/comments/hashbang/escaped-hashbang.js:1:1]
  1 │ \u0023\u0021
-   ·       ▲
+   · ▲
  2 │ 
    ╰────
 
-  × Invalid Character `!`
-   ╭─[test262/test/language/comments/hashbang/escaped-hashbang.js:1:13]
+  × TS(1127): Invalid Character `!`
+   ╭─[test262/test/language/comments/hashbang/escaped-hashbang.js:1:7]
  1 │ \u0023\u0021
-   ·             ▲
+   ·       ▲
  2 │ 
    ╰────
 
@@ -13055,27 +13055,27 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-ues-error.js:70:9]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-ues-error.js:70:3]
  69 │ var C = class {
  70 │   \u0000;
-    ·         ▲
+    ·   ▲
  71 │ };
     ╰────
 
-  × Invalid Character `‍`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwj-error.js:70:9]
+  × TS(1127): Invalid Character `‍`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwj-error.js:70:3]
  69 │ var C = class {
  70 │   \u200D_ZWJ;
-    ·         ▲
+    ·   ▲
  71 │ };
     ╰────
 
-  × Invalid Character `‌`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwnj-error.js:70:9]
+  × TS(1127): Invalid Character `‌`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwnj-error.js:70:3]
  69 │ var C = class {
  70 │   \u200C_ZWNJ;
-    ·         ▲
+    ·   ▲
  71 │ };
     ╰────
 
@@ -13350,27 +13350,27 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ };
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-ues.js:64:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-ues.js:64:4]
  63 │ var C = class {
  64 │   #\u0000;
-    ·          ▲
+    ·    ▲
  65 │ };
     ╰────
 
-  × Invalid Character `‍`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwj-error.js:64:10]
+  × TS(1127): Invalid Character `‍`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwj-error.js:64:4]
  63 │ var C = class {
  64 │   #\u200D_ZWJ;
-    ·          ▲
+    ·    ▲
  65 │ 
     ╰────
 
-  × Invalid Character `‌`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwnj-error.js:64:10]
+  × TS(1127): Invalid Character `‌`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwnj-error.js:64:4]
  63 │ var C = class {
  64 │   #\u200C_ZWNJ;
-    ·          ▲
+    ·    ▲
  65 │ 
     ╰────
 
@@ -14055,59 +14055,59 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-async-generator-cannot-escape-token.js:25:17]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-async-generator-cannot-escape-token.js:25:11]
  24 │ var C = class {
  25 │   async * \u0023m() { return 42; }
-    ·                 ▲
- 26 │ };
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-async-method-cannot-escape-token.js:25:15]
- 24 │ var C = class {
- 25 │   async \u0023m() { return 42; }
-    ·               ▲
- 26 │ };
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-call-exp-cannot-escape-token.js:32:17]
- 31 │   method() {
- 32 │     foo().\u0023field;
-    ·                 ▲
- 33 │   }
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-field-cannot-escape-token.js:25:9]
- 24 │ var C = class {
- 25 │   \u0023field;
-    ·         ▲
- 26 │ };
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-generator-cannot-escape-token.js:25:11]
- 24 │ var C = class {
- 25 │   * \u0023m() { return 42; }
     ·           ▲
  26 │ };
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-member-exp-cannot-escape-token.js:32:16]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-async-method-cannot-escape-token.js:25:9]
+ 24 │ var C = class {
+ 25 │   async \u0023m() { return 42; }
+    ·         ▲
+ 26 │ };
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-call-exp-cannot-escape-token.js:32:11]
  31 │   method() {
- 32 │     this.\u0023field;
-    ·                ▲
+ 32 │     foo().\u0023field;
+    ·           ▲
  33 │   }
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-method-cannot-escape-token.js:25:9]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-field-cannot-escape-token.js:25:3]
+ 24 │ var C = class {
+ 25 │   \u0023field;
+    ·   ▲
+ 26 │ };
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-generator-cannot-escape-token.js:25:5]
+ 24 │ var C = class {
+ 25 │   * \u0023m() { return 42; }
+    ·     ▲
+ 26 │ };
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-member-exp-cannot-escape-token.js:32:10]
+ 31 │   method() {
+ 32 │     this.\u0023field;
+    ·          ▲
+ 33 │   }
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/expressions/class/elements/syntax/early-errors/private-method-cannot-escape-token.js:25:3]
  24 │ var C = class {
  25 │   \u0023m() { return 42; }
-    ·         ▲
+    ·   ▲
  26 │ };
     ╰────
 
@@ -21633,18 +21633,18 @@ Negative Passed: 4669/4669 (100.00%)
  25 │   }
     ╰────
 
-  × Invalid Character `‍`
-    ╭─[test262/test/language/identifiers/start-zwj-escaped.js:16:11]
+  × TS(1127): Invalid Character `‍`
+    ╭─[test262/test/language/identifiers/start-zwj-escaped.js:16:5]
  15 │ 
  16 │ var \u200D;
-    ·           ▲
+    ·     ▲
     ╰────
 
-  × Invalid Character `‌`
-    ╭─[test262/test/language/identifiers/start-zwnj-escaped.js:16:11]
+  × TS(1127): Invalid Character `‌`
+    ╭─[test262/test/language/identifiers/start-zwnj-escaped.js:16:5]
  15 │ 
  16 │ var \u200C;
-    ·           ▲
+    ·     ▲
     ╰────
 
   × TS(1127): Invalid Unicode escape sequence
@@ -22425,11 +22425,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Invalid Character `ⸯ`
-    ╭─[test262/test/language/identifiers/vertical-tilde-continue-escaped.js:17:12]
+  × TS(1127): Invalid Character `ⸯ`
+    ╭─[test262/test/language/identifiers/vertical-tilde-continue-escaped.js:17:6]
  16 │ 
  17 │ var a\u2E2F;
-    ·            ▲
+    ·      ▲
     ╰────
 
   × TS(1127): Invalid Character `ⸯ`
@@ -22447,11 +22447,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `ⸯ`
-    ╭─[test262/test/language/identifiers/vertical-tilde-start-escaped.js:17:11]
+  × TS(1127): Invalid Character `ⸯ`
+    ╭─[test262/test/language/identifiers/vertical-tilde-start-escaped.js:17:5]
  16 │ 
  17 │ var \u2E2F;
-    ·           ▲
+    ·     ▲
     ╰────
 
   × TS(1127): Invalid Character `ⸯ`
@@ -22784,33 +22784,33 @@ Negative Passed: 4669/4669 (100.00%)
     ·  ──
     ╰────
 
-  × Invalid Character `
+  × TS(1127): Invalid Character `
   │ `
-    ╭─[test262/test/language/line-terminators/S7.3_A6_T1.js:18:10]
+    ╭─[test262/test/language/line-terminators/S7.3_A6_T1.js:18:4]
  17 │ 
  18 │ var\u000Ax;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ``
-    ╭─[test262/test/language/line-terminators/S7.3_A6_T2.js:18:10]
+  × TS(1127): Invalid Character ``
+    ╭─[test262/test/language/line-terminators/S7.3_A6_T2.js:18:4]
  17 │ 
  18 │ var\u000Dx;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/line-terminators/S7.3_A6_T3.js:18:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/line-terminators/S7.3_A6_T3.js:18:4]
  17 │ 
  18 │ var\u2028x;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/line-terminators/S7.3_A6_T4.js:18:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/line-terminators/S7.3_A6_T4.js:18:4]
  17 │ 
  18 │ var\u2029x;
-    ·          ▲
+    ·    ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -26908,25 +26908,25 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Invalid Character `{`
+  × TS(1127): Invalid Character `{`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T1.js:18:1]
+ 17 │ 
+ 18 │ \u007B\u007D;
+    · ▲
+    ╰────
+
+  × TS(1127): Invalid Character `}`
     ╭─[test262/test/language/punctuators/S7.7_A2_T1.js:18:7]
  17 │ 
  18 │ \u007B\u007D;
     ·       ▲
     ╰────
 
-  × Invalid Character `}`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T1.js:18:13]
- 17 │ 
- 18 │ \u007B\u007D;
-    ·             ▲
-    ╰────
-
-  × Invalid Character `/`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T10.js:18:8]
+  × TS(1127): Invalid Character `/`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T10.js:18:2]
  17 │ 
  18 │ 1\u002F2;
-    ·        ▲
+    ·  ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -26937,53 +26937,53 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `(`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T2.js:18:7]
+  × TS(1127): Invalid Character `(`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T2.js:18:1]
  17 │ 
  18 │ \u00281\u0029;
-    ·       ▲
+    · ▲
     ╰────
 
-  × Invalid Character `)`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T2.js:18:14]
+  × TS(1127): Invalid Character `)`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T2.js:18:8]
  17 │ 
  18 │ \u00281\u0029;
-    ·              ▲
+    ·        ▲
     ╰────
 
-  × Invalid Character `[`
+  × TS(1127): Invalid Character `[`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T3.js:18:1]
+ 17 │ 
+ 18 │ \u005B\u005D;
+    · ▲
+    ╰────
+
+  × TS(1127): Invalid Character `]`
     ╭─[test262/test/language/punctuators/S7.7_A2_T3.js:18:7]
  17 │ 
  18 │ \u005B\u005D;
     ·       ▲
     ╰────
 
-  × Invalid Character `]`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T3.js:18:13]
- 17 │ 
- 18 │ \u005B\u005D;
-    ·             ▲
-    ╰────
-
-  × Invalid Character `;`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T4.js:18:7]
+  × TS(1127): Invalid Character `;`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T4.js:18:1]
  17 │ 
  18 │ \u003B;
-    ·       ▲
+    · ▲
     ╰────
 
-  × Invalid Character `.`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T5.js:19:11]
+  × TS(1127): Invalid Character `.`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T5.js:19:5]
  18 │ x = 1;
  19 │ this\u002Ex;
-    ·           ▲
+    ·     ▲
     ╰────
 
-  × Invalid Character `,`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T6.js:18:8]
+  × TS(1127): Invalid Character `,`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T6.js:18:2]
  17 │ 
  18 │ 1\u002C2;
-    ·        ▲
+    ·  ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -26994,11 +26994,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `+`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T7.js:18:8]
+  × TS(1127): Invalid Character `+`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T7.js:18:2]
  17 │ 
  18 │ 1\u002B2;
-    ·        ▲
+    ·  ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -27009,11 +27009,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `-`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T8.js:18:8]
+  × TS(1127): Invalid Character `-`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T8.js:18:2]
  17 │ 
  18 │ 1\u002D2;
-    ·        ▲
+    ·  ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -27024,11 +27024,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `*`
-    ╭─[test262/test/language/punctuators/S7.7_A2_T9.js:18:8]
+  × TS(1127): Invalid Character `*`
+    ╭─[test262/test/language/punctuators/S7.7_A2_T9.js:18:2]
  17 │ 
  18 │ 1\u002A2;
-    ·        ▲
+    ·  ▲
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -33210,27 +33210,27 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: either remove this super, or extend the class
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-ues-error.js:70:9]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-ues-error.js:70:3]
  69 │ class C {
  70 │   \u0000;
-    ·         ▲
+    ·   ▲
  71 │ }
     ╰────
 
-  × Invalid Character `‍`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwj-error.js:70:9]
+  × TS(1127): Invalid Character `‍`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwj-error.js:70:3]
  69 │ class C {
  70 │   \u200D_ZWJ;
-    ·         ▲
+    ·   ▲
  71 │ }
     ╰────
 
-  × Invalid Character `‌`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwnj-error.js:70:9]
+  × TS(1127): Invalid Character `‌`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-field-identifier-invalid-zwnj-error.js:70:3]
  69 │ class C {
  70 │   \u200C_ZWNJ;
-    ·         ▲
+    ·   ▲
  71 │ }
     ╰────
 
@@ -33505,27 +33505,27 @@ Negative Passed: 4669/4669 (100.00%)
  37 │ }
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-ues.js:64:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-ues.js:64:4]
  63 │ class C {
  64 │   #\u0000;
-    ·          ▲
+    ·    ▲
  65 │ }
     ╰────
 
-  × Invalid Character `‍`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwj-error.js:64:10]
+  × TS(1127): Invalid Character `‍`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwj-error.js:64:4]
  63 │ class C {
  64 │   #\u200D_ZWJ;
-    ·          ▲
+    ·    ▲
  65 │ 
     ╰────
 
-  × Invalid Character `‌`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwnj-error.js:64:10]
+  × TS(1127): Invalid Character `‌`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/grammar-privatename-identifier-invalid-zwnj-error.js:64:4]
  63 │ class C {
  64 │   #\u200C_ZWNJ;
-    ·          ▲
+    ·    ▲
  65 │ 
     ╰────
 
@@ -34210,59 +34210,59 @@ Negative Passed: 4669/4669 (100.00%)
  58 │   }
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-async-generator-cannot-escape-token.js:25:17]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-async-generator-cannot-escape-token.js:25:11]
  24 │ class C {
  25 │   async * \u0023m() { return 42; }
-    ·                 ▲
- 26 │ }
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-async-method-cannot-escape-token.js:25:15]
- 24 │ class C {
- 25 │   async \u0023m() { return 42; }
-    ·               ▲
- 26 │ }
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-call-exp-cannot-escape-token.js:32:17]
- 31 │   method() {
- 32 │     foo().\u0023field;
-    ·                 ▲
- 33 │   }
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-field-cannot-escape-token.js:25:9]
- 24 │ class C {
- 25 │   \u0023field;
-    ·         ▲
- 26 │ }
-    ╰────
-
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-generator-cannot-escape-token.js:25:11]
- 24 │ class C {
- 25 │   * \u0023m() { return 42; }
     ·           ▲
  26 │ }
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-member-exp-cannot-escape-token.js:32:16]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-async-method-cannot-escape-token.js:25:9]
+ 24 │ class C {
+ 25 │   async \u0023m() { return 42; }
+    ·         ▲
+ 26 │ }
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-call-exp-cannot-escape-token.js:32:11]
  31 │   method() {
- 32 │     this.\u0023field;
-    ·                ▲
+ 32 │     foo().\u0023field;
+    ·           ▲
  33 │   }
     ╰────
 
-  × Invalid Character `#`
-    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-method-cannot-escape-token.js:25:9]
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-field-cannot-escape-token.js:25:3]
+ 24 │ class C {
+ 25 │   \u0023field;
+    ·   ▲
+ 26 │ }
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-generator-cannot-escape-token.js:25:5]
+ 24 │ class C {
+ 25 │   * \u0023m() { return 42; }
+    ·     ▲
+ 26 │ }
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-member-exp-cannot-escape-token.js:32:10]
+ 31 │   method() {
+ 32 │     this.\u0023field;
+    ·          ▲
+ 33 │   }
+    ╰────
+
+  × TS(1127): Invalid Character `#`
+    ╭─[test262/test/language/statements/class/elements/syntax/early-errors/private-method-cannot-escape-token.js:25:3]
  24 │ class C {
  25 │   \u0023m() { return 42; }
-    ·         ▲
+    ·   ▲
  26 │ }
     ╰────
 
@@ -41916,39 +41916,39 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Invalid Character `	`
-    ╭─[test262/test/language/white-space/S7.2_A5_T1.js:18:10]
+  × TS(1127): Invalid Character `	`
+    ╭─[test262/test/language/white-space/S7.2_A5_T1.js:18:4]
  17 │ 
  18 │ var\u0009x;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ``
-    ╭─[test262/test/language/white-space/S7.2_A5_T2.js:18:10]
+  × TS(1127): Invalid Character ``
+    ╭─[test262/test/language/white-space/S7.2_A5_T2.js:18:4]
  17 │ 
  18 │ var\u000Bx;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ``
-    ╭─[test262/test/language/white-space/S7.2_A5_T3.js:18:10]
+  × TS(1127): Invalid Character ``
+    ╭─[test262/test/language/white-space/S7.2_A5_T3.js:18:4]
  17 │ 
  18 │ var\u000Cx;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/white-space/S7.2_A5_T4.js:18:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/white-space/S7.2_A5_T4.js:18:4]
  17 │ 
  18 │ var\u0020x;
-    ·          ▲
+    ·    ▲
     ╰────
 
-  × Invalid Character ` `
-    ╭─[test262/test/language/white-space/S7.2_A5_T5.js:18:10]
+  × TS(1127): Invalid Character ` `
+    ╭─[test262/test/language/white-space/S7.2_A5_T5.js:18:4]
  17 │ 
  18 │ var\u00A0x;
-    ·          ▲
+    ·    ▲
     ╰────
 
   × TS(1127): Invalid Character `᠎`

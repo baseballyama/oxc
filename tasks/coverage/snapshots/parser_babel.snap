@@ -1717,14 +1717,16 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  2 │ World"
    ╰────
 
-  × Invalid Character `\`
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/362/input.js:1:8]
+  × TS(1127): Invalid Character `\`
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/362/input.js:1:2]
  1 │ x\u005c
+   ·  ▲
    ╰────
 
-  × Invalid Character `*`
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/363/input.js:1:8]
+  × TS(1127): Invalid Character `*`
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/363/input.js:1:2]
  1 │ x\u002a
+   ·  ▲
    ╰────
 
   × Unterminated regular expression
@@ -2277,9 +2279,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Invalid Character `\`
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/447/input.js:1:7]
+  × TS(1127): Invalid Character `\`
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/447/input.js:1:1]
  1 │ \u005c
+   · ▲
    ╰────
 
   × TS(1127): Invalid Unicode escape sequence
@@ -2288,9 +2291,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Invalid Character ` `
-   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/449/input.js:1:7]
+  × TS(1127): Invalid Character ` `
+   ╭─[babel/packages/babel-parser/test/fixtures/core/uncategorised/449/input.js:1:1]
  1 │ \u0000
+   · ▲
    ╰────
 
   × TS(1127): Invalid Character `‌`
@@ -12175,10 +12179,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                        ╰── yield expression not allowed in formal parameter
    ╰────
 
-  × Invalid Character ` `
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/expression-primary-array/migrated_0012/input.js:1:19]
+  × TS(1127): Invalid Character ` `
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/expression-primary-array/migrated_0012/input.js:1:13]
  1 │ \u2163\u2161\u200A
-   ·                   ▲
+   ·             ▲
    ╰────
 
   × Invalid escape sequence
@@ -12450,16 +12454,16 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·  ──
    ╰────
 
-  × Invalid Character `\`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0033/input.js:1:8]
+  × TS(1127): Invalid Character `\`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0033/input.js:1:2]
  1 │ x\u005c
-   ·        ▲
+   ·  ▲
    ╰────
 
-  × Invalid Character `*`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0034/input.js:1:8]
+  × TS(1127): Invalid Character `*`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0034/input.js:1:2]
  1 │ x\u002a
-   ·        ▲
+   ·  ▲
    ╰────
 
   × TS(1127): Invalid Unicode escape sequence
@@ -13114,10 +13118,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·               ─
    ╰────
 
-  × Invalid Character `‿`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0137/input.js:1:7]
+  × TS(1127): Invalid Character `‿`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0137/input.js:1:1]
  1 │ \u203F = 10
-   ·       ▲
+   · ▲
    ╰────
 
   × TS(1155): Missing initializer in const declaration
@@ -13289,10 +13293,10 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Invalid Character `\`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0163/input.js:1:7]
+  × TS(1127): Invalid Character `\`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0163/input.js:1:1]
  1 │ \u005c
-   ·       ▲
+   · ▲
    ╰────
 
   × TS(1127): Invalid Unicode escape sequence
@@ -13301,22 +13305,22 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    · ──
    ╰────
 
-  × Invalid Character ` `
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0165/input.js:1:7]
+  × TS(1127): Invalid Character ` `
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0165/input.js:1:1]
  1 │ \u0000
-   ·       ▲
+   · ▲
    ╰────
 
-  × Invalid Character `‌`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0166/input.js:1:7]
+  × TS(1127): Invalid Character `‌`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0166/input.js:1:1]
  1 │ \u200C = []
-   ·       ▲
+   · ▲
    ╰────
 
-  × Invalid Character `‍`
-   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0167/input.js:1:7]
+  × TS(1127): Invalid Character `‍`
+   ╭─[babel/packages/babel-parser/test/fixtures/esprima/invalid-syntax/migrated_0167/input.js:1:1]
  1 │ \u200D = []
-   ·       ▲
+   · ▲
    ╰────
 
   × Unterminated string

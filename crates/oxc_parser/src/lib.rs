@@ -1641,6 +1641,21 @@ mod test {
     }
 
     #[test]
+    fn a_name_escape_of_a_character_no_name_holds_is_at_its_backslash() {
+        let allocator = Allocator::default();
+        let source_type = SourceType::ts();
+        for (source, at) in
+            [("let a\\u0020 = 1;", 5), ("let \\u0020a = 1;", 4), ("let a\\u{20} = 1;", 5)]
+        {
+            let ret = Parser::new(&allocator, source, source_type).parse();
+            let error = &ret.diagnostics[0];
+            assert_eq!(error.code.number.as_deref(), Some("1127"), "{source}");
+            let label = &error.labels[0];
+            assert_eq!((label.offset(), label.len()), (at, 0), "{source}");
+        }
+    }
+
+    #[test]
     fn a_modifier_name_in_parentheses_takes_a_type_assertion() {
         let allocator = Allocator::default();
         let source_type = SourceType::ts();

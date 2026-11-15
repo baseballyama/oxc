@@ -2935,10 +2935,10 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
 >>>>>>> eeb7308964 (test: update coverage snapshots for the expected token, expression, type and missing semicolon errors)
 
-  × Invalid Unicode escape sequence
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-043.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-043.js:1:1]
  1 │ \043!
-   ·  ─
+   · ──
  2 │ 
    ╰────
 
@@ -2977,10 +2977,10 @@ Negative Passed: 4669/4669 (100.00%)
  2 │ 
    ╰────
 
-  × Invalid Unicode escape sequence
-   ╭─[test262/test/language/comments/hashbang/escaped-hash-x23.js:1:2]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[test262/test/language/comments/hashbang/escaped-hash-x23.js:1:1]
  1 │ \x23!
-   ·  ─
+   · ──
  2 │ 
    ╰────
 
@@ -21671,11 +21671,11 @@ Negative Passed: 4669/4669 (100.00%)
     ·           ▲
     ╰────
 
-  × Invalid Unicode escape sequence
-    ╭─[test262/test/language/identifiers/unicode-escape-nls-err.js:49:6]
+  × TS(1127): Invalid Unicode escape sequence
+    ╭─[test262/test/language/identifiers/unicode-escape-nls-err.js:49:5]
  48 │ 
  49 │ var \u{00_76} = 1;
-    ·      ────
+    ·     ─────
     ╰────
 
   × TS(1109): Unexpected token
@@ -38144,25 +38144,25 @@ Negative Passed: 4669/4669 (100.00%)
     ·                               ╰── `param` has already been declared here
     ╰────
 
-  × Invalid Unicode escape sequence
-    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:20]
+  × TS(1127): Invalid Unicode escape sequence
+    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:19]
  15 │ 
  16 │ function __func(){\A\B\C};
-    ·                    ─
+    ·                   ──
     ╰────
 
-  × Invalid Unicode escape sequence
-    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:22]
+  × TS(1127): Invalid Unicode escape sequence
+    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:21]
  15 │ 
  16 │ function __func(){\A\B\C};
-    ·                      ─
+    ·                     ──
     ╰────
 
-  × Invalid Unicode escape sequence
-    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:24]
+  × TS(1127): Invalid Unicode escape sequence
+    ╭─[test262/test/language/statements/function/S13_A7_T3.js:16:23]
  15 │ 
  16 │ function __func(){\A\B\C};
-    ·                        ─
+    ·                       ──
     ╰────
 
   × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list

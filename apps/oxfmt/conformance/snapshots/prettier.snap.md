@@ -64,7 +64,7 @@
   - ❓unclassified
 - externals/prettier/js/if/non-block.js (💥, 82.35%)
   - ❓unclassified
-- externals/prettier/js/ignore/issue-10661.js (💥, 75.47%)
+- externals/prettier/js/ignore/issue-10661.js (💥, 83.02%)
   - ❓unclassified
 - externals/prettier/js/ignore/semi/class-expression-decorator.js (💥💥, 25.00%)
   - ❓unclassified
@@ -146,7 +146,7 @@
 
 ## typescript
 
-634/679 (93.37%)
+633/679 (93.23%)
 
 ### Failed
 
@@ -166,6 +166,8 @@
   - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
 - externals/prettier/typescript/class-comment/declare.ts (💥, 72.00%)
   - crates/oxc_formatter/DIVERGENCES.md#head-body-comment-relocation
+- externals/prettier/typescript/comments/mapped-types.ts (💥, 97.70%)
+  - crates/oxc_formatter/DIVERGENCES.md#member-operator-comment-side
 - externals/prettier/typescript/comments/method_types.ts (💥, 82.05%)
   - crates/oxc_formatter/DIVERGENCES.md#signature-opener-comment
 - externals/prettier/typescript/comments/type-literals.ts (💥, 89.66%)

@@ -56,8 +56,8 @@ impl ColonBreak {
 
     /// The break after a mapped type's value `:`, `None` without a value
     pub fn of_mapped_value(mapped: &TSMappedType<'_>, f: &JsFormatter<'_, '_>) -> Self {
-        match (mapped_value_colon_end(mapped, f), &mapped.type_annotation) {
-            (Some(colon_end), Some(value)) => Self::of(colon_end, value.span().start, f),
+        match (mapped_value_delimiters(mapped, f), &mapped.type_annotation) {
+            (Some((_, colon_end)), Some(value)) => Self::of(colon_end, value.span().start, f),
             _ => Self::None,
         }
     }
@@ -80,13 +80,17 @@ impl ColonBreak {
     }
 }
 
-/// The position after a mapped type's value `:`, `None` without a value
-pub fn mapped_value_colon_end(mapped: &TSMappedType<'_>, f: &JsFormatter<'_, '_>) -> Option<u32> {
+/// The positions after a mapped type's key `]` and after its value `:`, `None` without a value
+pub fn mapped_value_delimiters(
+    mapped: &TSMappedType<'_>,
+    f: &JsFormatter<'_, '_>,
+) -> Option<(u32, u32)> {
     mapped.type_annotation.as_ref()?;
     let key_end =
         mapped.name_type.as_ref().map_or(mapped.constraint.span().end, |name| name.span().end);
     let comments = f.context().comments();
-    Some(comments.position_after_character(comments.position_after_character(key_end, b']'), b':'))
+    let close_bracket_end = comments.position_after_character(key_end, b']');
+    Some((close_bracket_end, comments.position_after_character(close_bracket_end, b':')))
 }
 
 /// Whether a type annotation starts with a `:`: not after a function type's `=>`, nor in a type predicate

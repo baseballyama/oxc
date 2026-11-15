@@ -13,7 +13,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: for octal escapes use the '\x' or '\u' escape instead
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/annexB/language/statements/for-in/bare-initializer.js:16:6]
  15 │ 
  16 │ for (a = 0 in {});
@@ -1706,7 +1706,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·   ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/asi/S7.9_A5.7_T1.js:24:1]
  23 │     x
  24 │ ╭─▶ ++
@@ -3953,11 +3953,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/dstr/array-elem-nested-array-invalid.js:24:7]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/dstr/array-elem-nested-array-invalid.js:24:6]
  23 │ 
  24 │ 0, [[(x, y)]] = [[]];
-    ·       ────
+    ·      ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -3968,14 +3968,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:57:5]
  56 │ 
  57 │ 0, [x?.y = 42] = [23];
     ·     ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-elem-nested-obj-invalid.js:24:12]
  23 │ 
  24 │ 0, [{ get x() {} }] = [{}];
@@ -3990,7 +3990,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:56:5]
  55 │     
  56 │ ╭─▶ 0, [{
@@ -4038,7 +4038,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ────
     ╰────
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2364): Invalid rest element target in destructuring assignment
     ╭─[test262/test/language/expressions/assignment/dstr/array-rest-init.js:25:8]
  24 │ 
  25 │ 0, [...x = 1] = [];
@@ -4046,18 +4046,18 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-rest-init.js:25:8]
  24 │ 
  25 │ 0, [...x = 1] = [];
     ·        ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/dstr/array-rest-nested-array-invalid.js:24:10]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/dstr/array-rest-nested-array-invalid.js:24:9]
  23 │ 
  24 │ 0, [...[(x, y)]] = [[]];
-    ·          ────
+    ·         ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -4068,7 +4068,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-rest-nested-obj-invalid.js:24:15]
  23 │ 
  24 │ 0, [...{ get x() {} }] = [[]];
@@ -4140,14 +4140,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:57:9]
  56 │ 
  57 │ 0, { x: y?.z = 42 } = { x: 23 };
     ·         ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:56:9]
  55 │     
  56 │ ╭─▶ 0, { x: {
@@ -4165,11 +4165,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-nested-array-invalid.js:24:11]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-nested-array-invalid.js:24:10]
  23 │ 
  24 │ 0, { x: [(x, y)] } = { x: [] };
-    ·           ────
+    ·          ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -4180,7 +4180,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-nested-obj-invalid.js:24:16]
  23 │ 
  24 │ 0, { x: { get x() {} } } = { x: {} };
@@ -4588,52 +4588,52 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/non-simple-target.js:19:1]
  18 │ 
  19 │ 1 = 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/target-assignment-inside-function.js:23:4]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/target-assignment-inside-function.js:23:3]
  22 │   var a, b = 2;
  23 │   (a = b) = 1;
-    ·    ─────
+    ·   ───────
  24 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/target-assignment.js:22:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/target-assignment.js:22:1]
  21 │ var a, b = 2;
  22 │ (a = b) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/target-boolean.js:23:1]
  22 │ 
  23 │ true = 42;
     · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/target-cover-newtarget.js:30:4]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/target-cover-newtarget.js:30:3]
  29 │ function f() {
  30 │   (new.target) = 1;
-    ·    ──────────
+    ·   ────────────
  31 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignment/target-cover-yieldexpr.js:33:4]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignment/target-cover-yieldexpr.js:33:3]
  32 │ function* g() {
  33 │   (yield) = 1;
-    ·    ─────
+    ·   ───────
  34 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/target-newtarget.js:30:3]
  29 │ function f() {
  30 │   new.target = 1;
@@ -4641,63 +4641,63 @@ Negative Passed: 4669/4669 (100.00%)
  31 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/target-null.js:23:1]
  22 │ 
  23 │ null = 42;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/target-number.js:23:1]
  22 │ 
  23 │ 42 = 42;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/target-string.js:23:1]
  22 │ 
  23 │ 'x' = 42;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-minus-multiplicativeexpression-0.js:21:1]
  20 │ 
  21 │ x - y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-minus-multiplicativeexpression-1.js:21:1]
  20 │ 
  21 │ 1 - 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-minus-multiplicativeexpression-2.js:21:1]
  20 │ 
  21 │ true - false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-plus-multiplicativeexpression-0.js:21:1]
  20 │ 
  21 │ x + y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-plus-multiplicativeexpression-1.js:21:1]
  20 │ 
  21 │ 1 + 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-additiveexpression-plus-multiplicativeexpression-2.js:21:1]
  20 │ 
  21 │ true + false = 1;
@@ -4712,46 +4712,46 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-1.js:21:7]
  20 │ 
  21 │ () => ({}) = 1;
     ·       ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-2.js:21:1]
  20 │ 
  21 │ (x => x) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-3.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-3.js:21:1]
  20 │ 
  21 │ ((x) => x) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-4.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-4.js:21:1]
  20 │ 
  21 │ (() => 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-5.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-5.js:21:1]
  20 │ 
  21 │ (() => true) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-6.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-arrowfunction-6.js:21:1]
  20 │ 
  21 │ (() => 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -4762,291 +4762,291 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-1.js:21:13]
  20 │ 
  21 │ async () => ({}) = 1;
     ·             ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-2.js:21:1]
  20 │ 
  21 │ (async x => x) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-3.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-3.js:21:1]
  20 │ 
  21 │ (async (x) => x) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-4.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-4.js:21:1]
  20 │ 
  21 │ (async () => 1) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-5.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-5.js:21:1]
  20 │ 
  21 │ (async () => true) = 1;
-    ·  ────────────────
+    · ──────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-6.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-asyncarrowfunction-6.js:21:1]
  20 │ 
  21 │ (async () => 1) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseandexpression-bitwise-and-equalityexpression-0.js:21:1]
  20 │ 
  21 │ x & y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseandexpression-bitwise-and-equalityexpression-1.js:21:1]
  20 │ 
  21 │ 1 & 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseandexpression-bitwise-and-equalityexpression-2.js:21:1]
  20 │ 
  21 │ true & false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseorexpression-bitwise-or-bitwisexorexpression-0.js:21:1]
  20 │ 
  21 │ x | y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseorexpression-bitwise-or-bitwisexorexpression-1.js:21:1]
  20 │ 
  21 │ 1 | 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwiseorexpression-bitwise-or-bitwisexorexpression-2.js:21:1]
  20 │ 
  21 │ true | false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwisexorexpression-bitwise-xor-bitwiseandexpression-0.js:21:1]
  20 │ 
  21 │ x ^ y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwisexorexpression-bitwise-xor-bitwiseandexpression-1.js:21:1]
  20 │ 
  21 │ 1 ^ 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-bitwisexorexpression-bitwise-xor-bitwiseandexpression-2.js:21:1]
  20 │ 
  21 │ true ^ false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-as-for-in-lhs.js:25:6]
  24 │ 
  25 │ for (f() in [1]) {}
     ·      ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2487): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-as-for-of-lhs.js:25:6]
  24 │ 
  25 │ for (f() of [1]) {}
     ·      ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-in-compound-assignment.js:25:1]
  24 │ 
  25 │ f() += 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-in-logical-assignment.js:25:1]
  24 │ 
  25 │ f() &&= 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-in-postfix-update.js:25:1]
  24 │ 
  25 │ f()++;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-in-prefix-update.js:25:3]
  24 │ 
  25 │ ++f();
     ·   ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression-templateliteral.js:21:1]
  20 │ 
  21 │ f()`` = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-callexpression.js:25:1]
  24 │ 
  25 │ f() = 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-coalesceexpressionhead-coalesce-bitwiseorexpression-0.js:21:1]
  20 │ 
  21 │ x ?? y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-coalesceexpressionhead-coalesce-bitwiseorexpression-1.js:21:1]
  20 │ 
  21 │ 1 ?? 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-coalesceexpressionhead-coalesce-bitwiseorexpression-2.js:21:1]
  20 │ 
  21 │ true ?? false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-equal-relationalexpression-0.js:21:1]
  20 │ 
  21 │ x == y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-equal-relationalexpression-1.js:21:1]
  20 │ 
  21 │ 1 == 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-equal-relationalexpression-2.js:21:1]
  20 │ 
  21 │ true == false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-not-equal-relationalexpression-0.js:21:1]
  20 │ 
  21 │ x != y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-not-equal-relationalexpression-1.js:21:1]
  20 │ 
  21 │ 1 != 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-abstract-not-equal-relationalexpression-2.js:21:1]
  20 │ 
  21 │ true != false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-equal-relationalexpression-0.js:21:1]
  20 │ 
  21 │ x == y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-equal-relationalexpression-1.js:21:1]
  20 │ 
  21 │ 1 == 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-equal-relationalexpression-2.js:21:1]
  20 │ 
  21 │ true == false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-not-equal-relationalexpression-0.js:21:1]
  20 │ 
  21 │ x !== y = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-not-equal-relationalexpression-1.js:21:1]
  20 │ 
  21 │ 1 !== 2 = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-equalityexpression-strict-not-equal-relationalexpression-2.js:21:1]
  20 │ 
  21 │ true !== false = 1;
     · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x, y = z) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (x, y = 1) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-expression-comma-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (x, y = true) = 1;
-    ·  ───────────
+    · ─────────────
     ╰────
 
   × Cannot assign to 'arguments' in strict mode
@@ -5073,7 +5073,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: import.meta is only allowed in module code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-import.meta.js:21:1]
  20 │ 
  21 │ import.meta = 1;
@@ -5101,224 +5101,224 @@ Negative Passed: 4669/4669 (100.00%)
     · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x = y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (x = 1) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-assignment-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (x = true) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x ??= y) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (x ??= 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-coalesce-assignment-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (x ??= true) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x &&= y) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (x &&= 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-and-assignment-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (x &&= true) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x ||= y) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (x ||= 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-logical-or-assignment-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (x ||= true) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-minus-minus.js:21:1]
  20 │ 
  21 │ x-- = 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-lefthandsideexpression-plus-plus.js:21:1]
  20 │ 
  21 │ x++ = 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalandexpression-logical-and-bitwiseorexpression-0.js:21:1]
  20 │ 
  21 │ x && y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalandexpression-logical-and-bitwiseorexpression-1.js:21:1]
  20 │ 
  21 │ 1 && 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalandexpression-logical-and-bitwiseorexpression-2.js:21:1]
  20 │ 
  21 │ true && false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalorexpression-logical-or-logicalandexpression-0.js:21:1]
  20 │ 
  21 │ x || y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalorexpression-logical-or-logicalandexpression-1.js:21:1]
  20 │ 
  21 │ 1 || 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-logicalorexpression-logical-or-logicalandexpression-2.js:21:1]
  20 │ 
  21 │ true || false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-memberexpression-templateliteral.js:21:1]
  20 │ 
  21 │ o.f()`` = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-minus-minus-unaryexpression.js:21:1]
  20 │ 
  21 │ --x = 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-0.js:21:1]
  20 │ 
  21 │ x * y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-1.js:21:1]
  20 │ 
  21 │ 1 * 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-2.js:21:1]
  20 │ 
  21 │ true * false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-3.js:21:1]
  20 │ 
  21 │ x / y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-4.js:21:1]
  20 │ 
  21 │ 1 / 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-5.js:21:1]
  20 │ 
  21 │ true / false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-new-memberexpression-arguments.js:21:1]
  20 │ 
  21 │ new f() = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-new-newexpression.js:21:1]
  20 │ 
  21 │ new f = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-optionalexpression.js:22:1]
  21 │ 
  22 │ x?.y = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-plus-plus-unaryexpression.js:21:1]
  20 │ 
  21 │ ++x = 1;
@@ -5392,28 +5392,28 @@ Negative Passed: 4669/4669 (100.00%)
     ·                  ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-literal-boolean.js:17:1]
  16 │ 
  17 │ true = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-literal-null.js:17:1]
  16 │ 
  17 │ null = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-literal-numeric.js:17:1]
  16 │ 
  17 │ 0 = 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-literal-string.js:17:1]
  16 │ 
  17 │ '' = 1;
@@ -5427,385 +5427,385 @@ Negative Passed: 4669/4669 (100.00%)
     ·    ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-regularexpressionliteral.js:17:1]
  16 │ 
  17 │ /1/ = 1;
     · ───
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-templateliteral.js:17:1]
  16 │ 
  17 │ `` = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-primaryexpression-this.js:17:1]
  16 │ 
  17 │ this = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-or-equal-to-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x >= y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-or-equal-to-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 >= 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-or-equal-to-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true >= false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x > y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 > 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-greater-than-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true > false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-in-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x in y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-in-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 in 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-in-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true in false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-instanceof-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x instanceof y = 1;
     · ──────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-instanceof-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 instanceof 2 = 1;
     · ──────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-instanceof-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true instanceof false = 1;
     · ─────────────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-or-equal-to-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x <= y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-or-equal-to-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 <= 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-or-equal-to-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true <= false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-shiftexpression-0.js:21:1]
  20 │ 
  21 │ x < y = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-shiftexpression-1.js:21:1]
  20 │ 
  21 │ 1 < 2 = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-relationalexpression-less-than-shiftexpression-2.js:21:1]
  20 │ 
  21 │ true < false = 1;
     · ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-left-additiveexpression-0.js:21:1]
  20 │ 
  21 │ x << y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-left-additiveexpression-1.js:21:1]
  20 │ 
  21 │ 1 << 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-left-additiveexpression-2.js:21:1]
  20 │ 
  21 │ true << false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-right-additiveexpression-0.js:21:1]
  20 │ 
  21 │ x >> y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-right-additiveexpression-1.js:21:1]
  20 │ 
  21 │ 1 >> 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-bitwise-right-additiveexpression-2.js:21:1]
  20 │ 
  21 │ true >> false = 1;
     · ─────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-unsigned-bitwise-right-additiveexpression-0.js:21:1]
  20 │ 
  21 │ x >>> y = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-unsigned-bitwise-right-additiveexpression-1.js:21:1]
  20 │ 
  21 │ 1 >>> 2 = 1;
     · ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-shiftexpression-unsigned-bitwise-right-additiveexpression-2.js:21:1]
  20 │ 
  21 │ true >>> false = 1;
     · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-0.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-0.js:21:1]
  20 │ 
  21 │ (x ? y : z) = 1;
-    ·  ─────────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-1.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-1.js:21:1]
  20 │ 
  21 │ (1 ? 2 : 3) = 1;
-    ·  ─────────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-2.js:21:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/direct-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-2.js:21:1]
  20 │ 
  21 │ (true ? false : true) = 1;
-    ·  ───────────────────
+    · ─────────────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-delete-unaryexpression.js:21:1]
  20 │ 
  21 │ delete x.y = 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-exclamation-unaryexpression-0.js:21:1]
  20 │ 
  21 │ !x = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-exclamation-unaryexpression-1.js:21:1]
  20 │ 
  21 │ !1 = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-exclamation-unaryexpression-2.js:21:1]
  20 │ 
  21 │ !true = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-minus-unaryexpression-0.js:21:1]
  20 │ 
  21 │ -x = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-minus-unaryexpression-1.js:21:1]
  20 │ 
  21 │ -1 = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-minus-unaryexpression-2.js:21:1]
  20 │ 
  21 │ -true = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-plus-unaryexpression-0.js:21:1]
  20 │ 
  21 │ +x = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-plus-unaryexpression-1.js:21:1]
  20 │ 
  21 │ +1 = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-plus-unaryexpression-2.js:21:1]
  20 │ 
  21 │ +true = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-tilde-unaryexpression-0.js:21:1]
  20 │ 
  21 │ ~x = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-tilde-unaryexpression-1.js:21:1]
  20 │ 
  21 │ ~1 = 1;
     · ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-tilde-unaryexpression-2.js:21:1]
  20 │ 
  21 │ ~true = 1;
     · ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-typeof-unaryexpression-0.js:21:1]
  20 │ 
  21 │ typeof x = 1;
     · ────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-typeof-unaryexpression-1.js:21:1]
  20 │ 
  21 │ typeof 1 = 1;
     · ────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-typeof-unaryexpression-2.js:21:1]
  20 │ 
  21 │ typeof true = 1;
     · ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-void-unaryexpression-0.js:21:1]
  20 │ 
  21 │ void x = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-void-unaryexpression-1.js:21:1]
  20 │ 
  21 │ void 1 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-unaryexpression-void-unaryexpression-2.js:21:1]
  20 │ 
  21 │ void true = 1;
     · ─────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-updateexpression-star-star-exponentiationexpression-0.js:22:1]
  21 │ 
  22 │ x ** y = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-updateexpression-star-star-exponentiationexpression-1.js:22:1]
  21 │ 
  22 │ 1 ** 2 = 1;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-updateexpression-star-star-exponentiationexpression-2.js:22:1]
  21 │ 
  22 │ true ** false = 1;
@@ -5820,368 +5820,368 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-yieldexpression-1.js:21:1]
  20 │ 
  21 │ yield * x = 1;
     · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-0.js:24:1]
  23 │ 
  24 │ (x - y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-1.js:24:1]
  23 │ 
  24 │ (1 - 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-minus-multiplicativeexpression-2.js:24:1]
  23 │ 
  24 │ (true - false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-0.js:24:1]
  23 │ 
  24 │ (x + y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-1.js:24:1]
  23 │ 
  24 │ (1 + 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-additiveexpression-plus-multiplicativeexpression-2.js:24:1]
  23 │ 
  24 │ (true + false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-0.js:24:1]
  23 │ 
  24 │ (() => {}) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-1.js:24:1]
  23 │ 
  24 │ (() => ({})) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-2.js:24:1]
  23 │ 
  24 │ ((x => x)) = 1;
-    ·   ──────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-3.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-3.js:24:1]
  23 │ 
  24 │ (((x) => x)) = 1;
-    ·   ────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-4.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-4.js:24:1]
  23 │ 
  24 │ ((() => 1)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-5.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-5.js:24:1]
  23 │ 
  24 │ ((() => true)) = 1;
-    ·   ──────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-6.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-arrowfunction-6.js:24:1]
  23 │ 
  24 │ ((() => 1)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-0.js:24:1]
  23 │ 
  24 │ (async () => {}) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-1.js:24:1]
  23 │ 
  24 │ (async () => ({})) = 1;
-    ·  ────────────────
+    · ──────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-2.js:24:1]
  23 │ 
  24 │ ((async x => x)) = 1;
-    ·   ────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-3.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-3.js:24:1]
  23 │ 
  24 │ ((async (x) => x)) = 1;
-    ·   ──────────────
+    · ──────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-4.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-4.js:24:1]
  23 │ 
  24 │ ((async () => 1)) = 1;
-    ·   ─────────────
+    · ─────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-5.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-5.js:24:1]
  23 │ 
  24 │ ((async () => true)) = 1;
-    ·   ────────────────
+    · ────────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-6.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-asyncarrowfunction-6.js:24:1]
  23 │ 
  24 │ ((async () => 1)) = 1;
-    ·   ─────────────
+    · ─────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-0.js:24:1]
  23 │ 
  24 │ (x & y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-1.js:24:1]
  23 │ 
  24 │ (1 & 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseandexpression-bitwise-and-equalityexpression-2.js:24:1]
  23 │ 
  24 │ (true & false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-0.js:24:1]
  23 │ 
  24 │ (x | y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-1.js:24:1]
  23 │ 
  24 │ (1 | 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwiseorexpression-bitwise-or-bitwisexorexpression-2.js:24:1]
  23 │ 
  24 │ (true | false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-0.js:24:1]
  23 │ 
  24 │ (x ^ y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-1.js:24:1]
  23 │ 
  24 │ (1 ^ 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-bitwisexorexpression-bitwise-xor-bitwiseandexpression-2.js:24:1]
  23 │ 
  24 │ (true ^ false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-in-compound-assignment.js:28:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-in-compound-assignment.js:28:1]
  27 │ 
  28 │ (f()) += 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-in-logical-assignment.js:28:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-in-logical-assignment.js:28:1]
  27 │ 
  28 │ (f()) &&= 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-templateliteral.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression-templateliteral.js:24:1]
  23 │ 
  24 │ (f()``) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression.js:28:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-callexpression.js:28:1]
  27 │ 
  28 │ (f()) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-0.js:24:1]
  23 │ 
  24 │ (x ?? y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-1.js:24:1]
  23 │ 
  24 │ (1 ?? 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-coalesceexpressionhead-coalesce-bitwiseorexpression-2.js:24:1]
  23 │ 
  24 │ (true ?? false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-0.js:24:1]
  23 │ 
  24 │ (x == y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-1.js:24:1]
  23 │ 
  24 │ (1 == 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-equal-relationalexpression-2.js:24:1]
  23 │ 
  24 │ (true == false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-0.js:24:1]
  23 │ 
  24 │ (x != y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-1.js:24:1]
  23 │ 
  24 │ (1 != 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-abstract-not-equal-relationalexpression-2.js:24:1]
  23 │ 
  24 │ (true != false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-0.js:24:1]
  23 │ 
  24 │ (x == y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-1.js:24:1]
  23 │ 
  24 │ (1 == 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-equal-relationalexpression-2.js:24:1]
  23 │ 
  24 │ (true == false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-0.js:24:1]
  23 │ 
  24 │ (x !== y) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-1.js:24:1]
  23 │ 
  24 │ (1 !== 2) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-equalityexpression-strict-not-equal-relationalexpression-2.js:24:1]
  23 │ 
  24 │ (true !== false) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x, y = z)) = 1;
-    ·   ────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((x, y = 1)) = 1;
-    ·   ────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-expression-comma-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((x, y = true)) = 1;
-    ·   ───────────
+    · ───────────────
     ╰────
 
   × Cannot assign to 'arguments' in strict mode
@@ -6208,11 +6208,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: import.meta is only allowed in module code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-import.meta.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-import.meta.js:24:1]
  23 │ 
  24 │ (import.meta) = 1;
-    ·  ───────────
+    · ─────────────
     ╰────
 
   × import() requires a specifier.
@@ -6236,683 +6236,683 @@ Negative Passed: 4669/4669 (100.00%)
     ·  ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x = y)) = 1;
-    ·   ─────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((x = 1)) = 1;
-    ·   ─────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-assignment-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((x = true)) = 1;
-    ·   ────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x ??= y)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((x ??= 1)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-coalesce-assignment-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((x ??= true)) = 1;
-    ·   ──────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x &&= y)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((x &&= 1)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-and-assignment-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((x &&= true)) = 1;
-    ·   ──────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x ||= y)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((x ||= 1)) = 1;
-    ·   ───────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-logical-or-assignment-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((x ||= true)) = 1;
-    ·   ──────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-minus-minus.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-minus-minus.js:24:1]
  23 │ 
  24 │ (x--) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-plus-plus.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-lefthandsideexpression-plus-plus.js:24:1]
  23 │ 
  24 │ (x++) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-0.js:24:1]
  23 │ 
  24 │ (x && y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-1.js:24:1]
  23 │ 
  24 │ (1 && 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalandexpression-logical-and-bitwiseorexpression-2.js:24:1]
  23 │ 
  24 │ (true && false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-0.js:24:1]
  23 │ 
  24 │ (x || y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-1.js:24:1]
  23 │ 
  24 │ (1 || 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-logicalorexpression-logical-or-logicalandexpression-2.js:24:1]
  23 │ 
  24 │ (true || false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-memberexpression-templateliteral.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-memberexpression-templateliteral.js:24:1]
  23 │ 
  24 │ (o.f()``) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-minus-minus-unaryexpression.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-minus-minus-unaryexpression.js:24:1]
  23 │ 
  24 │ (--x) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-0.js:24:1]
  23 │ 
  24 │ (x * y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-1.js:24:1]
  23 │ 
  24 │ (1 * 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-2.js:24:1]
  23 │ 
  24 │ (true * false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-3.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-3.js:24:1]
  23 │ 
  24 │ (x / y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-4.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-4.js:24:1]
  23 │ 
  24 │ (1 / 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-5.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-multiplicativeexpression-multiplicativeoperator-exponentiationexpression-5.js:24:1]
  23 │ 
  24 │ (true / false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-new-memberexpression-arguments.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-new-memberexpression-arguments.js:24:1]
  23 │ 
  24 │ (new f()) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-new-newexpression.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-new-newexpression.js:24:1]
  23 │ 
  24 │ (new f) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-optionalexpression.js:25:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-optionalexpression.js:25:1]
  24 │ 
  25 │ (x?.y) = 1;
-    ·  ────
+    · ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-plus-plus-unaryexpression.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-plus-plus-unaryexpression.js:24:1]
  23 │ 
  24 │ (++x) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-asyncfunctionexpression.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-asyncfunctionexpression.js:20:1]
  19 │ 
  20 │ (async function () {}) = 1;
-    ·  ────────────────────
+    · ──────────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-asyncgeneratorexpression.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-asyncgeneratorexpression.js:20:1]
  19 │ 
  20 │ (async function () {}) = 1;
-    ·  ────────────────────
+    · ──────────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-classexpression.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-classexpression.js:20:1]
  19 │ 
  20 │ (class {}) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-functionexpression.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-functionexpression.js:20:1]
  19 │ 
  20 │ (function() {}) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-generatorexpression.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-generatorexpression.js:20:1]
  19 │ 
  20 │ (function * () {}) = 1;
-    ·  ────────────────
+    · ──────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-boolean.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-boolean.js:20:1]
  19 │ 
  20 │ (true) = 1;
-    ·  ────
+    · ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-null.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-null.js:20:1]
  19 │ 
  20 │ (null) = 1;
-    ·  ────
+    · ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-numeric.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-numeric.js:20:1]
  19 │ 
  20 │ (0) = 1;
-    ·  ─
+    · ───
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-string.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-literal-string.js:20:1]
  19 │ 
  20 │ ('') = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-objectliteral.js:20:1]
  19 │ 
  20 │ ({}) = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-regularexpressionliteral.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-regularexpressionliteral.js:20:1]
  19 │ 
  20 │ (/1/) = 1;
-    ·  ───
+    · ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-templateliteral.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-templateliteral.js:20:1]
  19 │ 
  20 │ (``) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-this.js:20:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-primaryexpression-this.js:20:1]
  19 │ 
  20 │ (this) = 1;
-    ·  ────
+    · ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x >= y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 >= 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-or-equal-to-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true >= false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x > y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 > 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-greater-than-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true > false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x in y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 in 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-in-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true in false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x instanceof y) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 instanceof 2) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-instanceof-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true instanceof false) = 1;
-    ·  ─────────────────────
+    · ───────────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x <= y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 <= 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-or-equal-to-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true <= false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-0.js:24:1]
  23 │ 
  24 │ (x < y) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-1.js:24:1]
  23 │ 
  24 │ (1 < 2) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-relationalexpression-less-than-shiftexpression-2.js:24:1]
  23 │ 
  24 │ (true < false) = 1;
-    ·  ────────────
+    · ──────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-0.js:24:1]
  23 │ 
  24 │ (x << y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-1.js:24:1]
  23 │ 
  24 │ (1 << 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-left-additiveexpression-2.js:24:1]
  23 │ 
  24 │ (true << false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-0.js:24:1]
  23 │ 
  24 │ (x >> y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-1.js:24:1]
  23 │ 
  24 │ (1 >> 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-bitwise-right-additiveexpression-2.js:24:1]
  23 │ 
  24 │ (true >> false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-0.js:24:1]
  23 │ 
  24 │ (x >>> y) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-1.js:24:1]
  23 │ 
  24 │ (1 >>> 2) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shiftexpression-unsigned-bitwise-right-additiveexpression-2.js:24:1]
  23 │ 
  24 │ (true >>> false) = 1;
-    ·  ──────────────
+    · ────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-0.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-0.js:24:1]
  23 │ 
  24 │ ((x ? y : z)) = 1;
-    ·   ─────────
+    · ─────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-1.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-1.js:24:1]
  23 │ 
  24 │ ((1 ? 2 : 3)) = 1;
-    ·   ─────────
+    · ─────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-2.js:24:3]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-shortcircuitexpression-question-assignmentexpression-else-assignmentexpression-2.js:24:1]
  23 │ 
  24 │ ((true ? false : true)) = 1;
-    ·   ───────────────────
+    · ───────────────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-delete-unaryexpression.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-delete-unaryexpression.js:24:1]
  23 │ 
  24 │ (delete x.y) = 1;
-    ·  ──────────
+    · ────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (!x) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (!1) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-exclamation-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (!true) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (-x) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (-1) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-minus-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (-true) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (+x) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (+1) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-plus-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (+true) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (~x) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (~1) = 1;
-    ·  ──
+    · ────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-tilde-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (~true) = 1;
-    ·  ─────
+    · ───────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (typeof x) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (typeof 1) = 1;
-    ·  ────────
+    · ──────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-typeof-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (typeof true) = 1;
-    ·  ───────────
+    · ─────────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-0.js:24:1]
  23 │ 
  24 │ (void x) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-1.js:24:1]
  23 │ 
  24 │ (void 1) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-2.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-unaryexpression-void-unaryexpression-2.js:24:1]
  23 │ 
  24 │ (void true) = 1;
-    ·  ─────────
+    · ───────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-0.js:25:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-0.js:25:1]
  24 │ 
  25 │ (x ** y) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-1.js:25:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-1.js:25:1]
  24 │ 
  25 │ (1 ** 2) = 1;
-    ·  ──────
+    · ────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-2.js:25:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-updateexpression-star-star-exponentiationexpression-2.js:25:1]
  24 │ 
  25 │ (true ** false) = 1;
-    ·  ─────────────
+    · ───────────────
     ╰────
 
   × A 'yield' expression is only allowed in a generator body.
@@ -6923,18 +6923,18 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Either remove this `yield` or change the enclosing function to a generator function (`function*`)
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-yieldexpression-0.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-yieldexpression-0.js:24:1]
  23 │ 
  24 │ (yield x) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-yieldexpression-1.js:24:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-yieldexpression-1.js:24:1]
  23 │ 
  24 │ (yield * x) = 1;
-    ·  ─────────
+    · ───────────
     ╰────
 
   × TS(1347): Illegal 'use strict' directive in function with non-simple parameter list
@@ -7321,7 +7321,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·                            ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/async-function/early-errors-expression-not-simple-assignment-target.js:17:2]
  16 │ 
  17 │ (async function foo() { } = 1)
@@ -7938,7 +7938,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Try inserting a semicolon here
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/async-generator/early-errors-expression-not-simple-assignment-target.js:18:2]
  17 │ 
  18 │ (async function*() { } = 1);
@@ -8352,11 +8352,11 @@ Negative Passed: 4669/4669 (100.00%)
  19 │   }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/await/early-errors-await-not-simple-assignment-target.js:18:4]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/await/early-errors-await-not-simple-assignment-target.js:18:3]
  17 │ async function foo() {
  18 │   (await 1) = 1;
-    ·    ───────
+    ·   ─────────
  19 │ }
     ╰────
 
@@ -14701,7 +14701,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/add-non-simple.js:18:1]
  17 │ 
  18 │ 1 += 1;
@@ -14724,21 +14724,21 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/btws-and-non-simple.js:18:1]
  17 │ 
  18 │ 1 &= 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/btws-or-non-simple.js:18:1]
  17 │ 
  18 │ 1 |= 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/btws-xor-non-simple.js:18:1]
  17 │ 
  18 │ 1 ^= 1;
@@ -14761,14 +14761,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/div-non-simple.js:18:1]
  17 │ 
  18 │ 1 /= 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/left-shift-non-simple.js:18:1]
  17 │ 
  18 │ 1 <<= 1;
@@ -14799,7 +14799,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/mod-div-non-simple.js:18:1]
  17 │ 
  18 │ 1 %= 1;
@@ -14830,7 +14830,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/mult-non-simple.js:18:1]
  17 │ 
  18 │ 1 *= 1;
@@ -14853,7 +14853,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/right-shift-non-simple.js:18:1]
  17 │ 
  18 │ 1 >>= 1;
@@ -14892,14 +14892,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/subtract-non-simple.js:18:1]
  17 │ 
  18 │ 1 -= 1;
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/compound-assignment/u-right-shift-non-simple.js:18:1]
  17 │ 
  18 │ 1 >>>= 1;
@@ -14938,14 +14938,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/conditional/in-branch-2.js:23:6]
  22 │ 
  23 │ for (true ? 0 : 0 in {}; false; ) ;
     ·      ────────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/conditional/in-condition.js:23:6]
  22 │ 
  23 │ for ('' in {} ? 0 : 0; false; ) ;
@@ -14981,119 +14981,119 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-1-update-expression.js:47:1]
  46 │ 
  47 │ import('')++
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-10-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') -= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-11-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') <<= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-12-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') >>= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-13-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') >>>= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-14-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') &= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-15-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') ^= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-16-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') |= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-17-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') **= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-2-update-expression.js:47:1]
  46 │ 
  47 │ import('')--
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-3-update-expression.js:47:3]
  46 │ 
  47 │ ++import('')
     ·   ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-4-update-expression.js:47:3]
  46 │ 
  47 │ --import('')
     ·   ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-5-lhs-equals-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') = 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-6-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') *= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-7-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') /= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-8-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') %= 1;
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/dynamic-import/syntax/invalid/invalid-assignmenttargettype-syntax-error-9-lhs-assignment-operator-assignment-expression.js:49:1]
  48 │ 
  49 │ import('') += 1;
@@ -18925,14 +18925,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: import.meta is only allowed in module code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-array-destructuring-expr.js:31:2]
  30 │ 
  31 │ [import.meta] = [];
     ·  ───────────
     ╰────
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2364): Invalid rest element target in destructuring assignment
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-array-rest-destructuring-expr.js:31:5]
  30 │ 
  31 │ [...import.meta] = [];
@@ -18940,21 +18940,21 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-array-rest-destructuring-expr.js:31:5]
  30 │ 
  31 │ [...import.meta] = [];
     ·     ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-assignment-expr.js:31:1]
  30 │ 
  31 │ import.meta = 0;
     · ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2487): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-for-await-of-loop.js:31:16]
  30 │ async function* f() {
  31 │     for await (import.meta of null) ;
@@ -18962,28 +18962,28 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-for-in-loop.js:30:6]
  29 │ 
  30 │ for (import.meta in null) ;
     ·      ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2487): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-for-of-loop.js:30:6]
  29 │ 
  30 │ for (import.meta of null) ;
     ·      ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-object-destructuring-expr.js:31:6]
  30 │ 
  31 │ ({a: import.meta} = {});
     ·      ───────────
     ╰────
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2701): Invalid rest element target in destructuring assignment
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-object-rest-destructuring-expr.js:31:6]
  30 │ 
  31 │ ({...import.meta} = {});
@@ -18991,14 +18991,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-object-rest-destructuring-expr.js:31:6]
  30 │ 
  31 │ ({...import.meta} = {});
     ·      ───────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/import.meta/syntax/invalid-assignment-target-update-expr.js:32:1]
  31 │ 
  32 │ import.meta++;
@@ -19029,7 +19029,7 @@ Negative Passed: 4669/4669 (100.00%)
  25 │   }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/in/private-field-invalid-assignment-target.js:30:5]
  29 │   constructor() {
  30 │     #field in {} = 0;
@@ -19086,7 +19086,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-and-assignment-operator-non-simple-lhs.js:20:1]
  19 │ function test() {}
  20 │ test() &&= 1;
@@ -19101,7 +19101,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-and-non-simple.js:18:1]
  17 │ 
  18 │ 1 &&= 1;
@@ -19116,7 +19116,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-nullish-assignment-operator-non-simple-lhs.js:20:1]
  19 │ function test() {}
  20 │ test() ??= 1;
@@ -19131,7 +19131,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-nullish-non-simple.js:18:1]
  17 │ 
  18 │ 1 ??= 1;
@@ -19146,7 +19146,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-or-assignment-operator-non-simple-lhs.js:20:1]
  19 │ function test() {}
  20 │ test() ||= 1;
@@ -19161,7 +19161,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/logical-assignment/lgcl-or-non-simple.js:18:1]
  17 │ 
  18 │ 1 ||= 1;
@@ -20884,21 +20884,21 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ───────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/static-semantics-simple-assignment.js:24:1]
  23 │ 
  24 │ obj?.a = 33;
     · ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/update-expression-postfix.js:24:1]
  23 │ const a = {};
  24 │ a?.b++;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/update-expression-prefix.js:24:3]
  23 │ const a = {};
  24 │ --a?.b;
@@ -20952,23 +20952,23 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ // The preceding line contains an unprintable PARAGRAPH SEPARATOR character
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/postfix-decrement/target-cover-newtarget.js:31:4]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/postfix-decrement/target-cover-newtarget.js:31:3]
  30 │ function f() {
  31 │   (new.target)--;
-    ·    ──────────
+    ·   ────────────
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/postfix-decrement/target-cover-yieldexpr.js:34:4]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/postfix-decrement/target-cover-yieldexpr.js:34:3]
  33 │ function* g() {
  34 │   (yield)--;
-    ·    ─────
+    ·   ───────
  35 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/postfix-decrement/target-newtarget.js:31:3]
  30 │ function f() {
  31 │   new.target--;
@@ -20976,7 +20976,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/postfix-decrement/this.js:28:1]
  27 │ 
  28 │ this--;
@@ -21038,23 +21038,23 @@ Negative Passed: 4669/4669 (100.00%)
  18 │ // The preceding line contains an unprintable PARAGRAPH SEPARATOR character
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/postfix-increment/target-cover-newtarget.js:31:4]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/postfix-increment/target-cover-newtarget.js:31:3]
  30 │ function f() {
  31 │   (new.target)++;
-    ·    ──────────
+    ·   ────────────
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/postfix-increment/target-cover-yieldexpr.js:34:4]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/postfix-increment/target-cover-yieldexpr.js:34:3]
  33 │ function* g() {
  34 │   (yield)++;
-    ·    ─────
+    ·   ───────
  35 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/postfix-increment/target-newtarget.js:31:3]
  30 │ function f() {
  31 │   new.target++;
@@ -21062,7 +21062,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/postfix-increment/this.js:28:1]
  27 │ 
  28 │ this++;
@@ -21093,23 +21093,23 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/prefix-decrement/target-cover-newtarget.js:31:6]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/prefix-decrement/target-cover-newtarget.js:31:5]
  30 │ function f() {
  31 │   --(new.target);
-    ·      ──────────
+    ·     ────────────
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/prefix-decrement/target-cover-yieldexpr.js:34:6]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/prefix-decrement/target-cover-yieldexpr.js:34:5]
  33 │ function* g() {
  34 │   --(yield);
-    ·      ─────
+    ·     ───────
  35 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/prefix-decrement/target-newtarget.js:31:5]
  30 │ function f() {
  31 │   --new.target;
@@ -21117,7 +21117,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/prefix-decrement/this.js:28:3]
  27 │ 
  28 │ --this;
@@ -21140,23 +21140,23 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This is strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/prefix-increment/target-cover-newtarget.js:31:6]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/prefix-increment/target-cover-newtarget.js:31:5]
  30 │ function f() {
  31 │   ++(new.target);
-    ·      ──────────
+    ·     ────────────
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/expressions/prefix-increment/target-cover-yieldexpr.js:34:6]
+  × TS(2357): Cannot assign to this expression
+    ╭─[test262/test/language/expressions/prefix-increment/target-cover-yieldexpr.js:34:5]
  33 │ function* g() {
  34 │   ++(yield);
-    ·      ─────
+    ·     ───────
  35 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/prefix-increment/target-newtarget.js:31:5]
  30 │ function f() {
  31 │   ++new.target;
@@ -21164,7 +21164,7 @@ Negative Passed: 4669/4669 (100.00%)
  32 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/expressions/prefix-increment/this.js:28:3]
  27 │ 
  28 │ ++this;
@@ -21290,14 +21290,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·  ──
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/expressions/this/S11.1.1_A1.js:16:1]
  15 │ 
  16 │ this = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/yield/in-iteration-stmt.js:23:8]
  22 │ function* g() {
  23 │   for (yield '' in {}; ; ) ;
@@ -21313,7 +21313,7 @@ Negative Passed: 4669/4669 (100.00%)
  29 │ }
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/yield/star-in-iteration-stmt.js:23:8]
  22 │ function* g() {
  23 │   for (yield * '' in {}; ; ) ;
@@ -26736,7 +26736,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
     ╭─[test262/test/language/module-code/parse-err-syntax-2.js:21:1]
  20 │ 
  21 │ 1++;
@@ -26819,11 +26819,11 @@ Negative Passed: 4669/4669 (100.00%)
  21 │ }
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/module-code/top-level-await/early-errors-await-not-simple-assignment-target.js:17:2]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/module-code/top-level-await/early-errors-await-not-simple-assignment-target.js:17:1]
  16 │ 
  17 │ (await 1) = 1;
-    ·  ───────
+    · ─────────
     ╰────
 
   × Cannot use `await` as an identifier in an async context
@@ -27061,7 +27061,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ──────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/reserved-words/ident-reference-false-escaped.js:21:1]
  20 │ 
  21 │ f\u0061lse = 0;
@@ -27083,7 +27083,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/reserved-words/ident-reference-null-escaped.js:21:1]
  20 │ 
  21 │ nul\u006c = 0;
@@ -27105,7 +27105,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/reserved-words/ident-reference-true-escaped.js:21:1]
  20 │ 
  21 │ tru\u0065 = 0;
@@ -35591,7 +35591,7 @@ Negative Passed: 4669/4669 (100.00%)
  24 │     break;
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/statements/for/S12.6.3_A4_T2.js:23:5]
  22 │ //CHECK#1
  23 │ for(1 in arr;1;) {
@@ -36001,11 +36001,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-await-of/async-func-decl-dstr-array-elem-nested-array-invalid.js:34:17]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-await-of/async-func-decl-dstr-array-elem-nested-array-invalid.js:34:16]
  33 │ async function fn() {
  34 │   for await ([[(x, y)]] of [[[]]]) {}
-    ·                 ────
+    ·                ──────
  35 │ }
     ╰────
 
@@ -36018,7 +36018,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-await-of/async-func-decl-dstr-array-elem-nested-obj-invalid.js:34:22]
  33 │ async function fn() {
  34 │   for await ([{ get x() {} }] of [[{}]]) {}
@@ -36829,11 +36829,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-in/dstr/array-elem-nested-array-invalid.js:33:9]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-in/dstr/array-elem-nested-array-invalid.js:33:8]
  32 │ 
  33 │ for ([[(x, y)]] in [[[]]]) ;
-    ·         ────
+    ·        ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -36844,14 +36844,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:66:7]
  65 │ 
  66 │ for ([x?.y = 42] in [[23]]) ;
     ·       ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-elem-nested-obj-invalid.js:33:14]
  32 │ 
  33 │ for ([{ get x() {} }] in [[{}]]) ;
@@ -36866,7 +36866,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:65:7]
  64 │     
  65 │ ╭─▶ for ([{
@@ -36914,7 +36914,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ────
     ╰────
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2364): Invalid rest element target in destructuring assignment
     ╭─[test262/test/language/statements/for-in/dstr/array-rest-init.js:34:10]
  33 │ 
  34 │ for ([...x = 1] in [[]]) ;
@@ -36922,18 +36922,18 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-rest-init.js:34:10]
  33 │ 
  34 │ for ([...x = 1] in [[]]) ;
     ·          ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-in/dstr/array-rest-nested-array-invalid.js:33:12]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-in/dstr/array-rest-nested-array-invalid.js:33:11]
  32 │ 
  33 │ for ([...[(x, y)]] in [[[]]]) ;
-    ·            ────
+    ·           ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -36944,7 +36944,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-rest-nested-obj-invalid.js:33:17]
  32 │ 
  33 │ for ([...{ get x() {} }] in [[[]]]) ;
@@ -37016,14 +37016,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:66:11]
  65 │ 
  66 │ for ({ x: y?.z = 42 } in [{ x: 23 }]) ;
     ·           ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:65:11]
  64 │     
  65 │ ╭─▶ for ({ x: {
@@ -37041,11 +37041,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-in/dstr/obj-prop-nested-array-invalid.js:33:13]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-in/dstr/obj-prop-nested-array-invalid.js:33:12]
  32 │ 
  33 │ for ({ x: [(x, y)] } in [{ x: [] }]) ;
-    ·             ────
+    ·            ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -37056,7 +37056,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/obj-prop-nested-obj-invalid.js:33:18]
  32 │ 
  33 │ for ({ x: { get x() {} } } in [{ x: {} }]) ;
@@ -37144,28 +37144,28 @@ Negative Passed: 4669/4669 (100.00%)
     ·          ───
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-in/head-lhs-cover-non-asnmt-trgt.js:25:7]
+  × TS(2406): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-in/head-lhs-cover-non-asnmt-trgt.js:25:6]
  24 │ 
  25 │ for ((this) in {}) {}
-    ·       ────
+    ·      ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-in/head-lhs-invalid-asnmt-ptrn-ary.js:21:8]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-in/head-lhs-invalid-asnmt-ptrn-ary.js:21:7]
  20 │ 
  21 │ for ([(x, y)] in {}) {}
-    ·        ────
+    ·       ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/head-lhs-invalid-asnmt-ptrn-obj.js:21:9]
  20 │ 
  21 │ for ({ m() {} } in {}) {}
     ·         ─────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/head-lhs-non-asnmt-trgt.js:19:6]
  18 │ 
  19 │ for (this in {}) {}
@@ -37369,11 +37369,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-of/dstr/array-elem-nested-array-invalid.js:33:9]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-of/dstr/array-elem-nested-array-invalid.js:33:8]
  32 │ 
  33 │ for ([[(x, y)]] of [[[]]]) ;
-    ·         ────
+    ·        ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -37384,14 +37384,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:66:7]
  65 │ 
  66 │ for ([x?.y = 42] of [[23]]) ;
     ·       ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-elem-nested-obj-invalid.js:33:14]
  32 │ 
  33 │ for ([{ get x() {} }] of [[{}]]) ;
@@ -37406,7 +37406,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:65:7]
  64 │     
  65 │ ╭─▶ for ([{
@@ -37454,7 +37454,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·       ────
     ╰────
 
-  × Invalid rest element target in destructuring assignment
+  × TS(2364): Invalid rest element target in destructuring assignment
     ╭─[test262/test/language/statements/for-of/dstr/array-rest-init.js:34:10]
  33 │ 
  34 │ for ([...x = 1] of [[]]) ;
@@ -37462,18 +37462,18 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-rest-init.js:34:10]
  33 │ 
  34 │ for ([...x = 1] of [[]]) ;
     ·          ─────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-of/dstr/array-rest-nested-array-invalid.js:33:12]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-of/dstr/array-rest-nested-array-invalid.js:33:11]
  32 │ 
  33 │ for ([...[(x, y)]] of [[[]]]) ;
-    ·            ────
+    ·           ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -37484,7 +37484,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-rest-nested-obj-invalid.js:33:17]
  32 │ 
  33 │ for ([...{ get x() {} }] of [[[]]]) ;
@@ -37680,14 +37680,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:66:11]
  65 │ 
  66 │ for ({ x: y?.z = 42 } of [{ x: 23 }]) ;
     ·           ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:65:11]
  64 │     
  65 │ ╭─▶ for ({ x: {
@@ -37705,11 +37705,11 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-of/dstr/obj-prop-nested-array-invalid.js:33:13]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-of/dstr/obj-prop-nested-array-invalid.js:33:12]
  32 │ 
  33 │ for ({ x: [(x, y)] } of [{ x: [] }]) ;
-    ·             ────
+    ·            ──────
     ╰────
 
   × The keyword 'yield' is reserved
@@ -37720,7 +37720,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/obj-prop-nested-obj-invalid.js:33:18]
  32 │ 
  33 │ for ({ x: { get x() {} } } of [{ x: {} }]) ;
@@ -37945,21 +37945,21 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Did you mean to use a for await...of statement?
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-of/head-lhs-cover-non-asnmt-trgt.js:25:7]
+  × TS(2487): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-of/head-lhs-cover-non-asnmt-trgt.js:25:6]
  24 │ 
  25 │ for ((this) of []) {}
-    ·       ────
+    ·      ──────
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[test262/test/language/statements/for-of/head-lhs-invalid-asnmt-ptrn-ary.js:21:8]
+  × TS(2364): Cannot assign to this expression
+    ╭─[test262/test/language/statements/for-of/head-lhs-invalid-asnmt-ptrn-ary.js:21:7]
  20 │ 
  21 │ for ([(x, y)] of []) {}
-    ·        ────
+    ·       ──────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/head-lhs-invalid-asnmt-ptrn-obj.js:21:9]
  20 │ 
  21 │ for ({ m() {} } of []) {}
@@ -37974,7 +37974,7 @@ Negative Passed: 4669/4669 (100.00%)
     ·              ╰── `;` expected
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2487): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/head-lhs-non-asnmt-trgt.js:19:6]
  18 │ 
  19 │ for (this of []) {}
@@ -41821,14 +41821,14 @@ Negative Passed: 4669/4669 (100.00%)
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/types/boolean/S8.3_A2.1.js:16:1]
  15 │ 
  16 │ true = 1;
     · ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/types/boolean/S8.3_A2.2.js:16:1]
  15 │ 
  16 │ false = 0;
@@ -41842,14 +41842,14 @@ Negative Passed: 4669/4669 (100.00%)
     ·     ────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/types/reference/S8.7.2_A1_T1.js:16:1]
  15 │ 
  16 │ 'litera'=1;
     · ────────
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
     ╭─[test262/test/language/types/reference/S8.7.2_A1_T2.js:16:1]
  15 │ 
  16 │ 1=1;

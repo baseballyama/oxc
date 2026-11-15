@@ -214,7 +214,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                     && second != Kind::Async
                     && third.is_binding_identifier()
                 {
-                    if third == Kind::As {
+                    // `(x as T)` and `(x satisfies T)` assert the type of a modifier's name.
+                    if matches!(third, Kind::As | Kind::Satisfies) {
                         return Tristate::False; // https://github.com/microsoft/TypeScript/issues/44466
                     }
                     return Tristate::True;

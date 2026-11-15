@@ -1669,6 +1669,20 @@ mod test {
     }
 
     #[test]
+    fn a_modifier_name_in_parentheses_takes_a_type_assertion() {
+        let allocator = Allocator::default();
+        let source_type = SourceType::ts();
+        for source in [
+            "let v = (accessor as string);",
+            "let v = (accessor satisfies string);",
+            "let v = (readonly satisfies string);",
+        ] {
+            let ret = Parser::new(&allocator, source, source_type).parse();
+            assert!(ret.diagnostics.is_empty(), "{source}: {:?}", ret.diagnostics);
+        }
+    }
+
+    #[test]
     fn asserted_exponentiation_preserve_parens() {
         for preserve_parens in [true, false] {
             for source in [

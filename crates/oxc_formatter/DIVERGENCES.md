@@ -236,7 +236,7 @@ Prettier moves the comment inside for `keyof`/type-operator operands while keepi
 ## eol-comment-after-assign-colon
 
 - Why: invariant (prettier/prettier#14617)
-- Pin: `tests/fixtures/js/comments/assignment-eol-line-comment.js`, `tests/fixtures/ts/comments/operator-eol-line-comment.ts`
+- Pin: `tests/fixtures/js/comments/assignment-eol-line-comment.js`, `tests/fixtures/ts/comments/operator-eol-line-comment.ts`, `tests/fixtures/js/comments/assignment-eol-comment-pattern.js`
 - Conformance:
   - `externals/prettier/js/comments/array-and-object.js`
   - `externals/prettier/js/comments/assignment/variable-declarator.js`
@@ -305,6 +305,9 @@ Prettier treats the same shape differently:
   except an object, array or template value, which gets it own-lined (`handleAssignmentLikeComments`)
 - TS type aliases and union-valued property signatures get it own-lined (the 3.9 union rewrite)
 - simple-typed property signatures get it flushed past the member and its `;` separator
+
+The line comment breaks an object pattern on the left (`let {` + break + `a,` + break + `} = // c`), on either side of the operator, as Prettier does when it attaches the comment to the pattern.
+Prettier own-lines it before an object, array or template value instead and keeps the pattern flat; we keep the comment and break the pattern there too.
 
 Not yet covered: default parameters, destructuring defaults, enum members (different formatting paths still flush, Prettier-compatible).
 

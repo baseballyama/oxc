@@ -181,6 +181,24 @@ pub struct Codegen<'a> {
 
     #[cfg(feature = "sourcemap")]
     sourcemap_builder: Option<SourcemapBuilder<'a>>,
+
+    /// Statements that print as other statements, see [`Codegen::with_statement_expansion`].
+    statement_expansion: Option<StatementExpansion<'a>>,
+}
+
+/// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
+/// statement does, which keeps [`Codegen`] covariant.
+pub type StatementExpansion<'a> =
+    &'a (dyn for<'s, 'x> Fn(&'s Statement<'x>) -> Option<Expansion<'s>> + 'a);
+
+/// What [`Codegen::with_statement_expansion`] prints in place of a statement.
+#[derive(Clone, Copy)]
+pub enum Expansion<'s> {
+    /// Statements, printed as if they stood in the statement's list.
+    Statements(&'s [Statement<'s>]),
+    /// Text these options print for statements at the top level, written as it is. Only a
+    /// statement at the top level may expand to text.
+    Text(&'s str),
 }
 
 /// How [`Codegen::print_non_ascii_escaped`] escapes a non-ASCII character, by the grammar
@@ -252,6 +270,7 @@ impl<'a> Codegen<'a> {
             orphan_comment_keys: Vec::new(),
             #[cfg(feature = "sourcemap")]
             sourcemap_builder: None,
+            statement_expansion: None,
         }
     }
 
@@ -299,6 +318,16 @@ impl<'a> Codegen<'a> {
     #[must_use]
     pub fn with_scoping(mut self, scoping: Option<Scoping>) -> Self {
         self.scoping = scoping;
+        self
+    }
+
+    /// Prints what `expand` returns in place of a statement: statements as if they stood in its
+    /// list, so a constant tree in another arena is printed without a copy, or text printed once
+    /// before. They print as they are: a string literal statement first in a list is not
+    /// parenthesized.
+    #[must_use]
+    pub fn with_statement_expansion(mut self, expand: StatementExpansion<'a>) -> Self {
+        self.statement_expansion = Some(expand);
         self
     }
 
@@ -930,6 +959,11 @@ impl<'a> Codegen<'a> {
         self.print_orphan_comments_before(scope_end);
     }
 
+    /// What [`Codegen::with_statement_expansion`] prints in place of `stmt`.
+    pub(crate) fn expansion_of<'s>(&self, stmt: &'s Statement<'_>) -> Option<Expansion<'s>> {
+        self.statement_expansion.and_then(|expand| expand(stmt))
+    }
+
     fn print_directives_and_statements(
         &mut self,
         directives: &[Directive<'_>],
@@ -965,6 +999,7 @@ impl<'a> Codegen<'a> {
         // So in minify mode, we force printing as a template literal, regardless of the string's content.
         // In almost all cases, this is shorter than wrapping in parentheses.
         if let Statement::ExpressionStatement(stmt) = first
+            && self.expansion_of(first).is_none()
             && let expr = stmt.expression.without_parentheses()
             && let Expression::StringLiteral(string) = expr
         {

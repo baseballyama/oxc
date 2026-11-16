@@ -11,7 +11,7 @@ use oxc_syntax::{
 };
 
 use crate::{
-    Codegen, Context, Operator, Quote,
+    Codegen, Context, Expansion, Operator, Quote,
     binary_expr_visitor::{BinaryExpressionVisitor, Binaryish, BinaryishOperator},
     cjs_module_lexer,
     comment::AnnotationKind,
@@ -105,6 +105,21 @@ impl Gen for Directive<'_> {
 
 impl Gen for Statement<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
+        match p.expansion_of(self) {
+            Some(Expansion::Statements(stmts)) => {
+                for stmt in stmts {
+                    stmt.print(p, ctx);
+                }
+                return;
+            }
+            Some(Expansion::Text(text)) => {
+                // The text was printed at the top level; anywhere deeper its indent would differ.
+                debug_assert_eq!(p.indent, 0, "a statement below the top level expands to text");
+                p.print_str(text);
+                return;
+            }
+            None => {}
+        }
         match self {
             // Most common statements first (based on parser order and frequency)
             Self::BlockStatement(stmt) => {

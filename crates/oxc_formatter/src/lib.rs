@@ -123,12 +123,33 @@ pub fn format_to_ir<'a>(
     let (prefix, suffix) = print::root_wrapper(root);
     let wrapped = allocator.alloc_concat_strs_array([prefix, source_text, suffix]);
     let program = parse(allocator, wrapped, source_type, embedded_in.keeps_recovered)?;
-    let ends_in_line_comment = print::check_root(
+    program_to_ir(
+        session,
         program,
         prefix.len()..prefix.len() + source_text.len(),
+        options,
         root,
-        embedded_in.inlines_code,
-    )?;
+        embedded_in,
+    )
+}
+
+/// [`format_to_ir`] of a program the host already parsed, at `source` of its `source_text`,
+/// such as a script whose program spans the whole document the host read.
+///
+/// The `program` must be parsed as [`parse_for_format`] parses (no parenthesized expressions), with
+/// its comments, and hold all of the code: a host that keeps a recovered program has checked it.
+///
+/// # Errors
+/// Same as [`format_to_ir`], except for the parse error.
+pub fn program_to_ir<'a>(
+    session: &FormatSession<'a>,
+    program: &'a Program<'a>,
+    source: std::ops::Range<usize>,
+    options: JsFormatOptions,
+    root: JsRoot,
+    embedded_in: JsEmbeddedIn,
+) -> Result<EmbeddedIr<'a>, OxcDiagnostic> {
+    let ends_in_line_comment = print::check_root(program, source, root, embedded_in.inlines_code)?;
 
     let mut js_context =
         JsFormatContext::new(program.source_text, program.source_type, &program.comments, options);

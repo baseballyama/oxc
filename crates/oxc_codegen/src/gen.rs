@@ -105,6 +105,12 @@ impl Gen for Directive<'_> {
 
 impl Gen for Statement<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
+        if let Some(stmts) = p.expansion_of(self) {
+            for stmt in stmts {
+                stmt.print(p, ctx);
+            }
+            return;
+        }
         match self {
             // Most common statements first (based on parser order and frequency)
             Self::BlockStatement(stmt) => {

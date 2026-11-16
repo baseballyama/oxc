@@ -232,11 +232,13 @@ fn parse<'a>(
     allocator: &'a Allocator,
     source_text: &'a str,
     source_type: SourceType,
-    keeps_recovered: Option<fn(&OxcDiagnostic) -> bool>,
+    keeps_recovered: Option<fn(&OxcDiagnostic, &Program<'_>) -> bool>,
 ) -> Result<&'a Program<'a>, OxcDiagnostic> {
     let ret = parse_for_format(allocator, source_text, source_type);
     let kept = !ret.fatal_error
-        && keeps_recovered.is_some_and(|keeps| (&ret.diagnostics).into_iter().all(keeps));
+        && keeps_recovered.is_some_and(|keeps| {
+            (&ret.diagnostics).into_iter().all(|diagnostic| keeps(diagnostic, &ret.program))
+        });
     if !kept && let Some(err) = ret.diagnostics.into_iter().next() {
         return Err(err);
     }

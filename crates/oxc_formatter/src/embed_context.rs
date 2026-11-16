@@ -156,6 +156,8 @@ pub struct JsEmbeddedIn {
     pub template_expressions_only: bool,
     /// The host has checked that the parser's recovered program holds all of the code:
     /// a program that parsed with diagnostics that all pass this (none fatal) is formatted.
-    /// A recovered program can drop nodes or panic the printer, so the host names which.
-    pub keeps_recovered: Option<fn(&oxc_diagnostics::OxcDiagnostic) -> bool>,
+    /// A recovered program can drop nodes or panic the printer, so the host names which,
+    /// asking the program where a diagnostic has no code.
+    pub keeps_recovered:
+        Option<fn(&oxc_diagnostics::OxcDiagnostic, &oxc_ast::ast::Program<'_>) -> bool>,
 }

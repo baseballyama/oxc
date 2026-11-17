@@ -329,6 +329,10 @@ fn test_nullish() {
 
     // "||" and "&&" can't directly contain "??"
     test("a && (b ?? c)", "a && (b ?? c);\n");
+    test("a ?? (b ?? c)", "a ?? (b ?? c);\n");
+    test("a && (b && c)", "a && (b && c);\n");
+    test("a || (b || c)", "a || (b || c);\n");
+    test("(a ?? b) ?? c", "a ?? b ?? c;\n");
     test("a || (b ?? c)", "a || (b ?? c);\n");
     test("(a ?? b) && c", "(a ?? b) && c;\n");
     test("(a ?? b) || c", "(a ?? b) || c;\n");

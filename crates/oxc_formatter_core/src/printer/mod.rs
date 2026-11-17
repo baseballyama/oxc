@@ -2841,6 +2841,53 @@ Group 1 breaks"
         }
     }
 
+    /// DIVERGENCES.md#fill-separator-measure: Prettier prints `xxxxxxx aa bb\ncc`.
+    #[test]
+    fn fill_wraps_the_word_after_a_separator_that_would_pass_the_width() {
+        let allocator = Allocator::default();
+        let words = test_format_with(|f| {
+            token("xxxxxxx").fmt(f);
+            f.write_element(crate::FormatElement::Tag(crate::Tag::StartFill));
+            for word in ["aa", "bb", "cc"] {
+                for entry in [&soft_line_break_or_space() as &dyn Format<'_, _>, &token(word)] {
+                    f.write_element(crate::FormatElement::Tag(crate::Tag::StartEntry));
+                    entry.fmt(f);
+                    f.write_element(crate::FormatElement::Tag(crate::Tag::EndEntry));
+                }
+            }
+            f.write_element(crate::FormatElement::Tag(crate::Tag::EndFill));
+        });
+        let options = PrinterOptions::default().with_print_width(PrintWidth::new(10));
+        let result = format_simple_with_options(&allocator, &words, options);
+        assert_eq!(result.as_code(), "xxxxxxx aa\nbb cc");
+    }
+
+    /// DIVERGENCES.md#multiline-text-measure: Prettier prints `a\nb\ncccccccccccc`.
+    #[test]
+    fn a_line_break_inside_text_ends_the_measured_line() {
+        let allocator = Allocator::default();
+        let document = test_format_with(|f| {
+            group(&format_args!(token("a"), soft_line_break(), token("b"))).fmt(f);
+            crate::builders::text("\ncccccccccccc").without_expand_parent().fmt(f);
+        });
+        let options = PrinterOptions::default().with_print_width(PrintWidth::new(10));
+        let result = format_simple_with_options(&allocator, &document, options);
+        assert_eq!(result.as_code(), "ab\ncccccccccccc");
+    }
+
+    /// DIVERGENCES.md#line-start-line-collapse: Prettier prints `a\n\nb`.
+    #[test]
+    fn a_soft_line_at_the_start_of_a_line_prints_nothing() {
+        let allocator = Allocator::default();
+        for line in [&soft_line_break() as &dyn Format<'_, _>, &soft_line_break_or_space()] {
+            let result = format_simple(
+                &allocator,
+                &group(&format_args!(token("a"), hard_line_break(), line, token("b"))),
+            );
+            assert_eq!(result.as_code(), "a\nb");
+        }
+    }
+
     /// Test-only `format_with` closure adapter.
     fn test_format_with<'a, T>(closure: T) -> TestFormatWith<T>
     where

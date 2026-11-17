@@ -40,7 +40,7 @@ fn test_fold_one_child_blocks() {
     test("if(x){do{foo()}while(y)}else bar()", "if(x)do foo();while(y);else bar()");
 
     // Play with nested IFs
-    test("function f(){if(x){if(y)foo()}}", "function f(){x && (y && foo())}");
+    test("function f(){if(x){if(y)foo()}}", "function f(){x && y && foo()}");
     test("function f(){if(x){if(y)foo();else bar()}}", "function f(){x&&(y?foo():bar())}");
     test("function f(){if(x){if(y)foo()}else bar()}", "function f(){x?y&&foo():bar()}");
     test(
@@ -491,11 +491,11 @@ fn test_fold_conditional_var_declaration() {
 
 #[test]
 fn test_fold_if_with_lower_operators_inside() {
-    test("if (x + (y=5)) z && (w,z);", "x + (y=5) && (z && (w,z))");
+    test("if (x + (y=5)) z && (w,z);", "x + (y=5) && z && (w,z)");
     test("if (!(x+(y=5))) z && (w,z);", "x + (y=5) || z && (w,z)");
     test(
         "if (x + (y=5)) if (z && (w,z)) for(;;) foo();",
-        "if (x + (y=5) && (z && (w,z))) for(;;) foo();",
+        "if (x + (y=5) && z && (w,z)) for(;;) foo();",
     );
 }
 
@@ -749,7 +749,7 @@ fn test_nested_if_combine() {
     test("if(x||z)if(y){for(;;);}", "if((x||z)&&y) for(;;);");
     test("if(x)if(y||z){for(;;);}", "if((x)&&(y||z)) for(;;);");
     test("if(x||z)if(y||z){for(;;);}", "if((x||z)&&(y||z)) for(;;);"); // TODO: `if(x||z)if(y||z)for(;;);` is shorter
-    test("if(x)if(y){if(z){for(;;);}}", "if(x&&(y&&z)) for(;;);");
+    test("if(x)if(y){if(z){for(;;);}}", "if(x&&y&&z) for(;;);");
 }
 
 #[test]

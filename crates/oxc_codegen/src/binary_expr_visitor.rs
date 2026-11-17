@@ -156,11 +156,12 @@ impl<'a> BinaryExpressionVisitor<'a> {
     pub fn check_and_prepare(&mut self, p: &mut Codegen) -> bool {
         let e = self.e;
 
-        // We don't need to print parentheses if both sides use the same logical operator
-        // For example: `(a     &&     b)         && c` should be printed as `a && b && c`
-        //                      ^^  e.operator()  ^^ self.operator
+        // A minifier may drop the parentheses of a right operand with the same logical operator,
+        // `a && (b && c)` as `a && b && c`, which reads back as another tree with the same value.
         let precedence_check = self.precedence >= e.operator().precedence()
-            && (self.operator.is_binary() || self.precedence != self.operator.precedence());
+            && (self.operator.is_binary()
+                || self.precedence != self.operator.precedence()
+                || !p.options.minify);
 
         self.operator = e.operator();
         self.wrap = precedence_check

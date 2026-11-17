@@ -186,10 +186,20 @@ pub struct Codegen<'a> {
     statement_expansion: Option<StatementExpansion<'a>>,
 }
 
-/// Given a statement, the statements to print in its place, or `None` to print it. They live as
-/// long as the statement does, which keeps [`Codegen`] covariant.
+/// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
+/// statement does, which keeps [`Codegen`] covariant.
 pub type StatementExpansion<'a> =
-    &'a (dyn for<'s, 'x> Fn(&'s Statement<'x>) -> Option<&'s [Statement<'s>]> + 'a);
+    &'a (dyn for<'s, 'x> Fn(&'s Statement<'x>) -> Option<Expansion<'s>> + 'a);
+
+/// What [`Codegen::with_statement_expansion`] prints in place of a statement.
+#[derive(Clone, Copy)]
+pub enum Expansion<'s> {
+    /// Statements, printed as if they stood in the statement's list.
+    Statements(&'s [Statement<'s>]),
+    /// Text these options print for statements at the top level, written as it is. Only a
+    /// statement at the top level may expand to text.
+    Text(&'s str),
+}
 
 /// How [`Codegen::print_non_ascii_escaped`] escapes a non-ASCII character, by the grammar
 /// of the text being printed.
@@ -311,9 +321,10 @@ impl<'a> Codegen<'a> {
         self
     }
 
-    /// Prints the statements `expand` returns in place of a statement, as if they stood in its
-    /// list, so a constant tree in another arena is printed without a copy. They print as they
-    /// are: a string literal statement first in a list is not parenthesized.
+    /// Prints what `expand` returns in place of a statement: statements as if they stood in its
+    /// list, so a constant tree in another arena is printed without a copy, or text printed once
+    /// before. They print as they are: a string literal statement first in a list is not
+    /// parenthesized.
     #[must_use]
     pub fn with_statement_expansion(mut self, expand: StatementExpansion<'a>) -> Self {
         self.statement_expansion = Some(expand);
@@ -948,8 +959,8 @@ impl<'a> Codegen<'a> {
         self.print_orphan_comments_before(scope_end);
     }
 
-    /// The statements [`Codegen::with_statement_expansion`] prints in place of `stmt`.
-    pub(crate) fn expansion_of<'s>(&self, stmt: &'s Statement<'_>) -> Option<&'s [Statement<'s>]> {
+    /// What [`Codegen::with_statement_expansion`] prints in place of `stmt`.
+    pub(crate) fn expansion_of<'s>(&self, stmt: &'s Statement<'_>) -> Option<Expansion<'s>> {
         self.statement_expansion.and_then(|expand| expand(stmt))
     }
 

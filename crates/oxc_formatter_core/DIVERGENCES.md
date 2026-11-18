@@ -45,3 +45,26 @@ b
 
 A line printed broken starts a new line only when the current line has content, so a line right after a line break prints nothing.
 Prettier prints every broken line, so a soft line after a hard line leaves a blank line.
+
+## multiline-text-measure
+
+- Why: uniform-rule (a line break ends the measured line wherever it sits)
+- Pin: `src/printer/mod.rs::tests::a_line_break_inside_text_ends_the_measured_line`
+
+```text
+/* input (print width 10) */
+[group(["a", softline, "b"]), "\ncccccccccccc"]   (the text does not expand its parent)
+
+/* ours */
+ab
+cccccccccccc
+
+/* prettier */
+a
+b
+cccccccccccc
+```
+
+`fits` measures a text up to its first line break, and the line break ends the measured line.
+Prettier's `fits` adds a string's whole width, so the text after a line break inside a string
+(a multi-line comment that prettier-plugin-svelte prints as one string) counts toward the line before it.

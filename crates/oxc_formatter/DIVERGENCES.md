@@ -922,6 +922,7 @@ Prettier keeps an end-of-line comment there (`foo // c` + `(a)`, the same as our
 Its function declarations keep the same-line block comment outside (`function foo /* c */(a) {}`).
 Before `<`, Prettier glues an own-line comment back onto the callee's line (`foo// c` + `<T>(a)`); we keep it own-line.
 Before an optional call's `?.`, Prettier moves an own-line comment into the arguments as well; we keep it own-line.
+In a parenthesized member callee (`(a.b /* c */)(x)`), Prettier's member chain ends a group at the commented member and breaks (`a` + `.b /* c */` + `(x)`); we print `a.b /* c */(x)`.
 
 ## module-from-keyword-comment
 

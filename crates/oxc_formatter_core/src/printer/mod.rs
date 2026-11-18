@@ -2862,6 +2862,19 @@ Group 1 breaks"
         assert_eq!(result.as_code(), "xxxxxxx aa\nbb cc");
     }
 
+    /// DIVERGENCES.md#multiline-text-measure: Prettier prints `a\nb\ncccccccccccc`.
+    #[test]
+    fn a_line_break_inside_text_ends_the_measured_line() {
+        let allocator = Allocator::default();
+        let document = test_format_with(|f| {
+            group(&format_args!(token("a"), soft_line_break(), token("b"))).fmt(f);
+            crate::builders::text("\ncccccccccccc").without_expand_parent().fmt(f);
+        });
+        let options = PrinterOptions::default().with_print_width(PrintWidth::new(10));
+        let result = format_simple_with_options(&allocator, &document, options);
+        assert_eq!(result.as_code(), "ab\ncccccccccccc");
+    }
+
     /// DIVERGENCES.md#line-start-line-collapse: Prettier prints `a\n\nb`.
     #[test]
     fn a_soft_line_at_the_start_of_a_line_prints_nothing() {

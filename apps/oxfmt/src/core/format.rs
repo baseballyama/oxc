@@ -9,14 +9,16 @@ use oxc_formatter_json::{JsonFormatOptions, JsonVariant};
 use oxc_formatter_yaml::YamlFormatOptions;
 
 #[cfg(feature = "napi")]
+use super::options::inject_oxfmt_plugin_payload;
 use super::options::{
-    inject_filepath, inject_opt_in_plugin_payloads, inject_oxfmt_plugin_payload, inject_parser,
-    inject_tailwind_plugin_payload, to_prettier,
+    inject_filepath, inject_opt_in_plugin_payloads, inject_parser, inject_tailwind_plugin_payload,
+    to_prettier,
 };
 #[cfg(feature = "napi")]
 use super::support::PrettierLanguage;
 use super::{
     embed::dispatcher::ResolvedDispatchConfig,
+    host::HostedLanguage,
     options::{
         ValidatedOptions, to_oxc_formatter_graphql, to_oxc_formatter_json, to_oxc_formatter_toml,
         to_oxc_formatter_yaml, to_sort_package_json,
@@ -161,6 +163,7 @@ impl SourceFormatter {
             FormatStrategy::Native(NativeLanguage::Toml) => {
                 oxc_formatter_toml::format(source_text, to_oxc_formatter_toml(&config, core))
             }
+            FormatStrategy::Host(hosted) => format_by_host(source_text, &path, &hosted, &config),
             #[cfg(feature = "napi")]
             FormatStrategy::Prettier(language) => {
                 self.format_by_prettier(source_text, &path, language, &config)
@@ -216,6 +219,24 @@ impl SourceFormatter {
         oxc_formatter_yaml::format(&allocator, source_text, options)
             .and_then(|formatted| print(formatted, path))
     }
+}
+
+/// Format a file by its host formatter, with the options Prettier would receive.
+fn format_by_host(
+    source_text: &str,
+    path: &Path,
+    hosted: &HostedLanguage,
+    config: &FormatConfig,
+) -> Result<String, OxcDiagnostic> {
+    let mut options = to_prettier(config);
+    inject_parser(&mut options, hosted.language.parser());
+    inject_filepath(&mut options, path);
+    inject_tailwind_plugin_payload(&mut options, config);
+    inject_opt_in_plugin_payloads(&mut options, hosted.language, config);
+    hosted
+        .formatter
+        .format(source_text, &options)
+        .map_err(|err| OxcDiagnostic::error(format!("{err}\n[{}]", path.display())))
 }
 
 fn print<C: FormatContext>(

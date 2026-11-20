@@ -33,9 +33,10 @@ use self::{
 use super::{
     FormatPlan, Language,
     global_ignore::matches_with_ancestors,
+    host::HostFormatters,
     options::{ValidatedOptions, validate},
     oxfmtrc::{FormatConfig, Oxfmtrc},
-    support::{FormatStrategy, classify_as, classify_file},
+    support::{FormatStrategy, classify_as, classify_file, delegated_language, is_excluded},
     utils,
 };
 
@@ -64,6 +65,7 @@ struct ConfigLoader {
     /// Parsed `.editorconfig`, shared by every resolver this loads,
     /// instead of re-reading and re-parsing the same file.
     editorconfig: Option<Arc<EditorConfig>>,
+    hosts: HostFormatters,
     #[cfg(feature = "napi")]
     js_loader: Option<JsConfigLoaderCb>,
 }
@@ -71,11 +73,13 @@ struct ConfigLoader {
 impl ConfigLoader {
     fn new(
         editorconfig: Option<EditorConfig>,
+        hosts: HostFormatters,
         #[cfg(feature = "napi")] js_loader: Option<JsConfigLoaderCb>,
     ) -> Self {
         Self {
             discovery: config_discovery(),
             editorconfig: editorconfig.map(Arc::new),
+            hosts,
             #[cfg(feature = "napi")]
             js_loader,
         }
@@ -98,7 +102,11 @@ impl ConfigLoader {
         if let Some(config_path) = explicit_config {
             let path = utils::normalize_relative_path(cwd, config_path);
             if !is_js_config_path(&path) {
-                return ConfigResolver::from_json_config(Some(&path), self.editorconfig.clone());
+                return ConfigResolver::from_json_config(
+                    Some(&path),
+                    self.editorconfig.clone(),
+                    self.hosts.clone(),
+                );
             }
             let raw_config = self
                 .load_js_config(&path)?
@@ -117,7 +125,7 @@ impl ConfigLoader {
         }
 
         // No config found, use defaults
-        ConfigResolver::from_json_config(None, self.editorconfig.clone())
+        ConfigResolver::from_json_config(None, self.editorconfig.clone(), self.hosts.clone())
     }
 
     /// Load a config file located directly inside `dir` (no `build_and_validate`).
@@ -138,8 +146,12 @@ impl ConfigLoader {
 
         let (path, raw_config) = match config_file {
             DiscoveredConfigFile::Json(path) | DiscoveredConfigFile::Jsonc(path) => {
-                return ConfigResolver::from_json_config(Some(&path), self.editorconfig.clone())
-                    .map(Some);
+                return ConfigResolver::from_json_config(
+                    Some(&path),
+                    self.editorconfig.clone(),
+                    self.hosts.clone(),
+                )
+                .map(Some);
             }
             DiscoveredConfigFile::Js(path) => {
                 // Non-Vite JS config: `loadJsConfig` never returns `null`; failures bubble up as `Err`.
@@ -163,6 +175,7 @@ impl ConfigLoader {
             raw_config,
             path.parent().map(Path::to_path_buf),
             self.editorconfig.clone(),
+            self.hosts.clone(),
         )
     }
 }
@@ -230,6 +243,11 @@ fn into_outcome(
     {
         return ResolveOutcome::MissingPlugin(plugin);
     }
+    if let FormatStrategy::Host(hosted) = &strategy
+        && hosted.language.disabled_by(&config)
+    {
+        return ResolveOutcome::MissingPlugin(hosted.language.parser());
+    }
     ResolveOutcome::Format(FormatPlan { path: Arc::from(path), strategy, config, validated })
 }
 
@@ -291,6 +309,8 @@ pub struct ConfigResolver {
     ignore_glob: Option<Gitignore>,
     /// Parsed `.editorconfig`, if any.
     editorconfig: Option<Arc<EditorConfig>>,
+    /// Consulted before the built-in classification, for the languages Prettier would serve.
+    hosts: HostFormatters,
 }
 
 impl ConfigResolver {
@@ -301,6 +321,7 @@ impl ConfigResolver {
         raw_config: Value,
         config_dir: Option<PathBuf>,
         editorconfig: Option<Arc<EditorConfig>>,
+        hosts: HostFormatters,
     ) -> Self {
         Self {
             raw_config,
@@ -310,6 +331,7 @@ impl ConfigResolver {
             associations: None,
             ignore_glob: None,
             editorconfig,
+            hosts,
         }
     }
 
@@ -330,6 +352,7 @@ impl ConfigResolver {
     fn from_json_config(
         oxfmtrc_path: Option<&Path>,
         editorconfig: Option<Arc<EditorConfig>>,
+        hosts: HostFormatters,
     ) -> Result<Self, String> {
         // Read and parse config file, or use empty JSON if not found
         let json_string = match oxfmtrc_path {
@@ -356,7 +379,7 @@ impl ConfigResolver {
         // Store the config directory for override path resolution
         let config_dir = oxfmtrc_path.and_then(|p| p.parent().map(Path::to_path_buf));
 
-        Ok(Self::new(raw_config, config_dir, editorconfig))
+        Ok(Self::new(raw_config, config_dir, editorconfig, hosts))
     }
 
     /// Validate config and build the ignore glob from `ignorePatterns` for file walking.
@@ -414,10 +437,18 @@ impl ConfigResolver {
 
     /// Classify `path`: the given `language` first (e.g. LSP `languageId`),
     /// then this config's `associations`, then the file name.
+    /// A host formatter takes a language Prettier would serve.
     ///
     /// A given or matched language decides alone, see [`classify_as`] for when it yields `None`.
     pub fn classify(&self, path: &Path, language: Option<Language>) -> Option<FormatStrategy> {
         let language = language.or_else(|| self.associations.as_ref()?.matching(path));
+        let delegated = match language {
+            Some(language) => language.prettier_language().filter(|_| !is_excluded(path)),
+            None => delegated_language(path),
+        };
+        if let Some(hosted) = delegated.and_then(|language| self.hosts.get(language)) {
+            return Some(FormatStrategy::Host(hosted));
+        }
         match language {
             Some(language) => classify_as(language, path),
             None => classify_file(path),
@@ -535,7 +566,7 @@ mod tests_slow_path_validation {
     use super::*;
 
     fn resolver_from_json(raw: serde_json::Value) -> ConfigResolver {
-        let mut resolver = ConfigResolver::new(raw, None, None);
+        let mut resolver = ConfigResolver::new(raw, None, None, HostFormatters::default());
         resolver.build_and_validate().expect("base config must be valid for these tests");
         resolver
     }

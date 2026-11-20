@@ -9,7 +9,8 @@ use oxc_diagnostics::{DiagnosticService, GraphicalReportHandler};
 use super::{CliRunResult, FormatCommand, Mode};
 use crate::core::{
     ConfigScopes, ExternalServices, FormatResult, JsConfigLoaderCb, ResolveOutcome,
-    SourceFormatter, build_global_ignore_matchers, is_ignored, resolve_ignore_paths, utils,
+    SourceFormatter, build_global_ignore_matchers, host::HostFormatters, is_ignored,
+    resolve_ignore_paths, utils,
 };
 
 pub struct StdinRunner {
@@ -60,6 +61,7 @@ impl StdinRunner {
             &cwd,
             config_options.config.as_deref(),
             config_options.use_nested_configs(),
+            HostFormatters::default(),
             Some(&self.js_config_loader),
         ) {
             Ok(scopes) => scopes,

@@ -5,7 +5,11 @@ mod core;
 #[cfg(feature = "napi")]
 mod prettier_compat;
 
-pub use core::oxfmtrc;
+pub use core::{
+    Language,
+    host::{HostFormatter, HostFormatters},
+    oxfmtrc,
+};
 #[cfg(feature = "napi")]
 pub mod lsp;
 #[cfg(feature = "napi")]

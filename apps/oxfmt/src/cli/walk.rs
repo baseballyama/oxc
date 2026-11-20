@@ -691,6 +691,7 @@ mod tests_scope_resolution {
     use super::*;
     #[cfg(feature = "napi")]
     use crate::core::JsConfigLoaderCb;
+    use crate::core::host::HostFormatters;
 
     fn write_config(dir: &Path, contents: &str) {
         fs::write(dir.join(".oxfmtrc.json"), contents).expect("write config");
@@ -703,6 +704,7 @@ mod tests_scope_resolution {
             walk_root,
             None,
             true,
+            HostFormatters::default(),
             #[cfg(feature = "napi")]
             None,
         )
@@ -857,6 +859,7 @@ mod tests_scope_resolution {
             &repo,
             None,
             true,
+            HostFormatters::default(),
             #[cfg(feature = "napi")]
             None,
         )
@@ -884,7 +887,8 @@ mod tests_scope_resolution {
             counter_in_cb.fetch_add(1, Ordering::Relaxed);
             Ok(serde_json::json!({}))
         });
-        let scopes = ConfigScopes::load(repo, None, true, Some(&cb)).expect("load scopes");
+        let scopes = ConfigScopes::load(repo, None, true, HostFormatters::default(), Some(&cb))
+            .expect("load scopes");
         let walker =
             ScopedWalker::new(repo.to_path_buf(), &[PathBuf::from("file.ts"), PathBuf::from(".")])
                 .expect("create walker");
@@ -921,7 +925,9 @@ mod tests_scope_resolution {
             Ok(serde_json::json!({}))
         });
 
-        let scopes = ConfigScopes::load(tmp.path(), None, true, Some(&cb)).expect("load scopes");
+        let scopes =
+            ConfigScopes::load(tmp.path(), None, true, HostFormatters::default(), Some(&cb))
+                .expect("load scopes");
         let ctx = scopes.nested_ctx();
 
         std::thread::scope(|s| {
@@ -960,7 +966,9 @@ mod tests_scope_resolution {
             Err("simulated load failure".to_string())
         });
 
-        let scopes = ConfigScopes::load(tmp.path(), None, true, Some(&cb)).expect("load scopes");
+        let scopes =
+            ConfigScopes::load(tmp.path(), None, true, HostFormatters::default(), Some(&cb))
+                .expect("load scopes");
         let ctx = scopes.nested_ctx();
 
         let err1 = ctx.probe_dir(&dir).expect_err("first probe should error");

@@ -18,11 +18,14 @@ use super::{
 };
 #[cfg(feature = "napi")]
 use crate::core::JsConfigLoaderCb;
-use crate::core::{ConfigScopes, FormatPlan, SourceFormatter, resolve_ignore_paths, utils};
+use crate::core::{
+    ConfigScopes, FormatPlan, SourceFormatter, host::HostFormatters, resolve_ignore_paths, utils,
+};
 
 pub struct WalkRunner {
     options: FormatCommand,
     cwd: PathBuf,
+    hosts: HostFormatters,
     #[cfg(feature = "napi")]
     external_services: Option<crate::core::ExternalServices>,
     #[cfg(feature = "napi")]
@@ -38,11 +41,19 @@ impl WalkRunner {
         Self {
             options,
             cwd: env::current_dir().expect("Failed to get current working directory"),
+            hosts: HostFormatters::default(),
             #[cfg(feature = "napi")]
             external_services: None,
             #[cfg(feature = "napi")]
             js_config_loader: None,
         }
+    }
+
+    /// Serve the languages Prettier would with `hosts`.
+    #[must_use]
+    pub fn with_hosts(mut self, hosts: HostFormatters) -> Self {
+        self.hosts = hosts;
+        self
     }
 
     #[cfg(feature = "napi")]
@@ -87,6 +98,7 @@ impl WalkRunner {
             &cwd,
             config_options.config.as_deref(),
             config_options.use_nested_configs(),
+            self.hosts,
             #[cfg(feature = "napi")]
             self.js_config_loader.as_ref(),
         ) {

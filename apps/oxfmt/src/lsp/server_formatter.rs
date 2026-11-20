@@ -18,8 +18,8 @@ use oxc_language_server::{
 
 use crate::core::{
     ConfigScopes, ExternalServices, FormatResult, JsConfigLoaderCb, Language, ResolveOutcome,
-    SourceFormatter, build_global_ignore_matchers, config_discovery, is_ignored,
-    resolve_ignore_paths, utils,
+    SourceFormatter, build_global_ignore_matchers, config_discovery, host::HostFormatters,
+    is_ignored, resolve_ignore_paths, utils,
 };
 use crate::lsp::create_fake_file_path;
 use crate::lsp::options::FormatOptions as LSPFormatOptions;
@@ -321,6 +321,7 @@ impl ServerFormatter {
             root_path,
             explicit_config_path,
             use_nested_config,
+            HostFormatters::default(),
             Some(js_config_loader),
         ) {
             Ok(scopes) => scopes,

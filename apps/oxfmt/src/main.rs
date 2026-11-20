@@ -4,8 +4,7 @@ use oxfmt::cli::{CliRunResult, WalkRunner, format_command, init_rayon, init_trac
 // This CLI only supports the basic `Cli` mode.
 // For full featured JS CLI entry point, see `run_cli()` exported by `main_napi.rs`.
 
-#[tokio::main]
-async fn main() -> CliRunResult {
+fn main() -> CliRunResult {
     let command = format_command().run();
 
     init_tracing();

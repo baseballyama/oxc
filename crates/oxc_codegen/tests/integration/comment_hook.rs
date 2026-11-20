@@ -350,6 +350,20 @@ fn a_list_a_comment_breaks_puts_each_item_on_its_own_line() {
 }
 
 #[test]
+fn parameters_and_an_object_pattern_a_comment_breaks_put_each_item_on_its_own_line() {
+    let allocator = Allocator::default();
+    for (source, at, expected) in [
+        ("((a, b) => a);", 5, "((\n\ta,\n\t// c\n\tb\n) => a);\n"),
+        ("let { a, ...b } = c;", 9, "let {\n\ta,\n\t// c\n\t...b\n} = c;\n"),
+    ] {
+        let parsed = Parser::new(&allocator, source, SourceType::mjs()).parse();
+        let hook = Breaking { at, done: false };
+        let code = Codegen::new().with_comment_hook(Box::new(hook)).build(&parsed.program).code;
+        assert_eq!(code, expected, "{source}");
+    }
+}
+
+#[test]
 fn an_empty_body_that_holds_a_comment_opens_a_line_for_it() {
     /// One comment inside the bodies that start at 13, which ends its line if it is a line comment.
     struct Inside(bool, &'static str);

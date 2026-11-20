@@ -32,6 +32,14 @@ pub trait CommentHook {
 
     /// At the end of a list: `from` is where its last item ends and `to` where the list ends.
     fn until(&mut self, out: &mut CommentWriter<'_, '_>, from: Option<u32>, to: Option<u32>);
+
+    /// Whether the next comment the hook would write starts before `start`. The printer asks
+    /// before the argument of `return` and `throw`, and wraps the argument in parentheses when
+    /// it does, so that a line comment cannot end the statement.
+    fn comment_before(&self, start: u32) -> bool {
+        let _ = start;
+        false
+    }
 }
 
 /// What a [`CommentHook`] may write.
@@ -89,9 +97,32 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn with_hook(&mut self, f: impl FnOnce(&mut dyn CommentHook, &mut CommentWriter<'_, 'a>)) {
         if let Some(mut hook) = self.comment_hook.take() {
+            let before = self.code.len();
             f(&mut *hook, &mut CommentWriter { p: self });
             self.comment_hook = Some(hook);
+            // What starts a statement, an arrow body or a default export still starts it after a
+            // comment, which decides whether an object or a function there needs parentheses.
+            let after = self.code.len();
+            if after != before {
+                for start in [
+                    &mut self.start_of_stmt,
+                    &mut self.start_of_arrow_expr,
+                    &mut self.start_of_default_export,
+                ] {
+                    if *start == before {
+                        *start = after;
+                    }
+                }
+            }
         }
+    }
+
+    /// Whether the hook has a comment to write before `span`'s node.
+    #[inline]
+    pub(crate) fn hook_comment_before(&self, span: Span) -> bool {
+        self.comment_hook
+            .as_ref()
+            .is_some_and(|h| located(span).is_some_and(|s| h.comment_before(s.start)))
     }
 
     #[inline]

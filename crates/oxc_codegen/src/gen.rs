@@ -636,7 +636,14 @@ impl Gen for ReturnStatement<'_> {
         p.print_str("return");
         if let Some(arg) = &self.argument {
             p.print_soft_space();
+            let wrap = p.hook_comment_before(arg.span());
+            if wrap {
+                p.print_ascii_byte(b'(');
+            }
             p.print_expression(arg);
+            if wrap {
+                p.print_ascii_byte(b')');
+            }
         }
         p.print_semicolon_after_statement();
     }
@@ -713,7 +720,14 @@ impl Gen for ThrowStatement<'_> {
         p.add_source_mapping(self.span);
         p.print_str("throw");
         p.print_soft_space();
+        let wrap = p.hook_comment_before(self.argument.span());
+        if wrap {
+            p.print_ascii_byte(b'(');
+        }
         p.print_expression(&self.argument);
+        if wrap {
+            p.print_ascii_byte(b')');
+        }
         p.print_semicolon_after_statement();
     }
 }

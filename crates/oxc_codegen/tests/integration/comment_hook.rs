@@ -190,3 +190,62 @@ fn a_reopened_line_takes_a_trailing_comment() {
         .build(&parsed.program);
     assert_eq!(mapped.code, code);
 }
+
+/// Writes `/*c*/` or `//c` before the node that starts at `at`.
+struct Before {
+    at: u32,
+    text: &'static str,
+    done: bool,
+}
+
+impl CommentHook for Before {
+    fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
+        if !self.done && span.is_some_and(|s| s.start == self.at) {
+            self.done = true;
+            if self.text.starts_with("//") {
+                out.line_comment(self.text);
+            } else {
+                out.write(self.text);
+                out.space();
+            }
+        }
+    }
+    fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+    fn body(&mut self, _: Option<Span>) {}
+    fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    fn comment_before(&self, start: u32) -> bool {
+        !self.done && self.at <= start
+    }
+}
+
+fn before(source: &str, at: u32, text: &'static str) -> String {
+    let allocator = Allocator::default();
+    let parsed = Parser::new(&allocator, source, SourceType::mjs()).parse();
+    let hook = Before { at, text, done: false };
+    Codegen::new().with_comment_hook(Box::new(hook)).build(&parsed.program).code
+}
+
+#[test]
+fn a_comment_before_an_arrow_body_keeps_the_object_s_parentheses() {
+    // `() => ({ n })` with a comment before the object.
+    let code = before("f(() => ({ n }));", 9, "/*c*/");
+    assert_eq!(code, "f(() => /*c*/ ({ n }));\n");
+}
+
+#[test]
+fn a_comment_before_a_statement_keeps_its_parentheses() {
+    let code = before("({ a } = b);", 0, "/*c*/");
+    assert_eq!(code, "/*c*/ ({a} = b);\n");
+}
+
+#[test]
+fn a_returned_value_after_a_comment_is_parenthesized() {
+    let code = before("function f() { return a; }", 22, "// c");
+    let allocator = Allocator::default();
+    let reparsed = Parser::new(&allocator, &code, SourceType::mjs()).parse();
+    assert!(reparsed.diagnostics.is_empty(), "{code}");
+    assert!(code.contains("return (// c\n"), "{code}");
+    let code = before("function f() { throw a; }", 21, "// c");
+    assert!(code.contains("throw (// c\n"), "{code}");
+}

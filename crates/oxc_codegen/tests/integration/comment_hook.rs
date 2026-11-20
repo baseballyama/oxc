@@ -199,7 +199,7 @@ fn a_space_at_the_start_of_a_line_is_the_indent() {
 }
 
 #[test]
-fn a_reopened_line_takes_a_trailing_comment() {
+fn a_held_line_takes_a_trailing_comment() {
     struct Trailing;
     impl CommentHook for Trailing {
         fn before(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>, _: bool) {}
@@ -207,14 +207,16 @@ fn a_reopened_line_takes_a_trailing_comment() {
         fn body(&mut self, _: Option<Span>) {}
         fn trailing(&mut self, out: &mut CommentWriter<'_, '_>, end: Option<u32>, _: Option<u32>) {
             if end == Some(17) {
-                assert!(out.reopen_line());
-                out.space();
-                out.line_comment("// c");
+                out.append(" // c");
+                out.newline();
             }
         }
         fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
         fn next_comment(&self) -> Option<u32> {
-            Some(0)
+            Some(17)
+        }
+        fn trails(&self, end: u32, _: Option<u32>) -> bool {
+            end == 17
         }
     }
     let allocator = Allocator::default();
@@ -255,6 +257,9 @@ impl CommentHook for Before {
     fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
     fn next_comment(&self) -> Option<u32> {
         (!self.done).then(|| self.at - 1)
+    }
+    fn breaks_before(&self, to: u32) -> bool {
+        !self.done && to == self.at && self.text.starts_with("//")
     }
 }
 
@@ -300,26 +305,49 @@ fn a_node_s_own_parentheses_go_before_its_comment() {
 }
 
 #[test]
-fn the_writer_reads_the_last_byte_before_spaces() {
-    struct Last(Rc<RefCell<Vec<Option<u8>>>>);
-    impl CommentHook for Last {
-        fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
-            if span.is_some_and(|s| s.start == 3) {
-                self.0.borrow_mut().push(out.last_byte());
-            }
-        }
-        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
-        fn body(&mut self, _: Option<Span>) {}
-        fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
-        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
-        fn next_comment(&self) -> Option<u32> {
-            Some(0)
+fn a_thrown_value_is_parenthesized_only_after_a_line_comment() {
+    let code = before("function f() { throw a; }", 21, "/*c*/");
+    assert!(code.contains("throw /*c*/ a;"), "{code}");
+}
+
+#[test]
+fn the_line_after_a_comment_is_indented_as_the_code_on_it() {
+    // A line comment before the second argument ends its line; the argument goes on the next line
+    // at the call's indent.
+    let code = before("function f() { g(a, b); }", 20, "// c");
+    assert_eq!(code, "function f() {\n\tg(a, // c\n\tb);\n}\n");
+}
+
+/// Breaks every list that has a comment: the arguments of a call go one per line.
+struct Breaking {
+    at: u32,
+    done: bool,
+}
+
+impl CommentHook for Breaking {
+    fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
+        if !self.done && span.is_some_and(|s| s.start == self.at) {
+            self.done = true;
+            out.line_comment("// c");
         }
     }
-    let seen = Rc::new(RefCell::new(Vec::new()));
+    fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+    fn body(&mut self, _: Option<Span>) {}
+    fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    fn next_comment(&self) -> Option<u32> {
+        (!self.done).then(|| self.at - 1)
+    }
+    fn breaks(&self, _: u32, until: u32, _: bool) -> bool {
+        !self.done && self.at <= until
+    }
+}
+
+#[test]
+fn a_list_a_comment_breaks_puts_each_item_on_its_own_line() {
     let allocator = Allocator::default();
-    let parsed = Parser::new(&allocator, "f( a);", SourceType::mjs()).parse();
-    let _ =
-        Codegen::new().with_comment_hook(Box::new(Last(Rc::clone(&seen)))).build(&parsed.program);
-    assert!(seen.borrow().contains(&Some(b'(')), "{:?}", seen.borrow());
+    let parsed = Parser::new(&allocator, "function f() { g(a, b); }", SourceType::mjs()).parse();
+    let hook = Breaking { at: 20, done: false };
+    let code = Codegen::new().with_comment_hook(Box::new(hook)).build(&parsed.program).code;
+    assert_eq!(code, "function f() {\n\tg(\n\t\ta,\n\t\t// c\n\t\tb\n\t);\n}\n");
 }

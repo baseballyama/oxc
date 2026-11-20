@@ -26,7 +26,10 @@ pub trait Gen: GetSpan {
     #[inline]
     fn print(&self, p: &mut Codegen, ctx: Context) {
         // One call of `gen`, so that inlining it does not copy it.
-        let reported = p.hook_next.is_some() && p.hook_before(self.span(), false);
+        let reported = p.hook_next.is_some() && p.hook_comment_before(self.span()) && {
+            p.hook_before(self.span(), false);
+            true
+        };
         self.r#gen(p, ctx);
         if reported {
             p.hook_after(self.span());
@@ -34,15 +37,45 @@ pub trait Gen: GetSpan {
     }
 }
 
+/// Where the comments a [`CommentHook`](crate::CommentHook) has before an expression go.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum CommentPlace {
+    /// Before the expression.
+    Before,
+    /// Inside the parentheses the expression may print around itself, which it opens with
+    /// [`Codegen::wrap`] before it prints anything else.
+    InsideParentheses,
+    /// Where the expression it holds puts them, as it prints nothing of its own.
+    Inner,
+}
+
 /// Generate source code for an expression.
 pub trait GenExpr: GetSpan {
+    /// Where the comments before an expression of this type go.
+    const COMMENTS: CommentPlace = CommentPlace::Before;
+
+    /// Where the comments before this expression go.
+    #[inline]
+    fn comment_place(&self) -> CommentPlace {
+        Self::COMMENTS
+    }
+
     /// Generate code for an expression, respecting operator precedence.
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context);
 
     /// Generate code for an expression, respecting operator precedence. Alias for `gen_expr`.
     #[inline]
     fn print_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
-        let reported = p.hook_next.is_some() && p.hook_before(self.span(), true);
+        let reported = p.hook_next.is_some()
+            && self.comment_place() != CommentPlace::Inner
+            && p.hook_comment_before(self.span())
+            && {
+                match self.comment_place() {
+                    CommentPlace::InsideParentheses => p.hook_pending = Some(self.span()),
+                    CommentPlace::Before | CommentPlace::Inner => p.hook_before(self.span(), true),
+                }
+                true
+            };
         self.gen_expr(p, precedence, ctx);
         if reported {
             p.hook_after(self.span());
@@ -635,6 +668,8 @@ impl Gen for ReturnStatement<'_> {
         p.print_str("return");
         if let Some(arg) = &self.argument {
             p.print_soft_space();
+            // upstream's printer wraps an argument that a comment precedes, which also keeps a
+            // line comment from ending the statement.
             let wrap = p.hook_comment_before(arg.span());
             if wrap {
                 p.print_ascii_byte(b'(');
@@ -719,7 +754,8 @@ impl Gen for ThrowStatement<'_> {
         p.add_source_mapping(self.span);
         p.print_str("throw");
         p.print_soft_space();
-        let wrap = p.hook_comment_before(self.argument.span());
+        // Only a comment that ends its line could end the statement here.
+        let wrap = p.hook_breaks_before(self.argument.span());
         if wrap {
             p.print_ascii_byte(b'(');
         }
@@ -940,14 +976,14 @@ impl Gen for FormalParameters<'_> {
             if !self.items.is_empty() {
                 p.print_comma();
                 if let Some(prev) = last {
-                    p.hook_after_item(prev, Some(rest.span), until);
+                    p.hook_after_item(prev, Some(rest.span), until, false);
                 }
                 p.print_soft_space();
             }
             rest.print(p, ctx);
             last = Some(rest.span);
         }
-        p.hook_list_end(last, until);
+        p.hook_list_end(last, until, false);
     }
 }
 
@@ -1196,7 +1232,7 @@ fn gen_export_specifiers(
         p.print_soft_space();
         let until = until.or(Codegen::end_of(span));
         p.print_list_until(specifiers, until, ctx);
-        p.hook_list_end(specifiers.last().map(GetSpan::span), until);
+        p.hook_list_end(specifiers.last().map(GetSpan::span), until, false);
         p.print_soft_space();
     }
     p.print_ascii_byte(b'}');
@@ -1351,6 +1387,57 @@ impl Gen for ExportDefaultDeclarationKind<'_> {
 }
 
 impl GenExpr for Expression<'_> {
+    /// The expression it holds places its comments when it prints them as an expression; one it
+    /// prints as a node gets them here.
+    fn comment_place(&self) -> CommentPlace {
+        match self {
+            Self::Identifier(_)
+            | Self::StringLiteral(_)
+            | Self::BooleanLiteral(_)
+            | Self::NullLiteral(_)
+            | Self::ArrayExpression(_)
+            | Self::FunctionExpression(_)
+            | Self::ThisExpression(_)
+            | Self::Super(_)
+            | Self::TemplateLiteral(_)
+            | Self::RegExpLiteral(_)
+            | Self::ClassExpression(_)
+            | Self::ImportMeta(_)
+            | Self::NewTarget(_)
+            | Self::JSXElement(_)
+            | Self::JSXFragment(_) => CommentPlace::Before,
+            Self::StaticMemberExpression(_)
+            | Self::ComputedMemberExpression(_)
+            | Self::CallExpression(_)
+            | Self::NumericLiteral(_)
+            | Self::BinaryExpression(_)
+            | Self::LogicalExpression(_)
+            | Self::ObjectExpression(_)
+            | Self::AssignmentExpression(_)
+            | Self::UpdateExpression(_)
+            | Self::UnaryExpression(_)
+            | Self::ConditionalExpression(_)
+            | Self::SequenceExpression(_)
+            | Self::ArrowFunctionExpression(_)
+            | Self::NewExpression(_)
+            | Self::TaggedTemplateExpression(_)
+            | Self::BigIntLiteral(_)
+            | Self::AwaitExpression(_)
+            | Self::YieldExpression(_)
+            | Self::ImportExpression(_)
+            | Self::ChainExpression(_)
+            | Self::PrivateFieldExpression(_)
+            | Self::PrivateInExpression(_)
+            | Self::ParenthesizedExpression(_)
+            | Self::TSAsExpression(_)
+            | Self::TSSatisfiesExpression(_)
+            | Self::TSTypeAssertion(_)
+            | Self::TSNonNullExpression(_)
+            | Self::TSInstantiationExpression(_)
+            | Self::V8IntrinsicExpression(_) => CommentPlace::Inner,
+        }
+    }
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         match self {
             // Most common expressions first (identifiers, member access, calls)
@@ -1441,6 +1528,8 @@ impl GenExpr for Expression<'_> {
 }
 
 impl GenExpr for ParenthesizedExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::Inner;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         self.expression.print_expr(p, precedence, ctx);
     }
@@ -1600,6 +1689,8 @@ impl Gen for ThisExpression {
 }
 
 impl GenExpr for MemberExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::Inner;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         match self {
             Self::ComputedMemberExpression(expr) => expr.print_expr(p, precedence, ctx),
@@ -1610,6 +1701,8 @@ impl GenExpr for MemberExpression<'_> {
 }
 
 impl GenExpr for ComputedMemberExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, _precedence: Precedence, ctx: Context) {
         // `(let[0] = 100);` -> `(let)[0] = 100`;
         let wrap = self.object.get_identifier_reference().is_some_and(|r| r.name == "let");
@@ -1651,6 +1744,8 @@ impl GenExpr for PrivateFieldExpression<'_> {
 }
 
 impl GenExpr for CallExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let is_statement = p.start_of_stmt == p.code_len();
         let is_export_default = p.start_of_default_export == p.code_len();
@@ -1721,8 +1816,8 @@ impl Gen for ArrayExpression<'_> {
 
         if let Some((first, others)) = self.elements.split_first() {
             let mut item = first;
-            if self.elements.len() > 2 {
-                // 3 or more elements, each on its own line
+            if self.elements.len() > 2 || p.hook_breaks(Some(first.span()), until, false) {
+                // 3 or more elements, or a comment that breaks the line, each on its own line
                 p.indent();
                 p.print_soft_newline();
                 p.print_indent();
@@ -1733,7 +1828,7 @@ impl Gen for ArrayExpression<'_> {
                     item = item_ref;
 
                     p.print_comma();
-                    p.hook_after_item(prev, Some(item.span()), until);
+                    p.hook_after_item(prev, Some(item.span()), until, true);
                     p.print_soft_newline();
                     p.print_indent();
 
@@ -1743,7 +1838,7 @@ impl Gen for ArrayExpression<'_> {
                 if matches!(item, ArrayExpressionElement::Elision(_)) {
                     p.print_comma();
                 }
-                p.hook_list_end(Some(item.span()), until);
+                p.hook_list_end(Some(item.span()), until, true);
 
                 p.print_soft_newline();
                 p.dedent();
@@ -1757,7 +1852,7 @@ impl Gen for ArrayExpression<'_> {
                     item = item_ref;
 
                     p.print_comma();
-                    p.hook_after_item(prev, Some(item.span()), until);
+                    p.hook_after_item(prev, Some(item.span()), until, false);
                     p.print_soft_space();
 
                     item.print(p, ctx);
@@ -1766,7 +1861,7 @@ impl Gen for ArrayExpression<'_> {
                 if matches!(item, ArrayExpressionElement::Elision(_)) {
                     p.print_comma();
                 }
-                p.hook_list_end(Some(item.span()), until);
+                p.hook_list_end(Some(item.span()), until, false);
             }
         }
 
@@ -1776,10 +1871,11 @@ impl Gen for ArrayExpression<'_> {
 }
 
 impl GenExpr for ObjectExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, _precedence: Precedence, ctx: Context) {
         let n = p.code_len();
         let len = self.properties.len();
-        let is_multi_line = len > 1;
         let has_comment = p.has_comment(self.span.start);
         let wrap = has_comment || p.start_of_stmt == n || p.start_of_arrow_expr == n;
         p.wrap(wrap, |p| {
@@ -1789,16 +1885,19 @@ impl GenExpr for ObjectExpression<'_> {
                 p.print_leading_comments(self.span.start);
                 p.print_indent();
             }
+            let until = Codegen::end_of(self.span);
+            let first = self.properties.first().map(GetSpan::span);
+            let is_multi_line = len > 1 || p.hook_breaks(first, until, false);
             p.add_source_mapping(self.span);
             p.print_ascii_byte(b'{');
             if is_multi_line {
                 p.indent();
             }
-            let until = Codegen::end_of(self.span);
             for (i, item) in self.properties.iter().enumerate() {
                 if i != 0 {
                     p.print_comma();
-                    p.hook_after_item(self.properties[i - 1].span(), Some(item.span()), until);
+                    let prev = self.properties[i - 1].span();
+                    p.hook_after_item(prev, Some(item.span()), until, is_multi_line);
                 }
                 if is_multi_line {
                     p.print_soft_newline();
@@ -1813,7 +1912,7 @@ impl GenExpr for ObjectExpression<'_> {
                 }
                 item.print(p, ctx);
             }
-            p.hook_list_end(self.properties.last().map(GetSpan::span), until);
+            p.hook_list_end(self.properties.last().map(GetSpan::span), until, is_multi_line);
             if is_multi_line {
                 p.print_soft_newline();
                 p.dedent();
@@ -1946,6 +2045,8 @@ impl Gen for PropertyKey<'_> {
 }
 
 impl GenExpr for ArrowFunctionExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::Assign || self.pife;
         // Clear FORBID_IN: always for param defaults (always parenthesized), and for
@@ -2007,6 +2108,8 @@ impl GenExpr for ArrowFunctionExpression<'_> {
 }
 
 impl GenExpr for YieldExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::Assign;
         let argument_ctx = if wrap { Context::empty() } else { ctx & Context::FORBID_IN };
@@ -2026,6 +2129,8 @@ impl GenExpr for YieldExpression<'_> {
 }
 
 impl GenExpr for UpdateExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let operator = self.operator.as_str();
         p.wrap(precedence >= self.precedence(), |p| {
@@ -2049,6 +2154,8 @@ impl GenExpr for UpdateExpression<'_> {
 }
 
 impl GenExpr for UnaryExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
             let operator = self.operator.as_str();
@@ -2070,6 +2177,8 @@ impl GenExpr for UnaryExpression<'_> {
 }
 
 impl GenExpr for BinaryExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let v = BinaryExpressionVisitor {
             // SAFETY:
@@ -2089,6 +2198,8 @@ impl GenExpr for BinaryExpression<'_> {
 }
 
 impl GenExpr for PrivateInExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= Precedence::Compare, |p| {
             p.add_source_mapping(self.span);
@@ -2100,6 +2211,8 @@ impl GenExpr for PrivateInExpression<'_> {
 }
 
 impl GenExpr for LogicalExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let v = BinaryExpressionVisitor {
             // SAFETY:
@@ -2119,6 +2232,8 @@ impl GenExpr for LogicalExpression<'_> {
 }
 
 impl GenExpr for ConditionalExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let mut ctx = ctx;
         let wrap = precedence >= self.precedence();
@@ -2155,6 +2270,8 @@ impl GenExpr for ConditionalExpression<'_> {
 }
 
 impl GenExpr for AssignmentExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let n = p.code_len();
         // Destructuring assignments must be parenthesized
@@ -2200,6 +2317,8 @@ impl Gen for AssignmentTarget<'_> {
 }
 
 impl GenExpr for SimpleAssignmentTarget<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::Inner;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         match self {
             Self::AssignmentTargetIdentifier(ident) => ident.print(p, ctx),
@@ -2240,7 +2359,7 @@ impl Gen for ArrayAssignmentTarget<'_> {
                 item = item_ref;
 
                 p.print_comma();
-                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until);
+                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until, false);
                 p.print_soft_space();
 
                 if let Some(item) = item {
@@ -2250,15 +2369,15 @@ impl Gen for ArrayAssignmentTarget<'_> {
 
             if let Some(rest) = &self.rest {
                 p.print_comma();
-                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until);
+                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until, false);
                 p.print_soft_space();
                 rest.print(p, ctx);
-                p.hook_list_end(Some(rest.span), until);
+                p.hook_list_end(Some(rest.span), until, false);
             } else {
                 if item.is_none() {
                     p.print_comma();
                 }
-                p.hook_list_end(Some(span_or_none(item.as_ref())), until);
+                p.hook_list_end(Some(span_or_none(item.as_ref())), until, false);
             }
         } else if let Some(rest) = &self.rest {
             rest.print(p, ctx);
@@ -2392,16 +2511,20 @@ impl Gen for AssignmentTargetRest<'_> {
 }
 
 impl GenExpr for SequenceExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
             p.print_expressions(&self.expressions, Precedence::Comma, ctx.and_forbid_call(false));
             let last = self.expressions.last().map(GetSpan::span);
-            p.hook_list_end(last, Codegen::end_of(self.span));
+            p.hook_list_end(last, Codegen::end_of(self.span), false);
         });
     }
 }
 
 impl GenExpr for ImportExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::New || ctx.intersects(Context::FORBID_CALL);
 
@@ -2502,6 +2625,8 @@ impl Gen for Super {
 }
 
 impl GenExpr for AwaitExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
             p.print_space_before_identifier();
@@ -2514,6 +2639,8 @@ impl GenExpr for AwaitExpression<'_> {
 }
 
 impl GenExpr for ChainExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::Postfix || ctx.intersects(Context::FORBID_CALL);
         // Once wrapped, the inner element is in a fresh grouping; don't wrap again.
@@ -2530,6 +2657,8 @@ impl GenExpr for ChainExpression<'_> {
 }
 
 impl GenExpr for NewExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let mut wrap = precedence >= self.precedence();
         let pure = self.pure && p.options.print_annotation_comment();
@@ -2559,6 +2688,8 @@ impl GenExpr for NewExpression<'_> {
 }
 
 impl GenExpr for TSAsExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::Compare;
 
@@ -2578,6 +2709,8 @@ impl GenExpr for TSAsExpression<'_> {
 }
 
 impl GenExpr for TSSatisfiesExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let wrap = precedence >= Precedence::Compare;
 
@@ -2607,6 +2740,8 @@ impl GenExpr for TSNonNullExpression<'_> {
 }
 
 impl GenExpr for TSInstantiationExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         // Member access and other postfix operations need grouping around the type arguments.
         let wrap = precedence >= Precedence::Postfix;
@@ -2622,6 +2757,8 @@ impl GenExpr for TSInstantiationExpression<'_> {
 }
 
 impl GenExpr for TSTypeAssertion<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
             // Avoid merging into `<<` when this assertion follows a `<` operator,
@@ -2715,11 +2852,11 @@ impl Gen for ClassBody<'_> {
                 p.print_semicolon_if_needed();
                 p.print_leading_comments(item.span().start);
                 p.print_indent();
-                item.print(p, ctx);
                 let next = self.body.get(i + 1).map(GetSpan::span);
-                p.hook_after_statement(item.span(), next, self.span);
+                p.print_listed(item.span(), next, self.span, |p| item.print(p, ctx));
             }
-            p.hook_until(self.body.last().map(GetSpan::span), Codegen::end_of(self.span));
+            let last = self.body.last().map(GetSpan::span);
+            p.hook_until(last, Codegen::end_of(self.span), true);
         });
     }
 }
@@ -2739,7 +2876,7 @@ impl Gen for ClassElement<'_> {
                 elem.print(p, ctx);
                 p.print_semicolon_after_statement();
                 let end = elem.value.as_ref().map_or(elem.key.span(), GetSpan::span);
-                p.hook_after_item(end, None, None);
+                p.hook_after_item(end, None, None, true);
             }
             Self::AccessorProperty(elem) => {
                 elem.print(p, ctx);
@@ -3258,14 +3395,14 @@ impl Gen for ObjectPattern<'_> {
             if !self.properties.is_empty() {
                 p.print_comma();
                 if let Some(prev) = last {
-                    p.hook_after_item(prev, Some(rest.span), until);
+                    p.hook_after_item(prev, Some(rest.span), until, false);
                 }
                 p.print_soft_space();
             }
             rest.print(p, ctx);
             last = Some(rest.span);
         }
-        p.hook_list_end(last, until);
+        p.hook_list_end(last, until, false);
         p.print_soft_space();
         p.print_ascii_byte(b'}');
     }
@@ -3333,7 +3470,7 @@ impl Gen for ArrayPattern<'_> {
                 item = item_ref;
 
                 p.print_comma();
-                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until);
+                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until, false);
                 p.print_soft_space();
 
                 if let Some(item) = item {
@@ -3343,15 +3480,15 @@ impl Gen for ArrayPattern<'_> {
 
             if let Some(rest) = &self.rest {
                 p.print_comma();
-                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until);
+                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until, false);
                 p.print_soft_space();
                 rest.print(p, ctx);
-                p.hook_list_end(Some(rest.span), until);
+                p.hook_list_end(Some(rest.span), until, false);
             } else {
                 if item.is_none() {
                     p.print_comma();
                 }
-                p.hook_list_end(Some(span_or_none(item.as_ref())), until);
+                p.hook_list_end(Some(span_or_none(item.as_ref())), until, false);
             }
         } else if let Some(rest) = &self.rest {
             rest.print(p, ctx);
@@ -4447,6 +4584,8 @@ impl Gen for TSModuleReference<'_> {
 }
 
 impl GenExpr for V8IntrinsicExpression<'_> {
+    const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
+
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let is_statement = p.start_of_stmt == p.code_len();
         let is_export_default = p.start_of_default_export == p.code_len();

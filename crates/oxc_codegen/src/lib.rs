@@ -191,8 +191,15 @@ pub struct Codegen<'a> {
     pub(crate) comment_hook: Option<Box<dyn CommentHook + 'a>>,
     /// Where the hook's next comment starts, as it last said; `None` without a hook.
     pub(crate) hook_next: Option<u32>,
-    /// Where the hook's last `before` wrote, while nothing has been printed after it.
-    hook_wrote: Option<(usize, usize)>,
+    /// The expression whose comments go inside the parentheses it is about to print.
+    pub(crate) hook_pending: Option<Span>,
+    /// A line break the hook asked for, written where the next line starts.
+    pub(crate) line_due: bool,
+    /// The statement being printed keeps its line open for a comment the hook writes after it, so
+    /// its line breaks are written where the next line starts.
+    pub(crate) hold_line: bool,
+    /// Where the printer indented a line that the hook ended, before the node that follows.
+    pub(crate) hook_indented_at: usize,
 }
 
 /// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
@@ -281,8 +288,11 @@ impl<'a> Codegen<'a> {
             sourcemap_builder: None,
             statement_expansion: None,
             comment_hook: None,
-            hook_wrote: None,
+            hook_pending: None,
             hook_next: None,
+            line_due: false,
+            hold_line: false,
+            hook_indented_at: usize::MAX,
         }
     }
 
@@ -381,6 +391,9 @@ impl<'a> Codegen<'a> {
             self.sourcemap_builder = Some(SourcemapBuilder::new(path, program.source_text));
         }
         program.print(&mut self, Context::default());
+        if self.line_due {
+            self.end_line();
+        }
         let legal_comments = self.handle_eof_linked_or_external_comments(program);
         let code = self.code.into_string();
         #[cfg(feature = "sourcemap")]
@@ -762,9 +775,18 @@ impl<'a> Codegen<'a> {
 
     #[inline]
     fn print_soft_newline(&mut self) {
-        if !self.options.minify {
-            self.print_ascii_byte(b'\n');
+        if self.options.minify {
+            return;
         }
+        if self.hold_line {
+            if self.line_due {
+                self.print_ascii_byte(b'\n');
+            }
+            self.line_due = true;
+            return;
+        }
+        self.line_due = false;
+        self.print_ascii_byte(b'\n');
     }
 
     #[inline]
@@ -832,8 +854,9 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn wrap<F: FnOnce(&mut Self)>(&mut self, wrap: bool, f: F) {
         if wrap {
-            self.print_open_parenthesis();
+            self.print_ascii_byte(b'(');
         }
+        self.hook_open();
         f(self);
         if wrap {
             self.print_ascii_byte(b')');
@@ -843,6 +866,11 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn print_indent(&mut self) {
         if self.options.minify {
+            return;
+        }
+        if self.line_due {
+            self.end_line();
+        } else if self.code.len() == self.hook_indented_at {
             return;
         }
         if self.consume_pending_indent_space() {
@@ -879,7 +907,8 @@ impl<'a> Codegen<'a> {
         if self.options.minify {
             self.needs_semicolon = true;
         } else {
-            self.print_str(";\n");
+            self.print_semicolon();
+            self.print_soft_newline();
         }
     }
 
@@ -985,15 +1014,16 @@ impl<'a> Codegen<'a> {
         for (i, stmt) in stmts.iter().enumerate() {
             self.print_orphan_comments_before(stmt.span().start);
             self.print_semicolon_if_needed();
-            stmt.print(self, ctx);
-            if let Some((owner, _)) = body
-                && !matches!(stmt, Statement::EmptyStatement(_))
-            {
-                self.hook_after_statement(stmt.span(), stmts.get(i + 1).map(GetSpan::span), owner);
+            match body {
+                Some((owner, _)) if !matches!(stmt, Statement::EmptyStatement(_)) => {
+                    let next = stmts.get(i + 1).map(GetSpan::span);
+                    self.print_listed(stmt.span(), next, owner, |p| stmt.print(p, ctx));
+                }
+                _ => stmt.print(self, ctx),
             }
         }
         if let Some((owner, before)) = body {
-            self.hook_until(stmts.last().map(GetSpan::span).or(before), Self::end_of(owner));
+            self.hook_until(stmts.last().map(GetSpan::span).or(before), Self::end_of(owner), true);
         }
         self.print_orphan_comments_before(scope_end);
     }
@@ -1014,18 +1044,14 @@ impl<'a> Codegen<'a> {
         let scope_end = owner.end;
         self.hook_body(owner);
         for (i, directive) in directives.iter().enumerate() {
-            directive.print(self, ctx);
             let next = directives.get(i + 1).map(GetSpan::span);
-            self.hook_after_statement(
-                directive.span,
-                next.or(stmts.first().map(GetSpan::span)),
-                owner,
-            );
+            let next = next.or(stmts.first().map(GetSpan::span));
+            self.print_listed(directive.span, next, owner, |p| directive.print(p, ctx));
         }
 
         let Some((first, rest)) = stmts.split_first() else {
             let last = directives.last().map(|d| d.span);
-            self.hook_until(last, Self::end_of(owner));
+            self.hook_until(last, Self::end_of(owner), true);
             self.print_orphan_comments_before(scope_end);
             return;
         };
@@ -1048,6 +1074,29 @@ impl<'a> Codegen<'a> {
         // which *would* be re-parsed as a directive.
         // So in minify mode, we force printing as a template literal, regardless of the string's content.
         // In almost all cases, this is shorter than wrapping in parentheses.
+        let next = rest.first().map(GetSpan::span);
+        self.print_listed(first.span(), next, owner, |p| p.print_first_statement(first, ctx));
+
+        self.print_stmts_with_orphan_flush(rest, scope_end, Some((owner, Some(first.span()))), ctx);
+    }
+
+    /// Prints a statement or class member at `span` of a list that `owner` holds, then reports its
+    /// end. When the hook has a comment for the end of its line, the line stays open for it.
+    fn print_listed(
+        &mut self,
+        span: Span,
+        next: Option<Span>,
+        owner: Span,
+        print: impl FnOnce(&mut Self),
+    ) {
+        let held = self.hold_line;
+        self.hold_line = held || (self.hook_next.is_some() && self.hook_trails(span, next, owner));
+        print(self);
+        self.hold_line = held;
+        self.hook_after_statement(span, next, owner);
+    }
+
+    fn print_first_statement(&mut self, first: &Statement<'_>, ctx: Context) {
         if let Statement::ExpressionStatement(stmt) = first
             && self.expansion_of(first).is_none()
             && let expr = stmt.expression.without_parentheses()
@@ -1070,9 +1119,6 @@ impl<'a> Codegen<'a> {
         } else {
             first.print(self, ctx);
         }
-        self.hook_after_statement(first.span(), rest.first().map(GetSpan::span), owner);
-
-        self.print_stmts_with_orphan_flush(rest, scope_end, Some((owner, Some(first.span()))), ctx);
     }
 
     #[inline]
@@ -1098,19 +1144,20 @@ impl<'a> Codegen<'a> {
         let mut prev = first.span();
         for item in rest {
             self.print_comma();
-            self.hook_after_item(prev, Some(item.span()), until);
+            self.hook_after_item(prev, Some(item.span()), until, false);
             self.print_soft_space();
             item.print(self, ctx);
             prev = item.span();
         }
     }
 
-    /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`.
-    fn hook_list_end(&mut self, last: Option<Span>, until: Option<u32>) {
+    /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`;
+    /// `broken` is whether it puts each item on its own line.
+    fn hook_list_end(&mut self, last: Option<Span>, until: Option<u32>, broken: bool) {
         if let Some(last) = last {
-            self.hook_after_item(last, None, until);
+            self.hook_after_item(last, None, until, broken);
         }
-        self.hook_until(last, until);
+        self.hook_until(last, until, broken);
     }
 
     #[inline]
@@ -1122,7 +1169,7 @@ impl<'a> Codegen<'a> {
         let mut prev = first.span();
         for item in rest {
             self.print_comma();
-            self.hook_after_item(prev, Some(item.span()), None);
+            self.hook_after_item(prev, Some(item.span()), None, false);
             self.print_soft_space();
             item.print_expr(self, precedence, ctx);
             prev = item.span();
@@ -1148,10 +1195,35 @@ impl<'a> Codegen<'a> {
             }
             self.dedent();
             self.print_indent();
+        } else if let Some(last) = arguments.last()
+            && self.hook_breaks(
+                arguments.first().map(GetSpan::span),
+                Self::start_of(last.span()),
+                true,
+            )
+        {
+            // upstream's printer breaks the arguments over lines when a comment before the last one
+            // ends a line; a comment inside the last one does not count.
+            self.indent();
+            let mut prev = None;
+            for item in arguments {
+                if let Some(prev) = prev {
+                    self.print_comma();
+                    self.hook_after_item(prev, Some(item.span()), Self::end_of(span), true);
+                }
+                self.print_soft_newline();
+                self.print_indent();
+                item.print(self, ctx);
+                prev = Some(item.span());
+            }
+            self.hook_after_item(last.span(), None, Self::end_of(span), true);
+            self.dedent();
+            self.print_soft_newline();
+            self.print_indent();
         } else {
             self.print_list_until(arguments, Self::end_of(span), ctx);
             if let Some(last) = arguments.last() {
-                self.hook_after_item(last.span(), None, Self::end_of(span));
+                self.hook_after_item(last.span(), None, Self::end_of(span), false);
             }
         }
         // End mapping at the gen position OF `)`, not past it. Matches

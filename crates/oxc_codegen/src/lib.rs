@@ -25,6 +25,7 @@ use rustc_hash::FxHashMap;
 mod binary_expr_visitor;
 mod cjs_module_lexer;
 mod comment;
+mod comment_hook;
 mod context;
 mod r#gen;
 mod operator;
@@ -40,6 +41,7 @@ use operator::Operator;
 use sourcemap_builder::SourcemapBuilder;
 use str::{Quote, cold_branch, is_script_close_tag};
 
+pub use comment_hook::{CommentHook, CommentWriter};
 pub use context::Context;
 pub use r#gen::{Gen, GenExpr};
 pub use options::{CodegenOptions, CommentOptions, LegalComment};
@@ -184,6 +186,9 @@ pub struct Codegen<'a> {
 
     /// Statements that print as other statements, see [`Codegen::with_statement_expansion`].
     statement_expansion: Option<StatementExpansion<'a>>,
+
+    /// The host that places comments, see [`Codegen::with_comment_hook`].
+    pub(crate) comment_hook: Option<Box<dyn CommentHook + 'a>>,
 }
 
 /// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
@@ -271,6 +276,7 @@ impl<'a> Codegen<'a> {
             #[cfg(feature = "sourcemap")]
             sourcemap_builder: None,
             statement_expansion: None,
+            comment_hook: None,
         }
     }
 
@@ -328,6 +334,15 @@ impl<'a> Codegen<'a> {
     #[must_use]
     pub fn with_statement_expansion(mut self, expand: StatementExpansion<'a>) -> Self {
         self.statement_expansion = Some(expand);
+        self
+    }
+
+    /// Lets `hook` place comments: the printer reports where it is, and the hook writes its own
+    /// comments there. Turn the printer's own comments off with [`CommentOptions::disabled`] so
+    /// that a comment is not written twice.
+    #[must_use]
+    pub fn with_comment_hook(mut self, hook: Box<dyn CommentHook + 'a>) -> Self {
+        self.comment_hook = Some(hook);
         self
     }
 
@@ -939,22 +954,39 @@ impl<'a> Codegen<'a> {
     fn print_block_statement(&mut self, stmt: &BlockStatement<'_>, ctx: Context) {
         let single_line = stmt.body.is_empty() && !self.has_orphan_comments_before(stmt.span.end);
         self.print_curly_braces(stmt.span, single_line, |p| {
-            p.print_stmts_with_orphan_flush(&stmt.body, stmt.span.end, ctx);
+            p.hook_body(stmt.span);
+            p.print_stmts_with_orphan_flush(
+                &stmt.body,
+                stmt.span.end,
+                Some((stmt.span, None)),
+                ctx,
+            );
         });
         self.needs_semicolon = false;
     }
 
-    /// Print `stmts`, flushing orphan comments before each and at `scope_end`.
+    /// Print `stmts`, flushing orphan comments before each and at `scope_end`. `body` is the
+    /// block, function body, program or static block that holds them, which a
+    /// [`CommentHook`] hears about, with the span of what printed before `stmts` in it.
     fn print_stmts_with_orphan_flush(
         &mut self,
         stmts: &[Statement<'_>],
         scope_end: u32,
+        body: Option<(Span, Option<Span>)>,
         ctx: Context,
     ) {
-        for stmt in stmts {
+        for (i, stmt) in stmts.iter().enumerate() {
             self.print_orphan_comments_before(stmt.span().start);
             self.print_semicolon_if_needed();
             stmt.print(self, ctx);
+            if let Some((owner, _)) = body
+                && !matches!(stmt, Statement::EmptyStatement(_))
+            {
+                self.hook_after_statement(stmt.span(), stmts.get(i + 1).map(GetSpan::span), owner);
+            }
+        }
+        if let Some((owner, before)) = body {
+            self.hook_until(stmts.last().map(GetSpan::span).or(before), Self::end_of(owner));
         }
         self.print_orphan_comments_before(scope_end);
     }
@@ -964,18 +996,29 @@ impl<'a> Codegen<'a> {
         self.statement_expansion.and_then(|expand| expand(stmt))
     }
 
+    /// Print `directives` and `stmts`, the body of `owner`: a program or function body.
     fn print_directives_and_statements(
         &mut self,
         directives: &[Directive<'_>],
         stmts: &[Statement<'_>],
-        scope_end: u32,
+        owner: Span,
         ctx: Context,
     ) {
-        for directive in directives {
+        let scope_end = owner.end;
+        self.hook_body(owner);
+        for (i, directive) in directives.iter().enumerate() {
             directive.print(self, ctx);
+            let next = directives.get(i + 1).map(GetSpan::span);
+            self.hook_after_statement(
+                directive.span,
+                next.or(stmts.first().map(GetSpan::span)),
+                owner,
+            );
         }
 
         let Some((first, rest)) = stmts.split_first() else {
+            let last = directives.last().map(|d| d.span);
+            self.hook_until(last, Self::end_of(owner));
             self.print_orphan_comments_before(scope_end);
             return;
         };
@@ -1020,8 +1063,9 @@ impl<'a> Codegen<'a> {
         } else {
             first.print(self, ctx);
         }
+        self.hook_after_statement(first.span(), rest.first().map(GetSpan::span), owner);
 
-        self.print_stmts_with_orphan_flush(rest, scope_end, ctx);
+        self.print_stmts_with_orphan_flush(rest, scope_end, Some((owner, Some(first.span()))), ctx);
     }
 
     #[inline]
@@ -1037,16 +1081,44 @@ impl<'a> Codegen<'a> {
         }
     }
 
+    /// [`Codegen::print_list`] for a list that ends at `until`, which a [`CommentHook`] hears
+    /// about after each item; [`Codegen::hook_list_end`] finishes it.
+    fn print_list_until<T: Gen>(&mut self, items: &[T], until: Option<u32>, ctx: Context) {
+        let Some((first, rest)) = items.split_first() else {
+            return;
+        };
+        first.print(self, ctx);
+        let mut prev = first.span();
+        for item in rest {
+            self.print_comma();
+            self.hook_after_item(prev, Some(item.span()), until);
+            self.print_soft_space();
+            item.print(self, ctx);
+            prev = item.span();
+        }
+    }
+
+    /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`.
+    fn hook_list_end(&mut self, last: Option<Span>, until: Option<u32>) {
+        if let Some(last) = last {
+            self.hook_after_item(last, None, until);
+        }
+        self.hook_until(last, until);
+    }
+
     #[inline]
     fn print_expressions<T: GenExpr>(&mut self, items: &[T], precedence: Precedence, ctx: Context) {
         let Some((first, rest)) = items.split_first() else {
             return;
         };
         first.print_expr(self, precedence, ctx);
+        let mut prev = first.span();
         for item in rest {
             self.print_comma();
+            self.hook_after_item(prev, Some(item.span()), None);
             self.print_soft_space();
             item.print_expr(self, precedence, ctx);
+            prev = item.span();
         }
     }
 
@@ -1070,7 +1142,10 @@ impl<'a> Codegen<'a> {
             self.dedent();
             self.print_indent();
         } else {
-            self.print_list(arguments, ctx);
+            self.print_list_until(arguments, Self::end_of(span), ctx);
+            if let Some(last) = arguments.last() {
+                self.hook_after_item(last.span(), None, Self::end_of(span));
+            }
         }
         // End mapping at the gen position OF `)`, not past it. Matches
         // esbuild/Babel and avoids shadowing the next AST node's start.

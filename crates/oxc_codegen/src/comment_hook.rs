@@ -1,0 +1,140 @@
+//! Comments placed by the host instead of by [`Codegen`], see [`Codegen::with_comment_hook`].
+//!
+//! The printer reports where it is: before and after each node, at the start of each statement
+//! list, after each statement or list item, and at the end of each list. The host decides which of
+//! its comments to write there. A node whose span is [`SPAN`](oxc_span::SPAN) has no position in
+//! the source, so the printer reports `None` for it.
+
+use oxc_span::Span;
+
+use crate::Codegen;
+
+/// Where the printer is, reported to the host that places comments.
+///
+/// Positions are offsets in the source that the nodes' spans index; `None` is a node without one.
+pub trait CommentHook {
+    /// Before the node at `span` prints. `expression` is `true` for an expression. A node that
+    /// wraps another of the same span, such as an `Expression` around a call, reports both, and
+    /// each `before` has its own [`CommentHook::after`].
+    fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, expression: bool);
+
+    /// After the node at `span` printed.
+    fn after(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>);
+
+    /// A list of statements or class members is about to print; `owner` is the program, block,
+    /// function body, class body or static block that holds it.
+    fn body(&mut self, owner: Option<Span>);
+
+    /// After a statement, a class member or a list item printed with its separator. `end` is
+    /// where it ends, `next` where the printer goes next: the next item's start in a list, the
+    /// next statement's end in a statement list, or the end of the list.
+    fn trailing(&mut self, out: &mut CommentWriter<'_, '_>, end: Option<u32>, next: Option<u32>);
+
+    /// At the end of a list: `from` is where its last item ends and `to` where the list ends.
+    fn until(&mut self, out: &mut CommentWriter<'_, '_>, from: Option<u32>, to: Option<u32>);
+}
+
+/// What a [`CommentHook`] may write.
+pub struct CommentWriter<'p, 'a> {
+    p: &'p mut Codegen<'a>,
+}
+
+impl CommentWriter<'_, '_> {
+    /// Writes `text` as it is, indented when it starts a line.
+    pub fn write(&mut self, text: &str) {
+        if self.p.code.last_byte() == Some(b'\n') {
+            self.p.print_indent();
+        }
+        self.p.print_str(text);
+    }
+
+    /// Writes a `//` comment and ends its line, so nothing after it is commented out.
+    pub fn line_comment(&mut self, text: &str) {
+        self.write(text);
+        self.newline();
+    }
+
+    pub fn space(&mut self) {
+        self.p.print_hard_space();
+    }
+
+    pub fn newline(&mut self) {
+        self.p.print_hard_newline();
+    }
+}
+
+/// A span as a position, or `None` for a node the host built.
+fn located(span: Span) -> Option<Span> {
+    (!span.is_unspanned()).then_some(span)
+}
+
+impl<'a> Codegen<'a> {
+    #[inline]
+    fn with_hook(&mut self, f: impl FnOnce(&mut dyn CommentHook, &mut CommentWriter<'_, 'a>)) {
+        if let Some(mut hook) = self.comment_hook.take() {
+            f(&mut *hook, &mut CommentWriter { p: self });
+            self.comment_hook = Some(hook);
+        }
+    }
+
+    #[inline]
+    pub(crate) fn hook_before(&mut self, span: Span, expression: bool) {
+        if self.comment_hook.is_some() {
+            self.with_hook(|h, out| h.before(out, located(span), expression));
+        }
+    }
+
+    #[inline]
+    pub(crate) fn hook_after(&mut self, span: Span) {
+        if self.comment_hook.is_some() {
+            self.with_hook(|h, out| h.after(out, located(span)));
+        }
+    }
+
+    #[inline]
+    pub(crate) fn hook_body(&mut self, owner: Span) {
+        if let Some(hook) = self.comment_hook.as_mut() {
+            hook.body(located(owner));
+        }
+    }
+
+    /// After a statement or class member of a list that `owner` holds; `next` is the next one's
+    /// span.
+    #[inline]
+    pub(crate) fn hook_after_statement(&mut self, end: Span, next: Option<Span>, owner: Span) {
+        if self.comment_hook.is_some() {
+            let next = next.map_or(located(owner), located).map(|s| s.end);
+            self.with_hook(|h, out| h.trailing(out, located(end).map(|s| s.end), next));
+        }
+    }
+
+    /// After an item of a list that ends at `until`; `next` is the next item's span.
+    #[inline]
+    pub(crate) fn hook_after_item(&mut self, item: Span, next: Option<Span>, until: Option<u32>) {
+        if self.comment_hook.is_some() {
+            let next = next.map_or(until, |s| located(s).map(|s| s.start));
+            self.with_hook(|h, out| h.trailing(out, located(item).map(|s| s.end), next));
+        }
+    }
+
+    /// At the end of a list whose last item is `last`.
+    #[inline]
+    pub(crate) fn hook_until(&mut self, last: Option<Span>, to: Option<u32>) {
+        if self.comment_hook.is_some() {
+            let from = last.and_then(located).map(|s| s.end);
+            self.with_hook(|h, out| h.until(out, from, to));
+        }
+    }
+
+    /// Where a list that ends with `span`'s end stops, or `None` when `span` has no position.
+    #[inline]
+    pub(crate) fn end_of(span: Span) -> Option<u32> {
+        located(span).map(|s| s.end)
+    }
+
+    /// Where a list that stops before `span` stops, or `None` when `span` has no position.
+    #[inline]
+    pub(crate) fn start_of(span: Span) -> Option<u32> {
+        located(span).map(|s| s.start)
+    }
+}

@@ -19,6 +19,10 @@ use crate::{
 
 /// Generate source code for an AST node.
 pub trait Gen: GetSpan {
+    /// Where the comments before a node of this type go: [`CommentPlace::Before`] or, for a node
+    /// that only groups others, [`CommentPlace::Inner`].
+    const COMMENTS: CommentPlace = CommentPlace::Before;
+
     /// Generate code for an AST node.
     fn r#gen(&self, p: &mut Codegen, ctx: Context);
 
@@ -26,10 +30,13 @@ pub trait Gen: GetSpan {
     #[inline]
     fn print(&self, p: &mut Codegen, ctx: Context) {
         // One call of `gen`, so that inlining it does not copy it.
-        let reported = p.hook_next.is_some() && p.hook_comment_before(self.span()) && {
-            p.hook_before(self.span(), false);
-            true
-        };
+        let reported = Self::COMMENTS != CommentPlace::Inner
+            && p.hook_next.is_some()
+            && p.hook_comment_before(self.span())
+            && {
+                p.hook_before(self.span(), false);
+                true
+            };
         self.r#gen(p, ctx);
         if reported {
             p.hook_after(self.span());
@@ -968,6 +975,9 @@ impl Gen for FormalParameterRest<'_> {
 }
 
 impl Gen for FormalParameters<'_> {
+    /// Its first parameter's, as esrap visits the parameters and not the list.
+    const COMMENTS: CommentPlace = CommentPlace::Inner;
+
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
         let until = Codegen::end_of(self.span);
         p.print_sequence(&self.items, self.rest.as_deref(), until, false, ctx);

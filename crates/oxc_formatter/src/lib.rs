@@ -196,8 +196,9 @@ pub fn format_program<'a>(
     )
 }
 
-/// Shared AST-in funnel for [`format_with_session`] / [`format_program`].
-fn format_program_with_session<'a>(
+/// [`format_program`] on a caller-supplied [`FormatSession`], whose services (Tailwind sorting)
+/// the host installs; the AST-in counterpart of [`format_with_session`].
+pub fn format_program_with_session<'a>(
     session: &FormatSession<'a>,
     program: &'a Program<'a>,
     options: JsFormatOptions,

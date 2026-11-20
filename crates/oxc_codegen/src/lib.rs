@@ -1150,6 +1150,27 @@ impl<'a> Codegen<'a> {
         }
     }
 
+    /// What goes before the item at `next` of a list that ends at `until`: after `prev`, a comma,
+    /// then the item's own line when the list is `broken` over lines, or else a space.
+    fn print_list_separator(
+        &mut self,
+        prev: Option<Span>,
+        next: Span,
+        until: Option<u32>,
+        broken: bool,
+    ) {
+        if let Some(prev) = prev {
+            self.print_comma();
+            self.hook_after_item(prev, Some(next), until, broken);
+        }
+        if broken {
+            self.print_soft_newline();
+            self.print_indent();
+        } else {
+            self.print_soft_space();
+        }
+    }
+
     /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`;
     /// `broken` is whether it puts each item on its own line.
     fn hook_list_end(&mut self, last: Option<Span>, until: Option<u32>, broken: bool) {

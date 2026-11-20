@@ -3385,24 +3385,32 @@ impl Gen for ObjectPattern<'_> {
             p.print_str("{}");
             return;
         }
-        p.print_ascii_byte(b'{');
-        p.print_soft_space();
         let until = Codegen::end_of(self.span);
-        p.print_list_until(&self.properties, until, ctx);
-        let mut last = self.properties.last().map(GetSpan::span);
+        let first = self.properties.first().map(GetSpan::span);
+        let broken = p.hook_breaks(first.or(self.rest.as_ref().map(|r| r.span)), until, false);
+        p.print_ascii_byte(b'{');
+        if broken {
+            p.indent();
+        }
+        let mut last = None;
+        for property in &self.properties {
+            p.print_list_separator(last, property.span(), until, broken);
+            property.print(p, ctx);
+            last = Some(property.span());
+        }
         if let Some(rest) = &self.rest {
-            if !self.properties.is_empty() {
-                p.print_comma();
-                if let Some(prev) = last {
-                    p.hook_after_item(prev, Some(rest.span), until, false);
-                }
-                p.print_soft_space();
-            }
+            p.print_list_separator(last, rest.span, until, broken);
             rest.print(p, ctx);
             last = Some(rest.span);
         }
-        p.hook_list_end(last, until, false);
-        p.print_soft_space();
+        p.hook_list_end(last, until, broken);
+        if broken {
+            p.dedent();
+            p.print_soft_newline();
+            p.print_indent();
+        } else {
+            p.print_soft_space();
+        }
         p.print_ascii_byte(b'}');
     }
 }

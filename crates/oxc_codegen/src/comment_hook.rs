@@ -48,7 +48,8 @@ pub trait CommentHook {
     fn next_comment(&self) -> Option<u32>;
 
     /// Whether [`CommentHook::trailing`] after a statement that ends at `end` would write a
-    /// comment, so that the statement keeps its line open for it.
+    /// comment, so that the statement keeps its line open for it. Asked before the statement
+    /// prints, so the comments inside it are still to be written.
     fn trails(&self, end: u32, next: Option<u32>) -> bool {
         let _ = (end, next);
         false
@@ -224,11 +225,7 @@ impl<'a> Codegen<'a> {
     pub(crate) fn hook_trails(&self, end: Span, next: Option<Span>, owner: Span) -> bool {
         let next = Self::statement_next(next, owner);
         match (&self.comment_hook, located(end)) {
-            (Some(hook), Some(end))
-                if self.hook_next.is_some_and(|c| c >= end.end && next.is_none_or(|n| c < n)) =>
-            {
-                hook.trails(end.end, next)
-            }
+            (Some(hook), Some(end)) => hook.trails(end.end, next),
             _ => false,
         }
     }

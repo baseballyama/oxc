@@ -70,6 +70,13 @@ pub trait CommentHook {
         let _ = to;
         false
     }
+
+    /// Whether the hook writes a comment inside the body at `span`, before it prints, so that an
+    /// empty body opens a line for it.
+    fn holds(&self, span: Span) -> bool {
+        let _ = span;
+        false
+    }
 }
 
 /// What a [`CommentHook`] may write.
@@ -304,6 +311,15 @@ impl<'a> Codegen<'a> {
             (Some(hook), Some(s)) if self.hook_next.is_some_and(|c| c < s.start) => {
                 hook.breaks_before(s.start)
             }
+            _ => false,
+        }
+    }
+
+    /// Whether the hook writes a comment inside the body at `span`, see [`CommentHook::holds`].
+    #[inline]
+    pub(crate) fn hook_holds(&self, span: Span) -> bool {
+        match (&self.comment_hook, located(span)) {
+            (Some(hook), Some(span)) => hook.holds(span),
             _ => false,
         }
     }

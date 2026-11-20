@@ -161,3 +161,32 @@ fn a_space_at_the_start_of_a_line_is_the_indent() {
     let code = Codegen::new().with_comment_hook(Box::new(Trailing)).build(&parsed.program).code;
     assert_eq!(code, "function f() {\n\ta;\n\t// c\n\tb;\n}\n");
 }
+
+#[test]
+fn a_reopened_line_takes_a_trailing_comment() {
+    struct Trailing;
+    impl CommentHook for Trailing {
+        fn before(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>, _: bool) {}
+        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+        fn body(&mut self, _: Option<Span>) {}
+        fn trailing(&mut self, out: &mut CommentWriter<'_, '_>, end: Option<u32>, _: Option<u32>) {
+            if end == Some(17) {
+                assert!(out.reopen_line());
+                out.space();
+                out.line_comment("// c");
+            }
+        }
+        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    }
+    let allocator = Allocator::default();
+    let parsed = Parser::new(&allocator, "function f() { a; b; }", SourceType::mjs()).parse();
+    let code = Codegen::new().with_comment_hook(Box::new(Trailing)).build(&parsed.program).code;
+    assert_eq!(code, "function f() {\n\ta; // c\n\tb;\n}\n");
+    let options =
+        CodegenOptions { source_map_path: Some("x.js".into()), ..CodegenOptions::default() };
+    let mapped = Codegen::new()
+        .with_options(options)
+        .with_comment_hook(Box::new(Trailing))
+        .build(&parsed.program);
+    assert_eq!(mapped.code, code);
+}

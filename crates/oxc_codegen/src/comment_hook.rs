@@ -54,6 +54,20 @@ impl CommentWriter<'_, '_> {
         self.newline();
     }
 
+    /// Takes back the line break that ends the output, as a statement prints its own, so that a
+    /// comment can end that line; `true` when it did, and the hook then ends the line itself.
+    pub fn reopen_line(&mut self) -> bool {
+        #[cfg(feature = "sourcemap")]
+        if self.p.sourcemap_builder.as_ref().is_some_and(|b| b.read_until() >= self.p.code.len()) {
+            return false;
+        }
+        if self.p.code.last_byte() != Some(b'\n') {
+            return false;
+        }
+        self.p.code.pop_ascii_byte();
+        true
+    }
+
     /// A space, unless a line starts here, where [`CommentWriter::write`] indents instead.
     pub fn space(&mut self) {
         if self.p.code.last_byte() != Some(b'\n') {

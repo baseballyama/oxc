@@ -950,6 +950,11 @@ impl<'a> Codegen<'a> {
         self.print_ascii_byte(b'}');
     }
 
+    /// Whether comments are written inside the body at `span`, which then is not printed `{}`.
+    fn has_comments_in(&self, span: Span) -> bool {
+        self.has_orphan_comments_before(span.end) || self.hook_holds(span)
+    }
+
     fn print_block_start(&mut self, span: Span) {
         self.add_source_mapping(span);
         self.print_ascii_byte(b'{');
@@ -987,7 +992,7 @@ impl<'a> Codegen<'a> {
     }
 
     fn print_block_statement(&mut self, stmt: &BlockStatement<'_>, ctx: Context) {
-        let single_line = stmt.body.is_empty() && !self.has_orphan_comments_before(stmt.span.end);
+        let single_line = stmt.body.is_empty() && !self.has_comments_in(stmt.span);
         self.print_curly_braces(stmt.span, single_line, |p| {
             p.hook_body(stmt.span);
             p.print_stmts_with_orphan_flush(

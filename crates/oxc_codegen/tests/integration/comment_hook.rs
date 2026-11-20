@@ -170,7 +170,8 @@ fn a_node_without_a_span_has_no_position() {
     }
     let (_, log) = print(&parsed.program, &[]);
     assert!(!log.iter().any(|l| l.starts_with("node -")), "{log:?}");
-    assert_eq!(lines(&log, "trailing"), ["trailing 3 -", "trailing - 7"]);
+    // The statement after it has no end to go to, and the one without a span is not reported.
+    assert_eq!(lines(&log, "trailing"), ["trailing 3 -"]);
 }
 
 #[test]

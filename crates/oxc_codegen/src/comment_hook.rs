@@ -30,10 +30,12 @@ pub trait CommentHook {
 
     /// After a statement, a class member or a list item printed with its separator. `end` is
     /// where it ends, `next` where the printer goes next: the next item's start in a list, the
-    /// next statement's end in a statement list, or the end of the list.
+    /// next statement's end in a statement list, or the end of the list. Reported only when the
+    /// item has a position and the next comment starts before `next`.
     fn trailing(&mut self, out: &mut CommentWriter<'_, '_>, end: Option<u32>, next: Option<u32>);
 
     /// At the end of a list: `from` is where its last item ends and `to` where the list ends.
+    /// Reported only when the list has an end and the next comment starts before it.
     fn until(&mut self, out: &mut CommentWriter<'_, '_>, from: Option<u32>, to: Option<u32>);
 
     /// Where the next comment the hook would write starts, or `None` when it has none left. The
@@ -197,7 +199,15 @@ impl<'a> Codegen<'a> {
     pub(crate) fn hook_after_statement(&mut self, end: Span, next: Option<Span>, owner: Span) {
         if self.hook_next.is_some() {
             let next = next.map_or(located(owner), located).map(|s| s.end);
-            self.with_hook(|h, out| h.trailing(out, located(end).map(|s| s.end), next));
+            self.hook_trailing(located(end).map(|s| s.end), next);
+        }
+    }
+
+    /// A trailing comment ends by `next`, so none starts at or after it.
+    #[inline]
+    fn hook_trailing(&mut self, end: Option<u32>, next: Option<u32>) {
+        if end.is_some() && self.hook_next.is_some_and(|c| next.is_none_or(|n| c < n)) {
+            self.with_hook(|h, out| h.trailing(out, end, next));
         }
     }
 
@@ -206,16 +216,18 @@ impl<'a> Codegen<'a> {
     pub(crate) fn hook_after_item(&mut self, item: Span, next: Option<Span>, until: Option<u32>) {
         if self.hook_next.is_some() {
             let next = next.map_or(until, |s| located(s).map(|s| s.start));
-            self.with_hook(|h, out| h.trailing(out, located(item).map(|s| s.end), next));
+            self.hook_trailing(located(item).map(|s| s.end), next);
         }
     }
 
     /// At the end of a list whose last item is `last`.
     #[inline]
     pub(crate) fn hook_until(&mut self, last: Option<Span>, to: Option<u32>) {
-        if self.hook_next.is_some() {
+        if let Some(to) = to
+            && self.hook_next.is_some_and(|c| c < to)
+        {
             let from = last.and_then(located).map(|s| s.end);
-            self.with_hook(|h, out| h.until(out, from, to));
+            self.with_hook(|h, out| h.until(out, from, Some(to)));
         }
     }
 

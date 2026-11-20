@@ -62,6 +62,12 @@ impl CommentWriter<'_, '_> {
         self.newline();
     }
 
+    /// The last byte of the output that is not a space or a tab.
+    pub fn last_byte(&self) -> Option<u8> {
+        let bytes = self.p.code.as_bytes();
+        bytes.iter().rev().find(|b| !matches!(b, b' ' | b'\t')).copied()
+    }
+
     /// Takes back the line break that ends the output, as a statement prints its own, so that a
     /// comment can end that line; `true` when it did, and the hook then ends the line itself.
     pub fn reopen_line(&mut self) -> bool {

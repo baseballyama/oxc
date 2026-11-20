@@ -189,6 +189,8 @@ pub struct Codegen<'a> {
 
     /// The host that places comments, see [`Codegen::with_comment_hook`].
     pub(crate) comment_hook: Option<Box<dyn CommentHook + 'a>>,
+    /// Where the hook's next comment starts, as it last said; `None` without a hook.
+    pub(crate) hook_next: Option<u32>,
     /// Where the hook's last `before` wrote, while nothing has been printed after it.
     hook_wrote: Option<(usize, usize)>,
 }
@@ -280,6 +282,7 @@ impl<'a> Codegen<'a> {
             statement_expansion: None,
             comment_hook: None,
             hook_wrote: None,
+            hook_next: None,
         }
     }
 
@@ -345,6 +348,7 @@ impl<'a> Codegen<'a> {
     /// that a comment is not written twice.
     #[must_use]
     pub fn with_comment_hook(mut self, hook: Box<dyn CommentHook + 'a>) -> Self {
+        self.hook_next = hook.next_comment();
         self.comment_hook = Some(hook);
         self
     }

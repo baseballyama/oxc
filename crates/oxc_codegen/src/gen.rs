@@ -25,14 +25,16 @@ pub trait Gen: GetSpan {
     /// Generate code for an AST node. Alias for `gen`.
     #[inline]
     fn print(&self, p: &mut Codegen, ctx: Context) {
-        if p.comment_hook.is_none() {
+        if p.hook_next.is_none() {
             self.r#gen(p, ctx);
             return;
         }
         let span = self.span();
-        p.hook_before(span, false);
+        let reported = p.hook_before(span, false);
         self.r#gen(p, ctx);
-        p.hook_after(span);
+        if reported {
+            p.hook_after(span);
+        }
     }
 }
 
@@ -45,9 +47,11 @@ pub trait GenExpr: GetSpan {
     #[inline]
     fn print_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         let span = self.span();
-        p.hook_before(span, true);
+        let reported = p.hook_before(span, true);
         self.gen_expr(p, precedence, ctx);
-        p.hook_after(span);
+        if reported {
+            p.hook_after(span);
+        }
         // Map chain punctuation after a postfix operand ending in `)`/`]`.
         p.add_source_mapping_after_postfix(self.span(), precedence);
     }

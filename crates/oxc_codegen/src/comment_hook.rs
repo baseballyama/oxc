@@ -65,8 +65,7 @@ impl CommentWriter<'_, '_> {
     /// Takes back the line break that ends the output, as a statement prints its own, so that a
     /// comment can end that line; `true` when it did, and the hook then ends the line itself.
     pub fn reopen_line(&mut self) -> bool {
-        #[cfg(feature = "sourcemap")]
-        if self.p.sourcemap_builder.as_ref().is_some_and(|b| b.read_until() >= self.p.code.len()) {
+        if self.p.mappings_read_until() >= self.p.code.len() {
             return false;
         }
         if self.p.code.last_byte() != Some(b'\n') {
@@ -128,8 +127,45 @@ impl<'a> Codegen<'a> {
     #[inline]
     pub(crate) fn hook_before(&mut self, span: Span, expression: bool) {
         if self.comment_hook.is_some() {
+            let start = self.code.len();
             self.with_hook(|h, out| h.before(out, located(span), expression));
+            if expression && self.code.len() != start {
+                self.hook_wrote = Some((start, self.code.len()));
+            }
         }
+    }
+
+    /// The parentheses an expression prints around itself, which go before the comments the hook
+    /// has just written for it, so those stay next to the expression, as upstream's printer has
+    /// them.
+    #[inline]
+    pub(crate) fn print_open_parenthesis(&mut self) {
+        if let Some((start, end)) = self.hook_wrote.take()
+            && end == self.code.len()
+            && self.mappings_read_until() <= start
+        {
+            self.code.insert_ascii_byte(start, b'(');
+            for marker in [
+                &mut self.start_of_stmt,
+                &mut self.start_of_arrow_expr,
+                &mut self.start_of_default_export,
+            ] {
+                if *marker > start {
+                    *marker += 1;
+                }
+            }
+        } else {
+            self.print_ascii_byte(b'(');
+        }
+    }
+
+    #[inline]
+    fn mappings_read_until(&self) -> usize {
+        #[cfg(feature = "sourcemap")]
+        if let Some(builder) = &self.sourcemap_builder {
+            return builder.read_until();
+        }
+        0
     }
 
     #[inline]

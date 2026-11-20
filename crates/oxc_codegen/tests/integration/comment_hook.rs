@@ -228,9 +228,9 @@ fn before(source: &str, at: u32, text: &'static str) -> String {
 
 #[test]
 fn a_comment_before_an_arrow_body_keeps_the_object_s_parentheses() {
-    // `() => ({ n })` with a comment before the object.
+    // `() => ({ n })` with a comment before the object, which goes inside its parentheses.
     let code = before("f(() => ({ n }));", 9, "/*c*/");
-    assert_eq!(code, "f(() => /*c*/ ({ n }));\n");
+    assert_eq!(code, "f(() => (/*c*/ { n }));\n");
 }
 
 #[test]
@@ -248,4 +248,14 @@ fn a_returned_value_after_a_comment_is_parenthesized() {
     assert!(code.contains("return (// c\n"), "{code}");
     let code = before("function f() { throw a; }", 21, "// c");
     assert!(code.contains("throw (// c\n"), "{code}");
+}
+
+#[test]
+fn a_node_s_own_parentheses_go_before_its_comment() {
+    let code = before("async function f() { return (await x)(); }", 29, "// c");
+    assert!(code.contains("return (// c\n"), "{code}");
+    assert!(code.contains("await x)()"), "{code}");
+    let allocator = Allocator::default();
+    let reparsed = Parser::new(&allocator, &code, SourceType::mjs()).parse();
+    assert!(reparsed.diagnostics.is_empty(), "{code}");
 }

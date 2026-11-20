@@ -189,6 +189,8 @@ pub struct Codegen<'a> {
 
     /// The host that places comments, see [`Codegen::with_comment_hook`].
     pub(crate) comment_hook: Option<Box<dyn CommentHook + 'a>>,
+    /// Where the hook's last `before` wrote, while nothing has been printed after it.
+    hook_wrote: Option<(usize, usize)>,
 }
 
 /// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
@@ -277,6 +279,7 @@ impl<'a> Codegen<'a> {
             sourcemap_builder: None,
             statement_expansion: None,
             comment_hook: None,
+            hook_wrote: None,
         }
     }
 
@@ -824,7 +827,7 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn wrap<F: FnOnce(&mut Self)>(&mut self, wrap: bool, f: F) {
         if wrap {
-            self.print_ascii_byte(b'(');
+            self.print_open_parenthesis();
         }
         f(self);
         if wrap {

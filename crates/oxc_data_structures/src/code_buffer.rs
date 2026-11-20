@@ -269,28 +269,6 @@ impl CodeBuffer {
         self.peek_nth_char_back(0)
     }
 
-    /// Insert an ASCII byte at `at`, which must be the end of a char.
-    ///
-    /// # Panics
-    /// Panics if `byte` is not ASCII or `at` is not the end of a char.
-    #[inline]
-    pub fn insert_ascii_byte(&mut self, at: usize, byte: u8) {
-        assert!(byte.is_ascii(), "byte {byte} is not ASCII");
-        assert!(
-            at == self.buf.len() || !(0x80..0xC0).contains(&self.buf[at]),
-            "{at} is inside a char"
-        );
-        self.buf.insert(at, byte);
-    }
-
-    /// Remove the last byte when it is ASCII, so the buffer stays valid UTF-8, and return it.
-    #[inline]
-    pub fn pop_ascii_byte(&mut self) -> Option<u8> {
-        let byte = self.buf.last().copied().filter(u8::is_ascii)?;
-        self.buf.pop();
-        Some(byte)
-    }
-
     /// Push a single ASCII byte into the buffer.
     ///
     /// # Panics

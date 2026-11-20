@@ -6,6 +6,12 @@
 //! source, so the printer reports `None` for it. So that a program pays only where it has
 //! comments, the printer asks [`CommentHook::next_comment`] where the next one starts, and reports
 //! a node only when that is before the node.
+//!
+//! What the printer prints around a comment it decides before printing, by asking the hook: a
+//! statement whose line a comment ends keeps that line open, a list that a comment breaks prints
+//! one item per line, and an expression that opens with parentheses gets its comments inside
+//! them. A line break the hook asks for is written where the next line starts, indented as that
+//! line is, so nothing written is taken back.
 
 use oxc_span::Span;
 
@@ -16,9 +22,8 @@ use crate::Codegen;
 /// Positions are offsets in the source that the nodes' spans index; `None` is a node without one.
 pub trait CommentHook {
     /// Before the node at `span` prints, when [`CommentHook::next_comment`] is before it.
-    /// `expression` is `true` for an expression. A node that wraps another of the same span, such
-    /// as an `Expression` around a call, may report both, and each `before` has its own
-    /// [`CommentHook::after`].
+    /// `expression` is `true` for an expression, whose comments go inside the parentheses it
+    /// prints around itself.
     fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, expression: bool);
 
     /// After the node at `span` printed, for each [`CommentHook::before`].
@@ -39,10 +44,31 @@ pub trait CommentHook {
     fn until(&mut self, out: &mut CommentWriter<'_, '_>, from: Option<u32>, to: Option<u32>);
 
     /// Where the next comment the hook would write starts, or `None` when it has none left. The
-    /// printer asks after each call. It also wraps the argument of `return` and `throw` in
-    /// parentheses when this is before the argument, so that a line comment cannot end the
-    /// statement.
+    /// printer asks after each call.
     fn next_comment(&self) -> Option<u32>;
+
+    /// Whether [`CommentHook::trailing`] after a statement that ends at `end` would write a
+    /// comment, so that the statement keeps its line open for it.
+    fn trails(&self, end: u32, next: Option<u32>) -> bool {
+        let _ = (end, next);
+        false
+    }
+
+    /// Whether the comments the hook has left before `until` print over lines, so that the list
+    /// they are in puts each item on its own line. The list's first item starts at `first`, and a
+    /// comment before it follows the list's opening bracket. `trailing` is whether a comment on the
+    /// line of the item before it counts too.
+    fn breaks(&self, first: u32, until: u32, trailing: bool) -> bool {
+        let _ = (first, until, trailing);
+        false
+    }
+
+    /// Whether the comments before `to` end a line, so that what comes before them must not end a
+    /// statement there.
+    fn breaks_before(&self, to: u32) -> bool {
+        let _ = to;
+        false
+    }
 }
 
 /// What a [`CommentHook`] may write.
@@ -51,9 +77,13 @@ pub struct CommentWriter<'p, 'a> {
 }
 
 impl CommentWriter<'_, '_> {
-    /// Writes `text` as it is, indented when it starts a line.
+    /// Writes `text`, on a line of its own when a line break is due, and indented when it starts a
+    /// line.
     pub fn write(&mut self, text: &str) {
-        if self.p.code.last_byte() == Some(b'\n') {
+        if self.p.line_due {
+            self.p.end_line();
+            self.p.print_indent();
+        } else if self.p.code.last_byte() == Some(b'\n') {
             self.p.print_indent();
         }
         self.p.print_str(text);
@@ -65,35 +95,33 @@ impl CommentWriter<'_, '_> {
         self.newline();
     }
 
-    /// The last byte of the output that is not a space or a tab.
-    pub fn last_byte(&self) -> Option<u8> {
-        let bytes = self.p.code.as_bytes();
-        bytes.iter().rev().find(|b| !matches!(b, b' ' | b'\t')).copied()
-    }
-
-    /// Takes back the line break that ends the output, as a statement prints its own, so that a
-    /// comment can end that line; `true` when it did, and the hook then ends the line itself.
-    pub fn reopen_line(&mut self) -> bool {
-        if self.p.mappings_read_until() >= self.p.code.len() {
-            return false;
-        }
-        if self.p.code.last_byte() != Some(b'\n') {
-            return false;
-        }
-        self.p.code.pop_ascii_byte();
-        true
+    /// Writes `text` at the end of the line the printer is on, before a line break that is due.
+    pub fn append(&mut self, text: &str) {
+        self.p.print_str(text);
     }
 
     /// A space, unless a line starts here, where [`CommentWriter::write`] indents instead.
     pub fn space(&mut self) {
-        if self.p.code.last_byte() != Some(b'\n') {
+        if !self.p.line_due && self.p.code.last_byte() != Some(b'\n') {
             self.p.print_hard_space();
         }
     }
 
+    /// Ends the line: the line break is written where the next line starts.
     pub fn newline(&mut self) {
-        self.p.print_hard_newline();
+        self.p.line_due = true;
     }
+}
+
+/// What the printer does after a hook wrote, which decides how a line break it asked for is
+/// written.
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Then {
+    /// The printer goes on with code on this line, so a line break that is due is written now,
+    /// with the indent.
+    Code,
+    /// The printer starts a line itself, which writes the line break that is due.
+    Line,
 }
 
 /// A span as a position, or `None` for a node the host built.
@@ -113,16 +141,39 @@ impl<'a> Codegen<'a> {
             // comment, which decides whether an object or a function there needs parentheses.
             let after = self.code.len();
             if after != before {
-                for start in [
-                    &mut self.start_of_stmt,
-                    &mut self.start_of_arrow_expr,
-                    &mut self.start_of_default_export,
-                ] {
-                    if *start == before {
-                        *start = after;
-                    }
-                }
+                self.move_starts(before, after);
             }
+        }
+    }
+
+    fn move_starts(&mut self, from: usize, to: usize) {
+        for start in [
+            &mut self.start_of_stmt,
+            &mut self.start_of_arrow_expr,
+            &mut self.start_of_default_export,
+        ] {
+            if *start == from {
+                *start = to;
+            }
+        }
+    }
+
+    /// Writes the line break that is due.
+    #[inline]
+    pub(crate) fn end_line(&mut self) {
+        self.line_due = false;
+        self.print_ascii_byte(b'\n');
+    }
+
+    /// Writes a line break that is due when code follows on the line.
+    #[inline]
+    fn after_hook(&mut self, then: Then) {
+        if then == Then::Code && self.line_due {
+            let before = self.code.len();
+            self.end_line();
+            self.print_indent();
+            self.hook_indented_at = self.code.len();
+            self.move_starts(before, self.code.len());
         }
     }
 
@@ -132,52 +183,20 @@ impl<'a> Codegen<'a> {
         located(span).is_some_and(|s| self.hook_next.is_some_and(|next| next < s.start))
     }
 
-    /// Reports the node at `span` when the hook's next comment is before it; `true` when it did,
-    /// and [`Codegen::hook_after`] is then due.
+    /// Reports the node at `span` before it prints; [`Codegen::hook_after`] is then due.
     #[inline(never)]
-    pub(crate) fn hook_before(&mut self, span: Span, expression: bool) -> bool {
-        if !self.hook_comment_before(span) {
-            return false;
-        }
-        let start = self.code.len();
+    pub(crate) fn hook_before(&mut self, span: Span, expression: bool) {
         self.with_hook(|h, out| h.before(out, located(span), expression));
-        if expression && self.code.len() != start {
-            self.hook_wrote = Some((start, self.code.len()));
-        }
-        true
+        self.after_hook(Then::Code);
     }
 
-    /// The parentheses an expression prints around itself, which go before the comments the hook
-    /// has just written for it, so those stay next to the expression, as upstream's printer has
-    /// them.
+    /// Where an expression that opens with parentheses has printed them, or would have: the
+    /// comments [`Codegen::hook_pending`] holds for it go here.
     #[inline]
-    pub(crate) fn print_open_parenthesis(&mut self) {
-        if let Some((start, end)) = self.hook_wrote.take()
-            && end == self.code.len()
-            && self.mappings_read_until() <= start
-        {
-            self.code.insert_ascii_byte(start, b'(');
-            for marker in [
-                &mut self.start_of_stmt,
-                &mut self.start_of_arrow_expr,
-                &mut self.start_of_default_export,
-            ] {
-                if *marker > start {
-                    *marker += 1;
-                }
-            }
-        } else {
-            self.print_ascii_byte(b'(');
+    pub(crate) fn hook_open(&mut self) {
+        if let Some(span) = self.hook_pending.take() {
+            self.hook_before(span, true);
         }
-    }
-
-    #[inline]
-    fn mappings_read_until(&self) -> usize {
-        #[cfg(feature = "sourcemap")]
-        if let Some(builder) = &self.sourcemap_builder {
-            return builder.read_until();
-        }
-        0
     }
 
     #[inline(never)]
@@ -193,41 +212,102 @@ impl<'a> Codegen<'a> {
         }
     }
 
+    /// Where a statement of a list that `owner` holds goes next: the next one's end, or the end of
+    /// the list.
+    #[inline]
+    fn statement_next(next: Option<Span>, owner: Span) -> Option<u32> {
+        next.map_or(located(owner), located).map(|s| s.end)
+    }
+
+    /// Whether the statement at `end` keeps its line open for a comment, see [`CommentHook::trails`].
+    #[inline]
+    pub(crate) fn hook_trails(&self, end: Span, next: Option<Span>, owner: Span) -> bool {
+        let next = Self::statement_next(next, owner);
+        match (&self.comment_hook, located(end)) {
+            (Some(hook), Some(end))
+                if self.hook_next.is_some_and(|c| c >= end.end && next.is_none_or(|n| c < n)) =>
+            {
+                hook.trails(end.end, next)
+            }
+            _ => false,
+        }
+    }
+
     /// After a statement or class member of a list that `owner` holds; `next` is the next one's
-    /// span.
+    /// span. The statement's line ends here.
     #[inline]
     pub(crate) fn hook_after_statement(&mut self, end: Span, next: Option<Span>, owner: Span) {
         if self.hook_next.is_some() {
-            let next = next.map_or(located(owner), located).map(|s| s.end);
-            self.hook_trailing(located(end).map(|s| s.end), next);
+            let next = Self::statement_next(next, owner);
+            self.hook_trailing(located(end).map(|s| s.end), next, Then::Line);
+        }
+        if self.line_due && !self.hold_line {
+            self.end_line();
         }
     }
 
     /// A trailing comment ends by `next`, so none starts at or after it.
     #[inline]
-    fn hook_trailing(&mut self, end: Option<u32>, next: Option<u32>) {
+    fn hook_trailing(&mut self, end: Option<u32>, next: Option<u32>, then: Then) {
         if end.is_some() && self.hook_next.is_some_and(|c| next.is_none_or(|n| c < n)) {
             self.with_hook(|h, out| h.trailing(out, end, next));
+            self.after_hook(then);
         }
     }
 
-    /// After an item of a list that ends at `until`; `next` is the next item's span.
+    /// After an item of a list that ends at `until`; `next` is the next item's span. `broken` is
+    /// whether the list puts each item on its own line.
     #[inline]
-    pub(crate) fn hook_after_item(&mut self, item: Span, next: Option<Span>, until: Option<u32>) {
+    pub(crate) fn hook_after_item(
+        &mut self,
+        item: Span,
+        next: Option<Span>,
+        until: Option<u32>,
+        broken: bool,
+    ) {
         if self.hook_next.is_some() {
             let next = next.map_or(until, |s| located(s).map(|s| s.start));
-            self.hook_trailing(located(item).map(|s| s.end), next);
+            let then = if broken { Then::Line } else { Then::Code };
+            self.hook_trailing(located(item).map(|s| s.end), next, then);
         }
     }
 
     /// At the end of a list whose last item is `last`.
     #[inline]
-    pub(crate) fn hook_until(&mut self, last: Option<Span>, to: Option<u32>) {
+    pub(crate) fn hook_until(&mut self, last: Option<Span>, to: Option<u32>, broken: bool) {
         if let Some(to) = to
             && self.hook_next.is_some_and(|c| c < to)
         {
             let from = last.and_then(located).map(|s| s.end);
             self.with_hook(|h, out| h.until(out, from, Some(to)));
+            self.after_hook(if broken { Then::Line } else { Then::Code });
+        }
+    }
+
+    /// Whether the comments of a list break it over lines, see [`CommentHook::breaks`]. `first` is
+    /// its first item and `until` where the comments that count stop.
+    #[inline]
+    pub(crate) fn hook_breaks(
+        &self,
+        first: Option<Span>,
+        until: Option<u32>,
+        trailing: bool,
+    ) -> bool {
+        let (Some(hook), Some(until)) = (&self.comment_hook, until) else {
+            return false;
+        };
+        let first = first.and_then(located).map_or(until, |s| s.start);
+        self.hook_next.is_some_and(|c| c < until) && hook.breaks(first, until, trailing)
+    }
+
+    /// Whether the comments before `span`'s node end a line, see [`CommentHook::breaks_before`].
+    #[inline]
+    pub(crate) fn hook_breaks_before(&self, span: Span) -> bool {
+        match (&self.comment_hook, located(span)) {
+            (Some(hook), Some(s)) if self.hook_next.is_some_and(|c| c < s.start) => {
+                hook.breaks_before(s.start)
+            }
+            _ => false,
         }
     }
 

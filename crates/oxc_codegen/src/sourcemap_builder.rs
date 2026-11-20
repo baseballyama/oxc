@@ -156,6 +156,11 @@ impl<'a> SourcemapBuilder<'a> {
         self.original_source.get(span.start as usize..span.end as usize)
     }
 
+    /// How much of the output the mappings have read; the bytes after it can still change.
+    pub(crate) fn read_until(&self) -> usize {
+        self.last_generated_update
+    }
+
     pub fn add_source_mapping(&mut self, output: &[u8], position: u32, name: Option<&'a str>) {
         if self.last_position == Some(position) {
             if let Some(name) = name

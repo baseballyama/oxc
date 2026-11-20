@@ -25,7 +25,14 @@ pub trait Gen: GetSpan {
     /// Generate code for an AST node. Alias for `gen`.
     #[inline]
     fn print(&self, p: &mut Codegen, ctx: Context) {
+        if p.comment_hook.is_none() {
+            self.r#gen(p, ctx);
+            return;
+        }
+        let span = self.span();
+        p.hook_before(span, false);
         self.r#gen(p, ctx);
+        p.hook_after(span);
     }
 }
 
@@ -37,7 +44,10 @@ pub trait GenExpr: GetSpan {
     /// Generate code for an expression, respecting operator precedence. Alias for `gen_expr`.
     #[inline]
     fn print_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
+        let span = self.span();
+        p.hook_before(span, true);
         self.gen_expr(p, precedence, ctx);
+        p.hook_after(span);
         // Map chain punctuation after a postfix operand ending in `)`/`]`.
         p.add_source_mapping_after_postfix(self.span(), precedence);
     }
@@ -52,7 +62,7 @@ impl Gen for Program<'_> {
         if let Some(hashbang) = &self.hashbang {
             hashbang.print(p, ctx);
         }
-        p.print_directives_and_statements(&self.directives, &self.body, self.span.end, ctx);
+        p.print_directives_and_statements(&self.directives, &self.body, self.span, ctx);
         p.print_semicolon_if_needed();
         // Print trailing statement comments.
         p.print_comments_at(self.span.end);
@@ -612,7 +622,7 @@ impl Gen for SwitchCase<'_> {
 
         p.print_soft_newline();
         p.indent();
-        p.print_stmts_with_orphan_flush(&self.consequent, self.span.end, ctx);
+        p.print_stmts_with_orphan_flush(&self.consequent, self.span.end, None, ctx);
         p.dedent();
     }
 }
@@ -845,12 +855,7 @@ impl Gen for FunctionBody<'_> {
             false
         };
         p.print_curly_braces(self.span, single_line, |p| {
-            p.print_directives_and_statements(
-                &self.directives,
-                &self.statements,
-                self.span.end,
-                ctx,
-            );
+            p.print_directives_and_statements(&self.directives, &self.statements, self.span, ctx);
             // Print trailing statement comments.
             if let Some(comments) = comments_at_end {
                 p.print_comments(&comments);
@@ -915,14 +920,21 @@ impl Gen for FormalParameterRest<'_> {
 
 impl Gen for FormalParameters<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
-        p.print_list(&self.items, ctx);
+        let until = Codegen::end_of(self.span);
+        p.print_list_until(&self.items, until, ctx);
+        let mut last = self.items.last().map(GetSpan::span);
         if let Some(rest) = &self.rest {
             if !self.items.is_empty() {
                 p.print_comma();
+                if let Some(prev) = last {
+                    p.hook_after_item(prev, Some(rest.span), until);
+                }
                 p.print_soft_space();
             }
             rest.print(p, ctx);
+            last = Some(rest.span);
         }
+        p.hook_list_end(last, until);
     }
 }
 
@@ -1128,14 +1140,15 @@ impl Gen for ExportDeclaration<'_> {
 
 impl Gen for ExportNamedDeclaration<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
-        gen_export_specifiers(p, ctx, self.span, self.export_kind, &self.specifiers);
+        gen_export_specifiers(p, ctx, self.span, self.export_kind, &self.specifiers, None);
         p.print_semicolon_after_statement();
     }
 }
 
 impl Gen for ExportFromDeclaration<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
-        gen_export_specifiers(p, ctx, self.span, self.export_kind, &self.specifiers);
+        let until = Codegen::start_of(self.source.span);
+        gen_export_specifiers(p, ctx, self.span, self.export_kind, &self.specifiers, until);
         p.print_soft_space();
         p.print_str("from");
         p.print_soft_space();
@@ -1154,6 +1167,7 @@ fn gen_export_specifiers(
     span: Span,
     export_kind: ImportOrExportKind,
     specifiers: &[ExportSpecifier<'_>],
+    until: Option<u32>,
 ) {
     p.print_comments_at(span.start);
     p.print_indent();
@@ -1167,7 +1181,9 @@ fn gen_export_specifiers(
     p.print_ascii_byte(b'{');
     if !specifiers.is_empty() {
         p.print_soft_space();
-        p.print_list(specifiers, ctx);
+        let until = until.or(Codegen::end_of(span));
+        p.print_list_until(specifiers, until, ctx);
+        p.hook_list_end(specifiers.last().map(GetSpan::span), until);
         p.print_soft_space();
     }
     p.print_ascii_byte(b'}');
@@ -1685,6 +1701,7 @@ impl Gen for SpreadElement<'_> {
 
 impl Gen for ArrayExpression<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
+        let until = Codegen::end_of(self.span);
         p.add_source_mapping(self.span);
         p.print_ascii_byte(b'[');
 
@@ -1698,9 +1715,11 @@ impl Gen for ArrayExpression<'_> {
                 item.print(p, ctx);
 
                 for item_ref in others {
+                    let prev = item.span();
                     item = item_ref;
 
                     p.print_comma();
+                    p.hook_after_item(prev, Some(item.span()), until);
                     p.print_soft_newline();
                     p.print_indent();
 
@@ -1710,6 +1729,7 @@ impl Gen for ArrayExpression<'_> {
                 if matches!(item, ArrayExpressionElement::Elision(_)) {
                     p.print_comma();
                 }
+                p.hook_list_end(Some(item.span()), until);
 
                 p.print_soft_newline();
                 p.dedent();
@@ -1719,9 +1739,11 @@ impl Gen for ArrayExpression<'_> {
                 item.print(p, ctx);
 
                 if let Some(item_ref) = others.first() {
+                    let prev = item.span();
                     item = item_ref;
 
                     p.print_comma();
+                    p.hook_after_item(prev, Some(item.span()), until);
                     p.print_soft_space();
 
                     item.print(p, ctx);
@@ -1730,6 +1752,7 @@ impl Gen for ArrayExpression<'_> {
                 if matches!(item, ArrayExpressionElement::Elision(_)) {
                     p.print_comma();
                 }
+                p.hook_list_end(Some(item.span()), until);
             }
         }
 
@@ -1757,9 +1780,11 @@ impl GenExpr for ObjectExpression<'_> {
             if is_multi_line {
                 p.indent();
             }
+            let until = Codegen::end_of(self.span);
             for (i, item) in self.properties.iter().enumerate() {
                 if i != 0 {
                     p.print_comma();
+                    p.hook_after_item(self.properties[i - 1].span(), Some(item.span()), until);
                 }
                 if is_multi_line {
                     p.print_soft_newline();
@@ -1774,6 +1799,7 @@ impl GenExpr for ObjectExpression<'_> {
                 }
                 item.print(p, ctx);
             }
+            p.hook_list_end(self.properties.last().map(GetSpan::span), until);
             if is_multi_line {
                 p.print_soft_newline();
                 p.dedent();
@@ -2188,6 +2214,7 @@ impl Gen for ArrayAssignmentTarget<'_> {
         p.add_source_mapping(self.span);
         p.print_ascii_byte(b'[');
 
+        let until = Codegen::end_of(self.span);
         if let Some((first, others)) = self.elements.split_first() {
             let mut item = first;
             if let Some(item) = item {
@@ -2195,9 +2222,11 @@ impl Gen for ArrayAssignmentTarget<'_> {
             }
 
             for item_ref in others {
+                let prev = span_or_none(item.as_ref());
                 item = item_ref;
 
                 p.print_comma();
+                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until);
                 p.print_soft_space();
 
                 if let Some(item) = item {
@@ -2207,10 +2236,15 @@ impl Gen for ArrayAssignmentTarget<'_> {
 
             if let Some(rest) = &self.rest {
                 p.print_comma();
+                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until);
                 p.print_soft_space();
                 rest.print(p, ctx);
-            } else if item.is_none() {
-                p.print_comma();
+                p.hook_list_end(Some(rest.span), until);
+            } else {
+                if item.is_none() {
+                    p.print_comma();
+                }
+                p.hook_list_end(Some(span_or_none(item.as_ref())), until);
             }
         } else if let Some(rest) = &self.rest {
             rest.print(p, ctx);
@@ -2347,6 +2381,8 @@ impl GenExpr for SequenceExpression<'_> {
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
         p.wrap(precedence >= self.precedence(), |p| {
             p.print_expressions(&self.expressions, Precedence::Comma, ctx.and_forbid_call(false));
+            let last = self.expressions.last().map(GetSpan::span);
+            p.hook_list_end(last, Codegen::end_of(self.span));
         });
     }
 }
@@ -2660,12 +2696,16 @@ impl Gen for Class<'_> {
 impl Gen for ClassBody<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
         p.print_curly_braces(self.span, self.body.is_empty(), |p| {
-            for item in &self.body {
+            p.hook_body(self.span);
+            for (i, item) in self.body.iter().enumerate() {
                 p.print_semicolon_if_needed();
                 p.print_leading_comments(item.span().start);
                 p.print_indent();
                 item.print(p, ctx);
+                let next = self.body.get(i + 1).map(GetSpan::span);
+                p.hook_after_statement(item.span(), next, self.span);
             }
+            p.hook_until(self.body.last().map(GetSpan::span), Codegen::end_of(self.span));
         });
     }
 }
@@ -2684,6 +2724,8 @@ impl Gen for ClassElement<'_> {
             Self::PropertyDefinition(elem) => {
                 elem.print(p, ctx);
                 p.print_semicolon_after_statement();
+                let end = elem.value.as_ref().map_or(elem.key.span(), GetSpan::span);
+                p.hook_after_item(end, None, None);
             }
             Self::AccessorProperty(elem) => {
                 elem.print(p, ctx);
@@ -2948,7 +2990,13 @@ impl Gen for StaticBlock<'_> {
         p.print_soft_space();
         let single_line = self.body.is_empty() && !p.has_orphan_comments_before(self.span.end);
         p.print_curly_braces(self.span, single_line, |p| {
-            p.print_stmts_with_orphan_flush(&self.body, self.span.end, ctx);
+            p.hook_body(self.span);
+            p.print_stmts_with_orphan_flush(
+                &self.body,
+                self.span.end,
+                Some((self.span, None)),
+                ctx,
+            );
         });
         p.needs_semicolon = false;
     }
@@ -3189,14 +3237,21 @@ impl Gen for ObjectPattern<'_> {
         }
         p.print_ascii_byte(b'{');
         p.print_soft_space();
-        p.print_list(&self.properties, ctx);
+        let until = Codegen::end_of(self.span);
+        p.print_list_until(&self.properties, until, ctx);
+        let mut last = self.properties.last().map(GetSpan::span);
         if let Some(rest) = &self.rest {
             if !self.properties.is_empty() {
                 p.print_comma();
+                if let Some(prev) = last {
+                    p.hook_after_item(prev, Some(rest.span), until);
+                }
                 p.print_soft_space();
             }
             rest.print(p, ctx);
+            last = Some(rest.span);
         }
+        p.hook_list_end(last, until);
         p.print_soft_space();
         p.print_ascii_byte(b'}');
     }
@@ -3252,6 +3307,7 @@ impl Gen for ArrayPattern<'_> {
         p.add_source_mapping(self.span);
         p.print_ascii_byte(b'[');
 
+        let until = Codegen::end_of(self.span);
         if let Some((first, others)) = self.elements.split_first() {
             let mut item = first;
             if let Some(item) = item {
@@ -3259,9 +3315,11 @@ impl Gen for ArrayPattern<'_> {
             }
 
             for item_ref in others {
+                let prev = span_or_none(item.as_ref());
                 item = item_ref;
 
                 p.print_comma();
+                p.hook_after_item(prev, Some(span_or_none(item.as_ref())), until);
                 p.print_soft_space();
 
                 if let Some(item) = item {
@@ -3271,10 +3329,15 @@ impl Gen for ArrayPattern<'_> {
 
             if let Some(rest) = &self.rest {
                 p.print_comma();
+                p.hook_after_item(span_or_none(item.as_ref()), Some(rest.span), until);
                 p.print_soft_space();
                 rest.print(p, ctx);
-            } else if item.is_none() {
-                p.print_comma();
+                p.hook_list_end(Some(rest.span), until);
+            } else {
+                if item.is_none() {
+                    p.print_comma();
+                }
+                p.hook_list_end(Some(span_or_none(item.as_ref())), until);
             }
         } else if let Some(rest) = &self.rest {
             rest.print(p, ctx);
@@ -4155,7 +4218,7 @@ impl Gen for TSModuleBlock<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
         let is_empty = self.directives.is_empty() && self.body.is_empty();
         p.print_curly_braces(self.span, is_empty, |p| {
-            p.print_directives_and_statements(&self.directives, &self.body, self.span.end, ctx);
+            p.print_directives_and_statements(&self.directives, &self.body, self.span, ctx);
         });
         p.needs_semicolon = false;
     }
@@ -4390,4 +4453,9 @@ impl GenExpr for V8IntrinsicExpression<'_> {
             p.print_arguments(self.span, &self.arguments, ctx);
         });
     }
+}
+
+/// The span of a list item, or [`SPAN`](oxc_span::SPAN) for a hole, which has no position.
+fn span_or_none<T: GetSpan>(item: Option<&T>) -> Span {
+    item.map_or(oxc_span::SPAN, GetSpan::span)
 }

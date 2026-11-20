@@ -970,20 +970,7 @@ impl Gen for FormalParameterRest<'_> {
 impl Gen for FormalParameters<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
         let until = Codegen::end_of(self.span);
-        p.print_list_until(&self.items, until, ctx);
-        let mut last = self.items.last().map(GetSpan::span);
-        if let Some(rest) = &self.rest {
-            if !self.items.is_empty() {
-                p.print_comma();
-                if let Some(prev) = last {
-                    p.hook_after_item(prev, Some(rest.span), until, false);
-                }
-                p.print_soft_space();
-            }
-            rest.print(p, ctx);
-            last = Some(rest.span);
-        }
-        p.hook_list_end(last, until, false);
+        p.print_sequence(&self.items, self.rest.as_deref(), until, false, ctx);
     }
 }
 
@@ -3387,32 +3374,9 @@ impl Gen for ObjectPattern<'_> {
             p.print_str("{}");
             return;
         }
-        let until = Codegen::end_of(self.span);
-        let first = self.properties.first().map(GetSpan::span);
-        let broken = p.hook_breaks(first.or(self.rest.as_ref().map(|r| r.span)), until, false);
         p.print_ascii_byte(b'{');
-        if broken {
-            p.indent();
-        }
-        let mut last = None;
-        for property in &self.properties {
-            p.print_list_separator(last, property.span(), until, broken);
-            property.print(p, ctx);
-            last = Some(property.span());
-        }
-        if let Some(rest) = &self.rest {
-            p.print_list_separator(last, rest.span, until, broken);
-            rest.print(p, ctx);
-            last = Some(rest.span);
-        }
-        p.hook_list_end(last, until, broken);
-        if broken {
-            p.dedent();
-            p.print_soft_newline();
-            p.print_indent();
-        } else {
-            p.print_soft_space();
-        }
+        let until = Codegen::end_of(self.span);
+        p.print_sequence(&self.properties, self.rest.as_deref(), until, true, ctx);
         p.print_ascii_byte(b'}');
     }
 }

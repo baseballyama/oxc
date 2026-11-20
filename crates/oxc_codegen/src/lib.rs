@@ -1157,25 +1157,60 @@ impl<'a> Codegen<'a> {
         }
     }
 
-    /// What goes before the item at `next` of a list that ends at `until`: after `prev`, a comma,
-    /// then the item's own line when the list is `broken` over lines, or else a space.
-    fn print_list_separator(
+    /// esrap's `sequence`: `items` then `rest`, of a list that ends at `until`, each on its own
+    /// line when the hook's comments break the list, or else after `pad` and a space between
+    /// them. The caller writes the brackets.
+    fn print_sequence<T: Gen, R: Gen>(
         &mut self,
-        prev: Option<Span>,
-        next: Span,
+        items: &[T],
+        rest: Option<&R>,
+        until: Option<u32>,
+        pad: bool,
+        ctx: Context,
+    ) {
+        let first = items.first().map(GetSpan::span).or_else(|| rest.map(GetSpan::span));
+        let broken = self.hook_breaks(first, until, false);
+        if broken {
+            self.indent();
+        }
+        let mut last = None;
+        for item in items {
+            self.print_sequence_item(item, &mut last, until, broken, pad, ctx);
+        }
+        if let Some(rest) = rest {
+            self.print_sequence_item(rest, &mut last, until, broken, pad, ctx);
+        }
+        self.hook_list_end(last, until, broken);
+        if broken {
+            self.dedent();
+            self.print_soft_newline();
+            self.print_indent();
+        } else if pad {
+            self.print_soft_space();
+        }
+    }
+
+    fn print_sequence_item(
+        &mut self,
+        item: &impl Gen,
+        last: &mut Option<Span>,
         until: Option<u32>,
         broken: bool,
+        pad: bool,
+        ctx: Context,
     ) {
-        if let Some(prev) = prev {
+        if let Some(prev) = *last {
             self.print_comma();
-            self.hook_after_item(prev, Some(next), until, broken);
+            self.hook_after_item(prev, Some(item.span()), until, broken);
         }
         if broken {
             self.print_soft_newline();
             self.print_indent();
-        } else {
+        } else if last.is_some() || pad {
             self.print_soft_space();
         }
+        item.print(self, ctx);
+        *last = Some(item.span());
     }
 
     /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`;

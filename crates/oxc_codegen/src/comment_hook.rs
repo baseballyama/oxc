@@ -54,8 +54,11 @@ impl CommentWriter<'_, '_> {
         self.newline();
     }
 
+    /// A space, unless a line starts here, where [`CommentWriter::write`] indents instead.
     pub fn space(&mut self) {
-        self.p.print_hard_space();
+        if self.p.code.last_byte() != Some(b'\n') {
+            self.p.print_hard_space();
+        }
     }
 
     pub fn newline(&mut self) {

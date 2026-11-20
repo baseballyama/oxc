@@ -1167,8 +1167,8 @@ impl<'a> Codegen<'a> {
         pad: bool,
         ctx: Context,
     ) {
-        let first = items.first().map(GetSpan::span).or_else(|| rest.map(GetSpan::span));
-        let broken = self.hook_breaks(first, until, false);
+        let spans = items.iter().map(GetSpan::span).chain(rest.map(GetSpan::span));
+        let broken = self.hook_breaks(spans, until, false);
         if broken {
             self.indent();
         }
@@ -1258,7 +1258,7 @@ impl<'a> Codegen<'a> {
             self.print_indent();
         } else if let Some(last) = arguments.last()
             && self.hook_breaks(
-                arguments.first().map(GetSpan::span),
+                arguments.iter().map(GetSpan::span),
                 Self::start_of(last.span()),
                 true,
             )

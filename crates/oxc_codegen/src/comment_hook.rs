@@ -276,20 +276,23 @@ impl<'a> Codegen<'a> {
         }
     }
 
-    /// Whether the comments of a list break it over lines, see [`CommentHook::breaks`]. `first` is
-    /// its first item and `until` where the comments that count stop.
+    /// Whether the comments of a list break it over lines, see [`CommentHook::breaks`]. `items`
+    /// are the spans of its items and `until` where the comments that count stop. The first item
+    /// that has a position is the one the comments before it lead.
     #[inline]
     pub(crate) fn hook_breaks(
         &self,
-        first: Option<Span>,
+        items: impl IntoIterator<Item = Span>,
         until: Option<u32>,
         trailing: bool,
     ) -> bool {
         let (Some(hook), Some(until)) = (&self.comment_hook, until) else {
             return false;
         };
-        let first = first.and_then(located).map_or(until, |s| s.start);
-        self.hook_next.is_some_and(|c| c < until) && hook.breaks(first, until, trailing)
+        self.hook_next.is_some_and(|c| c < until) && {
+            let first = items.into_iter().find_map(located).map_or(until, |s| s.start);
+            hook.breaks(first, until, trailing)
+        }
     }
 
     /// Whether the comments before `span`'s node end a line, see [`CommentHook::breaks_before`].

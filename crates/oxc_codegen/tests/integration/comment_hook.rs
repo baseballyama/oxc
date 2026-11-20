@@ -404,3 +404,37 @@ fn an_empty_body_that_holds_a_comment_opens_a_line_for_it() {
         assert_eq!(code, expected, "{source}");
     }
 }
+
+#[test]
+fn a_list_asks_whether_it_breaks_from_its_first_item_with_a_position() {
+    struct First(Rc<RefCell<Vec<u32>>>);
+    impl CommentHook for First {
+        fn before(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>, _: bool) {}
+        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+        fn body(&mut self, _: Option<Span>) {}
+        fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(0)
+        }
+        fn breaks(&self, first: u32, _: u32, _: bool) -> bool {
+            self.0.borrow_mut().push(first);
+            false
+        }
+    }
+    let allocator = Allocator::default();
+    let mut parsed = Parser::new(&allocator, "g(a, b, c);", SourceType::mjs()).parse();
+    let Statement::ExpressionStatement(statement) = &mut parsed.program.body[0] else {
+        unreachable!()
+    };
+    let oxc_ast::ast::Expression::CallExpression(call) = &mut statement.expression else {
+        unreachable!()
+    };
+    // The first argument is one the host built.
+    let oxc_ast::ast::Argument::Identifier(a) = &mut call.arguments[0] else { unreachable!() };
+    a.span = SPAN;
+    let asked = Rc::new(RefCell::new(Vec::new()));
+    let _ =
+        Codegen::new().with_comment_hook(Box::new(First(Rc::clone(&asked)))).build(&parsed.program);
+    assert_eq!(*asked.borrow(), [5]);
+}

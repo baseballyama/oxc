@@ -259,3 +259,25 @@ fn a_node_s_own_parentheses_go_before_its_comment() {
     let reparsed = Parser::new(&allocator, &code, SourceType::mjs()).parse();
     assert!(reparsed.diagnostics.is_empty(), "{code}");
 }
+
+#[test]
+fn the_writer_reads_the_last_byte_before_spaces() {
+    struct Last(Rc<RefCell<Vec<Option<u8>>>>);
+    impl CommentHook for Last {
+        fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
+            if span.is_some_and(|s| s.start == 3) {
+                self.0.borrow_mut().push(out.last_byte());
+            }
+        }
+        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+        fn body(&mut self, _: Option<Span>) {}
+        fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    }
+    let seen = Rc::new(RefCell::new(Vec::new()));
+    let allocator = Allocator::default();
+    let parsed = Parser::new(&allocator, "f( a);", SourceType::mjs()).parse();
+    let _ =
+        Codegen::new().with_comment_hook(Box::new(Last(Rc::clone(&seen)))).build(&parsed.program);
+    assert!(seen.borrow().contains(&Some(b'(')), "{:?}", seen.borrow());
+}

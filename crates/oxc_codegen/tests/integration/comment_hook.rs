@@ -316,14 +316,15 @@ fn the_line_after_a_comment_is_indented_as_the_code_on_it() {
 }
 
 /// Breaks every list that has a comment: the arguments of a call go one per line.
+/// Writes `// c`, a comment that starts at `from`, before the first node after it.
 struct Breaking {
-    at: u32,
+    from: u32,
     done: bool,
 }
 
 impl CommentHook for Breaking {
     fn before(&mut self, out: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
-        if !self.done && span.is_some_and(|s| s.start == self.at) {
+        if !self.done && span.is_some_and(|s| s.start > self.from) {
             self.done = true;
             out.line_comment("// c");
         }
@@ -333,10 +334,10 @@ impl CommentHook for Breaking {
     fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
     fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
     fn next_comment(&self) -> Option<u32> {
-        (!self.done).then(|| self.at - 1)
+        (!self.done).then_some(self.from)
     }
     fn breaks(&self, _: u32, until: u32, _: bool) -> bool {
-        !self.done && self.at <= until
+        !self.done && self.from < until
     }
 }
 
@@ -344,7 +345,7 @@ impl CommentHook for Breaking {
 fn a_list_a_comment_breaks_puts_each_item_on_its_own_line() {
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, "function f() { g(a, b); }", SourceType::mjs()).parse();
-    let hook = Breaking { at: 20, done: false };
+    let hook = Breaking { from: 19, done: false };
     let code = Codegen::new().with_comment_hook(Box::new(hook)).build(&parsed.program).code;
     assert_eq!(code, "function f() {\n\tg(\n\t\ta,\n\t\t// c\n\t\tb\n\t);\n}\n");
 }
@@ -352,12 +353,14 @@ fn a_list_a_comment_breaks_puts_each_item_on_its_own_line() {
 #[test]
 fn parameters_and_an_object_pattern_a_comment_breaks_put_each_item_on_its_own_line() {
     let allocator = Allocator::default();
-    for (source, at, expected) in [
-        ("((a, b) => a);", 5, "((\n\ta,\n\t// c\n\tb\n) => a);\n"),
-        ("let { a, ...b } = c;", 9, "let {\n\ta,\n\t// c\n\t...b\n} = c;\n"),
+    // The second comment starts before the parentheses, and the first parameter writes it.
+    for (source, from, expected) in [
+        ("((a, b) => a);", 4, "((\n\ta,\n\t// c\n\tb\n) => a);\n"),
+        ("(<T,>(a, b) => a);", 2, "(<T,>(\n\t// c\n\ta,\n\tb\n) => a);\n"),
+        ("let { a, ...b } = c;", 8, "let {\n\ta,\n\t// c\n\t...b\n} = c;\n"),
     ] {
-        let parsed = Parser::new(&allocator, source, SourceType::mjs()).parse();
-        let hook = Breaking { at, done: false };
+        let parsed = Parser::new(&allocator, source, SourceType::tsx()).parse();
+        let hook = Breaking { from, done: false };
         let code = Codegen::new().with_comment_hook(Box::new(hook)).build(&parsed.program).code;
         assert_eq!(code, expected, "{source}");
     }

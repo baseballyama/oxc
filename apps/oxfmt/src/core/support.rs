@@ -7,8 +7,8 @@ use oxc_formatter_htmlish::HtmlishVariant;
 use oxc_formatter_json::JsonVariant;
 use oxc_span::SourceType;
 
+use super::host::HostedLanguage;
 use super::language::{Language, Route};
-#[cfg(feature = "napi")]
 use super::oxfmtrc::FormatConfig;
 
 /// Classify a file path into a [`FormatStrategy`].
@@ -72,6 +72,23 @@ pub fn classify_file(path: &Path) -> Option<FormatStrategy> {
     None
 }
 
+/// The [`PrettierLanguage`] of a file outside the set [`classify_file`] gives a Rust formatter,
+/// in every build, for a host formatter to serve.
+pub fn delegated_language(path: &Path) -> Option<PrettierLanguage> {
+    if is_excluded(path) {
+        return None;
+    }
+    let ext = path.extension().and_then(|ext| ext.to_str()).unwrap_or_default();
+    prettier_language(path.file_name()?.to_str()?, ext)
+}
+
+/// Whether `path` is a file that must never be formatted, whatever classified it.
+pub fn is_excluded(path: &Path) -> bool {
+    path.file_name()
+        .and_then(|name| name.to_str())
+        .is_some_and(|name| EXCLUDE_FILENAMES.contains(name))
+}
+
 /// Classify a file explicitly assigned to `language` (e.g. by `associations`), regardless of its name.
 ///
 /// Still `None` for excluded files (lock files), and in the pure Rust build for languages Prettier serves.
@@ -105,6 +122,8 @@ pub enum FormatStrategy {
     /// Files like `.prettierrc`: mirroring Prettier's yaml embed,
     /// formatted as JSON first, then as YAML if that fails.
     YamlRc,
+    /// Files a host formatter serves in place of Prettier.
+    Host(HostedLanguage),
     /// Files formatted by delegating to Prettier (Tier 3/4).
     #[cfg(feature = "napi")]
     Prettier(PrettierLanguage),
@@ -117,6 +136,7 @@ impl FormatStrategy {
             Self::Native(language) => language.trace_label(),
             Self::PackageJson => "package_json",
             Self::YamlRc => "yaml_rc",
+            Self::Host(hosted) => hosted.language.parser(),
             #[cfg(feature = "napi")]
             Self::Prettier(language) => language.parser(),
         }
@@ -161,7 +181,7 @@ impl NativeLanguage {
 /// The Prettier paths receive this instead of a raw string,
 /// so they can never be handed an unknown language.
 /// The set shrinks as Rust ports land, and the type disappears with the last port.
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum PrettierLanguage {
     Mdx,
     Angular,
@@ -179,7 +199,6 @@ pub enum PrettierLanguage {
     Glimmer,
 }
 
-#[cfg(feature = "napi")]
 impl PrettierLanguage {
     /// The Prettier `parser` name injected into the options JSON.
     pub fn parser(self) -> &'static str {
@@ -188,11 +207,26 @@ impl PrettierLanguage {
             Self::Angular => "angular",
             Self::Svelte => "svelte",
             Self::Astro => "astro",
+            #[cfg(feature = "napi")]
             Self::Mjml => "mjml",
             Self::Glimmer => "glimmer",
         }
     }
 
+    /// Whether `config` turns this language off (`"svelte": false`, e.g. in an override),
+    /// for a host formatter, which needs no plugin to be turned on.
+    pub fn disabled_by(self, config: &FormatConfig) -> bool {
+        use super::oxfmtrc::{AstroUserConfig, SvelteUserConfig};
+        match self {
+            Self::Svelte => matches!(config.svelte, Some(SvelteUserConfig::Bool(false))),
+            Self::Astro => matches!(config.astro, Some(AstroUserConfig::Bool(false))),
+            _ => false,
+        }
+    }
+}
+
+#[cfg(feature = "napi")]
+impl PrettierLanguage {
     /// The config key of the opt-in plugin this language requires, when `config` does NOT enable it.
     ///
     /// `svelte` / `astro` cannot be formatted without `prettier-plugin-svelte` / `prettier-plugin-astro`,
@@ -402,7 +436,6 @@ fn html_variant(ext: &str) -> Option<HtmlishVariant> {
 
 /// Returns the [`PrettierLanguage`] for the file, if supported.
 /// See also `prettier --support-info | jq '.languages[]'`
-#[cfg(feature = "napi")]
 fn prettier_language(file_name: &str, ext: &str) -> Option<PrettierLanguage> {
     if file_name.ends_with(".component.html") {
         return Some(PrettierLanguage::Angular);
@@ -413,6 +446,7 @@ fn prettier_language(file_name: &str, ext: &str) -> Option<PrettierLanguage> {
         "svelte" => PrettierLanguage::Svelte,
         "astro" => PrettierLanguage::Astro,
         "mdx" => PrettierLanguage::Mdx,
+        #[cfg(feature = "napi")]
         "mjml" => PrettierLanguage::Mjml,
         "handlebars" | "hbs" => PrettierLanguage::Glimmer,
         _ => return None,

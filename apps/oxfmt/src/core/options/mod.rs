@@ -10,8 +10,9 @@
 //! - [`to_oxc_formatter_markdown()`]: `oxc_formatter_markdown::MarkdownFormatOptions` for Markdown formatting
 //! - [`to_oxc_formatter_htmlish()`]: `oxc_formatter_htmlish::HtmlishFormatOptions` for HTML formatting
 //! - [`to_oxc_formatter_toml()`]: `TomlFormatOptions` for `oxc_formatter_toml`
-//! - `to_prettier`(NAPI-only): Prettier-compatible JSON, plus `inject_*` helpers for
-//!   layering in `parser` / `filepath` / plugin payloads at the format step
+//! - [`to_prettier()`]: Prettier-compatible JSON, plus `inject_*` helpers for
+//!   layering in `parser` / `filepath` / plugin payloads at the format step,
+//!   for Prettier and for a host formatter
 //! - [`validate()`]: the validation gate runs every fallible conversion once
 //!   and returns the derived artifacts ([`ValidatedOptions`]) the mappers above consume,
 //!   which is what keeps them infallible
@@ -25,7 +26,6 @@ mod to_oxc_formatter_json;
 mod to_oxc_formatter_markdown;
 mod to_oxc_formatter_toml;
 mod to_oxc_formatter_yaml;
-#[cfg(feature = "napi")]
 mod to_prettier;
 mod validate;
 
@@ -38,8 +38,9 @@ pub use to_oxc_formatter_markdown::to_oxc_formatter_markdown;
 pub use to_oxc_formatter_toml::to_oxc_formatter_toml;
 pub use to_oxc_formatter_yaml::to_oxc_formatter_yaml;
 #[cfg(feature = "napi")]
+pub use to_prettier::{build_prettier_options, inject_oxfmt_plugin_payload};
 pub use to_prettier::{
-    build_prettier_options, inject_filepath, inject_opt_in_plugin_payloads,
-    inject_oxfmt_plugin_payload, inject_parser, inject_tailwind_plugin_payload, to_prettier,
+    inject_filepath, inject_opt_in_plugin_payloads, inject_parser, inject_tailwind_plugin_payload,
+    to_prettier,
 };
 pub use validate::{ValidatedOptions, validate};

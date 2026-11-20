@@ -354,8 +354,8 @@ fn a_list_a_comment_breaks_puts_each_item_on_its_own_line() {
 
 #[test]
 fn an_empty_body_that_holds_a_comment_opens_a_line_for_it() {
-    /// One comment, `// c`, inside the bodies that start at 13.
-    struct Inside(bool);
+    /// One comment inside the bodies that start at 13, which ends its line if it is a line comment.
+    struct Inside(bool, &'static str);
     impl CommentHook for Inside {
         fn before(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>, _: bool) {}
         fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
@@ -364,8 +364,10 @@ fn an_empty_body_that_holds_a_comment_opens_a_line_for_it() {
         fn until(&mut self, out: &mut CommentWriter<'_, '_>, _: Option<u32>, to: Option<u32>) {
             if self.0 && to.is_some_and(|to| to > 13) {
                 self.0 = false;
-                out.write("// c");
-                out.newline();
+                out.write(self.1);
+                if self.1.starts_with("//") {
+                    out.newline();
+                }
             }
         }
         fn next_comment(&self) -> Option<u32> {
@@ -376,14 +378,15 @@ fn an_empty_body_that_holds_a_comment_opens_a_line_for_it() {
         }
     }
     let allocator = Allocator::default();
-    for (source, expected) in [
-        ("function f() {}", "function f() {\n\t// c\n}\n"),
-        ("if (a) f();  { }", "if (a) f();\n{\n\t// c\n}\n"),
-        ("class A      { }", "class A {\n\t// c\n}\n"),
+    for (source, comment, expected) in [
+        ("function f() {}", "// c", "function f() {\n\t// c\n}\n"),
+        ("function f() {}", "/* c */", "function f() {\n\t/* c */\n}\n"),
+        ("if (a) f();  { }", "// c", "if (a) f();\n{\n\t// c\n}\n"),
+        ("class A      { }", "/* c */", "class A {\n\t/* c */\n}\n"),
     ] {
         let parsed = Parser::new(&allocator, source, SourceType::mjs()).parse();
-        let code =
-            Codegen::new().with_comment_hook(Box::new(Inside(true))).build(&parsed.program).code;
+        let hook = Box::new(Inside(true, comment));
+        let code = Codegen::new().with_comment_hook(hook).build(&parsed.program).code;
         assert_eq!(code, expected, "{source}");
     }
 }

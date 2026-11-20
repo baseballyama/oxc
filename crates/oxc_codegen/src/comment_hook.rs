@@ -47,14 +47,6 @@ pub trait CommentHook {
     /// printer asks after each call.
     fn next_comment(&self) -> Option<u32>;
 
-    /// Whether [`CommentHook::trailing`] after a statement that ends at `end` would write a
-    /// comment, so that the statement keeps its line open for it. Asked before the statement
-    /// prints, so the comments inside it are still to be written.
-    fn trails(&self, end: u32, next: Option<u32>) -> bool {
-        let _ = (end, next);
-        false
-    }
-
     /// Whether the comments the hook has left before `until` print over lines, so that the list
     /// they are in puts each item on its own line. The list's first item starts at `first`, and a
     /// comment before it follows the list's opening bracket. `trailing` is whether a comment on the
@@ -225,16 +217,6 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn statement_next(next: Option<Span>, owner: Span) -> Option<u32> {
         next.map_or(located(owner), located).map(|s| s.end)
-    }
-
-    /// Whether the statement at `end` keeps its line open for a comment, see [`CommentHook::trails`].
-    #[inline]
-    pub(crate) fn hook_trails(&self, end: Span, next: Option<Span>, owner: Span) -> bool {
-        let next = Self::statement_next(next, owner);
-        match (&self.comment_hook, located(end)) {
-            (Some(hook), Some(end)) => hook.trails(end.end, next),
-            _ => false,
-        }
     }
 
     /// After a statement or class member of a list that `owner` holds; `next` is the next one's

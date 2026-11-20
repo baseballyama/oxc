@@ -140,3 +140,24 @@ fn a_node_without_a_span_has_no_position() {
     assert!(log.contains(&"node -".to_owned()), "{log:?}");
     assert_eq!(lines(&log, "trailing"), ["trailing 2 -", "trailing - 6"]);
 }
+
+#[test]
+fn a_space_at_the_start_of_a_line_is_the_indent() {
+    struct Trailing;
+    impl CommentHook for Trailing {
+        fn before(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>, _: bool) {}
+        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+        fn body(&mut self, _: Option<Span>) {}
+        fn trailing(&mut self, out: &mut CommentWriter<'_, '_>, end: Option<u32>, _: Option<u32>) {
+            if end == Some(17) {
+                out.space();
+                out.line_comment("// c");
+            }
+        }
+        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+    }
+    let allocator = Allocator::default();
+    let parsed = Parser::new(&allocator, "function f() { a; b; }", SourceType::mjs()).parse();
+    let code = Codegen::new().with_comment_hook(Box::new(Trailing)).build(&parsed.program).code;
+    assert_eq!(code, "function f() {\n\ta;\n\t// c\n\tb;\n}\n");
+}

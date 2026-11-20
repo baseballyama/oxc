@@ -25,6 +25,7 @@ use rustc_hash::FxHashMap;
 mod binary_expr_visitor;
 mod cjs_module_lexer;
 mod comment;
+mod comment_hook;
 mod context;
 mod r#gen;
 mod operator;
@@ -40,6 +41,7 @@ use operator::Operator;
 use sourcemap_builder::SourcemapBuilder;
 use str::{Quote, cold_branch, is_script_close_tag};
 
+pub use comment_hook::{CommentHook, CommentWriter};
 pub use context::Context;
 pub use r#gen::{Gen, GenExpr};
 pub use options::{CodegenOptions, CommentOptions, LegalComment};
@@ -184,6 +186,20 @@ pub struct Codegen<'a> {
 
     /// Statements that print as other statements, see [`Codegen::with_statement_expansion`].
     statement_expansion: Option<StatementExpansion<'a>>,
+
+    /// The host that places comments, see [`Codegen::with_comment_hook`].
+    pub(crate) comment_hook: Option<Box<dyn CommentHook + 'a>>,
+    /// Where the hook's next comment starts, as it last said; `None` without a hook.
+    pub(crate) hook_next: Option<u32>,
+    /// The expression whose comments go inside the parentheses it is about to print.
+    pub(crate) hook_pending: Option<Span>,
+    /// A line break the hook asked for, written where the next line starts.
+    pub(crate) line_due: bool,
+    /// The statement being printed keeps its line open for a comment the hook writes after it, so
+    /// its line breaks are written where the next line starts.
+    pub(crate) hold_line: bool,
+    /// Where the printer indented a line that the hook ended, before the node that follows.
+    pub(crate) hook_indented_at: usize,
 }
 
 /// Given a statement, what to print in its place, or `None` to print it. It lives as long as the
@@ -271,6 +287,12 @@ impl<'a> Codegen<'a> {
             #[cfg(feature = "sourcemap")]
             sourcemap_builder: None,
             statement_expansion: None,
+            comment_hook: None,
+            hook_pending: None,
+            hook_next: None,
+            line_due: false,
+            hold_line: false,
+            hook_indented_at: usize::MAX,
         }
     }
 
@@ -331,6 +353,16 @@ impl<'a> Codegen<'a> {
         self
     }
 
+    /// Lets `hook` place comments: the printer reports where it is, and the hook writes its own
+    /// comments there. Turn the printer's own comments off with [`CommentOptions::disabled`] so
+    /// that a comment is not written twice.
+    #[must_use]
+    pub fn with_comment_hook(mut self, hook: Box<dyn CommentHook + 'a>) -> Self {
+        self.hook_next = hook.next_comment();
+        self.comment_hook = Some(hook);
+        self
+    }
+
     /// Set private member name mappings for mangling.
     ///
     /// This allows renaming of private class members like `#field` -> `#a`.
@@ -359,6 +391,9 @@ impl<'a> Codegen<'a> {
             self.sourcemap_builder = Some(SourcemapBuilder::new(path, program.source_text));
         }
         program.print(&mut self, Context::default());
+        if self.line_due {
+            self.end_line();
+        }
         let legal_comments = self.handle_eof_linked_or_external_comments(program);
         let code = self.code.into_string();
         #[cfg(feature = "sourcemap")]
@@ -740,9 +775,18 @@ impl<'a> Codegen<'a> {
 
     #[inline]
     fn print_soft_newline(&mut self) {
-        if !self.options.minify {
-            self.print_ascii_byte(b'\n');
+        if self.options.minify {
+            return;
         }
+        if self.hold_line {
+            if self.line_due {
+                self.print_ascii_byte(b'\n');
+            }
+            self.line_due = true;
+            return;
+        }
+        self.line_due = false;
+        self.print_ascii_byte(b'\n');
     }
 
     #[inline]
@@ -812,6 +856,7 @@ impl<'a> Codegen<'a> {
         if wrap {
             self.print_ascii_byte(b'(');
         }
+        self.hook_open();
         f(self);
         if wrap {
             self.print_ascii_byte(b')');
@@ -821,6 +866,11 @@ impl<'a> Codegen<'a> {
     #[inline]
     fn print_indent(&mut self) {
         if self.options.minify {
+            return;
+        }
+        if self.line_due {
+            self.end_line();
+        } else if self.code.len() == self.hook_indented_at {
             return;
         }
         if self.consume_pending_indent_space() {
@@ -857,7 +907,8 @@ impl<'a> Codegen<'a> {
         if self.options.minify {
             self.needs_semicolon = true;
         } else {
-            self.print_str(";\n");
+            self.print_semicolon();
+            self.print_soft_newline();
         }
     }
 
@@ -900,6 +951,11 @@ impl<'a> Codegen<'a> {
         self.print_ascii_byte(b'}');
     }
 
+    /// Whether comments are written inside the body at `span`, which then is not printed `{}`.
+    fn has_comments_in(&self, span: Span) -> bool {
+        self.has_orphan_comments_before(span.end) || self.hook_holds(span)
+    }
+
     fn print_block_start(&mut self, span: Span) {
         self.add_source_mapping(span);
         self.print_ascii_byte(b'{');
@@ -937,24 +993,42 @@ impl<'a> Codegen<'a> {
     }
 
     fn print_block_statement(&mut self, stmt: &BlockStatement<'_>, ctx: Context) {
-        let single_line = stmt.body.is_empty() && !self.has_orphan_comments_before(stmt.span.end);
+        let single_line = stmt.body.is_empty() && !self.has_comments_in(stmt.span);
         self.print_curly_braces(stmt.span, single_line, |p| {
-            p.print_stmts_with_orphan_flush(&stmt.body, stmt.span.end, ctx);
+            p.hook_body(stmt.span);
+            p.print_stmts_with_orphan_flush(
+                &stmt.body,
+                stmt.span.end,
+                Some((stmt.span, None)),
+                ctx,
+            );
         });
         self.needs_semicolon = false;
     }
 
-    /// Print `stmts`, flushing orphan comments before each and at `scope_end`.
+    /// Print `stmts`, flushing orphan comments before each and at `scope_end`. `body` is the
+    /// block, function body, program or static block that holds them, which a
+    /// [`CommentHook`] hears about, with the span of what printed before `stmts` in it.
     fn print_stmts_with_orphan_flush(
         &mut self,
         stmts: &[Statement<'_>],
         scope_end: u32,
+        body: Option<(Span, Option<Span>)>,
         ctx: Context,
     ) {
-        for stmt in stmts {
+        for (i, stmt) in stmts.iter().enumerate() {
             self.print_orphan_comments_before(stmt.span().start);
             self.print_semicolon_if_needed();
-            stmt.print(self, ctx);
+            match body {
+                Some((owner, _)) if !matches!(stmt, Statement::EmptyStatement(_)) => {
+                    let next = stmts.get(i + 1).map(GetSpan::span);
+                    self.print_listed(stmt.span(), next, owner, |p| stmt.print(p, ctx));
+                }
+                _ => stmt.print(self, ctx),
+            }
+        }
+        if let Some((owner, before)) = body {
+            self.hook_until(stmts.last().map(GetSpan::span).or(before), Self::end_of(owner), true);
         }
         self.print_orphan_comments_before(scope_end);
     }
@@ -964,18 +1038,25 @@ impl<'a> Codegen<'a> {
         self.statement_expansion.and_then(|expand| expand(stmt))
     }
 
+    /// Print `directives` and `stmts`, the body of `owner`: a program or function body.
     fn print_directives_and_statements(
         &mut self,
         directives: &[Directive<'_>],
         stmts: &[Statement<'_>],
-        scope_end: u32,
+        owner: Span,
         ctx: Context,
     ) {
-        for directive in directives {
-            directive.print(self, ctx);
+        let scope_end = owner.end;
+        self.hook_body(owner);
+        for (i, directive) in directives.iter().enumerate() {
+            let next = directives.get(i + 1).map(GetSpan::span);
+            let next = next.or(stmts.first().map(GetSpan::span));
+            self.print_listed(directive.span, next, owner, |p| directive.print(p, ctx));
         }
 
         let Some((first, rest)) = stmts.split_first() else {
+            let last = directives.last().map(|d| d.span);
+            self.hook_until(last, Self::end_of(owner), true);
             self.print_orphan_comments_before(scope_end);
             return;
         };
@@ -998,6 +1079,30 @@ impl<'a> Codegen<'a> {
         // which *would* be re-parsed as a directive.
         // So in minify mode, we force printing as a template literal, regardless of the string's content.
         // In almost all cases, this is shorter than wrapping in parentheses.
+        let next = rest.first().map(GetSpan::span);
+        self.print_listed(first.span(), next, owner, |p| p.print_first_statement(first, ctx));
+
+        self.print_stmts_with_orphan_flush(rest, scope_end, Some((owner, Some(first.span()))), ctx);
+    }
+
+    /// Prints a statement or class member at `span` of a list that `owner` holds, then reports its
+    /// end. While the hook has comments left, the statement's line stays open until the hook has
+    /// written what trails it, so the line ends after that.
+    fn print_listed(
+        &mut self,
+        span: Span,
+        next: Option<Span>,
+        owner: Span,
+        print: impl FnOnce(&mut Self),
+    ) {
+        let held = self.hold_line;
+        self.hold_line = held || self.hook_next.is_some();
+        print(self);
+        self.hold_line = held;
+        self.hook_after_statement(span, next, owner);
+    }
+
+    fn print_first_statement(&mut self, first: &Statement<'_>, ctx: Context) {
         if let Statement::ExpressionStatement(stmt) = first
             && self.expansion_of(first).is_none()
             && let expr = stmt.expression.without_parentheses()
@@ -1020,8 +1125,6 @@ impl<'a> Codegen<'a> {
         } else {
             first.print(self, ctx);
         }
-
-        self.print_stmts_with_orphan_flush(rest, scope_end, ctx);
     }
 
     #[inline]
@@ -1037,16 +1140,101 @@ impl<'a> Codegen<'a> {
         }
     }
 
+    /// [`Codegen::print_list`] for a list that ends at `until`, which a [`CommentHook`] hears
+    /// about after each item; [`Codegen::hook_list_end`] finishes it.
+    fn print_list_until<T: Gen>(&mut self, items: &[T], until: Option<u32>, ctx: Context) {
+        let Some((first, rest)) = items.split_first() else {
+            return;
+        };
+        first.print(self, ctx);
+        let mut prev = first.span();
+        for item in rest {
+            self.print_comma();
+            self.hook_after_item(prev, Some(item.span()), until, false);
+            self.print_soft_space();
+            item.print(self, ctx);
+            prev = item.span();
+        }
+    }
+
+    /// esrap's `sequence`: `items` then `rest`, of a list that ends at `until`, each on its own
+    /// line when the hook's comments break the list, or else after `pad` and a space between
+    /// them. The caller writes the brackets.
+    fn print_sequence<T: Gen, R: Gen>(
+        &mut self,
+        items: &[T],
+        rest: Option<&R>,
+        until: Option<u32>,
+        pad: bool,
+        ctx: Context,
+    ) {
+        let spans = items.iter().map(GetSpan::span).chain(rest.map(GetSpan::span));
+        let broken = self.hook_breaks(spans, until, false);
+        if broken {
+            self.indent();
+        }
+        let mut last = None;
+        for item in items {
+            self.print_sequence_item(item, &mut last, until, broken, pad, ctx);
+        }
+        if let Some(rest) = rest {
+            self.print_sequence_item(rest, &mut last, until, broken, pad, ctx);
+        }
+        self.hook_list_end(last, until, broken);
+        if broken {
+            self.dedent();
+            self.print_soft_newline();
+            self.print_indent();
+        } else if pad {
+            self.print_soft_space();
+        }
+    }
+
+    fn print_sequence_item(
+        &mut self,
+        item: &impl Gen,
+        last: &mut Option<Span>,
+        until: Option<u32>,
+        broken: bool,
+        pad: bool,
+        ctx: Context,
+    ) {
+        if let Some(prev) = *last {
+            self.print_comma();
+            self.hook_after_item(prev, Some(item.span()), until, broken);
+        }
+        if broken {
+            self.print_soft_newline();
+            self.print_indent();
+        } else if last.is_some() || pad {
+            self.print_soft_space();
+        }
+        item.print(self, ctx);
+        *last = Some(item.span());
+    }
+
+    /// The end of a list printed with [`Codegen::print_list_until`] whose last item is `last`;
+    /// `broken` is whether it puts each item on its own line.
+    fn hook_list_end(&mut self, last: Option<Span>, until: Option<u32>, broken: bool) {
+        if let Some(last) = last {
+            self.hook_after_item(last, None, until, broken);
+        }
+        self.hook_until(last, until, broken);
+    }
+
     #[inline]
     fn print_expressions<T: GenExpr>(&mut self, items: &[T], precedence: Precedence, ctx: Context) {
         let Some((first, rest)) = items.split_first() else {
             return;
         };
         first.print_expr(self, precedence, ctx);
+        let mut prev = first.span();
         for item in rest {
             self.print_comma();
+            self.hook_after_item(prev, Some(item.span()), None, false);
             self.print_soft_space();
             item.print_expr(self, precedence, ctx);
+            prev = item.span();
         }
     }
 
@@ -1069,8 +1257,36 @@ impl<'a> Codegen<'a> {
             }
             self.dedent();
             self.print_indent();
+        } else if let Some(last) = arguments.last()
+            && self.hook_breaks(
+                arguments.iter().map(GetSpan::span),
+                Self::start_of(last.span()),
+                true,
+            )
+        {
+            // upstream's printer breaks the arguments over lines when a comment before the last one
+            // ends a line; a comment inside the last one does not count.
+            self.indent();
+            let mut prev = None;
+            for item in arguments {
+                if let Some(prev) = prev {
+                    self.print_comma();
+                    self.hook_after_item(prev, Some(item.span()), Self::end_of(span), true);
+                }
+                self.print_soft_newline();
+                self.print_indent();
+                item.print(self, ctx);
+                prev = Some(item.span());
+            }
+            self.hook_after_item(last.span(), None, Self::end_of(span), true);
+            self.dedent();
+            self.print_soft_newline();
+            self.print_indent();
         } else {
-            self.print_list(arguments, ctx);
+            self.print_list_until(arguments, Self::end_of(span), ctx);
+            if let Some(last) = arguments.last() {
+                self.hook_after_item(last.span(), None, Self::end_of(span), false);
+            }
         }
         // End mapping at the gen position OF `)`, not past it. Matches
         // esbuild/Babel and avoids shadowing the next AST node's start.

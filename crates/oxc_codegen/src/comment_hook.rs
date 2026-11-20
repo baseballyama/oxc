@@ -102,7 +102,7 @@ fn located(span: Span) -> Option<Span> {
 }
 
 impl<'a> Codegen<'a> {
-    #[inline]
+    #[inline(never)]
     fn with_hook(&mut self, f: impl FnOnce(&mut dyn CommentHook, &mut CommentWriter<'_, 'a>)) {
         if let Some(mut hook) = self.comment_hook.take() {
             let before = self.code.len();
@@ -134,7 +134,7 @@ impl<'a> Codegen<'a> {
 
     /// Reports the node at `span` when the hook's next comment is before it; `true` when it did,
     /// and [`Codegen::hook_after`] is then due.
-    #[inline]
+    #[inline(never)]
     pub(crate) fn hook_before(&mut self, span: Span, expression: bool) -> bool {
         if !self.hook_comment_before(span) {
             return false;
@@ -180,7 +180,7 @@ impl<'a> Codegen<'a> {
         0
     }
 
-    #[inline]
+    #[inline(never)]
     pub(crate) fn hook_after(&mut self, span: Span) {
         self.with_hook(|h, out| h.after(out, located(span)));
     }

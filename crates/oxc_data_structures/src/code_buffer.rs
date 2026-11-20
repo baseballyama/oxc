@@ -269,6 +269,14 @@ impl CodeBuffer {
         self.peek_nth_char_back(0)
     }
 
+    /// Remove the last byte when it is ASCII, so the buffer stays valid UTF-8, and return it.
+    #[inline]
+    pub fn pop_ascii_byte(&mut self) -> Option<u8> {
+        let byte = self.buf.last().copied().filter(u8::is_ascii)?;
+        self.buf.pop();
+        Some(byte)
+    }
+
     /// Push a single ASCII byte into the buffer.
     ///
     /// # Panics

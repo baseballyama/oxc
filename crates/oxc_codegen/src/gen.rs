@@ -1818,7 +1818,9 @@ impl Gen for ArrayExpression<'_> {
 
         if let Some((first, others)) = self.elements.split_first() {
             let mut item = first;
-            if self.elements.len() > 2 || p.hook_breaks(Some(first.span()), until, false) {
+            if self.elements.len() > 2
+                || p.hook_breaks(self.elements.iter().map(GetSpan::span), until, false)
+            {
                 // 3 or more elements, or a comment that breaks the line, each on its own line
                 p.indent();
                 p.print_soft_newline();
@@ -1888,8 +1890,8 @@ impl GenExpr for ObjectExpression<'_> {
                 p.print_indent();
             }
             let until = Codegen::end_of(self.span);
-            let first = self.properties.first().map(GetSpan::span);
-            let is_multi_line = len > 1 || p.hook_breaks(first, until, false);
+            let is_multi_line =
+                len > 1 || p.hook_breaks(self.properties.iter().map(GetSpan::span), until, false);
             p.add_source_mapping(self.span);
             p.print_ascii_byte(b'{');
             if is_multi_line {

@@ -3,6 +3,7 @@ use std::{path::Path, sync::Arc};
 #[cfg(feature = "napi")]
 use super::js_config::JsConfigLoaderCb;
 use super::{
+    super::host::HostFormatters,
     ConfigLoader, ConfigResolver, NestedConfigCtx,
     editorconfig::{load_editorconfig, resolve_editorconfig_path},
 };
@@ -26,6 +27,7 @@ pub struct ConfigScopes {
 impl ConfigScopes {
     /// Load `.editorconfig` nearest to `cwd` and the root config,
     /// discovered upwards from `cwd` or given by `explicit_config`.
+    /// `hosts` serve the languages Prettier would.
     ///
     /// # Errors
     /// Returns a message ready to print if loading or validation fails.
@@ -33,6 +35,7 @@ impl ConfigScopes {
         cwd: &Path,
         explicit_config: Option<&Path>,
         use_nested: bool,
+        hosts: HostFormatters,
         #[cfg(feature = "napi")] js_config_loader: Option<&JsConfigLoaderCb>,
     ) -> Result<Self, String> {
         let load_err = |err: String| format!("Failed to load configuration file.\n{err}");
@@ -41,6 +44,7 @@ impl ConfigScopes {
             load_editorconfig(resolve_editorconfig_path(cwd).as_deref()).map_err(load_err)?;
         let loader = ConfigLoader::new(
             editorconfig,
+            hosts,
             #[cfg(feature = "napi")]
             js_config_loader.cloned(),
         );
@@ -62,14 +66,18 @@ impl ConfigScopes {
         use_nested: bool,
         js_config_loader: Option<&JsConfigLoaderCb>,
     ) -> Self {
-        let mut root = ConfigResolver::from_json_config(None, None)
+        let mut root = ConfigResolver::from_json_config(None, None, HostFormatters::default())
             .expect("Default ConfigResolver should never fail");
         root.build_and_validate().expect("Default ConfigResolver validation should never fail");
 
         // Best effort: an unreadable `.editorconfig` is skipped instead of failing again
         let editorconfig =
             load_editorconfig(resolve_editorconfig_path(cwd).as_deref()).ok().flatten();
-        Self::new(root, ConfigLoader::new(editorconfig, js_config_loader.cloned()), use_nested)
+        Self::new(
+            root,
+            ConfigLoader::new(editorconfig, HostFormatters::default(), js_config_loader.cloned()),
+            use_nested,
+        )
     }
 
     fn new(root: ConfigResolver, loader: ConfigLoader, use_nested: bool) -> Self {

@@ -12,7 +12,6 @@ use super::super::oxfmtrc::{
     HtmlWhitespaceSensitivityConfig, ObjectWrapConfig, OperatorPositionConfig, ProseWrapConfig,
     QuotePropsConfig, SvelteConfig, SvelteUserConfig, TrailingCommaConfig,
 };
-#[cfg(feature = "napi")]
 use super::super::support::PrettierLanguage;
 
 /// Build base Prettier-compatible options from a typed `FormatConfig`.
@@ -214,6 +213,7 @@ pub fn inject_tailwind_plugin_payload(opts: &mut Value, config: &FormatConfig) {
     map.insert("_useTailwindPlugin".to_string(), Value::Number(1.into()));
 }
 
+#[cfg(feature = "napi")]
 /// Build the Prettier options JSON shared by the embedded callbacks and the Tailwind sorter:
 /// resolved config + `filepath` + the Tailwind plugin payload (which the JS-side sorter resolves the class order from).
 pub fn build_prettier_options(config: &FormatConfig, path: &Path) -> Value {
@@ -228,7 +228,6 @@ pub fn build_prettier_options(config: &FormatConfig, path: &Path) -> Value {
 ///
 /// The single table for both whole files (`format_by_prettier`)
 /// and embedded parts through the Doc→IR fallback (`ResolvedDispatchConfig::prettier_options_for`).
-#[cfg(feature = "napi")]
 pub fn inject_opt_in_plugin_payloads(
     opts: &mut Value,
     language: PrettierLanguage,

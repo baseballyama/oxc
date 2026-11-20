@@ -47,6 +47,11 @@ impl CommentHook for Recorder {
     fn until(&mut self, _out: &mut CommentWriter<'_, '_>, from: Option<u32>, to: Option<u32>) {
         self.log.borrow_mut().push(format!("until {} {}", position(from), position(to)));
     }
+
+    /// Before everything, so that every node after the first byte is reported.
+    fn next_comment(&self) -> Option<u32> {
+        Some(0)
+    }
 }
 
 fn print(program: &Program<'_>, mark: &[u32]) -> (String, Vec<String>) {
@@ -73,31 +78,55 @@ fn lines(log: &[String], prefix: &str) -> Vec<String> {
 
 #[test]
 fn a_statement_list_reports_its_owner_each_statement_and_its_end() {
-    let (_, log) = hooked("a;\nb;\n", &[]);
+    let (_, log) = hooked("\na;\nb;\n", &[]);
     // A statement's `next` is where the next statement ends, the last one's the owner's end.
-    assert_eq!(lines(&log, "body"), ["body 0..6"]);
-    assert_eq!(lines(&log, "trailing"), ["trailing 2 5", "trailing 5 6"]);
-    assert_eq!(lines(&log, "until"), ["until 5 6"]);
+    assert_eq!(lines(&log, "body"), ["body 0..7"]);
+    assert_eq!(lines(&log, "trailing"), ["trailing 3 6", "trailing 6 7"]);
+    assert_eq!(lines(&log, "until"), ["until 6 7"]);
 }
 
 #[test]
-fn every_node_and_expression_is_reported_before_it_prints() {
-    let (_, log) = hooked("f(a);", &[]);
+fn a_node_after_the_next_comment_is_reported_before_it_prints() {
+    let (_, log) = hooked(" f(a);", &[]);
     let mut expressions = lines(&log, "expr");
     expressions.dedup();
-    assert_eq!(expressions, ["expr 0..4", "expr 0..1", "expr 2..3"]);
-    // The program, the statement and the expression statement share the span.
-    assert_eq!(lines(&log, "node 0..5").len(), 3);
+    assert_eq!(expressions, ["expr 1..5", "expr 1..2", "expr 3..4"]);
+    // The statement and the expression statement share the span.
+    assert_eq!(lines(&log, "node 1..6").len(), 2);
+}
+
+#[test]
+fn a_node_before_the_next_comment_is_not_reported() {
+    struct Late(Rc<RefCell<Vec<u32>>>);
+    impl CommentHook for Late {
+        fn before(&mut self, _: &mut CommentWriter<'_, '_>, span: Option<Span>, _: bool) {
+            self.0.borrow_mut().extend(span.map(|s| s.start));
+        }
+        fn after(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<Span>) {}
+        fn body(&mut self, _: Option<Span>) {}
+        fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(4)
+        }
+    }
+    let seen = Rc::new(RefCell::new(Vec::new()));
+    let allocator = Allocator::default();
+    let parsed = Parser::new(&allocator, "f(a, b);", SourceType::mjs()).parse();
+    let _ =
+        Codegen::new().with_comment_hook(Box::new(Late(Rc::clone(&seen)))).build(&parsed.program);
+    // `b` and its wrappers; nothing before the comment.
+    assert!(!seen.borrow().is_empty() && seen.borrow().iter().all(|&start| start == 5), "{seen:?}");
 }
 
 #[test]
 fn a_list_item_reports_the_next_item_s_start_and_the_last_one_the_list_s_end() {
-    let (_, log) = hooked("f(a, b);", &[]);
+    let (_, log) = hooked(" f(a, b);", &[]);
+    assert_eq!(lines(&log, "trailing 4"), ["trailing 4 6"]);
+    assert_eq!(lines(&log, "trailing 7"), ["trailing 7 8"]);
+    let (_, log) = hooked(" [a, b];", &[]);
     assert_eq!(lines(&log, "trailing 3"), ["trailing 3 5"]);
-    assert_eq!(lines(&log, "trailing 6"), ["trailing 6 7"]);
-    let (_, log) = hooked("[a, b];", &[]);
-    assert_eq!(lines(&log, "trailing 2"), ["trailing 2 4"]);
-    assert_eq!(lines(&log, "until"), ["until 5 6", "until 7 7"]);
+    assert_eq!(lines(&log, "until"), ["until 6 7", "until 8 8"]);
 }
 
 #[test]
@@ -119,6 +148,9 @@ fn a_line_comment_ends_its_line() {
         fn body(&mut self, _: Option<Span>) {}
         fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
         fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(0)
+        }
     }
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, "f(a, b);", SourceType::mjs()).parse();
@@ -132,13 +164,13 @@ fn a_line_comment_ends_its_line() {
 #[test]
 fn a_node_without_a_span_has_no_position() {
     let allocator = Allocator::default();
-    let mut parsed = Parser::new(&allocator, "a;\nb;\n", SourceType::mjs()).parse();
+    let mut parsed = Parser::new(&allocator, "\na;\nb;\n", SourceType::mjs()).parse();
     if let Statement::ExpressionStatement(s) = &mut parsed.program.body[1] {
         s.span = SPAN;
     }
     let (_, log) = print(&parsed.program, &[]);
-    assert!(log.contains(&"node -".to_owned()), "{log:?}");
-    assert_eq!(lines(&log, "trailing"), ["trailing 2 -", "trailing - 6"]);
+    assert!(!log.iter().any(|l| l.starts_with("node -")), "{log:?}");
+    assert_eq!(lines(&log, "trailing"), ["trailing 3 -", "trailing - 7"]);
 }
 
 #[test]
@@ -155,6 +187,9 @@ fn a_space_at_the_start_of_a_line_is_the_indent() {
             }
         }
         fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(0)
+        }
     }
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, "function f() { a; b; }", SourceType::mjs()).parse();
@@ -177,6 +212,9 @@ fn a_reopened_line_takes_a_trailing_comment() {
             }
         }
         fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(0)
+        }
     }
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, "function f() { a; b; }", SourceType::mjs()).parse();
@@ -214,8 +252,8 @@ impl CommentHook for Before {
     fn body(&mut self, _: Option<Span>) {}
     fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
     fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
-    fn comment_before(&self, start: u32) -> bool {
-        !self.done && self.at <= start
+    fn next_comment(&self) -> Option<u32> {
+        (!self.done).then(|| self.at - 1)
     }
 }
 
@@ -235,7 +273,7 @@ fn a_comment_before_an_arrow_body_keeps_the_object_s_parentheses() {
 
 #[test]
 fn a_comment_before_a_statement_keeps_its_parentheses() {
-    let code = before("({ a } = b);", 0, "/*c*/");
+    let code = before(" ({ a } = b);", 1, "/*c*/");
     assert_eq!(code, "/*c*/ ({a} = b);\n");
 }
 
@@ -273,6 +311,9 @@ fn the_writer_reads_the_last_byte_before_spaces() {
         fn body(&mut self, _: Option<Span>) {}
         fn trailing(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
         fn until(&mut self, _: &mut CommentWriter<'_, '_>, _: Option<u32>, _: Option<u32>) {}
+        fn next_comment(&self) -> Option<u32> {
+            Some(0)
+        }
     }
     let seen = Rc::new(RefCell::new(Vec::new()));
     let allocator = Allocator::default();

@@ -283,8 +283,14 @@ impl<'a> Codegen<'a> {
             && self.hook_next.is_some_and(|c| c < to)
         {
             let from = last.and_then(located).map(|s| s.end);
+            let before = self.code.len();
             self.with_hook(|h, out| h.until(out, from, Some(to)));
-            self.after_hook(if broken { Then::Line } else { Then::Code });
+            if broken {
+                // The list's end goes on a line of its own, after the comments.
+                self.line_due |= self.code.len() > before;
+            } else {
+                self.after_hook(Then::Code);
+            }
         }
     }
 

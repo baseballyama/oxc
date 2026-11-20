@@ -1086,7 +1086,8 @@ impl<'a> Codegen<'a> {
     }
 
     /// Prints a statement or class member at `span` of a list that `owner` holds, then reports its
-    /// end. When the hook has a comment for the end of its line, the line stays open for it.
+    /// end. While the hook has comments left, the statement's line stays open until the hook has
+    /// written what trails it, so the line ends after that.
     fn print_listed(
         &mut self,
         span: Span,
@@ -1095,7 +1096,7 @@ impl<'a> Codegen<'a> {
         print: impl FnOnce(&mut Self),
     ) {
         let held = self.hold_line;
-        self.hold_line = held || (self.hook_next.is_some() && self.hook_trails(span, next, owner));
+        self.hold_line = held || self.hook_next.is_some();
         print(self);
         self.hold_line = held;
         self.hook_after_statement(span, next, owner);

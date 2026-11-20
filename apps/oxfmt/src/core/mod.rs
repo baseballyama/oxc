@@ -2,6 +2,7 @@ mod config;
 pub mod embed;
 mod format;
 mod global_ignore;
+pub mod host;
 mod language;
 pub mod options;
 pub mod oxfmtrc;

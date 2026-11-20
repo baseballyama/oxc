@@ -143,6 +143,14 @@ impl Language {
         }
     }
 
+    /// The language Prettier serves for oxfmt, `None` for one with a Rust formatter.
+    pub fn prettier_language(self) -> Option<PrettierLanguage> {
+        match self.route() {
+            Route::Prettier(language) => Some(language),
+            Route::Native(_) | Route::Unsupported => None,
+        }
+    }
+
     /// Which formatter serves this language.
     pub fn route(self) -> Route {
         match self {

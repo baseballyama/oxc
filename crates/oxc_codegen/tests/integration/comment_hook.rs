@@ -215,9 +215,6 @@ fn a_held_line_takes_a_trailing_comment() {
         fn next_comment(&self) -> Option<u32> {
             Some(17)
         }
-        fn trails(&self, end: u32, _: Option<u32>) -> bool {
-            end == 17
-        }
     }
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, "function f() { a; b; }", SourceType::mjs()).parse();

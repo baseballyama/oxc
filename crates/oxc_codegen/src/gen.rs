@@ -896,7 +896,7 @@ impl Gen for FunctionBody<'_> {
         let span_end = self.span.end;
         let comments_at_end = if span_end > 0 { p.get_comments(span_end - 1) } else { None };
         let single_line = if self.is_empty() {
-            !p.has_orphan_comments_before(self.span.end)
+            !p.has_comments_in(self.span)
                 && comments_at_end
                     .as_ref()
                     .is_none_or(|comments| comments.iter().all(|c| !c.has_newlines_around()))
@@ -2846,7 +2846,8 @@ impl Gen for Class<'_> {
 
 impl Gen for ClassBody<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
-        p.print_curly_braces(self.span, self.body.is_empty(), |p| {
+        let single_line = self.body.is_empty() && !p.hook_holds(self.span);
+        p.print_curly_braces(self.span, single_line, |p| {
             p.hook_body(self.span);
             for (i, item) in self.body.iter().enumerate() {
                 p.print_semicolon_if_needed();
@@ -3139,7 +3140,7 @@ impl Gen for StaticBlock<'_> {
         p.add_source_mapping(self.span);
         p.print_str("static");
         p.print_soft_space();
-        let single_line = self.body.is_empty() && !p.has_orphan_comments_before(self.span.end);
+        let single_line = self.body.is_empty() && !p.has_comments_in(self.span);
         p.print_curly_braces(self.span, single_line, |p| {
             p.hook_body(self.span);
             p.print_stmts_with_orphan_flush(

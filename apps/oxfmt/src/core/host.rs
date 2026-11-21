@@ -11,7 +11,9 @@ use super::{language::Language, support::PrettierLanguage};
 /// Formats a whole file of one language.
 pub trait HostFormatter: Send + Sync {
     /// `options` are the Prettier options oxfmt would pass to Prettier for this file,
-    /// with `parser`, `filepath` and the payload of the language's opt-in plugin.
+    /// with `parser`, `filepath`, the payloads of the Tailwind CSS and the language's opt-in
+    /// plugin, and `_oxfmtPluginOptionsJson`: the whole configuration, whose oxfmt-only options
+    /// (`sortImports`, `jsdoc`) oxfmt applies to the code a Prettier plugin hands back to it.
     ///
     /// # Errors
     /// A message ready to print.
@@ -123,6 +125,9 @@ mod tests {
         assert_eq!(options["semi"], json!(false));
         assert_eq!(options["svelteSortOrder"], json!("scripts-markup-styles-options"));
         assert_eq!(options["filepath"], json!(path.to_string_lossy()));
+        let payload: Value =
+            serde_json::from_str(options["_oxfmtPluginOptionsJson"].as_str().unwrap()).unwrap();
+        assert_eq!(payload["config"]["semi"], json!(false));
     }
 
     #[test]

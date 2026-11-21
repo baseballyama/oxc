@@ -401,7 +401,9 @@ pub fn build_dispatcher(
                 if let Some(hosted) =
                     dispatch_config.hosts.serving(language, &dispatch_config.config)
                 {
-                    let javascript = dispatch_config.js_options();
+                    // Prettier formats a part's scripts itself, without oxfmt's options
+                    let javascript =
+                        JsFormatOptions { jsdoc: None, ..dispatch_config.js_fragment_options() };
                     let formatted = hosted.format(
                         text,
                         &dispatch_config.path,

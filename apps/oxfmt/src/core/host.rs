@@ -22,7 +22,8 @@ pub trait HostFormatter: Send + Sync {
     /// `options` are the Prettier options oxfmt would pass to Prettier for this text,
     /// with `parser`, `filepath` and the payloads of the Tailwind CSS and the language's opt-in
     /// plugin. `javascript` are the options oxfmt formats the language's scripts with, when
-    /// Prettier hands them back to it, `sort_imports` and `jsdoc` included.
+    /// Prettier hands them back to it: `sort_imports` and `jsdoc` for a whole file, neither for
+    /// a part of one (a Markdown code block), whose scripts Prettier formats itself.
     ///
     /// # Errors
     /// A message ready to print.
@@ -131,7 +132,8 @@ mod tests {
         }
     }
 
-    /// Prints the text it receives with its spaces collapsed, on two lines.
+    /// Prints the text it receives with its spaces collapsed, then whether it would sort imports
+    /// or format JSDoc.
     #[cfg(not(feature = "napi"))]
     struct Collapse;
 
@@ -141,10 +143,11 @@ mod tests {
             &self,
             source_text: &str,
             _options: &Value,
-            _javascript: &JsFormatOptions,
+            javascript: &JsFormatOptions,
         ) -> Result<String, String> {
             let words: Vec<&str> = source_text.split_whitespace().collect();
-            Ok(format!("{}\n(hosted)\n", words.join(" ")))
+            let (sorts, jsdoc) = (javascript.sort_imports.is_some(), javascript.jsdoc.is_some());
+            Ok(format!("{}\n(hosted, {sorts}, {jsdoc})\n", words.join(" ")))
         }
     }
 
@@ -225,10 +228,10 @@ mod tests {
         let path = dir.path().join("a.md");
         let hosts = || HostFormatters::default().with(Language::Svelte, Collapse);
         let scopes_with = |config| scopes(dir.path(), config, hosts());
-        assert_eq!(
-            formatted(&scopes_with("{}"), &path, markdown),
-            "# A\n\n- item\n\n  ```svelte\n  <p class=\"x\">a</p>\n  (hosted)\n  ```\n"
-        );
+        let hosted = "# A\n\n- item\n\n  ```svelte\n  <p class=\"x\">a</p>\n  (hosted, false, false)\n  ```\n";
+        for on in ["{}", r#"{ "sortImports": {}, "jsdoc": {} }"#] {
+            assert_eq!(formatted(&scopes_with(on), &path, markdown), hosted, "{on}");
+        }
         for off in [r#"{ "svelte": false }"#, r#"{ "embeddedLanguageFormatting": "off" }"#] {
             assert_eq!(formatted(&scopes_with(off), &path, markdown), markdown, "{off}");
         }

@@ -8,11 +8,9 @@ use oxc_formatter_core::{FormatContext, FormatSession, Formatted, InputKind, Pri
 use oxc_formatter_json::{JsonFormatOptions, JsonVariant};
 use oxc_formatter_yaml::YamlFormatOptions;
 
-#[cfg(feature = "napi")]
-use super::options::inject_oxfmt_plugin_payload;
 use super::options::{
-    inject_filepath, inject_opt_in_plugin_payloads, inject_parser, inject_tailwind_plugin_payload,
-    to_prettier,
+    inject_filepath, inject_opt_in_plugin_payloads, inject_oxfmt_plugin_payload, inject_parser,
+    inject_tailwind_plugin_payload, to_prettier,
 };
 #[cfg(feature = "napi")]
 use super::support::PrettierLanguage;
@@ -233,6 +231,7 @@ fn format_by_host(
     inject_filepath(&mut options, path);
     inject_tailwind_plugin_payload(&mut options, config);
     inject_opt_in_plugin_payloads(&mut options, hosted.language, config);
+    inject_oxfmt_plugin_payload(&mut options, config, path);
     hosted
         .formatter
         .format(source_text, &options)

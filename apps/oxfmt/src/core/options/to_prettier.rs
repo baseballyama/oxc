@@ -1,6 +1,5 @@
 use std::path::Path;
 
-#[cfg(feature = "napi")]
 use serde::Serialize;
 use serde_json::Value;
 
@@ -183,7 +182,7 @@ pub fn inject_filepath(opts: &mut Value, path: &Path) {
 /// Inject Tailwind plugin keys derived from `config.sort_tailwindcss`.
 ///
 /// No-ops when `sortTailwindcss` is disabled in config (activation check).
-/// The caller gates this on capability (the Prettier parser).
+/// The caller gates this on capability (the Prettier parser, or a host formatter).
 ///
 /// See: <https://github.com/tailwindlabs/prettier-plugin-tailwindcss#options>
 pub fn inject_tailwind_plugin_payload(opts: &mut Value, config: &FormatConfig) {
@@ -312,7 +311,6 @@ fn inject_astro_plugin_payload(opts: &mut Value, config: &FormatConfig) {
 ///
 /// Panics if payload serialization fails;
 /// Unreachable in practice because the payload is plainly-serializable data.
-#[cfg(feature = "napi")]
 pub fn inject_oxfmt_plugin_payload(opts: &mut Value, config: &FormatConfig, path: &Path) {
     #[derive(Serialize)]
     struct Payload<'a> {

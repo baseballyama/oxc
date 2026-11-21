@@ -422,9 +422,17 @@ impl Linter {
         js_allocator_pool: Option<&AllocatorPool>,
         rule_timing_store: Option<&RuleTimingStore>,
     ) -> (Vec<Message>, Option<DisableDirectives>) {
-        let ResolvedLinterState { mut rules, config, mut external_rules } =
+        let ResolvedLinterState { mut rules, mut config, mut external_rules } =
             self.config.resolve(path);
         let store = self.config.external_plugin_store();
+        if let Some(host) = store.host_reading(path) {
+            let globals = host.linter.globals(path);
+            if !globals.is_empty() {
+                let mut declared = (*config).clone();
+                declared.globals.declare_readonly(globals);
+                config = Arc::new(declared);
+            }
+        }
         if let Some(host) = store.host_for(path) {
             rules = rules
                 .iter()

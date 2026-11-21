@@ -96,7 +96,7 @@ impl SourceFormatter {
                 {
                     unreachable!("Code removal detected in `{}`:\n{diff}", path.display());
                 }
-                result
+                tailwind_checked(result, &dispatch_config, &path)
             }
             FormatStrategy::Native(NativeLanguage::Json(variant)) => {
                 self.format_json(source_text, &path, to_oxc_formatter_json(&config, core, variant))
@@ -126,8 +126,9 @@ impl SourceFormatter {
                     ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.css_options(variant);
-                oxc_formatter_css::format_with_session(&session, source_text, options)
-                    .and_then(|formatted| print(formatted, &path))
+                let result = oxc_formatter_css::format_with_session(&session, source_text, options)
+                    .and_then(|formatted| print(formatted, &path));
+                tailwind_checked(result, &dispatch_config, &path)
             }
             FormatStrategy::Native(NativeLanguage::Yaml) => {
                 self.format_yaml(source_text, &path, to_oxc_formatter_yaml(&config, core))
@@ -148,8 +149,10 @@ impl SourceFormatter {
                     ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.markdown_options();
-                oxc_formatter_markdown::format_with_session(&session, source_text, options)
-                    .and_then(|formatted| print(formatted, &path))
+                let result =
+                    oxc_formatter_markdown::format_with_session(&session, source_text, options)
+                        .and_then(|formatted| print(formatted, &path));
+                tailwind_checked(result, &dispatch_config, &path)
             }
             FormatStrategy::Native(NativeLanguage::Html(variant)) => {
                 let allocator = self.allocator_pool.get();
@@ -157,8 +160,10 @@ impl SourceFormatter {
                     ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.htmlish_options(variant);
-                oxc_formatter_htmlish::format_with_session(&session, source_text, options)
-                    .and_then(|formatted| print(formatted, &path))
+                let result =
+                    oxc_formatter_htmlish::format_with_session(&session, source_text, options)
+                        .and_then(|formatted| print(formatted, &path));
+                tailwind_checked(result, &dispatch_config, &path)
             }
             FormatStrategy::Native(NativeLanguage::Toml) => {
                 oxc_formatter_toml::format(source_text, to_oxc_formatter_toml(&config, core))
@@ -223,6 +228,19 @@ impl SourceFormatter {
         let allocator = self.allocator_pool.get();
         oxc_formatter_yaml::format(&allocator, source_text, options)
             .and_then(|formatted| print(formatted, path))
+    }
+}
+
+/// `result`, unless the host's Tailwind CSS sorter failed for the file, whose classes then stay
+/// unsorted.
+fn tailwind_checked(
+    result: Result<String, OxcDiagnostic>,
+    dispatch_config: &ResolvedDispatchConfig,
+    path: &Path,
+) -> Result<String, OxcDiagnostic> {
+    match dispatch_config.take_tailwind_failure() {
+        Some(failure) => Err(OxcDiagnostic::error(format!("{failure}\n[{}]", path.display()))),
+        None => result,
     }
 }
 

@@ -38,13 +38,10 @@ pub fn to_oxc_formatter_htmlish(
         options.vue_indent_script_and_style = vue_indent_script_and_style;
     }
 
-    // [Oxfmt] sortTailwindcss: collect `class` (and `attributes`) classes for batch sorting.
-    // napi only, like the JS / CSS mappers: the sorter itself is JS-side.
-    #[cfg(feature = "napi")]
-    {
-        options.sort_tailwindcss =
-            config.tailwind_config().map(|tw_config| tw_config.attributes.unwrap_or_default());
-    }
+    // [Oxfmt] sortTailwindcss: collect `class` (and `attributes`) classes for batch sorting
+    // (off for a root without a sorter, `ResolvedDispatchConfig::collects_tailwind`).
+    options.sort_tailwindcss =
+        config.tailwind_config().map(|tw_config| tw_config.attributes.unwrap_or_default());
 
     options
 }

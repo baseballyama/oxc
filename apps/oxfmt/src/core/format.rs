@@ -82,12 +82,8 @@ impl SourceFormatter {
         let result = match strategy {
             FormatStrategy::Native(NativeLanguage::Js(source_type)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config = ResolvedDispatchConfig::for_root(
-                    Arc::clone(&config),
-                    validated,
-                    &path,
-                    hosts,
-                );
+                let dispatch_config =
+                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.js_options();
                 let result =
@@ -126,12 +122,8 @@ impl SourceFormatter {
             }
             FormatStrategy::Native(NativeLanguage::Css(variant)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config = ResolvedDispatchConfig::for_root(
-                    Arc::clone(&config),
-                    validated,
-                    &path,
-                    hosts,
-                );
+                let dispatch_config =
+                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.css_options(variant);
                 oxc_formatter_css::format_with_session(&session, source_text, options)
@@ -152,12 +144,8 @@ impl SourceFormatter {
                 }),
             FormatStrategy::Native(NativeLanguage::Markdown) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config = ResolvedDispatchConfig::for_root(
-                    Arc::clone(&config),
-                    validated,
-                    &path,
-                    hosts,
-                );
+                let dispatch_config =
+                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.markdown_options();
                 oxc_formatter_markdown::format_with_session(&session, source_text, options)
@@ -165,12 +153,8 @@ impl SourceFormatter {
             }
             FormatStrategy::Native(NativeLanguage::Html(variant)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config = ResolvedDispatchConfig::for_root(
-                    Arc::clone(&config),
-                    validated,
-                    &path,
-                    hosts,
-                );
+                let dispatch_config =
+                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path, hosts);
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.htmlish_options(variant);
                 oxc_formatter_htmlish::format_with_session(&session, source_text, options)

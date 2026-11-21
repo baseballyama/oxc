@@ -23,20 +23,22 @@ use super::dispatcher::ResolvedDispatchConfig;
 /// the fallback-less registry dispatcher plus the native-fence string embedder.
 /// A non-native fence dispatches to the registry's `PreserveOriginal`,
 /// which the adapter answers as `Err` (the string channel's "keep verbatim");
-/// no Prettier exists in this build, and no Tailwind sorter either.
+/// no Prettier exists in this build. Tailwind CSS classes sort with the host's sorter, if any,
+/// along the same paths as the napi build's (see the napi [`for_root`]).
 #[cfg(not(feature = "napi"))]
 pub fn for_root(dispatch_config: &Arc<ResolvedDispatchConfig>) -> SessionServices {
     // A fence dispatcher and this root's dispatcher are the same fallback-less registry,
     // so the root's doubles as the fence adapter's.
     let dispatcher = dispatch_config.root_dispatcher(None);
+    let sorter = dispatch_config.host_tailwind_sorter();
     let string_embedder = dispatcher.as_ref().map(|dispatcher| {
         super::jsdoc_fence::build_string_embedder(
             Arc::clone(dispatcher),
             Arc::clone(dispatch_config),
-            None,
+            sorter.clone(),
         )
     });
-    SessionServices { dispatcher, string_embedder, tailwind_sorter: None }
+    SessionServices { dispatcher, string_embedder, tailwind_sorter: sorter }
 }
 
 /// The napi build's default `SessionServices` for a root formatter run:

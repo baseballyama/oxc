@@ -1,4 +1,3 @@
-#[cfg(feature = "napi")]
 use oxc_formatter::SortTailwindcssOptions;
 use oxc_formatter::{
     ArrowParentheses, AttributePosition, BracketSameLine, BracketSpacing, CommentLineStrategy,
@@ -118,10 +117,8 @@ pub fn to_oxc_formatter(
 
     format_options.sort_imports = sort_imports;
     format_options.jsdoc = to_jsdoc(config);
-    // napi only, like the CSS mapper: collection itself normalizes whitespace,
-    // so enabling it without the JS-side sorter would apply half the feature
-    // (normalized but unsorted classes).
-    #[cfg(feature = "napi")]
+    // Collection itself normalizes whitespace, so a root without a sorter turns it off
+    // (`ResolvedDispatchConfig::collects_tailwind`) rather than print normalized but unsorted classes.
     if let Some(tw_config) = config.tailwind_config() {
         // `config` / `stylesheet` / `preserve_duplicates` are JS-sorter-only
         // and travel through `to_prettier::inject_tailwind_plugin_payload`,
@@ -638,12 +635,9 @@ mod tests {
         let config: FormatConfig = serde_json::from_str(r#"{"sortImports": false}"#).unwrap();
         assert!(build(&config).unwrap().sort_imports.is_none());
 
-        // Tailwind collection maps napi-only
+        // A root without a sorter turns collection off (`ResolvedDispatchConfig::collects_tailwind`)
         let config: FormatConfig = serde_json::from_str(r#"{"sortTailwindcss": true}"#).unwrap();
-        #[cfg(feature = "napi")]
         assert!(build(&config).unwrap().sort_tailwindcss.is_some());
-        #[cfg(not(feature = "napi"))]
-        assert!(build(&config).unwrap().sort_tailwindcss.is_none());
 
         let config: FormatConfig = serde_json::from_str(r#"{"sortTailwindcss": false}"#).unwrap();
         assert!(build(&config).unwrap().sort_tailwindcss.is_none());

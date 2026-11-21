@@ -12,9 +12,10 @@ use oxc_allocator::ArenaVec;
 use oxc_formatter::{
     CssInJsTemplate, ExpressionLayout, ExpressionRoot, HtmlInJsTemplate, JsEmbeddedIn,
     JsFormatOptions, JsRoot, MarkdownInJsTemplate, ProgramLayout, ProgramSemicolons,
+    SortImportsOptions,
 };
 use oxc_formatter_core::{
-    DispatchRequest, DispatchResponse, EmbeddedIr, FormatDispatcher, FormatSession,
+    DispatchRequest, DispatchResponse, EmbeddedIr, FormatDispatcher, FormatSession, TailwindSorter,
     push_text_with_literal_lines,
 };
 use oxc_formatter_core::{FormatOptions, PrinterOptions};
@@ -75,6 +76,8 @@ pub struct ResolvedDispatchConfig {
     path: std::path::PathBuf,
     /// The host formatters, for the parts in a language Prettier would format.
     hosts: HostFormatters,
+    /// What the host's Tailwind CSS sorter said when it failed, which fails the file.
+    tailwind_failure: std::sync::Mutex<Option<String>>,
     /// The options handed to Prettier; see [`PrettierOptions`].
     #[cfg(feature = "napi")]
     prettier: PrettierOptions,
@@ -118,6 +121,7 @@ impl ResolvedDispatchConfig {
             htmlish: OnceLock::new(),
             path,
             hosts,
+            tailwind_failure: std::sync::Mutex::new(None),
             #[cfg(feature = "napi")]
             prettier: PrettierOptions::default(),
         }
@@ -156,24 +160,28 @@ impl ResolvedDispatchConfig {
         self.config.is_embedded_formatting_enabled()
     }
 
+    /// Whether a root collects Tailwind CSS classes: only when something sorts them, since
+    /// collecting normalizes their whitespace.
+    fn collects_tailwind(&self) -> bool {
+        cfg!(feature = "napi") || self.hosts.tailwind_sorter().is_some()
+    }
+
+    fn javascript(&self, sort_imports: Option<SortImportsOptions>) -> JsFormatOptions {
+        let mut options = to_oxc_formatter(&self.config, self.validated.core, sort_imports);
+        if !self.collects_tailwind() {
+            options.sort_tailwindcss = None;
+        }
+        options
+    }
+
     pub fn js_options(&self) -> JsFormatOptions {
-        self.js
-            .get_or_init(|| {
-                to_oxc_formatter(
-                    &self.config,
-                    self.validated.core,
-                    self.validated.sort_imports.clone(),
-                )
-            })
-            .clone()
+        self.js.get_or_init(|| self.javascript(self.validated.sort_imports.clone())).clone()
     }
 
     /// Cloned once per fragment, so the import sorting options are left out:
     /// a fragment has no import, and they are the costly part to clone.
     pub fn js_fragment_options(&self) -> JsFormatOptions {
-        self.js_fragment
-            .get_or_init(|| to_oxc_formatter(&self.config, self.validated.core, None))
-            .clone()
+        self.js_fragment.get_or_init(|| self.javascript(None)).clone()
     }
 
     pub fn graphql_options(&self) -> GraphqlFormatOptions {
@@ -186,7 +194,10 @@ impl ResolvedDispatchConfig {
             CssVariant::Scss => &self.css[1],
             CssVariant::Less => &self.css[2],
         };
-        *cell.get_or_init(|| to_oxc_formatter_css(&self.config, self.validated.core, variant))
+        *cell.get_or_init(|| CssFormatOptions {
+            sort_tailwindcss: self.collects_tailwind() && self.is_tailwind_enabled(),
+            ..to_oxc_formatter_css(&self.config, self.validated.core, variant)
+        })
     }
 
     pub fn yaml_options(&self) -> YamlFormatOptions {
@@ -212,9 +223,13 @@ impl ResolvedDispatchConfig {
     }
 
     pub fn htmlish_options(&self, variant: HtmlishVariant) -> HtmlishFormatOptions {
-        let options = self
-            .htmlish
-            .get_or_init(|| to_oxc_formatter_htmlish(&self.config, self.validated.core));
+        let options = self.htmlish.get_or_init(|| {
+            let mut options = to_oxc_formatter_htmlish(&self.config, self.validated.core);
+            if !self.collects_tailwind() {
+                options.sort_tailwindcss = None;
+            }
+            options
+        });
         HtmlishFormatOptions { variant, ..options.clone() }
     }
 
@@ -224,9 +239,46 @@ impl ResolvedDispatchConfig {
     pub fn print_options(&self) -> PrinterOptions {
         self.validated.core.as_print_options()
     }
+
+    /// The single Tailwind predicate, same pattern as
+    /// [`Self::is_embedded_formatting_enabled`]: every sorter-assembly site consults it
+    /// (the napi build's JS side, or the pure build's host sorter).
+    pub fn is_tailwind_enabled(&self) -> bool {
+        self.config.is_tailwind_enabled()
+    }
+
+    /// The host's Tailwind CSS sorter, when the configuration asks for sorting. A failure leaves
+    /// the classes as they are and is kept for [`Self::take_tailwind_failure`].
+    #[cfg_attr(feature = "napi", expect(dead_code, reason = "the napi build sorts on the JS side"))]
+    pub fn host_tailwind_sorter(self: &Arc<Self>) -> Option<TailwindSorter> {
+        if !self.is_tailwind_enabled() {
+            return None;
+        }
+        let sorter = Arc::clone(self.hosts.tailwind_sorter()?);
+        let dispatch_config = Arc::clone(self);
+        let options = crate::core::host::prettier_options(&self.config, &self.path);
+        Some(Arc::new(move |classes: Vec<String>| {
+            let count = classes.len();
+            let failure = match sorter.sort(&options, classes.clone()) {
+                Ok(sorted) if sorted.len() == count => return sorted,
+                Ok(sorted) => {
+                    format!("the Tailwind CSS sorter gave {} lists for {count}", sorted.len())
+                }
+                Err(error) => error,
+            };
+            let mut kept = dispatch_config.tailwind_failure.lock().unwrap();
+            kept.get_or_insert(failure);
+            classes
+        }))
+    }
+
+    /// What the host's Tailwind CSS sorter said when it failed for this file.
+    pub fn take_tailwind_failure(&self) -> Option<String> {
+        self.tailwind_failure.lock().unwrap().take()
+    }
 }
 
-/// Napi-only methods: the [`PrettierOptions`] accessors and the Tailwind predicate.
+/// Napi-only methods: the [`PrettierOptions`] accessors.
 #[cfg(feature = "napi")]
 impl ResolvedDispatchConfig {
     /// Sets the host file path for `filepath` injection into [`Self::prettier_options`];
@@ -234,13 +286,6 @@ impl ResolvedDispatchConfig {
     fn with_path(mut self, path: std::path::PathBuf) -> Self {
         self.prettier.path = path;
         self
-    }
-
-    /// The single Tailwind predicate, same pattern as
-    /// [`Self::is_embedded_formatting_enabled`]: every sorter-assembly site consults it
-    /// (the sorter is napi-only; the pure build has no JS-side class order source).
-    pub fn is_tailwind_enabled(&self) -> bool {
-        self.config.is_tailwind_enabled()
     }
 
     /// [`Self::prettier_options`] for one `language`: its parser, plus the payload of the plugin it needs.

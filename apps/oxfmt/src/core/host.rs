@@ -1,5 +1,6 @@
-//! Formatters an embedding program supplies for the languages oxfmt hands to Prettier,
-//! so that a native build can format them without Node.js.
+//! Formatters an embedding program supplies for the languages oxfmt hands to Prettier, and the
+//! Tailwind CSS sorter it hands to JavaScript, so that a native build can do without Node.js or
+//! choose how to reach it.
 
 use std::{fmt, path::Path, sync::Arc};
 
@@ -35,9 +36,23 @@ pub trait HostFormatter: Send + Sync {
     ) -> Result<String, String>;
 }
 
-/// The host formatters of one run, by the language each serves. Cloning is shallow.
+/// Sorts Tailwind CSS classes as prettier-plugin-tailwindcss's `sortClassAttributes` does.
+pub trait HostTailwindSorter: Send + Sync {
+    /// `options` are the Prettier options oxfmt would give the plugin for the file, with
+    /// `filepath` and the plugin's payload. The result has one sorted class list per given one.
+    ///
+    /// # Errors
+    /// A message ready to print: oxfmt reports the file as not formatted.
+    fn sort(&self, options: &Value, classes: Vec<String>) -> Result<Vec<String>, String>;
+}
+
+/// The host formatters of one run, by the language each serves, and its Tailwind CSS sorter.
+/// Cloning is shallow.
 #[derive(Clone, Default)]
-pub struct HostFormatters(Arc<FxHashMap<PrettierLanguage, Arc<dyn HostFormatter>>>);
+pub struct HostFormatters {
+    formatters: Arc<FxHashMap<PrettierLanguage, Arc<dyn HostFormatter>>>,
+    tailwind: Option<Arc<dyn HostTailwindSorter>>,
+}
 
 impl HostFormatters {
     /// Serve `language` with `formatter` instead of Prettier.
@@ -49,12 +64,23 @@ impl HostFormatters {
         let Some(language) = language.prettier_language() else {
             panic!("oxfmt formats {language:?} itself");
         };
-        Arc::make_mut(&mut self.0).insert(language, Arc::new(formatter));
+        Arc::make_mut(&mut self.formatters).insert(language, Arc::new(formatter));
         self
     }
 
+    /// Sort Tailwind CSS classes with `sorter` where the configuration asks for it.
+    #[must_use]
+    pub fn with_tailwind_sorter(mut self, sorter: impl HostTailwindSorter + 'static) -> Self {
+        self.tailwind = Some(Arc::new(sorter));
+        self
+    }
+
+    pub(super) fn tailwind_sorter(&self) -> Option<&Arc<dyn HostTailwindSorter>> {
+        self.tailwind.as_ref()
+    }
+
     pub(super) fn get(&self, language: PrettierLanguage) -> Option<HostedLanguage> {
-        let formatter = Arc::clone(self.0.get(&language)?);
+        let formatter = Arc::clone(self.formatters.get(&language)?);
         Some(HostedLanguage { language, formatter })
     }
 
@@ -70,7 +96,7 @@ impl HostFormatters {
 
 impl fmt::Debug for HostFormatters {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.debug_set().entries(self.0.keys()).finish()
+        f.debug_set().entries(self.formatters.keys()).finish()
     }
 }
 
@@ -90,13 +116,20 @@ impl HostedLanguage {
         config: &FormatConfig,
         javascript: &JsFormatOptions,
     ) -> Result<String, String> {
-        let mut options = to_prettier(config);
+        let mut options = prettier_options(config, path);
         inject_parser(&mut options, self.language.parser());
-        inject_filepath(&mut options, path);
-        inject_tailwind_plugin_payload(&mut options, config);
         inject_opt_in_plugin_payloads(&mut options, self.language, config);
         self.formatter.format(source_text, &options, javascript)
     }
+}
+
+/// The Prettier options of the file at `path`, with its `filepath` and the Tailwind CSS plugin's
+/// payload: what a host gets for any language.
+pub(super) fn prettier_options(config: &FormatConfig, path: &Path) -> Value {
+    let mut options = to_prettier(config);
+    inject_filepath(&mut options, path);
+    inject_tailwind_plugin_payload(&mut options, config);
+    options
 }
 
 impl fmt::Debug for HostedLanguage {
@@ -253,6 +286,69 @@ mod tests {
         let hosts = HostFormatters::default().with(Language::Svelte, Echo);
         let scopes = scopes(dir.path(), r#"{ "svelte": false }"#, hosts);
         assert_eq!(options(&scopes, &dir.path().join("App.svelte")), None);
+    }
+
+    /// Sorts each class list backwards, or fails when told to.
+    #[cfg(not(feature = "napi"))]
+    struct Backwards(bool);
+
+    #[cfg(not(feature = "napi"))]
+    impl HostTailwindSorter for Backwards {
+        fn sort(&self, options: &Value, classes: Vec<String>) -> Result<Vec<String>, String> {
+            if self.0 {
+                return Err(format!("no sorter for {}", options["filepath"]));
+            }
+            assert_eq!(options["_useTailwindPlugin"], json!(1));
+            Ok(classes
+                .iter()
+                .map(|list| list.split_whitespace().rev().collect::<Vec<_>>().join(" "))
+                .collect())
+        }
+    }
+
+    #[cfg(not(feature = "napi"))]
+    fn result(scopes: &ConfigScopes, path: &Path, source_text: &str) -> FormatResult {
+        let resolver = scopes.root();
+        let strategy = resolver.classify(path, None).unwrap();
+        let ResolveOutcome::Format(plan) = resolver.resolve(path, strategy).unwrap() else {
+            panic!("the file formats");
+        };
+        SourceFormatter::new(1).format(source_text, plan)
+    }
+
+    #[cfg(not(feature = "napi"))]
+    #[test]
+    fn a_host_sorts_tailwind_classes_and_its_failure_fails_the_file() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("a.tsx");
+        let source = "<div className=\"a  b\" />;\n";
+        let on = r#"{ "sortTailwindcss": {} }"#;
+        let sorting = |fails| HostFormatters::default().with_tailwind_sorter(Backwards(fails));
+        let FormatResult::Success { code, .. } =
+            result(&scopes(dir.path(), on, sorting(false)), &path, source)
+        else {
+            panic!("the file formats");
+        };
+        assert_eq!(code, "<div className=\"b a\" />;\n");
+        // Without a sorter, the classes are not collected, whose whitespace collecting normalizes
+        let FormatResult::Success { code, .. } =
+            result(&scopes(dir.path(), on, HostFormatters::default()), &path, source)
+        else {
+            panic!("the file formats");
+        };
+        assert_eq!(code, source);
+        let FormatResult::Error(errors) =
+            result(&scopes(dir.path(), on, sorting(true)), &path, source)
+        else {
+            panic!("a failed sort fails the file");
+        };
+        assert!(errors[0].to_string().contains("no sorter for"), "{}", errors[0]);
+        let FormatResult::Success { code, .. } =
+            result(&scopes(dir.path(), "{}", sorting(true)), &path, source)
+        else {
+            panic!("an unconfigured sort is not asked for");
+        };
+        assert_eq!(code, source);
     }
 
     #[test]

@@ -39,6 +39,13 @@ pub trait HostLinter: Send + Sync {
         None
     }
 
+    /// Read-only globals the language declares in `path`, beside the configuration's, for the
+    /// files whose scripts oxlint lints, such as the runes of a Svelte module.
+    fn globals(&self, path: &Path) -> &[&str] {
+        let _ = path;
+        &[]
+    }
+
     /// Lints `file` with its rules. A message's severity is its rule's.
     fn lint(&self, file: &HostFile<'_>) -> Vec<Message>;
 }

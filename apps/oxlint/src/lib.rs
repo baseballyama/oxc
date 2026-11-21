@@ -6,6 +6,7 @@ mod command;
 mod config_loader;
 mod init;
 mod lint;
+#[cfg(feature = "lsp")]
 pub mod lsp;
 mod mode;
 mod output_formatter;

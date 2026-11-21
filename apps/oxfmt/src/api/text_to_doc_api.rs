@@ -65,8 +65,12 @@ pub fn run(
 
     // Per-language options (and the Prettier options JSON with the Tailwind payload)
     // are mapped lazily at dispatch time.
-    let dispatch_config =
-        ResolvedDispatchConfig::for_root(Arc::new(config), Arc::new(validated), &parent_filepath);
+    let dispatch_config = ResolvedDispatchConfig::for_root(
+        Arc::new(config),
+        Arc::new(validated),
+        &parent_filepath,
+        crate::core::host::HostFormatters::default(),
+    );
     let format_options = dispatch_config.js_options();
 
     let services = embed::services::for_root(&external_services, &dispatch_config);

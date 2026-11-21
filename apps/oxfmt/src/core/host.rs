@@ -1,23 +1,37 @@
 //! Formatters an embedding program supplies for the languages oxfmt hands to Prettier,
 //! so that a native build can format them without Node.js.
 
-use std::{fmt, sync::Arc};
+use std::{fmt, path::Path, sync::Arc};
 
+use oxc_formatter::JsFormatOptions;
 use rustc_hash::FxHashMap;
 use serde_json::Value;
 
-use super::{language::Language, support::PrettierLanguage};
+use super::{
+    language::Language,
+    options::{
+        inject_filepath, inject_opt_in_plugin_payloads, inject_parser,
+        inject_tailwind_plugin_payload, to_prettier,
+    },
+    oxfmtrc::FormatConfig,
+    support::PrettierLanguage,
+};
 
 /// Formats a whole file of one language.
 pub trait HostFormatter: Send + Sync {
-    /// `options` are the Prettier options oxfmt would pass to Prettier for this file,
-    /// with `parser`, `filepath`, the payloads of the Tailwind CSS and the language's opt-in
-    /// plugin, and `_oxfmtPluginOptionsJson`: the whole configuration, whose oxfmt-only options
-    /// (`sortImports`, `jsdoc`) oxfmt applies to the code a Prettier plugin hands back to it.
+    /// `options` are the Prettier options oxfmt would pass to Prettier for this text,
+    /// with `parser`, `filepath` and the payloads of the Tailwind CSS and the language's opt-in
+    /// plugin. `javascript` are the options oxfmt formats the language's scripts with, when
+    /// Prettier hands them back to it, `sort_imports` and `jsdoc` included.
     ///
     /// # Errors
     /// A message ready to print.
-    fn format(&self, source_text: &str, options: &Value) -> Result<String, String>;
+    fn format(
+        &self,
+        source_text: &str,
+        options: &Value,
+        javascript: &JsFormatOptions,
+    ) -> Result<String, String>;
 }
 
 /// The host formatters of one run, by the language each serves. Cloning is shallow.
@@ -42,6 +56,15 @@ impl HostFormatters {
         let formatter = Arc::clone(self.0.get(&language)?);
         Some(HostedLanguage { language, formatter })
     }
+
+    /// The host of `language`, unless `config` turns the language off.
+    pub(super) fn serving(
+        &self,
+        language: PrettierLanguage,
+        config: &FormatConfig,
+    ) -> Option<HostedLanguage> {
+        self.get(language).filter(|hosted| !hosted.language.disabled_by(config))
+    }
 }
 
 impl fmt::Debug for HostFormatters {
@@ -55,6 +78,24 @@ impl fmt::Debug for HostFormatters {
 pub struct HostedLanguage {
     pub(super) language: PrettierLanguage,
     pub(super) formatter: Arc<dyn HostFormatter>,
+}
+
+impl HostedLanguage {
+    /// Formats `source_text`, a whole file at `path` or a part of it, as `config` says.
+    pub(super) fn format(
+        &self,
+        source_text: &str,
+        path: &Path,
+        config: &FormatConfig,
+        javascript: &JsFormatOptions,
+    ) -> Result<String, String> {
+        let mut options = to_prettier(config);
+        inject_parser(&mut options, self.language.parser());
+        inject_filepath(&mut options, path);
+        inject_tailwind_plugin_payload(&mut options, config);
+        inject_opt_in_plugin_payloads(&mut options, self.language, config);
+        self.formatter.format(source_text, &options, javascript)
+    }
 }
 
 impl fmt::Debug for HostedLanguage {
@@ -78,9 +119,47 @@ mod tests {
     struct Echo;
 
     impl HostFormatter for Echo {
-        fn format(&self, _source_text: &str, options: &Value) -> Result<String, String> {
+        fn format(
+            &self,
+            _source_text: &str,
+            options: &Value,
+            javascript: &JsFormatOptions,
+        ) -> Result<String, String> {
+            let mut options = options.clone();
+            options["sortsImports"] = json!(javascript.sort_imports.is_some());
             Ok(format!("{options}\n"))
         }
+    }
+
+    /// Prints the text it receives with its spaces collapsed, on two lines.
+    #[cfg(not(feature = "napi"))]
+    struct Collapse;
+
+    #[cfg(not(feature = "napi"))]
+    impl HostFormatter for Collapse {
+        fn format(
+            &self,
+            source_text: &str,
+            _options: &Value,
+            _javascript: &JsFormatOptions,
+        ) -> Result<String, String> {
+            let words: Vec<&str> = source_text.split_whitespace().collect();
+            Ok(format!("{}\n(hosted)\n", words.join(" ")))
+        }
+    }
+
+    #[cfg(not(feature = "napi"))]
+    fn formatted(scopes: &ConfigScopes, path: &Path, source_text: &str) -> String {
+        let resolver = scopes.root();
+        let strategy = resolver.classify(path, None).unwrap();
+        let ResolveOutcome::Format(plan) = resolver.resolve(path, strategy).unwrap() else {
+            panic!("the file formats");
+        };
+        let FormatResult::Success { code, .. } = SourceFormatter::new(1).format(source_text, plan)
+        else {
+            panic!("the file formats");
+        };
+        code
     }
 
     fn scopes(dir: &Path, config: &str, hosts: HostFormatters) -> ConfigScopes {
@@ -125,9 +204,36 @@ mod tests {
         assert_eq!(options["semi"], json!(false));
         assert_eq!(options["svelteSortOrder"], json!("scripts-markup-styles-options"));
         assert_eq!(options["filepath"], json!(path.to_string_lossy()));
-        let payload: Value =
-            serde_json::from_str(options["_oxfmtPluginOptionsJson"].as_str().unwrap()).unwrap();
-        assert_eq!(payload["config"]["semi"], json!(false));
+        assert_eq!(options["sortsImports"], json!(false));
+    }
+
+    #[test]
+    fn a_host_gets_the_javascript_options_oxfmt_formats_its_scripts_with() {
+        let dir = tempfile::tempdir().unwrap();
+        let hosts = HostFormatters::default().with(Language::Svelte, Echo);
+        let scopes = scopes(dir.path(), r#"{ "sortImports": {} }"#, hosts);
+        let options = options(&scopes, &dir.path().join("App.svelte")).unwrap();
+        assert_eq!(options["sortsImports"], json!(true));
+    }
+
+    // A napi build formats Markdown with the JS side's services, which a unit test has not.
+    #[cfg(not(feature = "napi"))]
+    #[test]
+    fn a_host_formats_a_code_block_in_its_language() {
+        let markdown = "# A\n\n- item\n\n  ```svelte\n  <p   class=\"x\">a</p>\n  ```\n";
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("a.md");
+        let hosts = || HostFormatters::default().with(Language::Svelte, Collapse);
+        let scopes_with = |config| scopes(dir.path(), config, hosts());
+        assert_eq!(
+            formatted(&scopes_with("{}"), &path, markdown),
+            "# A\n\n- item\n\n  ```svelte\n  <p class=\"x\">a</p>\n  (hosted)\n  ```\n"
+        );
+        for off in [r#"{ "svelte": false }"#, r#"{ "embeddedLanguageFormatting": "off" }"#] {
+            assert_eq!(formatted(&scopes_with(off), &path, markdown), markdown, "{off}");
+        }
+        let unhosted = scopes(dir.path(), "{}", HostFormatters::default());
+        assert_eq!(formatted(&unhosted, &path, markdown), markdown);
     }
 
     #[test]

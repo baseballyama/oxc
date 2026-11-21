@@ -8,12 +8,14 @@ use std::sync::{Arc, OnceLock};
 
 use tracing::{debug, debug_span};
 
+use oxc_allocator::ArenaVec;
 use oxc_formatter::{
     CssInJsTemplate, ExpressionLayout, ExpressionRoot, HtmlInJsTemplate, JsEmbeddedIn,
     JsFormatOptions, JsRoot, MarkdownInJsTemplate, ProgramLayout, ProgramSemicolons,
 };
 use oxc_formatter_core::{
     DispatchRequest, DispatchResponse, EmbeddedIr, FormatDispatcher, FormatSession,
+    push_text_with_literal_lines,
 };
 use oxc_formatter_core::{FormatOptions, PrinterOptions};
 use oxc_formatter_css::{CssEmbeddedIn, CssFormatOptions, CssVariant};
@@ -29,6 +31,7 @@ use oxc_formatter_yaml::YamlFormatOptions;
 
 use super::jsdoc_fence::XxxInJsdocFence;
 use crate::core::{
+    host::HostFormatters,
     language::{Route, route_embedded},
     options::{
         ValidatedOptions, to_oxc_formatter, to_oxc_formatter_css, to_oxc_formatter_graphql,
@@ -68,6 +71,10 @@ pub struct ResolvedDispatchConfig {
     markdown: OnceLock<MarkdownFormatOptions>,
     toml: OnceLock<TomlFormatOptions>,
     htmlish: OnceLock<HtmlishFormatOptions>,
+    /// The root's path, which the options of a host formatter carry as `filepath`.
+    path: std::path::PathBuf,
+    /// The host formatters, for the parts in a language Prettier would format.
+    hosts: HostFormatters,
     /// The options handed to Prettier; see [`PrettierOptions`].
     #[cfg(feature = "napi")]
     prettier: PrettierOptions,
@@ -91,7 +98,12 @@ struct PrettierOptions {
 
 impl ResolvedDispatchConfig {
     /// Private so [`Self::for_root`] stays the only construction recipe.
-    fn new(config: Arc<FormatConfig>, validated: Arc<ValidatedOptions>) -> Self {
+    fn new(
+        config: Arc<FormatConfig>,
+        validated: Arc<ValidatedOptions>,
+        path: std::path::PathBuf,
+        hosts: HostFormatters,
+    ) -> Self {
         Self {
             config,
             validated,
@@ -104,26 +116,26 @@ impl ResolvedDispatchConfig {
             markdown: OnceLock::new(),
             toml: OnceLock::new(),
             htmlish: OnceLock::new(),
+            path,
+            hosts,
             #[cfg(feature = "napi")]
             prettier: PrettierOptions::default(),
         }
     }
 
     /// The one construction recipe for a root formatter run at `path`:
-    /// [`Self::new`] plus the napi-only path recording
-    /// (the pure build has no JS-side consumers, so `path` goes unused there).
+    /// [`Self::new`] plus the napi-only path recording.
     /// `validated` is the config-resolution gate's artifacts (`options::validate`),
     /// carried from resolution so they never get re-derived (or re-fail) here.
     pub fn for_root(
         config: Arc<FormatConfig>,
         validated: Arc<ValidatedOptions>,
         path: &std::path::Path,
+        hosts: HostFormatters,
     ) -> Arc<Self> {
-        let dispatch_config = Self::new(config, validated);
+        let dispatch_config = Self::new(config, validated, path.to_path_buf(), hosts);
         #[cfg(feature = "napi")]
         let dispatch_config = dispatch_config.with_path(path.to_path_buf());
-        #[cfg(not(feature = "napi"))]
-        let _ = path;
         Arc::new(dispatch_config)
     }
 
@@ -386,6 +398,37 @@ pub fn build_dispatcher(
             // Prettier-served languages: Doc→IR fallback when available (napi),
             // deliberate skip otherwise (pure build).
             Route::Prettier(language) => {
+                if let Some(hosted) =
+                    dispatch_config.hosts.serving(language, &dispatch_config.config)
+                {
+                    let javascript = dispatch_config.js_options();
+                    let formatted = hosted.format(
+                        text,
+                        &dispatch_config.path,
+                        &dispatch_config.config,
+                        &javascript,
+                    );
+                    return Ok(match formatted {
+                        Ok(code) => {
+                            let allocator = session.allocator();
+                            let code = allocator.alloc_str(code.trim_end_matches('\n'));
+                            let mut ir = ArenaVec::new_in(&allocator);
+                            push_text_with_literal_lines(
+                                &mut ir,
+                                code,
+                                dispatch_config.validated.core.indent_width,
+                            );
+                            DispatchResponse::Formatted(EmbeddedIr { ir })
+                        }
+                        Err(error) => {
+                            debug!(
+                                "The host formatter of '{}' failed, part stays as-is: {error}",
+                                request.language
+                            );
+                            DispatchResponse::PreserveOriginal
+                        }
+                    });
+                }
                 if let Some(fallback) = &fallback {
                     fallback(session, language, &request)
                 } else {
@@ -524,6 +567,8 @@ mod tests {
         Arc::new(ResolvedDispatchConfig::new(
             Arc::new(FormatConfig::default()),
             Arc::new(ValidatedOptions { core: CoreFormatOptions::default(), sort_imports: None }),
+            std::path::PathBuf::new(),
+            crate::core::host::HostFormatters::default(),
         ))
     }
 

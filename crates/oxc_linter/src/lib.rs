@@ -86,7 +86,7 @@ pub use crate::{
     external_plugin_store::{ExternalOptionsId, ExternalPluginStore, ExternalRuleId},
     fixer::{Fix, FixKind, Fixer, Message, PossibleFixes, oxc_code_short_canonical_name},
     frameworks::FrameworkFlags,
-    host::{EnabledHostRule, HostLinter, HostPlugin, HostRule},
+    host::{EnabledHostRule, HostFile, HostLinter, HostPlugin, HostRule},
     lint_runner::{DirectivesStore, LintRunner, LintRunnerBuilder},
     loader::LINTABLE_EXTENSIONS,
     module_record::ModuleRecord,
@@ -102,7 +102,7 @@ pub use crate::{
     utils::{read_to_arena_str, read_to_string},
 };
 use crate::{
-    config::{LintConfig, OxlintEnv, OxlintGlobals, OxlintSettings},
+    config::{GlobalValue, LintConfig, OxlintEnv, OxlintGlobals, OxlintSettings},
     context::ContextHost,
     external_linter::GlobalsAndEnvs,
     fixer::CompositeFix,
@@ -323,7 +323,7 @@ impl Linter {
     pub fn run_host(&self, path: &Path, source_text: &str) -> Option<Vec<Message>> {
         let store = self.config.external_plugin_store();
         let host = store.host_for(path)?;
-        let ResolvedLinterState { rules, external_rules, .. } = self.config.resolve(path);
+        let ResolvedLinterState { rules, external_rules, config } = self.config.resolve(path);
         let mut enabled = Vec::new();
         for (rule, severity) in rules.iter() {
             if severity.is_warn_deny() && host.implements(rule.plugin_name(), rule.name()) {
@@ -348,7 +348,26 @@ impl Linter {
                 });
             }
         }
-        Some(host.linter.lint(path, source_text, &enabled))
+        let globals = config
+            .globals
+            .iter()
+            .map(|(name, value)| {
+                let writable = match value {
+                    GlobalValue::Readonly => Some(false),
+                    GlobalValue::Writable => Some(true),
+                    GlobalValue::Off => None,
+                };
+                (name.as_str(), writable)
+            })
+            .collect();
+        Some(host.linter.lint(&HostFile {
+            path,
+            source_text,
+            rules: &enabled,
+            settings: config.settings.json.as_ref(),
+            env: config.env.iter().collect(),
+            globals,
+        }))
     }
 
     /// The scripts oxlint's own rules lint in `source_text`, if a host lints `path` and says.

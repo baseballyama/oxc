@@ -39,8 +39,22 @@ pub trait HostLinter: Send + Sync {
         None
     }
 
-    /// Lints `source_text` with `rules`. A message's severity is its rule's.
-    fn lint(&self, path: &Path, source_text: &str, rules: &[EnabledHostRule<'_>]) -> Vec<Message>;
+    /// Lints `file` with its rules. A message's severity is its rule's.
+    fn lint(&self, file: &HostFile<'_>) -> Vec<Message>;
+}
+
+/// A file a host lints, with what the configuration says for it.
+#[derive(Debug)]
+pub struct HostFile<'c> {
+    pub path: &'c Path,
+    pub source_text: &'c str,
+    pub rules: &'c [EnabledHostRule<'c>],
+    /// `settings`, as written: a host reads its own key, as a JS plugin does.
+    pub settings: Option<&'c serde_json::Map<String, Value>>,
+    /// The environments `env` turns on.
+    pub env: Vec<&'c str>,
+    /// `globals`: a name with `Some(writable)`, or `None` for `"off"`.
+    pub globals: Vec<(&'c str, Option<bool>)>,
 }
 
 /// A language a host lints.
@@ -88,7 +102,7 @@ mod tests {
 
     use rustc_hash::FxHashMap;
 
-    use super::{EnabledHostRule, HostLinter, HostPlugin, HostRule};
+    use super::{HostFile, HostLinter, HostPlugin, HostRule};
     use crate::{
         AllowWarnDeny, ConfigStore, ConfigStoreBuilder, ExternalPluginStore, LintOptions, Linter,
         Message, Oxlintrc, RuleCategory,
@@ -99,9 +113,9 @@ mod tests {
     struct Recorder(Mutex<Vec<(String, AllowWarnDeny, String)>>);
 
     impl HostLinter for Recorder {
-        fn lint(&self, _: &Path, _: &str, rules: &[EnabledHostRule<'_>]) -> Vec<Message> {
+        fn lint(&self, file: &HostFile<'_>) -> Vec<Message> {
             let mut seen = self.0.lock().unwrap();
-            for rule in rules {
+            for rule in file.rules {
                 let options = serde_json::to_string(rule.options).unwrap();
                 seen.push((format!("{}/{}", rule.plugin, rule.name), rule.severity, options));
             }
@@ -172,6 +186,59 @@ mod tests {
     #[test]
     fn a_host_lints_only_its_files() {
         assert_eq!(rules_for("{}", "module.ts"), []);
+    }
+
+    /// Records what the configuration says for the file.
+    #[derive(Default)]
+    struct Context(Mutex<Option<String>>);
+
+    impl HostLinter for Context {
+        fn lint(&self, file: &HostFile<'_>) -> Vec<Message> {
+            let mut env = file.env.clone();
+            env.sort_unstable();
+            let mut globals = file.globals.clone();
+            globals.sort_unstable();
+            let settings = file.settings.and_then(|s| s.get("svelte")).cloned();
+            *self.0.lock().unwrap() = Some(format!("{settings:?} {env:?} {globals:?}"));
+            Vec::new()
+        }
+    }
+
+    #[test]
+    fn a_host_reads_settings_env_and_globals() {
+        let context = Arc::new(Context::default());
+        let host = Arc::new(HostPlugin {
+            name: "svelte".into(),
+            extensions: vec!["svelte".into()],
+            rules: vec![HostRule { name: "a".into(), category: RuleCategory::Correctness }],
+            builtin_rules: Vec::new(),
+            linter: Arc::clone(&context) as Arc<dyn HostLinter>,
+        });
+        let mut store = ExternalPluginStore::new(false);
+        store.register_host_plugin(host);
+        let oxlintrc = Oxlintrc::from_string(
+            r#"{
+                "settings": { "svelte": { "ignoreWarnings": ["x"] } },
+                "env": { "browser": true },
+                "globals": { "one": "readonly", "two": "writable", "three": "off" }
+            }"#,
+        )
+        .unwrap();
+        let builder =
+            ConfigStoreBuilder::from_oxlintrc(false, oxlintrc, None, &mut store, None).unwrap();
+        let config = builder.build(&mut store).unwrap();
+        let linter = Linter::new(
+            LintOptions::default(),
+            ConfigStore::new(config, FxHashMap::default(), store),
+            None,
+        );
+        linter.run_host(Path::new("App.svelte"), "").unwrap();
+        assert_eq!(
+            context.0.lock().unwrap().as_deref(),
+            Some(
+                r#"Some(Object {"ignoreWarnings": Array [String("x")]}) ["browser"] [("one", Some(false)), ("three", None), ("two", Some(true))]"#
+            )
+        );
     }
 
     #[test]

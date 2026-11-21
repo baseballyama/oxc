@@ -17,7 +17,7 @@ use oxc_diagnostics::{
 };
 use oxc_linter::{
     AllowWarnDeny, ConfigBuilderError, ConfigStore, ExternalLinter, ExternalPluginStore,
-    InvalidFilterKind, LintFilter, LintOptions, LintRunner, LintServiceOptions, Linter,
+    HostPlugin, InvalidFilterKind, LintFilter, LintOptions, LintRunner, LintServiceOptions, Linter,
     OxlintSuppressionFileAction, RuleTimingStore, SuppressionManager,
 };
 
@@ -37,6 +37,8 @@ pub struct CliRunner {
     options: LintCommand,
     cwd: PathBuf,
     external_linter: Option<ExternalLinter>,
+    /// The plugins of an embedding program, which lints their files itself.
+    hosts: Vec<Arc<HostPlugin>>,
     /// Callback for loading JavaScript/TypeScript config files (experimental).
     /// This is only available when running via Node.js with NAPI.
     #[cfg(feature = "napi")]
@@ -50,6 +52,7 @@ impl Debug for CliRunner {
             "external_linter",
             if self.external_linter.is_some() { &"Some(ExternalLinter)" } else { &"None" },
         );
+        s.field("hosts", &self.hosts);
         #[cfg(feature = "napi")]
         s.field(
             "js_config_loader",
@@ -66,9 +69,17 @@ impl CliRunner {
             options,
             cwd: env::current_dir().expect("Failed to get current working directory"),
             external_linter,
+            hosts: Vec::new(),
             #[cfg(feature = "napi")]
             js_config_loader: None,
         }
+    }
+
+    /// Lint the files of each host's extensions with that host.
+    #[must_use]
+    pub fn with_hosts(mut self, hosts: Vec<Arc<HostPlugin>>) -> Self {
+        self.hosts = hosts;
+        self
     }
 
     /// # Panics
@@ -229,6 +240,9 @@ impl CliRunner {
         }
 
         let mut external_plugin_store = ExternalPluginStore::new(self.external_linter.is_some());
+        for host in &self.hosts {
+            external_plugin_store.register_host_plugin(Arc::clone(host));
+        }
 
         // Setup JS workspace before loading any configs (config parsing can load JS plugins).
         if let Some(external_linter) = &external_linter {

@@ -1714,6 +1714,34 @@ mod test {
     }
 
     #[test]
+    fn an_optional_chain_target_has_its_own_code() {
+        // tsc 5's first error and its start for each target.
+        let allocator = Allocator::default();
+        for (source, code, start) in [
+            ("a?.b = 1", "2779", 0),
+            ("(a?.b) = 1", "2779", 0),
+            ("a?.b += 1", "2779", 0),
+            ("a?.b++", "2777", 0),
+            ("++a?.b", "2777", 2),
+            ("for (a?.b in x);", "2780", 5),
+            ("for (a?.b of x);", "2781", 5),
+            ("[a?.b] = x", "2779", 1),
+            ("[...a?.b] = x", "2779", 4),
+            ("({...a?.b} = y)", "2778", 5),
+            ("({x: a?.b} = y)", "2779", 5),
+            ("(a?.b)! = 1", "2779", 0),
+            ("(a?.b as any) = 1", "2779", 0),
+            ("f() = 1", "2364", 0),
+        ] {
+            let ret = Parser::new(&allocator, source, SourceType::ts()).parse();
+            let error = ret.diagnostics.first().unwrap();
+            assert_eq!(error.code.number.as_deref(), Some(code), "{source}");
+            let label = error.labels.first().unwrap();
+            assert_eq!(label.offset(), start, "{source}");
+        }
+    }
+
+    #[test]
     fn asserted_exponentiation_preserve_parens() {
         for preserve_parens in [true, false] {
             for source in [

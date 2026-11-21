@@ -871,18 +871,23 @@ impl Runtime {
                             })
                             .collect();
 
-                        if context_sub_hosts.is_empty() {
+                        let host_messages = me.linter.run_host(path, dep.source_text);
+                        if context_sub_hosts.is_empty() && host_messages.is_none() {
                             return;
                         }
 
-                        let (mut messages, disable_directives) =
+                        let (mut messages, disable_directives) = if context_sub_hosts.is_empty() {
+                            (Vec::new(), None)
+                        } else {
                             me.linter.run_with_disable_directives::<TIMINGS>(
                                 path,
                                 context_sub_hosts,
                                 allocator_guard,
                                 me.js_allocator_pool(),
                                 rule_timing_store,
-                            );
+                            )
+                        };
+                        messages.extend(host_messages.into_iter().flatten());
 
                         // Store the disable directives for this file
                         if let Some(mut disable_directives) = disable_directives {
@@ -1282,7 +1287,10 @@ impl Runtime {
         allocator: &'a Allocator,
         mut out_sections: Option<&mut SectionContents<'a>>,
     ) -> SmallVec<[Result<ResolvedModuleRecord, Vec<OxcDiagnostic>>; 1]> {
-        let section_sources = PartialLoader::parse(ext, source_text)
+        let section_sources = self
+            .linter
+            .host_scripts(path, source_text)
+            .or_else(|| PartialLoader::parse(ext, source_text))
             .unwrap_or_else(|| vec![JavaScriptSource::partial(source_text, source_type, 0)]);
 
         let mut section_module_records = SmallVec::<

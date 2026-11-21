@@ -101,7 +101,7 @@ pub enum LineWrappingStyle {
 }
 
 /// Options for JSDoc comment formatting.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct JsdocOptions {
     /// Capitalize the first letter of tag descriptions. Default: true.
     /// Maps to upstream's `jsdocCapitalizeDescription`.

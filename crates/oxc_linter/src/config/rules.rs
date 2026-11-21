@@ -249,8 +249,11 @@ impl OxlintRules {
                     }
                 } else {
                     // Plugin name is not a built-in plugin. If external plugins are enabled,
-                    // try to resolve it as an external JS plugin; otherwise ignore it.
-                    if external_plugin_store.is_enabled() {
+                    // try to resolve it as an external JS plugin; otherwise ignore it. A host's
+                    // plugin resolves either way.
+                    if external_plugin_store.is_enabled()
+                        || external_plugin_store.is_host_plugin(plugin_name)
+                    {
                         match external_plugin_store.lookup_rule_id(plugin_name, rule_name) {
                             Ok(external_rule_id) => {
                                 let options_id = external_plugin_store

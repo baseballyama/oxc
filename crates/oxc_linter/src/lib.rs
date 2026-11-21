@@ -322,11 +322,12 @@ impl Linter {
     /// configuration turns on for `path`.
     pub fn run_host(&self, path: &Path, source_text: &str) -> Option<Vec<Message>> {
         let store = self.config.external_plugin_store();
-        let host = store.host_for(path)?;
+        let host = store.host_reading(path)?;
+        let own = host.lints(path);
         let ResolvedLinterState { rules, external_rules, config } = self.config.resolve(path);
         let mut enabled = Vec::new();
         for (rule, severity) in rules.iter() {
-            if severity.is_warn_deny() && host.implements(rule.plugin_name(), rule.name()) {
+            if own && severity.is_warn_deny() && host.implements(rule.plugin_name(), rule.name()) {
                 enabled.push(EnabledHostRule {
                     plugin: rule.plugin_name(),
                     name: rule.name(),

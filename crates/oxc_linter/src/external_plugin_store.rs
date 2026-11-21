@@ -117,6 +117,11 @@ impl ExternalPluginStore {
         self.hosts.iter().map(|(_, host)| host).find(|host| host.lints(path))
     }
 
+    /// The host whose rules run on `path`: its own file, or a module of it.
+    pub fn host_reading(&self, path: &Path) -> Option<&Arc<HostPlugin>> {
+        self.hosts.iter().map(|(_, host)| host).find(|host| host.reads(path))
+    }
+
     /// The host that owns `rule_id`, if a host does.
     pub(crate) fn host_of_rule(&self, rule_id: ExternalRuleId) -> Option<&Arc<HostPlugin>> {
         let plugin_id = self.rules[rule_id].plugin_id;

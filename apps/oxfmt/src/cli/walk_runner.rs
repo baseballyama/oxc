@@ -26,6 +26,7 @@ pub struct WalkRunner {
     options: FormatCommand,
     cwd: PathBuf,
     hosts: HostFormatters,
+    preformatted: Option<std::sync::Arc<dyn super::Preformatted>>,
     #[cfg(feature = "napi")]
     external_services: Option<crate::core::ExternalServices>,
     #[cfg(feature = "napi")]
@@ -42,6 +43,7 @@ impl WalkRunner {
             options,
             cwd: env::current_dir().expect("Failed to get current working directory"),
             hosts: HostFormatters::default(),
+            preformatted: None,
             #[cfg(feature = "napi")]
             external_services: None,
             #[cfg(feature = "napi")]
@@ -54,6 +56,51 @@ impl WalkRunner {
     pub fn with_hosts(mut self, hosts: HostFormatters) -> Self {
         self.hosts = hosts;
         self
+    }
+
+    /// Use `preformatted`'s results instead of formatting those files again.
+    #[must_use]
+    pub fn with_preformatted(mut self, preformatted: std::sync::Arc<dyn super::Preformatted>) -> Self {
+        self.preformatted = Some(preformatted);
+        self
+    }
+
+    /// The plans of the files [`Self::run`] would format, from the same walk, or the result
+    /// `run` would return without formatting any.
+    pub fn plans(&self) -> Result<Vec<FormatPlan>, CliRunResult> {
+        let stderr = &mut BufWriter::new(std::io::stderr());
+        let scopes = ConfigScopes::load(
+            &self.cwd,
+            self.options.config_options.config.as_deref(),
+            self.options.config_options.use_nested_configs(),
+            self.hosts.clone(),
+            #[cfg(feature = "napi")]
+            self.js_config_loader.as_ref(),
+        )
+        .map_err(|err| {
+            utils::print_and_flush(stderr, &format!("{err}\n"));
+            CliRunResult::InvalidOptionConfig
+        })?;
+        let ignore = resolve_ignore_paths(&self.cwd, &self.options.ignore_options.ignore_path)
+            .map_err(|err| {
+                utils::print_and_flush(stderr, &format!("{err}\n"));
+                CliRunResult::InvalidOptionConfig
+            })?;
+        let walker = ScopedWalker::new(self.cwd.clone(), &self.options.paths).map_err(|err| {
+            utils::print_and_flush(stderr, &format!("{err}\n"));
+            CliRunResult::InvalidOptionConfig
+        })?;
+        let (tx_entry, rx_entry) = mpsc::channel::<FormatPlan>();
+        // The walk's errors are reported again by `run`.
+        let (_service, tx_error) = DiagnosticService::new(Box::new(DefaultReporter::default()));
+        walker
+            .run(&scopes, &ignore, self.options.ignore_options.with_node_modules, &tx_entry, &tx_error)
+            .map_err(|err| {
+                utils::print_and_flush(stderr, &format!("{err}\n"));
+                CliRunResult::InvalidOptionConfig
+            })?;
+        drop(tx_entry);
+        Ok(rx_entry.into_iter().collect())
     }
 
     #[cfg(feature = "napi")]
@@ -152,13 +199,16 @@ impl WalkRunner {
         let source_formatter = source_formatter.with_external_services(self.external_services);
 
         let cwd_for_format = cwd.clone();
+        let preformatted = self.preformatted;
         // Clone `tx_error` so both the walk threads and the format service can report errors
         let tx_error_for_format = tx_error.clone();
 
         // Spawn formatting service on a dedicated thread so it doesn't occupy the rayon pool.
         // It just blocks on `rx_entry` waiting for entries; `par_bridge()` inside still uses rayon.
         std::thread::spawn(move || {
-            let format_service = FormatService::new(cwd_for_format, format_mode, source_formatter);
+            let mut format_service =
+                FormatService::new(cwd_for_format, format_mode, source_formatter);
+            format_service.preformatted = preformatted;
             format_service.run_streaming(rx_entry, &tx_error_for_format, &tx_success);
         });
 

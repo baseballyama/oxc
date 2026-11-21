@@ -2937,6 +2937,7 @@ dependencies = [
  "napi-derive",
  "oxc-schemars",
  "oxc_allocator",
+ "oxc_ast",
  "oxc_config",
  "oxc_diagnostics",
  "oxc_formatter",

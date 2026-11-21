@@ -168,17 +168,37 @@ impl SourceFormatter {
             }
         };
 
-        match result {
-            Ok(mut code) => {
-                // Every formatter always ends with a newline (no option to disable it),
-                // so trimming is enough without allocating a new string.
-                if !config.insert_final_newline.unwrap_or(true) {
-                    code.truncate(code.trim_end().len());
-                }
-                FormatResult::Success { is_changed: source_text != code, code }
-            }
-            Err(err) => FormatResult::Error(vec![err]),
+        finish(source_text, &config, result)
+    }
+
+    /// [`Self::format`] of a JS or TS file whose `program` the caller parsed in `allocator`
+    /// with [`oxc_formatter::parse_for_format`]'s options, so the file is not parsed again.
+    /// `None` when `plan` does not format the file as JS or TS.
+    pub fn format_program<'a>(
+        &self,
+        allocator: &'a Allocator,
+        program: &'a oxc_ast::ast::Program<'a>,
+        plan: &FormatPlan,
+    ) -> Option<FormatResult> {
+        let FormatStrategy::Native(NativeLanguage::Js(_)) = plan.strategy else {
+            return None;
+        };
+        let source_text = program.source_text;
+        if source_text.trim().is_empty() {
+            return Some(FormatResult::Success {
+                is_changed: !source_text.is_empty(),
+                code: String::new(),
+            });
         }
+        let dispatch_config = ResolvedDispatchConfig::for_root(
+            Arc::clone(&plan.config),
+            Arc::clone(&plan.validated),
+            &plan.path,
+        );
+        let session = self.root_session(allocator, &dispatch_config);
+        let options = dispatch_config.js_options();
+        let formatted = oxc_formatter::format_program_with_session(&session, program, options);
+        Some(finish(source_text, &plan.config, print(formatted, &plan.path)))
     }
 
     /// A `PhysicalFile` root session carrying the build's default services
@@ -220,18 +240,66 @@ impl SourceFormatter {
 }
 
 /// Format a file by its host formatter, with the options Prettier would receive.
-fn format_by_host(
+fn finish(
     source_text: &str,
-    path: &Path,
-    hosted: &HostedLanguage,
     config: &FormatConfig,
-) -> Result<String, OxcDiagnostic> {
+    result: Result<String, OxcDiagnostic>,
+) -> FormatResult {
+    match result {
+        Ok(mut code) => {
+            // Every formatter always ends with a newline (no option to disable it),
+            // so trimming is enough without allocating a new string.
+            if !config.insert_final_newline.unwrap_or(true) {
+                code.truncate(code.trim_end().len());
+            }
+            FormatResult::Success { is_changed: source_text != code, code }
+        }
+        Err(err) => FormatResult::Error(vec![err]),
+    }
+}
+
+impl FormatPlan {
+    pub fn path(&self) -> &Path {
+        &self.path
+    }
+
+    /// Whether oxfmt formats the file as JS or TS.
+    pub fn is_js(&self) -> bool {
+        matches!(self.strategy, FormatStrategy::Native(NativeLanguage::Js(_)))
+    }
+
+    /// What [`SourceFormatter::format`] makes of a host formatter's `result` for `source_text`.
+    pub fn host_result(&self, source_text: &str, result: Result<String, String>) -> FormatResult {
+        let result = result.map_err(|err| {
+            OxcDiagnostic::error(format!("{err}\n[{}]", self.path.display()))
+        });
+        finish(source_text, &self.config, result)
+    }
+
+    /// The options oxfmt hands the file's host formatter, if a host serves it.
+    pub fn host_options(&self) -> Option<serde_json::Value> {
+        let FormatStrategy::Host(hosted) = &self.strategy else { return None };
+        Some(host_options(&self.path, hosted, &self.config))
+    }
+}
+
+fn host_options(path: &Path, hosted: &HostedLanguage, config: &FormatConfig) -> serde_json::Value {
     let mut options = to_prettier(config);
     inject_parser(&mut options, hosted.language.parser());
     inject_filepath(&mut options, path);
     inject_tailwind_plugin_payload(&mut options, config);
     inject_opt_in_plugin_payloads(&mut options, hosted.language, config);
     inject_oxfmt_plugin_payload(&mut options, config, path);
+    options
+}
+
+fn format_by_host(
+    source_text: &str,
+    path: &Path,
+    hosted: &HostedLanguage,
+    config: &FormatConfig,
+) -> Result<String, OxcDiagnostic> {
+    let options = host_options(path, hosted, config);
     hosted
         .formatter
         .format(source_text, &options)

@@ -20,10 +20,17 @@ pub enum SuccessResult {
     Unchanged,
 }
 
+/// Results an embedder computed before the walk, used instead of formatting the file again.
+pub trait Preformatted: Send + Sync {
+    /// The result for the file at `path` whose text is `source_text`, if one was computed.
+    fn result(&self, path: &Path, source_text: &str) -> Option<FormatResult>;
+}
+
 pub struct FormatService {
     cwd: Box<Path>,
     format_mode: OutputMode,
     formatter: SourceFormatter,
+    pub(super) preformatted: Option<Arc<dyn Preformatted>>,
 }
 
 impl FormatService {
@@ -31,7 +38,7 @@ impl FormatService {
     where
         T: Into<Box<Path>>,
     {
-        Self { cwd: cwd.into(), format_mode, formatter }
+        Self { cwd: cwd.into(), format_mode, formatter, preformatted: None }
     }
 
     /// Process entries as they are received from the channel
@@ -66,7 +73,12 @@ impl FormatService {
                 return;
             };
 
-            let (code, is_changed) = match self.formatter.format(&source_text, plan) {
+            let result = self
+                .preformatted
+                .as_ref()
+                .and_then(|preformatted| preformatted.result(&path, &source_text))
+                .unwrap_or_else(|| self.formatter.format(&source_text, plan));
+            let (code, is_changed) = match result {
                 FormatResult::Success { code, is_changed } => (code, is_changed),
                 FormatResult::Error(diagnostics) => {
                     let errors = DiagnosticService::wrap_diagnostics(

@@ -29,3 +29,10 @@ pub use main_napi::*;
 ))]
 #[global_allocator]
 static GLOBAL: mimalloc_safe::MiMalloc = mimalloc_safe::MiMalloc;
+
+/// What an embedder needs to format files it already parsed, while oxfmt still walks, writes and
+/// reports.
+pub mod share {
+    pub use crate::cli::Preformatted;
+    pub use crate::core::{FormatPlan, FormatResult, SourceFormatter};
+}

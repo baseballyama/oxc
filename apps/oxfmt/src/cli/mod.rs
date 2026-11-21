@@ -14,6 +14,7 @@ pub use command::MigrateSource;
 pub use command::{FormatCommand, Mode, format_command};
 pub use init::init_rayon;
 pub use result::CliRunResult;
+pub use service::Preformatted;
 #[cfg(feature = "napi")]
 pub use stdin_runner::StdinRunner;
 pub use walk_runner::WalkRunner;

@@ -1,6 +1,7 @@
 use std::{
     fmt,
     path::{Path, PathBuf},
+    sync::Arc,
 };
 
 use rustc_hash::{FxHashMap, FxHashSet};
@@ -9,7 +10,7 @@ use smallvec::SmallVec;
 use oxc_index::{IndexVec, define_index_type, index_vec};
 use serde::{Serialize, Serializer};
 
-use crate::ExternalLinter;
+use crate::{ExternalLinter, RuleCategory, host::HostPlugin};
 
 define_index_type! {
     pub struct ExternalPluginId = u32;
@@ -49,6 +50,10 @@ pub struct ExternalPluginStore {
     options: IndexVec<ExternalOptionsId, (ExternalRuleId, SmallVec<[serde_json::Value; 1]>)>,
 
     is_enabled: bool,
+
+    /// The plugins of hosts, whose rules sit in `rules` beside the JS plugins' rules.
+    hosts: Vec<(ExternalPluginId, Arc<HostPlugin>)>,
+    host_rule_categories: Vec<(ExternalRuleId, RuleCategory)>,
 }
 
 impl Default for ExternalPluginStore {
@@ -68,7 +73,64 @@ impl ExternalPluginStore {
             rules: IndexVec::default(),
             options,
             is_enabled,
+            hosts: Vec::new(),
+            host_rule_categories: Vec::new(),
         }
+    }
+
+    /// Register the plugin of a host, before any configuration is read.
+    ///
+    /// # Panics
+    /// Panics if a plugin of that name is registered already, or if a JS plugin is: the JS side
+    /// numbers its rules from 0.
+    pub fn register_host_plugin(&mut self, plugin: Arc<HostPlugin>) {
+        assert!(
+            self.registered_plugin_paths.is_empty(),
+            "register_host_plugin: register hosts before JS plugins"
+        );
+        assert!(
+            !self.plugin_names.contains_key(&plugin.name),
+            "register_host_plugin: plugin `{}` already registered",
+            plugin.name
+        );
+        let plugin_id = self
+            .plugins
+            .push(ExternalPlugin { name: plugin.name.clone(), rules: FxHashMap::default() });
+        self.plugin_names.insert(plugin.name.clone(), plugin_id);
+        for rule in &plugin.rules {
+            let rule_id = self.rules.push(ExternalRule { name: rule.name.clone(), plugin_id });
+            self.plugins[plugin_id].rules.insert(rule.name.clone(), rule_id);
+            self.host_rule_categories.push((rule_id, rule.category));
+        }
+        self.hosts.push((plugin_id, plugin));
+    }
+
+    /// Whether `plugin_name` is the plugin of a host.
+    pub fn is_host_plugin(&self, plugin_name: &str) -> bool {
+        self.plugin_names
+            .get(plugin_name)
+            .is_some_and(|id| self.hosts.iter().any(|(host, _)| host == id))
+    }
+
+    /// The host that lints `path`, if any.
+    pub fn host_for(&self, path: &Path) -> Option<&Arc<HostPlugin>> {
+        self.hosts.iter().map(|(_, host)| host).find(|host| host.lints(path))
+    }
+
+    /// The host that owns `rule_id`, if a host does.
+    pub(crate) fn host_of_rule(&self, rule_id: ExternalRuleId) -> Option<&Arc<HostPlugin>> {
+        let plugin_id = self.rules[rule_id].plugin_id;
+        self.hosts.iter().find(|(id, _)| *id == plugin_id).map(|(_, host)| host)
+    }
+
+    /// The rules of hosts with their categories.
+    pub(crate) fn host_rule_categories(&self) -> &[(ExternalRuleId, RuleCategory)] {
+        &self.host_rule_categories
+    }
+
+    /// The options `options_id` stands for.
+    pub(crate) fn options(&self, options_id: ExternalOptionsId) -> &[serde_json::Value] {
+        &self.options[options_id].1
     }
 
     /// Returns `true` if external plugins are enabled.
@@ -76,9 +138,9 @@ impl ExternalPluginStore {
         self.is_enabled
     }
 
-    /// Returns `true` if no external plugins have been loaded.
+    /// Returns `true` if no JS plugins have been loaded.
     pub fn is_empty(&self) -> bool {
-        self.plugins.is_empty()
+        self.plugins.len() == self.hosts.len()
     }
 
     pub fn is_plugin_registered(&self, plugin_path: &Path) -> bool {

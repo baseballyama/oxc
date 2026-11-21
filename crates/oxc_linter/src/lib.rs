@@ -12,6 +12,7 @@ use std::{
     ptr::{self, NonNull},
     rc::Rc,
     string::ToString,
+    sync::Arc,
     time::Duration,
 };
 
@@ -38,6 +39,7 @@ mod external_plugin_store;
 mod fixer;
 mod frameworks;
 mod globals;
+mod host;
 mod module_graph_visitor;
 mod module_record;
 mod options;
@@ -84,6 +86,7 @@ pub use crate::{
     external_plugin_store::{ExternalOptionsId, ExternalPluginStore, ExternalRuleId},
     fixer::{Fix, FixKind, Fixer, Message, PossibleFixes, oxc_code_short_canonical_name},
     frameworks::FrameworkFlags,
+    host::{EnabledHostRule, HostLinter, HostPlugin, HostRule},
     lint_runner::{DirectivesStore, LintRunner, LintRunnerBuilder},
     loader::LINTABLE_EXTENSIONS,
     module_record::ModuleRecord,
@@ -315,6 +318,48 @@ impl Linter {
         self.external_linter.is_some()
     }
 
+    /// Lints `source_text` with the host that lints `path`, if a host does, and the rules the
+    /// configuration turns on for `path`.
+    pub fn run_host(&self, path: &Path, source_text: &str) -> Option<Vec<Message>> {
+        let store = self.config.external_plugin_store();
+        let host = store.host_for(path)?;
+        let ResolvedLinterState { rules, external_rules, .. } = self.config.resolve(path);
+        let mut enabled = Vec::new();
+        for (rule, severity) in rules.iter() {
+            if severity.is_warn_deny() && host.implements(rule.plugin_name(), rule.name()) {
+                enabled.push(EnabledHostRule {
+                    plugin: rule.plugin_name(),
+                    name: rule.name(),
+                    severity: *severity,
+                    options: &[],
+                });
+            }
+        }
+        for &(rule_id, options_id, severity) in external_rules.iter() {
+            if severity.is_warn_deny()
+                && store.host_of_rule(rule_id).is_some_and(|owner| Arc::ptr_eq(owner, host))
+            {
+                let (plugin, name) = store.resolve_plugin_rule_names(rule_id);
+                enabled.push(EnabledHostRule {
+                    plugin,
+                    name,
+                    severity,
+                    options: store.options(options_id),
+                });
+            }
+        }
+        Some(host.linter.lint(path, source_text, &enabled))
+    }
+
+    /// The scripts oxlint's own rules lint in `source_text`, if a host lints `path` and says.
+    pub(crate) fn host_scripts<'a>(
+        &self,
+        path: &Path,
+        source_text: &'a str,
+    ) -> Option<Vec<loader::JavaScriptSource<'a>>> {
+        self.config.external_plugin_store().host_for(path)?.linter.scripts(path, source_text)
+    }
+
     /// # Panics
     /// Panics if running in debug mode and the number of diagnostics does not match when running with/without optimizations
     pub fn run<'a>(
@@ -343,7 +388,23 @@ impl Linter {
         js_allocator_pool: Option<&AllocatorPool>,
         rule_timing_store: Option<&RuleTimingStore>,
     ) -> (Vec<Message>, Option<DisableDirectives>) {
-        let ResolvedLinterState { rules, config, external_rules } = self.config.resolve(path);
+        let ResolvedLinterState { mut rules, config, mut external_rules } =
+            self.config.resolve(path);
+        let store = self.config.external_plugin_store();
+        if let Some(host) = store.host_for(path) {
+            rules = rules
+                .iter()
+                .filter(|(rule, _)| !host.implements(rule.plugin_name(), rule.name()))
+                .cloned()
+                .collect();
+        }
+        if external_rules.iter().any(|&(rule_id, _, _)| store.host_of_rule(rule_id).is_some()) {
+            external_rules = external_rules
+                .iter()
+                .filter(|&&(rule_id, _, _)| store.host_of_rule(rule_id).is_none())
+                .copied()
+                .collect();
+        }
         let mut timing_recorder = TIMINGS.then(|| RuleTimingRecorder::with_capacity(rules.len()));
 
         // The shared React Compiler run takes its environment additions from the

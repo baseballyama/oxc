@@ -20,15 +20,26 @@ pub enum AssignedBy {
     Update,
     ForIn,
     ForOf,
+    /// The rest element of an object pattern, whose target tsc names apart.
+    ObjectRest,
 }
 
 impl AssignedBy {
-    pub(crate) const fn code(self) -> &'static str {
-        match self {
-            Self::Assignment => "2364",
-            Self::Update => "2357",
-            Self::ForIn => "2406",
-            Self::ForOf => "2487",
+    /// tsc's code for a `target` this cannot assign to, which names an optional chain apart from
+    /// any other expression.
+    pub(crate) fn code(self, target: &Expression<'_>) -> &'static str {
+        let optional = matches!(target.get_inner_expression(), Expression::ChainExpression(_));
+        match (self, optional) {
+            (Self::Assignment, false) => "2364",
+            (Self::Assignment, true) => "2779",
+            (Self::Update, false) => "2357",
+            (Self::Update, true) => "2777",
+            (Self::ForIn, false) => "2406",
+            (Self::ForIn, true) => "2780",
+            (Self::ForOf, false) => "2487",
+            (Self::ForOf, true) => "2781",
+            (Self::ObjectRest, false) => "2701",
+            (Self::ObjectRest, true) => "2778",
         }
     }
 }
@@ -47,7 +58,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for AssignmentTarget<'a> {
         if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expr
             && let Some(&span) = p.state.parenthesized_patterns.get(&expr.span().start)
         {
-            return p.fatal_error(diagnostics::invalid_assignment(by.code(), span));
+            return p.fatal_error(diagnostics::invalid_assignment(by.code(&expr), span));
         }
         match expr {
             Expression::ArrayExpression(array_expr) => {
@@ -71,7 +82,7 @@ impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for SimpleAssignmentTarg
 
 impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget<'a> {
     fn cover((expr, by, parentheses): Assigned<'a>, p: &mut ParserImpl<'a, C>) -> Self {
-        let code = by.code();
+        let code = by.code(&expr);
         match expr {
             Expression::Identifier(ident) => {
                 SimpleAssignmentTarget::AssignmentTargetIdentifier(ident)
@@ -188,7 +199,7 @@ impl<'a, C: Config> CoverGrammar<'a, ArrayExpression<'a>, C> for ArrayAssignment
                                 | Expression::PrivateFieldExpression(_)
                         ) {
                             p.error(diagnostics::invalid_rest_assignment_target(
-                                "2364",
+                                AssignedBy::Assignment.code(&argument),
                                 argument.span(),
                             ));
                         }
@@ -271,7 +282,7 @@ impl<'a, C: Config> CoverGrammar<'a, ObjectExpression<'a>, C> for ObjectAssignme
                                 | Expression::PrivateFieldExpression(_)
                         ) {
                             p.error(diagnostics::invalid_rest_assignment_target(
-                                "2701",
+                                AssignedBy::ObjectRest.code(&argument),
                                 argument.span(),
                             ));
                         }

@@ -8,6 +8,7 @@ use oxc_formatter_core::{FormatContext, FormatSession, Formatted, InputKind, Pri
 use oxc_formatter_json::{JsonFormatOptions, JsonVariant};
 use oxc_formatter_yaml::YamlFormatOptions;
 
+#[cfg(feature = "napi")]
 use super::options::{
     inject_filepath, inject_opt_in_plugin_payloads, inject_oxfmt_plugin_payload, inject_parser,
     inject_tailwind_plugin_payload, to_prettier,
@@ -16,10 +17,10 @@ use super::options::{
 use super::support::PrettierLanguage;
 use super::{
     embed::dispatcher::ResolvedDispatchConfig,
-    host::HostedLanguage,
+    host::HostFormatters,
     options::{
-        ValidatedOptions, to_oxc_formatter_graphql, to_oxc_formatter_json, to_oxc_formatter_toml,
-        to_oxc_formatter_yaml, to_sort_package_json,
+        ValidatedOptions, to_oxc_formatter, to_oxc_formatter_graphql, to_oxc_formatter_json,
+        to_oxc_formatter_toml, to_oxc_formatter_yaml, to_sort_package_json,
     },
     oxfmtrc::FormatConfig,
     support::{FormatStrategy, NativeLanguage},
@@ -36,6 +37,7 @@ pub struct FormatPlan {
     pub(crate) strategy: FormatStrategy,
     pub(crate) config: Arc<FormatConfig>,
     pub(crate) validated: Arc<ValidatedOptions>,
+    pub(crate) hosts: HostFormatters,
 }
 
 // ---
@@ -73,15 +75,19 @@ impl SourceFormatter {
             };
         }
 
-        let FormatPlan { path, strategy, config, validated } = plan;
+        let FormatPlan { path, strategy, config, validated, hosts } = plan;
         let core = validated.core;
         // Roots with a session take options from their dispatch config,
         // others map them directly without building one.
         let result = match strategy {
             FormatStrategy::Native(NativeLanguage::Js(source_type)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config =
-                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path);
+                let dispatch_config = ResolvedDispatchConfig::for_root(
+                    Arc::clone(&config),
+                    validated,
+                    &path,
+                    hosts,
+                );
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.js_options();
                 let result =
@@ -120,8 +126,12 @@ impl SourceFormatter {
             }
             FormatStrategy::Native(NativeLanguage::Css(variant)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config =
-                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path);
+                let dispatch_config = ResolvedDispatchConfig::for_root(
+                    Arc::clone(&config),
+                    validated,
+                    &path,
+                    hosts,
+                );
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.css_options(variant);
                 oxc_formatter_css::format_with_session(&session, source_text, options)
@@ -142,8 +152,12 @@ impl SourceFormatter {
                 }),
             FormatStrategy::Native(NativeLanguage::Markdown) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config =
-                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path);
+                let dispatch_config = ResolvedDispatchConfig::for_root(
+                    Arc::clone(&config),
+                    validated,
+                    &path,
+                    hosts,
+                );
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.markdown_options();
                 oxc_formatter_markdown::format_with_session(&session, source_text, options)
@@ -151,8 +165,12 @@ impl SourceFormatter {
             }
             FormatStrategy::Native(NativeLanguage::Html(variant)) => {
                 let allocator = self.allocator_pool.get();
-                let dispatch_config =
-                    ResolvedDispatchConfig::for_root(Arc::clone(&config), validated, &path);
+                let dispatch_config = ResolvedDispatchConfig::for_root(
+                    Arc::clone(&config),
+                    validated,
+                    &path,
+                    hosts,
+                );
                 let session = self.root_session(&allocator, &dispatch_config);
                 let options = dispatch_config.htmlish_options(variant);
                 oxc_formatter_htmlish::format_with_session(&session, source_text, options)
@@ -161,7 +179,12 @@ impl SourceFormatter {
             FormatStrategy::Native(NativeLanguage::Toml) => {
                 oxc_formatter_toml::format(source_text, to_oxc_formatter_toml(&config, core))
             }
-            FormatStrategy::Host(hosted) => format_by_host(source_text, &path, &hosted, &config),
+            FormatStrategy::Host(hosted) => {
+                let javascript = to_oxc_formatter(&config, core, validated.sort_imports.clone());
+                hosted
+                    .format(source_text, &path, &config, &javascript)
+                    .map_err(|err| OxcDiagnostic::error(format!("{err}\n[{}]", path.display())))
+            }
             #[cfg(feature = "napi")]
             FormatStrategy::Prettier(language) => {
                 self.format_by_prettier(source_text, &path, language, &config)
@@ -217,25 +240,6 @@ impl SourceFormatter {
         oxc_formatter_yaml::format(&allocator, source_text, options)
             .and_then(|formatted| print(formatted, path))
     }
-}
-
-/// Format a file by its host formatter, with the options Prettier would receive.
-fn format_by_host(
-    source_text: &str,
-    path: &Path,
-    hosted: &HostedLanguage,
-    config: &FormatConfig,
-) -> Result<String, OxcDiagnostic> {
-    let mut options = to_prettier(config);
-    inject_parser(&mut options, hosted.language.parser());
-    inject_filepath(&mut options, path);
-    inject_tailwind_plugin_payload(&mut options, config);
-    inject_opt_in_plugin_payloads(&mut options, hosted.language, config);
-    inject_oxfmt_plugin_payload(&mut options, config, path);
-    hosted
-        .formatter
-        .format(source_text, &options)
-        .map_err(|err| OxcDiagnostic::error(format!("{err}\n[{}]", path.display())))
 }
 
 fn print<C: FormatContext>(

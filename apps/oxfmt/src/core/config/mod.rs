@@ -236,6 +236,7 @@ fn into_outcome(
     validated: Arc<ValidatedOptions>,
     path: &Path,
     strategy: FormatStrategy,
+    hosts: HostFormatters,
 ) -> ResolveOutcome {
     #[cfg(feature = "napi")]
     if let FormatStrategy::Prettier(language) = &strategy
@@ -248,7 +249,7 @@ fn into_outcome(
     {
         return ResolveOutcome::MissingPlugin(hosted.language.parser());
     }
-    ResolveOutcome::Format(FormatPlan { path: Arc::from(path), strategy, config, validated })
+    ResolveOutcome::Format(FormatPlan { path: Arc::from(path), strategy, config, validated, hosts })
 }
 
 /// Resolve options for a pre-classified file and build a [`ResolveOutcome`].
@@ -274,7 +275,13 @@ pub fn resolve_for_api(
     // downstream mapping consumes the derived artifacts and cannot re-fail,
     // and the `Prettier` strategy has no later chance before values reach Prettier.
     let validated = validate(&format_config)?;
-    Ok(into_outcome(Arc::new(format_config), Arc::new(validated), path, strategy))
+    Ok(into_outcome(
+        Arc::new(format_config),
+        Arc::new(validated),
+        path,
+        strategy,
+        HostFormatters::default(),
+    ))
 }
 
 // ---
@@ -461,7 +468,7 @@ impl ConfigResolver {
     #[instrument(level = "debug", name = "oxfmt::config::resolve", skip_all, fields(path = %path.display()))]
     pub fn resolve(&self, path: &Path, strategy: FormatStrategy) -> Result<ResolveOutcome, String> {
         let (format_config, validated) = self.resolve_options(path)?;
-        Ok(into_outcome(format_config, validated, path, strategy))
+        Ok(into_outcome(format_config, validated, path, strategy, self.hosts.clone()))
     }
 
     /// Resolve `FormatConfig` for a specific file path.

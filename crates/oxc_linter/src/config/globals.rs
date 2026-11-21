@@ -33,6 +33,15 @@ use serde::{Deserialize, Serialize, de::Visitor};
 #[derive(Debug, Default, PartialEq, Eq, Deserialize, Serialize, JsonSchema, Clone)]
 pub struct OxlintGlobals(FxHashMap<String, GlobalValue>);
 
+impl OxlintGlobals {
+    /// Declares `names` read-only where the configuration does not set them.
+    pub(crate) fn declare_readonly(&mut self, names: &[&str]) {
+        for &name in names {
+            self.0.entry(name.to_owned()).or_insert(GlobalValue::Readonly);
+        }
+    }
+}
+
 impl Deref for OxlintGlobals {
     type Target = FxHashMap<String, GlobalValue>;
 
@@ -201,5 +210,14 @@ mod test {
         override_globals.override_globals(&mut globals);
 
         assert!(!globals.is_enabled("Foo"));
+    }
+
+    #[test]
+    fn a_host_declares_a_global_the_configuration_does_not_set() {
+        let mut globals: OxlintGlobals =
+            serde_json::from_value(serde_json::json!({ "$state": "off" })).unwrap();
+        globals.declare_readonly(&["$state", "$derived"]);
+        assert_eq!(globals.get("$state"), Some(&GlobalValue::Off));
+        assert_eq!(globals.get("$derived"), Some(&GlobalValue::Readonly));
     }
 }

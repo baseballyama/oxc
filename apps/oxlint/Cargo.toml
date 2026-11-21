@@ -23,6 +23,7 @@ doctest = false
 [[bin]]
 name = "oxlint"
 path = "src/main.rs"
+required-features = ["lsp"]
 test = false
 doctest = false
 
@@ -33,9 +34,9 @@ oxc_ast_visit = { workspace = true, features = ["serialize"] }
 oxc_config = { workspace = true }
 oxc_diagnostics = { workspace = true }
 oxc_estree_tokens = { workspace = true }
-oxc_language_server = { workspace = true }
+oxc_language_server = { workspace = true, optional = true }
 oxc_linter = { workspace = true }
-oxc_napi = { workspace = true }
+oxc_napi = { workspace = true, optional = true }
 oxc_parser = { workspace = true }
 oxc_semantic = { workspace = true }
 oxc_span = { workspace = true }
@@ -53,9 +54,9 @@ schemars = { workspace = true }
 serde = { workspace = true, features = ["derive"] }
 serde_json = { workspace = true }
 tempfile = { workspace = true }
-tokio = { workspace = true, features = ["rt-multi-thread", "macros"] }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros"], optional = true }
 tracing-subscriber = { workspace = true, features = [] } # Omit the `regex` feature
-tower-lsp-server = { workspace = true, features = ["url-fluent-uri"] }
+tower-lsp-server = { workspace = true, features = ["url-fluent-uri"], optional = true }
 
 [target.'cfg(not(any(target_os = "linux", target_os = "freebsd", target_arch = "arm", target_arch = "riscv64", target_family = "wasm")))'.dependencies]
 mimalloc-safe = { workspace = true, optional = true, features = ["skip_collect_on_exit"] }
@@ -82,7 +83,9 @@ lazy-regex = { workspace = true }
 
 [features]
 default = ["napi"]
-napi = ["dep:napi", "dep:napi-derive"]
+napi = ["dep:napi", "dep:napi-derive", "dep:oxc_napi", "lsp"]
+# The language server, which an embedding program can leave out.
+lsp = ["dep:oxc_language_server", "dep:tokio", "dep:tower-lsp-server"]
 allocator = ["dep:mimalloc-safe"]
 # For use in NAPI tests.
 # - Enables test reporter.

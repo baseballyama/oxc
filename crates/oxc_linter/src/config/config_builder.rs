@@ -315,6 +315,15 @@ impl ConfigStoreBuilder {
             builder = builder.with_filter(&filter);
         }
 
+        for &(rule_id, category) in external_plugin_store.host_rule_categories() {
+            match builder.categories.get(&category) {
+                Some(AllowWarnDeny::Allow) | None => {}
+                Some(&severity) => {
+                    builder.external_rules.insert(rule_id, (ExternalOptionsId::NONE, severity));
+                }
+            }
+        }
+
         {
             let all_rules = builder.get_all_rules();
 

@@ -63,6 +63,9 @@ pub struct HostPlugin {
     pub name: String,
     /// The extensions of the files it lints, without the dot.
     pub extensions: Vec<String>,
+    /// Extensions of other files its own rules also run on, such as a module's, where oxlint
+    /// keeps its scripts and built-in rules.
+    pub module_extensions: Vec<String>,
     pub rules: Vec<HostRule>,
     /// Built-in rules, by oxlint's plugin and rule name, that the host runs in its files instead
     /// of oxlint, because they need what only the host sees (a template's references).
@@ -72,9 +75,17 @@ pub struct HostPlugin {
 
 impl HostPlugin {
     pub(crate) fn lints(&self, path: &Path) -> bool {
+        Self::has_extension(path, &self.extensions)
+    }
+
+    pub(crate) fn reads(&self, path: &Path) -> bool {
+        self.lints(path) || Self::has_extension(path, &self.module_extensions)
+    }
+
+    fn has_extension(path: &Path, extensions: &[String]) -> bool {
         path.extension()
             .and_then(|ext| ext.to_str())
-            .is_some_and(|ext| self.extensions.iter().any(|e| e == ext))
+            .is_some_and(|ext| extensions.iter().any(|e| e == ext))
     }
 
     pub(crate) fn implements(&self, plugin: &str, rule: &str) -> bool {
@@ -87,6 +98,7 @@ impl fmt::Debug for HostPlugin {
         f.debug_struct("HostPlugin")
             .field("name", &self.name)
             .field("extensions", &self.extensions)
+            .field("module_extensions", &self.module_extensions)
             .field("rules", &self.rules.len())
             .field("builtin_rules", &self.builtin_rules)
             .finish_non_exhaustive()
@@ -128,6 +140,7 @@ mod tests {
         let host = Arc::new(HostPlugin {
             name: "svelte".into(),
             extensions: vec!["svelte".into()],
+            module_extensions: vec!["ts".into()],
             rules: vec![
                 HostRule { name: "valid-compile".into(), category: RuleCategory::Correctness },
                 HostRule { name: "no-at-html-tags".into(), category: RuleCategory::Restriction },
@@ -184,8 +197,12 @@ mod tests {
     }
 
     #[test]
-    fn a_host_lints_only_its_files() {
-        assert_eq!(rules_for("{}", "module.ts"), []);
+    fn a_host_runs_only_its_own_rules_on_a_module() {
+        assert_eq!(
+            rules_for("{}", "module.ts"),
+            [("svelte/valid-compile".into(), AllowWarnDeny::Warn, "[]".into())]
+        );
+        assert_eq!(rules_for("{}", "module.js"), []);
     }
 
     /// Records what the configuration says for the file.
@@ -210,6 +227,7 @@ mod tests {
         let host = Arc::new(HostPlugin {
             name: "svelte".into(),
             extensions: vec!["svelte".into()],
+            module_extensions: Vec::new(),
             rules: vec![HostRule { name: "a".into(), category: RuleCategory::Correctness }],
             builtin_rules: Vec::new(),
             linter: Arc::clone(&context) as Arc<dyn HostLinter>,
@@ -246,6 +264,7 @@ mod tests {
         let host = Arc::new(HostPlugin {
             name: "svelte".into(),
             extensions: vec!["svelte".into()],
+            module_extensions: Vec::new(),
             rules: Vec::new(),
             builtin_rules: Vec::new(),
             linter: Arc::new(Recorder::default()),

@@ -447,7 +447,7 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Merge these imports into a single import statement
 
-  × Unexpected token
+  × TS(1110): Unexpected token
     ╭─[index.ts:12:16]
  11 │               return <div>
  12 │               </div>;

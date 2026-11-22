@@ -247,18 +247,18 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Use the actual character or a valid escape sequence instead.
 
-  × Invalid Unicode escape sequence
-   ╭─[no_nonoctal_decimal_escape.tsx:1:15]
- 1 │ var foo = '8'\n  bar = '\\9'
-   ·               ─
-   ╰────
-
-  × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
+  × TS(1127): Invalid Unicode escape sequence
    ╭─[no_nonoctal_decimal_escape.tsx:1:14]
  1 │ var foo = '8'\n  bar = '\\9'
-   ·              ▲
+   ·              ──
    ╰────
-  help: Try inserting a semicolon here
+
+  × TS(1005): Expected `,` but found `Identifier`
+   ╭─[no_nonoctal_decimal_escape.tsx:1:14]
+ 1 │ var foo = '8'\n  bar = '\\9'
+   ·              ─┬
+   ·               ╰── `,` expected
+   ╰────
 
   ⚠ eslint(no-nonoctal-decimal-escape): Don't use '\8' escape sequence.
    ╭─[no_nonoctal_decimal_escape.tsx:1:5]

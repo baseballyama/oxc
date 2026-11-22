@@ -22,15 +22,7 @@ use crate::{command::EnablePlugins, utils::normalize_path};
 const GIT_DIR: &str = ".git";
 const NODE_MODULES_DIR: &str = "node_modules";
 
-#[cfg(feature = "napi")]
-use crate::js_config;
-#[cfg(feature = "napi")]
-use crate::js_config::JsConfigResult;
-
-#[cfg(not(feature = "napi"))]
-pub struct JsConfigResult {
-    pub config: Option<Oxlintrc>,
-}
+use crate::js_config::{self, JsConfigResult};
 
 pub fn config_discovery() -> ConfigDiscovery {
     if cfg!(feature = "napi") && vp_version().is_some() {
@@ -257,7 +249,6 @@ pub struct ConfigLoader<'a> {
     external_plugin_store: &'a mut ExternalPluginStore,
     filters: &'a [LintFilter],
     workspace_uri: Option<&'a str>,
-    #[cfg(feature = "napi")]
     #[expect(clippy::struct_field_names)]
     js_config_loader: Option<&'a js_config::JsConfigLoaderCb>,
 }
@@ -281,12 +272,10 @@ impl<'a> ConfigLoader<'a> {
             external_plugin_store,
             filters,
             workspace_uri,
-            #[cfg(feature = "napi")]
             js_config_loader: None,
         }
     }
 
-    #[cfg(feature = "napi")]
     #[must_use]
     pub fn with_js_config_loader(
         mut self,
@@ -327,25 +316,17 @@ impl<'a> ConfigLoader<'a> {
             return Ok(Vec::new());
         }
 
-        #[cfg(not(feature = "napi"))]
-        {
+        let Some(js_config_loader) = self.js_config_loader else {
             return Err(vec![ConfigLoadError::JsConfigFileFoundButJsRuntimeNotAvailable]);
-        }
+        };
 
-        #[cfg(feature = "napi")]
-        {
-            let Some(js_config_loader) = self.js_config_loader else {
-                return Err(vec![ConfigLoadError::JsConfigFileFoundButJsRuntimeNotAvailable]);
-            };
+        let paths_as_strings: Vec<String> =
+            paths.iter().map(|p| p.to_string_lossy().to_string()).collect();
 
-            let paths_as_strings: Vec<String> =
-                paths.iter().map(|p| p.to_string_lossy().to_string()).collect();
-
-            match js_config_loader(paths_as_strings) {
-                Ok(results) => Ok(results),
-                Err(diagnostics) => {
-                    Err(diagnostics.into_iter().map(ConfigLoadError::Diagnostic).collect())
-                }
+        match js_config_loader(paths_as_strings) {
+            Ok(results) => Ok(results),
+            Err(diagnostics) => {
+                Err(diagnostics.into_iter().map(ConfigLoadError::Diagnostic).collect())
             }
         }
     }
@@ -1005,6 +986,39 @@ mod test {
             .unwrap();
 
         assert_eq!(config.options.type_aware, Some(true));
+    }
+
+    #[test]
+    fn a_host_loads_a_javascript_config() {
+        struct Host;
+        impl crate::js_config::HostConfigLoader for Host {
+            fn load(&self, path: &std::path::Path) -> Result<serde_json::Value, String> {
+                if path.ends_with("bad/oxlint.config.ts") {
+                    return Err("SyntaxError: nope".into());
+                }
+                Ok(serde_json::json!({ "rules": { "no-debugger": "error" } }))
+            }
+        }
+        let js_loader = crate::js_config::host_config_loader(std::sync::Arc::new(Host));
+        let root_dir = tempfile::tempdir().unwrap();
+        std::fs::write(root_dir.path().join("oxlint.config.ts"), "export default {};").unwrap();
+        let mut external_plugin_store = ExternalPluginStore::new(false);
+        let config = ConfigLoader::new(None, &mut external_plugin_store, &[], None)
+            .with_js_config_loader(Some(&js_loader))
+            .load_root_config(root_dir.path(), Some(&PathBuf::from("oxlint.config.ts")))
+            .unwrap();
+        assert_eq!(config.path, root_dir.path().join("oxlint.config.ts"));
+        assert!(format!("{:?}", config.rules).contains("no-debugger"));
+
+        let bad = root_dir.path().join("bad");
+        std::fs::create_dir(&bad).unwrap();
+        std::fs::write(bad.join("oxlint.config.ts"), "export default {").unwrap();
+        let mut external_plugin_store = ExternalPluginStore::new(false);
+        let error = ConfigLoader::new(None, &mut external_plugin_store, &[], None)
+            .with_js_config_loader(Some(&js_loader))
+            .load_root_config(&bad, Some(&PathBuf::from("oxlint.config.ts")))
+            .unwrap_err();
+        assert!(error.to_string().contains("SyntaxError: nope"), "{error}");
     }
 
     #[cfg(feature = "napi")]

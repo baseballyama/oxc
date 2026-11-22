@@ -21,8 +21,7 @@ use oxc_linter::{
     OxlintSuppressionFileAction, RuleTimingStore, SuppressionManager,
 };
 
-#[cfg(feature = "napi")]
-use crate::js_config::JsConfigLoaderCb;
+use crate::js_config::{HostConfigLoader, JsConfigLoaderCb};
 use crate::{
     cli::{CliRunResult, DebugOption, LintCommand, MiscOptions, WarningOptions},
     config_loader::{
@@ -39,9 +38,8 @@ pub struct CliRunner {
     external_linter: Option<ExternalLinter>,
     /// The plugins of an embedding program, which lints their files itself.
     hosts: Vec<Arc<HostPlugin>>,
-    /// Callback for loading JavaScript/TypeScript config files (experimental).
-    /// This is only available when running via Node.js with NAPI.
-    #[cfg(feature = "napi")]
+    /// Callback for loading JavaScript/TypeScript config files (experimental): Node.js's through
+    /// NAPI, or an embedding program's.
     js_config_loader: Option<JsConfigLoaderCb>,
 }
 
@@ -53,7 +51,6 @@ impl Debug for CliRunner {
             if self.external_linter.is_some() { &"Some(ExternalLinter)" } else { &"None" },
         );
         s.field("hosts", &self.hosts);
-        #[cfg(feature = "napi")]
         s.field(
             "js_config_loader",
             if self.js_config_loader.is_some() { &"Some(JsConfigLoaderCb)" } else { &"None" },
@@ -70,7 +67,6 @@ impl CliRunner {
             cwd: env::current_dir().expect("Failed to get current working directory"),
             external_linter,
             hosts: Vec::new(),
-            #[cfg(feature = "napi")]
             js_config_loader: None,
         }
     }
@@ -264,10 +260,7 @@ impl CliRunner {
 
         let mut config_loader =
             ConfigLoader::new(external_linter, &mut external_plugin_store, &filters, None);
-        #[cfg(feature = "napi")]
-        {
-            config_loader = config_loader.with_js_config_loader(self.js_config_loader.as_ref());
-        }
+        config_loader = config_loader.with_js_config_loader(self.js_config_loader.as_ref());
         let config_result = config_loader.load_root_and_nested(
             &self.cwd,
             basic_options.config.as_ref(),
@@ -639,11 +632,17 @@ impl CliRunner {
         self
     }
 
-    #[cfg(feature = "napi")]
     #[must_use]
     pub fn with_config_loader(mut self, config_loader: Option<JsConfigLoaderCb>) -> Self {
         self.js_config_loader = config_loader;
         self
+    }
+
+    /// Load JavaScript and TypeScript configuration files with `loader`, as a build without
+    /// Node.js cannot itself.
+    #[must_use]
+    pub fn with_host_config_loader(self, loader: impl HostConfigLoader + 'static) -> Self {
+        self.with_config_loader(Some(crate::js_config::host_config_loader(Arc::new(loader))))
     }
 
     fn get_diagnostic_service(

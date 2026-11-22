@@ -1058,8 +1058,9 @@ fn directive() {
 
 #[test]
 fn directive_prologue_boundary() {
-    // A parenthesized string expression statement has to keep its parentheses while it sits at the
-    // end of the directive prologue, or it re-parses as a directive.
+    // A string expression statement is never a directive, so it prints in parentheses wherever it
+    // stands: printed bare at the end of a directive prologue it would re-parse as a directive, and
+    // a statement before it may print nothing.
 
     // No directives before it
     test_same("(\"use strict\");\nfoo();\n");
@@ -1070,17 +1071,13 @@ fn directive_prologue_boundary() {
     test_same("function f() {\n\t\"use strict\";\n\t(\"x\");\n}\n");
     // A TS module block has a directive prologue too
     test_same("module Foo {\n\t(\"x\");\n}\n");
-    // A class static block does not, so there is nothing to protect against there
-    test(
-        "class C {\n\tstatic {\n\t\t(\"x\");\n\t}\n}\n",
-        "class C {\n\tstatic {\n\t\t\"x\";\n\t}\n}\n",
-    );
+    // A class static block has none, and the rule is the same there
+    test_same("class C {\n\tstatic {\n\t\t(\"x\");\n\t}\n}\n");
 
-    // Only the statement which closes the prologue needs the parentheses - a string statement
-    // after it cannot be a directive
-    test_same("(\"a\");\n\"b\";\n");
-    test("foo();\n(\"a\");\n", "foo();\n\"a\";\n");
-    test("\"use strict\";\nfoo();\n(\"a\");\n", "\"use strict\";\nfoo();\n\"a\";\n");
+    // After the prologue too
+    test_same("(\"a\");\n(\"b\");\n");
+    test_same("foo();\n(\"a\");\n");
+    test_same("\"use strict\";\nfoo();\n(\"a\");\n");
 }
 
 #[test]
@@ -1098,8 +1095,8 @@ fn directive_prologue_boundary_minify() {
     test_minify("\"use asm\"; (\"`\");", "\"use asm\";`\\``;");
     // A newline pays for a backtick, so quotes were never shorter for this one
     test_minify("(\"\\n`\");", "`\n\\``;");
-    // Only the statement which closes the prologue is at risk
-    test_minify("foo(); (\"`\");", "foo();\"`\";");
+    // After the prologue too
+    test_minify("foo(); (\"`\");", "foo();`\\``;");
 }
 
 #[test]

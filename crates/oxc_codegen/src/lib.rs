@@ -1063,24 +1063,8 @@ impl<'a> Codegen<'a> {
 
         self.print_orphan_comments_before(first.span().start);
 
-        // If first statement is a string literal, wrap it in parentheses, to prevent it being parsed as a directive.
-        // Only a parenthesized string expression can reach here (a bare one would have been parsed as a directive),
-        // so the parentheses have to be printed back.
-        //
-        // Need to do this regardless of whether or any real directives precede it or not.
-        // Parentheses must be retained for any of:
-        // * `("use strict");`
-        // * `"use asm"; ("use strict");`
-        // * `"use server"; "use asm"; ("use strict");`
-        //
-        // The same hazard exists in minify mode.
-        // Usually strings are printed as template literals, which are not parsed as directives.
-        // But if the string contains a backtick or `${`, it's printed with `"` or `'` quotes,
-        // which *would* be re-parsed as a directive.
-        // So in minify mode, we force printing as a template literal, regardless of the string's content.
-        // In almost all cases, this is shorter than wrapping in parentheses.
         let next = rest.first().map(GetSpan::span);
-        self.print_listed(first.span(), next, owner, |p| p.print_first_statement(first, ctx));
+        self.print_listed(first.span(), next, owner, |p| first.print(p, ctx));
 
         self.print_stmts_with_orphan_flush(rest, scope_end, Some((owner, Some(first.span()))), ctx);
     }
@@ -1100,31 +1084,6 @@ impl<'a> Codegen<'a> {
         print(self);
         self.hold_line = held;
         self.hook_after_statement(span, next, owner);
-    }
-
-    fn print_first_statement(&mut self, first: &Statement<'_>, ctx: Context) {
-        if let Statement::ExpressionStatement(stmt) = first
-            && self.expansion_of(first).is_none()
-            && let expr = stmt.expression.without_parentheses()
-            && let Expression::StringLiteral(string) = expr
-        {
-            // Mirror `ExpressionStatement`'s printer, which this path stands in for
-            self.print_comments_at(stmt.span.start);
-            if self.indent > 0 || self.print_next_indent_as_space {
-                self.print_indent();
-                self.add_source_mapping(stmt.span);
-            }
-            if self.options.minify {
-                self.print_string_literal_as_template(string);
-            } else {
-                self.print_ascii_byte(b'(');
-                self.print_string_literal(string, /* allow_backtick */ true);
-                self.print_ascii_byte(b')');
-            }
-            self.print_semicolon_after_statement();
-        } else {
-            first.print(self, ctx);
-        }
     }
 
     #[inline]

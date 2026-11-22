@@ -506,6 +506,20 @@ impl ConfigStoreBuilder {
         // to be taken out.
         let plugins = self.plugins();
 
+        if let Some(settings) = &self.config.settings.json {
+            for host in external_plugin_store.hosts() {
+                host.linter.check_settings(settings).map_err(|reason| {
+                    ConfigBuilderError::InvalidConfigFile {
+                        file: self.config.path.as_ref().map_or_else(
+                            || "configuration".to_owned(),
+                            |path| path.display().to_string(),
+                        ),
+                        reason,
+                    }
+                })?;
+            }
+        }
+
         let overrides = std::mem::take(&mut self.overrides);
         let resolved_overrides = self.resolve_overrides(overrides, external_plugin_store)?;
 

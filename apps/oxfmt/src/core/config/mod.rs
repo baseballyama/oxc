@@ -203,13 +203,20 @@ impl ConfigLoader {
 
 #[cfg(not(feature = "napi"))]
 impl ConfigLoader {
-    /// JS/TS config files need the Node.js CLI.
-    #[expect(clippy::unused_self)]
+    /// JS/TS config files need the Node.js CLI or a host loader.
     fn load_js_config(&self, path: &Path) -> Result<Option<Value>, String> {
-        Err(format!(
-            "JS/TS config file ({}) is not supported in pure Rust CLI.\nUse JSON/JSONC instead.",
-            path.display()
-        ))
+        let Some(loader) = self.hosts.config_loader() else {
+            return Err(format!(
+                "JS/TS config file ({}) is not supported in pure Rust CLI.\nUse JSON/JSONC instead.",
+                path.display()
+            ));
+        };
+        loader.load(path).map(Some).map_err(|err| {
+            format!(
+                "{}\n{err}\nEnsure the file has a valid default export of a JSON-serializable configuration object.",
+                path.display()
+            )
+        })
     }
 }
 

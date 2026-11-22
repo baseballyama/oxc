@@ -7,7 +7,7 @@ mod prettier_compat;
 
 pub use core::{
     Language,
-    host::{HostFormatter, HostFormatters, HostTailwindSorter},
+    host::{HostConfigLoader, HostFormatter, HostFormatters, HostTailwindSorter},
     oxfmtrc,
 };
 #[cfg(feature = "napi")]

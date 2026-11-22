@@ -28,11 +28,8 @@ impl DiagnosticReporter for DefaultReporter {
     fn finish(&mut self, _result: &DiagnosticResult) -> Option<String> {
         let mut output = String::new();
 
-        // Files finish in parallel, so order by file to print the same report on every run.
-        // The sort is stable, which keeps each file's own diagnostics in their order.
-        self.diagnostics.sort_by_cached_key(|diagnostic| {
-            diagnostic.source_code().and_then(|source| source.name()).map(str::to_owned)
-        });
+        // Files finish in parallel; a stable sort by file prints the same report on every run.
+        self.diagnostics.sort_by(|a, b| file(a).cmp(&file(b)));
 
         // Render all diagnostics (errors only, no warnings)
         for diagnostic in &self.diagnostics {
@@ -41,6 +38,10 @@ impl DiagnosticReporter for DefaultReporter {
 
         Some(output)
     }
+}
+
+fn file(diagnostic: &Error) -> Option<&str> {
+    diagnostic.source_code().and_then(|source| source.name())
 }
 
 #[cfg(test)]

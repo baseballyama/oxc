@@ -1,6 +1,6 @@
-//! Formatters an embedding program supplies for the languages oxfmt hands to Prettier, and the
-//! Tailwind CSS sorter it hands to JavaScript, so that a native build can do without Node.js or
-//! choose how to reach it.
+//! Formatters an embedding program supplies for the languages oxfmt hands to Prettier, the
+//! Tailwind CSS sorter it hands to JavaScript, and the loader of JavaScript and TypeScript
+//! configuration files, so that a native build can do without Node.js or choose how to reach it.
 
 use std::{fmt, path::Path, sync::Arc};
 
@@ -46,12 +46,22 @@ pub trait HostTailwindSorter: Send + Sync {
     fn sort(&self, options: &Value, classes: Vec<String>) -> Result<Vec<String>, String>;
 }
 
-/// The host formatters of one run, by the language each serves, and its Tailwind CSS sorter.
-/// Cloning is shallow.
+/// Evaluates a JavaScript or TypeScript configuration file, as oxfmt's Node.js CLI does.
+pub trait HostConfigLoader: Send + Sync {
+    /// `path` is absolute. The result is the file's default export, a plain object.
+    ///
+    /// # Errors
+    /// A message ready to print: oxfmt reports the configuration as invalid.
+    fn load(&self, path: &Path) -> Result<Value, String>;
+}
+
+/// The host formatters of one run, by the language each serves, its Tailwind CSS sorter and its
+/// configuration loader. Cloning is shallow.
 #[derive(Clone, Default)]
 pub struct HostFormatters {
     formatters: Arc<FxHashMap<PrettierLanguage, Arc<dyn HostFormatter>>>,
     tailwind: Option<Arc<dyn HostTailwindSorter>>,
+    config_loader: Option<Arc<dyn HostConfigLoader>>,
 }
 
 impl HostFormatters {
@@ -73,6 +83,18 @@ impl HostFormatters {
     pub fn with_tailwind_sorter(mut self, sorter: impl HostTailwindSorter + 'static) -> Self {
         self.tailwind = Some(Arc::new(sorter));
         self
+    }
+
+    /// Load JavaScript and TypeScript configuration files with `loader`.
+    #[must_use]
+    pub fn with_config_loader(mut self, loader: impl HostConfigLoader + 'static) -> Self {
+        self.config_loader = Some(Arc::new(loader));
+        self
+    }
+
+    #[cfg_attr(feature = "napi", expect(dead_code))]
+    pub(super) fn config_loader(&self) -> Option<&Arc<dyn HostConfigLoader>> {
+        self.config_loader.as_ref()
     }
 
     pub(super) fn tailwind_sorter(&self) -> Option<&Arc<dyn HostTailwindSorter>> {

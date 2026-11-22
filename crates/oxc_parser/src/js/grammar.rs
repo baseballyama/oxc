@@ -42,6 +42,17 @@ impl AssignedBy {
     }
 }
 
+/// A target that cannot be assigned: the error, which the parse goes on after, and a name over the
+/// target's span in its place, so the tree still holds the functions around it.
+fn unassignable<'a, C: Config>(
+    p: &mut ParserImpl<'a, C>,
+    code: &'static str,
+    span: Span,
+) -> SimpleAssignmentTarget<'a> {
+    p.error(diagnostics::invalid_assignment(code, span));
+    SimpleAssignmentTarget::new_assignment_target_identifier(span, "", p)
+}
+
 impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for AssignmentTarget<'a> {
     fn cover(expr: Expression<'a>, p: &mut ParserImpl<'a, C>) -> Self {
         Self::cover((expr, AssignedBy::Assignment, None), p)
@@ -56,7 +67,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for AssignmentTarget<'a> {
         if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expr
             && let Some(&span) = p.state.parenthesized_patterns.get(&expr.span().start)
         {
-            return p.fatal_error(diagnostics::invalid_assignment(by.code(&expr), span));
+            return AssignmentTarget::from(unassignable(p, by.code(&expr), span));
         }
         match expr {
             Expression::ArrayExpression(array_expr) => {
@@ -93,7 +104,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 let span = parentheses.unwrap_or(expr.span);
                 match expr.unbox().expression {
                     Expression::ObjectExpression(_) | Expression::ArrayExpression(_) => {
-                        p.fatal_error(diagnostics::invalid_assignment(code, span))
+                        unassignable(p, code, span)
                     }
                     expr => SimpleAssignmentTarget::cover((expr, by, Some(span)), p),
                 }
@@ -105,10 +116,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSAsExpression(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(
-                    code,
-                    parentheses.unwrap_or(expr.span()),
-                )),
+                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
             },
             Expression::TSSatisfiesExpression(expr) => {
                 match expr.expression.get_inner_expression() {
@@ -118,10 +126,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                     | Expression::PrivateFieldExpression(_) => {
                         SimpleAssignmentTarget::TSSatisfiesExpression(expr)
                     }
-                    _ => p.fatal_error(diagnostics::invalid_assignment(
-                        code,
-                        parentheses.unwrap_or(expr.span()),
-                    )),
+                    _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
                 }
             }
             Expression::TSNonNullExpression(expr) => match expr.expression.get_inner_expression() {
@@ -131,10 +136,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSNonNullExpression(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(
-                    code,
-                    parentheses.unwrap_or(expr.span()),
-                )),
+                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
             },
             Expression::TSTypeAssertion(expr) => match expr.expression.get_inner_expression() {
                 Expression::Identifier(_)
@@ -143,10 +145,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSTypeAssertion(expr)
                 }
-                _ => p.fatal_error(diagnostics::invalid_assignment(
-                    code,
-                    parentheses.unwrap_or(expr.span()),
-                )),
+                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
             },
             Expression::TSInstantiationExpression(expr) => {
                 p.fatal_error(diagnostics::invalid_lhs_assignment(expr.span()))
@@ -154,7 +153,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
             expr => {
                 let dropped = p.state.parenthesized_patterns.get(&expr.span().start).copied();
                 let span = parentheses.or(dropped).unwrap_or(expr.span());
-                p.fatal_error(diagnostics::invalid_assignment(code, span))
+                unassignable(p, code, span)
             }
         }
     }

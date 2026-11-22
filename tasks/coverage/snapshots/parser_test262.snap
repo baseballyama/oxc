@@ -14946,11 +14946,29 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ────────────
     ╰────
 
+  × TS(1005): Expected `)` but found `;`
+    ╭─[test262/test/language/expressions/conditional/in-branch-2.js:23:24]
+ 22 │ 
+ 23 │ for (true ? 0 : 0 in {}; false; ) ;
+    ·     ┬                  ┬
+    ·     │                  ╰── `)` expected
+    ·     ╰── Opened here
+    ╰────
+
   × TS(2406): Cannot assign to this expression
     ╭─[test262/test/language/expressions/conditional/in-condition.js:23:6]
  22 │ 
  23 │ for ('' in {} ? 0 : 0; false; ) ;
     ·      ──
+    ╰────
+
+  × TS(1005): Expected `)` but found `;`
+    ╭─[test262/test/language/expressions/conditional/in-condition.js:23:22]
+ 22 │ 
+ 23 │ for ('' in {} ? 0 : 0; false; ) ;
+    ·     ┬                ┬
+    ·     │                ╰── `)` expected
+    ·     ╰── Opened here
     ╰────
 
   × TS(1102): Delete of an unqualified identifier in strict mode.
@@ -21299,6 +21317,16 @@ Negative Passed: 4669/4669 (100.00%)
  24 │ }
     ╰────
 
+  × TS(1005): Expected `)` but found `;`
+    ╭─[test262/test/language/expressions/yield/in-iteration-stmt.js:23:22]
+ 22 │ function* g() {
+ 23 │   for (yield '' in {}; ; ) ;
+    ·       ┬              ┬
+    ·       │              ╰── `)` expected
+    ·       ╰── Opened here
+ 24 │ }
+    ╰────
+
   × TS(1109): Unexpected token
     ╭─[test262/test/language/expressions/yield/invalid-left-hand-side.js:28:9]
  27 │ function* g() {
@@ -21312,6 +21340,16 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ function* g() {
  23 │   for (yield * '' in {}; ; ) ;
     ·        ──────────
+ 24 │ }
+    ╰────
+
+  × TS(1005): Expected `)` but found `;`
+    ╭─[test262/test/language/expressions/yield/star-in-iteration-stmt.js:23:24]
+ 22 │ function* g() {
+ 23 │   for (yield * '' in {}; ; ) ;
+    ·       ┬                ┬
+    ·       │                ╰── `)` expected
+    ·       ╰── Opened here
  24 │ }
     ╰────
 
@@ -35597,6 +35635,16 @@ Negative Passed: 4669/4669 (100.00%)
  22 │ //CHECK#1
  23 │ for(1 in arr;1;) {
     ·     ─
+ 24 │     break;
+    ╰────
+
+  × TS(1005): Expected `)` but found `;`
+    ╭─[test262/test/language/statements/for/S12.6.3_A4_T2.js:23:13]
+ 22 │ //CHECK#1
+ 23 │ for(1 in arr;1;) {
+    ·    ┬        ┬
+    ·    │        ╰── `)` expected
+    ·    ╰── Opened here
  24 │     break;
     ╰────
 

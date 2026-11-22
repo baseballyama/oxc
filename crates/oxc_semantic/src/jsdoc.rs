@@ -900,4 +900,16 @@ c7 */",
             );
         }
     }
+
+    #[test]
+    fn a_builder_without_jsdoc_builds_none() {
+        let allocator = Allocator::default();
+        let source_text = "/** doc */\nfunction f() {}";
+        let program = Parser::new(&allocator, source_text, SourceType::default()).parse().program;
+        let program = allocator.alloc(program);
+        let semantic = SemanticBuilder::new().with_build_jsdoc(false).build(program).semantic;
+        assert_eq!(semantic.jsdoc().iter_all().count(), 0);
+        let semantic = SemanticBuilder::new().build(program).semantic;
+        assert_eq!(semantic.jsdoc().iter_all().count(), 1);
+    }
 }

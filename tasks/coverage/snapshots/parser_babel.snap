@@ -644,6 +644,38 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  4 │ ({ a: async() } = {});
    ╰────
 
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-assignment-target-type/input.js:4:7]
+ 3 │ [async()] = [];
+ 4 │ ({ a: async() } = {});
+   ·       ───────
+ 5 │ 
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-assignment-target-type/input.js:6:1]
+ 5 │ 
+ 6 │ async() &&= 1;
+   · ───────
+ 7 │ 
+   ╰────
+
+  × TS(2357): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-assignment-target-type/input.js:8:1]
+ 7 │ 
+ 8 │ import("")++;
+   · ──────────
+ 9 │ 
+   ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-assignment-target-type/input.js:12:5]
+ 11 │   constructor() {
+ 12 │     super()++;
+    ·     ───────
+ 13 │   }
+    ╰────
+
   × Invalid arrow function parameter
    ╭─[babel/packages/babel-parser/test/fixtures/annex-b/enabled/invalid-call-expression-arrow-param/input.js:1:2]
  1 │ (a()) => 1;
@@ -3061,11 +3093,25 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ·                    ──
    ╰────
 
+  × TS(1161): Unterminated regular expression
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-alternate-before-regexp-starting-with-equals/input.js:2:3]
+ 1 │ a ? b : (c => {})
+ 2 │ /=/;
+   ·   ───
+   ╰────
+
   × TS(2364): Cannot assign to this expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-alternate-before-regexp-starting-with-equals/input.js:1:9]
  1 │ a ? b : (c => {})
    ·         ─────────
  2 │ /=/;
+   ╰────
+
+  × Unexpected token
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-alternate-before-regexp-starting-with-equals/input.js:2:3]
+ 1 │ a ? b : (c => {})
+ 2 │ /=/;
+   ·   ───
    ╰────
 
   × Invalid arrow function parameter
@@ -3076,11 +3122,25 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
   help: Expected an identifier or a destructuring pattern.
 
+  × TS(1161): Unterminated regular expression
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-before-regexp-starting-with-equals/input.js:2:3]
+ 1 │ (() => {})
+ 2 │ /=/;
+   ·   ───
+   ╰────
+
   × TS(2364): Cannot assign to this expression
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-before-regexp-starting-with-equals/input.js:1:1]
  1 │ (() => {})
    · ──────────
  2 │ /=/;
+   ╰────
+
+  × Unexpected token
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/invalid-parenthesized-before-regexp-starting-with-equals/input.js:2:3]
+ 1 │ (() => {})
+ 2 │ /=/;
+   ·   ───
    ╰────
 
   × Invalid arrow function parameter
@@ -3183,6 +3243,14 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/no-for-in-init-concise-binary-in/input.js:1:6]
  1 │ for (() => x in y;;);
    ·      ───────
+   ╰────
+
+  × TS(1005): Expected `)` but found `;`
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/arrow-functions/no-for-in-init-concise-binary-in/input.js:1:18]
+ 1 │ for (() => x in y;;);
+   ·     ┬            ┬
+   ·     │            ╰── `)` expected
+   ·     ╰── Opened here
    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -3487,6 +3555,13 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ [([a]) = 1] = 2;
    ·  ─────
  2 │ ({ x: ({ a }) = 1 } = 2);
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/destructuring/invalid-parenthesized-pattern-with-default/input.js:2:7]
+ 1 │ [([a]) = 1] = 2;
+ 2 │ ({ x: ({ a }) = 1 } = 2);
+   ·       ───────
    ╰────
 
   × TS(2364): Cannot assign to this expression
@@ -4619,6 +4694,23 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
    ╰────
 
   × TS(1312): Invalid assignment in object literal
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:4:3]
+ 3 │ [{a=1}](x) = 0;
+ 4 │ [{a=1}].x += 0;
+   ·   ───
+ 5 │ [{a=1}].x ||= 0;
+   ╰────
+  help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
+
+  × TS(1312): Invalid assignment in object literal
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:5:3]
+ 4 │ [{a=1}].x += 0;
+ 5 │ [{a=1}].x ||= 0;
+   ·   ───
+   ╰────
+  help: Did you mean to use a ':'? An '=' can only follow a property name when the containing object literal is part of a destructuring pattern.
+
+  × TS(1312): Invalid assignment in object literal
    ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-member-assignment-target/input.js:3:3]
  2 │ ({a=1}.x = 0);
  3 │ [{a=1}](x) = 0;
@@ -4717,6 +4809,13 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  5 │ [delete {a = 1}].x = 0;
  6 │ for (++{a = 1} in arr);
    ·        ───────
+   ╰────
+
+  × TS(2406): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/object/invalid-property-initializer-in-operand/input.js:6:6]
+ 5 │ [delete {a = 1}].x = 0;
+ 6 │ for (++{a = 1} in arr);
+   ·      ─────────
    ╰────
 
   × TS(1312): Invalid assignment in object literal
@@ -5912,6 +6011,16 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ function* g() {
  2 │   for (yield '' in {}; ; ) ;
    ·        ────────
+ 3 │ }
+   ╰────
+
+  × TS(1005): Expected `)` but found `;`
+   ╭─[babel/packages/babel-parser/test/fixtures/es2015/yield/in-iterator-stmt/input.js:2:22]
+ 1 │ function* g() {
+ 2 │   for (yield '' in {}; ; ) ;
+   ·       ┬              ┬
+   ·       │              ╰── `)` expected
+   ·       ╰── Opened here
  3 │ }
    ╰────
 
@@ -14429,6 +14538,38 @@ Expect to Parse: tasks/coverage/babel/packages/babel-parser/test/fixtures/typesc
  1 │ 0, { ...{} as T} = b;
    ·         ───────
  2 │ [...[] as T] = b;
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/destructuring-assignent-rest-invalid/input.ts:2:5]
+ 1 │ 0, { ...{} as T} = b;
+ 2 │ [...[] as T] = b;
+   ·     ───────
+ 3 │ 
+   ╰────
+
+  × TS(2701): Invalid rest element target in destructuring assignment
+   ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/destructuring-assignent-rest-invalid/input.ts:4:9]
+ 3 │ 
+ 4 │ 0, { ...({} as T)} = b;
+   ·         ─────────
+ 5 │ [...([] as T)] = b;
+   ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/destructuring-assignent-rest-invalid/input.ts:4:9]
+ 3 │ 
+ 4 │ 0, { ...({} as T)} = b;
+   ·         ─────────
+ 5 │ [...([] as T)] = b;
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[babel/packages/babel-parser/test/fixtures/typescript/cast/destructuring-assignent-rest-invalid/input.ts:5:5]
+ 4 │ 0, { ...({} as T)} = b;
+ 5 │ [...([] as T)] = b;
+   ·     ─────────
    ╰────
 
   × TS(1005): Expected `=>` but found `;`

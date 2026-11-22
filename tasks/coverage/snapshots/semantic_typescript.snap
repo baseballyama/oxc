@@ -17238,6 +17238,50 @@ rebuilt        : ["use"]
 
 semantic Error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts
 Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Cannot assign to this expression
+Bindings mismatch:
+after transform: ScopeId(0): ["Base", "C", "_C", "_assertClassBrand", "_decorate", "_defineProperty", "_x", "dec", "value"]
+rebuilt        : ScopeId(0): ["Base", "C", "_C", "_assertClassBrand", "_decorate", "_defineProperty", "_x"]
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "value":
+after transform: SymbolId(2) "value"
+rebuilt        : <None>
+Reference symbol mismatch for "dec":
+after transform: SymbolId(0) "dec"
+rebuilt        : <None>
+Unresolved references mismatch:
+after transform: ["", "require"]
+rebuilt        : ["", "dec", "require", "value"]
 
 semantic Error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/mappedToToIndexSignatureInference.ts
 Bindings mismatch:

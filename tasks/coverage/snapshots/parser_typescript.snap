@@ -24605,7 +24605,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
-  × TS(2357): Cannot assign to this expression
+  × TS(2777): Cannot assign to this expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:3:1]
  2 │ 
  3 │ obj?.["a"]++;
@@ -24613,7 +24613,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │ obj?.a["b"]++;
    ╰────
 
-  × TS(2357): Cannot assign to this expression
+  × TS(2777): Cannot assign to this expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:3:1]
  2 │ 
  3 │ obj?.a++;

@@ -3969,7 +3969,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:57:5]
  56 │ 
  57 │ 0, [x?.y = 42] = [23];
@@ -3991,7 +3991,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:56:5]
  55 │     
  56 │ ╭─▶ 0, [{
@@ -4141,14 +4141,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:57:9]
  56 │ 
  57 │ 0, { x: y?.z = 42 } = { x: 23 };
     ·         ────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignment/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:56:9]
  55 │     
  56 │ ╭─▶ 0, { x: {
@@ -5312,7 +5312,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ─────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/direct-optionalexpression.js:22:1]
  21 │ 
  22 │ x?.y = 1;
@@ -6447,7 +6447,7 @@ Negative Passed: 4669/4669 (100.00%)
     · ───────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/assignmenttargettype/parenthesized-optionalexpression.js:25:1]
  24 │ 
  25 │ (x?.y) = 1;
@@ -20878,21 +20878,21 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ───────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/static-semantics-simple-assignment.js:24:1]
  23 │ 
  24 │ obj?.a = 33;
     · ──────
     ╰────
 
-  × TS(2357): Cannot assign to this expression
+  × TS(2777): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/update-expression-postfix.js:24:1]
  23 │ const a = {};
  24 │ a?.b++;
     · ────
     ╰────
 
-  × TS(2357): Cannot assign to this expression
+  × TS(2777): Cannot assign to this expression
     ╭─[test262/test/language/expressions/optional-chaining/update-expression-prefix.js:24:3]
  23 │ const a = {};
  24 │ --a?.b;
@@ -36845,7 +36845,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:66:7]
  65 │ 
  66 │ for ([x?.y = 42] in [[23]]) ;
@@ -36867,7 +36867,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:65:7]
  64 │     
  65 │ ╭─▶ for ([{
@@ -37017,14 +37017,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:66:11]
  65 │ 
  66 │ for ({ x: y?.z = 42 } in [{ x: 23 }]) ;
     ·           ────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-in/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:65:11]
  64 │     
  65 │ ╭─▶ for ({ x: {
@@ -37385,7 +37385,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-elem-nested-memberexpr-optchain-prop-ref-init.js:66:7]
  65 │ 
  66 │ for ([x?.y = 42] of [[23]]) ;
@@ -37407,7 +37407,7 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/array-elem-put-obj-literal-optchain-prop-ref-init.js:65:7]
  64 │     
  65 │ ╭─▶ for ([{
@@ -37681,14 +37681,14 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   note: This identifier is reserved in strict mode code
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/obj-prop-elem-target-memberexpr-optchain-prop-ref-init.js:66:11]
  65 │ 
  66 │ for ({ x: y?.z = 42 } of [{ x: 23 }]) ;
     ·           ────
     ╰────
 
-  × TS(2364): Cannot assign to this expression
+  × TS(2779): Cannot assign to this expression
     ╭─[test262/test/language/statements/for-of/dstr/obj-prop-elem-target-obj-literal-optchain-prop-ref-init.js:65:11]
  64 │     
  65 │ ╭─▶ for ({ x: {

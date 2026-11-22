@@ -281,7 +281,19 @@ impl Gen for ExpressionStatement<'_> {
             p.add_source_mapping(self.span);
         }
         p.start_of_stmt = p.code_len();
-        p.print_expression(&self.expression);
+        // A statement list's directives are `Directive`s, so a string here is none, and printed
+        // bare it would read as one wherever it opens the list or follows another string.
+        if let Expression::StringLiteral(string) = self.expression.without_parentheses() {
+            if p.options.minify {
+                p.print_string_literal_as_template(string);
+            } else {
+                p.print_ascii_byte(b'(');
+                p.print_string_literal(string, /* allow_backtick */ true);
+                p.print_ascii_byte(b')');
+            }
+        } else {
+            p.print_expression(&self.expression);
+        }
         p.print_semicolon_after_statement();
     }
 }

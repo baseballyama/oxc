@@ -204,6 +204,19 @@ impl OxlintRules {
                     {
                         match external_plugin_store.lookup_rule_id(plugin_name, rule_name) {
                             Ok(external_rule_id) => {
+                                let checked = external_plugin_store.host_named(plugin_name).map_or(
+                                    Ok(()),
+                                    |host| {
+                                        host.linter.check_options(rule_name, &rule_config.config)
+                                    },
+                                );
+                                if let Err(message) = checked {
+                                    errors.push(OverrideRulesError::RuleConfiguration {
+                                        rule_name: rule_config.full_name().into_owned(),
+                                        message,
+                                    });
+                                    continue;
+                                }
                                 let options_id = external_plugin_store
                                     .add_options(external_rule_id, &rule_config.config);
 

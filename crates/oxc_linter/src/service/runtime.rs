@@ -877,17 +877,17 @@ impl Runtime {
                         }
 
                         let (mut messages, disable_directives) = if context_sub_hosts.is_empty() {
-                            (Vec::new(), None)
+                            (host_messages.unwrap_or_default(), None)
                         } else {
-                            me.linter.run_with_disable_directives::<TIMINGS>(
+                            me.linter.run_with_host_messages::<TIMINGS>(
                                 path,
                                 context_sub_hosts,
+                                host_messages.unwrap_or_default(),
                                 allocator_guard,
                                 me.js_allocator_pool(),
                                 rule_timing_store,
                             )
                         };
-                        messages.extend(host_messages.into_iter().flatten());
 
                         // Store the disable directives for this file
                         if let Some(mut disable_directives) = disable_directives {

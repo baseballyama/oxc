@@ -1,4 +1,5 @@
 use std::{
+    borrow::Cow,
     cell::{Cell, OnceCell, RefCell},
     ffi::OsStr,
     path::Path,
@@ -9,7 +10,7 @@ use std::{
 use oxc_allocator::{Allocator, ArenaBox};
 use oxc_parser::Token;
 use oxc_semantic::Semantic;
-use oxc_span::SourceType;
+use oxc_span::{SourceType, Span};
 
 use crate::{
     AllowWarnDeny, FrameworkFlags,
@@ -391,6 +392,30 @@ impl<'a> ContextHost<'a> {
         } else {
             false
         }
+    }
+
+    /// Whether a directive of the script holding `message`, a host's message with offsets in the
+    /// whole file, turns it off.
+    pub fn disabled_in_a_script(&self, message: &Message) -> bool {
+        let Some(code) = message.error.code.number.as_deref() else {
+            return false;
+        };
+        // As oxlint names its own rules: a built-in one by its name alone.
+        let rule = match message.error.code.scope.as_deref() {
+            Some("eslint") | None => Cow::Borrowed(code),
+            Some(scope) => Cow::Owned(format!("{scope}/{code}")),
+        };
+        let span = message.span;
+        self.sub_hosts.iter().any(|sub_host| {
+            let start = sub_host.source_text_offset;
+            // Spans are `u32`: oxc parses no longer source.
+            let len = u32::try_from(sub_host.semantic.source_text().len()).unwrap_or(u32::MAX);
+            let end = start.saturating_add(len);
+            (start..end).contains(&span.start)
+                && sub_host
+                    .disable_directives
+                    .contains(&rule, Span::new(span.start - start, span.end.min(end) - start))
+        })
     }
 
     /// report unused enable/disable directives, add these as Messages to diagnostics

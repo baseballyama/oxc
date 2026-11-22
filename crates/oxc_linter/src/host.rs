@@ -46,6 +46,19 @@ pub trait HostLinter: Send + Sync {
         &[]
     }
 
+    /// Checks the options the configuration gives one of the plugin's rules, when oxlint reads it,
+    /// as it checks a built-in rule's.
+    fn check_options(&self, rule: &str, options: &[Value]) -> Result<(), String> {
+        let _ = (rule, options);
+        Ok(())
+    }
+
+    /// Checks a configuration's `settings`, when oxlint reads it.
+    fn check_settings(&self, settings: &serde_json::Map<String, Value>) -> Result<(), String> {
+        let _ = settings;
+        Ok(())
+    }
+
     /// Lints `file` with its rules. A message's severity is its rule's.
     fn lint(&self, file: &HostFile<'_>) -> Vec<Message>;
 }
@@ -62,6 +75,9 @@ pub struct HostFile<'c> {
     pub env: Vec<&'c str>,
     /// `globals`: a name with `Some(writable)`, or `None` for `"off"`.
     pub globals: Vec<(&'c str, Option<bool>)>,
+    /// How to report a directive comment of the host's own, outside the scripts, that turns
+    /// nothing off; `None` reports none. oxlint applies and reports those inside the scripts.
+    pub report_unused_directives: Option<AllowWarnDeny>,
 }
 
 /// A language a host lints.
@@ -283,5 +299,61 @@ mod tests {
             .unwrap_err()
             .to_string();
         assert!(error.contains("typo"), "{error}");
+    }
+
+    /// Accepts no options and no `settings.svelte`.
+    struct Strict;
+
+    impl HostLinter for Strict {
+        fn check_options(&self, rule: &str, options: &[serde_json::Value]) -> Result<(), String> {
+            if options.is_empty() { Ok(()) } else { Err(format!("{rule} takes no options")) }
+        }
+
+        fn check_settings(
+            &self,
+            settings: &serde_json::Map<String, serde_json::Value>,
+        ) -> Result<(), String> {
+            if settings.contains_key("svelte") {
+                Err("settings.svelte: bad".into())
+            } else {
+                Ok(())
+            }
+        }
+
+        fn lint(&self, _: &HostFile<'_>) -> Vec<Message> {
+            Vec::new()
+        }
+    }
+
+    fn build_strict(config: &str) -> Result<(), String> {
+        let host = Arc::new(HostPlugin {
+            name: "svelte".into(),
+            extensions: vec!["svelte".into()],
+            module_extensions: Vec::new(),
+            rules: vec![HostRule { name: "a".into(), category: RuleCategory::Correctness }],
+            builtin_rules: Vec::new(),
+            linter: Arc::new(Strict),
+        });
+        let mut store = ExternalPluginStore::new(false);
+        store.register_host_plugin(host);
+        let oxlintrc = Oxlintrc::from_string(config).unwrap();
+        ConfigStoreBuilder::from_oxlintrc(false, oxlintrc, None, &mut store, None)
+            .and_then(|builder| builder.build(&mut store))
+            .map(drop)
+            .map_err(|error| error.to_string())
+    }
+
+    #[test]
+    fn a_host_checks_its_options_and_settings_when_the_configuration_is_read() {
+        assert_eq!(build_strict(r#"{ "rules": { "svelte/a": "error" } }"#), Ok(()));
+        let error = build_strict(r#"{ "rules": { "svelte/a": ["error", 1] } }"#).unwrap_err();
+        assert!(error.contains("svelte/a") && error.contains("a takes no options"), "{error}");
+        let error = build_strict(
+            r#"{ "overrides": [{ "files": ["*.svelte"], "rules": { "svelte/a": ["warn", 1] } }] }"#,
+        )
+        .unwrap_err();
+        assert!(error.contains("a takes no options"), "{error}");
+        let error = build_strict(r#"{ "settings": { "svelte": {} } }"#).unwrap_err();
+        assert!(error.contains("settings.svelte: bad"), "{error}");
     }
 }

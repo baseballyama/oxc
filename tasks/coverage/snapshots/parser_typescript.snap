@@ -1,9 +1,9 @@
 commit: 01f1a759
 
 parser_typescript Summary:
-AST Parsed     : 10027/10042 (99.85%)
-Positive Passed: 10015/10042 (99.73%)
-Negative Passed: 1726/2834 (60.90%)
+AST Parsed     : 9902/9914 (99.88%)
+Positive Passed: 9889/9914 (99.75%)
+Negative Passed: 1720/2823 (60.93%)
 Expect Syntax Error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/FunctionDeclaration3.ts
 
 Expect Syntax Error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/FunctionDeclaration4.ts
@@ -2403,7 +2403,7 @@ Fatal error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/jsdocTh
    ·            ────
    ╰────
 
-Fatal error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts
+Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts
 
   × Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:14:19]
@@ -2411,6 +2411,70 @@ Fatal error: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/malform
  14 │         [super.x, 0, this.#x] = value;
     ·                   ─
  15 │         [super.x, 1 + 2, this.#x] = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:15:19]
+ 14 │         [super.x, 0, this.#x] = value;
+ 15 │         [super.x, 1 + 2, this.#x] = value;
+    ·                   ─────
+ 16 │         [super.x, (() => {}), this.#x] = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:16:19]
+ 15 │         [super.x, 1 + 2, this.#x] = value;
+ 16 │         [super.x, (() => {}), this.#x] = value;
+    ·                   ──────────
+ 17 │         [super.x, value(), this.#x] = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:17:19]
+ 16 │         [super.x, (() => {}), this.#x] = value;
+ 17 │         [super.x, value(), this.#x] = value;
+    ·                   ───────
+ 18 │         [super.x, , ...this.#x] = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:21:25]
+ 20 │         // Object methods/accessors are not destructuring assignment elements.
+ 21 │         ({ x: super.x, m() {}, private: this.#x } = value);
+    ·                         ─────
+ 22 │         ({ x: super.x, get g() { return 1; }, private: this.#x } = value);
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:22:29]
+ 21 │         ({ x: super.x, m() {}, private: this.#x } = value);
+ 22 │         ({ x: super.x, get g() { return 1; }, private: this.#x } = value);
+    ·                             ────────────────
+ 23 │         ({ x: super.x, set s(v) {}, private: this.#x } = value);
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:23:29]
+ 22 │         ({ x: super.x, get g() { return 1; }, private: this.#x } = value);
+ 23 │         ({ x: super.x, set s(v) {}, private: this.#x } = value);
+    ·                             ──────
+ 24 │         ({ x: [super.x, 0, this.#x], m() {} } = value);
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:24:25]
+ 23 │         ({ x: super.x, set s(v) {}, private: this.#x } = value);
+ 24 │         ({ x: [super.x, 0, this.#x], m() {} } = value);
+    ·                         ─
+ 25 │     }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedDestructuringAssignmentTransformVariants.ts:24:39]
+ 23 │         ({ x: super.x, set s(v) {}, private: this.#x } = value);
+ 24 │         ({ x: [super.x, 0, this.#x], m() {} } = value);
+    ·                                       ─────
+ 25 │     }
     ╰────
 
 Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/compiler/noFlakyDeclarationEmitExportEqualsQualifiedNameOrder.ts
@@ -6640,6 +6704,102 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  5 │ 
    ╰────
 
+  × TS(2357): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:6:1]
+ 5 │ 
+ 6 │ (1)++;
+   · ───
+ 7 │ (1)--;
+   ╰────
+
+  × TS(2357): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:7:1]
+ 6 │ (1)++;
+ 7 │ (1)--;
+   · ───
+ 8 │ 
+   ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:9:3]
+  8 │ 
+  9 │ ++(1);
+    ·   ───
+ 10 │ --(1);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:10:3]
+  9 │ ++(1);
+ 10 │ --(1);
+    ·   ───
+ 11 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:12:1]
+ 11 │ 
+ 12 │ (1 + 2)++;
+    · ───────
+ 13 │ (1 + 2)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:13:1]
+ 12 │ (1 + 2)++;
+ 13 │ (1 + 2)--;
+    · ───────
+ 14 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:15:3]
+ 14 │ 
+ 15 │ ++(1 + 2);
+    ·   ───────
+ 16 │ --(1 + 2);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:16:3]
+ 15 │ ++(1 + 2);
+ 16 │ --(1 + 2);
+    ·   ───────
+ 17 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:18:1]
+ 17 │ 
+ 18 │ (x + x)++;
+    · ───────
+ 19 │ (x + x)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:19:1]
+ 18 │ (x + x)++;
+ 19 │ (x + x)--;
+    · ───────
+ 20 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:21:3]
+ 20 │ 
+ 21 │ ++(x + x);
+    ·   ───────
+ 22 │ --(x + x);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/compiler/decrementAndIncrementOperators.ts:22:3]
+ 21 │ ++(x + x);
+ 22 │ --(x + x);
+    ·   ───────
+ 23 │ 
+    ╰────
+
   × 'default' modifier cannot be used here.
    ╭─[typescript/tsc/testdata/tests/cases/compiler/defaultKeywordWithoutExport1.ts:4:1]
  3 │ @decorator
@@ -10585,7 +10745,23 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     }
    ╰────
 
-  × Expected `,` or `]` but found `decimal`
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedObjectDestructuringAssignmentESDecorators.ts:6:25]
+ 5 │     static {
+ 6 │         ({ m() {}, get g() { return 1; }, set s(v) {} } = this);
+   ·                         ────────────────
+ 7 │     }
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedObjectDestructuringAssignmentESDecorators.ts:6:48]
+ 5 │     static {
+ 6 │         ({ m() {}, get g() { return 1; }, set s(v) {} } = this);
+   ·                                                ──────
+ 7 │     }
+   ╰────
+
+  × TS(1005): Expected `,` or `]` but found `decimal`
    ╭─[typescript/tsc/testdata/tests/cases/compiler/malformedSuperDestructuringInDecoratedClassStaticBlock.ts:2:33]
  1 │ (@c
  2 │ class extends B{static{[super.x 0]=[1];}});
@@ -16417,7 +16593,15 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Unexpected token
+  × TS(2357): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/async/es2017/await_unaryExpression_es2017_3.ts:6:7]
+ 5 │ async function bar2() {
+ 6 │     --await 42; // Error
+   ·       ────────
+ 7 │ }
+   ╰────
+
+  × TS(1109): Unexpected token
    ╭─[typescript/tsc/testdata/tests/cases/conformance/async/es2017/functionDeclarations/asyncFunctionDeclaration10_es2017.ts:1:30]
  1 │ async function foo(a = await => await): Promise<void> {
    ·                              ──
@@ -16701,7 +16885,15 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ }
    ╰────
 
-  × Unexpected token
+  × TS(2357): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/async/es6/await_unaryExpression_es6_3.ts:6:7]
+ 5 │ async function bar2() {
+ 6 │     --await 42; // Error
+   ·       ────────
+ 7 │ }
+   ╰────
+
+  × TS(1109): Unexpected token
    ╭─[typescript/tsc/testdata/tests/cases/conformance/async/es6/functionDeclarations/asyncFunctionDeclaration10_es6.ts:1:30]
  1 │ async function foo(a = await => await): Promise<void> {
    ·                              ──
@@ -21934,6 +22126,30 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  3 │ ({...[]} = {});
    ╰────
 
+  × TS(2701): Invalid rest element target in destructuring assignment
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/restPropertyWithBindingPattern.ts:3:6]
+ 2 │ ({...({})} = {});
+ 3 │ ({...[]} = {});
+   ·      ──
+ 4 │ ({...([])} = {});
+   ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2701): Invalid rest element target in destructuring assignment
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/restPropertyWithBindingPattern.ts:4:6]
+ 3 │ ({...[]} = {});
+ 4 │ ({...([])} = {});
+   ·      ────
+   ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/destructuring/restPropertyWithBindingPattern.ts:4:6]
+ 3 │ ({...[]} = {});
+ 4 │ ({...([])} = {});
+   ·      ────
+   ╰────
+
   × Only a single declaration is allowed in a `for...of` statement
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/for-ofStatements/for-of-excess-declarations.ts:1:6]
  1 │ for (const a, { [b]: c} of [1]) {
@@ -22847,6 +23063,94 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·         ────
  8 │     }
    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:10:9]
+  9 │     foo() {
+ 10 │         this **= value;
+    ·         ────
+ 11 │     }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:13:9]
+ 12 │     static sfoo() {
+ 13 │         this **= value;
+    ·         ────
+ 14 │     }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:18:5]
+ 17 │ function foo() {
+ 18 │     this **= value;
+    ·     ────
+ 19 │ }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:21:1]
+ 20 │ 
+ 21 │ this **= value;
+    · ────
+ 22 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:35:1]
+ 34 │ // literals
+ 35 │ null **= value;
+    · ────
+ 36 │ true **= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:36:1]
+ 35 │ null **= value;
+ 36 │ true **= value;
+    · ────
+ 37 │ false **= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:37:1]
+ 36 │ true **= value;
+ 37 │ false **= value;
+    · ─────
+ 38 │ 0 **= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:38:1]
+ 37 │ false **= value;
+ 38 │ 0 **= value;
+    · ─
+ 39 │ '' **= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:39:1]
+ 38 │ 0 **= value;
+ 39 │ '' **= value;
+    · ──
+ 40 │ /d+/ **= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:40:1]
+ 39 │ '' **= value;
+ 40 │ /d+/ **= value;
+    · ────
+ 41 │ 
+    ╰────
+
+  × TS(1109): Unexpected token
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/compoundExponentiationAssignmentLHSIsValue.ts:43:10]
+ 42 │ // object literals
+ 43 │ { a: 0 } **= value;
+    ·          ───
+ 44 │ 
+    ╰────
 
   × A unary expression with the 'typeof' operator cannot be used as the left operand of an exponentiation expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es7/exponentiationOperator/exponentiationOperatorInTemplateStringWithSyntaxError1.ts:7:8]
@@ -24748,13 +25052,277 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  7 │     foo() { this = value; }
    ╰────
 
-  × Cannot assign to this expression
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:7:13]
+ 6 │     constructor() { this = value; }
+ 7 │     foo() { this = value; }
+   ·             ────
+ 8 │     static sfoo() { this = value; }
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:8:21]
+ 7 │     foo() { this = value; }
+ 8 │     static sfoo() { this = value; }
+   ·                     ────
+ 9 │ }
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:11:18]
+ 10 │ 
+ 11 │ function foo() { this = value; }
+    ·                  ────
+ 12 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:13:1]
+ 12 │ 
+ 13 │ this = value;
+    · ────
+ 14 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:27:1]
+ 26 │ // literals
+ 27 │ null = value;
+    · ────
+ 28 │ true = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:28:1]
+ 27 │ null = value;
+ 28 │ true = value;
+    · ────
+ 29 │ false = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:29:1]
+ 28 │ true = value;
+ 29 │ false = value;
+    · ─────
+ 30 │ 0 = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:30:1]
+ 29 │ false = value;
+ 30 │ 0 = value;
+    · ─
+ 31 │ '' = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:31:1]
+ 30 │ 0 = value;
+ 31 │ '' = value;
+    · ──
+ 32 │ /d+/ = value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:32:1]
+ 31 │ '' = value;
+ 32 │ /d+/ = value;
+    · ────
+ 33 │ 
+    ╰────
+
+  × TS(1109): Unexpected token
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/assignmentLHSIsValue.ts:35:9]
+ 34 │ // object literals
+ 35 │ { a: 0} = value;
+    ·         ─
+ 36 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:7:9]
  6 │     constructor() {
  7 │         this *= value;
    ·         ────
  8 │         this += value;
    ╰────
+
+  × TS(2364): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:8:9]
+ 7 │         this *= value;
+ 8 │         this += value;
+   ·         ────
+ 9 │     }
+   ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:11:9]
+ 10 │     foo() {
+ 11 │         this *= value;
+    ·         ────
+ 12 │         this += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:12:9]
+ 11 │         this *= value;
+ 12 │         this += value;
+    ·         ────
+ 13 │     }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:15:9]
+ 14 │     static sfoo() {
+ 15 │         this *= value;
+    ·         ────
+ 16 │         this += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:16:9]
+ 15 │         this *= value;
+ 16 │         this += value;
+    ·         ────
+ 17 │     }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:21:5]
+ 20 │ function foo() {
+ 21 │     this *= value;
+    ·     ────
+ 22 │     this += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:22:5]
+ 21 │     this *= value;
+ 22 │     this += value;
+    ·     ────
+ 23 │ }
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:25:1]
+ 24 │ 
+ 25 │ this *= value;
+    · ────
+ 26 │ this += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:26:1]
+ 25 │ this *= value;
+ 26 │ this += value;
+    · ────
+ 27 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:44:1]
+ 43 │ // literals
+ 44 │ null *= value;
+    · ────
+ 45 │ null += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:45:1]
+ 44 │ null *= value;
+ 45 │ null += value;
+    · ────
+ 46 │ true *= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:46:1]
+ 45 │ null += value;
+ 46 │ true *= value;
+    · ────
+ 47 │ true += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:47:1]
+ 46 │ true *= value;
+ 47 │ true += value;
+    · ────
+ 48 │ false *= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:48:1]
+ 47 │ true += value;
+ 48 │ false *= value;
+    · ─────
+ 49 │ false += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:49:1]
+ 48 │ false *= value;
+ 49 │ false += value;
+    · ─────
+ 50 │ 0 *= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:50:1]
+ 49 │ false += value;
+ 50 │ 0 *= value;
+    · ─
+ 51 │ 0 += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:51:1]
+ 50 │ 0 *= value;
+ 51 │ 0 += value;
+    · ─
+ 52 │ '' *= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:52:1]
+ 51 │ 0 += value;
+ 52 │ '' *= value;
+    · ──
+ 53 │ '' += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:53:1]
+ 52 │ '' *= value;
+ 53 │ '' += value;
+    · ──
+ 54 │ /d+/ *= value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:54:1]
+ 53 │ '' += value;
+ 54 │ /d+/ *= value;
+    · ────
+ 55 │ /d+/ += value;
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:55:1]
+ 54 │ /d+/ *= value;
+ 55 │ /d+/ += value;
+    · ────
+ 56 │ 
+    ╰────
+
+  × TS(1109): Unexpected token
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/assignmentOperator/compoundAssignmentLHSIsValue.ts:58:9]
+ 57 │ // object literals
+ 58 │ { a: 0} *= value;
+    ·         ──
+ 59 │ { a: 0} += value;
+    ╰────
 
   × Parenthesized expressions may not have a trailing comma.
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/commaOperator/commaOperatorWithoutOperand.ts:9:5]
@@ -24765,7 +25333,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
     ╰────
   help: Remove the trailing comma here
 
-  × 'with' statements are not allowed
+  × TS(1101): 'with' statements are not allowed
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/functions/arrowFunctionContexts.ts:3:1]
  2 │ // Arrow function used in with statement
  3 │ with (window) {
@@ -24773,7 +25341,7 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  4 │     var p = () => this;
    ╰────
 
-  × 'with' statements are not allowed
+  × TS(1101): 'with' statements are not allowed
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/functions/arrowFunctionContexts.ts:44:5]
  43 │     // Arrow function used in with statement
  44 │     with (window) {
@@ -24893,6 +25461,158 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  9 │ 
    ╰────
 
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:11:1]
+ 10 │ // Assign to expression--
+ 11 │ x-- = 5; // Error
+    · ───
+ 12 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:14:1]
+ 13 │ // Assign to++expression
+ 14 │ ++x = 4; // Error
+    · ───
+ 15 │ 
+    ╰────
+
+  × TS(2364): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:17:1]
+ 16 │ // Assign to--expression
+ 17 │ --x = 5; // Error
+    · ───
+ 18 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:24:3]
+ 23 │ --x;
+ 24 │ ++x++; // Error
+    ·   ───
+ 25 │ --x--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:25:3]
+ 24 │ ++x++; // Error
+ 25 │ --x--; // Error
+    ·   ───
+ 26 │ ++x--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:26:3]
+ 25 │ --x--; // Error
+ 26 │ ++x--; // Error
+    ·   ───
+ 27 │ --x++; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:27:3]
+ 26 │ ++x--; // Error
+ 27 │ --x++; // Error
+    ·   ───
+ 28 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:34:3]
+ 33 │ --e;
+ 34 │ ++e++; // Error
+    ·   ───
+ 35 │ --e--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:35:3]
+ 34 │ ++e++; // Error
+ 35 │ --e--; // Error
+    ·   ───
+ 36 │ ++e--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:36:3]
+ 35 │ --e--; // Error
+ 36 │ ++e--; // Error
+    ·   ───
+ 37 │ --e++; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:37:3]
+ 36 │ ++e--; // Error
+ 37 │ --e++; // Error
+    ·   ───
+ 38 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:44:3]
+ 43 │ --a;
+ 44 │ ++a++; // Error
+    ·   ───
+ 45 │ --a--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:45:3]
+ 44 │ ++a++; // Error
+ 45 │ --a--; // Error
+    ·   ───
+ 46 │ ++a--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:46:3]
+ 45 │ --a--; // Error
+ 46 │ ++a--; // Error
+    ·   ───
+ 47 │ --a++; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:47:3]
+ 46 │ ++a--; // Error
+ 47 │ --a++; // Error
+    ·   ───
+ 48 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:55:3]
+ 54 │ --w; // Error
+ 55 │ ++w++; // Error
+    ·   ───
+ 56 │ --w--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:56:3]
+ 55 │ ++w++; // Error
+ 56 │ --w--; // Error
+    ·   ───
+ 57 │ ++w--; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:57:3]
+ 56 │ --w--; // Error
+ 57 │ ++w--; // Error
+    ·   ───
+ 58 │ --w++; // Error
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/operators/incrementAndDecrement.ts:58:3]
+ 57 │ ++w--; // Error
+ 58 │ --w++; // Error
+    ·   ───
+ 59 │ 
+    ╰────
+
   × TS(2777): Cannot assign to this expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:3:1]
  2 │ 
@@ -24902,12 +25622,416 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ╰────
 
   × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:4:1]
+ 3 │ obj?.["a"]++;
+ 4 │ obj?.a["b"]++;
+   · ───────────
+ 5 │ obj?.["a"]--;
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:5:1]
+ 4 │ obj?.a["b"]++;
+ 5 │ obj?.["a"]--;
+   · ──────────
+ 6 │ obj?.a["b"]--;
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:6:1]
+ 5 │ obj?.["a"]--;
+ 6 │ obj?.a["b"]--;
+   · ───────────
+ 7 │ 
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:8:3]
+ 7 │ 
+ 8 │ ++obj?.["a"];
+   ·   ──────────
+ 9 │ ++obj?.a["b"];
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:9:3]
+  8 │ ++obj?.["a"];
+  9 │ ++obj?.a["b"];
+    ·   ───────────
+ 10 │ --obj?.["a"];
+    ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:10:3]
+  9 │ ++obj?.a["b"];
+ 10 │ --obj?.["a"];
+    ·   ──────────
+ 11 │ --obj?.a["b"];
+    ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:11:3]
+ 10 │ --obj?.["a"];
+ 11 │ --obj?.a["b"];
+    ·   ───────────
+ 12 │ 
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:13:1]
+ 12 │ 
+ 13 │ obj?.["a"] = 1;
+    · ──────────
+ 14 │ obj?.a["b"] = 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:14:1]
+ 13 │ obj?.["a"] = 1;
+ 14 │ obj?.a["b"] = 1;
+    · ───────────
+ 15 │ obj?.["a"] += 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:15:1]
+ 14 │ obj?.a["b"] = 1;
+ 15 │ obj?.["a"] += 1;
+    · ──────────
+ 16 │ obj?.a["b"] += 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:16:1]
+ 15 │ obj?.["a"] += 1;
+ 16 │ obj?.a["b"] += 1;
+    · ───────────
+ 17 │ 
+    ╰────
+
+  × TS(2780): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:18:6]
+ 17 │ 
+ 18 │ for (obj?.["a"] in {});
+    ·      ──────────
+ 19 │ for (obj?.a["b"] in {});
+    ╰────
+
+  × TS(2780): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:19:6]
+ 18 │ for (obj?.["a"] in {});
+ 19 │ for (obj?.a["b"] in {});
+    ·      ───────────
+ 20 │ for (obj?.["a"] of []);
+    ╰────
+
+  × TS(2781): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:20:6]
+ 19 │ for (obj?.a["b"] in {});
+ 20 │ for (obj?.["a"] of []);
+    ·      ──────────
+ 21 │ for (obj?.a["b"] of []);
+    ╰────
+
+  × TS(2781): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:21:6]
+ 20 │ for (obj?.["a"] of []);
+ 21 │ for (obj?.a["b"] of []);
+    ·      ───────────
+ 22 │ 
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:23:7]
+ 22 │ 
+ 23 │ ({ a: obj?.["a"] } = { a: 1 });
+    ·       ──────────
+ 24 │ ({ a: obj?.a["b"] } = { a: 1 });
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:24:7]
+ 23 │ ({ a: obj?.["a"] } = { a: 1 });
+ 24 │ ({ a: obj?.a["b"] } = { a: 1 });
+    ·       ───────────
+ 25 │ ({ ...obj?.["a"] } = { a: 1 });
+    ╰────
+
+  × TS(2778): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:25:7]
+ 24 │ ({ a: obj?.a["b"] } = { a: 1 });
+ 25 │ ({ ...obj?.["a"] } = { a: 1 });
+    ·       ──────────
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:25:7]
+ 24 │ ({ a: obj?.a["b"] } = { a: 1 });
+ 25 │ ({ ...obj?.["a"] } = { a: 1 });
+    ·       ──────────
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+    ╰────
+
+  × TS(2778): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:26:7]
+ 25 │ ({ ...obj?.["a"] } = { a: 1 });
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+    ·       ───────────
+ 27 │ [...obj?.["a"]] = [];
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:26:7]
+ 25 │ ({ ...obj?.["a"] } = { a: 1 });
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+    ·       ───────────
+ 27 │ [...obj?.["a"]] = [];
+    ╰────
+
+  × TS(2779): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:27:5]
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+ 27 │ [...obj?.["a"]] = [];
+    ·     ──────────
+ 28 │ [...obj?.a["b"]] = [];
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:27:5]
+ 26 │ ({ ...obj?.a["b"] } = { a: 1 });
+ 27 │ [...obj?.["a"]] = [];
+    ·     ──────────
+ 28 │ [...obj?.a["b"]] = [];
+    ╰────
+
+  × TS(2779): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:28:5]
+ 27 │ [...obj?.["a"]] = [];
+ 28 │ [...obj?.a["b"]] = [];
+    ·     ───────────
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/elementAccessChain/elementAccessChain.3.ts:28:5]
+ 27 │ [...obj?.["a"]] = [];
+ 28 │ [...obj?.a["b"]] = [];
+    ·     ───────────
+    ╰────
+
+  × TS(2777): Cannot assign to this expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:3:1]
  2 │ 
  3 │ obj?.a++;
    · ──────
  4 │ obj?.a.b++;
    ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:4:1]
+ 3 │ obj?.a++;
+ 4 │ obj?.a.b++;
+   · ────────
+ 5 │ obj?.a--;
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:5:1]
+ 4 │ obj?.a.b++;
+ 5 │ obj?.a--;
+   · ──────
+ 6 │ obj?.a.b--;
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:6:1]
+ 5 │ obj?.a--;
+ 6 │ obj?.a.b--;
+   · ────────
+ 7 │ 
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:8:3]
+ 7 │ 
+ 8 │ ++obj?.a;
+   ·   ──────
+ 9 │ ++obj?.a.b;
+   ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:9:3]
+  8 │ ++obj?.a;
+  9 │ ++obj?.a.b;
+    ·   ────────
+ 10 │ --obj?.a;
+    ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:10:3]
+  9 │ ++obj?.a.b;
+ 10 │ --obj?.a;
+    ·   ──────
+ 11 │ --obj?.a.b;
+    ╰────
+
+  × TS(2777): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:11:3]
+ 10 │ --obj?.a;
+ 11 │ --obj?.a.b;
+    ·   ────────
+ 12 │ 
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:13:1]
+ 12 │ 
+ 13 │ obj?.a = 1;
+    · ──────
+ 14 │ obj?.a.b = 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:14:1]
+ 13 │ obj?.a = 1;
+ 14 │ obj?.a.b = 1;
+    · ────────
+ 15 │ obj?.a += 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:15:1]
+ 14 │ obj?.a.b = 1;
+ 15 │ obj?.a += 1;
+    · ──────
+ 16 │ obj?.a.b += 1;
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:16:1]
+ 15 │ obj?.a += 1;
+ 16 │ obj?.a.b += 1;
+    · ────────
+ 17 │ 
+    ╰────
+
+  × TS(2780): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:18:6]
+ 17 │ 
+ 18 │ for (obj?.a in {});
+    ·      ──────
+ 19 │ for (obj?.a.b in {});
+    ╰────
+
+  × TS(2780): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:19:6]
+ 18 │ for (obj?.a in {});
+ 19 │ for (obj?.a.b in {});
+    ·      ────────
+ 20 │ for (obj?.a of []);
+    ╰────
+
+  × TS(2781): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:20:6]
+ 19 │ for (obj?.a.b in {});
+ 20 │ for (obj?.a of []);
+    ·      ──────
+ 21 │ for (obj?.a.b of []);
+    ╰────
+
+  × TS(2781): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:21:6]
+ 20 │ for (obj?.a of []);
+ 21 │ for (obj?.a.b of []);
+    ·      ────────
+ 22 │ 
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:23:7]
+ 22 │ 
+ 23 │ ({ a: obj?.a } = { a: 1 });
+    ·       ──────
+ 24 │ ({ a: obj?.a.b } = { a: 1 });
+    ╰────
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:24:7]
+ 23 │ ({ a: obj?.a } = { a: 1 });
+ 24 │ ({ a: obj?.a.b } = { a: 1 });
+    ·       ────────
+ 25 │ ({ ...obj?.a } = { a: 1 });
+    ╰────
+
+  × TS(2778): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:25:7]
+ 24 │ ({ a: obj?.a.b } = { a: 1 });
+ 25 │ ({ ...obj?.a } = { a: 1 });
+    ·       ──────
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:25:7]
+ 24 │ ({ a: obj?.a.b } = { a: 1 });
+ 25 │ ({ ...obj?.a } = { a: 1 });
+    ·       ──────
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+    ╰────
+
+  × TS(2778): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:26:7]
+ 25 │ ({ ...obj?.a } = { a: 1 });
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+    ·       ────────
+ 27 │ [...obj?.a] = [];
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:26:7]
+ 25 │ ({ ...obj?.a } = { a: 1 });
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+    ·       ────────
+ 27 │ [...obj?.a] = [];
+    ╰────
+
+  × TS(2779): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:27:5]
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+ 27 │ [...obj?.a] = [];
+    ·     ──────
+ 28 │ [...obj?.a.b] = [];
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:27:5]
+ 26 │ ({ ...obj?.a.b } = { a: 1 });
+ 27 │ [...obj?.a] = [];
+    ·     ──────
+ 28 │ [...obj?.a.b] = [];
+    ╰────
+
+  × TS(2779): Invalid rest element target in destructuring assignment
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:28:5]
+ 27 │ [...obj?.a] = [];
+ 28 │ [...obj?.a.b] = [];
+    ·     ────────
+    ╰────
+  help: Expected an identifier or member expression, like `...rest` or `...obj.prop`.
+
+  × TS(2779): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/propertyAccessChain/propertyAccessChain.3.ts:28:5]
+ 27 │ [...obj?.a] = [];
+ 28 │ [...obj?.a.b] = [];
+    ·     ────────
+    ╰────
 
   × Tagged template expressions are not permitted in an optional chain
    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/optionalChaining/taggedTemplateChain/taggedTemplateChain.ts:2:4]
@@ -25257,15 +26381,174 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ var ResultIsNumber12 = --null;
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithEnumTypeInvalidOperations.ts:14:26]
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:38:26]
+ 37 │ var ResultIsNumber11 = --{};
+ 38 │ var ResultIsNumber12 = --null;
+    ·                          ────
+ 39 │ var ResultIsNumber13 = --undefined;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:41:24]
+ 40 │ 
+ 41 │ var ResultIsNumber14 = null--;
+    ·                        ────
+ 42 │ var ResultIsNumber15 = {}--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:42:24]
+ 41 │ var ResultIsNumber14 = null--;
+ 42 │ var ResultIsNumber15 = {}--;
+    ·                        ──
+ 43 │ var ResultIsNumber16 = undefined--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:46:26]
+ 45 │ // any type expressions
+ 46 │ var ResultIsNumber17 = --foo();
+    ·                          ─────
+ 47 │ var ResultIsNumber18 = --A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:47:26]
+ 46 │ var ResultIsNumber17 = --foo();
+ 47 │ var ResultIsNumber18 = --A.foo();
+    ·                          ───────
+ 48 │ var ResultIsNumber19 = --(null + undefined);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:48:26]
+ 47 │ var ResultIsNumber18 = --A.foo();
+ 48 │ var ResultIsNumber19 = --(null + undefined);
+    ·                          ──────────────────
+ 49 │ var ResultIsNumber20 = --(null + null);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:49:26]
+ 48 │ var ResultIsNumber19 = --(null + undefined);
+ 49 │ var ResultIsNumber20 = --(null + null);
+    ·                          ─────────────
+ 50 │ var ResultIsNumber21 = --(undefined + undefined);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:50:26]
+ 49 │ var ResultIsNumber20 = --(null + null);
+ 50 │ var ResultIsNumber21 = --(undefined + undefined);
+    ·                          ───────────────────────
+ 51 │ var ResultIsNumber22 = --obj1.x;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:54:24]
+ 53 │ 
+ 54 │ var ResultIsNumber24 = foo()--;
+    ·                        ─────
+ 55 │ var ResultIsNumber25 = A.foo()--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:55:24]
+ 54 │ var ResultIsNumber24 = foo()--;
+ 55 │ var ResultIsNumber25 = A.foo()--;
+    ·                        ───────
+ 56 │ var ResultIsNumber26 = (null + undefined)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:56:24]
+ 55 │ var ResultIsNumber25 = A.foo()--;
+ 56 │ var ResultIsNumber26 = (null + undefined)--;
+    ·                        ──────────────────
+ 57 │ var ResultIsNumber27 = (null + null)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:57:24]
+ 56 │ var ResultIsNumber26 = (null + undefined)--;
+ 57 │ var ResultIsNumber27 = (null + null)--;
+    ·                        ─────────────
+ 58 │ var ResultIsNumber28 = (undefined + undefined)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:58:24]
+ 57 │ var ResultIsNumber27 = (null + null)--;
+ 58 │ var ResultIsNumber28 = (undefined + undefined)--;
+    ·                        ───────────────────────
+ 59 │ var ResultIsNumber29 = obj1.x--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:67:3]
+ 66 │ 
+ 67 │ --ANY1--;
+    ·   ──────
+ 68 │ --ANY1++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:68:3]
+ 67 │ --ANY1--;
+ 68 │ --ANY1++;
+    ·   ──────
+ 69 │ ++ANY1--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:69:3]
+ 68 │ --ANY1++;
+ 69 │ ++ANY1--;
+    ·   ──────
+ 70 │ --ANY2[0]--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:70:3]
+ 69 │ ++ANY1--;
+ 70 │ --ANY2[0]--;
+    ·   ─────────
+ 71 │ --ANY2[0]++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:71:3]
+ 70 │ --ANY2[0]--;
+ 71 │ --ANY2[0]++;
+    ·   ─────────
+ 72 │ ++ANY2[0]--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithAnyOtherTypeInvalidOperations.ts:72:3]
+ 71 │ --ANY2[0]++;
+ 72 │ ++ANY2[0]--;
+    ·   ─────────
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithEnumTypeInvalidOperations.ts:14:25]
  13 │ // enum type expressions
  14 │ var ResultIsNumber5 = --(ENUM["A"] + ENUM.B);
     ·                          ──────────────────
  15 │ var ResultIsNumber6 = (ENUM.A + ENUM["B"])--;
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithEnumTypeInvalidOperations.ts:15:23]
+ 14 │ var ResultIsNumber5 = --(ENUM["A"] + ENUM.B);
+ 15 │ var ResultIsNumber6 = (ENUM.A + ENUM["B"])--;
+    ·                       ────────────────────
+ 16 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:22:25]
  21 │ // number type literal
  22 │ var ResultIsNumber3 = --1;
@@ -25273,7 +26556,126 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ var ResultIsNumber4 = --{ x: 1, y: 2};
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:23:25]
+ 22 │ var ResultIsNumber3 = --1;
+ 23 │ var ResultIsNumber4 = --{ x: 1, y: 2};
+    ·                         ─────────────
+ 24 │ var ResultIsNumber5 = --{ x: 1, y: (n: number) => { return n; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:24:25]
+ 23 │ var ResultIsNumber4 = --{ x: 1, y: 2};
+ 24 │ var ResultIsNumber5 = --{ x: 1, y: (n: number) => { return n; } };
+    ·                         ─────────────────────────────────────────
+ 25 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:26:23]
+ 25 │ 
+ 26 │ var ResultIsNumber6 = 1--;
+    ·                       ─
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:27:23]
+ 26 │ var ResultIsNumber6 = 1--;
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }--;
+    ·                       ──────────────
+ 28 │ var ResultIsNumber8 = { x: 1, y: (n: number) => { return n; } }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:28:23]
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }--;
+ 28 │ var ResultIsNumber8 = { x: 1, y: (n: number) => { return n; } }--;
+    ·                       ─────────────────────────────────────────
+ 29 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:31:25]
+ 30 │ // number type expressions
+ 31 │ var ResultIsNumber9 = --foo();
+    ·                         ─────
+ 32 │ var ResultIsNumber10 = --A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:32:26]
+ 31 │ var ResultIsNumber9 = --foo();
+ 32 │ var ResultIsNumber10 = --A.foo();
+    ·                          ───────
+ 33 │ var ResultIsNumber11 = --(NUMBER + NUMBER);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:33:26]
+ 32 │ var ResultIsNumber10 = --A.foo();
+ 33 │ var ResultIsNumber11 = --(NUMBER + NUMBER);
+    ·                          ─────────────────
+ 34 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:35:24]
+ 34 │ 
+ 35 │ var ResultIsNumber12 = foo()--;
+    ·                        ─────
+ 36 │ var ResultIsNumber13 = A.foo()--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:36:24]
+ 35 │ var ResultIsNumber12 = foo()--;
+ 36 │ var ResultIsNumber13 = A.foo()--;
+    ·                        ───────
+ 37 │ var ResultIsNumber14 = (NUMBER + NUMBER)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:37:24]
+ 36 │ var ResultIsNumber13 = A.foo()--;
+ 37 │ var ResultIsNumber14 = (NUMBER + NUMBER)--;
+    ·                        ─────────────────
+ 38 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:40:3]
+ 39 │ // miss assignment operator
+ 40 │ --1;
+    ·   ─
+ 41 │ --NUMBER1;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:42:3]
+ 41 │ --NUMBER1;
+ 42 │ --foo();
+    ·   ─────
+ 43 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:44:1]
+ 43 │ 
+ 44 │ 1--;
+    · ─
+ 45 │ NUMBER1--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithNumberTypeInvalidOperations.ts:46:1]
+ 45 │ NUMBER1--;
+ 46 │ foo()--;
+    · ─────
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:22:25]
  21 │ // boolean type literal
  22 │ var ResultIsNumber3 = --true;
@@ -25281,12 +26683,236 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ var ResultIsNumber4 = --{ x: true, y: false };
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:23:25]
+ 22 │ var ResultIsNumber3 = --true;
+ 23 │ var ResultIsNumber4 = --{ x: true, y: false };
+    ·                         ─────────────────────
+ 24 │ var ResultIsNumber5 = --{ x: true, y: (n: boolean) => { return n; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:24:25]
+ 23 │ var ResultIsNumber4 = --{ x: true, y: false };
+ 24 │ var ResultIsNumber5 = --{ x: true, y: (n: boolean) => { return n; } };
+    ·                         ─────────────────────────────────────────────
+ 25 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:26:23]
+ 25 │ 
+ 26 │ var ResultIsNumber6 = true--;
+    ·                       ────
+ 27 │ var ResultIsNumber7 = { x: true, y: false }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:27:23]
+ 26 │ var ResultIsNumber6 = true--;
+ 27 │ var ResultIsNumber7 = { x: true, y: false }--;
+    ·                       ─────────────────────
+ 28 │ var ResultIsNumber8 = { x: true, y: (n: boolean) => { return n; } }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:28:23]
+ 27 │ var ResultIsNumber7 = { x: true, y: false }--;
+ 28 │ var ResultIsNumber8 = { x: true, y: (n: boolean) => { return n; } }--;
+    ·                       ─────────────────────────────────────────────
+ 29 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:33:26]
+ 32 │ var ResultIsNumber10 = --M.n;
+ 33 │ var ResultIsNumber11 = --foo();
+    ·                          ─────
+ 34 │ var ResultIsNumber12 = --A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:34:26]
+ 33 │ var ResultIsNumber11 = --foo();
+ 34 │ var ResultIsNumber12 = --A.foo();
+    ·                          ───────
+ 35 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:36:24]
+ 35 │ 
+ 36 │ var ResultIsNumber13 = foo()--;
+    ·                        ─────
+ 37 │ var ResultIsNumber14 = A.foo()--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:37:24]
+ 36 │ var ResultIsNumber13 = foo()--;
+ 37 │ var ResultIsNumber14 = A.foo()--;
+    ·                        ───────
+ 38 │ var ResultIsNumber15 = objA.a--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:42:3]
+ 41 │ // miss assignment operators
+ 42 │ --true;
+    ·   ────
+ 43 │ --BOOLEAN;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:44:3]
+ 43 │ --BOOLEAN;
+ 44 │ --foo();
+    ·   ─────
+ 45 │ --objA.a;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:49:1]
+ 48 │ 
+ 49 │ true--;
+    · ────
+ 50 │ BOOLEAN--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedBooleanType.ts:51:1]
+ 50 │ BOOLEAN--;
+ 51 │ foo()--;
+    · ─────
+ 52 │ objA.a--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:25:25]
  24 │ // string type literal
  25 │ var ResultIsNumber5 = --"";
     ·                         ──
  26 │ var ResultIsNumber6 = --{ x: "", y: "" };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:26:25]
+ 25 │ var ResultIsNumber5 = --"";
+ 26 │ var ResultIsNumber6 = --{ x: "", y: "" };
+    ·                         ────────────────
+ 27 │ var ResultIsNumber7 = --{ x: "", y: (s: string) => { return s; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:27:25]
+ 26 │ var ResultIsNumber6 = --{ x: "", y: "" };
+ 27 │ var ResultIsNumber7 = --{ x: "", y: (s: string) => { return s; } };
+    ·                         ──────────────────────────────────────────
+ 28 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:29:23]
+ 28 │ 
+ 29 │ var ResultIsNumber8 = ""--;
+    ·                       ──
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:30:23]
+ 29 │ var ResultIsNumber8 = ""--;
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }--;
+    ·                       ────────────────
+ 31 │ var ResultIsNumber10 = { x: "", y: (s: string) => { return s; } }--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:31:24]
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }--;
+ 31 │ var ResultIsNumber10 = { x: "", y: (s: string) => { return s; } }--;
+    ·                        ──────────────────────────────────────────
+ 32 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:37:26]
+ 36 │ var ResultIsNumber13 = --STRING1[0];
+ 37 │ var ResultIsNumber14 = --foo();
+    ·                          ─────
+ 38 │ var ResultIsNumber15 = --A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:38:26]
+ 37 │ var ResultIsNumber14 = --foo();
+ 38 │ var ResultIsNumber15 = --A.foo();
+    ·                          ───────
+ 39 │ var ResultIsNumber16 = --(STRING + STRING);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:39:26]
+ 38 │ var ResultIsNumber15 = --A.foo();
+ 39 │ var ResultIsNumber16 = --(STRING + STRING);
+    ·                          ─────────────────
+ 40 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:44:24]
+ 43 │ var ResultIsNumber19 = STRING1[0]--;
+ 44 │ var ResultIsNumber20 = foo()--;
+    ·                        ─────
+ 45 │ var ResultIsNumber21 = A.foo()--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:45:24]
+ 44 │ var ResultIsNumber20 = foo()--;
+ 45 │ var ResultIsNumber21 = A.foo()--;
+    ·                        ───────
+ 46 │ var ResultIsNumber22 = (STRING + STRING)--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:46:24]
+ 45 │ var ResultIsNumber21 = A.foo()--;
+ 46 │ var ResultIsNumber22 = (STRING + STRING)--;
+    ·                        ─────────────────
+ 47 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:49:3]
+ 48 │ // miss assignment operators
+ 49 │ --"";
+    ·   ──
+ 50 │ --STRING;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:53:3]
+ 52 │ --STRING1[0];
+ 53 │ --foo();
+    ·   ─────
+ 54 │ --objA.a;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:58:1]
+ 57 │ 
+ 58 │ ""--;
+    · ──
+ 59 │ STRING--;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/decrementOperator/decrementOperatorWithUnsupportedStringType.ts:62:1]
+ 61 │ STRING1[0]--;
+ 62 │ foo()--;
+    · ─────
+ 63 │ objA.a--;
     ╰────
 
   × Expected a semicolon or an implicit semicolon after a statement, but found none
@@ -25394,15 +27020,150 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  38 │ var ResultIsNumber12 = ++null;
     ╰────
 
-  × Cannot assign to this expression
-    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithEnumTypeInvalidOperations.ts:14:26]
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:38:26]
+ 37 │ var ResultIsNumber11 = ++{};
+ 38 │ var ResultIsNumber12 = ++null;
+    ·                          ────
+ 39 │ var ResultIsNumber13 = ++undefined;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:41:24]
+ 40 │ 
+ 41 │ var ResultIsNumber14 = null++;
+    ·                        ────
+ 42 │ var ResultIsNumber15 = {}++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:42:24]
+ 41 │ var ResultIsNumber14 = null++;
+ 42 │ var ResultIsNumber15 = {}++;
+    ·                        ──
+ 43 │ var ResultIsNumber16 = undefined++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:46:26]
+ 45 │ // any type expressions
+ 46 │ var ResultIsNumber17 = ++foo();
+    ·                          ─────
+ 47 │ var ResultIsNumber18 = ++A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:47:26]
+ 46 │ var ResultIsNumber17 = ++foo();
+ 47 │ var ResultIsNumber18 = ++A.foo();
+    ·                          ───────
+ 48 │ var ResultIsNumber19 = ++(null + undefined);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:48:26]
+ 47 │ var ResultIsNumber18 = ++A.foo();
+ 48 │ var ResultIsNumber19 = ++(null + undefined);
+    ·                          ──────────────────
+ 49 │ var ResultIsNumber20 = ++(null + null);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:49:26]
+ 48 │ var ResultIsNumber19 = ++(null + undefined);
+ 49 │ var ResultIsNumber20 = ++(null + null);
+    ·                          ─────────────
+ 50 │ var ResultIsNumber21 = ++(undefined + undefined);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:50:26]
+ 49 │ var ResultIsNumber20 = ++(null + null);
+ 50 │ var ResultIsNumber21 = ++(undefined + undefined);
+    ·                          ───────────────────────
+ 51 │ var ResultIsNumber22 = ++obj1.x;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:54:24]
+ 53 │ 
+ 54 │ var ResultIsNumber24 = foo()++;
+    ·                        ─────
+ 55 │ var ResultIsNumber25 = A.foo()++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:55:24]
+ 54 │ var ResultIsNumber24 = foo()++;
+ 55 │ var ResultIsNumber25 = A.foo()++;
+    ·                        ───────
+ 56 │ var ResultIsNumber26 = (null + undefined)++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:56:24]
+ 55 │ var ResultIsNumber25 = A.foo()++;
+ 56 │ var ResultIsNumber26 = (null + undefined)++;
+    ·                        ──────────────────
+ 57 │ var ResultIsNumber27 = (null + null)++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:57:24]
+ 56 │ var ResultIsNumber26 = (null + undefined)++;
+ 57 │ var ResultIsNumber27 = (null + null)++;
+    ·                        ─────────────
+ 58 │ var ResultIsNumber28 = (undefined + undefined)++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:58:24]
+ 57 │ var ResultIsNumber27 = (null + null)++;
+ 58 │ var ResultIsNumber28 = (undefined + undefined)++;
+    ·                        ───────────────────────
+ 59 │ var ResultIsNumber29 = obj1.x++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:67:3]
+ 66 │ 
+ 67 │ ++ANY1++;
+    ·   ──────
+ 68 │ ++ANY2++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:68:3]
+ 67 │ ++ANY1++;
+ 68 │ ++ANY2++;
+    ·   ──────
+ 69 │ ++ANY2[0]++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithAnyOtherTypeInvalidOperations.ts:69:3]
+ 68 │ ++ANY2++;
+ 69 │ ++ANY2[0]++;
+    ·   ─────────
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithEnumTypeInvalidOperations.ts:14:25]
  13 │ // enum type expressions
  14 │ var ResultIsNumber5 = ++(ENUM[1] + ENUM[2]);
     ·                          ─────────────────
  15 │ var ResultIsNumber6 = (ENUM[1] + ENUM[2])++;
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithEnumTypeInvalidOperations.ts:15:23]
+ 14 │ var ResultIsNumber5 = ++(ENUM[1] + ENUM[2]);
+ 15 │ var ResultIsNumber6 = (ENUM[1] + ENUM[2])++;
+    ·                       ───────────────────
+ 16 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:22:25]
  21 │ // number type literal
  22 │ var ResultIsNumber3 = ++1;
@@ -25410,7 +27171,126 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ var ResultIsNumber4 = ++{ x: 1, y: 2};
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:23:25]
+ 22 │ var ResultIsNumber3 = ++1;
+ 23 │ var ResultIsNumber4 = ++{ x: 1, y: 2};
+    ·                         ─────────────
+ 24 │ var ResultIsNumber5 = ++{ x: 1, y: (n: number) => { return n; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:24:25]
+ 23 │ var ResultIsNumber4 = ++{ x: 1, y: 2};
+ 24 │ var ResultIsNumber5 = ++{ x: 1, y: (n: number) => { return n; } };
+    ·                         ─────────────────────────────────────────
+ 25 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:26:23]
+ 25 │ 
+ 26 │ var ResultIsNumber6 = 1++;
+    ·                       ─
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:27:23]
+ 26 │ var ResultIsNumber6 = 1++;
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }++;
+    ·                       ──────────────
+ 28 │ var ResultIsNumber8 = { x: 1, y: (n: number) => { return n; } }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:28:23]
+ 27 │ var ResultIsNumber7 = { x: 1, y: 2 }++;
+ 28 │ var ResultIsNumber8 = { x: 1, y: (n: number) => { return n; } }++;
+    ·                       ─────────────────────────────────────────
+ 29 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:31:25]
+ 30 │ // number type expressions
+ 31 │ var ResultIsNumber9 = ++foo();
+    ·                         ─────
+ 32 │ var ResultIsNumber10 = ++A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:32:26]
+ 31 │ var ResultIsNumber9 = ++foo();
+ 32 │ var ResultIsNumber10 = ++A.foo();
+    ·                          ───────
+ 33 │ var ResultIsNumber11 = ++(NUMBER + NUMBER);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:33:26]
+ 32 │ var ResultIsNumber10 = ++A.foo();
+ 33 │ var ResultIsNumber11 = ++(NUMBER + NUMBER);
+    ·                          ─────────────────
+ 34 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:35:24]
+ 34 │ 
+ 35 │ var ResultIsNumber12 = foo()++;
+    ·                        ─────
+ 36 │ var ResultIsNumber13 = A.foo()++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:36:24]
+ 35 │ var ResultIsNumber12 = foo()++;
+ 36 │ var ResultIsNumber13 = A.foo()++;
+    ·                        ───────
+ 37 │ var ResultIsNumber14 = (NUMBER + NUMBER)++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:37:24]
+ 36 │ var ResultIsNumber13 = A.foo()++;
+ 37 │ var ResultIsNumber14 = (NUMBER + NUMBER)++;
+    ·                        ─────────────────
+ 38 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:40:3]
+ 39 │ // miss assignment operator
+ 40 │ ++1;
+    ·   ─
+ 41 │ ++NUMBER1;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:42:3]
+ 41 │ ++NUMBER1;
+ 42 │ ++foo();
+    ·   ─────
+ 43 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:44:1]
+ 43 │ 
+ 44 │ 1++;
+    · ─
+ 45 │ NUMBER1++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithNumberTypeInvalidOperations.ts:46:1]
+ 45 │ NUMBER1++;
+ 46 │ foo()++;
+    · ─────
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:22:25]
  21 │ // boolean type literal
  22 │ var ResultIsNumber3 = ++true;
@@ -25418,7 +27298,111 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  23 │ var ResultIsNumber4 = ++{ x: true, y: false };
     ╰────
 
-  × Cannot assign to this expression
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:23:25]
+ 22 │ var ResultIsNumber3 = ++true;
+ 23 │ var ResultIsNumber4 = ++{ x: true, y: false };
+    ·                         ─────────────────────
+ 24 │ var ResultIsNumber5 = ++{ x: true, y: (n: boolean) => { return n; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:24:25]
+ 23 │ var ResultIsNumber4 = ++{ x: true, y: false };
+ 24 │ var ResultIsNumber5 = ++{ x: true, y: (n: boolean) => { return n; } };
+    ·                         ─────────────────────────────────────────────
+ 25 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:26:23]
+ 25 │ 
+ 26 │ var ResultIsNumber6 = true++;
+    ·                       ────
+ 27 │ var ResultIsNumber7 = { x: true, y: false }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:27:23]
+ 26 │ var ResultIsNumber6 = true++;
+ 27 │ var ResultIsNumber7 = { x: true, y: false }++;
+    ·                       ─────────────────────
+ 28 │ var ResultIsNumber8 = { x: true, y: (n: boolean) => { return n; } }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:28:23]
+ 27 │ var ResultIsNumber7 = { x: true, y: false }++;
+ 28 │ var ResultIsNumber8 = { x: true, y: (n: boolean) => { return n; } }++;
+    ·                       ─────────────────────────────────────────────
+ 29 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:33:26]
+ 32 │ var ResultIsNumber10 = ++M.n;
+ 33 │ var ResultIsNumber11 = ++foo();
+    ·                          ─────
+ 34 │ var ResultIsNumber12 = ++A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:34:26]
+ 33 │ var ResultIsNumber11 = ++foo();
+ 34 │ var ResultIsNumber12 = ++A.foo();
+    ·                          ───────
+ 35 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:36:24]
+ 35 │ 
+ 36 │ var ResultIsNumber13 = foo()++;
+    ·                        ─────
+ 37 │ var ResultIsNumber14 = A.foo()++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:37:24]
+ 36 │ var ResultIsNumber13 = foo()++;
+ 37 │ var ResultIsNumber14 = A.foo()++;
+    ·                        ───────
+ 38 │ var ResultIsNumber15 = objA.a++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:42:3]
+ 41 │ // miss assignment operators
+ 42 │ ++true;
+    ·   ────
+ 43 │ ++BOOLEAN;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:44:3]
+ 43 │ ++BOOLEAN;
+ 44 │ ++foo();
+    ·   ─────
+ 45 │ ++objA.a;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:49:1]
+ 48 │ 
+ 49 │ true++;
+    · ────
+ 50 │ BOOLEAN++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedBooleanType.ts:51:1]
+ 50 │ BOOLEAN++;
+ 51 │ foo()++;
+    · ─────
+ 52 │ objA.a++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:25:25]
  24 │ // string type literal
  25 │ var ResultIsNumber5 = ++"";
@@ -25426,7 +27410,127 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
  26 │ var ResultIsNumber6 = ++{ x: "", y: "" };
     ╰────
 
-  × Unexpected token
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:26:25]
+ 25 │ var ResultIsNumber5 = ++"";
+ 26 │ var ResultIsNumber6 = ++{ x: "", y: "" };
+    ·                         ────────────────
+ 27 │ var ResultIsNumber7 = ++{ x: "", y: (s: string) => { return s; } };
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:27:25]
+ 26 │ var ResultIsNumber6 = ++{ x: "", y: "" };
+ 27 │ var ResultIsNumber7 = ++{ x: "", y: (s: string) => { return s; } };
+    ·                         ──────────────────────────────────────────
+ 28 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:29:23]
+ 28 │ 
+ 29 │ var ResultIsNumber8 = ""++;
+    ·                       ──
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:30:23]
+ 29 │ var ResultIsNumber8 = ""++;
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }++;
+    ·                       ────────────────
+ 31 │ var ResultIsNumber10 = { x: "", y: (s: string) => { return s; } }++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:31:24]
+ 30 │ var ResultIsNumber9 = { x: "", y: "" }++;
+ 31 │ var ResultIsNumber10 = { x: "", y: (s: string) => { return s; } }++;
+    ·                        ──────────────────────────────────────────
+ 32 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:37:26]
+ 36 │ var ResultIsNumber13 = ++STRING1[0];
+ 37 │ var ResultIsNumber14 = ++foo();
+    ·                          ─────
+ 38 │ var ResultIsNumber15 = ++A.foo();
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:38:26]
+ 37 │ var ResultIsNumber14 = ++foo();
+ 38 │ var ResultIsNumber15 = ++A.foo();
+    ·                          ───────
+ 39 │ var ResultIsNumber16 = ++(STRING + STRING);
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:39:26]
+ 38 │ var ResultIsNumber15 = ++A.foo();
+ 39 │ var ResultIsNumber16 = ++(STRING + STRING);
+    ·                          ─────────────────
+ 40 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:44:24]
+ 43 │ var ResultIsNumber19 = STRING1[0]++;
+ 44 │ var ResultIsNumber20 = foo()++;
+    ·                        ─────
+ 45 │ var ResultIsNumber21 = A.foo()++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:45:24]
+ 44 │ var ResultIsNumber20 = foo()++;
+ 45 │ var ResultIsNumber21 = A.foo()++;
+    ·                        ───────
+ 46 │ var ResultIsNumber22 = (STRING + STRING)++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:46:24]
+ 45 │ var ResultIsNumber21 = A.foo()++;
+ 46 │ var ResultIsNumber22 = (STRING + STRING)++;
+    ·                        ─────────────────
+ 47 │ 
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:49:3]
+ 48 │ // miss assignment operators
+ 49 │ ++"";
+    ·   ──
+ 50 │ ++STRING;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:53:3]
+ 52 │ ++STRING1[0];
+ 53 │ ++foo();
+    ·   ─────
+ 54 │ ++objA.a;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:58:1]
+ 57 │ 
+ 58 │ ""++;
+    · ──
+ 59 │ STRING++;
+    ╰────
+
+  × TS(2357): Cannot assign to this expression
+    ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/incrementOperator/incrementOperatorWithUnsupportedStringType.ts:62:1]
+ 61 │ STRING1[0]++;
+ 62 │ foo()++;
+    · ─────
+ 63 │ objA.a++;
+    ╰────
+
+  × TS(1109): Unexpected token
     ╭─[typescript/tsc/testdata/tests/cases/conformance/expressions/unaryOperators/logicalNotOperator/logicalNotOperatorInvalidOperations.ts:11:16]
  10 │ // miss an operand
  11 │ var BOOLEAN3 =!;

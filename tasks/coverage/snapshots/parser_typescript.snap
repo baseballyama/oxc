@@ -22455,16 +22455,16 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·          ─────────────────
    ╰────
 
-  × Invalid escape sequence
-   ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/unicodeExtendedEscapes/unicodeExtendedEscapesInStrings24.ts:1:10]
- 1 │ var x = "\u{00000000000067
-   ·          ─────────────────
-   ╰────
-
   × TS(1002): Unterminated string
    ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/unicodeExtendedEscapes/unicodeExtendedEscapesInStrings24.ts:1:9]
  1 │ var x = "\u{00000000000067
    ·         ──────────────────
+   ╰────
+
+  × Invalid escape sequence
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/es6/unicodeExtendedEscapes/unicodeExtendedEscapesInStrings24.ts:1:10]
+ 1 │ var x = "\u{00000000000067
+   ·          ─────────────────
    ╰────
 
   × TS(1002): Unterminated string
@@ -31253,18 +31253,18 @@ Expect to Parse: tasks/coverage/typescript/tsc/testdata/tests/cases/conformance/
    ·              ╰── `,` expected
    ╰────
 
+  × Unexpected token
+   ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/RegularExpressions/parserRegularExpressionDivideAmbiguity3.ts:1:8]
+ 1 │ if (1) /regexp/a.foo();
+   ·        ─────────
+   ╰────
+
   × TS(1499): Unexpected flag a in regular expression literal
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/RegularExpressions/parserRegularExpressionDivideAmbiguity3.ts:1:16]
  1 │ if (1) /regexp/a.foo();
    ·                ─
    ╰────
   help: The allowed flags are `gimsuydv`
-
-  × Unexpected token
-   ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/RegularExpressions/parserRegularExpressionDivideAmbiguity3.ts:1:8]
- 1 │ if (1) /regexp/a.foo();
-   ·        ─────────
-   ╰────
 
   × TS(1161): Unterminated regular expression
    ╭─[typescript/tsc/testdata/tests/cases/conformance/parser/ecmascript5/RegularExpressions/parserRegularExpressionDivideAmbiguity4.ts:1:5]

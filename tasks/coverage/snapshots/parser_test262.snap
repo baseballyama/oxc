@@ -24337,6 +24337,13 @@ Negative Passed: 4669/4669 (100.00%)
     ╰────
   help: Valid modifiers are: i, m, s
 
+  × Unexpected token
+    ╭─[test262/test/language/literals/regexp/early-err-bad-flag.js:19:1]
+ 18 │ 
+ 19 │ /./G;
+    · ────
+    ╰────
+
   × TS(1499): Unexpected flag G in regular expression literal
     ╭─[test262/test/language/literals/regexp/early-err-bad-flag.js:19:4]
  18 │ 
@@ -24346,10 +24353,10 @@ Negative Passed: 4669/4669 (100.00%)
   help: The allowed flags are `gimsuydv`
 
   × Unexpected token
-    ╭─[test262/test/language/literals/regexp/early-err-bad-flag.js:19:1]
+    ╭─[test262/test/language/literals/regexp/early-err-dup-flag.js:19:1]
  18 │ 
- 19 │ /./G;
-    · ────
+ 19 │ /./gig;
+    · ──────
     ╰────
 
   × Flag g is mentioned twice in regular expression literal
@@ -24359,13 +24366,6 @@ Negative Passed: 4669/4669 (100.00%)
     ·      ─
     ╰────
   help: Remove the duplicated flag here
-
-  × Unexpected token
-    ╭─[test262/test/language/literals/regexp/early-err-dup-flag.js:19:1]
- 18 │ 
- 19 │ /./gig;
-    · ──────
-    ╰────
 
   × TS(1005): Expected a semicolon or an implicit semicolon after a statement, but found none
     ╭─[test262/test/language/literals/regexp/early-err-flags-unicode-escape.js:19:4]

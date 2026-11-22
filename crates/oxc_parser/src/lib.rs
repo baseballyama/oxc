@@ -1119,7 +1119,7 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         Ok(PartReturn {
             part,
             end,
-            comments: self.lexer.trivia_builder.comments,
+            comments: self.lexer.trivia_builder.comments.into_vec(),
             tokens,
             next_token,
             diagnostics,

@@ -128,10 +128,10 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Replace this `void` type with an allowed type, or keep `void` only in a valid return position.
 
-  × Unexpected token
-   ╭─[no_invalid_void_type.tsx:1:19]
+  × TS(17008): JSX element 'void' has no corresponding closing tag.
+   ╭─[no_invalid_void_type.tsx:1:14]
  1 │ let value = <void>undefined;
-   ·                   ──────────
+   ·              ────
    ╰────
 
   ⚠ typescript(no-invalid-void-type): Use `void` only as a return type or generic type argument.

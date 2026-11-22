@@ -1055,11 +1055,11 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: "Array.prototype.forEach" ignores the callback's return value. Remove the returned value (use `return;` or no `return`), or use `map`/`flatMap` if you meant to produce a new array.
 
-  × Invalid Unicode escape sequence
-   ╭─[array_callback_return.tsx:2:29]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[array_callback_return.tsx:2:28]
  1 │ Array.fromAsync(x,
  2 │             async   function \\u0066oo // bar
-   ·                               ─
+   ·                              ──
  3 │                () {})
    ╰────
 

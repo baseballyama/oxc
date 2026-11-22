@@ -94,11 +94,11 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Include a hint string to identify this snapshot in the snapshot file.
 
-  × Invalid Unicode escape sequence
-   ╭─[prefer_snapshot_hint.tsx:2:40]
+  × TS(1127): Invalid Unicode escape sequence
+   ╭─[prefer_snapshot_hint.tsx:2:39]
  1 │ const x = "snapshot";
  2 │             expect(1).toMatchSnapshot(\\`my $\\{x}\\`);
-   ·                                        ─
+   ·                                       ──
    ╰────
 
   ⚠ vitest(prefer-snapshot-hint): Snapshot is missing a hint.

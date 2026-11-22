@@ -107,9 +107,18 @@ impl ExternalPluginStore {
 
     /// Whether `plugin_name` is the plugin of a host.
     pub fn is_host_plugin(&self, plugin_name: &str) -> bool {
-        self.plugin_names
-            .get(plugin_name)
-            .is_some_and(|id| self.hosts.iter().any(|(host, _)| host == id))
+        self.host_named(plugin_name).is_some()
+    }
+
+    /// The host whose plugin is `plugin_name`.
+    pub(crate) fn host_named(&self, plugin_name: &str) -> Option<&Arc<HostPlugin>> {
+        let id = self.plugin_names.get(plugin_name)?;
+        self.hosts.iter().find(|(host, _)| host == id).map(|(_, host)| host)
+    }
+
+    /// The hosts registered.
+    pub(crate) fn hosts(&self) -> impl Iterator<Item = &Arc<HostPlugin>> {
+        self.hosts.iter().map(|(_, host)| host)
     }
 
     /// The host that lints `path`, if any.

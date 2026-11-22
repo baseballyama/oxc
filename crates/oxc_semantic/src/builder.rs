@@ -111,6 +111,8 @@ pub struct SemanticBuilder<'a> {
     unused_labels: UnusedLabels<'a>,
     #[cfg(feature = "jsdoc")]
     jsdoc: JSDocBuilder<'a>,
+    #[cfg(feature = "jsdoc")]
+    build_jsdoc: bool,
     stats: Option<Stats>,
     excess_capacity: f64,
 
@@ -172,6 +174,8 @@ impl<'a> SemanticBuilder<'a> {
             unused_labels: UnusedLabels::default(),
             #[cfg(feature = "jsdoc")]
             jsdoc: JSDocBuilder::default(),
+            #[cfg(feature = "jsdoc")]
+            build_jsdoc: true,
             stats: None,
             excess_capacity: 0.0,
             enum_eval: false,
@@ -244,6 +248,21 @@ impl<'a> SemanticBuilder<'a> {
     pub fn with_build_nodes(mut self, yes: bool) -> Self {
         self.node_store.set_build_nodes(yes);
         self
+    }
+
+    /// Enable or disable building JSDoc, on by default when the `jsdoc` feature is.
+    ///
+    /// A program built alongside the linter, which turns the feature on for the whole build, can
+    /// skip the work when it never reads [`Semantic::jsdoc`].
+    #[must_use]
+    pub fn with_build_jsdoc(self, yes: bool) -> Self {
+        #[cfg(feature = "jsdoc")]
+        return Self { build_jsdoc: yes, ..self };
+        #[cfg(not(feature = "jsdoc"))]
+        {
+            let _ = yes;
+            self
+        }
     }
 
     /// Enable or disable evaluation of TypeScript enum member values.
@@ -350,7 +369,7 @@ impl<'a> SemanticBuilder<'a> {
         self.source_text = program.source_text;
         self.source_type = program.source_type;
         #[cfg(feature = "jsdoc")]
-        {
+        if self.build_jsdoc {
             self.jsdoc = JSDocBuilder::new(self.source_text, &program.comments);
         }
 

@@ -240,6 +240,13 @@ Prettier moves the comment inside for `keyof`/type-operator operands while keepi
   - `externals/prettier/js/comments/assignment/variable-declarator.js`
   - `externals/prettier/js/comments/variable-declarator.js`
   - `externals/prettier/typescript/comments/type-literals.ts`
+  - `externals/prettier/typescript/intersection/consistent-with-flow/single-member.ts`
+  - `externals/prettier/typescript/property-signature/consistent-with-flow/comments.ts`
+  - `externals/prettier/typescript/property-signature/consistent-with-flow/union.ts`
+  - `externals/prettier/typescript/union/5849.ts`
+  - `externals/prettier/typescript/union/comments/18106.ts`
+  - `externals/prettier/typescript/union/consistent-with-flow/comment.ts`
+  - `externals/prettier/typescript/union/consistent-with-flow/leading-comments.ts`
 
 Prettier's output crosses user content (the value the comment precedes, then the `;`) or changes line (own-lined).
 An end-of-line line comment right after `=`/`:` keeps its position (`= // c` + mandatory break).
@@ -387,6 +394,9 @@ Prettier keeps it verbatim too (its trailing attachment), we format it.
 
 - Why: uniform-rule (same construct, same output: an un-parenthesized union source, `| /* c */ A`)
 - Pin: `tests/fixtures/ts/union/leading-pipe-comments.ts`
+- Conformance:
+  - `externals/prettier/typescript/union/consistent-with-flow/leading-comments.ts`
+  - `externals/prettier/typescript/union/consistent-with-flow/single-type.ts`
 
 A union's leading comments normalize to behind the leading `|` (`| /* c */ A`) whenever no comment ends its source line, regardless of the source shape.
 
@@ -511,6 +521,10 @@ Known limitation, shared with upstream: whether these parens survive is a group-
 
 - Why: invariant (prettier/prettier#19939, prettier/prettier#19958)
 - Pin: `tests/fixtures/ts/comments/binary-cast-own-line-comment.ts`
+- Conformance:
+  - `externals/prettier/typescript/as/as-const/as-const.ts`
+  - `externals/prettier/typescript/as/comments/18160.ts`
+  - `externals/prettier/typescript/satisfies-operators/comments-unstable.ts`
 
 Prettier's output crosses user content (the operator, the type and its `;`) and changes line (own-line to the operator's line).
 Comments around the operator keep their source side and their line-start side — the head-body comment policy applied to the operator gap, unifying it with `=`/`:` (`eol-comment-after-assign-colon`) and statement head-body gaps:
@@ -650,6 +664,16 @@ The shapes, each pinned by its fixture:
   - `externals/webawesome/switch/switch.ts`
   - `externals/webawesome/tag/tag.ts`
   - `externals/webawesome/textarea/textarea.ts`
+  - `externals/prettier/typescript/as/as.ts`
+  - `externals/prettier/typescript/as/break-after-keyword/18148.ts`
+  - `externals/prettier/typescript/conformance/types/union/unionTypeCallSignatures.ts`
+  - `externals/prettier/typescript/conformance/types/union/unionTypeConstructSignatures.ts`
+  - `externals/prettier/typescript/conformance/types/union/unionTypeIndexSignature.ts`
+  - `externals/prettier/typescript/type-parameters-arguments/18041.ts`
+  - `externals/prettier/typescript/type-parameters-arguments/constraints-and-default.ts`
+  - `externals/prettier/typescript/union/consistent-with-flow/81-characters.ts`
+  - `externals/prettier/typescript/union/consistent-with-flow/conditional.ts`
+  - `externals/prettier/typescript/union/union-parens.ts`
 - Drop when: the wait-and-see on Prettier 3.9's union style resolves (follow, or re-classify)
 
 ```ts
@@ -671,6 +695,8 @@ autoSelect?:
 
 A union broken out of its `:`/`as` position expands to leading-`|` members right away;
 Prettier 3.9 changed this to first retry the whole union FLAT on the indented next line and only then expand.
+The same holds after `satisfies`, a type alias's `=`, a type parameter's `extends` and `=`, and in a conditional type's branch
+(the conformance files listed print Prettier 3.8.5's output).
 Community pushback on the 3.9 style (users migrated to Oxfmt over it) put following on hold:
 ours deliberately matches Prettier 3.8's output for this construct.
 
@@ -923,6 +949,45 @@ Its function declarations keep the same-line block comment outside (`function fo
 Before `<`, Prettier glues an own-line comment back onto the callee's line (`foo// c` + `<T>(a)`); we keep it own-line.
 Before an optional call's `?.`, Prettier moves an own-line comment into the arguments as well; we keep it own-line.
 In a parenthesized member callee (`(a.b /* c */)(x)`), Prettier's member chain ends a group at the commented member and breaks (`a` + `.b /* c */` + `(x)`); we print `a.b /* c */(x)`.
+
+## signature-opener-comment
+
+- Why: invariant
+- Pin: `tests/fixtures/ts/comments/signature-opener-comment.ts`
+- Conformance:
+  - `externals/prettier/typescript/comments/method_types.ts`
+
+A signature's `?` and `new` and its parameters' `(` follow the policy of #callee-arguments-gap-comment:
+a comment between them keeps its side, and an interface member's `;` is a separator, so a comment before it stays before it.
+
+```ts
+// input
+interface I {
+  a /* c1 */ ? /* c2 */ (/* c3 */) /* c4 */;
+  b /* c1 */ (/* c3 */) /* c4 */
+  /* c1 */ new /* c2 */ (a: string): string;
+}
+let c: new /* c2 */ (/* c3 */) /* c4 */ => string;
+
+// ours
+interface I {
+  a /* c1 */? /* c2 */(/* c3 */) /* c4 */;
+  b /* c1 */(/* c3 */) /* c4 */;
+  /* c1 */ new /* c2 */(a: string): string;
+}
+let c: new /* c2 */(/* c3 */) /* c4 */ => string;
+
+// prettier
+interface I {
+  a /* c1 */ /* c2 */?(/* c3 */); /* c4 */
+  b /* c1 */(/* c3 */); /* c4 */
+  /* c1 */ new (/* c2 */ a: string): string;
+}
+let c: new (/* c3 */) /* c2 */ /* c4 */ => string;
+```
+
+Prettier moves a comment after the `?` before it, one after a construct signature's `new` into the parameters,
+one after a constructor type's `new` past the parameters, and one before a member's `;` behind it.
 
 ## module-from-keyword-comment
 

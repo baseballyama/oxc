@@ -368,6 +368,8 @@ impl Linter {
             settings: config.settings.json.as_ref(),
             env: config.env.iter().collect(),
             globals,
+            report_unused_directives:
+                self.options.report_unused_directive.filter(|severity| severity.is_warn_deny()),
         }))
     }
 
@@ -404,6 +406,47 @@ impl Linter {
         &self,
         path: &Path,
         context_sub_hosts: Vec<ContextSubHost<'a>>,
+        allocator: &'a Allocator,
+        js_allocator_pool: Option<&AllocatorPool>,
+        rule_timing_store: Option<&RuleTimingStore>,
+    ) -> (Vec<Message>, Option<DisableDirectives>) {
+        self.run_sections::<TIMINGS>(
+            path,
+            context_sub_hosts,
+            Vec::new(),
+            allocator,
+            js_allocator_pool,
+            rule_timing_store,
+        )
+    }
+
+    /// [`Linter::run_with_disable_directives`], with the messages of the host that lints `path`
+    /// ([`Linter::run_host`]): the directives of each script apply to those inside it, as to
+    /// oxlint's own.
+    pub fn run_with_host_messages<'a, const TIMINGS: bool>(
+        &self,
+        path: &Path,
+        context_sub_hosts: Vec<ContextSubHost<'a>>,
+        host_messages: Vec<Message>,
+        allocator: &'a Allocator,
+        js_allocator_pool: Option<&AllocatorPool>,
+        rule_timing_store: Option<&RuleTimingStore>,
+    ) -> (Vec<Message>, Option<DisableDirectives>) {
+        self.run_sections::<TIMINGS>(
+            path,
+            context_sub_hosts,
+            host_messages,
+            allocator,
+            js_allocator_pool,
+            rule_timing_store,
+        )
+    }
+
+    fn run_sections<'a, const TIMINGS: bool>(
+        &self,
+        path: &Path,
+        context_sub_hosts: Vec<ContextSubHost<'a>>,
+        host_messages: Vec<Message>,
         allocator: &'a Allocator,
         js_allocator_pool: Option<&AllocatorPool>,
         rule_timing_store: Option<&RuleTimingStore>,
@@ -579,6 +622,13 @@ impl Linter {
             }
         }
 
+        // Before the unused directives are known, so that a directive turning off a host's
+        // message counts as used.
+        let host_messages: Vec<Message> = host_messages
+            .into_iter()
+            .filter(|message| !ctx_host.disabled_in_a_script(message))
+            .collect();
+
         // Pass 3: Report unused enable/disable directives for every sub host.
         // Reporting unused directives is handled differently with type-aware linting,
         // so this only applies to partial loader files (Vue/Astro/Svelte).
@@ -596,7 +646,8 @@ impl Linter {
             }
         }
 
-        let diagnostics = ctx_host.take_diagnostics();
+        let mut diagnostics = ctx_host.take_diagnostics();
+        diagnostics.extend(host_messages);
         let disable_directives = if is_partial_loader_file {
             None
         } else {

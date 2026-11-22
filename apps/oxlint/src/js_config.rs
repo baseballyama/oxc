@@ -1,13 +1,47 @@
-use std::path::PathBuf;
+use std::{
+    path::{Path, PathBuf},
+    sync::Arc,
+};
 
 use oxc_diagnostics::OxcDiagnostic;
 use oxc_linter::Oxlintrc;
 
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 use serde::Deserialize;
 
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 use crate::run::JsLoadJsConfigsCb;
+
+/// Evaluates a JavaScript or TypeScript configuration file, so that a build without Node.js can
+/// read one as the npm package does.
+pub trait HostConfigLoader: Send + Sync {
+    /// `path` is absolute. The result is the configuration the file exports: its default export,
+    /// or a `vite.config`'s `lint`, with `null` when it has none.
+    ///
+    /// # Errors
+    /// A message ready to print: oxlint reports the configuration as invalid.
+    fn load(&self, path: &Path) -> Result<serde_json::Value, String>;
+}
+
+/// The loader of configuration files `loader` evaluates.
+pub fn host_config_loader(loader: Arc<dyn HostConfigLoader>) -> JsConfigLoaderCb {
+    Box::new(move |paths: Vec<String>| {
+        let mut configs = Vec::with_capacity(paths.len());
+        let mut errors = Vec::new();
+        for path in paths {
+            match loader.load(Path::new(&path)) {
+                Ok(config) => match js_config_result(&path, config) {
+                    Ok(config) => configs.push(config),
+                    Err(error) => errors.push(error),
+                },
+                Err(error) => errors.push(OxcDiagnostic::error(format!(
+                    "Failed to load config: {path}\n\n{error}"
+                ))),
+            }
+        }
+        if errors.is_empty() { Ok(configs) } else { Err(errors) }
+    })
+}
 
 /// Callback type for loading JavaScript/TypeScript config files.
 pub type JsConfigLoaderCb =
@@ -22,7 +56,7 @@ pub struct JsConfigResult {
 }
 
 /// Response from JS side when loading JS configs.
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 enum LoadJsConfigsResponse {
@@ -40,14 +74,14 @@ enum LoadJsConfigsResponse {
     },
 }
 
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 #[derive(Debug, Deserialize)]
 struct LoadJsConfigsResponseFailure {
     path: String,
     error: String,
 }
 
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 #[derive(Debug, Deserialize)]
 struct JsConfigResultJson {
     path: String,
@@ -58,7 +92,7 @@ struct JsConfigResultJson {
 ///
 /// The returned function blocks the current thread until the JS callback resolves.
 /// It will panic if called outside of a Tokio runtime.
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 pub fn create_js_config_loader(cb: JsLoadJsConfigsCb) -> JsConfigLoaderCb {
     Box::new(move |paths: Vec<String>| {
         let cb = &cb;
@@ -76,7 +110,6 @@ pub fn create_js_config_loader(cb: JsLoadJsConfigsCb) -> JsConfigLoaderCb {
     })
 }
 
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
 fn parse_js_oxlintrc(mut value: serde_json::Value) -> Result<Oxlintrc, OxcDiagnostic> {
     let Some(map) = value.as_object_mut() else {
         return Err(OxcDiagnostic::error(
@@ -115,7 +148,7 @@ fn parse_js_oxlintrc(mut value: serde_json::Value) -> Result<Oxlintrc, OxcDiagno
 }
 
 /// Parse the JSON response from JS side into `JsConfigResult` structs.
-#[cfg(all(target_pointer_width = "64", target_endian = "little"))]
+#[cfg(all(feature = "napi", target_pointer_width = "64", target_endian = "little"))]
 fn parse_js_config_response(json: &str) -> Result<Vec<JsConfigResult>, Vec<OxcDiagnostic>> {
     let response: LoadJsConfigsResponse = serde_json::from_str(json).map_err(|e| {
         vec![OxcDiagnostic::error(format!("Failed to parse JS config response: {e}"))]
@@ -123,48 +156,14 @@ fn parse_js_config_response(json: &str) -> Result<Vec<JsConfigResult>, Vec<OxcDi
 
     match response {
         LoadJsConfigsResponse::Success { success } => {
-            let count = success.len();
-            let (configs, errors) = success.into_iter().fold(
-                (Vec::with_capacity(count), Vec::new()),
-                |(mut configs, mut errors), entry| {
-                    let path = PathBuf::from(&entry.path);
-
-                    // `config: null` signals that this config should be skipped
-                    // (e.g., vite.config.ts without a `.lint` field)
-                    if entry.config.is_null() {
-                        configs.push(JsConfigResult { path, config: None });
-                        return (configs, errors);
-                    }
-
-                    let mut oxlintrc = match parse_js_oxlintrc(entry.config) {
-                        Ok(config) => config,
-                        Err(err) => {
-                            errors.push(
-                                OxcDiagnostic::error(format!(
-                                    "Failed to parse config from {}",
-                                    entry.path
-                                ))
-                                .with_note(err.to_string()),
-                            );
-                            return (configs, errors);
-                        }
-                    };
-                    oxlintrc.path.clone_from(&path);
-
-                    let Some(config_dir_parent) = oxlintrc.path.parent() else {
-                        errors.push(OxcDiagnostic::error(format!(
-                            "Config path has no parent directory: {}",
-                            entry.path
-                        )));
-                        return (configs, errors);
-                    };
-                    let config_dir = config_dir_parent.to_path_buf();
-                    oxlintrc.set_config_dir(&config_dir);
-                    configs.push(JsConfigResult { path, config: Some(oxlintrc) });
-
-                    (configs, errors)
-                },
-            );
+            let mut configs = Vec::with_capacity(success.len());
+            let mut errors = Vec::new();
+            for entry in success {
+                match js_config_result(&entry.path, entry.config) {
+                    Ok(config) => configs.push(config),
+                    Err(error) => errors.push(error),
+                }
+            }
 
             if errors.is_empty() { Ok(configs) } else { Err(errors) }
         }
@@ -181,4 +180,26 @@ fn parse_js_config_response(json: &str) -> Result<Vec<JsConfigResult>, Vec<OxcDi
             Err(vec![OxcDiagnostic::error(format!("Failed to load config files:\n\n{error}"))])
         }
     }
+}
+
+/// The configuration `config` holds, which the file at `path` exports; `null` skips the file (a
+/// `vite.config` without `lint`).
+fn js_config_result(
+    path: &str,
+    config: serde_json::Value,
+) -> Result<JsConfigResult, OxcDiagnostic> {
+    let path_buf = PathBuf::from(path);
+    if config.is_null() {
+        return Ok(JsConfigResult { path: path_buf, config: None });
+    }
+    let mut oxlintrc = parse_js_oxlintrc(config).map_err(|err| {
+        OxcDiagnostic::error(format!("Failed to parse config from {path}"))
+            .with_note(err.to_string())
+    })?;
+    oxlintrc.path.clone_from(&path_buf);
+    let Some(config_dir) = oxlintrc.path.parent().map(Path::to_path_buf) else {
+        return Err(OxcDiagnostic::error(format!("Config path has no parent directory: {path}")));
+    };
+    oxlintrc.set_config_dir(&config_dir);
+    Ok(JsConfigResult { path: path_buf, config: Some(oxlintrc) })
 }

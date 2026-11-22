@@ -19,13 +19,14 @@ mod tester;
 
 /// Re-exported CLI-related items for use in `tasks/website`.
 pub mod cli {
-    pub use super::{command::*, init::*, lint::CliRunner, result::CliRunResult};
+    pub use super::{
+        command::*, init::*, js_config::HostConfigLoader, lint::CliRunner, result::CliRunResult,
+    };
 }
 
 // Only include code to run linter when the `napi` feature is enabled.
 // Without this, `tasks/website` will not compile on Linux or Windows.
 // `tasks/website` depends on `oxlint` as a normal library, which causes linker errors if NAPI is enabled.
-#[cfg(feature = "napi")]
 mod js_config;
 #[cfg(feature = "napi")]
 mod run;

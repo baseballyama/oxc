@@ -95,7 +95,7 @@ use oxc_ast::{
     builder::{AstBuilder, GetAstBuilder},
 };
 use oxc_data_structures::brands::{BrandOrigin, BrandScope, Unbranded};
-use oxc_diagnostics::Diagnostics;
+use oxc_diagnostics::{Diagnostics, OxcDiagnostic};
 use oxc_span::{SourceType, Span};
 use oxc_syntax::module_record::ModuleRecord;
 
@@ -794,6 +794,24 @@ impl<'a, C: ParserConfig> Parser<'a, C> {
     }
 }
 
+/// The lexer's errors and the parser's, each in the order it raised them, as one list in the order
+/// the source is read: an error of the lexer goes before the parser's errors after its token.
+fn in_reading_order(
+    lexer: impl Iterator<Item = OxcDiagnostic>,
+    parser: impl Iterator<Item = OxcDiagnostic>,
+) -> impl Iterator<Item = OxcDiagnostic> {
+    let at = |error: &OxcDiagnostic| error.labels.first().map(oxc_span::LabeledSpan::offset);
+    let (mut lexer, mut parser) = (lexer.peekable(), parser.peekable());
+    std::iter::from_fn(move || {
+        let parser_first = match (lexer.peek(), parser.peek()) {
+            (None, _) => true,
+            (Some(_), None) => false,
+            (Some(lexed), Some(parsed)) => at(parsed).zip(at(lexed)).is_some_and(|(p, l)| p < l),
+        };
+        if parser_first { parser.next() } else { lexer.next() }
+    })
+}
+
 /// Implementation of parser.
 /// `Parser` is just a public wrapper, the guts of the implementation is in this type.
 struct ParserImpl<'a, C: ParserConfig> {
@@ -960,8 +978,9 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
         if errors.len() != 1 {
             errors
                 .reserve(self.lexer.errors.len() + self.errors.len() + module_record_errors.len());
-            errors.extend(self.lexer.errors.drain(..).map(ParserDiagnostic::into_diagnostic));
-            errors.extend(self.errors.drain(..).map(ParserDiagnostic::into_diagnostic));
+            let lexer = self.lexer.errors.drain(..).map(ParserDiagnostic::into_diagnostic);
+            let parser = self.errors.drain(..).map(ParserDiagnostic::into_diagnostic);
+            errors.extend(in_reading_order(lexer, parser));
             errors.append(&mut module_record_errors);
         }
         let irregular_whitespaces =
@@ -1541,6 +1560,15 @@ mod test {
             let codes = ret.diagnostics.iter().map(|d| d.code.to_string()).collect::<Vec<_>>();
             assert_eq!(codes.first().map(String::as_str), Some(code), "{source}");
         }
+    }
+
+    #[test]
+    fn errors_are_listed_in_the_order_the_source_is_read() {
+        let allocator = Allocator::default();
+        let source = "(f()) = 1; let 1a;";
+        let ret = Parser::new(&allocator, source, SourceType::mjs()).parse();
+        let at = ret.diagnostics.iter().map(|d| d.labels[0].offset()).collect::<Vec<_>>();
+        assert_eq!(at, [0, 16], "{:?}", ret.diagnostics);
     }
 
     #[test]

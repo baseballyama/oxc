@@ -64,7 +64,7 @@ fn without_an_expansion_a_statement_prints_as_itself() {
     assert_eq!(expanded(source, "g();"), printed("f();\ng();"));
     let allocator = Allocator::default();
     let parsed = Parser::new(&allocator, source, SourceType::mjs()).parse();
-    assert_eq!(Codegen::new().build(&parsed.program).code, "f();\n\"m\";\n");
+    assert_eq!(Codegen::new().build(&parsed.program).code, "f();\n(\"m\");\n");
 }
 
 #[test]

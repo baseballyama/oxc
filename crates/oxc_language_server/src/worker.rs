@@ -242,9 +242,11 @@ impl WorkspaceWorker {
     /// Handle file changes that are watched by the client
     /// At the moment, this only handles changes to lint configuration files
     /// When a change is detected, the linter is refreshed and all diagnostics are revalidated
+    /// The tool restarts at most once for all of `file_events`: a restarted tool reads every
+    /// changed file as it is now, so the events after the one that restarted it change nothing.
     pub async fn did_change_watched_files(
         &self,
-        file_event: &FileEvent,
+        file_events: &[FileEvent],
         needs_diagnostic_refresh: &mut bool,
         file_system: Option<&LSPFileSystem>,
     ) -> WorkerToolChangeResult {
@@ -255,7 +257,21 @@ impl WorkspaceWorker {
         };
 
         self.handle_tool_changes(file_system, needs_diagnostic_refresh, move |tool, builder| {
-            tool.handle_watched_file_change(builder, &file_event.uri, &self.root_uri, options)
+            let mut client_messages = Vec::new();
+            for file_event in file_events {
+                let mut change = tool.handle_watched_file_change(
+                    builder,
+                    &file_event.uri,
+                    &self.root_uri,
+                    options.clone(),
+                );
+                client_messages.append(&mut change.client_messages);
+                if change.tool.is_some() || change.watch_patterns.is_some() {
+                    change.client_messages = client_messages;
+                    return change;
+                }
+            }
+            ToolRestartChanges { tool: None, watch_patterns: None, client_messages }
         })
         .await
     }
@@ -562,10 +578,10 @@ mod tests {
 
         let result = worker
             .did_change_watched_files(
-                &FileEvent {
+                &[FileEvent {
                     uri: Uri::from_str("file:///root/unknown.file").unwrap(),
                     kind: FileChangeType::Changed,
-                },
+                }],
                 &mut needs_diagnostic_refresh,
                 Some(&fs),
             )
@@ -579,10 +595,10 @@ mod tests {
 
         let result = worker
             .did_change_watched_files(
-                &FileEvent {
+                &[FileEvent {
                     uri: Uri::from_str("file:///root/watcher.config").unwrap(),
                     kind: FileChangeType::Changed,
-                },
+                }],
                 &mut needs_diagnostic_refresh,
                 Some(&fs),
             )
@@ -598,10 +614,10 @@ mod tests {
 
         let result = worker
             .did_change_watched_files(
-                &FileEvent {
+                &[FileEvent {
                     uri: Uri::from_str("file:///root/tool.config").unwrap(),
                     kind: FileChangeType::Changed,
-                },
+                }],
                 &mut needs_diagnostic_refresh,
                 Some(&fs),
             )
@@ -617,10 +633,10 @@ mod tests {
         needs_diagnostic_refresh = false;
         let result = worker
             .did_change_watched_files(
-                &FileEvent {
+                &[FileEvent {
                     uri: Uri::from_str("file:///root/tool.config").unwrap(),
                     kind: FileChangeType::Changed,
-                },
+                }],
                 &mut needs_diagnostic_refresh,
                 None,
             )
@@ -734,10 +750,10 @@ mod tests {
         let mut needs_diagnostic_refresh = false;
         let result = worker
             .did_change_watched_files(
-                &FileEvent {
+                &[FileEvent {
                     uri: Uri::from_str("file:///root/misconfiguration.config").unwrap(),
                     kind: FileChangeType::Changed,
-                },
+                }],
                 &mut needs_diagnostic_refresh,
                 None,
             )

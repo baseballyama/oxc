@@ -1159,7 +1159,7 @@ mod test {
         range: Range,
         context: CodeActionContext,
     ) -> CodeActionParams {
-        CodeActionParams { uri: uri.clone(), range, context, document_version: None }
+        CodeActionParams { uri: uri.clone(), range, context, document_version: None, text: None }
     }
 
     #[test]

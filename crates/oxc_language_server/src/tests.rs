@@ -560,6 +560,13 @@ async fn response_to_configuration(
         .await;
 }
 
+/// One notification that the file at `uri` changed twice, as a burst of events sends it.
+fn did_change_watched_files_twice(uri: &str) -> Request {
+    Request::build("workspace/didChangeWatchedFiles")
+        .params(json!({ "changes": [{ "uri": uri, "type": 2 }, { "uri": uri, "type": 2 }] }))
+        .finish()
+}
+
 fn did_change_watched_files(uri: &str) -> Request {
     Request::build("workspace/didChangeWatchedFiles")
         .params(json!({
@@ -689,10 +696,11 @@ mod test_suite {
             WORKSPACE, WORKSPACE_2, acknowledge_diagnostic_refresh, acknowledge_registrations,
             acknowledge_unregistrations, code_action, create_workspace_manager,
             create_workspace_manager_with_builder, diagnostic, did_change,
-            did_change_configuration, did_change_watched_files, did_close, did_open, did_save,
-            execute_command_request, initialize_request, initialize_request_workspace_folders,
-            initialized_notification, response_to_configuration, shutdown_request,
-            test_configuration_request, workspace_folders_changed,
+            did_change_configuration, did_change_watched_files, did_change_watched_files_twice,
+            did_close, did_open, did_save, execute_command_request, initialize_request,
+            initialize_request_workspace_folders, initialized_notification,
+            response_to_configuration, shutdown_request, test_configuration_request,
+            workspace_folders_changed,
         },
     };
 
@@ -1503,6 +1511,51 @@ mod test_suite {
         server.send_request(file_change_notification).await;
 
         // expecting diagnostics to be re-validated
+        let diagnostic_response = server.recv_notification().await;
+        assert_eq!(diagnostic_response.method(), "textDocument/publishDiagnostics");
+        let params: PublishDiagnosticsParams =
+            serde_json::from_value(diagnostic_response.params().unwrap().clone()).unwrap();
+        assert_eq!(params.uri.to_string(), uri);
+        assert_eq!(params.diagnostics.len(), 1);
+        assert_eq!(
+            params.diagnostics[0].message,
+            Message::String(format!("Fake diagnostic for content: {content}"))
+        );
+
+        server.shutdown_with_diagnostic_clear(3, vec![Uri::from_str(&uri).unwrap()]).await;
+    }
+
+    #[tokio::test]
+    async fn test_watched_file_changes_revalidate_diagnostics_once() {
+        let init_options =
+            InitializeRequestOptions { dynamic_watchers: true, ..Default::default() };
+        let mut server = TestServer::new_initialized(
+            |client| {
+                Backend::new(
+                    client,
+                    server_info(),
+                    create_workspace_manager_with_builder(FakeToolBuilder::new(
+                        DiagnosticMode::Push,
+                    )),
+                )
+            },
+            initialize_request(init_options),
+        )
+        .await;
+        acknowledge_registrations(&mut server).await;
+
+        let uri = format!("{WORKSPACE}/diagnostics.config");
+        let content = "some text";
+        server.send_request(did_open(&uri, content)).await;
+        let diagnostic_response = server.recv_notification().await;
+        assert_eq!(diagnostic_response.method(), "textDocument/publishDiagnostics");
+
+        // Simulate a watched file change notification for "tool.config"
+        let file_change_notification =
+            did_change_watched_files_twice(format!("{WORKSPACE}/tool.config").as_str());
+        server.send_request(file_change_notification).await;
+
+        // One revalidation for the burst: a second report would come before the shutdown answer.
         let diagnostic_response = server.recv_notification().await;
         assert_eq!(diagnostic_response.method(), "textDocument/publishDiagnostics");
         let params: PublishDiagnosticsParams =

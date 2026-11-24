@@ -17,6 +17,8 @@ mod utils;
 
 pub mod options;
 
+pub use server_linter::ServerLinterBuilder;
+
 /// Run the language server
 pub async fn run_lsp(
     external_linter: Option<ExternalLinter>,

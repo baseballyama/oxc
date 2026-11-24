@@ -397,7 +397,11 @@ impl<'a> SemanticBuilder<'a> {
         // everything we're about to add, including an arena of appropriate size.
         self.scoping = if let Some(allocator) = self.scoping_allocator.take() {
             let mut scoping = Scoping::with_allocator(allocator);
-            scoping.reserve(stats.symbols as usize, stats.references as usize, stats.scopes as usize);
+            scoping.reserve(
+                stats.symbols as usize,
+                stats.references as usize,
+                stats.scopes as usize,
+            );
             scoping
         } else {
             Scoping::with_capacity(

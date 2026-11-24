@@ -1050,7 +1050,11 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
     }
 
     /// Parse what `entry` names from byte offset `start`.
-    fn parse_part_impl(mut self, start: u32, entry: Entry) -> Result<PartReturn<'a>, PartError<'a>> {
+    fn parse_part_impl(
+        mut self,
+        start: u32,
+        entry: Entry,
+    ) -> Result<PartReturn<'a>, PartError<'a>> {
         if start != 0 {
             self.lexer.set_offset(start);
         }
@@ -1078,16 +1082,16 @@ impl<'a, C: ParserConfig> ParserImpl<'a, C> {
                 tokens.pop();
             }
             // As for a program, the lexer's errors come first.
-            let diagnostics = self
-                .lexer
-                .errors
-                .into_iter()
-                .chain(self.errors.into_iter().filter(|error| {
-                    matches!(error, ParserDiagnostic::strict_reserved_word { .. })
-                }))
-                .chain([error])
-                .map(ParserDiagnostic::into_diagnostic)
-                .collect();
+            let diagnostics =
+                self.lexer
+                    .errors
+                    .into_iter()
+                    .chain(self.errors.into_iter().filter(|error| {
+                        matches!(error, ParserDiagnostic::strict_reserved_word { .. })
+                    }))
+                    .chain([error])
+                    .map(ParserDiagnostic::into_diagnostic)
+                    .collect();
             let irregular_whitespaces =
                 std::mem::take(&mut self.lexer.trivia_builder.irregular_whitespaces);
             return Err(PartError { diagnostics, tokens, irregular_whitespaces });

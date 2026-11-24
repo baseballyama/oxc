@@ -981,7 +981,7 @@ impl Runtime {
                 |me, mut module_to_lint| {
                     module_to_lint.content.with_dependent_mut(
                         |allocator_guard,
-                         ModuleContentDependent { source_text: _, section_contents }| {
+                         ModuleContentDependent { source_text, section_contents }| {
                             assert_eq!(
                                 module_to_lint.section_module_records.len(),
                                 section_contents.len()
@@ -1018,20 +1018,26 @@ impl Runtime {
                                 })
                                 .collect();
 
-                            if context_sub_hosts.is_empty() {
+                            let path = Path::new(&module_to_lint.path);
+                            // As `run` lints a file: the host's messages with the scripts'.
+                            let host_messages = me.linter.run_host(path, source_text);
+                            if context_sub_hosts.is_empty() && host_messages.is_none() {
                                 return;
                             }
 
-                            let path = Path::new(&module_to_lint.path);
-
                             let (section_messages, disable_directives) =
-                                me.linter.run_with_disable_directives::<false>(
-                                    path,
-                                    context_sub_hosts,
-                                    allocator_guard,
-                                    me.js_allocator_pool(),
-                                    None,
-                                );
+                                if context_sub_hosts.is_empty() {
+                                    (host_messages.unwrap_or_default(), None)
+                                } else {
+                                    me.linter.run_with_host_messages::<false>(
+                                        path,
+                                        context_sub_hosts,
+                                        host_messages.unwrap_or_default(),
+                                        allocator_guard,
+                                        me.js_allocator_pool(),
+                                        None,
+                                    )
+                                };
 
                             if let Some(disable_directives) = disable_directives {
                                 me.disable_directives_map

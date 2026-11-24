@@ -16,18 +16,7 @@ working directory: fixtures/cli/output_formatter_diagnostic
           "version": "<variable>",
           "semanticVersion": "<variable>",
           "informationUri": "https://oxc.rs/docs/guide/usage/linter.html",
-          "rules": [
-            {
-              "id": "OXL0001",
-              "name": "oxlint-diagnostic",
-              "shortDescription": {
-                "text": "Oxlint diagnostic"
-              },
-              "fullDescription": {
-                "text": "An oxlint diagnostic that is associated with an artifact but not with a lint rule."
-              }
-            }
-          ]
+          "rules": []
         }
       },
       "artifacts": [
@@ -39,8 +28,7 @@ working directory: fixtures/cli/output_formatter_diagnostic
       ],
       "results": [
         {
-          "ruleId": "OXL0001",
-          "ruleIndex": 0,
+          "ruleId": "TS(1005)",
           "level": "error",
           "message": {
             "text": "Expected `;` but found `:`"

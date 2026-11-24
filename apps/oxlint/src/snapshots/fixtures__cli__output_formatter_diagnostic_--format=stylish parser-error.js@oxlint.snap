@@ -7,7 +7,7 @@ working directory: fixtures/cli/output_formatter_diagnostic
 ----------
 
 parser-error.js
-  3:9  error  Expected `;` but found `:`  
+  3:9  error  Expected `;` but found `:`  TS(1005)
 
 ✖ 1 problem (1 error, 0 warnings)
 ----------

@@ -6,7 +6,7 @@ arguments: --format=default parser-error.js
 working directory: fixtures/cli/output_formatter_diagnostic
 ----------
 
-  x Expected `;` but found `:`
+  x TS(1005): Expected `;` but found `:`
    ,-[parser-error.js:3:9]
  2 |   commands = [];
  3 |   client: Example

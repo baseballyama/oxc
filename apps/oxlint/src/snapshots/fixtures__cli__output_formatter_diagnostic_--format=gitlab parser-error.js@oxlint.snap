@@ -8,8 +8,8 @@ working directory: fixtures/cli/output_formatter_diagnostic
 [
   {
     "description": "Expected `;` but found `:`",
-    "check_name": "",
-    "fingerprint": "dd897cb1109c9fa9",
+    "check_name": "TS(1005)",
+    "fingerprint": "1e0bd3ae3e59f011",
     "severity": "critical",
     "location": {
       "path": "apps/oxlint/parser-error.js",

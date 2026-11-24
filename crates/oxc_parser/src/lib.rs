@@ -1563,6 +1563,29 @@ mod test {
     }
 
     #[test]
+    fn an_unassignable_target_of_a_parameter_default_is_reported_as_the_assignment() {
+        let allocator = Allocator::default();
+        let ret = Parser::new(&allocator, "([(f())] = []) => 1", SourceType::mjs()).parse();
+        let found = ret.diagnostics.iter().map(|d| (d.code.to_string(), d.labels[0].offset()));
+        assert_eq!(
+            found.collect::<Vec<_>>(),
+            [("TS(2364)".to_owned(), 2)],
+            "{:?}",
+            ret.diagnostics
+        );
+    }
+
+    #[test]
+    fn an_optional_rest_element_of_an_arrow_parameter_is_reported_at_its_question_mark() {
+        for source in ["([...a?]) => {}", "({...a?}) => {}"] {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, SourceType::ts()).parse();
+            let found = ret.diagnostics.iter().map(|d| (d.code.to_string(), d.labels[0].offset()));
+            assert_eq!(found.collect::<Vec<_>>(), [("TS(1047)".to_owned(), 6)], "{source}");
+        }
+    }
+
+    #[test]
     fn errors_are_listed_in_the_order_the_source_is_read() {
         let allocator = Allocator::default();
         let source = "(f()) = 1; let 1a;";

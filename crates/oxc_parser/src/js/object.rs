@@ -179,9 +179,37 @@ impl<'a, C: Config> ParserImpl<'a, C> {
     ///   ... `AssignmentExpression`[+In, ?Yield, ?Await]
     pub(crate) fn parse_spread_element(&mut self) -> ArenaBox<'a, SpreadElement<'a>> {
         let start = self.cur_start();
-        self.bump_any(); // advance `...`
-        let argument = self.parse_assignment_expression_or_higher();
+        let argument = if self.is_ts
+            && self.state.cover_depth > 0
+            && self.lookahead(Self::is_optional_rest_element)
+        {
+            // `([...a?]) => …` is an error, reported on the rest element of the parameter.
+            self.bump_any(); // `...`
+            let argument = self.parse_identifier_expression();
+            let question = self.cur_token().span();
+            self.bump_any(); // `?`
+            self.error(diagnostics::a_rest_parameter_cannot_be_optional(question));
+            argument
+        } else {
+            self.bump_any(); // advance `...`
+            self.parse_assignment_expression_or_higher()
+        };
         SpreadElement::boxed(self.end_span(start), argument, self)
+    }
+
+    /// Whether the tokens from `...` on are `...a?` followed by `,`, `]` or `}`: the rest element
+    /// of a pattern that a cover list may turn into a parameter.
+    fn is_optional_rest_element(&mut self) -> bool {
+        self.bump_any(); // `...`
+        if !self.cur_kind().is_binding_identifier() {
+            return false;
+        }
+        self.bump_any();
+        if !self.at(Kind::Question) {
+            return false;
+        }
+        self.bump_any();
+        matches!(self.cur_kind(), Kind::Comma | Kind::RBrack | Kind::RCurly)
     }
 
     /// `PropertyName`[Yield, Await] :

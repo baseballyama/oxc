@@ -632,7 +632,8 @@ impl<'a, C: Config> ParserImpl<'a, C> {
 
     /// Refine an element of a cover list to a parameter.
     ///
-    /// Returns `None` for a TypeScript `this` parameter, which arrow functions cannot have.
+    /// Returns `None` for a TypeScript `this` parameter, which arrow functions cannot have, and
+    /// for `[(f())] = []`, whose target was reported as the assignment it is read as first.
     fn cover_element_to_parameter(
         &mut self,
         element: CoverElement<'a>,
@@ -653,6 +654,12 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             }
             CoverElement::LiteralWithInitializer { literal, end, initializer } => {
                 if let Err(error) = self.check_cover_binding(&literal) {
+                    // acorn and tsc read `[(f())] = []` as an assignment before they see `=>`.
+                    let errors = self.errors.len();
+                    AssignmentTarget::cover(literal, self);
+                    if self.errors.len() > errors || self.fatal_error.is_some() {
+                        return None;
+                    }
                     return Some(self.fatal_error(error));
                 }
                 let span = Span::new(literal.span().start, end);

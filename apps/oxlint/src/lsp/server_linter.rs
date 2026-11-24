@@ -17,8 +17,8 @@ use tracing::{debug, error, warn};
 
 use oxc_linter::{
     AllowWarnDeny, Config, ConfigStore, ConfigStoreBuilder, ExternalLinter, ExternalPluginStore,
-    FixKind, LINTABLE_EXTENSIONS, LintIgnoreMatcher, LintOptions, LintRunner, LintRunnerBuilder,
-    LintServiceOptions, Linter, Oxlintrc, read_to_string,
+    FixKind, HostPlugin, LINTABLE_EXTENSIONS, LintIgnoreMatcher, LintOptions, LintRunner,
+    LintRunnerBuilder, LintServiceOptions, Linter, Oxlintrc, read_to_string,
 };
 
 use oxc_language_server::{
@@ -56,8 +56,9 @@ use crate::{
 #[derive(Default)]
 pub struct ServerLinterBuilder {
     external_linter: Option<ExternalLinter>,
-    #[cfg(feature = "napi")]
     js_config_loader: Option<crate::js_config::JsConfigLoaderCb>,
+    /// The plugins of an embedding program, which lints their files itself.
+    hosts: Vec<Arc<HostPlugin>>,
 }
 
 impl ServerLinterBuilder {
@@ -69,7 +70,26 @@ impl ServerLinterBuilder {
             external_linter,
             #[cfg(feature = "napi")]
             js_config_loader,
+            ..Self::default()
         }
+    }
+
+    /// Lint the files of each host's extensions with that host, as `CliRunner::with_hosts` does.
+    #[must_use]
+    pub fn with_hosts(mut self, hosts: Vec<Arc<HostPlugin>>) -> Self {
+        self.hosts = hosts;
+        self
+    }
+
+    /// Load JavaScript and TypeScript configuration files with `loader`, as a build without
+    /// Node.js cannot itself.
+    #[must_use]
+    pub fn with_host_config_loader(
+        mut self,
+        loader: impl crate::js_config::HostConfigLoader + 'static,
+    ) -> Self {
+        self.js_config_loader = Some(crate::js_config::host_config_loader(Arc::new(loader)));
+        self
     }
 
     /// Creates a new `ServerLinter` instance based on the provided root URI and options.
@@ -95,6 +115,9 @@ impl ServerLinterBuilder {
         let root_path = uri_to_file_path(root_uri).unwrap();
         let mut external_linter = self.external_linter.as_ref();
         let mut external_plugin_store = ExternalPluginStore::new(external_linter.is_some());
+        for host in &self.hosts {
+            external_plugin_store.register_host_plugin(Arc::clone(host));
+        }
         // create a set for config errors, because if the main config fails to load,
         // the same error might occur again.
         let mut client_messages = FxHashSet::default();
@@ -118,7 +141,6 @@ impl ServerLinterBuilder {
             &[],
             Some(root_uri.as_ref()),
         );
-        #[cfg(feature = "napi")]
         let loader = loader.with_js_config_loader(self.js_config_loader.as_ref());
 
         let mut oxlintrc = match loader.load_root_config(&root_path, config_path.as_ref()) {
@@ -354,18 +376,13 @@ impl ServerLinterBuilder {
     ) -> (FxHashMap<PathBuf, Config>, Vec<ClientMessage>) {
         let config_paths = discover_configs_in_tree(root_path, base_config_path);
 
-        #[cfg_attr(not(feature = "napi"), allow(unused_mut))]
         let mut loader = ConfigLoader::new(
             self.external_linter.as_ref(),
             external_plugin_store,
             &[],
             workspace_uri,
-        );
-
-        #[cfg(feature = "napi")]
-        {
-            loader = loader.with_js_config_loader(self.js_config_loader.as_ref());
-        }
+        )
+        .with_js_config_loader(self.js_config_loader.as_ref());
 
         let (configs, errors) = loader.load_discovered_with_root_dir(root_path, config_paths);
 

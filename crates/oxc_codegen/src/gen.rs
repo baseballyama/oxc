@@ -6,6 +6,7 @@ use oxc_ast::ast::*;
 use oxc_span::{GetSpan, Span};
 use oxc_str::JSStr;
 use oxc_syntax::{
+    number::ToJsString,
     operator::UnaryOperator,
     precedence::{GetPrecedence, Precedence},
 };
@@ -1602,6 +1603,14 @@ impl GenExpr for NumericLiteral<'_> {
         let typescript = ctx.contains(Context::TYPESCRIPT);
         if typescript && (!value.is_infinite() || self.raw.is_some()) {
             p.print_str(&self.raw_str());
+        } else if p.options.numbers_as_written
+            && let Some(raw) = self.raw
+        {
+            p.print_space_before_identifier();
+            p.print_number_as_written(&raw);
+        } else if p.options.numbers_as_written && value.is_finite() && value.is_sign_positive() {
+            p.print_space_before_identifier();
+            p.print_number_as_written(&value.to_js_string());
         } else if value.is_nan() {
             p.print_space_before_identifier();
             p.print_str("NaN");
@@ -1656,6 +1665,12 @@ impl GenExpr for BigIntLiteral<'_> {
             p.print_space_before_identifier();
         }
         p.add_source_mapping(self.span);
+        if p.options.numbers_as_written
+            && let Some(raw) = self.raw
+        {
+            p.print_str(&raw);
+            return;
+        }
         p.print_str(value);
         p.print_ascii_byte(b'n');
     }

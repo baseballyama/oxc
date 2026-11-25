@@ -1603,3 +1603,48 @@ fn script_close_tag_unescaped() {
     test_options("/* </script> */ x;", "/* </script> */ x;\n", keep());
     test("x = `\\</script\\>`;", "x = `\\<\\/script\\>`;\n");
 }
+
+#[test]
+fn numbers_as_written() {
+    let written = || CodegenOptions { numbers_as_written: true, ..CodegenOptions::default() };
+    for source in [
+        "x = 0x10 + 0o17 + 0b101 + 1_000 + 1e3 + 1E3 + 1.50 + .5 + 1e999;\n",
+        "x = 0x1fn + 1_0n;\n",
+        "x = {\n\t0x10: a,\n\t1_000: b,\n\t[0b11]: c\n};\n",
+        "({0x10: a, 1e3: b, ...rest} = o);\n",
+        "x = 1 .y + 1_0 .y + 0x1.y + 1e3.y + 1.5.y + .5.y + 1n.y;\n",
+        "x = a - -1;\n",
+    ] {
+        test_options(source, source, written());
+    }
+    test("x = 0x10 + 1_000 + 0x1fn;\n", "x = 16 + 1e3 + 31n;\n");
+
+    let allocator = Allocator::default();
+    let ast = AstBuilder::new(&allocator);
+    let print = |value: f64| {
+        let stmt = Statement::new_expression_statement(
+            SPAN,
+            Expression::new_static_member_expression(
+                SPAN,
+                Expression::new_numeric_literal(SPAN, value, None, &ast),
+                IdentifierName::new(SPAN, "y", &ast),
+                false,
+                &ast,
+            ),
+            &ast,
+        );
+        let program =
+            Program::new(SPAN, oxc_span::SourceType::mjs(), "", [], None, [], [stmt], &ast);
+        Codegen::new().with_options(written()).build(&program).code
+    };
+    for (value, printed) in [
+        (1000.0, "1000 .y;\n"),
+        (0.5, "0.5.y;\n"),
+        (1e21, "1e+21.y;\n"),
+        (1e-7, "1e-7.y;\n"),
+        (-1.0, "(-1).y;\n"),
+        (f64::NAN, "NaN.y;\n"),
+    ] {
+        assert_eq!(print(value), printed, "{value}");
+    }
+}

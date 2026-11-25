@@ -41,6 +41,13 @@ pub struct CodegenOptions {
     /// Default is `true`.
     pub escape_script_close_tag: bool,
 
+    /// Print a numeric or BigInt literal as it is written in the source, and one without source
+    /// text as `Number.prototype.toString` gives it, as Babel and esrap do, instead of the shortest
+    /// form of its value (`0x10` and `1000`, not `16` and `1e3`).
+    ///
+    /// Default is `false`.
+    pub numbers_as_written: bool,
+
     /// Print comments?
     ///
     /// At present, only some leading comments are preserved.
@@ -78,6 +85,7 @@ impl Default for CodegenOptions {
             minify: false,
             ascii_only: false,
             escape_script_close_tag: true,
+            numbers_as_written: false,
             comments: CommentOptions::default(),
             source_map_path: None,
             indent_char: IndentChar::default(),
@@ -95,6 +103,7 @@ impl CodegenOptions {
             minify: true,
             ascii_only: false,
             escape_script_close_tag: true,
+            numbers_as_written: false,
             comments: CommentOptions::disabled(),
             source_map_path: None,
             indent_char: IndentChar::default(),

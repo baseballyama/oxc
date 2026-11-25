@@ -1371,6 +1371,14 @@ impl<'a> Codegen<'a> {
         });
     }
 
+    fn print_number_as_written(&mut self, text: &str) {
+        self.print_str(text);
+        // `1.x` reads the dot as a decimal point; `0x1.x`, `1e3.x` and `1.5.x` do not.
+        if text.bytes().all(|b| b.is_ascii_digit() || b == b'_') {
+            self.need_space_before_dot = self.code_len();
+        }
+    }
+
     fn print_decorators(&mut self, decorators: &[Decorator<'_>], ctx: Context) {
         for decorator in decorators {
             decorator.print(self, ctx);

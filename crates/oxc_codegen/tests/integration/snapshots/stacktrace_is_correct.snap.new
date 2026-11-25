@@ -1,0 +1,230 @@
+---
+source: crates/oxc_codegen/tests/integration/sourcemap.rs
+assertion_line: 476
+---
+Node.js version: 
+
+## Input
+const fn = () => {
+    Error.stackTraceLimit = 2;
+    throw new Error()
+};
+fn()
+
+## Output
+const fn = () => {
+	Error.stackTraceLimit = 2;
+	throw new Error();
+};
+fn();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const obj = {
+    fn() {
+        Error.stackTraceLimit = 2;
+        throw new Error()
+    }
+}
+obj.fn()
+
+## Output
+const obj = { fn() {
+	Error.stackTraceLimit = 2;
+	throw new Error();
+} };
+obj.fn();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const obj = {
+    obj2: {
+        fn() {
+            Error.stackTraceLimit = 2;
+            throw new Error()
+        }
+    }
+}
+obj.obj2.fn()
+
+## Output
+const obj = { obj2: { fn() {
+	Error.stackTraceLimit = 2;
+	throw new Error();
+} } };
+obj.obj2.fn();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const obj = {
+    fn() {
+        return function fn2() {
+            Error.stackTraceLimit = 2;
+            throw new Error()
+        }
+    }
+}
+obj.fn()()
+
+## Output
+const obj = { fn() {
+	return function fn2() {
+		Error.stackTraceLimit = 2;
+		throw new Error();
+	};
+} };
+obj.fn()();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const obj = {
+    fn() {
+        return () => {
+            Error.stackTraceLimit = 2;
+            throw new Error()
+        }
+    }
+}
+obj.fn([1])()
+
+## Output
+const obj = { fn() {
+	return () => {
+		Error.stackTraceLimit = 2;
+		throw new Error();
+	};
+} };
+obj.fn([1])();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const factory = () => {
+    return () => {
+        Error.stackTraceLimit = 2;
+        throw new Error()
+    }
+}
+factory()()
+
+## Output
+const factory = () => {
+	return () => {
+		Error.stackTraceLimit = 2;
+		throw new Error();
+	};
+};
+factory()();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+var a
+const obj = {
+    fn() {
+        return () => {
+            Error.stackTraceLimit = 2;
+            throw new Error()
+        }
+    }
+}
+obj.fn({a})()
+
+## Output
+var a;
+const obj = { fn() {
+	return () => {
+		Error.stackTraceLimit = 2;
+		throw new Error();
+	};
+} };
+obj.fn({ a })();
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const fn = (name, cb) => {
+    cb()
+}
+fn('name', () => {
+    Error.stackTraceLimit = 2;
+    throw new Error()
+})
+
+## Output
+const fn = (name, cb) => {
+	cb();
+};
+fn("name", () => {
+	Error.stackTraceLimit = 2;
+	throw new Error();
+});
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Input
+const make = () => ({
+    get prop() {
+        Error.stackTraceLimit = 2;
+        throw new Error()
+    }
+})
+make().prop
+
+## Output
+const make = () => ({ get prop() {
+	Error.stackTraceLimit = 2;
+	throw new Error();
+} });
+make().prop;
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)
+------------------------------------------------------
+## Mangled identifier source-map names
+["longFunctionName", "longName"]
+
+## Input
+export {};
+function longFunctionName(longName) {
+    (longName = () => {
+        Error.stackTraceLimit = 2;
+        throw new Error();
+    })();
+}
+longFunctionName(0);
+
+## Output
+export {};
+function e(e) {
+	(e = () => {
+		Error.stackTraceLimit = 2;
+		throw new Error();
+	})();
+}
+e(0);
+
+
+## Stderr
+nodenv: version `26.12.1' is not installed (set by /Users/baseballyama/git/rsvelte/.claude/worktrees/general/fcv-oxc/.node-version)

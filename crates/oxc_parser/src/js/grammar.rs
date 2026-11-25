@@ -44,15 +44,17 @@ impl AssignedBy {
     }
 }
 
-/// A target that cannot be assigned: the error, which the parse goes on after, and a name over the
-/// target's span in its place, so the tree still holds the functions around it.
+/// The target `expr` that cannot be assigned: the error, which the parse goes on after, and a member
+/// of it with no name in its place, so the tree still holds what is in and around it.
 fn unassignable<'a, C: Config>(
     p: &mut ParserImpl<'a, C>,
     code: &'static str,
     span: Span,
+    expr: Expression<'a>,
 ) -> SimpleAssignmentTarget<'a> {
     p.error(diagnostics::invalid_assignment(code, span));
-    SimpleAssignmentTarget::new_assignment_target_identifier(span, "", p)
+    let property = IdentifierName::new(Span::empty(span.end), "", p);
+    SimpleAssignmentTarget::new_static_member_expression(span, expr, property, false, p)
 }
 
 impl<'a, C: Config> CoverGrammar<'a, Expression<'a>, C> for AssignmentTarget<'a> {
@@ -69,7 +71,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for AssignmentTarget<'a> {
         if let Expression::ArrayExpression(_) | Expression::ObjectExpression(_) = expr
             && let Some(&span) = p.state.parenthesized_patterns.get(&expr.span().start)
         {
-            return AssignmentTarget::from(unassignable(p, by.code(&expr), span));
+            return AssignmentTarget::from(unassignable(p, by.code(&expr), span, expr));
         }
         match expr {
             Expression::ArrayExpression(array_expr) => {
@@ -105,8 +107,8 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
             Expression::ParenthesizedExpression(expr) => {
                 let span = parentheses.unwrap_or(expr.span);
                 match expr.unbox().expression {
-                    Expression::ObjectExpression(_) | Expression::ArrayExpression(_) => {
-                        unassignable(p, code, span)
+                    expr @ (Expression::ObjectExpression(_) | Expression::ArrayExpression(_)) => {
+                        unassignable(p, code, span, expr)
                     }
                     expr => SimpleAssignmentTarget::cover((expr, by, Some(span)), p),
                 }
@@ -118,7 +120,12 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSAsExpression(expr)
                 }
-                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
+                _ => unassignable(
+                    p,
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                    Expression::TSAsExpression(expr),
+                ),
             },
             Expression::TSSatisfiesExpression(expr) => {
                 match expr.expression.get_inner_expression() {
@@ -128,7 +135,12 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                     | Expression::PrivateFieldExpression(_) => {
                         SimpleAssignmentTarget::TSSatisfiesExpression(expr)
                     }
-                    _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
+                    _ => unassignable(
+                        p,
+                        code,
+                        parentheses.unwrap_or(expr.span()),
+                        Expression::TSSatisfiesExpression(expr),
+                    ),
                 }
             }
             Expression::TSNonNullExpression(expr) => match expr.expression.get_inner_expression() {
@@ -138,7 +150,12 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSNonNullExpression(expr)
                 }
-                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
+                _ => unassignable(
+                    p,
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                    Expression::TSNonNullExpression(expr),
+                ),
             },
             Expression::TSTypeAssertion(expr) => match expr.expression.get_inner_expression() {
                 Expression::Identifier(_)
@@ -147,7 +164,12 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
                 | Expression::PrivateFieldExpression(_) => {
                     SimpleAssignmentTarget::TSTypeAssertion(expr)
                 }
-                _ => unassignable(p, code, parentheses.unwrap_or(expr.span())),
+                _ => unassignable(
+                    p,
+                    code,
+                    parentheses.unwrap_or(expr.span()),
+                    Expression::TSTypeAssertion(expr),
+                ),
             },
             Expression::TSInstantiationExpression(expr) => {
                 p.fatal_error(diagnostics::invalid_lhs_assignment(expr.span()))
@@ -155,7 +177,7 @@ impl<'a, C: Config> CoverGrammar<'a, Assigned<'a>, C> for SimpleAssignmentTarget
             expr => {
                 let dropped = p.state.parenthesized_patterns.get(&expr.span().start).copied();
                 let span = parentheses.or(dropped).unwrap_or(expr.span());
-                unassignable(p, code, span)
+                unassignable(p, code, span, expr)
             }
         }
     }

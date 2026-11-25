@@ -1595,6 +1595,23 @@ mod test {
     }
 
     #[test]
+    fn a_target_that_cannot_be_assigned_stays_in_the_tree() {
+        for source in [
+            "(() => 1) = 1;",
+            "[(() => 1)] = o;",
+            "for ((() => 1) of o);",
+            "(() => 1)++;",
+            "(() => 1 as T) = 1;",
+        ] {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, SourceType::ts()).parse();
+            assert!(!ret.fatal_error && !ret.diagnostics.is_empty(), "{source}");
+            let tree = ret.program.to_pretty_estree_json(true, false);
+            assert!(tree.contains("ArrowFunctionExpression"), "{source}");
+        }
+    }
+
+    #[test]
     fn a_strict_reserved_word_before_a_fatal_error_comes_first() {
         let first = |source: &str, source_type: SourceType| {
             let allocator = Allocator::default();

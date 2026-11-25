@@ -39,6 +39,7 @@ bitflags = { workspace = true }
 cow-utils = { workspace = true }
 rustc-hash = { workspace = true }
 smallvec = { workspace = true }
+zmij_ecma = { workspace = true }
 
 [dev-dependencies]
 insta = { workspace = true }

@@ -6,7 +6,6 @@ use oxc_ast::ast::*;
 use oxc_span::{GetSpan, Span};
 use oxc_str::JSStr;
 use oxc_syntax::{
-    number::ToJsString,
     operator::UnaryOperator,
     precedence::{GetPrecedence, Precedence},
 };
@@ -1610,7 +1609,7 @@ impl GenExpr for NumericLiteral<'_> {
             p.print_number_as_written(&raw);
         } else if p.options.numbers_as_written && value.is_finite() && value.is_sign_positive() {
             p.print_space_before_identifier();
-            p.print_number_as_written(&value.to_js_string());
+            p.print_number_as_written(zmij_ecma::Buffer::new().format(value));
         } else if value.is_nan() {
             p.print_space_before_identifier();
             p.print_str("NaN");

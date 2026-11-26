@@ -183,12 +183,12 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             && self.state.cover_depth > 0
             && self.lookahead(Self::is_optional_rest_element)
         {
-            // `([...a?]) => …` is an error, reported on the rest element of the parameter.
+            // `([...a?]) => …`: tsc expects an expression after the `?`. The parse goes on past the
+            // `?`, so a host can read the rest element around it.
             self.bump_any(); // `...`
             let argument = self.parse_identifier_expression();
-            let question = self.cur_token().span();
             self.bump_any(); // `?`
-            self.error(diagnostics::a_rest_parameter_cannot_be_optional(question));
+            self.error(diagnostics::expression_expected(self.cur_token().span()));
             argument
         } else {
             self.bump_any(); // advance `...`

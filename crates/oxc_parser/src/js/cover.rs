@@ -654,7 +654,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             }
             CoverElement::LiteralWithInitializer { literal, end, initializer } => {
                 if let Err(error) = self.check_cover_binding(&literal) {
-                    // acorn and tsc read `[(f())] = []` as an assignment before they see `=>`.
+                    // acorn reads `[(f())] = []` as an assignment, and reports its target, before it sees `=>`.
                     let errors = self.errors.len();
                     AssignmentTarget::cover(literal, self);
                     if self.errors.len() > errors || self.fatal_error.is_some() {

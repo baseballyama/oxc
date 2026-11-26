@@ -1576,12 +1576,14 @@ mod test {
     }
 
     #[test]
-    fn an_optional_rest_element_of_an_arrow_parameter_is_reported_at_its_question_mark() {
+    fn an_optional_rest_element_of_an_arrow_parameter_expects_an_expression_after_its_question_mark()
+     {
         for source in ["([...a?]) => {}", "({...a?}) => {}"] {
             let allocator = Allocator::default();
             let ret = Parser::new(&allocator, source, SourceType::ts()).parse();
             let found = ret.diagnostics.iter().map(|d| (d.code.to_string(), d.labels[0].offset()));
-            assert_eq!(found.collect::<Vec<_>>(), [("TS(1047)".to_owned(), 6)], "{source}");
+            assert_eq!(found.collect::<Vec<_>>(), [("TS(1109)".to_owned(), 7)], "{source}");
+            assert!(!ret.fatal_error, "{source}");
         }
     }
 

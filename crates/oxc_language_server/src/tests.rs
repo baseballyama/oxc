@@ -709,6 +709,43 @@ mod test_suite {
     }
 
     #[tokio::test]
+    async fn test_run_server_on_answers_over_the_given_transport() {
+        use tokio::io::{AsyncReadExt, AsyncWriteExt};
+
+        let (mut client, server) = tokio::io::duplex(1 << 16);
+        let (input, output) = tokio::io::split(server);
+        let serving = tokio::spawn(crate::run_server_on(
+            input,
+            output,
+            "host".to_owned(),
+            "2.0.0".to_owned(),
+            create_workspace_manager(),
+        ));
+        let request = initialize_request(InitializeRequestOptions::default());
+        let body = serde_json::to_string(&request).unwrap();
+        client
+            .write_all(format!("Content-Length: {}\r\n\r\n{body}", body.len()).as_bytes())
+            .await
+            .unwrap();
+        let mut received = Vec::new();
+        let mut buffer = [0; 4096];
+        let answer = loop {
+            let read = client.read(&mut buffer).await.unwrap();
+            assert_ne!(read, 0, "the server closed the transport");
+            received.extend_from_slice(&buffer[..read]);
+            let text = String::from_utf8_lossy(&received).into_owned();
+            if let Some((_, body)) = text.split_once("\r\n\r\n")
+                && serde_json::from_str::<Value>(body).is_ok()
+            {
+                break serde_json::from_str::<Value>(body).unwrap();
+            }
+        };
+        assert_eq!(answer["result"]["serverInfo"], json!({ "name": "host", "version": "2.0.0" }));
+        drop(client);
+        serving.await.unwrap();
+    }
+
+    #[tokio::test]
     async fn test_client_message_deferred_until_initialized() {
         let builder = FakeToolBuilder {
             build_client_message: vec![ClientMessage {

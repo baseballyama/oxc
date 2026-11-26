@@ -1,7 +1,8 @@
-use std::{num::NonZero, sync::Arc};
+use std::{num::NonZero, pin::Pin, sync::Arc};
 
 use futures_util::future::BoxFuture;
 use rustc_hash::FxBuildHasher;
+use tokio::io::{AsyncRead, AsyncWrite};
 use tower_lsp_server::{
     Client, LanguageServer, LspService, LspServiceBuilder, Server,
     gen_lsp_types::{ServerInfo, Uri},
@@ -78,17 +79,40 @@ pub fn run_server(
     server_version: String,
     worker_manager: WorkerManager,
 ) -> BoxFuture<'static, ()> {
-    Box::pin(run_server_impl(server_name, server_version, worker_manager))
+    run_server_on(
+        tokio::io::stdin(),
+        tokio::io::stdout(),
+        server_name,
+        server_version,
+        worker_manager,
+    )
+}
+
+/// Run the language server on `input` and `output`, such as one end of a pipe that a host which
+/// talks to the editor itself holds the other end of.
+pub fn run_server_on(
+    input: impl AsyncRead + Send + 'static,
+    output: impl AsyncWrite + Send + 'static,
+    server_name: String,
+    server_version: String,
+    worker_manager: WorkerManager,
+) -> BoxFuture<'static, ()> {
+    Box::pin(run_server_impl(
+        Box::pin(input),
+        Box::pin(output),
+        server_name,
+        server_version,
+        worker_manager,
+    ))
 }
 
 async fn run_server_impl(
+    stdin: Pin<Box<dyn AsyncRead + Send>>,
+    stdout: Pin<Box<dyn AsyncWrite + Send>>,
     server_name: String,
     server_version: String,
     worker_manager: WorkerManager,
 ) {
-    let stdin = tokio::io::stdin();
-    let stdout = tokio::io::stdout();
-
     let (service, socket) = build_lsp_service(|client| {
         Backend::new(
             client,

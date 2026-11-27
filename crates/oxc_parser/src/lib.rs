@@ -433,6 +433,15 @@ pub struct ParseOptions {
     ///
     /// Default: `true`
     pub enable_ident_hashes: bool,
+
+    /// Read a member access whose name is missing after its `.`, as `a.;`, the way TypeScript's
+    /// `parseRightSideOfDot` does: an empty [`IdentifierName`] and an `Identifier expected.` error
+    /// that does not stop the parse.
+    ///
+    /// Default: `false`
+    ///
+    /// [`IdentifierName`]: oxc_ast::ast::IdentifierName
+    pub recover_missing_member_name: bool,
 }
 
 impl Default for ParseOptions {
@@ -444,6 +453,7 @@ impl Default for ParseOptions {
             preserve_parens: true,
             allow_v8_intrinsics: false,
             enable_ident_hashes: true,
+            recover_missing_member_name: false,
         }
     }
 }
@@ -1383,6 +1393,70 @@ mod test {
         assert!(ret.program.is_empty());
         assert!(ret.diagnostics.is_empty());
         assert!(!ret.is_flow_language);
+    }
+
+    #[test]
+    fn a_missing_member_name_reads_as_typescript_reads_it() {
+        /// The name of the member access the statement ends in, with its span.
+        fn member_name<'a>(statement: &'a Statement<'a>) -> Option<(&'a str, Span)> {
+            let expression = match statement {
+                Statement::ExpressionStatement(e) => &e.expression,
+                Statement::LabeledStatement(l) => return member_name(&l.body),
+                _ => return None,
+            };
+            let expression = match expression {
+                Expression::AssignmentExpression(a) => &a.right,
+                e => e,
+            };
+            match expression {
+                Expression::StaticMemberExpression(m) => {
+                    Some((m.property.name.as_str(), m.property.span))
+                }
+                _ => None,
+            }
+        }
+        let options = ParseOptions { recover_missing_member_name: true, ..ParseOptions::default() };
+        // The source, the statement's text, its name and that name's span, and where TypeScript
+        // reports `Identifier expected.`.
+        let cases = [
+            ("a.", "a.", "", (2, 2), Some((2, 2))),
+            ("a.;", "a.;", "", (2, 2), Some((2, 3))),
+            ("$: fun().", "$: fun().", "", (9, 9), Some((9, 9))),
+            ("$: c = $store.", "$: c = $store.", "", (14, 14), Some((14, 14))),
+            ("a.\n b", "a.\n b", "b", (4, 5), None),
+            ("a.\n b c", "a.", "", (2, 2), Some((2, 2))),
+        ];
+        for (source, text, name, span, error) in cases {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, SourceType::ts())
+                .with_options(options)
+                .parse_statement_at(0)
+                .unwrap_or_else(|errors| panic!("{source:?}: {errors:?}"));
+            let statement = ret.statement.span();
+            assert_eq!(
+                &source[statement.start as usize..statement.end as usize],
+                text,
+                "{source:?}"
+            );
+            assert_eq!(member_name(&ret.statement), Some((name, Span::new(span.0, span.1))));
+            let errors: Vec<_> = (ret.diagnostics.iter())
+                .map(|d| {
+                    let label = d.labels.first().expect("a label");
+                    (d.message.to_string(), label.offset(), label.offset() + label.len())
+                })
+                .collect();
+            let expected: Vec<_> = (error.into_iter())
+                .map(|(start, end)| ("Identifier expected.".to_owned(), start, end))
+                .collect();
+            assert_eq!(errors, expected, "{source:?}");
+        }
+        // Without the option, the missing name stops the parse.
+        for source in ["a.", "a.;", "$: fun().", "$: c = $store."] {
+            let allocator = Allocator::default();
+            let ret = Parser::new(&allocator, source, SourceType::ts()).parse_statement_at(0);
+            assert!(ret.is_err(), "{source:?}");
+            assert!(Parser::new(&allocator, source, SourceType::ts()).parse().fatal_error);
+        }
     }
 
     #[test]

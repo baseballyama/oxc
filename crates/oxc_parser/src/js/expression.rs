@@ -1109,7 +1109,7 @@ impl<'a, C: Config> ParserImpl<'a, C> {
             }
             MemberExpression::new_private_field_expression(span, lhs, private_ident, optional, self)
         } else {
-            let ident = self.parse_identifier_name();
+            let ident = self.parse_member_name();
             MemberExpression::new_static_member_expression(
                 self.end_span(lhs_start),
                 lhs,
@@ -1118,6 +1118,30 @@ impl<'a, C: Config> ParserImpl<'a, C> {
                 self,
             )
         })
+    }
+
+    /// The name after a member access's `.`. With `recover_missing_member_name`, a missing one is
+    /// TypeScript's `parseRightSideOfDot`: an empty name after the `.`, and an error at the token
+    /// in its place, or right after the `.` where a line break puts a name before another name
+    /// on its line, as `a.\n b c`, so that `b` starts the next statement.
+    fn parse_member_name(&mut self) -> IdentifierName<'a> {
+        if self.options.recover_missing_member_name {
+            let token = self.cur_token();
+            let next_statement = token.is_on_new_line()
+                && token.kind().is_identifier_or_keyword()
+                && self.lookahead(|p| {
+                    p.bump_any();
+                    let next = p.cur_token();
+                    next.kind().is_identifier_or_keyword() && !next.is_on_new_line()
+                });
+            if next_statement || !token.kind().is_identifier_name() {
+                let after_dot = self.prev_token_end;
+                let at = if next_statement { Span::empty(after_dot) } else { token.span() };
+                self.error(diagnostics::identifier_expected(at));
+                return IdentifierName::new(Span::empty(after_dot), self.ident(""), self);
+            }
+        }
+        self.parse_identifier_name()
     }
 
     /// Section 13.3 `MemberExpression`

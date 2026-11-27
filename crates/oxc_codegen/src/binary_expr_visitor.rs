@@ -19,18 +19,22 @@ pub enum Binaryish<'a> {
 }
 
 impl<'a> Binaryish<'a> {
-    pub fn left(&self) -> &'a Expression<'a> {
-        match self {
-            Self::Binary(e) => e.left.without_parentheses(),
-            Self::Logical(e) => e.left.without_parentheses(),
-        }
+    /// The left operand, looking through its parentheses unless they are printed as written.
+    pub fn left(&self, p: &Codegen) -> &'a Expression<'a> {
+        let left = match self {
+            Self::Binary(e) => &e.left,
+            Self::Logical(e) => &e.left,
+        };
+        if p.options.parentheses_as_written { left } else { left.without_parentheses() }
     }
 
-    pub fn right(&self) -> &'a Expression<'a> {
-        match self {
-            Self::Binary(e) => e.right.without_parentheses(),
-            Self::Logical(e) => e.right.without_parentheses(),
-        }
+    /// The right operand, as [`Self::left`] reads the left one.
+    pub fn right(&self, p: &Codegen) -> &'a Expression<'a> {
+        let right = match self {
+            Self::Binary(e) => &e.right,
+            Self::Logical(e) => &e.right,
+        };
+        if p.options.parentheses_as_written { right } else { right.without_parentheses() }
     }
 
     pub fn operator(&self) -> BinaryishOperator {
@@ -116,7 +120,7 @@ impl<'a> BinaryExpressionVisitor<'a> {
                 break;
             }
 
-            let left = v.e.left();
+            let left = v.e.left(p);
             let left_binary = match left {
                 Expression::BinaryExpression(e) => Some(Binaryish::Binary(e)),
                 Expression::LogicalExpression(e) => Some(Binaryish::Logical(e)),
@@ -192,12 +196,12 @@ impl<'a> BinaryExpressionVisitor<'a> {
 
         match self.operator {
             BinaryishOperator::Logical(LogicalOperator::Coalesce) => {
-                if let Expression::LogicalExpression(logical_expr) = e.left()
+                if let Expression::LogicalExpression(logical_expr) = e.left(p)
                     && matches!(logical_expr.operator, LogicalOperator::And | LogicalOperator::Or)
                 {
                     self.left_precedence = Precedence::Prefix;
                 }
-                if let Expression::LogicalExpression(logical_expr) = e.right()
+                if let Expression::LogicalExpression(logical_expr) = e.right(p)
                     && matches!(logical_expr.operator, LogicalOperator::And | LogicalOperator::Or)
                 {
                     self.right_precedence = Precedence::Prefix;
@@ -208,7 +212,7 @@ impl<'a> BinaryExpressionVisitor<'a> {
                 // must be parenthesized. Negative numbers and BigInts print with a
                 // leading `-`, i.e. as a unary operator.
                 if matches!(
-                    e.left(),
+                    e.left(p),
                     Expression::UnaryExpression(_)
                         | Expression::AwaitExpression(_)
                         | Expression::TSTypeAssertion(_)
@@ -221,7 +225,7 @@ impl<'a> BinaryExpressionVisitor<'a> {
             BinaryishOperator::Binary(BinaryOperator::BitwiseOR | BinaryOperator::BitwiseAnd) => {
                 // Without parentheses, `|` or `&` becomes part of the type in
                 // `(value satisfies Type) | other` or `(value satisfies Type) & other`.
-                if matches!(e.left(), Expression::TSSatisfiesExpression(_)) {
+                if matches!(e.left(p), Expression::TSSatisfiesExpression(_)) {
                     self.left_precedence = Precedence::Compare;
                 }
             }
@@ -229,7 +233,7 @@ impl<'a> BinaryExpressionVisitor<'a> {
             _ => {}
         }
 
-        if let Expression::PrivateInExpression(e) = self.e.left() {
+        if let Expression::PrivateInExpression(e) = self.e.left(p) {
             e.gen_expr(p, self.left_precedence, self.ctx);
             self.visit_right_and_finish(p);
             return false;
@@ -242,7 +246,7 @@ impl<'a> BinaryExpressionVisitor<'a> {
         p.print_soft_space();
         self.operator.r#gen(p);
         p.print_soft_space();
-        let right = self.e.right();
+        let right = self.e.right(p);
         if let Binaryish::Logical(e) = self.e {
             // Annotation-gated (see the helper's doc): statements get merged
             // into logical RHS positions on mutated ASTs. Pass the unstripped

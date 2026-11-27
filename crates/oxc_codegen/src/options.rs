@@ -48,6 +48,13 @@ pub struct CodegenOptions {
     /// Default is `false`.
     pub numbers_as_written: bool,
 
+    /// Print each parenthesized expression the tree holds with its parentheses, as TypeScript's
+    /// emit keeps them, instead of only those the precedence of its operands needs. The tree has
+    /// them when it is parsed with `preserve_parens`.
+    ///
+    /// Default is `false`.
+    pub parentheses_as_written: bool,
+
     /// Print comments?
     ///
     /// At present, only some leading comments are preserved.
@@ -86,6 +93,7 @@ impl Default for CodegenOptions {
             ascii_only: false,
             escape_script_close_tag: true,
             numbers_as_written: false,
+            parentheses_as_written: false,
             comments: CommentOptions::default(),
             source_map_path: None,
             indent_char: IndentChar::default(),
@@ -104,6 +112,7 @@ impl CodegenOptions {
             ascii_only: false,
             escape_script_close_tag: true,
             numbers_as_written: false,
+            parentheses_as_written: false,
             comments: CommentOptions::disabled(),
             source_map_path: None,
             indent_char: IndentChar::default(),

@@ -851,6 +851,13 @@ impl<'a> Codegen<'a> {
         self.class_stack.iter().rev().copied()
     }
 
+    /// Whether a function the source wrapped in parentheses (`pife`) prints them itself: not when
+    /// the tree's own parentheses print.
+    #[inline]
+    fn wraps_pife(&self, pife: bool) -> bool {
+        pife && !self.options.parentheses_as_written
+    }
+
     #[inline]
     fn wrap<F: FnOnce(&mut Self)>(&mut self, wrap: bool, f: F) {
         if wrap {

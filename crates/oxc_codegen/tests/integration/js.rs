@@ -1605,6 +1605,38 @@ fn script_close_tag_unescaped() {
 }
 
 #[test]
+fn parentheses_as_written() {
+    let written = || CodegenOptions { parentheses_as_written: true, ..CodegenOptions::default() };
+    for source in [
+        "(f)(1);\n",
+        "((a));\n",
+        "x = (a);\n",
+        "x = (a * b) + c;\n",
+        "x = a + (b * c);\n",
+        "x = (a && b) || c;\n",
+        "x = a ?? (b);\n",
+        "x = (a, b);\n",
+        "x = (a ? b : c).d;\n",
+        "x = (a?.b).c;\n",
+        "x = new (a.b())();\n",
+        "x = typeof (a);\n",
+        "x = (a) ? (b) : (c);\n",
+        "for (let x = (\"a\" in b);;) {}\n",
+        "({}).x;\n",
+        "(function() {})();\n",
+        "(() => 1)();\n",
+        "x = (() => 1);\n",
+        "x = (function() {});\n",
+        "x = () => ({});\n",
+        "x = `${(a)}`;\n",
+        "f((a), (b));\n",
+    ] {
+        test_options(source, source, written());
+    }
+    test("x = (a * b) + ((c));\n", "x = a * b + c;\n");
+}
+
+#[test]
 fn numbers_as_written() {
     let written = || CodegenOptions { numbers_as_written: true, ..CodegenOptions::default() };
     for source in [

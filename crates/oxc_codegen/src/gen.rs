@@ -857,7 +857,7 @@ impl Gen for Function<'_> {
     fn r#gen(&self, p: &mut Codegen, ctx: Context) {
         let n = p.code_len();
         let wrap = self.is_expression()
-            && ((p.start_of_stmt == n || p.start_of_default_export == n) || self.pife);
+            && ((p.start_of_stmt == n || p.start_of_default_export == n) || p.wraps_pife(self.pife));
         let ctx = ctx.and_forbid_call(false);
         p.wrap(wrap, |p| {
             // `pife` wrap: emit leading comments inside the `(`, so the
@@ -1540,7 +1540,13 @@ impl GenExpr for ParenthesizedExpression<'_> {
     const COMMENTS: CommentPlace = CommentPlace::Inner;
 
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
-        self.expression.print_expr(p, precedence, ctx);
+        if p.options.parentheses_as_written {
+            p.print_ascii_byte(b'(');
+            self.expression.print_expr(p, Precedence::Lowest, ctx & Context::TYPESCRIPT);
+            p.print_ascii_byte(b')');
+        } else {
+            self.expression.print_expr(p, precedence, ctx);
+        }
     }
 }
 
@@ -2087,7 +2093,7 @@ impl GenExpr for ArrowFunctionExpression<'_> {
     const COMMENTS: CommentPlace = CommentPlace::InsideParentheses;
 
     fn gen_expr(&self, p: &mut Codegen, precedence: Precedence, ctx: Context) {
-        let wrap = precedence >= Precedence::Assign || self.pife;
+        let wrap = precedence >= Precedence::Assign || p.wraps_pife(self.pife);
         // Clear FORBID_IN: always for param defaults (always parenthesized), and for
         // the concise body only when the arrow is wrapped (which resets the `for` init).
         let params_ctx = ctx & Context::FORBID_IN.not();

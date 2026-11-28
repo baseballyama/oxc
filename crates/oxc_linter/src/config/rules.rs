@@ -218,6 +218,24 @@ impl OxlintRules {
                         };
                         match rule.from_configuration(config) {
                             Ok(configured_rule) => {
+                                // A host that runs the rule in its files reads the options too.
+                                let checked = external_plugin_store
+                                    .hosts()
+                                    .filter(|host| host.implements(rule.plugin_name(), rule.name()))
+                                    .try_for_each(|host| {
+                                        host.linter.check_builtin_options(
+                                            rule.plugin_name(),
+                                            rule.name(),
+                                            &rule_config.config,
+                                        )
+                                    });
+                                if let Err(message) = checked {
+                                    errors.push(OverrideRulesError::RuleConfiguration {
+                                        rule_name: rule_config.full_name().into_owned(),
+                                        message,
+                                    });
+                                    continue;
+                                }
                                 rules_to_replace.push((
                                     configured_rule,
                                     RuleConfig {

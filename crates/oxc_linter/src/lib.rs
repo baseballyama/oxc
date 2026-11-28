@@ -346,7 +346,7 @@ impl Linter {
                     plugin: rule.plugin_name(),
                     name: rule.name(),
                     severity: rule_config.severity,
-                    options: &[],
+                    options: rule_config.options.as_deref().unwrap_or_default(),
                 });
             }
         }

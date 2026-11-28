@@ -27,7 +27,7 @@ pub struct EnabledHostRule<'c> {
     pub plugin: &'c str,
     pub name: &'c str,
     pub severity: AllowWarnDeny,
-    /// The rule's options from the configuration; empty for a built-in rule.
+    /// The rule's options from the configuration.
     pub options: &'c [Value],
 }
 
@@ -50,6 +50,18 @@ pub trait HostLinter: Send + Sync {
     /// as it checks a built-in rule's.
     fn check_options(&self, rule: &str, options: &[Value]) -> Result<(), String> {
         let _ = (rule, options);
+        Ok(())
+    }
+
+    /// Checks the options the configuration gives a built-in rule the host runs in its files,
+    /// after oxlint has checked them.
+    fn check_builtin_options(
+        &self,
+        plugin: &str,
+        rule: &str,
+        options: &[Value],
+    ) -> Result<(), String> {
+        let _ = (plugin, rule, options);
         Ok(())
     }
 
@@ -220,6 +232,23 @@ mod tests {
     }
 
     #[test]
+    fn a_host_reads_the_options_of_a_built_in_rule() {
+        let config =
+            r#"{ "rules": { "no-unused-vars": ["error", { "varsIgnorePattern": "^_" }] } }"#;
+        assert_eq!(
+            rules_for(config, "App.svelte"),
+            [
+                (
+                    "eslint/no-unused-vars".into(),
+                    AllowWarnDeny::Deny,
+                    r#"[{"varsIgnorePattern":"^_"}]"#.into()
+                ),
+                ("svelte/valid-compile".into(), AllowWarnDeny::Warn, "[]".into()),
+            ]
+        );
+    }
+
+    #[test]
     fn a_host_runs_only_its_own_rules_on_a_module() {
         assert_eq!(
             rules_for("{}", "module.ts"),
@@ -309,6 +338,15 @@ mod tests {
             if options.is_empty() { Ok(()) } else { Err(format!("{rule} takes no options")) }
         }
 
+        fn check_builtin_options(
+            &self,
+            plugin: &str,
+            rule: &str,
+            options: &[serde_json::Value],
+        ) -> Result<(), String> {
+            if options.is_empty() { Ok(()) } else { Err(format!("{plugin}/{rule} rejects them")) }
+        }
+
         fn check_settings(
             &self,
             settings: &serde_json::Map<String, serde_json::Value>,
@@ -331,7 +369,7 @@ mod tests {
             extensions: vec!["svelte".into()],
             module_extensions: Vec::new(),
             rules: vec![HostRule { name: "a".into(), category: RuleCategory::Correctness }],
-            builtin_rules: Vec::new(),
+            builtin_rules: vec![("eslint".into(), "no-unused-vars".into())],
             linter: Arc::new(Strict),
         });
         let mut store = ExternalPluginStore::new(false);
@@ -353,6 +391,9 @@ mod tests {
         )
         .unwrap_err();
         assert!(error.contains("a takes no options"), "{error}");
+        let error =
+            build_strict(r#"{ "rules": { "no-unused-vars": ["error", "local"] } }"#).unwrap_err();
+        assert!(error.contains("eslint/no-unused-vars rejects them"), "{error}");
         let error = build_strict(r#"{ "settings": { "svelte": {} } }"#).unwrap_err();
         assert!(error.contains("settings.svelte: bad"), "{error}");
     }
